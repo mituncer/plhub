@@ -2,7 +2,6 @@
 # "#" ile başlayan satırlar ve boş satırlar atlanır.
 # Uzun tarifin içinde "/" kullanabilirsin, sorun olmaz.
 
+Polonyaca B1 Seviye Kelime Haznesi / PolonceKart260910.html / B1 kelimeleri çalışmak için flash kart benzeri aplikasyon 
 Polonyaca Kelimeleri Oku 2022 / Polonca_Kelime_Dinleme.html / 2022 B1 Testi önemli kelimeleri okur
-Gramer Testi / PolishTest.html / şimdilik denem
-Lizbon & Sintra / lizbon-sintra.html / şimdilik deneme
-Elevate Thinking / elevthnking.html / şimdilik deneme
+
