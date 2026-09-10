@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Uygulamalar</title>
+
+<!-- ===== AYARLAR: buradan değiştir ===== -->
+<!-- Liste dosyasının adı: her satır  ->  kısa tarif / dosya.html / uzun tarif -->
+<!-- Başlık ve alt yazı aşağıdaki <header> içinde düz metin olarak değiştirilebilir. -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --paper:#F5F4F0;        /* sıcak kağıt zemini */
+    --ink:#1A1A17;          /* koyu mürekkep */
+    --muted:#6B6A62;        /* ikincil / uzun tarif */
+    --hair:#DEDCD4;         /* ince ayraç çizgisi */
+    --accent:#B23A2E;       /* tek vurgu: tuğla kırmızısı */
+    --wash:#EDEBE4;         /* satır üstüne gelince hafif zemin */
+    --maxw:44rem;
+  }
+
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    line-height:1.5;
+    padding:clamp(1.5rem,5vw,4rem) clamp(1.25rem,5vw,2rem) 5rem;
+    display:flex;
+    justify-content:center;
+  }
+
+  .shell{width:100%;max-width:var(--maxw);}
+
+  /* --- Başlık --- */
+  header{
+    margin-bottom:clamp(2rem,6vw,3.25rem);
+    padding-bottom:1.25rem;
+    border-bottom:1px solid var(--hair);
+  }
+  header h1{
+    font-family:"Space Grotesk",sans-serif;
+    font-weight:600;
+    font-size:clamp(1.75rem,6vw,2.5rem);
+    letter-spacing:-0.02em;
+    margin:0;
+  }
+  header p{
+    font-size:0.8rem;
+    color:var(--muted);
+    margin:0.6rem 0 0;
+    max-width:34rem;
+  }
+
+  /* --- Liste --- */
+  .list{
+    opacity:0;
+    transition:opacity .5s ease;
+  }
+  .list.ready{opacity:1;}
+
+  a.entry{
+    display:block;
+    text-decoration:none;
+    color:inherit;
+    padding:1.15rem clamp(0.6rem,3vw,1.1rem);
+    margin:0 clamp(-0.6rem,-3vw,-1.1rem);   /* zemin taşması için kenarları dışa taşır */
+    border-radius:6px;
+    border-bottom:1px solid var(--hair);
+    transition:background-color .18s ease;
+  }
+  a.entry:last-child{border-bottom:0;}
+  a.entry:hover,
+  a.entry:focus-visible{
+    background:var(--wash);
+    outline:none;
+  }
+  a.entry:focus-visible{box-shadow:inset 3px 0 0 var(--accent);}
+
+  .entry .short{
+    font-family:"Space Grotesk",sans-serif;
+    font-weight:500;
+    font-size:clamp(1.15rem,4vw,1.5rem);
+    letter-spacing:-0.01em;
+    line-height:1.25;
+    transition:color .18s ease;
+  }
+  a.entry:hover .short,
+  a.entry:focus-visible .short{color:var(--accent);}
+
+  .entry .long{
+    font-size:0.82rem;
+    color:var(--muted);
+    margin-top:0.4rem;
+    max-width:38rem;
+  }
+
+  /* --- Boş / hata durumu --- */
+  .note{
+    font-size:0.85rem;
+    color:var(--muted);
+    padding:1.5rem 0;
+    line-height:1.7;
+  }
+  .note code{
+    background:var(--wash);
+    padding:0.12em 0.4em;
+    border-radius:4px;
+    color:var(--ink);
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    .list{opacity:1;transition:none;}
+    a.entry,.entry .short{transition:none;}
+  }
+</style>
+</head>
+<body>
+  <div class="shell">
+    <header>
+      <h1>Uygulamalar</h1>
+      <p>Bir uygulamayı açmak için satıra dokun.</p>
+    </header>
+
+    <main id="list" class="list" aria-live="polite"></main>
+  </div>
+
+<script>
+  // Liste dosyasının adı — istersen değiştir:
+  const KAYNAK = "apps.txt";
+
+  const list = document.getElementById("list");
+
+  function esc(s){
+    return s.replace(/[&<>"']/g, c => (
+      {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]
+    ));
+  }
+
+  // Bir satırı  kısa / dosya / uzun  olarak ayrıştırır.
+  // İlk iki "/" ayraç kabul edilir; uzun tarif içinde "/" kullanılabilir.
+  function parseLine(line){
+    const i1 = line.indexOf("/");
+    if (i1 === -1) return null;
+    const i2 = line.indexOf("/", i1 + 1);
+
+    const short = line.slice(0, i1).trim();
+    const file  = (i2 === -1 ? line.slice(i1 + 1) : line.slice(i1 + 1, i2)).trim();
+    const long  = (i2 === -1 ? "" : line.slice(i2 + 1)).trim();
+
+    if (!short || !file) return null;
+    return { short, file, long };
+  }
+
+  function render(items){
+    list.innerHTML = "";
+    for (const it of items){
+      const a = document.createElement("a");
+      a.className = "entry";
+      a.href = it.file;
+      a.innerHTML =
+        `<div class="short">${esc(it.short)}</div>` +
+        (it.long ? `<div class="long">${esc(it.long)}</div>` : "");
+      list.appendChild(a);
+    }
+    requestAnimationFrame(() => list.classList.add("ready"));
+  }
+
+  function showNote(html){
+    list.innerHTML = `<div class="note">${html}</div>`;
+    list.classList.add("ready");
+  }
+
+  fetch(KAYNAK, { cache: "no-store" })
+    .then(r => {
+      if (!r.ok) throw new Error(r.status);
+      return r.text();
+    })
+    .then(text => {
+      const items = text
+        .split(/\r?\n/)
+        .map(l => l.trim())
+        .filter(l => l && !l.startsWith("#"))   // boş satırlar ve # ile başlayan notlar atlanır
+        .map(parseLine)
+        .filter(Boolean);
+
+      if (items.length === 0){
+        showNote(
+          `Henüz uygulama yok. <code>${esc(KAYNAK)}</code> dosyasına satır ekle:<br>` +
+          `<code>kısa tarif / dosya.html / uzun tarif</code>`
+        );
+      } else {
+        render(items);
+      }
+    })
+    .catch(() => {
+      showNote(
+        `<code>${esc(KAYNAK)}</code> okunamadı. Bu sayfanın bir sunucu üzerinden ` +
+        `(GitHub Pages) açılması gerekir — dosyadan doğrudan <code>file://</code> ile ` +
+        `açıldığında tarayıcı okumaya izin vermez.`
+      );
+    });
+</script>
+</body>
+</html>

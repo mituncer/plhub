@@ -1,0 +1,8 @@
+# Her satır:  kısa tarif / dosya.html / uzun tarif
+# "#" ile başlayan satırlar ve boş satırlar atlanır.
+# Uzun tarifin içinde "/" kullanabilirsin, sorun olmaz.
+
+Polonca Kart / polonce-tr.html / Lehçe-Türkçe kelime kartları. Setler, günlük yıldızlı liste ve çalışma modu.
+Gramer Testi / PolishTest.html / Boşluk doldurmalı Lehçe gramer alıştırmaları. 51 senaryo, puanlama ve ipucu.
+Lizbon & Sintra / lizbon-sintra.html / Gezi günlüğü. Fotoğraf ve notlar cihazda saklanır.
+Elevate Thinking / elevthnking.html / Kişisel editoryal site: yazılar, makaleler ve uygulamalar.
