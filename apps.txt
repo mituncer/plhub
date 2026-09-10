@@ -2,7 +2,7 @@
 # "#" ile başlayan satırlar ve boş satırlar atlanır.
 # Uzun tarifin içinde "/" kullanabilirsin, sorun olmaz.
 
-Polonca Kart / polonce-tr.html / Lehçe-Türkçe kelime kartları. Setler, günlük yıldızlı liste ve çalışma modu.
-Gramer Testi / PolishTest.html / Boşluk doldurmalı Lehçe gramer alıştırmaları. 51 senaryo, puanlama ve ipucu.
-Lizbon & Sintra / lizbon-sintra.html / Gezi günlüğü. Fotoğraf ve notlar cihazda saklanır.
-Elevate Thinking / elevthnking.html / Kişisel editoryal site: yazılar, makaleler ve uygulamalar.
+Polonyaca Kelimeleri Oku 2022 / Polonca_Kelime_Dinleme.html / 2022 B1 Testi önemli kelimeleri okur
+Gramer Testi / PolishTest.html / şimdilik denem
+Lizbon & Sintra / lizbon-sintra.html / şimdilik deneme
+Elevate Thinking / elevthnking.html / şimdilik deneme
