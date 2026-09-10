@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Liczby po polsku · Lehçe Sayılar</title>
+<style>
+:root{
+  --bg:#0f1720; --card:#182430; --card2:#1f2f3d; --line:#2b3e4f;
+  --txt:#e8eef4; --dim:#93a6b6; --accent:#33c3a6; --accent2:#5aa9ff;
+  --warn:#ffb454; --bad:#ff6b6b; --good:#33c3a6;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--txt);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+body{max-width:680px;margin:0 auto;padding:0 12px 40px}
+header{position:sticky;top:0;background:linear-gradient(180deg,var(--bg) 78%,transparent);
+  padding:12px 0 6px;z-index:20}
+h1{font-size:19px;margin:0 0 8px;letter-spacing:.2px}
+h1 small{color:var(--dim);font-weight:400;font-size:13px}
+.tabs{display:flex;gap:6px;overflow-x:auto;padding-bottom:6px;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:0 0 auto;background:var(--card);border:1px solid var(--line);color:var(--dim);
+  padding:8px 13px;border-radius:20px;font-size:13.5px;font-weight:600;cursor:pointer;white-space:nowrap}
+.tab.on{background:var(--accent);color:#04231d;border-color:var(--accent)}
+.panel{display:none;animation:f .2s ease}
+.panel.on{display:block}
+@keyframes f{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin:12px 0}
+.q{font-size:14px;color:var(--dim);margin-bottom:6px}
+.big{font-size:44px;font-weight:800;letter-spacing:1px;text-align:center;padding:14px 0;color:#fff}
+.big.small{font-size:30px}
+.ans{background:var(--card2);border:1px dashed var(--line);border-radius:12px;padding:14px;margin-top:12px}
+.ans .line{display:flex;align-items:flex-start;gap:8px;padding:6px 0;border-bottom:1px solid var(--line)}
+.ans .line:last-child{border-bottom:none}
+.ans .lbl{flex:0 0 96px;color:var(--dim);font-size:12.5px;padding-top:3px}
+.ans .val{flex:1;font-size:18px;font-weight:700;color:#fff}
+.ans .val em{font-style:normal;color:var(--accent)}
+.spk{flex:0 0 auto;background:var(--card);border:1px solid var(--line);border-radius:9px;
+  width:34px;height:34px;font-size:16px;cursor:pointer;color:var(--accent2)}
+.rule{margin-top:12px;background:rgba(90,169,255,.09);border-left:3px solid var(--accent2);
+  border-radius:8px;padding:10px 12px;font-size:13.5px;line-height:1.5;color:#cfe0ee}
+.rule b{color:#fff}
+.forms{display:flex;gap:7px;margin-top:12px}
+.fbox{flex:1;min-width:0;border:1px solid var(--line);border-radius:10px;padding:9px 5px;text-align:center;cursor:pointer}
+.fbox .fn{font-size:12px;color:var(--dim);margin-bottom:3px}
+.fbox .ff{font-size:13px;font-weight:700;color:#fff;word-break:break-word}
+.fbox.on{border:2px solid var(--accent);background:rgba(51,195,166,.14)}
+.fbox.on .fn{color:var(--accent)}
+.row{display:flex;gap:8px;margin-top:12px}
+.btn{flex:1;border:none;border-radius:12px;padding:14px;font-size:15px;font-weight:700;cursor:pointer}
+.btn.primary{background:var(--accent);color:#04231d}
+.btn.ghost{background:var(--card2);color:var(--txt);border:1px solid var(--line)}
+.btn.yes{background:rgba(51,195,166,.16);color:var(--good);border:1px solid rgba(51,195,166,.35)}
+.btn.no{background:rgba(255,107,107,.14);color:var(--bad);border:1px solid rgba(255,107,107,.35)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:4px}
+.chip{background:var(--card2);border:1px solid var(--line);color:var(--dim);border-radius:16px;
+  padding:6px 12px;font-size:12.5px;font-weight:600;cursor:pointer}
+.chip.on{background:var(--accent2);color:#042038;border-color:var(--accent2)}
+.score{display:flex;justify-content:space-between;align-items:center;font-size:12.5px;color:var(--dim);
+  margin:4px 2px}
+.score b{color:var(--good)}
+.score .rst{color:var(--accent2);cursor:pointer;font-weight:600}
+table{width:100%;border-collapse:collapse;margin:8px 0;font-size:13px}
+th,td{border:1px solid var(--line);padding:7px 8px;text-align:left;vertical-align:top}
+th{background:var(--card2);color:var(--accent);font-weight:700}
+td.pl{color:#fff;font-weight:600}
+.hint{color:var(--dim);font-size:12px;margin-top:4px}
+h3{font-size:15px;margin:18px 0 6px;color:var(--accent)}
+.note{font-size:12.5px;color:var(--dim);margin-top:10px;line-height:1.5}
+.pora{display:inline-block;background:rgba(255,180,84,.14);color:var(--warn);
+  border-radius:8px;padding:2px 8px;font-size:12px;font-weight:600;margin-left:4px}
+</style>
+</head>
+<body>
+<header>
+  <h1>🔢 Liczby po polsku <small>· Lehçe sayı pratiği</small></h1>
+  <div class="tabs" id="tabs">
+    <div class="tab on" data-t="liczby">Sayılar</div>
+    <div class="tab" data-t="rzecz">Sayı + isim</div>
+    <div class="tab" data-t="godz">Saat</div>
+    <div class="tab" data-t="ord">Sıra sayı</div>
+    <div class="tab" data-t="zbior">Toplu</div>
+    <div class="tab" data-t="sciaga">📋 Kurallar</div>
+  </div>
+</header>
+
+<!-- ============ SAYILAR ============ -->
+<section class="panel on" id="p-liczby">
+  <div class="chips" id="rangeChips">
+    <div class="chip on" data-r="20">0–20</div>
+    <div class="chip" data-r="100">0–100</div>
+    <div class="chip" data-r="1000">0–1000</div>
+    <div class="chip" data-r="tens">Onlar</div>
+    <div class="chip" data-r="hund">Yüzler</div>
+  </div>
+  <div class="score"><span>Skor: <b id="s-liczby-y">0</b> ✓ / <span id="s-liczby-n">0</span> ✗</span>
+    <span class="rst" data-rst="liczby">sıfırla</span></div>
+  <div class="card">
+    <div class="q">Bu sayıyı Lehçe söyle:</div>
+    <div class="big" id="l-num">7</div>
+    <div class="ans" id="l-ans" style="display:none">
+      <div class="line"><span class="val" id="l-word"></span>
+        <button class="spk" onclick="speak(document.getElementById('l-word').textContent)">🔊</button></div>
+    </div>
+    <div class="row" id="l-reveal"><button class="btn primary" onclick="L.show()">Pokaż ▸ Göster</button></div>
+    <div class="row" id="l-judge" style="display:none">
+      <button class="btn yes" onclick="L.next(1)">Wiem ✓</button>
+      <button class="btn no" onclick="L.next(0)">Nie wiem ✗</button>
+    </div>
+  </div>
+  <div class="note">İpucu: <b>2</b> dişil isimde <b>dwie</b> olur (dwie godziny), diğerlerinde <b>dwa</b>.</div>
+</section>
+
+<!-- ============ SAYI + İSİM ============ -->
+<section class="panel" id="p-rzecz">
+  <div class="score"><span>Skor: <b id="s-rzecz-y">0</b> ✓ / <span id="s-rzecz-n">0</span> ✗</span>
+    <span class="rst" data-rst="rzecz">sıfırla</span></div>
+  <div class="card">
+    <div class="q">Doğru biçimi kur (sayı + isim):</div>
+    <div class="big small" id="r-prompt">7 × godzina</div>
+    <div class="hint" id="r-tr" style="text-align:center"></div>
+    <div class="ans" id="r-ans" style="display:none">
+      <div class="line"><span class="val" id="r-phrase"></span>
+        <button class="spk" onclick="speak(document.getElementById('r-phrase').textContent)">🔊</button></div>
+    </div>
+    <div class="forms" id="r-forms" style="display:none"></div>
+    <div class="rule" id="r-rule" style="display:none"></div>
+    <div class="row" id="r-reveal"><button class="btn primary" onclick="R.show()">Pokaż ▸ Göster</button></div>
+    <div class="row" id="r-judge" style="display:none">
+      <button class="btn yes" onclick="R.next(1)">Wiem ✓</button>
+      <button class="btn no" onclick="R.next(0)">Nie wiem ✗</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SAAT ============ -->
+<section class="panel" id="p-godz">
+  <div class="card">
+    <div class="q">Bu saati Lehçe söyle:</div>
+    <div class="big" id="g-clock">15:30</div>
+    <div class="ans" id="g-ans" style="display:none">
+      <div class="line"><span class="lbl">Oficjalnie<br>(24s, resmî)</span>
+        <span class="val" id="g-off"></span>
+        <button class="spk" onclick="speak(document.getElementById('g-off').textContent)">🔊</button></div>
+      <div class="line"><span class="lbl">Potocznie<br>(günlük)</span>
+        <span class="val" id="g-col"></span>
+        <button class="spk" onclick="speak(document.getElementById('g-col').textContent)">🔊</button></div>
+      <div class="line"><span class="lbl">O której?<br>(ne zaman)</span>
+        <span class="val" id="g-oq"></span>
+        <button class="spk" onclick="speak(document.getElementById('g-oq').textContent)">🔊</button></div>
+    </div>
+    <div class="row" id="g-reveal"><button class="btn primary" onclick="G.show()">Pokaż ▸ Göster</button></div>
+    <div class="row" id="g-next" style="display:none"><button class="btn ghost" onclick="G.gen()">Następna ▸ Sonraki</button></div>
+  </div>
+  <div class="note"><b>Saat</b> → dişil <b>sıra sayı</b> (godzina = pierwsz<b>a</b>).
+  Günlük dilde: <b>po</b> (geçe) + yer hâli · <b>wpół do</b> (buçuğa) + gelecek saat · <b>za</b> (kala) + gelecek saat.</div>
+</section>
+
+<!-- ============ SIRA SAYI ============ -->
+<section class="panel" id="p-ord">
+  <div class="card">
+    <div class="q">Sıra sayısını söyle (eril):</div>
+    <div class="big" id="o-num">5.</div>
+    <div class="ans" id="o-ans" style="display:none">
+      <div class="line"><span class="lbl">Mianownik<br>(yalın)</span>
+        <span class="val" id="o-nom"></span>
+        <button class="spk" onclick="speak(document.getElementById('o-nom').textContent)">🔊</button></div>
+      <div class="line"><span class="lbl">Data<br>(tarih, -ego)</span>
+        <span class="val" id="o-date"></span>
+        <button class="spk" onclick="speak(document.getElementById('o-date').textContent)">🔊</button></div>
+    </div>
+    <div class="row" id="o-reveal"><button class="btn primary" onclick="O.show()">Pokaż ▸ Göster</button></div>
+    <div class="row" id="o-next" style="display:none"><button class="btn ghost" onclick="O.gen()">Następny ▸ Sonraki</button></div>
+  </div>
+  <div class="note">Tarihlerde sıra sayı <b>dopełniacz</b> (-in hâli) olur: <b>22 maja</b> → <em>dwudziestego drugiego maja</em>.
+  Bileşik sayıda <b>iki parça da</b> çekilir.</div>
+</section>
+
+<!-- ============ TOPLU ============ -->
+<section class="panel" id="p-zbior">
+  <div class="card">
+    <div class="q">Toplu sayı (liczebnik zbiorowy) ile kur:</div>
+    <div class="big small" id="z-prompt">3 × dziecko</div>
+    <div class="hint" id="z-tr" style="text-align:center"></div>
+    <div class="ans" id="z-ans" style="display:none">
+      <div class="line"><span class="val" id="z-phrase"></span>
+        <button class="spk" onclick="speak(document.getElementById('z-phrase').textContent)">🔊</button></div>
+    </div>
+    <div class="row" id="z-reveal"><button class="btn primary" onclick="Z.show()">Pokaż ▸ Göster</button></div>
+    <div class="row" id="z-next" style="display:none"><button class="btn ghost" onclick="Z.gen()">Następny ▸ Sonraki</button></div>
+  </div>
+  <div class="note"><b>Zbiorowe</b> şunlarda kullanılır: çocuklar (dzieci), karma cinsiyetli gruplar (ludzie),
+  yavrular, ve yalnız çoğul isimler (drzwi). Sonraki isim hep <b>dopełniacz l.mn.</b> (-in hâli çoğul).</div>
+</section>
+
+<!-- ============ KURALLAR ============ -->
+<section class="panel" id="p-sciaga">
+  <h3>1 · Sayı + isim: hangi hâl?</h3>
+  <table>
+    <tr><th>Sayının sonu</th><th>İsmin hâli</th><th>Örnek</th></tr>
+    <tr><td class="pl">1</td><td>Mianownik l.poj.<br>(yalın tekil)</td><td class="pl">jeden kot / jedna godzina</td></tr>
+    <tr><td class="pl">2, 3, 4</td><td>Mianownik l.mn.<br>(yalın çoğul)</td><td class="pl">trzy koty / cztery godziny</td></tr>
+    <tr><td class="pl">5–9, 0</td><td>Dopełniacz l.mn.<br>(-in hâli çoğul)</td><td class="pl">pięć kotów / sześć godzin</td></tr>
+    <tr><td class="pl">11–14 ⚠️</td><td>Dopełniacz l.mn.<br>(istisna!)</td><td class="pl">dwanaście kotów / trzynaście godzin</td></tr>
+  </table>
+  <div class="note">⚠️ Kural sona bakar: <b>22, 23, 24</b> → çoğul (dwadzieścia dwa koty); ama <b>21</b> → dopełniacz
+  (dwadzieścia jeden kot<b>ów</b>)! <b>11–14</b> her zaman dopełniacz (istisna).</div>
+
+  <h3>2 · Saat</h3>
+  <table>
+    <tr><th>Soru</th><th>Yapı</th><th>Örnek (15:00)</th></tr>
+    <tr><td>Która godzina?</td><td>dişil sıra sayı</td><td class="pl">(jest) piętnasta</td></tr>
+    <tr><td>Günlük</td><td>12 saat sistemi</td><td class="pl">(jest) trzecia</td></tr>
+    <tr><td>O której?</td><td>o + yer hâli (-ej)</td><td class="pl">o piętnastej / o trzeciej</td></tr>
+  </table>
+  <table>
+    <tr><th>Dakika</th><th>Yapı</th><th>Örnek</th></tr>
+    <tr><td>...:10</td><td>[dk] po + -ej</td><td class="pl">dziesięć po trzeciej</td></tr>
+    <tr><td>...:15</td><td>kwadrans po</td><td class="pl">kwadrans po trzeciej</td></tr>
+    <tr><td>...:30</td><td>wpół do + gelecek</td><td class="pl">wpół do czwartej</td></tr>
+    <tr><td>...:45</td><td>za kwadrans + gelecek</td><td class="pl">za kwadrans czwarta</td></tr>
+    <tr><td>...:50</td><td>za [dk] + gelecek</td><td class="pl">za dziesięć czwarta</td></tr>
+  </table>
+
+  <h3>3 · İki / dwa mı dwie mi?</h3>
+  <table>
+    <tr><th>Cins</th><th>2</th><th>Örnek</th></tr>
+    <tr><td>Dişil (f)</td><td class="pl">dwie</td><td class="pl">dwie godziny, dwie kawy</td></tr>
+    <tr><td>Eril/Nötr</td><td class="pl">dwa</td><td class="pl">dwa koty, dwa okna</td></tr>
+  </table>
+
+  <h3>4 · Toplu sayılar (zbiorowe)</h3>
+  <table>
+    <tr><th>Sayı</th><th>Zbiorowy</th><th>Kullanım</th></tr>
+    <tr><td>2</td><td class="pl">dwoje</td><td class="pl">dwoje dzieci</td></tr>
+    <tr><td>3</td><td class="pl">troje</td><td class="pl">troje ludzi</td></tr>
+    <tr><td>4</td><td class="pl">czworo</td><td class="pl">czworo drzwi</td></tr>
+    <tr><td>5</td><td class="pl">pięcioro</td><td class="pl">pięcioro dzieci</td></tr>
+  </table>
+  <div class="note">Çocuklar, karma gruplar ve yalnız-çoğul isimler için. Sonraki isim: <b>dopełniacz l.mn.</b></div>
+</section>
+
+<script>
+/* ---------- TTS ---------- */
+function speak(t){
+  try{
+    if(!('speechSynthesis' in window))return;
+    speechSynthesis.cancel();
+    var u=new SpeechSynthesisUtterance(t);
+    u.lang='pl-PL'; u.rate=0.88;
+    var vs=speechSynthesis.getVoices();
+    var v=vs.filter(function(x){return /pl/i.test(x.lang)})[0];
+    if(v)u.voice=v;
+    speechSynthesis.speak(u);
+  }catch(e){}
+}
+if('speechSynthesis' in window){speechSynthesis.onvoiceschanged=function(){};speechSynthesis.getVoices();}
+
+/* ---------- Sayı -> Lehçe ---------- */
+var J=['','jeden','dwa','trzy','cztery','pięć','sześć','siedem','osiem','dziewięć','dziesięć',
+'jedenaście','dwanaście','trzynaście','czternaście','piętnaście','szesnaście','siedemnaście','osiemnaście','dziewiętnaście'];
+var DZ={2:'dwadzieścia',3:'trzydzieści',4:'czterdzieści',5:'pięćdziesiąt',6:'sześćdziesiąt',7:'siedemdziesiąt',8:'osiemdziesiąt',9:'dziewięćdziesiąt'};
+var ST={1:'sto',2:'dwieście',3:'trzysta',4:'czterysta',5:'pięćset',6:'sześćset',7:'siedemset',8:'osiemset',9:'dziewięćset'};
+function liczba(n,r){ // r: 'm','f','n'
+  if(n===0)return 'zero';
+  if(n===1)return r==='f'?'jedna':(r==='n'?'jedno':'jeden');
+  if(n===1000)return 'tysiąc';
+  var parts=[],h=Math.floor(n/100),rest=n%100;
+  if(h>0)parts.push(ST[h]);
+  if(rest>0){
+    if(rest<20){var w=J[rest];if(rest===2&&r==='f')w='dwie';parts.push(w);}
+    else{var t=Math.floor(rest/10),u=rest%10;parts.push(DZ[t]);
+      if(u>0){var w2=J[u];if(u===2&&r==='f')w2='dwie';parts.push(w2);}}
+  }
+  return parts.join(' ');
+}
+/* İsim paradigması: one / few / many */
+function paradigm(n){
+  if(n===1)return 'one';
+  var d=n%10,dd=n%100;
+  if(dd>=12&&dd<=14)return 'many';
+  if(d>=2&&d<=4)return 'few';
+  return 'many';
+}
+
+/* ---------- Skor yardımcıları ---------- */
+var scores={liczby:{y:0,n:0},rzecz:{y:0,n:0}};
+function bump(tab,ok){var s=scores[tab];if(ok)s.y++;else s.n++;
+  document.getElementById('s-'+tab+'-y').textContent=s.y;
+  document.getElementById('s-'+tab+'-n').textContent=s.n;}
+document.querySelectorAll('.rst').forEach(function(e){e.onclick=function(){
+  var t=e.dataset.rst;scores[t]={y:0,n:0};
+  document.getElementById('s-'+t+'-y').textContent=0;
+  document.getElementById('s-'+t+'-n').textContent=0;};});
+
+function rnd(a,b){return Math.floor(Math.random()*(b-a+1))+a;}
+function pick(a){return a[Math.floor(Math.random()*a.length)];}
+
+/* ================= SAYILAR ================= */
+var L={range:20,val:7,
+  gen:function(){
+    var r=this.range;
+    if(r==='tens')this.val=rnd(1,9)*10;
+    else if(r==='hund')this.val=rnd(1,9)*100;
+    else this.val=rnd(0,r);
+    document.getElementById('l-num').textContent=this.val;
+    document.getElementById('l-ans').style.display='none';
+    document.getElementById('l-reveal').style.display='flex';
+    document.getElementById('l-judge').style.display='none';
+  },
+  show:function(){
+    document.getElementById('l-word').textContent=liczba(this.val,'m');
+    document.getElementById('l-ans').style.display='block';
+    document.getElementById('l-reveal').style.display='none';
+    document.getElementById('l-judge').style.display='flex';
+    speak(liczba(this.val,'m'));
+  },
+  next:function(ok){bump('liczby',ok);this.gen();}
+};
+document.getElementById('rangeChips').querySelectorAll('.chip').forEach(function(c){
+  c.onclick=function(){
+    document.querySelectorAll('#rangeChips .chip').forEach(function(x){x.classList.remove('on')});
+    c.classList.add('on');
+    var r=c.dataset.r;L.range=(r==='tens'||r==='hund')?r:parseInt(r);L.gen();};
+});
+
+/* ================= SAYI + İSİM ================= */
+var NOUNS=[
+ {sg:'godzina',few:'godziny',many:'godzin',r:'f',tr:'saat'},
+ {sg:'minuta',few:'minuty',many:'minut',r:'f',tr:'dakika'},
+ {sg:'dzień',few:'dni',many:'dni',r:'m',tr:'gün'},
+ {sg:'tydzień',few:'tygodnie',many:'tygodni',r:'m',tr:'hafta'},
+ {sg:'miesiąc',few:'miesiące',many:'miesięcy',r:'m',tr:'ay'},
+ {sg:'rok',few:'lata',many:'lat',r:'m',tr:'yıl'},
+ {sg:'książka',few:'książki',many:'książek',r:'f',tr:'kitap'},
+ {sg:'złoty',few:'złote',many:'złotych',r:'m',tr:'zloti (para)'},
+ {sg:'osoba',few:'osoby',many:'osób',r:'f',tr:'kişi'},
+ {sg:'kot',few:'koty',many:'kotów',r:'m',tr:'kedi'},
+ {sg:'dom',few:'domy',many:'domów',r:'m',tr:'ev'},
+ {sg:'samochód',few:'samochody',many:'samochodów',r:'m',tr:'araba'},
+ {sg:'bilet',few:'bilety',many:'biletów',r:'m',tr:'bilet'},
+ {sg:'pokój',few:'pokoje',many:'pokoi',r:'m',tr:'oda'},
+ {sg:'stół',few:'stoły',many:'stołów',r:'m',tr:'masa'},
+ {sg:'kawa',few:'kawy',many:'kaw',r:'f',tr:'kahve'},
+ {sg:'piwo',few:'piwa',many:'piw',r:'n',tr:'bira'},
+ {sg:'jabłko',few:'jabłka',many:'jabłek',r:'n',tr:'elma'},
+ {sg:'słowo',few:'słowa',many:'słów',r:'n',tr:'kelime'},
+ {sg:'pytanie',few:'pytania',many:'pytań',r:'n',tr:'soru'},
+ {sg:'okno',few:'okna',many:'okien',r:'n',tr:'pencere'},
+ {sg:'gość',few:'goście',many:'gości',r:'m',tr:'misafir'}
+];
+var R={n:7,noun:NOUNS[0],
+  gen:function(){
+    // 1-99, teens ve farklı sonlar dengeli çıksın
+    var pool=[1,2,3,4,5,7,11,12,13,14,21,22,23,25,32,44,58,100];
+    this.n=pick(pool.concat([rnd(1,99)]));
+    this.noun=pick(NOUNS);
+    document.getElementById('r-prompt').textContent=this.n+' × '+this.noun.sg;
+    document.getElementById('r-tr').textContent='('+this.noun.tr+')';
+    document.getElementById('r-ans').style.display='none';
+    document.getElementById('r-rule').style.display='none';
+    document.getElementById('r-forms').style.display='none';
+    document.getElementById('r-reveal').style.display='flex';
+    document.getElementById('r-judge').style.display='none';
+  },
+  show:function(){
+    var p=paradigm(this.n), r=this.noun.r, n=this.n;
+    var forma=p==='one'?this.noun.sg:(p==='few'?this.noun.few:this.noun.many);
+    var phrase=liczba(n,r)+' '+forma;
+    document.getElementById('r-phrase').textContent=phrase;
+    var active=p==='one'?0:(p==='few'?1:2);
+    var box=[['1',liczba(1,r)+' '+this.noun.sg],['2\u20134',liczba(2,r)+' '+this.noun.few],['5+',liczba(5,r)+' '+this.noun.many]];
+    var html='';
+    for(var i=0;i<3;i++){
+      var on=i===active?' on':'';
+      var lab=box[i][0]+(i===active?' \u2190 '+n:'');
+      html+='<div class="fbox'+on+'" onclick="speak(\''+box[i][1]+'\')"><div class="fn">'+lab+'</div><div class="ff">'+box[i][1]+'</div></div>';
+    }
+    document.getElementById('r-forms').innerHTML=html;
+    var rule;
+    if(p==='one')rule='<b>1</b> → Mianownik l.poj. (yalın tekil)';
+    else if(p==='few')rule='sonu <b>2–4</b> → Mianownik l.mn. (yalın çoğul)';
+    else{
+      var dd=n%100;
+      if(dd>=12&&dd<=14)rule='<b>11–14 istisnası!</b> → Dopełniacz l.mn.';
+      else if(n%10===1&&n!==1)rule='sonu <b>1</b> (ama ≠ tek "1") → Dopełniacz l.mn.';
+      else rule='sonu <b>5–9 / 0</b> → Dopełniacz l.mn.';
+    }
+    document.getElementById('r-rule').innerHTML=rule;
+    document.getElementById('r-ans').style.display='block';
+    document.getElementById('r-forms').style.display='flex';
+    document.getElementById('r-rule').style.display='block';
+    document.getElementById('r-reveal').style.display='none';
+    document.getElementById('r-judge').style.display='flex';
+    speak(phrase);
+  },
+  next:function(ok){bump('rzecz',ok);this.gen();}
+};
+
+/* ================= SAAT ================= */
+var GODZ={1:'pierwsza',2:'druga',3:'trzecia',4:'czwarta',5:'piąta',6:'szósta',7:'siódma',8:'ósma',
+9:'dziewiąta',10:'dziesiąta',11:'jedenasta',12:'dwunasta',13:'trzynasta',14:'czternasta',15:'piętnasta',
+16:'szesnasta',17:'siedemnasta',18:'osiemnasta',19:'dziewiętnasta',20:'dwudziesta',
+21:'dwudziesta pierwsza',22:'dwudziesta druga',23:'dwudziesta trzecia',0:'dwudziesta czwarta'};
+var H12N={1:'pierwsza',2:'druga',3:'trzecia',4:'czwarta',5:'piąta',6:'szósta',7:'siódma',8:'ósma',
+9:'dziewiąta',10:'dziesiąta',11:'jedenasta',12:'dwunasta'};
+var H12L={1:'pierwszej',2:'drugiej',3:'trzeciej',4:'czwartej',5:'piątej',6:'szóstej',7:'siódmej',8:'ósmej',
+9:'dziewiątej',10:'dziesiątej',11:'jedenastej',12:'dwunastej'};
+function locFem(w){return w.split(' ').map(function(x){return x.slice(-1)==='a'?x.slice(0,-1)+'ej':x}).join(' ');}
+function pora(H){if(H>=5&&H<=11)return 'rano';if(H===12)return 'w południe';if(H>=13&&H<=17)return 'po południu';if(H>=18&&H<=22)return 'wieczorem';return 'w nocy';}
+var G={H:15,M:30,
+  gen:function(){
+    this.H=rnd(1,23);
+    this.M=pick([0,5,10,15,20,25,30,35,40,45,50,55]);
+    document.getElementById('g-clock').textContent=
+      (this.H<10?'0':'')+this.H+':'+(this.M<10?'0':'')+this.M;
+    document.getElementById('g-ans').style.display='none';
+    document.getElementById('g-reveal').style.display='flex';
+    document.getElementById('g-next').style.display='none';
+  },
+  show:function(){
+    var H=this.H,M=this.M;
+    /* Oficjalnie */
+    var off=GODZ[H];
+    if(M>0)off+=(M<10?' zero '+liczba(M,'f'):' '+liczba(M,'f'));
+    /* Potocznie */
+    var h12=(H%12)===0?12:(H%12);
+    var next=(h12%12)+1;
+    var col;
+    if(M===0)col='(jest) '+H12N[h12];
+    else if(M<30){var m=(M===15)?'kwadrans':liczba(M,'f');col=m+' po '+H12L[h12];}
+    else if(M===30)col='wpół do '+H12L[next];
+    else{var rem=60-M;var r=(rem===15)?'kwadrans':liczba(rem,'f');col='za '+r+' '+H12N[next];}
+    col+=' ';
+    /* O której */
+    var oq='o '+H12L[h12]+' / o godzinie '+locFem(GODZ[H]);
+    document.getElementById('g-off').textContent=off;
+    document.getElementById('g-col').innerHTML=col+'<span class="pora">'+pora(H)+'</span>';
+    document.getElementById('g-oq').textContent=oq;
+    document.getElementById('g-ans').style.display='block';
+    document.getElementById('g-reveal').style.display='none';
+    document.getElementById('g-next').style.display='flex';
+    speak(off);
+  }
+};
+
+/* ================= SIRA SAYI ================= */
+var ORDU=['','pierwszy','drugi','trzeci','czwarty','piąty','szósty','siódmy','ósmy','dziewiąty','dziesiąty',
+'jedenasty','dwunasty','trzynasty','czternasty','piętnasty','szesnasty','siedemnasty','osiemnasty','dziewiętnasty'];
+var ORDT={2:'dwudziesty',3:'trzydziesty',4:'czterdziesty',5:'pięćdziesiąty',6:'sześćdziesiąty',7:'siedemdziesiąty',8:'osiemdziesiąty',9:'dziewięćdziesiąty'};
+function ordM(n){
+  if(n===100)return 'setny';
+  if(n<20)return ORDU[n];
+  var t=Math.floor(n/10),u=n%10;
+  return u===0?ORDT[t]:ORDT[t]+' '+ORDU[u];
+}
+function ordGen(w){ // -y/-i -> -ego/-iego, her kelime
+  return w.split(' ').map(function(x){
+    if(x.slice(-1)==='y')return x.slice(0,-1)+'ego';
+    if(x.slice(-1)==='i')return x+'ego';
+    return x;
+  }).join(' ');
+}
+var MIES=['','stycznia','lutego','marca','kwietnia','maja','czerwca','lipca','sierpnia','września','października','listopada','grudnia'];
+var O={n:5,
+  gen:function(){
+    this.n=pick([1,2,3,4,5,7,11,12,20,21,22,30,31,50,100,rnd(1,100)]);
+    document.getElementById('o-num').textContent=this.n+'.';
+    document.getElementById('o-ans').style.display='none';
+    document.getElementById('o-reveal').style.display='flex';
+    document.getElementById('o-next').style.display='none';
+  },
+  show:function(){
+    var nom=ordM(this.n);
+    var gen=ordGen(nom);
+    var dateEx='';
+    if(this.n>=1&&this.n<=31)dateEx=gen+' '+pick(MIES.slice(1));
+    else dateEx=gen;
+    document.getElementById('o-nom').textContent=nom;
+    document.getElementById('o-date').textContent=dateEx;
+    document.getElementById('o-ans').style.display='block';
+    document.getElementById('o-reveal').style.display='none';
+    document.getElementById('o-next').style.display='flex';
+    speak(nom);
+  }
+};
+
+/* ================= TOPLU ================= */
+var ZBIOR={2:'dwoje',3:'troje',4:'czworo',5:'pięcioro',6:'sześcioro',7:'siedmioro',8:'ośmioro',9:'dziewięcioro'};
+var ZNOUN=[
+ {sg:'dziecko',many:'dzieci',tr:'çocuk'},
+ {sg:'ludzie',many:'ludzi',tr:'insan (karma grup)'},
+ {sg:'drzwi',many:'drzwi',tr:'kapı (yalnız çoğul)'},
+ {sg:'oko',many:'oczu',tr:'göz'},
+ {sg:'kurczę',many:'kurcząt',tr:'civciv (yavru)'}
+];
+var Z={n:3,noun:ZNOUN[0],
+  gen:function(){
+    this.n=rnd(2,9);
+    this.noun=pick(ZNOUN);
+    document.getElementById('z-prompt').textContent=this.n+' × '+this.noun.sg;
+    document.getElementById('z-tr').textContent='('+this.noun.tr+')';
+    document.getElementById('z-ans').style.display='none';
+    document.getElementById('z-reveal').style.display='flex';
+    document.getElementById('z-next').style.display='none';
+  },
+  show:function(){
+    var phrase=ZBIOR[this.n]+' '+this.noun.many;
+    document.getElementById('z-phrase').textContent=phrase;
+    document.getElementById('z-ans').style.display='block';
+    document.getElementById('z-reveal').style.display='none';
+    document.getElementById('z-next').style.display='flex';
+    speak(phrase);
+  }
+};
+
+/* ================= TAB GEÇİŞ ================= */
+document.getElementById('tabs').querySelectorAll('.tab').forEach(function(t){
+  t.onclick=function(){
+    document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on')});
+    document.querySelectorAll('.panel').forEach(function(x){x.classList.remove('on')});
+    t.classList.add('on');
+    document.getElementById('p-'+t.dataset.t).classList.add('on');
+  };
+});
+
+/* ilk üretim */
+L.gen();R.gen();G.gen();O.gen();Z.gen();
+</script>
+</body>
+</html>
