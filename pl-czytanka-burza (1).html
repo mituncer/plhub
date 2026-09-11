@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Tajemniczy list — Czytanka B1</title>
+<style>
+  :root{
+    --paper:#F4F2ED; --paper2:#FBFAF6; --ink:#23201C; --ink-soft:#5C574E;
+    --line:#E2DDD1; --accent:#C1352B; --amber:#FBEFD6; --amber-line:#E7C878;
+    --good:#2E7D5B; --bad:#C1352B;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+    --sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  html,body{margin:0;padding:0;background:var(--paper);color:var(--ink);}
+  body{font-family:var(--sans);line-height:1.5;padding:0 0 48px;}
+  .wrap{max-width:640px;margin:0 auto;padding:0 18px;}
+  header{padding:26px 0 14px;border-bottom:1px solid var(--line);}
+  .kicker{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:700;}
+  h1{font-family:var(--serif);font-size:27px;line-height:1.15;margin:8px 0 4px;font-weight:600;}
+  .sub{font-size:13px;color:var(--ink-soft);}
+  .hint{display:flex;gap:10px;margin:16px 0 6px;font-size:12.5px;color:var(--ink-soft);flex-wrap:wrap;}
+  .hint b{color:var(--ink);}
+  .chip{background:var(--paper2);border:1px solid var(--line);border-radius:999px;padding:5px 11px;display:inline-flex;align-items:center;gap:6px;}
+  .toolbar{display:flex;gap:8px;margin:14px 0 2px;align-items:center;flex-wrap:wrap;}
+  .btn{font-family:var(--sans);font-size:13px;border:1px solid var(--line);background:var(--paper2);color:var(--ink);border-radius:10px;padding:8px 13px;cursor:pointer;font-weight:600;}
+  .btn:active{transform:translateY(1px);}
+  .btn.primary{background:var(--ink);color:#fff;border-color:var(--ink);}
+  .tb-note{font-size:11.5px;color:var(--ink-soft);flex-basis:100%;}
+  .story{font-family:var(--serif);font-size:20px;line-height:1.85;margin:16px 0 8px;letter-spacing:.1px;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;}
+  .sent{border-radius:6px;transition:background .18s;padding:1px 0;}
+  .sent.hl{background:var(--amber);box-shadow:0 0 0 4px var(--amber);}
+  w{cursor:pointer;padding:1px 1px;border-radius:4px;transition:background .12s;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;}
+  w.on{background:var(--accent);color:#fff;}
+  .sp{display:inline-block;width:2px;}
+  #tip{position:fixed;z-index:60;max-width:230px;background:var(--ink);color:#fff;font-family:var(--sans);font-size:14px;line-height:1.35;padding:9px 12px;border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.28);opacity:0;pointer-events:none;transform:translateY(4px);transition:opacity .14s,transform .14s;}
+  #tip.show{opacity:1;transform:translateY(0);pointer-events:auto;}
+  #tip .pl{font-weight:700;font-size:13px;color:#ffd7b0;margin-bottom:1px;}
+  #tip:after{content:"";position:absolute;left:var(--ax,20px);width:0;height:0;border:7px solid transparent;}
+  #tip.up:after{bottom:-13px;border-top-color:var(--ink);}
+  #tip.down:after{top:-13px;border-bottom-color:var(--ink);}
+  #sheet{position:fixed;left:0;right:0;bottom:0;z-index:70;transform:translateY(110%);transition:transform .26s cubic-bezier(.4,0,.2,1);}
+  #sheet.show{transform:translateY(0);}
+  .sheet-card{max-width:640px;margin:0 auto;background:var(--paper2);border:1px solid var(--line);border-bottom:none;border-radius:18px 18px 0 0;padding:18px 20px 24px;box-shadow:0 -10px 34px rgba(0,0,0,.16);}
+  .grip{width:40px;height:4px;background:var(--line);border-radius:99px;margin:0 auto 14px;}
+  .sheet-lbl{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:700;}
+  .sheet-pl{font-family:var(--serif);font-size:18px;margin:6px 0 12px;line-height:1.5;}
+  .sheet-tr{font-size:15.5px;background:var(--amber);border-radius:10px;padding:11px 13px;line-height:1.5;}
+  .sheet-row{display:flex;justify-content:space-between;align-items:center;margin-top:14px;}
+  .sheet-close{font-size:13px;color:var(--ink-soft);background:none;border:none;cursor:pointer;font-weight:600;}
+  .spk{border:1px solid var(--line);background:var(--paper);border-radius:10px;padding:8px 12px;cursor:pointer;font-size:14px;font-weight:600;}
+  #scrim{position:fixed;inset:0;background:rgba(20,18,15,.28);z-index:65;opacity:0;pointer-events:none;transition:opacity .22s;}
+  #scrim.show{opacity:1;pointer-events:auto;}
+  #menu{position:fixed;left:0;right:0;bottom:0;z-index:70;transform:translateY(110%);transition:transform .26s cubic-bezier(.4,0,.2,1);}
+  #menu.show{transform:translateY(0);}
+  .menu-sec{margin-bottom:16px;}
+  .menu-sec h4{font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:0 0 8px;}
+  .menu-how{font-size:13.5px;color:var(--ink-soft);line-height:1.9;}
+  .menu-how b{color:var(--ink);}
+  .mk-list{max-height:34vh;overflow:auto;margin:0 0 12px;}
+  .mk-item{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:8px 10px;border:1px solid var(--line);border-radius:9px;margin-bottom:6px;background:var(--paper);}
+  .mk-item .mw{font-family:var(--serif);font-size:15px;}
+  .mk-item .mg{font-size:12px;color:var(--ink-soft);}
+  .mk-item .mex{font-size:12px;color:var(--ink-soft);font-family:var(--serif);margin-top:3px;line-height:1.4;}
+  .mk-item .minfo{flex:1;min-width:0;}
+  .mk-item{cursor:pointer;}
+  .mk-item.sel{border-color:var(--accent);background:#FBEBE9;}
+  .mk-item .mk-pick{pointer-events:none;border:2px solid var(--line);background:var(--paper);color:#fff;width:26px;height:26px;border-radius:7px;font-size:15px;line-height:1;display:flex;align-items:center;justify-content:center;padding:0;flex:0 0 auto;}
+  .mk-item.sel .mk-pick{border-color:var(--accent);background:var(--accent);}
+  .mk-hint{font-size:12px;color:var(--ink-soft);margin:0 0 8px;}
+  .menu-actions .btn:disabled{opacity:.45;}
+  .mk-item button{border:none;background:none;color:var(--accent);font-size:16px;cursor:pointer;padding:2px 6px;}
+  .mk-empty{font-size:13px;color:var(--ink-soft);padding:6px 0;}
+  .menu-actions{display:flex;gap:8px;flex-wrap:wrap;}
+  w.marked{background:#F4D06A;color:var(--ink);border-radius:4px;}
+  w.on{background:var(--accent);color:#fff;}
+  .teaser{margin:20px 0 4px;padding:16px;border:1px dashed var(--amber-line);background:var(--amber);border-radius:14px;text-align:center;}
+  .teaser .tl{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:6px;}
+  .teaser .tq{font-family:var(--serif);font-size:16px;margin-bottom:12px;}
+  .cont-btn{width:100%;font-family:var(--sans);font-size:16px;font-weight:700;background:var(--ink);color:#fff;border:none;border-radius:12px;padding:14px;cursor:pointer;}
+  .cont-after{margin:18px 0 4px;}
+  .cont-btn:active{transform:translateY(1px);}
+  .cont-note{font-size:11.5px;color:var(--ink-soft);margin-top:8px;}
+  .part-div{margin:34px 0 2px;text-align:center;}
+  .part-div .line{border:none;border-top:1px solid var(--line);margin:0 0 -10px;}
+  .part-div span{background:var(--paper);padding:0 12px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:700;}
+  .locked{display:none;}
+  .ending{margin:22px 0 4px;padding:18px;border:1px solid var(--line);background:var(--paper2);border-radius:14px;text-align:center;font-family:var(--serif);font-size:17px;}
+  .ending .ke{font-family:var(--sans);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:6px;}
+  .quiz{margin-top:26px;padding-top:22px;border-top:1px solid var(--line);}
+  .quiz h2{font-family:var(--serif);font-size:21px;margin:0 0 4px;font-weight:600;}
+  .quiz .q-sub{font-size:12.5px;color:var(--ink-soft);margin-bottom:16px;}
+  .q{background:var(--paper2);border:1px solid var(--line);border-radius:14px;padding:15px 15px 12px;margin-bottom:14px;}
+  .q-num{font-size:11px;font-weight:700;letter-spacing:.12em;color:var(--accent);}
+  .q-txt{font-family:var(--serif);font-size:17px;margin:5px 0 12px;line-height:1.4;}
+  .opt{display:block;width:100%;text-align:left;font-family:var(--sans);font-size:14.5px;border:1px solid var(--line);background:var(--paper);border-radius:10px;padding:11px 13px;margin-bottom:8px;cursor:pointer;transition:.12s;color:var(--ink);}
+  .opt:active{transform:translateY(1px);}
+  .opt .k{display:inline-block;width:22px;font-weight:700;color:var(--ink-soft);}
+  .opt.correct{border-color:var(--good);background:#E9F4EE;}
+  .opt.correct .k{color:var(--good);}
+  .opt.wrong{border-color:var(--bad);background:#FBEBE9;}
+  .opt.wrong .k{color:var(--bad);}
+  .opt:disabled{cursor:default;opacity:1;}
+  .fb{font-size:13px;margin-top:6px;color:var(--ink-soft);display:none;}
+  .fb.show{display:block;}
+  .fb b{color:var(--ink);}
+  .result{display:none;text-align:center;margin-top:18px;padding:20px;border-radius:16px;background:var(--ink);color:#fff;}
+  .result.show{display:block;}
+  .result .big{font-family:var(--serif);font-size:40px;font-weight:600;}
+  .result .msg{font-size:14px;color:#e8e2d6;margin-top:2px;}
+  .result .btn{margin-top:14px;background:#fff;color:var(--ink);border:none;}
+  footer{text-align:center;font-size:11.5px;color:var(--ink-soft);margin-top:26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <!-- ===== BAŞLIK: h1 ve sub'ı hikayeye göre değiştir ===== -->
+  <header>
+    <div class="kicker">Czytanka · Poziom B1</div>
+    <h1>Burza</h1>
+    <div class="sub">Pogoda, klimat i mała burza w sercu · w trzech częściach</div>
+  </header>
+
+  <div class="toolbar">
+    <button class="btn primary" id="playAll">🔊 Sesli oku</button>
+    <button class="btn" id="stopAll">⏹ Durdur</button>
+    <button class="btn" id="flagBtn" aria-label="Kelime listem">🚩 Liste</button>
+    <button class="btn" id="menuBtn" aria-label="Menü">⚙️</button>
+  </div>
+
+  <!-- CZĘŚĆ 1 -->
+  <div class="story" id="story1"></div>
+  <div class="teaser" id="teaser1">
+    <div class="tl">Ciąg dalszy nastąpi…</div>
+    <div class="tq">Nadchodzi burza — co zrobią Mami i Tom?</div>
+    <button class="cont-btn" id="contBtn1">Czytaj dalej ▸ 2. bölüm</button>
+    <div class="cont-note">İnternet gerekmez — dosya açıkken çalışır.</div>
+  </div>
+  <section class="quiz" id="quiz1">
+    <h2>Pytania · Część 1</h2>
+    <div class="q-sub">1. bölümü okuduktan sonra doğru cevabı seç.</div>
+    <div class="questions" id="questions1"></div>
+    <div class="result" id="result1"><div class="big score">0 / 10</div><div class="msg"></div><button class="btn retry">↻ Tekrar dene</button></div>
+  </section>
+
+  <div class="cont-after" id="contAfter1"><button class="cont-btn" id="contBtn1b">Czytaj dalej ▸ 2. bölüm</button></div>
+
+  <!-- CZĘŚĆ 2 -->
+  <div class="locked" id="part2">
+    <div class="part-div"><hr class="line"><span>Część 2</span></div>
+    <div class="story" id="story2"></div>
+    <div class="teaser" id="teaser2">
+      <div class="tl">Ciąg dalszy nastąpi…</div>
+      <div class="tq">Kim jest tajemnicza Magda z telefonu?</div>
+      <button class="cont-btn" id="contBtn2">Czytaj dalej ▸ 3. bölüm</button>
+    </div>
+    <section class="quiz" id="quiz2">
+      <h2>Pytania · Część 2</h2>
+      <div class="q-sub">2. bölümü okuduktan sonra doğru cevabı seç.</div>
+      <div class="questions" id="questions2"></div>
+      <div class="result" id="result2"><div class="big score">0 / 10</div><div class="msg"></div><button class="btn retry">↻ Tekrar dene</button></div>
+    </section>
+    <div class="cont-after" id="contAfter2"><button class="cont-btn" id="contBtn2b">Czytaj dalej ▸ 3. bölüm</button></div>
+  </div>
+
+  <!-- CZĘŚĆ 3 -->
+  <div class="locked" id="part3">
+    <div class="part-div"><hr class="line"><span>Część 3</span></div>
+    <div class="story" id="story3"></div>
+    <div class="ending"><div class="ke">Koniec ✦ Son</div>I tak burza na niebie minęła, a burza w sercu Mami dopiero się zaczęła.</div>
+    <section class="quiz" id="quiz3">
+      <h2>Pytania · Część 3</h2>
+      <div class="q-sub">3. bölümü okuduktan sonra doğru cevabı seç.</div>
+      <div class="questions" id="questions3"></div>
+      <div class="result" id="result3"><div class="big score">0 / 10</div><div class="msg"></div><button class="btn retry">↻ Tekrar dene</button></div>
+    </section>
+  </div>
+
+  <div class="part-div"><hr class="line"><span>Dialog · Rozmowa (B1)</span></div>
+  <div class="q-sub" style="margin:-2px 0 12px;">İki kişi bu konuyu tartışıyor — konuşma sınavı için taslak. Kelimeye dokun: Türkçe; cümleye uzun bas: çeviri + 🔊.</div>
+  <div class="story dialog" id="dialog"></div>
+
+  <footer>Elevate Thinking · Polski B1 · offline czytanka</footer>
+</div>
+
+<div id="tip"><div class="pl" id="tipPl"></div><div id="tipTr"></div></div>
+<div id="scrim"></div>
+<div id="sheet">
+  <div class="sheet-card">
+    <div class="grip"></div>
+    <div class="sheet-lbl">Zdanie · Cümle</div>
+    <div class="sheet-pl" id="sPl"></div>
+    <div class="sheet-tr" id="sTr"></div>
+    <div class="sheet-row"><button class="spk" id="sSpk">🔊 Przeczytaj</button><button class="sheet-close" id="sClose">Kapat ✕</button></div>
+  </div>
+</div>
+
+<div id="menu">
+  <div class="sheet-card">
+    <div class="grip"></div>
+    <div class="menu-sec">
+      <h4>Kelime listem · tüm czytankalar (<span id="mkCount">0</span>)</h4>
+      <div class="mk-list" id="mkList"></div>
+      <div class="mk-hint">Silmek için kelimeye dokun (seçilir), sonra “Seçileni sil”e bas.</div>
+      <div class="menu-actions">
+        <button class="btn" id="mkCopy">📋 Kopyala</button>
+        <button class="btn" id="mkDownload">⬇️ .txt indir</button>
+        <button class="btn" id="mkDelSel">🗑 Seçileni sil</button>
+        <button class="btn" id="mkClear">🗑 Temizle</button>
+      </div>
+    </div>
+    <div class="sheet-row" style="justify-content:flex-end;">
+      <button class="sheet-close" id="menuClose">Kapat ✕</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ================= VERİ BAŞLANGICI =================
+   Sadece aşağıdaki PART1/PART2/PART3 ve QUIZ1/2/3 dizilerini
+   yeni hikayeyle değiştir. Bunların altındaki hiçbir kodu değiştirme. */
+const PART1 = [
+ {pl:"– Jak długo będziemy tu stać? – pyta zdenerwowana Mami.",tr:"– Daha ne kadar burada duracağız? – diye sorar sinirli Mami.",
+  words:[["Jak","nasıl (jak długo = ne kadar süre)"],["długo","uzun (süre)","długo"],["będziemy","olacağız / -eceğiz (yardımcı fiil)","być"],["tu","burada"],["stać?","durmak, ayakta beklemek","stać"],["pyta","sorar","pytać"],["zdenerwowana","sinirli, gergin (dişil)","zdenerwowany"],["Mami.","özel isim (kadın)"]]},
+ {pl:"– Kiedy będzie ten autobus?",tr:"– Ne zaman gelecek bu otobüs?",
+  words:[["Kiedy","ne zaman"],["będzie","olacak, gelecek","być"],["ten","bu (eril)"],["autobus?","otobüs","autobus","męski"]]},
+ {pl:"– Za pięć minut – odpowiada spokojnie Tom.",tr:"– Beş dakikaya – diye sakince cevaplar Tom.",
+  words:[["Za","-sonra (za pięć minut = beş dakikaya)"],["pięć","beş (5)"],["minut","dakika (Dopełniacz çoğul)","minuta","żeński"],["odpowiada","cevaplar","odpowiadać"],["spokojnie","sakince"],["Tom.","özel isim (erkek)"]]},
+ {pl:"– Dlaczego się tak denerwujesz?",tr:"– Neden bu kadar sinirleniyorsun?",
+  words:[["Dlaczego","neden"],["się","(dönüşlü)"],["tak","bu kadar, böyle"],["denerwujesz?","sinirleniyorsun","denerwować się"]]},
+ {pl:"– Jest mi gorąco.",tr:"– Sıcakladım (bana sıcak geliyor).",
+  words:[["Jest","-dir","być"],["mi","bana"],["gorąco.","sıcak"]]},
+ {pl:"Świeci słońce, a ja nie mam okularów przeciwsłonecznych!",tr:"Güneş parlıyor, benimse güneş gözlüğüm yok!",
+  words:[["Świeci","parlıyor","świecić"],["słońce,","güneş","słońce","nijaki"],["a","ise, ama"],["ja","ben"],["nie","değil, yok"],["mam","var (bende)","mieć"],["okularów","gözlük (Dopełniacz çoğul)","okulary","niemęskoosobowy"],["przeciwsłonecznych!","güneşe karşı, güneş- (sıfat)","przeciwsłoneczny"]]},
+ {pl:"I nie użyłam kremu z filtrem – będę brązowa!",tr:"Üstelik güneş kremi de sürmedim – kararacağım!",
+  words:[["I","ve, üstelik"],["nie","-medim"],["użyłam","kullandım (dişil, geçmiş)","użyć"],["kremu","krem (Dopełniacz)","krem","męski"],["z","ile, -li"],["filtrem","filtre (Narzędnik) (krem z filtrem = güneş kremi)","filtr","męski"],["będę","olacağım","być"],["brązowa!","esmer, kahverengi (dişil)","brązowy"]]},
+ {pl:"Rano jak zwykle sprawdziłam prognozę pogody – mój telefon pokazywał, że będzie pochmurno.",tr:"Sabah her zamanki gibi hava tahminini kontrol ettim – telefonum bulutlu olacağını gösteriyordu.",
+  words:[["Rano","sabah(leyin)"],["jak","gibi"],["zwykle","her zamanki (jak zwykle = her zamanki gibi)"],["sprawdziłam","kontrol ettim (dişil)","sprawdzić"],["prognozę","tahmin (Biernik)","prognoza","żeński"],["pogody","hava (Dopełniacz) (prognoza pogody = hava tahmini)","pogoda","żeński"],["mój","benim"],["telefon","telefon","telefon","męski"],["pokazywał,","gösteriyordu","pokazywać"],["że","-diğini, ki"],["będzie","olacak","być"],["pochmurno.","bulutlu, kapalı"]]},
+ {pl:"I co? Słońce! Tropikalny upał! W maju!",tr:"Ve ne oldu? Güneş! Tropikal sıcak! Hem de mayısta!",
+  words:[["I","ve"],["co?","ne"],["Słońce!","güneş","słońce","nijaki"],["Tropikalny","tropikal","tropikalny"],["upał!","(bunaltıcı) sıcak","upał","męski"],["W","-da"],["maju!","mayıs(ta) (Miejscownik)","maj","męski"]]},
+ {pl:"– A co się stanie, jeżeli będziesz trochę brązowa?",tr:"– Peki, biraz esmerleşirsen ne olur ki?",
+  words:[["A","peki, ya"],["co","ne"],["się","(dönüşlü)"],["stanie,","olur (co się stanie = ne olur)","stać się"],["jeżeli","eğer"],["będziesz","olacaksın, -sen","być"],["trochę","biraz"],["brązowa?","esmer (dişil)","brązowy"]]},
+ {pl:"– Tom, ja jestem z Japonii, a nie z Kalifornii.",tr:"– Tom, ben Japonya'danım, Kaliforniya'dan değil.",
+  words:[["Tom,","özel isim"],["ja","ben"],["jestem","-yım","być"],["z","-dan"],["Japonii,","Japonya (Dopełniacz)","Japonia","żeński"],["a","ama, ise"],["nie","değil"],["z","-dan"],["Kalifornii.","Kaliforniya (Dopełniacz)","Kalifornia","żeński"]]},
+ {pl:"W Japonii nie opalamy się, bo to jest niemodne i złe dla skóry.",tr:"Japonya'da güneşlenmeyiz, çünkü bu modası geçmiş ve cilt için zararlı.",
+  words:[["W","-da"],["Japonii","Japonya (Miejscownik)","Japonia","żeński"],["nie","-mez"],["opalamy","güneşleniriz","opalać się"],["się,","(dönüşlü)"],["bo","çünkü"],["to","bu"],["jest","-dir","być"],["niemodne","modası geçmiş, demode","niemodny"],["i","ve"],["złe","kötü, zararlı","zły"],["dla","için"],["skóry.","cilt, deri (Dopełniacz)","skóra","żeński"]]},
+ {pl:"– Ale słońce to energia i radość życia! – protestuje Tom.",tr:"– Ama güneş enerji ve yaşam sevincidir! – diye itiraz eder Tom.",
+  words:[["Ale","ama"],["słońce","güneş","słońce","nijaki"],["to","(bu) -dir"],["energia","enerji","energia","żeński"],["i","ve"],["radość","sevinç, mutluluk","radość","żeński"],["życia!","hayat (Dopełniacz) (radość życia = yaşam sevinci)","życie","nijaki"],["protestuje","itiraz eder","protestować"],["Tom.","özel isim"]]},
+ {pl:"– Tak było. Ale teraz mamy globalne ocieplenie, klimat się zmienia…",tr:"– Öyleydi. Ama artık küresel ısınma var, iklim değişiyor…",
+  words:[["Tak","öyle"],["było.","idi (tak było = öyleydi)","być"],["Ale","ama"],["teraz","şimdi, artık"],["mamy","var (bizde)","mieć"],["globalne","küresel","globalny"],["ocieplenie,","ısınma","ocieplenie","nijaki"],["klimat","iklim","klimat","męski"],["się","(dönüşlü)"],["zmienia…","değişiyor","zmieniać się"]]},
+ {pl:"Pamiętasz? W święta Bożego Narodzenia było deszczowo, a w Wielkanoc padał śnieg i był mróz.",tr:"Hatırlıyor musun? Noel'de yağmurluydu, Paskalya'da ise kar yağdı ve ayaz vardı.",
+  words:[["Pamiętasz?","hatırlıyor musun","pamiętać"],["W","-de"],["święta","bayram(lar) (Biernik)","święto","nijaki"],["Bożego","Tanrı'nın (Dopełniacz)","boży"],["Narodzenia","doğuş (Boże Narodzenie = Noel)","narodzenie","nijaki"],["było","idi","być"],["deszczowo,","yağmurlu"],["a","ise"],["w","-de"],["Wielkanoc","Paskalya (Biernik)","Wielkanoc","żeński"],["padał","yağdı (padać śnieg = kar yağmak)","padać"],["śnieg","kar","śnieg","męski"],["i","ve"],["był","vardı","być"],["mróz.","ayaz, don","mróz","męski"]]},
+ {pl:"Teraz jest bardzo ciepło, a w przyszłym tygodniu w nocy będzie temperatura poniżej zera.",tr:"Şimdi çok sıcak, ama gelecek hafta gece sıcaklık sıfırın altında olacak.",
+  words:[["Teraz","şimdi"],["jest","-dir","być"],["bardzo","çok"],["ciepło,","sıcak, ılık"],["a","ama"],["w","-de"],["przyszłym","gelecek (Miejscownik)","przyszły"],["tygodniu","hafta (Miejscownik)","tydzień","męski"],["w","-de"],["nocy","gece (Miejscownik)","noc","żeński"],["będzie","olacak","być"],["temperatura","sıcaklık","temperatura","żeński"],["poniżej","altında"],["zera.","sıfır (Dopełniacz) (poniżej zera = sıfırın altı)","zero","nijaki"]]},
+ {pl:"Generalnie wszystko jest nie tak – w Japonii dopiero teraz kwitną drzewa wiśniowe, bo zima była bardzo długa i mroźna.",tr:"Genel olarak her şey ters – Japonya'da kiraz ağaçları ancak şimdi çiçek açıyor, çünkü kış çok uzun ve dondurucuydu.",
+  words:[["Generalnie","genel olarak"],["wszystko","her şey"],["jest","-dir","być"],["nie","değil"],["tak","yolunda (nie tak = ters, yanlış)"],["w","-da"],["Japonii","Japonya (Miejscownik)","Japonia","żeński"],["dopiero","ancak, daha yeni"],["teraz","şimdi (dopiero teraz = ancak şimdi)"],["kwitną","çiçek açıyor","kwitnąć"],["drzewa","ağaçlar","drzewo","nijaki"],["wiśniowe,","kiraz- (drzewo wiśniowe = kiraz ağacı)","wiśniowy"],["bo","çünkü"],["zima","kış","zima","żeński"],["była","idi","być"],["bardzo","çok"],["długa","uzun (dişil)","długi"],["i","ve"],["mroźna.","dondurucu, ayazlı (dişil)","mroźny"]]},
+ {pl:"A w Polsce nie ma już wiosny, tylko od razu lato. Co będzie w przyszłości?",tr:"Polonya'da ise artık ilkbahar yok, doğrudan yaz geldi. Gelecekte ne olacak?",
+  words:[["A","ise"],["w","-de"],["Polsce","Polonya (Miejscownik)","Polska","żeński"],["nie","yok"],["ma","var (nie ma = yok)","mieć"],["już","artık"],["wiosny,","ilkbahar (Dopełniacz)","wiosna","żeński"],["tylko","sadece"],["od","(od razu = hemen, doğrudan)"],["razu","(od razu = hemen, doğrudan)"],["lato.","yaz","lato","nijaki"],["Co","ne"],["będzie","olacak","być"],["w","-de"],["przyszłości?","gelecek (Miejscownik)","przyszłość","żeński"]]}
+];
+
+const PART2 = [
+ {pl:"– Masz rację, ta pogoda jest dziwna.",tr:"– Haklısın, bu hava tuhaf.",
+  words:[["Masz","-sın (masz rację = haklısın)","mieć"],["rację,","hak (Biernik)","racja","żeński"],["ta","bu (dişil)"],["pogoda","hava","pogoda","żeński"],["jest","-dir","być"],["dziwna.","tuhaf, garip (dişil)","dziwny"]]},
+ {pl:"Przed momentem było niebieskie niebo bez jednej chmury, a teraz jest granatowe, prawie czarne!",tr:"Az önce tek bir bulut olmadan mavi bir gökyüzü vardı, şimdiyse lacivert, neredeyse siyah!",
+  words:[["Przed","önce (przed momentem = az önce)"],["momentem","an (Narzędnik)","moment","męski"],["było","vardı","być"],["niebieskie","mavi","niebieski"],["niebo","gökyüzü","niebo","nijaki"],["bez","-sız, olmadan"],["jednej","tek, bir (Dopełniacz)","jeden"],["chmury,","bulut (Dopełniacz)","chmura","żeński"],["a","ise"],["teraz","şimdi"],["jest","-dir","być"],["granatowe,","lacivert","granatowy"],["prawie","neredeyse"],["czarne!","siyah","czarny"]]},
+ {pl:"I robi się chłodno… Słyszysz grzmot? Będzie burza z piorunami.",tr:"Ve hava serinliyor… Gök gürültüsünü duyuyor musun? Şimşekli bir fırtına olacak.",
+  words:[["I","ve"],["robi","oluyor (robi się chłodno = hava serinliyor)","robić się"],["się","(dönüşlü)"],["chłodno…","serin"],["Słyszysz","duyuyor musun","słyszeć"],["grzmot?","gök gürültüsü","grzmot","męski"],["Będzie","olacak","być"],["burza","fırtına","burza","żeński"],["z","ile, -li"],["piorunami.","şimşek, yıldırım (Narzędnik çoğul)","piorun","męski"]]},
+ {pl:"O, pierwsza błyskawica! – Tom z zainteresowaniem obserwuje spektakl na niebie.",tr:"İşte, ilk şimşek! – Tom gökyüzündeki gösteriyi ilgiyle izler.",
+  words:[["O,","işte, o"],["pierwsza","ilk (dişil)","pierwszy"],["błyskawica!","şimşek","błyskawica","żeński"],["Tom","özel isim"],["z","ile"],["zainteresowaniem","ilgi (Narzędnik) (z zainteresowaniem = ilgiyle)","zainteresowanie","nijaki"],["obserwuje","izler, gözlemler","obserwować"],["spektakl","gösteri","spektakl","męski"],["na","-de"],["niebie.","gökyüzü (Miejscownik)","niebo","nijaki"]]},
+ {pl:"– Ojej, ja strasznie boję się burzy! Już wieje zimny wiatr! O nie, pada deszcz!",tr:"– Eyvah, fırtınadan çok korkuyorum! Şimdiden soğuk rüzgâr esiyor! Olamaz, yağmur yağıyor!",
+  words:[["Ojej,","eyvah, aman"],["ja","ben"],["strasznie","korkunç, çok"],["boję","korkuyorum","bać się"],["się","(dönüşlü)"],["burzy!","fırtına (Dopełniacz)","burza","żeński"],["Już","şimdiden, artık"],["wieje","esiyor","wiać"],["zimny","soğuk","zimny"],["wiatr!","rüzgâr","wiatr","męski"],["O","aman"],["nie,","hayır"],["pada","yağıyor","padać"],["deszcz!","yağmur","deszcz","męski"]]},
+ {pl:"– Mami z niepokojem ogląda niebo. – Prognoza pogody mówiła, że będzie zachmurzenie, a nie deszcz!",tr:"– Mami endişeyle gökyüzünü izler. – Hava tahmini bulutlanma olacağını söylüyordu, yağmur değil!",
+  words:[["Mami","özel isim"],["z","ile"],["niepokojem","endişe (Narzędnik) (z niepokojem = endişeyle)","niepokój","męski"],["ogląda","izler, seyreder","oglądać"],["niebo.","gökyüzü (Biernik)","niebo","nijaki"],["Prognoza","tahmin","prognoza","żeński"],["pogody","hava (Dopełniacz)","pogoda","żeński"],["mówiła,","söylüyordu","mówić"],["że","-diğini"],["będzie","olacak","być"],["zachmurzenie,","bulutlanma","zachmurzenie","nijaki"],["a","ama"],["nie","değil"],["deszcz!","yağmur","deszcz","męski"]]},
+ {pl:"Nie mam parasola ani ciepłej kurtki!",tr:"Ne şemsiyem var ne de sıcak bir montum!",
+  words:[["Nie","yok"],["mam","var (nie mam = bende yok)","mieć"],["parasola","şemsiye (Dopełniacz)","parasol","męski"],["ani","ne de"],["ciepłej","sıcak (Dopełniacz)","ciepły"],["kurtki!","mont, ceket (Dopełniacz)","kurtka","żeński"]]},
+ {pl:"– Mami, nie jesteś z cukru. Poza tym z dużej chmury mały deszcz – nie będzie tak źle.",tr:"– Mami, şekerden değilsin ya (erimezsin). Ayrıca büyük buluttan küçük yağmur (abartma) – o kadar kötü olmayacak.",
+  words:[["Mami,","özel isim"],["nie","değil"],["jesteś","-sin","być"],["z","-dan"],["cukru.","şeker (Dopełniacz) (nie z cukru = şekerden değil, erimezsin)","cukier","męski"],["Poza","(poza tym = ayrıca)"],["tym","(poza tym = ayrıca)"],["z","-dan"],["dużej","büyük (Dopełniacz)","duży"],["chmury","bulut (Dopełniacz)","chmura","żeński"],["mały","küçük"],["deszcz","yağmur (deyim: abartılacak bir şey yok)","deszcz","męski"],["nie","-mayacak"],["będzie","olacak","być"],["tak","o kadar"],["źle.","kötü"]]},
+ {pl:"Zobacz, jaka piękna tęcza!",tr:"Bak, ne kadar güzel bir gökkuşağı!",
+  words:[["Zobacz,","bak","zobaczyć"],["jaka","ne kadar, nasıl (dişil)"],["piękna","güzel (dişil)","piękny"],["tęcza!","gökkuşağı","tęcza","żeński"]]},
+ {pl:"– Tom, pada coraz bardziej. Mam mokre włosy!",tr:"– Tom, gitgide daha çok yağıyor. Saçlarım ıslandı!",
+  words:[["Tom,","özel isim"],["pada","yağıyor","padać"],["coraz","gittikçe (coraz bardziej = gitgide daha çok)"],["bardziej.","daha çok"],["Mam","var (bende)","mieć"],["mokre","ıslak","mokry"],["włosy!","saçlar (Biernik)","włosy","niemęskoosobowy"]]},
+ {pl:"– A deszcz nie jest zdrowy dla włosów?",tr:"– Yağmur saçlar için sağlıklı değil mi?",
+  words:[["A","ya, peki"],["deszcz","yağmur","deszcz","męski"],["nie","değil mi"],["jest","-dir","być"],["zdrowy","sağlıklı","zdrowy"],["dla","için"],["włosów?","saçlar (Dopełniacz)","włosy","niemęskoosobowy"]]},
+ {pl:"– Tom!!! Proszę cię, chodźmy pod to drzewo! Tam jest sucho!",tr:"– Tom!!! Lütfen, şu ağacın altına gidelim! Orası kuru!",
+  words:[["Tom!!!","özel isim"],["Proszę","rica ederim, lütfen","prosić"],["cię,","seni, senden"],["chodźmy","gidelim (emir/rica)","chodzić"],["pod","altına"],["to","şu, bu"],["drzewo!","ağaç","drzewo","nijaki"],["Tam","orada, orası"],["jest","-dir","być"],["sucho!","kuru"]]},
+ {pl:"– Nie, moja droga, stać pod drzewem w czasie burzy to zły pomysł.",tr:"– Hayır, canım, fırtına sırasında ağacın altında durmak kötü bir fikir.",
+  words:[["Nie,","hayır"],["moja","benim (dişil)"],["droga,","canım, sevgili (dişil)","drogi"],["stać","durmak","stać"],["pod","altında"],["drzewem","ağaç (Narzędnik)","drzewo","nijaki"],["w","-de"],["czasie","zaman (w czasie = sırasında)","czas","męski"],["burzy","fırtına (Dopełniacz)","burza","żeński"],["to","(bu) -dir"],["zły","kötü","zły"],["pomysł.","fikir","pomysł","męski"]]},
+ {pl:"Mam przy sobie kurtkę przeciwdeszczową, mogę ci dać.",tr:"Yanımda yağmurluk var, sana verebilirim.",
+  words:[["Mam","var (bende)","mieć"],["przy","yanında (przy sobie = yanımda)"],["sobie","kendinde"],["kurtkę","mont, ceket (Biernik)","kurtka","żeński"],["przeciwdeszczową,","yağmurluk, yağmura karşı (Biernik)","przeciwdeszczowy"],["mogę","-ebilirim","móc"],["ci","sana"],["dać.","vermek","dać"]]},
+ {pl:"O, jedzie nasz autobus! Mówiłem, że będzie za pięć minut i proszę – jest punktualnie.",tr:"İşte otobüsümüz geliyor! Beş dakikaya gelir demiştim ve işte – tam vaktinde.",
+  words:[["O,","işte"],["jedzie","geliyor (araç)","jechać"],["nasz","bizim"],["autobus!","otobüs","autobus","męski"],["Mówiłem,","söylüyordum, demiştim (eril)","mówić"],["że","-diğini"],["będzie","olacak","być"],["za","-sonra"],["pięć","beş"],["minut","dakika (Dopełniacz)","minuta","żeński"],["i","ve"],["proszę","işte, buyur"],["jest","-dir","być"],["punktualnie.","tam vaktinde, dakik"]]},
+ {pl:"W autobusie Mami i Tom stoją przy oknie i widzą, że uciekli przed ulewą z gradem w ostatnim momencie.",tr:"Otobüste Mami ve Tom pencerenin yanında durur ve dolu ile gelen sağanaktan son anda kaçtıklarını görürler.",
+  words:[["W","-de"],["autobusie","otobüs (Miejscownik)","autobus","męski"],["Mami","özel isim"],["i","ve"],["Tom","özel isim"],["stoją","durur(lar)","stać"],["przy","yanında"],["oknie","pencere (Miejscownik)","okno","nijaki"],["i","ve"],["widzą,","görürler","widzieć"],["że","-diğini"],["uciekli","kaçtılar","uciec"],["przed","-dan (önünden)"],["ulewą","sağanak (Narzędnik)","ulewa","żeński"],["z","ile, -lı"],["gradem","dolu (Narzędnik)","grad","męski"],["w","-de"],["ostatnim","son (Miejscownik)","ostatni"],["momencie.","an (w ostatnim momencie = son anda)","moment","męski"]]},
+ {pl:"– Ale leje! Mieliśmy szczęście! – cieszy się Mami.",tr:"– Amma da bardaktan boşanırcasına yağıyor! Şanslıydık! – diye sevinir Mami.",
+  words:[["Ale","amma (ale leje! = bardaktan boşanıyor!)"],["leje!","(bardaktan) boşanıyor","lać"],["Mieliśmy","sahiptik (mieć szczęście = şanslı olmak)","mieć"],["szczęście!","şans, talih","szczęście","nijaki"],["cieszy","sevinir","cieszyć się"],["się","(dönüşlü)"],["Mami.","özel isim"]]},
+ {pl:"Dzwoni komórka Toma. Tom pokazuje Mami, że to Javier i odbiera połączenie.",tr:"Tom'un cep telefonu çalar. Tom, arayanın Javier olduğunu Mami'ye gösterir ve aramayı yanıtlar.",
+  words:[["Dzwoni","çalar","dzwonić"],["komórka","cep telefonu","komórka","żeński"],["Toma.","Tom'un (Dopełniacz)"],["Tom","özel isim"],["pokazuje","gösterir","pokazywać"],["Mami,","Mami'ye"],["że","-diğini"],["to","bu, o"],["Javier","özel isim"],["i","ve"],["odbiera","cevaplar, açar","odbierać"],["połączenie.","arama, bağlantı (Biernik)","połączenie","nijaki"]]},
+ {pl:"– Javier, cześć! Teraz jesteśmy w autobusie, będziemy wysiadać za kwadrans.",tr:"– Javier, selam! Şu an otobüsteyiz, çeyrek saate ineceğiz.",
+  words:[["Javier,","özel isim"],["cześć!","selam"],["Teraz","şimdi, şu an"],["jesteśmy","-yiz","być"],["w","-de"],["autobusie,","otobüs (Miejscownik)","autobus","męski"],["będziemy","-eceğiz","być"],["wysiadać","inmek (araçtan)","wysiadać"],["za","-sonra"],["kwadrans.","çeyrek saat","kwadrans","męski"]]},
+ {pl:"Aha, nie będziesz miał czasu, żeby rozmawiać? A co będziesz robić? Po co jedziesz do Magdy z szamponem???",tr:"Haa, konuşmaya vaktin olmayacak mı? Peki ne yapacaksın? Magda'ya şampuanla ne diye gidiyorsun ki???",
+  words:[["Aha,","haa, öyle mi"],["nie","-mayacak"],["będziesz","olacaksın","być"],["miał","sahip (będziesz miał = -in olacak)","mieć"],["czasu,","zaman (Dopełniacz)","czas","męski"],["żeby","-mek için"],["rozmawiać?","konuşmak, sohbet etmek","rozmawiać"],["A","peki"],["co","ne"],["będziesz","-acaksın","być"],["robić?","yapmak","robić"],["Po","(po co = ne diye, niçin)"],["co","(po co = ne diye)"],["jedziesz","gidiyorsun (araçla)","jechać"],["do","-e"],["Magdy","Magda'ya (Dopełniacz)"],["z","ile"],["szamponem???","şampuan (Narzędnik)","szampon","męski"]]},
+ {pl:"Aaa, z szampanem. I co będziecie świętować? Ach tak, gratulacje!",tr:"Aaa, şampanyayla. Peki neyi kutlayacaksınız? Ah evet, tebrikler!",
+  words:[["Aaa,","aaa (yanlış anlaşılma çözülür)"],["z","ile"],["szampanem.","şampanya (Narzędnik) (szampon≠szampan kelime oyunu)","szampan","męski"],["I","peki"],["co","neyi"],["będziecie","-acaksınız","być"],["świętować?","kutlamak","świętować"],["Ach","ah"],["tak,","evet"],["gratulacje!","tebrikler","gratulacje","niemęskoosobowy"]]},
+ {pl:"Na kiedy ma termin? Na jesień? A będziesz jutro w szkole? Aha, dopiero pojutrze.",tr:"Ne zamana randevu/tarih var? Sonbahara mı? Yarın okulda olacak mısın? Haa, ancak öbür gün.",
+  words:[["Na","-e (na kiedy = ne zamana)"],["kiedy","ne zaman"],["ma","var","mieć"],["termin?","tarih, randevu, son gün","termin","męski"],["Na","-e"],["jesień?","sonbahar (Biernik)","jesień","żeński"],["A","peki"],["będziesz","olacak mısın","być"],["jutro","yarın"],["w","-de"],["szkole?","okul (Miejscownik)","szkoła","żeński"],["Aha,","haa"],["dopiero","ancak, daha"],["pojutrze.","öbür gün"]]},
+ {pl:"To na razie. Pozdrowienia dla Magdy! – Tom kończy rozmowę. Mami czuje, że ma burzę w sercu.",tr:"O zaman görüşürüz. Magda'ya selam! – Tom konuşmayı bitirir. Mami, kalbinde bir fırtına olduğunu hisseder.",
+  words:[["To","o zaman"],["na","(na razie = şimdilik, görüşürüz)"],["razie.","(na razie = şimdilik)"],["Pozdrowienia","selam(lar)","pozdrowienia","niemęskoosobowy"],["dla","için, -e"],["Magdy!","Magda'ya (Dopełniacz)"],["Tom","özel isim"],["kończy","bitirir","kończyć"],["rozmowę.","konuşma (Biernik)","rozmowa","żeński"],["Mami","özel isim"],["czuje,","hisseder","czuć"],["że","-diğini"],["ma","var (mieć burzę = fırtınası olmak)","mieć"],["burzę","fırtına (Biernik)","burza","żeński"],["w","-de"],["sercu.","kalp (Miejscownik)","serce","nijaki"]]}
+];
+
+const PART3 = [
+ {pl:"– Znasz tę Magdę? Jaka ona jest? – pyta cicho.",tr:"– Bu Magda'yı tanıyor musun? Nasıl biri? – diye usulca sorar.",
+  words:[["Znasz","tanıyor musun","znać"],["tę","bu (dişil, Biernik)"],["Magdę?","Magda'yı (Biernik)"],["Jaka","nasıl (dişil)"],["ona","o (dişil)"],["jest?","-dir","być"],["pyta","sorar","pytać"],["cicho.","usulca, sessizce"]]},
+ {pl:"– Pamiętam ją jak przez mgłę, ale na pewno jest bardzo ładna.",tr:"– Onu belli belirsiz (sisin ardından gibi) hatırlıyorum, ama kesinlikle çok güzel.",
+  words:[["Pamiętam","hatırlıyorum","pamiętać"],["ją","onu (dişil)"],["jak","gibi (jak przez mgłę = belli belirsiz)"],["przez","-den (mgła içinden)"],["mgłę,","sis (Biernik) (jak przez mgłę = bulanık)","mgła","żeński"],["ale","ama"],["na","(na pewno = kesinlikle)"],["pewno","(na pewno = kesinlikle)"],["jest","-dir","być"],["bardzo","çok"],["ładna.","güzel, hoş (dişil)","ładny"]]},
+ {pl:"No wiesz, typ gwiazdy filmowej: wysoka, szczupła, niebieskie oczy, burza blond włosów. A co?",tr:"Hani, film yıldızı tipi: uzun boylu, ince, mavi gözler, sarı gür saçlar. Ne oldu ki?",
+  words:[["No","hani, işte"],["wiesz,","biliyorsun","wiedzieć"],["typ","tip","typ","męski"],["gwiazdy","yıldız (Dopełniacz)","gwiazda","żeński"],["filmowej:","film- (Dopełniacz) (gwiazda filmowa = film yıldızı)","filmowy"],["wysoka,","uzun boylu (dişil)","wysoki"],["szczupła,","ince, zayıf (dişil)","szczupły"],["niebieskie","mavi","niebieski"],["oczy,","gözler","oczy","niemęskoosobowy"],["burza","fırtına (burza włosów = gür saç)","burza","żeński"],["blond","sarışın, blond"],["włosów.","saç (Dopełniacz)","włosy","niemęskoosobowy"],["A","ya, peki"],["co?","ne"]]},
+ {pl:"– Czy Javier będzie ojcem? Ona jest w ciąży, tak?",tr:"– Javier baba mı olacak? O hamile, değil mi?",
+  words:[["Czy","(soru edatı) -mı"],["Javier","özel isim"],["będzie","olacak","być"],["ojcem?","baba (Narzędnik)","ojciec","męski"],["Ona","o (dişil)"],["jest","-dir","być"],["w","-de (w ciąży = hamile)"],["ciąży,","gebelik (Miejscownik)","ciąża","żeński"],["tak?","değil mi, öyle mi"]]},
+ {pl:"– Ależ nie! – protestuje zdziwiony Tom.",tr:"– Yok canım, hayır! – diye itiraz eder şaşkın Tom.",
+  words:[["Ależ","yok canım (ależ nie = hayır ne münasebet)"],["nie!","hayır"],["protestuje","itiraz eder","protestować"],["zdziwiony","şaşkın, şaşırmış (eril)","zdziwiony"],["Tom.","özel isim"]]},
+ {pl:"– Magda właśnie skończyła pisać doktorat z klimatologii.",tr:"– Magda daha yeni klimatoloji doktorasını yazmayı bitirdi.",
+  words:[["Magda","özel isim"],["właśnie","tam da, daha yeni"],["skończyła","bitirdi (dişil)","skończyć"],["pisać","yazmak","pisać"],["doktorat","doktora (tezi) (Biernik)","doktorat","męski"],["z","-den, alanında"],["klimatologii.","klimatoloji (Dopełniacz)","klimatologia","żeński"]]},
+ {pl:"Za kilka miesięcy – w październiku – będzie miała obronę.",tr:"Birkaç ay sonra – ekimde – tez savunması olacak.",
+  words:[["Za","-sonra"],["kilka","birkaç"],["miesięcy","ay (Dopełniacz çoğul)","miesiąc","męski"],["w","-de"],["październiku","ekim (Miejscownik)","październik","męski"],["będzie","olacak","być"],["miała","sahip (będzie miała = -si olacak)","mieć"],["obronę.","(tez) savunma (Biernik)","obrona","żeński"]]},
+ {pl:"A ty dlaczego jesteś taka czerwona? Gorąco ci?",tr:"Peki sen neden bu kadar kırmızısın? Sıcakladın mı?",
+  words:[["A","peki"],["ty","sen"],["dlaczego","neden"],["jesteś","-sın","być"],["taka","bu kadar, böyle (dişil)"],["czerwona?","kırmızı (dişil)","czerwony"],["Gorąco","sıcak"],["ci?","sana (gorąco ci? = sıcakladın mı)"]]},
+ {pl:"– Ciśnienie – mówi Mami pod nosem. – Właśnie czuję, jak rośnie.",tr:"– Tansiyon – der Mami kendi kendine. – Tam da yükseldiğini hissediyorum.",
+  words:[["Ciśnienie","tansiyon, basınç","ciśnienie","nijaki"],["mówi","der","mówić"],["Mami","özel isim"],["pod","altından (pod nosem = kendi kendine, mırıldanarak)"],["nosem.","burun (Narzędnik)","nos","męski"],["Właśnie","tam da"],["czuję,","hissediyorum","czuć"],["jak","nasıl, -diğini"],["rośnie.","yükseliyor, artıyor","rosnąć"]]}
+];
+
+const DIALOG = [
+ {pl:"Anna: – Marek, zauważyłeś, jaka dziwna jest teraz pogoda?",tr:"Anna: – Marek, havanın şimdi ne kadar tuhaf olduğunu fark ettin mi?",
+  words:[["Anna:","özel isim (kadın)"],["Marek,","özel isim (erkek)"],["zauważyłeś,","fark ettin (eril)","zauważyć"],["jaka","ne kadar, nasıl (dişil)"],["dziwna","tuhaf (dişil)","dziwny"],["jest","-dir","być"],["teraz","şimdi"],["pogoda?","hava","pogoda","żeński"]]},
+ {pl:"Marek: – Tak, masz rację. Zimy są coraz cieplejsze, a lata bardzo gorące.",tr:"Marek: – Evet, haklısın. Kışlar gitgide daha ılık, yazlar ise çok sıcak.",
+  words:[["Marek:","özel isim"],["Tak,","evet"],["masz","-sın (masz rację = haklısın)","mieć"],["rację.","hak (Biernik)","racja","żeński"],["Zimy","kışlar","zima","żeński"],["są","-dir(ler)","być"],["coraz","gitgide (coraz cieplejsze = gitgide daha ılık)"],["cieplejsze,","daha ılık/sıcak (karşılaştırma)","ciepły"],["a","ise"],["lata","yazlar","lato","nijaki"],["bardzo","çok"],["gorące.","sıcak (çoğul)","gorący"]]},
+ {pl:"Anna: – Myślę, że to przez globalne ocieplenie. Klimat naprawdę się zmienia.",tr:"Anna: – Bence bu, küresel ısınma yüzünden. İklim gerçekten değişiyor.",
+  words:[["Anna:","özel isim"],["Myślę,","düşünüyorum, bence","myśleć"],["że","-diğini, ki"],["to","bu"],["przez","yüzünden, -dan dolayı"],["globalne","küresel","globalny"],["ocieplenie.","ısınma","ocieplenie","nijaki"],["Klimat","iklim","klimat","męski"],["naprawdę","gerçekten"],["się","(dönüşlü)"],["zmienia.","değişiyor","zmieniać się"]]},
+ {pl:"Marek: – Zgadzam się. W dzieciństwie zimą zawsze padał śnieg, a teraz rzadko.",tr:"Marek: – Katılıyorum. Çocukluğumda kışın hep kar yağardı, şimdiyse nadiren.",
+  words:[["Marek:","özel isim"],["Zgadzam","katılıyorum","zgadzać się"],["się.","(dönüşlü)"],["W","-de"],["dzieciństwie","çocukluk (Miejscownik)","dzieciństwo","nijaki"],["zimą","kışın (Narzędnik)","zima","żeński"],["zawsze","her zaman"],["padał","yağardı (padać śnieg = kar yağmak)","padać"],["śnieg,","kar","śnieg","męski"],["a","ama, ise"],["teraz","şimdi"],["rzadko.","nadiren, seyrek"]]},
+ {pl:"Anna: – Właśnie. Pogoda jest nieprzewidywalna: raz upał, raz nagła burza.",tr:"Anna: – Aynen. Hava tahmin edilemez: bazen kavurucu sıcak, bazen ani fırtına.",
+  words:[["Anna:","özel isim"],["Właśnie.","aynen, tam da"],["Pogoda","hava","pogoda","żeński"],["jest","-dir","być"],["nieprzewidywalna:","öngörülemez, tahmin edilemez (dişil)","nieprzewidywalny"],["raz","bir (raz… raz… = bazen… bazen)"],["upał,","(bunaltıcı) sıcak","upał","męski"],["raz","bir"],["nagła","ani (dişil)","nagły"],["burza.","fırtına","burza","żeński"]]},
+ {pl:"Marek: – Co możemy zrobić, żeby pomóc naszej planecie?",tr:"Marek: – Gezegenimize yardım etmek için ne yapabiliriz?",
+  words:[["Marek:","özel isim"],["Co","ne"],["możemy","-ebiliriz","móc"],["zrobić,","yapmak","zrobić"],["żeby","-mek için"],["pomóc","yardım etmek","pomóc"],["naszej","bizim (Celownik, dişil)","nasz"],["planecie?","gezegen (Celownik)","planeta","żeński"]]},
+ {pl:"Anna: – Możemy mniej jeździć samochodem i częściej wybierać autobus lub rower.",tr:"Anna: – Daha az arabayla gidip daha sık otobüsü ya da bisikleti seçebiliriz.",
+  words:[["Anna:","özel isim"],["Możemy","-ebiliriz","móc"],["mniej","daha az"],["jeździć","gitmek (araçla), seyahat etmek","jeździć"],["samochodem","arabayla (Narzędnik)","samochód","męski"],["i","ve"],["częściej","daha sık","często"],["wybierać","seçmek","wybierać"],["autobus","otobüs (Biernik)","autobus","męski"],["lub","ya da, veya"],["rower.","bisiklet (Biernik)","rower","męski"]]},
+ {pl:"Marek: – Dobry pomysł. Warto też segregować śmieci i oszczędzać wodę oraz prąd.",tr:"Marek: – İyi fikir. Ayrıca çöpleri ayrıştırmak, su ve elektrik tasarrufu yapmak da faydalı.",
+  words:[["Marek:","özel isim"],["Dobry","iyi","dobry"],["pomysł.","fikir","pomysł","męski"],["Warto","(warto = …-meye değer, faydalı)"],["też","de, ayrıca"],["segregować","ayrıştırmak","segregować"],["śmieci","çöp(ler) (Biernik)","śmieci","niemęskoosobowy"],["i","ve"],["oszczędzać","tasarruf etmek, biriktirmek","oszczędzać"],["wodę","su (Biernik)","woda","żeński"],["oraz","ve"],["prąd.","elektrik, akım (Biernik)","prąd","męski"]]},
+ {pl:"Anna: – Zgadza się. Małe zmiany w domu też są ważne dla środowiska.",tr:"Anna: – Doğru. Evdeki küçük değişiklikler de çevre için önemli.",
+  words:[["Anna:","özel isim"],["Zgadza","(zgadza się = doğru, katılıyorum)","zgadzać się"],["się.","(dönüşlü)"],["Małe","küçük (çoğul)","mały"],["zmiany","değişiklikler","zmiana","żeński"],["w","-de"],["domu","ev (Miejscownik)","dom","męski"],["też","de"],["są","-dir(ler)","być"],["ważne","önemli (çoğul)","ważny"],["dla","için"],["środowiska.","çevre (Dopełniacz)","środowisko","nijaki"]]},
+ {pl:"Marek: – Masz rację. Jeśli każdy zrobi trochę, razem zmienimy dużo.",tr:"Marek: – Haklısın. Herkes biraz yaparsa, birlikte çok şey değiştiririz.",
+  words:[["Marek:","özel isim"],["Masz","-sın","mieć"],["rację.","hak (Biernik)","racja","żeński"],["Jeśli","eğer"],["każdy","herkes, her biri"],["zrobi","yaparsa","zrobić"],["trochę,","biraz"],["razem","birlikte"],["zmienimy","değiştiririz","zmienić"],["dużo.","çok"]]},
+ {pl:"Anna: – Jestem optymistką. Wierzę, że przyszłość może być lepsza.",tr:"Anna: – Ben iyimserim. Geleceğin daha iyi olabileceğine inanıyorum.",
+  words:[["Anna:","özel isim"],["Jestem","-yım","być"],["optymistką.","iyimser (kadın, Narzędnik)","optymistka","żeński"],["Wierzę,","inanıyorum","wierzyć"],["że","-diğini, ki"],["przyszłość","gelecek","przyszłość","żeński"],["może","-ebilir","móc"],["być","olmak","być"],["lepsza.","daha iyi (dişil)","dobry"]]},
+ {pl:"Marek: – Ja też. Zacznijmy działać już dziś!",tr:"Marek: – Ben de. Hemen bugün harekete geçelim!",
+  words:[["Marek:","özel isim"],["Ja","ben"],["też.","de"],["Zacznijmy","başlayalım","zacząć"],["działać","harekete geçmek, iş yapmak","działać"],["już","artık, hemen"],["dziś!","bugün"]]}
+];
+
+const STORIES = [PART1, PART2, PART3, DIALOG];
+
+const QUIZ1 = [
+ {q:"Dlaczego Mami się denerwuje na przystanku?",opts:["bo autobus bardzo się spóźnia","bo jest gorąco i słonecznie","bo pokłóciła się z Tomem","bo zgubiła swój parasol"],a:1,fb:"Mami sıcaktan ve güneşten şikâyet ediyor; gözlüğü ve kremi yok."},
+ {q:"Czego Mami nie ma ze sobą w słońcu?",opts:["kremu z filtrem i okularów","portfela i biletu na autobus","telefonu i ładowarki","czapki i szalika"],a:0,fb:"Güneş kremi (krem z filtrem) ve güneş gözlüğü yok."},
+ {q:"Skąd pochodzi Mami?",opts:["z Kalifornii","z Korei","z Japonii","z Chin"],a:2,fb:"Mami Japonya'dan (z Japonii), Kaliforniya'dan değil."},
+ {q:"Jaki przykład zmian klimatu podaje Mami?",opts:["w sylwestra spadł ogromny grad","w Wielkanoc padał śnieg i był mróz","latem całe jezioro w parku zupełnie zamarzło","na wiosnę słońce znikło na miesiąc"],a:1,fb:"Metne göre Paskalya'da (w Wielkanoc) kar yağdı ve ayaz vardı."},
+ {q:"Co dzieje się z wiśniami w Japonii?",opts:["dopiero teraz zaczynają kwitnąć","kwitną już w środku zimy co roku","w tym roku wcale nie zakwitły","kwitły miesiąc wcześniej niż zwykle"],a:0,fb:"Kış çok uzun sürdüğü için kiraz ağaçları ancak şimdi (dopiero teraz) çiçek açıyor."},
+ {tf:true,q:"Mami ma okulary przeciwsłoneczne.",a:false,fb:"Yanlış — Mami'nin güneş gözlüğü yok."},
+ {tf:true,q:"Mami pochodzi z Japonii.",a:true,fb:"Doğru — Mami Japonya'dan geliyor."},
+ {tf:true,q:"Prognoza pogody zapowiadała słońce.",a:false,fb:"Yanlış — telefon bulutlu (pochmurno) hava gösteriyordu."},
+ {tf:true,q:"Według Mami klimat się zmienia.",a:true,fb:"Doğru — küresel ısınmadan (globalne ocieplenie) söz ediyor."},
+ {tf:true,q:"W Polsce, według Mami, wiosna trwa teraz bardzo długo.",a:false,fb:"Yanlış — artık ilkbahar yok, doğrudan yaz geliyor."}
+];
+const QUIZ2 = [
+ {q:"Jak zmienia się niebo podczas rozmowy?",opts:["z niebieskiego robi się granatowe","z szarego robi się jasnoniebieskie","z czarnego robi się różowe o zmroku","z białego robi się zielonkawe"],a:0,fb:"Gökyüzü maviden lacivere (granatowe), neredeyse siyaha döner."},
+ {q:"Czego bardzo boi się Mami?",opts:["wysokich drzew","silnego wiatru","burzy","zimna"],a:2,fb:"Mami fırtınadan (burza) çok korkuyor."},
+ {q:"Co robi Tom, gdy Mami nie ma kurtki?",opts:["każe jej wrócić szybko do domu","proponuje schowek w pobliskim sklepie","chce wziąć taksówkę z pobliskiego postoju","daje jej kurtkę przeciwdeszczową"],a:3,fb:"Tom yanındaki yağmurluğu (kurtka przeciwdeszczowa) Mami'ye verir."},
+ {q:"Kto dzwoni do Toma w autobusie?",opts:["Magda","Javier","mama Toma","kolega ze szkoły"],a:1,fb:"Telefonu arayan Javier."},
+ {q:"Dlaczego Tom najpierw mówi o „szamponie”?",opts:["bo Magda pracuje w drogerii","bo źle usłyszał słowo „szampan”","bo Javier kupuje dla niej różne drogie kosmetyki","bo to prezent na jej urodziny"],a:1,fb:"Tom „szampan”ı (şampanya) „szampon” (şampuan) diye yanlış duyar — bir kelime oyunu."},
+ {tf:true,q:"Niebo staje się granatowe i prawie czarne.",a:true,fb:"Doğru — gökyüzü kararıyor."},
+ {tf:true,q:"Mami wcale nie boi się burzy.",a:false,fb:"Yanlış — fırtınadan çok korkuyor."},
+ {tf:true,q:"Tom daje Mami kurtkę przeciwdeszczową.",a:true,fb:"Doğru — yağmurluğunu ona verir."},
+ {tf:true,q:"Autobus przyjeżdża punktualnie, po pięciu minutach.",a:true,fb:"Doğru — tam söylediği gibi, dakik gelir."},
+ {tf:true,q:"Do Toma dzwoni jego mama.",a:false,fb:"Yanlış — arayan Javier."}
+];
+const QUIZ3 = [
+ {q:"Co czuje Mami po rozmowie z Javierem?",opts:["ogromną ulgę i wewnętrzny spokój","zazdrość, czyli burzę w sercu","senność po długim dniu","radość z powodu pogody"],a:1,fb:"Mami kalbinde bir fırtına (burza w sercu) — yani kıskançlık — hisseder."},
+ {q:"Jak Tom pamięta Magdę?",opts:["jak przez mgłę","bardzo dokładnie","z jednego zdjęcia","tylko z opowieści"],a:0,fb:"Tom onu belli belirsiz (jak przez mgłę) hatırlıyor."},
+ {q:"Co naprawdę zrobiła Magda?",opts:["skończyła pisać doktorat","wzięła właśnie ślub z Javierem","urodziła zdrowego synka","kupiła nowe duże mieszkanie"],a:0,fb:"Magda klimatoloji doktorasını yazmayı yeni bitirdi (skończyła doktorat)."},
+ {q:"Kiedy Magda będzie miała obronę?",opts:["wiosną, gdzieś w marcu","za rok, latem w wakacje","w październiku, jesienią","tuż przed świętami, zimą w grudniu"],a:2,fb:"Savunma ekimde, sonbaharda (w październiku)."},
+ {q:"Dlaczego Mami jest na końcu czerwona?",opts:["bo długo stała na mocnym słońcu","bo rośnie jej ciśnienie","bo zjadła bardzo ostrą potrawę","bo biegła szybko na autobus"],a:1,fb:"Mami'nin tansiyonu (ciśnienie) yükseliyor — aslında kıskançlıktan."},
+ {tf:true,q:"Tom pamięta Magdę bardzo dokładnie.",a:false,fb:"Yanlış — onu belli belirsiz (jak przez mgłę) hatırlıyor."},
+ {tf:true,q:"Mami myśli, że Magda jest w ciąży.",a:true,fb:"Doğru — Mami hamile olduğunu sanır."},
+ {tf:true,q:"Magda spodziewa się dziecka.",a:false,fb:"Yanlış — aslında doktorasını bitirdi, hamile değil."},
+ {tf:true,q:"Doktorat Magdy jest z klimatologii.",a:true,fb:"Doğru — klimatoloji (klimatologia) alanında."},
+ {tf:true,q:"Obrona doktoratu Magdy będzie wiosną.",a:false,fb:"Yanlış — ekimde, sonbaharda olacak."}
+];
+
+/* ================= VERİ SONU — buradan sonrasını değiştirme ================= */
+
+function renderStory(containerId, arr, part){
+  const el=document.getElementById(containerId); el.innerHTML='';
+  arr.forEach((s,si)=>{
+    const sent=document.createElement('span');
+    sent.className='sent'; sent.dataset.part=part; sent.dataset.si=si;
+    s.words.forEach((pair,wi)=>{
+      const w=document.createElement('w');
+      w.textContent=pair[0];
+      w.dataset.g=pair[1];
+      w.dataset.pl=pair[0].replace(/[.,!?;:„”]/g,'');
+      if(pair[2]) w.dataset.base=pair[2];
+      if(pair[3]) w.dataset.gen=pair[3];
+      w.dataset.part=part; w.dataset.si=si;
+      sent.appendChild(w);
+      if(wi<s.words.length-1){const sp=document.createElement('span');sp.className='sp';sp.innerHTML='&nbsp;';sent.appendChild(sp);}
+    });
+    el.appendChild(sent); el.appendChild(document.createTextNode(' '));
+  });
+  applyMarks(el);
+}
+
+const tip=document.getElementById('tip'), tipPl=document.getElementById('tipPl'), tipTr=document.getElementById('tipTr');
+const sheet=document.getElementById('sheet'), scrim=document.getElementById('scrim');
+const sPl=document.getElementById('sPl'), sTr=document.getElementById('sTr');
+let pressTimer=null, longFired=false, activeWord=null, startX=0, startY=0, moved=false;
+const LONG_MS=500, MOVE_TOL=8;
+function cancelPress(){ if(pressTimer){clearTimeout(pressTimer);pressTimer=null;} }
+function clearWord(){ if(activeWord){activeWord.classList.remove('on');activeWord=null;} }
+function hideTip(){ tip.classList.remove('show'); }
+function showTip(w){
+  clearWord(); hideTip();
+  activeWord=w; w.classList.add('on');
+  tipPl.textContent=w.dataset.pl; tipTr.textContent=w.dataset.g;
+  tip.classList.add('show');
+  const r=w.getBoundingClientRect(), tw=tip.offsetWidth, th=tip.offsetHeight;
+  let left=Math.max(8,Math.min(r.left+r.width/2-tw/2,window.innerWidth-tw-8));
+  let top,cls;
+  if(r.top-th-14>6){ top=r.top-th-12; cls='up'; } else { top=r.bottom+12; cls='down'; }
+  tip.classList.remove('up','down'); tip.classList.add(cls);
+  const ax=Math.max(12,Math.min(r.left+r.width/2-left-7,tw-24));
+  tip.style.setProperty('--ax',ax+'px');
+  tip.style.left=left+'px'; tip.style.top=top+'px';
+}
+function showSentence(part,si){
+  const s=STORIES[part][si];
+  sPl.textContent=s.pl; sTr.textContent=s.tr;
+  sheet.dataset.part=part; sheet.dataset.si=si;
+  sheet.classList.add('show'); scrim.classList.add('show');
+  document.querySelectorAll('.sent').forEach(x=>x.classList.remove('hl'));
+  const el=document.querySelector('.sent[data-part="'+part+'"][data-si="'+si+'"]'); if(el) el.classList.add('hl');
+}
+function hideSentence(){ sheet.classList.remove('show'); scrim.classList.remove('show'); document.querySelectorAll('.sent').forEach(x=>x.classList.remove('hl')); }
+
+document.addEventListener('pointerdown',e=>{
+  const w=e.target.closest('w');
+  if(w){
+    longFired=false; moved=false; startX=e.clientX; startY=e.clientY;
+    pressTimer=setTimeout(()=>{ longFired=true; hideTip(); clearWord(); if(navigator.vibrate) navigator.vibrate(15); showSentence(+w.dataset.part,+w.dataset.si); },LONG_MS);
+  } else { hideTip(); clearWord(); }
+});
+document.addEventListener('pointermove',e=>{ if(!pressTimer) return; if(Math.abs(e.clientX-startX)>MOVE_TOL||Math.abs(e.clientY-startY)>MOVE_TOL){ moved=true; cancelPress(); } });
+let lastTap={el:null,t:0};
+document.addEventListener('pointerup',e=>{
+  cancelPress();
+  const w=e.target.closest('w'); if(!w) return;
+  if(longFired||moved) return;
+  const now=Date.now();
+  if(lastTap.el===w && now-lastTap.t<300){ hideTip(); clearWord(); toggleMark(w); lastTap={el:null,t:0}; }
+  else {
+    if(tip.classList.contains('show') && activeWord===w){ hideTip(); clearWord(); }
+    else { showTip(w); }
+    lastTap={el:w,t:now};
+  }
+});
+document.addEventListener('pointercancel',()=>{ moved=true; cancelPress(); });
+document.addEventListener('contextmenu',e=>{ if(e.target.closest('w')) e.preventDefault(); });
+window.addEventListener('scroll',()=>{ moved=true; cancelPress(); hideTip(); clearWord(); },{passive:true});
+document.addEventListener('touchmove',()=>{ moved=true; cancelPress(); hideTip(); clearWord(); },{passive:true});
+scrim.addEventListener('click',()=>{ hideSentence(); closeMenu(); });
+document.getElementById('sClose').addEventListener('click',hideSentence);
+
+/* ---------- İşaretleme + ortak kelime listesi (localStorage) + Dışa aktarma ---------- */
+const menu=document.getElementById('menu');
+/* Tüm czytankalar arasında paylaşılan kelime deposu.
+   content:// altında localStorage engelliyse oturum-içi kopyaya düşer (try/catch). */
+const VOCAB=(function(){
+  const KEY='czytanka_vocab_v1'; let mem=null;
+  function read(){ if(mem) return mem; try{ mem=JSON.parse(localStorage.getItem(KEY))||{}; }catch(_){ mem={}; } return mem; }
+  function write(){ try{ localStorage.setItem(KEY, JSON.stringify(read())); }catch(_){} }
+  return { all:()=>read(), has:k=>Object.prototype.hasOwnProperty.call(read(),k),
+    add:(k,rec)=>{ read()[k]=rec; write(); }, remove:k=>{ delete read()[k]; write(); }, clear:()=>{ mem={}; write(); } };
+})();
+function cleanMeaning(g){ const m=(g||'').replace(/\s*\([^)]*\)\s*/g,' ').replace(/\s+/g,' ').trim(); return m||g||''; }
+function vkey(pl){ return (pl||'').toLowerCase().replace(/[.,!?;:„”"()»«]/g,'').trim(); }
+function wordKey(w){ return vkey(w.dataset.base||w.dataset.pl||''); }
+function setMarkByKey(key,on){ document.querySelectorAll('w').forEach(w=>{ if(wordKey(w)===key) w.classList.toggle('marked',on); }); }
+function applyMarks(scope){ (scope||document).querySelectorAll('w').forEach(w=>{ const k=wordKey(w); if(k && VOCAB.has(k)) w.classList.add('marked'); }); }
+function toggleMark(w){
+  const key=wordKey(w); if(!key) return;
+  if(VOCAB.has(key)){ VOCAB.remove(key); setMarkByKey(key,false); }
+  else{
+    const part=+w.dataset.part, si=+w.dataset.si;
+    const s=(STORIES[part]&&STORIES[part][si])||{pl:'',tr:''};
+    VOCAB.add(key,{pl:w.dataset.base||w.dataset.pl||'', g:w.dataset.gen||'', tr:cleanMeaning(w.dataset.g), ex_pl:s.pl||'', ex_tr:s.tr||''});
+    setMarkByKey(key,true);
+  }
+  if(navigator.vibrate) navigator.vibrate(8);
+  if(menu.classList.contains('show')) renderMarked();
+}
+/* Dışa aktarma alan sırası: pl / cinsiyet / tag(boş) / tr / örnek_pl / örnek_tr */
+function markedRows(){
+  const store=VOCAB.all();
+  return Object.keys(store).sort().map(k=>{ const r=store[k]; return [r.pl||'', r.g||'', '', r.tr||'', r.ex_pl||'', r.ex_tr||'']; });
+}
+function exportText(){ return markedRows().map(r=>r.join('/')).join('\n'); }
+let selKeys=new Set();
+function updateDelBtn(){ const b=document.getElementById('mkDelSel'); if(!b) return; b.textContent=selKeys.size?('🗑 Seçileni sil ('+selKeys.size+')'):'🗑 Seçileni sil'; b.disabled=selKeys.size===0; }
+function renderMarked(){
+  const list=document.getElementById('mkList'), rows=markedRows();
+  document.getElementById('mkCount').textContent=rows.length;
+  const present=new Set(rows.map(r=>vkey(r[0]))); selKeys.forEach(k=>{ if(!present.has(k)) selKeys.delete(k); });
+  if(!rows.length){ list.innerHTML='<div class="mk-empty">Liste boş. Bir kelimeye çift dokununca renklenir ve buraya eklenir — başka czytankalarda da hatırlanır.</div>'; updateDelBtn(); return; }
+  list.innerHTML='';
+  rows.forEach(r=>{
+    const pl=r[0], gen=r[1], tr=r[3], ex=r[4], key=vkey(pl);
+    const sel=selKeys.has(key);
+    const row=document.createElement('div'); row.className='mk-item'+(sel?' sel':'');
+    const info=document.createElement('div'); info.className='minfo';
+    info.innerHTML='<div class="mw">'+pl+(gen?' <span class="mg">· '+gen+'</span>':'')+'</div><div class="mg">'+tr+'</div>'+(ex?'<div class="mex">'+ex+'</div>':'');
+    const b=document.createElement('button'); b.className='mk-pick'; b.textContent=sel?'✓':''; b.setAttribute('aria-label','Seç');
+    row.onclick=()=>{ if(selKeys.has(key)){ selKeys.delete(key); row.classList.remove('sel'); b.textContent=''; } else { selKeys.add(key); row.classList.add('sel'); b.textContent='✓'; } updateDelBtn(); };
+    row.appendChild(info); row.appendChild(b); list.appendChild(row);
+  });
+  updateDelBtn();
+}
+function openMenu(){ hideSentence(); selKeys.clear(); renderMarked(); menu.classList.add('show'); scrim.classList.add('show'); }
+function closeMenu(){ menu.classList.remove('show'); scrim.classList.remove('show'); }
+function flashBtn(id,txt){ const b=document.getElementById(id); const o=b.textContent; b.textContent=txt; setTimeout(()=>b.textContent=o,1200); }
+document.getElementById('menuBtn').addEventListener('click',openMenu);
+const _flag=document.getElementById('flagBtn'); if(_flag) _flag.addEventListener('click',openMenu);
+document.getElementById('menuClose').addEventListener('click',closeMenu);
+document.getElementById('mkCopy').addEventListener('click',async()=>{
+  const t=exportText(); if(!t){ flashBtn('mkCopy','Liste boş'); return; }
+  try{ await navigator.clipboard.writeText(t); flashBtn('mkCopy','✓ Kopyalandı'); }
+  catch(_){ const ta=document.createElement('textarea'); ta.value=t; document.body.appendChild(ta); ta.select(); try{document.execCommand('copy');}catch(e){} ta.remove(); flashBtn('mkCopy','✓ Kopyalandı'); }
+});
+document.getElementById('mkDownload').addEventListener('click',()=>{
+  const t=exportText(); if(!t){ flashBtn('mkDownload','Liste boş'); return; }
+  const blob=new Blob([t],{type:'text/plain;charset=utf-8'});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='slowka.txt';
+  document.body.appendChild(a); a.click(); setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},500);
+});
+document.getElementById('mkDelSel').addEventListener('click',()=>{
+  if(!selKeys.size){ flashBtn('mkDelSel','Önce seç'); return; }
+  selKeys.forEach(k=>{ VOCAB.remove(k); setMarkByKey(k,false); });
+  selKeys.clear(); renderMarked();
+});
+document.getElementById('mkClear').addEventListener('click',()=>{
+  if(!confirm('Tüm kelime listesi silinsin mi? Bu, tüm czytankalardaki ortak listeyi temizler.')) return;
+  VOCAB.clear(); document.querySelectorAll('w.marked').forEach(w=>w.classList.remove('marked')); renderMarked();
+});
+
+let part2Open=false, part3Open=false;
+function speak(text){
+  if(!('speechSynthesis' in window)) return;
+  window.speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text); u.lang='pl-PL'; u.rate=0.92;
+  const v=(window.speechSynthesis.getVoices()||[]).find(x=>/pl/i.test(x.lang));
+  if(v) u.voice=v; window.speechSynthesis.speak(u);
+}
+document.getElementById('sSpk').addEventListener('click',()=>speak(STORIES[+sheet.dataset.part][+sheet.dataset.si].pl));
+document.getElementById('playAll').addEventListener('click',()=>{
+  let t=PART1.map(s=>s.pl).join(' ');
+  if(part2Open) t+=' '+PART2.map(s=>s.pl).join(' ');
+  if(part3Open) t+=' '+PART3.map(s=>s.pl).join(' ');
+  speak(t);
+});
+document.getElementById('stopAll').addEventListener('click',()=>{ if('speechSynthesis' in window) window.speechSynthesis.cancel(); });
+if('speechSynthesis' in window){ window.speechSynthesis.onvoiceschanged=()=>{}; }
+
+function revealPart2(){
+  if(!part2Open){
+    part2Open=true;
+    renderStory('story2',PART2,1); buildQuiz('questions2','result2',QUIZ2);
+    document.getElementById('part2').classList.remove('locked');
+    const t=document.getElementById('teaser1'); if(t) t.style.display='none';
+    const c=document.getElementById('contAfter1'); if(c) c.style.display='none';
+  }
+  document.getElementById('part2').scrollIntoView({behavior:'smooth'});
+}
+function revealPart3(){
+  if(!part3Open){
+    part3Open=true;
+    renderStory('story3',PART3,2); buildQuiz('questions3','result3',QUIZ3);
+    document.getElementById('part3').classList.remove('locked');
+    const t=document.getElementById('teaser2'); if(t) t.style.display='none';
+    const c=document.getElementById('contAfter2'); if(c) c.style.display='none';
+  }
+  document.getElementById('part3').scrollIntoView({behavior:'smooth'});
+}
+['contBtn1','contBtn1b'].forEach(id=>{const b=document.getElementById(id); if(b) b.addEventListener('click',revealPart2);});
+['contBtn2','contBtn2b'].forEach(id=>{const b=document.getElementById(id); if(b) b.addEventListener('click',revealPart3);});
+
+const LETTERS=['A','B','C','D'];
+function buildQuiz(qId,rId,data){
+  const wrap=document.getElementById(qId), result=document.getElementById(rId);
+  wrap.innerHTML=''; result.classList.remove('show');
+  let answered=0, correct=0, mcN=0, tfN=0, tfHeader=false;
+  data.forEach((item)=>{
+    const isTF=item.tf===true;
+    if(isTF && !tfHeader){
+      const hd=document.createElement('div');
+      hd.style.cssText='margin:26px 0 2px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700;';
+      hd.textContent='Prawda czy fałsz? · Doğru mu, yanlış mı?';
+      wrap.appendChild(hd); tfHeader=true;
+    }
+    const opts = isTF ? ['Prawda','Fałsz'] : item.opts;
+    const correctIdx = isTF ? (item.a===true?0:1) : item.a;
+    const num = isTF ? (++tfN) : (++mcN);
+    const label = isTF ? ('PRAWDA / FAŁSZ · '+num) : ('PYTANIE '+num);
+    const card=document.createElement('div'); card.className='q'+(isTF?' tf':'');
+    card.innerHTML='<div class="q-num">'+label+'</div><div class="q-txt">'+item.q+'</div>';
+    opts.forEach((opt,oi)=>{
+      const b=document.createElement('button'); b.className='opt';
+      b.innerHTML = isTF ? opt : ('<span class="k">'+LETTERS[oi]+'</span>'+opt);
+      b.addEventListener('click',()=>{
+        if(card.dataset.done) return;
+        card.dataset.done='1'; answered++;
+        card.querySelectorAll('.opt').forEach((o,i)=>{ o.disabled=true; if(i===correctIdx) o.classList.add('correct'); });
+        if(oi===correctIdx) correct++; else b.classList.add('wrong');
+        const fb=card.querySelector('.fb');
+        fb.innerHTML=(oi===correctIdx?'✅ <b>Dobrze!</b> ':'❌ <b>Niepoprawnie.</b> ')+item.fb;
+        fb.classList.add('show');
+        if(answered===data.length){
+          result.querySelector('.score').textContent=correct+' / '+data.length;
+          const pct=correct/data.length; let msg;
+          if(pct>=1) msg='Świetnie! Perfekcyjnie! 🎉';
+          else if(pct>=0.8) msg='Bardzo dobrze! 👏';
+          else if(pct>=0.6) msg='Dobra robota!';
+          else if(pct>=0.4) msg='Nieźle, ćwicz dalej.';
+          else msg='Spróbuj jeszcze raz! 💪';
+          result.querySelector('.msg').textContent=msg;
+          result.classList.add('show');
+          result.scrollIntoView({behavior:'smooth',block:'center'});
+        }
+      });
+      card.appendChild(b);
+    });
+    const fb=document.createElement('div'); fb.className='fb'; card.appendChild(fb);
+    wrap.appendChild(card);
+  });
+  result.querySelector('.retry').onclick=()=>{ buildQuiz(qId,rId,data); wrap.scrollIntoView({behavior:'smooth'}); };
+}
+renderStory('story1', PART1, 0);
+renderStory('dialog', DIALOG, 3);
+buildQuiz('questions1','result1',QUIZ1);
+</script>
+</body>
+</html>
