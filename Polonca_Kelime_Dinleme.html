@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Polonca Kelime Dinleme</title>
+<style>
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  body {
+    margin:0; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+    background:#0f172a; color:#e2e8f0; min-height:100vh;
+    display:flex; flex-direction:column; align-items:center; padding:16px;
+  }
+  h1 { font-size:18px; font-weight:600; margin:8px 0 4px; color:#94a3b8; }
+  .counter { font-size:13px; color:#64748b; margin-bottom:14px; }
+  .loader { width:100%; max-width:460px; background:#1e293b; border-radius:16px;
+    padding:14px; margin-bottom:16px; }
+  .loader .info { font-size:14px; color:#94a3b8; text-align:center; margin-bottom:12px; }
+  .loader .info b { color:#38bdf8; }
+  .loadbtns { display:flex; gap:8px; }
+  .loadbtns button { flex:1; border:none; border-radius:12px; padding:12px 6px; font-size:14px;
+    font-weight:600; cursor:pointer; color:#fff; }
+  .loadbtns button:active { transform:scale(.96); }
+  .b-load { background:#2563eb; }
+  .b-add  { background:#0891b2; }
+  .b-clear{ background:#7f1d1d; }
+  .card {
+    width:100%; max-width:460px; background:#1e293b; border-radius:20px;
+    padding:36px 20px; text-align:center; box-shadow:0 10px 30px rgba(0,0,0,.4);
+    margin-bottom:20px; min-height:200px;
+    display:flex; flex-direction:column; justify-content:center; align-items:center;
+  }
+  .word { font-size:44px; font-weight:700; color:#f1f5f9; line-height:1.15; word-break:break-word; }
+  .meaning { font-size:20px; color:#38bdf8; margin-top:14px; min-height:26px; }
+  .idx { font-size:14px; color:#475569; margin-top:18px; }
+  .controls { width:100%; max-width:460px; display:flex; gap:10px; margin-bottom:14px; }
+  button.ctrl {
+    flex:1; border:none; border-radius:14px; padding:16px 8px; font-size:16px;
+    font-weight:600; cursor:pointer; color:#fff; transition:transform .05s, opacity .2s;
+  }
+  button.ctrl:active { transform:scale(.96); }
+  button.ctrl:disabled { opacity:.4; }
+  .play { background:#16a34a; }
+  .pause { background:#d97706; }
+  .prev,.next { background:#334155; flex:.6; }
+  .reset { background:#475569; flex:.6; }
+  .row { width:100%; max-width:460px; display:flex; align-items:center; gap:10px; margin-bottom:12px; font-size:14px; color:#94a3b8; }
+  .row label { white-space:nowrap; }
+  input[type=range] { flex:1; accent-color:#38bdf8; }
+  select { background:#1e293b; color:#e2e8f0; border:1px solid #334155; border-radius:8px; padding:6px; font-size:14px; }
+  progress { width:100%; max-width:460px; height:8px; border-radius:4px; margin-bottom:16px; }
+  progress::-webkit-progress-bar { background:#1e293b; border-radius:4px; }
+  progress::-webkit-progress-value { background:#38bdf8; border-radius:4px; }
+  .toggle { display:flex; align-items:center; gap:8px; }
+  .hint { font-size:12px; color:#475569; text-align:center; max-width:460px; margin-top:4px; line-height:1.5; }
+  .warn { color:#f59e0b; font-size:13px; text-align:center; max-width:460px; margin-bottom:12px; display:none; }
+  .player[hidden] { display:none; }
+</style>
+</head>
+<body>
+<h1>Polonca Kelime Dinleme (B1)</h1>
+<div class="counter" id="counter">Liste yüklü değil</div>
+
+<div class="loader">
+  <div class="info" id="loadInfo">Henüz kelime yok. Aynı formatta bir <b>.txt</b> dosyası yükle.</div>
+  <div class="loadbtns">
+    <button class="b-load" id="loadBtn">📂 Mevcudun yerine yaz</button>
+    <button class="b-add"  id="addBtn">➕ Mevcuda ekle</button>
+  </div>
+  <input type="file" id="fileInput" accept=".txt,text/plain" style="display:none">
+  <button id="ghBtn" onclick="listGithub()" style="width:100%;margin-top:8px;border:none;border-radius:12px;padding:12px;font-size:14px;font-weight:600;cursor:pointer;color:#fff;background:#4f46e5;">🌐 GitHub'dan Yükle</button>
+  <div id="ghList" style="margin-top:10px;display:none;"></div>
+</div>
+
+<div class="warn" id="warn">⚠️ Cihazda Polonca (pl-PL) ses bulunamadı. Kelimeler yine de okunacak ama telaffuz farklı olabilir. Chrome / Opera öneririm.</div>
+
+<div class="player" id="player" hidden>
+  <div class="card">
+    <div class="word" id="word">Başlamak için ▶ Oynat</div>
+    <div class="meaning" id="meaning"></div>
+    <div class="idx" id="idx"></div>
+  </div>
+  <progress id="bar" value="0" max="100"></progress>
+  <div class="controls">
+    <button class="ctrl prev" id="prevBtn">⏮</button>
+    <button class="ctrl play" id="playBtn">▶ Oynat</button>
+    <button class="ctrl next" id="nextBtn">⏭</button>
+    <button class="ctrl reset" id="resetBtn">↺</button>
+  </div>
+  <div class="row">
+    <label>Bekleme</label>
+    <input type="range" id="delay" min="0" max="4" step="0.25" value="1">
+    <span id="delayVal">1.00 sn</span>
+  </div>
+  <div class="row">
+    <label>Hız</label>
+    <input type="range" id="rate" min="0.5" max="1.2" step="0.1" value="0.9">
+    <span id="rateVal">0.9x</span>
+  </div>
+  <div class="row">
+    <label class="toggle"><input type="checkbox" id="showMeaning" checked> Türkçe göster</label>
+    <label class="toggle"><input type="checkbox" id="repeat"> Tekrar başa dön</label>
+  </div>
+  <div class="row">
+    <label>Ses</label>
+    <select id="voiceSel"></select>
+  </div>
+  <div class="hint">Ekranı açık tutun; ekran kapanırsa ses durabilir. Duraklatıp kaldığı yerden devam edebilirsiniz.<br>Yüklenen liste cihazda saklanır — dosyayı tekrar açtığınızda hazır gelir.</div>
+</div>
+
+<script>
+const STORAGE_KEY = 'polonca_kelime_listesi_v1';
+// GitHub klasöründeki kelime dosyası (PolonceKart ile aynı dosya). İstersen değiştir:
+const KAYNAK = './kelimeler.csv';
+let WORDS = [];
+let idx = 0, playing = false, timer = null, voices = [], plVoice = null;
+let loadMode = 'replace';
+
+const el = id => document.getElementById(id);
+const wordEl=el('word'), meaningEl=el('meaning'), idxEl=el('idx'), counterEl=el('counter'),
+  bar=el('bar'), playBtn=el('playBtn'), delay=el('delay'), delayVal=el('delayVal'),
+  rate=el('rate'), rateVal=el('rateVal'), showMeaning=el('showMeaning'), repeat=el('repeat'),
+  voiceSel=el('voiceSel'), warn=el('warn'), player=el('player'), loadInfo=el('loadInfo'),
+  fileInput=el('fileInput');
+
+function saveWords(){
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(WORDS)); } catch(e){}
+}
+function loadStored(){
+  try { const raw = localStorage.getItem(STORAGE_KEY); if(raw){ WORDS = JSON.parse(raw) || []; } }
+  catch(e){ WORDS = []; }
+}
+
+function parseText(text){
+  const out=[];
+  text.split(/\r?\n/).forEach(line=>{
+    if(!line.trim()) return;
+    if(line.indexOf(' / ') === -1) return;            // kanonik olmayan satır
+    const parts = line.split(' / ').map(p=>p.trim());
+    if(!parts[0] || parts[0].toLowerCase() === 'pl') return; // boş ya da başlık satırı
+    out.push({ pl: parts[0], tr: (parts[3]||'') });
+  });
+  return out;
+}
+
+fileInput.addEventListener('change', ev=>{
+  const f = ev.target.files[0];
+  if(!f) return;
+  const reader = new FileReader();
+  reader.onload = e=>{
+    const parsed = parseText(e.target.result);
+    if(parsed.length===0){ alert('Dosyada uygun formatta kelime bulunamadı.'); return; }
+    if(loadMode==='append') WORDS = WORDS.concat(parsed);
+    else WORDS = parsed;
+    saveWords();
+    idx = 0;
+    refreshUI();
+    alert((loadMode==='append'?'Eklendi: ':'Yüklendi: ') + parsed.length + ' kelime.\nToplam: ' + WORDS.length);
+  };
+  reader.readAsText(f, 'utf-8');
+  fileInput.value = '';
+});
+
+el('loadBtn').addEventListener('click', ()=>{ loadMode='replace'; fileInput.click(); });
+el('addBtn').addEventListener('click', ()=>{
+  loadMode = WORDS.length===0 ? 'replace' : 'append';
+  fileInput.click();
+});
+
+function loadVoices(){
+  if(!('speechSynthesis' in window)) return;
+  voices = speechSynthesis.getVoices();
+  const pl = voices.filter(v=>v.lang && v.lang.toLowerCase().startsWith('pl'));
+  voiceSel.innerHTML='';
+  const list = pl.length ? pl : voices;
+  warn.style.display = (pl.length===0 && WORDS.length>0) ? 'block' : 'none';
+  list.forEach(v=>{
+    const o=document.createElement('option');
+    o.value = voices.indexOf(v);
+    o.textContent = v.name + ' (' + v.lang + ')';
+    voiceSel.appendChild(o);
+  });
+  plVoice = pl.length ? pl[0] : (voices[0]||null);
+  if(plVoice) voiceSel.value = voices.indexOf(plVoice);
+}
+if('speechSynthesis' in window){
+  loadVoices();
+  if(speechSynthesis.onvoiceschanged!==undefined) speechSynthesis.onvoiceschanged = loadVoices;
+}
+voiceSel.addEventListener('change',()=>{ plVoice = voices[parseInt(voiceSel.value)]; });
+
+delay.addEventListener('input',()=>{ delayVal.textContent = parseFloat(delay.value).toFixed(2)+' sn'; });
+rate.addEventListener('input',()=>{ rateVal.textContent = parseFloat(rate.value).toFixed(1)+'x'; });
+
+function refreshUI(){
+  if(WORDS.length===0){
+    player.hidden = true;
+    counterEl.textContent = 'Liste yüklü değil';
+    loadInfo.innerHTML = 'Henüz kelime yok. Aynı formatta bir <b>.txt</b> dosyası yükle.';
+    warn.style.display='none';
+    return;
+  }
+  player.hidden = false;
+  loadInfo.innerHTML = 'Yüklü: <b>' + WORDS.length + '</b> kelime';
+  bar.max = WORDS.length;
+  loadVoices();
+  render();
+}
+
+function render(){
+  if(WORDS.length===0) return;
+  const w = WORDS[idx];
+  wordEl.textContent = w.pl;
+  meaningEl.textContent = showMeaning.checked ? w.tr : '';
+  idxEl.textContent = w.pl;
+  counterEl.textContent = (idx+1) + ' / ' + WORDS.length;
+  bar.value = idx+1;
+}
+
+function speakCurrent(onEnd){
+  if(!('speechSynthesis' in window)){ onEnd(); return; }
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(WORDS[idx].pl);
+  u.lang='pl-PL';
+  if(plVoice) u.voice = plVoice;
+  u.rate = parseFloat(rate.value);
+  u.onend = onEnd; u.onerror = onEnd;
+  speechSynthesis.speak(u);
+}
+function step(){
+  if(!playing) return;
+  render();
+  speakCurrent(()=>{
+    if(!playing) return;
+    const wait = parseFloat(delay.value)*1000;
+    timer = setTimeout(()=>{
+      if(!playing) return;
+      if(idx < WORDS.length-1){ idx++; step(); }
+      else if(repeat.checked){ idx=0; step(); }
+      else { stop(); wordEl.textContent='✓ Bitti'; meaningEl.textContent=''; }
+    }, wait);
+  });
+}
+function play(){ if(playing||WORDS.length===0) return; playing=true; playBtn.textContent='⏸ Durdur'; playBtn.classList.replace('play','pause'); step(); }
+function stop(){ playing=false; clearTimeout(timer); if('speechSynthesis' in window) speechSynthesis.cancel(); playBtn.textContent='▶ Oynat'; playBtn.classList.replace('pause','play'); }
+
+playBtn.addEventListener('click',()=>{ playing?stop():play(); });
+el('nextBtn').addEventListener('click',()=>{ stop(); if(idx<WORDS.length-1)idx++; render(); });
+el('prevBtn').addEventListener('click',()=>{ stop(); if(idx>0)idx--; render(); });
+el('resetBtn').addEventListener('click',()=>{ stop(); idx=0; render(); });
+showMeaning.addEventListener('change',render);
+
+// GitHub klasöründeki kelime dosyasını çeker; başarısızsa yerel kopya kalır.
+async function fetchFromGitHub(){
+  try {
+    const resp = await fetch(KAYNAK, { cache:'no-store' });
+    if(!resp.ok) throw new Error('HTTP ' + resp.status);
+    const parsed = parseText(await resp.text());
+    if(parsed.length){
+      WORDS = parsed;
+      saveWords();
+      if(idx >= WORDS.length) idx = 0;
+      refreshUI();
+      console.log('GitHub\'dan yüklendi: ' + parsed.length + ' kelime');
+    }
+  } catch(e){
+    console.warn(KAYNAK + ' okunamadı, yerel kopya kullanılıyor: ' + e.message);
+  }
+}
+
+// ── GitHub'tan dosya listeleme ve seçme (ters-bölü kullanmadan) ──
+async function ghApiContents(){
+  const host = location.hostname;                 // ör. mituncer.github.io
+  const owner = host.split('.')[0];               // mituncer
+  const segs = location.pathname.split('/').filter(Boolean);
+  const dirSegs = segs.slice();
+  if(dirSegs.length && dirSegs[dirSegs.length-1].indexOf('.') !== -1) dirSegs.pop();
+  const candidates = [];
+  if(dirSegs.length) candidates.push({ repo: dirSegs[0], path: dirSegs.slice(1).join('/') }); // proje sitesi
+  candidates.push({ repo: owner + '.github.io', path: dirSegs.join('/') });                    // kullanıcı sitesi
+  let lastErr;
+  for(const c of candidates){
+    const b = 'https://api.github.com/repos/' + owner + '/' + c.repo + '/contents';
+    const url = c.path ? (b + '/' + c.path) : b;
+    try {
+      const resp = await fetch(url, { headers:{ 'Accept':'application/vnd.github+json' }, cache:'no-store' });
+      if(resp.ok){ const data = await resp.json(); if(Array.isArray(data)) return data; }
+      else lastErr = new Error('HTTP ' + resp.status);
+    } catch(e){ lastErr = e; }
+  }
+  throw lastErr || new Error('Klasör bulunamadı');
+}
+let ghFiles = [];
+function isTextName(n){ n = n.toLowerCase(); return n.endsWith('.csv') || n.endsWith('.txt'); }
+function closeGhList(){ document.getElementById('ghList').style.display = 'none'; }
+async function listGithub(){
+  const box = document.getElementById('ghList');
+  box.style.display = 'block';
+  box.innerHTML = '<div style="color:#94a3b8;font-size:14px;text-align:center;padding:10px;">⏳ GitHub dosyaları listeleniyor...</div>';
+  try {
+    const data = await ghApiContents();
+    ghFiles = data.filter(x => x.type === 'file' && isTextName(x.name)).map(x => x.name);
+    if(!ghFiles.length){ box.innerHTML = '<div style="color:#94a3b8;font-size:14px;text-align:center;padding:10px;">Klasörde .csv / .txt dosyası yok.</div>'; return; }
+    let out = '';
+    ghFiles.forEach((n,i) => {
+      out += '<button onclick="pickGithub(' + i + ')" style="display:block;width:100%;text-align:left;margin:4px 0;border:none;border-radius:10px;padding:12px;background:#334155;color:#e2e8f0;font-size:14px;cursor:pointer;">📄 ' + n + '</button>';
+    });
+    out += '<button onclick="closeGhList()" style="display:block;width:100%;margin-top:6px;border:none;border-radius:10px;padding:10px;background:#1e293b;color:#64748b;font-size:13px;cursor:pointer;">Kapat</button>';
+    box.innerHTML = out;
+  } catch(e){
+    box.innerHTML = '<div style="color:#f59e0b;font-size:13px;text-align:center;padding:10px;">⚠️ Liste alınamadı: ' + (e && e.message ? e.message : e) + ' — sayfayı mituncer.github.io adresinden aç, ya da biraz sonra dene (GitHub API saatte 60 istek).</div>';
+  }
+}
+async function pickGithub(i){
+  const name = ghFiles[i];
+  if(!name) return;
+  try {
+    const resp = await fetch('./' + name, { cache:'no-store' });
+    if(!resp.ok) throw new Error('HTTP ' + resp.status);
+    const parsed = parseText(await resp.text());
+    if(!parsed.length){ alert('Dosyada uygun formatta kelime bulunamadı.'); return; }
+    WORDS = parsed; saveWords(); idx = 0; refreshUI();
+    closeGhList();
+    alert('Yüklendi: ' + parsed.length + ' kelime — ' + name);
+  } catch(e){
+    alert('Okunamadı: ' + (e && e.message ? e.message : e));
+  }
+}
+
+loadStored();      // önce cihazdaki kopyayı hemen göster (offline de çalışır)
+refreshUI();
+if(!WORDS.length) fetchFromGitHub(); // liste boşsa varsayılanı GitHub'dan çek (seçtiğin liste korunur)
+</script>
+</body>
+</html>
