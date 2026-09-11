@@ -1,0 +1,511 @@
+zdać / dk / " 22test" / geçmek (sınavı) / Chcę zdać egzamin. / Sınavı geçmek istiyorum.
+zrobić / dk / " 22test" / yapmak / Muszę to zrobić dzisiaj. / Bunu bugün yapmam gerekiyor.
+doliczyć / dk / " 22test" / eklemek, dahil etmek / Kelner doliczył napiwek. / Garson bahşişi ekledi.
+smakować / ndk / " 22test" / lezzetli olmak, beğenmek / Ta zupa mi smakuje. / Bu çorbayı beğeniyorum.
+podać / dk / " 22test" / vermek, servis etmek / Podaj mi wodę, proszę. / Bana su ver, lütfen.
+odebrać / dk / " 22test" / almak, teslim almak / Muszę odebrać paczkę. / Paketi almam gerekiyor.
+dostać / dk / " 22test" / almak, elde etmek / Dostałem prezent. / Bir hediye aldım.
+pójść / dk / " 22test" / gitmek (yürüyerek) / Chcę pójść do parku. / Parka gitmek istiyorum.
+otrzymać / dk / " 22test" / almak, elde etmek / Otrzymałem e-mail. / Bir e-posta aldım.
+słyszeć / ndk / " 22test" / duymak / Słyszę muzykę. / Müzik duyuyorum.
+przeprowadzać się / ndk / " 22test" / taşınmak / Przeprowadzamy się do Warszawy. / Varşova'ya taşınıyoruz.
+wynająć / dk / " 22test" / kiralamak / Chcę wynająć mieszkanie. / Bir daire kiralamak istiyorum.
+zagrać / dk / " 22test" / oynamak / Zagrajmy w szachy. / Satranç oynayalım.
+odrobić / dk / " 22test" / yapmak (ödev) / Muszę odrobić lekcje. / Ödevimi yapmam gerekiyor.
+poznawać / ndk / " 22test" / tanımak, keşfetmek / Lubię poznawać nowych ludzi. / Yeni insanlar tanımayı severim.
+kosztować / ndk / " 22test" / mal olmak, fiyatı olmak / Ile to kosztuje? / Bu ne kadar?
+polecieć / dk / " 22test" / uçmak / Chcę polecieć do Turcji. / Türkiye'ye uçmak istiyorum.
+bać się / ndk / " 22test" / korkmak / Boję się psów. / Köpeklerden korkuyorum.
+latać / ndk / " 22test" / uçmak / Ptaki latają wysoko. / Kuşlar yüksekte uçar.
+gratulować / ndk / " 22test" / tebrik etmek / Gratuluję ci sukcesu. / Başarını tebrik ediyorum.
+wiedzieć / ndk / " 22test" / bilmek / Nie wiem, gdzie on jest. / Onun nerede olduğunu bilmiyorum.
+zrezygnować / dk / " 22test" / vazgeçmek / Musiałem zrezygnować z podróży. / Yolculuktan vazgeçmek zorunda kaldım.
+założyć / dk / " 22test" / kurmak, giymek / Chcę założyć firmę. / Bir şirket kurmak istiyorum.
+oceniać / ndk / " 22test" / değerlendirmek / Nauczyciel ocenia uczniów. / Öğretmen öğrencileri değerlendirir.
+myśleć / ndk / " 22test" / düşünmek / Myślę o wakacjach. / Tatili düşünüyorum.
+mylić się / ndk / " 22test" / yanılmak / Czasem się mylę. / Bazen yanılırım.
+wykonać / dk / " 22test" / yapmak, gerçekleştirmek / Muszę wykonać zadanie. / Görevi yapmam gerekiyor.
+sprawdzić / dk / " 22test" / kontrol etmek / Sprawdź swoją skrzynkę. / Kutunu (mailini) kontrol et.
+poznać / dk / " 22test" / tanımak / Miło cię poznać. / Seninle tanışmak güzel.
+zaprosić / dk / " 22test" / davet etmek / Chcę cię zaprosić na obiad. / Seni yemeğe davet etmek istiyorum.
+zostać / dk / " 22test" / olmak, kalmak / Chcę zostać lekarzem. / Doktor olmak istiyorum.
+zdobyć / dk / " 22test" / elde etmek, kazanmak / Chcę zdobyć nowe doświadczenie. / Yeni deneyim kazanmak istiyorum.
+sprawiać / ndk / " 22test" / sağlamak, vermek / To sprawia mi radość. / Bu bana sevinç veriyor.
+zdarzyć się / dk / " 22test" / olmak, meydana gelmek / To może się zdarzyć każdemu. / Bu herkesin başına gelebilir.
+przychodzić / ndk / " 22test" / gelmek / On zawsze przychodzi na czas. / O her zaman zamanında gelir.
+zaplanować / dk / " 22test" / planlamak / Musimy zaplanować podróż. / Yolculuğu planlamamız gerekiyor.
+brać udział / ndk / " 22test" / katılmak / Biorę udział w kursie. / Kursa katılıyorum.
+komponować / ndk / " 22test" / bestelemek, oluşturmak / On komponuje muzykę. / O müzik besteliyor.
+wykorzystywać / ndk / " 22test" / kullanmak, yararlanmak / Wykorzystuję każdą okazję. / Her fırsatı kullanırım.
+znajdować / ndk / " 22test" / bulmak / Zawsze znajduję rozwiązanie. / Her zaman bir çözüm bulurum.
+pasować / ndk / " 22test" / uymak, yakışmak / Ta koszula ci pasuje. / Bu gömlek sana yakışıyor.
+wyrzucać / ndk / " 22test" / atmak / Wyrzucam śmieci codziennie. / Çöpü her gün atarım.
+korzystać / ndk / " 22test" / kullanmak, yararlanmak / Korzystam z internetu. / İnternetten yararlanıyorum.
+dominować / ndk / " 22test" / hâkim olmak / Zieleń dominuje w tym parku. / Bu parkta yeşil hâkim.
+pojawiać się / ndk / " 22test" / ortaya çıkmak, belirmek / Problemy pojawiają się często. / Sorunlar sık sık ortaya çıkar.
+uważać / ndk / " 22test" / dikkat etmek, saymak / Uważaj na schodach. / Merdivenlerde dikkat et.
+podobać się / ndk / " 22test" / beğenmek, hoşlanmak / Podoba mi się ten film. / Bu filmi beğeniyorum.
+spotykać / ndk / " 22test" / karşılaşmak, buluşmak / Spotykam znajomych w kawiarni. / Arkadaşlarımla kafede buluşurum.
+przesiadać się / ndk / " 22test" / aktarma yapmak / Przesiadam się na metro. / Metroya aktarma yapıyorum.
+wydawać / ndk / " 22test" / harcamak / Wydaję dużo pieniędzy. / Çok para harcıyorum.
+dbać / ndk / " 22test" / özen göstermek / Dbam o zdrowie. / Sağlığıma özen gösteririm.
+tracić / ndk / " 22test" / kaybetmek / Nie chcę tracić czasu. / Zaman kaybetmek istemiyorum.
+stać / ndk / " 22test" / durmak / Stoję w kolejce. / Sırada bekliyorum.
+dostać się / dk / " 22test" / ulaşmak / Jak dostać się na dworzec? / İstasyona nasıl ulaşırım?
+zmieniać / ndk / " 22test" / değiştirmek / Często zmieniam plany. / Planlarımı sık sık değiştiririm.
+sprawdzać / ndk / " 22test" / kontrol etmek / Sprawdzam pocztę rano. / Sabah mailimi kontrol ederim.
+spędzać / ndk / " 22test" / geçirmek (zaman) / Spędzam weekend w domu. / Hafta sonunu evde geçiririm.
+pojawić się / dk / " 22test" / ortaya çıkmak / Nagle pojawił się problem. / Aniden bir sorun ortaya çıktı.
+trwać / ndk / " 22test" / sürmek, devam etmek / Koncert trwa dwie godziny. / Konser iki saat sürüyor.
+zakończyć się / dk / " 22test" / sona ermek / Spotkanie zakończyło się późno. / Toplantı geç sona erdi.
+oferować / ndk / " 22test" / sunmak, teklif etmek / Hotel oferuje śniadanie. / Otel kahvaltı sunuyor.
+posiadać / ndk / " 22test" / sahip olmak / Firma posiada nowe biuro. / Şirketin yeni bir ofisi var.
+urządzić / dk / " 22test" / düzenlemek, döşemek / Chcę urządzić mieszkanie. / Daireyi döşemek istiyorum.
+dojeżdżać / ndk / " 22test" / ulaşmak (araçla) / Dojeżdżam do pracy pociągiem. / İşe trenle giderim.
+płacić / ndk / " 22test" / ödemek / Płacę kartą. / Kartla ödüyorum.
+namalować / dk / " 22test" / resmetmek, boyamak / Chcę namalować obraz. / Bir tablo yapmak istiyorum.
+sprzedać / dk / " 22test" / satmak / Chcę sprzedać samochód. / Arabayı satmak istiyorum.
+wylicytować / dk / " 22test" / açık artırmada almak / Wylicytowałem obraz na aukcji. / Açık artırmada bir tablo aldım.
+powstać / dk / " 22test" / oluşmak, ortaya çıkmak / Tak powstał ten projekt. / Bu proje böyle ortaya çıktı.
+zaprojektować / dk / " 22test" / tasarlamak / Architekt zaprojektował dom. / Mimar evi tasarladı.
+liczyć / ndk / " 22test" / saymak / Dziecko uczy się liczyć. / Çocuk saymayı öğreniyor.
+promować / ndk / " 22test" / tanıtmak / Firma promuje nowy produkt. / Şirket yeni ürünü tanıtıyor.
+prowadzić / ndk / " 22test" / yönetmek, sürmek / On prowadzi własną firmę. / O kendi şirketini yönetiyor.
+decydować / ndk / " 22test" / karar vermek / Sam decyduję o swoim życiu. / Kendi hayatıma kendim karar veririm.
+wystartować / dk / " 22test" / başlamak / Wyścig wystartował o dziesiątej. / Yarış saat onda başladı.
+zamierzać / ndk / " 22test" / niyet etmek / Zamierzam kupić dom. / Bir ev almayı düşünüyorum.
+przygotować / dk / " 22test" / hazırlamak / Muszę przygotować obiad. / Yemeği hazırlamam gerekiyor.
+przejechać / dk / " 22test" / geçmek (araçla) / Przejechaliśmy przez most. / Köprüden geçtik.
+przeznaczyć / dk / " 22test" / ayırmak / Przeznaczam czas na naukę. / Öğrenmeye zaman ayırıyorum.
+zwiedzać / ndk / " 22test" / gezmek, ziyaret etmek / Zwiedzam stare miasto. / Eski şehri geziyorum.
+zobaczyć / dk / " 22test" / görmek / Chcę zobaczyć morze. / Denizi görmek istiyorum.
+występować / ndk / " 22test" / bulunmak, sahneye çıkmak / Artysta występuje na scenie. / Sanatçı sahnede performans sergiliyor.
+umówić się / dk / " 22test" / randevu almak / Chcę umówić się do lekarza. / Doktora randevu almak istiyorum.
+poświęcać / ndk / " 22test" / ayırmak, adamak / Poświęcam czas rodzinie. / Aileme zaman ayırıyorum.
+planować / ndk / " 22test" / planlamak / Planuję wakacje latem. / Yazın tatil planlıyorum.
+ułatwiać / ndk / " 22test" / kolaylaştırmak / Technologia ułatwia życie. / Teknoloji hayatı kolaylaştırır.
+martwić się / ndk / " 22test" / endişelenmek / Nie martw się o mnie. / Benim için endişelenme.
+zapomnieć / dk / " 22test" / unutmak / Zapomniałem hasła. / Şifreyi unuttum.
+odwołać / dk / " 22test" / iptal etmek / Musiałem odwołać spotkanie. / Toplantıyı iptal etmek zorunda kaldım.
+zmienić / dk / " 22test" / değiştirmek / Chcę zmienić pracę. / İş değiştirmek istiyorum.
+skomplikować / dk / " 22test" / karmaşıklaştırmak / To może skomplikować sprawę. / Bu, işi karmaşıklaştırabilir.
+ściągnąć / dk / " 22test" / indirmek / Ściągnąłem nową aplikację. / Yeni bir uygulama indirdim.
+utworzyć / dk / " 22test" / oluşturmak / Chcę utworzyć nowe konto. / Yeni bir hesap oluşturmak istiyorum.
+przeglądać / ndk / " 22test" / göz atmak / Przeglądam wiadomości rano. / Sabah haberlere göz atarım.
+naprawiać / ndk / " 22test" / tamir etmek, onarmak / Naprawiam rower. / Bisikleti tamir ediyorum.
+segregować / ndk / " 22test" / ayırmak, sınıflandırmak / Segreguję śmieci w domu. / Evde çöpleri ayırırım.
+sprzątać / ndk / " 22test" / temizlemek / Sprzątam mieszkanie w sobotę. / Cumartesi daireyi temizlerim.
+dyskutować / ndk / " 22test" / tartışmak / Lubię dyskutować o polityce. / Politika tartışmayı severim.
+edukować / ndk / " 22test" / eğitmek / Szkoła edukuje dzieci. / Okul çocukları eğitir.
+ograniczyć / dk / " 22test" / sınırlamak / Chcę ograniczyć wydatki. / Harcamaları sınırlamak istiyorum.
+sortować / ndk / " 22test" / ayırmak / Sortuję dokumenty. / Belgeleri ayırıyorum.
+przekonać / dk / " 22test" / ikna etmek / Chcę go przekonać. / Onu ikna etmek istiyorum.
+potrzebować / ndk / " 22test" / ihtiyaç duymak / Potrzebuję pomocy. / Yardıma ihtiyacım var.
+kultywować / ndk / " 22test" / sürdürmek (gelenek) / Kultywujemy stare tradycje. / Eski gelenekleri sürdürüyoruz.
+pamiętać / ndk / " 22test" / hatırlamak / Pamiętam ten dzień. / O günü hatırlıyorum.
+obchodzić / ndk / " 22test" / kutlamak / Obchodzimy święto rodzinne. / Aile bayramını kutluyoruz.
+uczestniczyć / ndk / " 22test" / katılmak / Uczestniczę w konferencji. / Konferansa katılıyorum.
+wspominać / ndk / " 22test" / anmak, hatırlamak / Wspominam dawne czasy. / Eski günleri anıyorum.
+odwiedzać / ndk / " 22test" / ziyaret etmek / Odwiedzam rodziców w weekend. / Hafta sonu ailemi ziyaret ederim.
+ułatwić / dk / " 22test" / kolaylaştırmak / Ta aplikacja ułatwi ci pracę. / Bu uygulama işini kolaylaştıracak.
+przyjeżdżać / ndk / " 22test" / gelmek (araçla) / Goście przyjeżdżają jutro. / Misafirler yarın geliyor.
+zabraknąć / dk / " 22test" / eksik olmak, yetmemek / Może zabraknąć czasu. / Zaman yetmeyebilir.
+zakładać / ndk / " 22test" / giymek, kurmak / Zakładam ciepłą kurtkę. / Kalın bir mont giyiyorum.
+zanikać / ndk / " 22test" / yok olmak, kaybolmak / Stare zwyczaje zanikają. / Eski adetler kayboluyor.
+poprawić / dk / " 22test" / düzeltmek, iyileştirmek / Muszę poprawić błąd. / Hatayı düzeltmem gerekiyor.
+wymieniać / ndk / " 22test" / saymak, listelemek / Autor wymienia wiele przykładów. / Yazar birçok örnek sayıyor.
+wspomnieć / dk / " 22test" / bahsetmek / Chcę wspomnieć o jednej rzeczy. / Bir şeyden bahsetmek istiyorum.
+zdecydować się / dk / " 22test" / karar vermek / W końcu się zdecydowałem. / Sonunda karar verdim.
+przemyśleć / dk / " 22test" / düşünmek, değerlendirmek / Muszę to przemyśleć. / Bunu düşünmem gerekiyor.
+wnosić / ndk / " 22test" / getirmek, katmak / To wnosi wiele do projektu. / Bu, projeye çok şey katıyor.
+wychodzić / ndk / " 22test" / çıkmak / Wychodzę z domu o ósmej. / Evden sekizde çıkarım.
+brać / ndk / " 22test" / almak / Biorę parasol na wszelki wypadek. / Her ihtimale karşı şemsiye alırım.
+śmiać się / ndk / " 22test" / gülmek / Dzieci śmieją się głośno. / Çocuklar yüksek sesle gülüyor.
+stworzyć / dk / " 22test" / yaratmak, oluşturmak / Chcę stworzyć coś nowego. / Yeni bir şey yaratmak istiyorum.
+siedzieć / ndk / " 22test" / oturmak / Siedzę przy oknie. / Pencere kenarında oturuyorum.
+napisać / dk / " 22test" / yazmak / Muszę napisać e-mail. / Bir e-posta yazmam gerekiyor.
+opowiadać / ndk / " 22test" / anlatmak / Babcia opowiada ciekawe historie. / Büyükanne ilginç hikâyeler anlatır.
+wymagać / ndk / " 22test" / gerektirmek / Ta praca wymaga cierpliwości. / Bu iş sabır gerektirir.
+gwarantować / ndk / " 22test" / garanti etmek / Firma gwarantuje jakość. / Şirket kaliteyi garanti eder.
+potwierdzać / ndk / " 22test" / doğrulamak, onaylamak / System potwierdza zamówienie. / Sistem siparişi onaylıyor.
+umożliwiać / ndk / " 22test" / mümkün kılmak / Internet umożliwia szybki kontakt. / İnternet hızlı iletişimi mümkün kılar.
+zachować / dk / " 22test" / korumak, muhafaza etmek / Chcę zachować spokój. / Sakinliğimi korumak istiyorum.
+spaść / dk / " 22test" / düşmek / Ceny mogą spaść. / Fiyatlar düşebilir.
+nauczyć się / dk / " 22test" / öğrenmek / Chcę nauczyć się gotować. / Yemek yapmayı öğrenmek istiyorum.
+jeździć / ndk / " 22test" / sürmek, gitmek / Jeżdżę do pracy rowerem. / İşe bisikletle giderim.
+zmniejszyć / dk / " 22test" / azaltmak / Musimy zmniejszyć koszty. / Maliyetleri azaltmamız gerekiyor.
+musieć / ndk / " 22test" / zorunda olmak / Muszę już iść do domu. / Artık eve gitmem gerekiyor.
+pakować / ndk / " 22test" / paketlemek / Pakuję walizkę na wakacje. / Tatil için bavul hazırlıyorum.
+palić / ndk / " 22test" / yakmak, tüketmek / Nie palę papierosów. / Sigara içmiyorum.
+wziąć / dk / " 22test" / almak / Muszę wziąć lekarstwo. / İlaç almam gerekiyor.
+wybrać się / dk / " 22test" / gitmek (planlanmış) / Wybieram się na wycieczkę. / Bir geziye çıkıyorum.
+zapłacić / dk / " 22test" / ödemek / Chcę zapłacić kartą. / Kartla ödemek istiyorum.
+spędzić / dk / " 22test" / geçirmek (zaman) / Chcę spędzić lato nad morzem. / Yazı deniz kenarında geçirmek istiyorum.
+wrócić / dk / " 22test" / dönmek / Wrócę do domu wieczorem. / Akşam eve döneceğim.
+nosić / ndk / " 22test" / giymek, taşımak / Zimą noszę ciepły płaszcz. / Kışın kalın palto giyerim.
+przepadać / ndk / " 22test" / bayılmak (çok sevmek) / Przepadam za lodami. / Dondurmaya bayılırım.
+uwielbiać / ndk / " 22test" / bayılmak, çok sevmek / Uwielbiam podróże. / Seyahat etmeye bayılırım.
+zapominać / ndk / " 22test" / unutmak / Często zapominam kluczy. / Sık sık anahtarları unuturum.
+nudzić się / ndk / " 22test" / sıkılmak / Nudzę się w domu. / Evde sıkılıyorum.
+dołączyć / dk / " 22test" / katılmak / Chcę dołączyć do zespołu. / Ekibe katılmak istiyorum.
+wyobrażać sobie / ndk / " 22test" / hayal etmek / Wyobrażam sobie spokojne życie. / Sakin bir hayat hayal ediyorum.
+zapewniać / ndk / " 22test" / güvence vermek / Firma zapewnia dobrą obsługę. / Şirket iyi hizmet sağlar.
+znaleźć / dk / " 22test" / bulmak / Chcę znaleźć dobrą pracę. / İyi bir iş bulmak istiyorum.
+nazbierać / dk / " 22test" / toplamak / Nazbieraliśmy dużo grzybów. / Çok mantar topladık.
+wykąpać się / dk / " 22test" / yıkanmak, banyo yapmak / Chcę się wykąpać po treningu. / Antrenmandan sonra yıkanmak istiyorum.
+interesować / ndk / " 22test" / ilgilendirmek / Interesuje mnie historia. / Tarih beni ilgilendiriyor.
+spotkać / dk / " 22test" / karşılaşmak / Spotkałem starego przyjaciela. / Eski bir arkadaşımla karşılaştım.
+woleć / ndk / " 22test" / tercih etmek / Wolę herbatę niż kawę. / Kahve yerine çayı tercih ederim.
+zabrać / dk / " 22test" / almak, götürmek / Zabiorę cię na obiad. / Seni yemeğe götüreceğim.
+odwiedzić / dk / " 22test" / ziyaret etmek / Chcę odwiedzić babcię. / Büyükannemi ziyaret etmek istiyorum.
+zostawić / dk / " 22test" / bırakmak / Zostawiłem telefon w domu. / Telefonu evde bıraktım.
+wierzyć / ndk / " 22test" / inanmak / Wierzę w siebie. / Kendime inanıyorum.
+postanowić / dk / " 22test" / karar vermek / Postanowiłem zmienić życie. / Hayatımı değiştirmeye karar verdim.
+odnieść / dk / " 22test" / elde etmek (başarı) / Chcę odnieść sukces. / Başarı elde etmek istiyorum.
+cenić / ndk / " 22test" / değer vermek / Cenię twoją pomoc. / Yardımına değer veriyorum.
+współpracować / ndk / " 22test" / işbirliği yapmak / Współpracuję z zagraniczną firmą. / Yabancı bir şirketle işbirliği yapıyorum.
+opisać / dk / " 22test" / tanımlamak, betimlemek / Opisz swój dzień. / Gününü anlat.
+przeczytać / dk / " 22test" / okumak / Chcę przeczytać tę książkę. / Bu kitabı okumak istiyorum.
+zaznaczyć / dk / " 22test" / işaretlemek / Zaznacz poprawną odpowiedź. / Doğru cevabı işaretle.
+wykonywać / ndk / " 22test" / yapmak, uygulamak / Wykonuję ćwiczenia codziennie. / Alıştırmaları her gün yaparım.
+podkreślić / dk / " 22test" / altını çizmek / Chcę podkreślić jedną rzecz. / Bir şeyin altını çizmek istiyorum.
+uzupełnić / dk / " 22test" / tamamlamak / Uzupełnij luki w tekście. / Metindeki boşlukları doldur.
+przekształcić / dk / " 22test" / dönüştürmek / Chcę przekształcić plik w PDF. / Dosyayı PDF'e dönüştürmek istiyorum.
+dopasować / dk / " 22test" / eşleştirmek / Dopasuj słowa do obrazków. / Kelimeleri resimlerle eşleştir.
+połączyć / dk / " 22test" / birleştirmek / Chcę połączyć dwa pliki. / İki dosyayı birleştirmek istiyorum.
+wpisać / dk / " 22test" / yazmak, girmek / Wpisz swoje hasło. / Şifreni gir.
+wybrać / dk / " 22test" / seçmek / Muszę wybrać jedną opcję. / Bir seçenek seçmem gerekiyor.
+powinien / czas. modalny / " 22test" / -meli/-malı (gereklilik) / Powinieneś odpocząć. / Dinlenmelisin.
+spadać / ndk / " 22test" / düşmek / Liście spadają jesienią. / Yapraklar sonbaharda düşer.
+zużywać / ndk / " 22test" / tüketmek / To auto zużywa mało paliwa. / Bu araba az yakıt tüketir.
+podnosić / ndk / " 22test" / kaldırmak / Nie podnoś tego, jest ciężkie. / Bunu kaldırma, ağır.
+śmiecić / ndk / " 22test" / çöp atmak / Nie śmieć w parku. / Parkta çöp atma.
+zwrócić / dk / " 22test" / geri vermek, dikkat çekmek / Muszę zwrócić książkę do biblioteki. / Kitabı kütüphaneye geri vermem gerekiyor.
+biegnąć / ndk / " 22test" / koşmak / Biegnę na autobus. / Otobüse koşuyorum.
+wyczarować / dk / " 22test" / sihirle yaratmak / Nie wyczaruję pieniędzy. / Parayı yoktan var edemem.
+przechodzić / ndk / " 22test" / geçmek / Przechodzę przez ulicę. / Caddeden geçiyorum.
+starać się / ndk / " 22test" / çabalamak / Starajmy się mówić po polsku. / Lehçe konuşmaya çalışalım.
+wystawa / ż / " 22test" / sergi / Idę na wystawę sztuki. / Sanat sergisine gidiyorum.
+para (młoda) / ż / " 22test" / çift (yeni evli) / Młoda para tańczy pierwszy taniec. / Yeni evli çift ilk danslarını ediyor.
+szczęście / n / " 22test" / mutluluk / Życzę ci szczęścia. / Sana mutluluk diliyorum.
+droga / ż / " 22test" / yol / Droga do domu jest długa. / Eve giden yol uzun.
+życie / n / " 22test" / hayat, yaşam / Życie w mieście jest szybkie. / Şehirdeki yaşam hızlı.
+przelew / m / " 22test" / havale, transfer / Zrobiłem przelew na twoje konto. / Hesabına havale yaptım.
+podręcznik / m / " 22test" / ders kitabı / Kupiłem nowy podręcznik. / Yeni bir ders kitabı aldım.
+drobne / lm / " 22test" / bozuk para / Nie mam drobnych. / Bozuk param yok.
+reszta / ż / " 22test" / para üstü / Proszę zatrzymać resztę. / Para üstü sizde kalsın.
+pociąg / m / " 22test" / tren / Pociąg odjeżdża o ósmej. / Tren sekizde kalkıyor.
+tor / m / " 22test" / ray, hat / Pociąg stoi na drugim torze. / Tren ikinci hatta duruyor.
+spotkanie / n / " 22test" / toplantı, buluşma / Mam spotkanie o dziesiątej. / Saat onda bir toplantım var.
+zachowanie / n / " 22test" / davranış / Jego zachowanie było dziwne. / Onun davranışı garipti.
+zniżka / ż / " 22test" / indirim / Studenci mają zniżkę. / Öğrencilerin indirimi var.
+szachy / lm / " 22test" / satranç / Gram w szachy z ojcem. / Babamla satranç oynarım.
+wstęp / m / " 22test" / giriş / Wstęp do muzeum jest darmowy. / Müzeye giriş ücretsiz.
+wyspa / ż / " 22test" / ada / Marzę o wyspie na oceanie. / Okyanusta bir ada hayal ediyorum.
+decyzja / ż / " 22test" / karar / To była trudna decyzja. / Bu zor bir karardı.
+praca / ż / " 22test" / iş, çalışma / Moja praca jest ciekawa. / İşim ilginç.
+szkoła jazdy / ż / " 22test" / sürücü kursu / Zapisałem się do szkoły jazdy. / Sürücü kursuna kaydoldum.
+biuro rachunkowe / n / " 22test" / muhasebe bürosu / Firma współpracuje z biurem rachunkowym. / Şirket bir muhasebe bürosuyla çalışıyor.
+urodziny / lm / " 22test" / doğum günü / Moje urodziny są w maju. / Doğum günüm mayısta.
+niespodzianka / ż / " 22test" / sürpriz / Mam dla ciebie niespodziankę. / Sana bir sürprizim var.
+współpraca / ż / " 22test" / işbirliği / Nasza współpraca jest udana. / İşbirliğimiz başarılı.
+zespół / m / " 22test" / ekip, takım / Nasz zespół jest bardzo dobry. / Ekibimiz çok iyi.
+zadanie / n / " 22test" / görev, ödev / To zadanie jest trudne. / Bu görev zor.
+serce / n / " 22test" / kalp / Serce bije szybko. / Kalp hızlı atıyor.
+rzeźba / ż / " 22test" / heykel / Ta rzeźba jest z kamienia. / Bu heykel taştan.
+sponsor / m / " 22test" / sponsor / Klub szuka nowego sponsora. / Kulüp yeni bir sponsor arıyor.
+prezes / m / " 22test" / başkan, genel müdür / Prezes firmy jest młody. / Şirketin başkanı genç.
+rozmowa / ż / " 22test" / görüşme, konuşma / Mieliśmy długą rozmowę. / Uzun bir görüşme yaptık.
+nauczyciel / m / " 22test" / öğretmen / Mój nauczyciel jest cierpliwy. / Öğretmenim sabırlı.
+doświadczenie / n / " 22test" / deneyim / Mam duże doświadczenie w pracy. / İşte çok deneyimim var.
+wykształcenie / n / " 22test" / eğitim / Ona ma wyższe wykształcenie. / Onun yüksek öğrenimi var.
+motywacja / ż / " 22test" / motivasyon / Potrzebuję więcej motywacji. / Daha fazla motivasyona ihtiyacım var.
+przyjemność / ż / " 22test" / zevk, keyif / Czytanie to moja przyjemność. / Okumak benim için bir keyif.
+wyścig / m / " 22test" / yarış / Wyścig zaczyna się o dziesiątej. / Yarış saat onda başlıyor.
+zlecenie / n / " 22test" / sipariş, görev / Dostałem nowe zlecenie. / Yeni bir iş aldım.
+chwila / ż / " 22test" / an / Poczekaj chwilę, proszę. / Bir an bekle, lütfen.
+budynek / m / " 22test" / bina / Ten budynek jest bardzo stary. / Bu bina çok eski.
+inspiracja / ż / " 22test" / ilham / Natura jest moją inspiracją. / Doğa benim ilham kaynağım.
+targi / lm / " 22test" / fuar / Idziemy na targi książki. / Kitap fuarına gidiyoruz.
+część / ż / " 22test" / bölüm, parça / Pierwsza część filmu jest lepsza. / Filmin ilk bölümü daha iyi.
+kamień / m / " 22test" / taş / Ten dom jest z kamienia. / Bu ev taştan.
+drewno / n / " 22test" / ahşap, odun / Meble są z drewna. / Mobilyalar ahşaptan.
+krajobraz / m / " 22test" / manzara / Krajobraz w górach jest piękny. / Dağlardaki manzara çok güzel.
+pokolenie / n / " 22test" / nesil, kuşak / Nowe pokolenie żyje online. / Yeni nesil çevrim içi yaşıyor.
+len / m / " 22test" / keten / Ta koszula jest ze lnu. / Bu gömlek ketenden.
+bawełna / ż / " 22test" / pamuk / Wolę ubrania z bawełny. / Pamuklu kıyafetleri tercih ederim.
+poduszka / ż / " 22test" / yastık / Ta poduszka jest bardzo miękka. / Bu yastık çok yumuşak.
+koc / m / " 22test" / battaniye / Przykryłem się kocem. / Battaniyeye sarındım.
+motyw / m / " 22test" / motif, tema / Kwiaty to główny motyw obrazu. / Çiçekler tablonun ana motifi.
+pensjonat / m / " 22test" / pansiyon / Nocujemy w małym pensjonacie. / Küçük bir pansiyonda kalıyoruz.
+wieś / ż / " 22test" / köy / Moi dziadkowie mieszkają na wsi. / Dedem ve babaannem köyde yaşıyor.
+paliwo / n / " 22test" / yakıt / Ceny paliwa rosną. / Yakıt fiyatları artıyor.
+środowisko / n / " 22test" / çevre / Musimy chronić środowisko. / Çevreyi korumamız gerekiyor.
+spaliny / lm / " 22test" / egzoz gazı / Spaliny zanieczyszczają powietrze. / Egzoz gazları havayı kirletiyor.
+powietrze / n / " 22test" / hava / Powietrze w górach jest czyste. / Dağlarda hava temiz.
+smog / m / " 22test" / smog, hava kirliliği / Zimą w mieście jest smog. / Kışın şehirde smog oluyor.
+korek / m / " 22test" / trafik sıkışıklığı / Stoję w korku. / Trafikte sıkışıp kaldım.
+przystanek / m / " 22test" / durak / Wysiadam na następnym przystanku. / Bir sonraki durakta iniyorum.
+godzina / ż / " 22test" / saat / Spotkajmy się za godzinę. / Bir saat sonra buluşalım.
+scena / ż / " 22test" / sahne / Artysta wchodzi na scenę. / Sanatçı sahneye çıkıyor.
+występ / m / " 22test" / gösteri, performans / Występ był świetny. / Gösteri harikaydı.
+sieć / ż / " 22test" / ağ, internet / Sprzedaję produkty w sieci. / Ürünleri internette satıyorum.
+basen / m / " 22test" / havuz / Pływam w basenie dwa razy w tygodniu. / Havuzda haftada iki kez yüzerim.
+plaża / ż / " 22test" / plaj / Plaża jest pełna ludzi. / Plaj insan dolu.
+obraz / m / " 22test" / resim, tablo / Ten obraz wisi w salonie. / Bu tablo salonda asılı.
+śmierć / ż / " 22test" / ölüm / Śmierć jest częścią życia. / Ölüm hayatın bir parçasıdır.
+osiedle / n / " 22test" / site, yerleşim yeri / Mieszkam na nowym osiedlu. / Yeni bir sitede oturuyorum.
+blok / m / " 22test" / apartman / Mieszkam w wysokim bloku. / Yüksek bir apartmanda oturuyorum.
+dach / m / " 22test" / çatı / Dach domu jest czerwony. / Evin çatısı kırmızı.
+taras / m / " 22test" / teras / Piję kawę na tarasie. / Terasta kahve içerim.
+szlak / m / " 22test" / rota, yol / Idziemy górskim szlakiem. / Dağ patikasında yürüyoruz.
+ścieżka / ż / " 22test" / patika, yol / Ścieżka prowadzi do jeziora. / Patika göle çıkıyor.
+zainteresowanie / n / " 22test" / ilgi / Muzyka to moje zainteresowanie. / Müzik benim ilgi alanım.
+wypoczynek / m / " 22test" / dinlenme / Wakacje to czas wypoczynku. / Tatil dinlenme zamanıdır.
+województwo / n / " 22test" / il, vilayet / Warszawa leży w województwie mazowieckim. / Varşova Mazovya ilinde yer alır.
+trasa / ż / " 22test" / güzergah, rota / Nasza trasa prowadzi przez góry. / Güzergâhımız dağlardan geçiyor.
+rowerzysta / m / " 22test" / bisikletçi / Rowerzysta jedzie ścieżką. / Bisikletçi patikadan gidiyor.
+wycieczka / ż / " 22test" / gezi / Jedziemy na wycieczkę w góry. / Dağlara geziye gidiyoruz.
+katedra / ż / " 22test" / katedral / Katedra jest bardzo stara. / Katedral çok eski.
+park narodowy / m / " 22test" / milli park / Odwiedziliśmy park narodowy. / Milli parkı ziyaret ettik.
+zwierzę / n / " 22test" / hayvan / W lesie żyje wiele zwierząt. / Ormanda birçok hayvan yaşar.
+fryzjer / m / " 22test" / kuaför / Idę do fryzjera jutro. / Yarın kuaföre gidiyorum.
+wizyta / ż / " 22test" / ziyaret, randevu / Mam wizytę u lekarza. / Doktorda randevum var.
+technologia / ż / " 22test" / teknoloji / Technologia szybko się zmienia. / Teknoloji hızla değişiyor.
+rozwiązanie / n / " 22test" / çözüm / Znaleźliśmy dobre rozwiązanie. / İyi bir çözüm bulduk.
+masażysta / m / " 22test" / masör / Masażysta ma dobre ręce. / Masörün elleri iyi.
+kosmetyczka / ż / " 22test" / güzellik uzmanı / Idę do kosmetyczki na zabieg. / Bakım için güzellik uzmanına gidiyorum.
+fizjoterapeuta / m / " 22test" / fizyoterapist / Fizjoterapeuta pomaga po urazie. / Fizyoterapist sakatlıktan sonra yardımcı olur.
+usługa / ż / " 22test" / hizmet / Ta firma oferuje dobre usługi. / Bu şirket iyi hizmetler sunuyor.
+termin / m / " 22test" / randevu, tarih / Mam termin u dentysty. / Diş hekiminde randevum var.
+konto / n / " 22test" / hesap / Założyłem nowe konto w banku. / Bankada yeni bir hesap açtım.
+rejestracja / ż / " 22test" / kayıt / Rejestracja online jest łatwa. / Çevrim içi kayıt kolay.
+oferta / ż / " 22test" / teklif, fırsat / To bardzo dobra oferta. / Bu çok iyi bir fırsat.
+specjalista / m / " 22test" / uzman / Muszę iść do specjalisty. / Bir uzmana gitmem gerekiyor.
+mięso / n / " 22test" / et / Nie jem czerwonego mięsa. / Kırmızı et yemem.
+wegetarianizm / m / " 22test" / vejetaryenlik / Wegetarianizm jest coraz popularniejszy. / Vejetaryenlik giderek yaygınlaşıyor.
+produkcja / ż / " 22test" / üretim / Produkcja rośnie każdego roku. / Üretim her yıl artıyor.
+otoczenie / n / " 22test" / çevre / Lubię spokojne otoczenie. / Sakin bir çevreyi severim.
+śmieci / lm / " 22test" / çöp / Wynoszę śmieci wieczorem. / Çöpü akşam çıkarırım.
+uwaga / ż / " 22test" / dikkat / Proszę o uwagę. / Dikkatinizi rica ediyorum.
+kubek / m / " 22test" / bardak, kupa / Piję herbatę z ulubionego kubka. / Çayı en sevdiğim kupadan içerim.
+sztućce / lm / " 22test" / çatal bıçak takımı / Nakryłem stół i przyniosłem sztućce. / Masayı kurdum ve çatal bıçak getirdim.
+krzesło / n / " 22test" / sandalye / To krzesło jest wygodne. / Bu sandalye rahat.
+narzędzie / n / " 22test" / alet / Potrzebuję odpowiedniego narzędzia. / Uygun bir alete ihtiyacım var.
+farba / ż / " 22test" / boya / Kupiłem białą farbę do ściany. / Duvar için beyaz boya aldım.
+fantazja / ż / " 22test" / hayal gücü / Dzieci mają bujną fantazję. / Çocukların hayal gücü geniştir.
+gadżet / m / " 22test" / cihaz, alet / Lubię nowe gadżety. / Yeni cihazları severim.
+portfel / m / " 22test" / cüzdan / Zgubiłem portfel. / Cüzdanımı kaybettim.
+odpady / lm / " 22test" / atık / Segregujemy odpady w domu. / Evde atıkları ayırıyoruz.
+poprawa / ż / " 22test" / iyileştirme / Widzę wyraźną poprawę. / Belirgin bir iyileşme görüyorum.
+stan / m / " 22test" / durum / Stan drogi jest zły. / Yolun durumu kötü.
+pamięć / ż / " 22test" / hafıza, anı / Mam dobrą pamięć. / Hafızam iyi.
+przodek / m / " 22test" / ata / Moi przodkowie pochodzą z Anatolii. / Atalarım Anadolu'dan geliyor.
+święto / n / " 22test" / bayram / Jutro jest ważne święto. / Yarın önemli bir bayram var.
+naród / m / " 22test" / millet / Każdy naród ma swoją historię. / Her milletin kendi tarihi vardır.
+kraj / m / " 22test" / ülke / Turcja to piękny kraj. / Türkiye güzel bir ülke.
+kalendarz / m / " 22test" / takvim / Zapisuję spotkania w kalendarzu. / Toplantıları takvime yazarım.
+miejscowość / ż / " 22test" / yerleşim yeri / To mała miejscowość nad morzem. / Deniz kenarında küçük bir yer.
+uroczystość / ż / " 22test" / tören / Uroczystość odbędzie się w sobotę. / Tören cumartesi yapılacak.
+grób / m / " 22test" / mezar / Odwiedzamy grób dziadka. / Dedenin mezarını ziyaret ederiz.
+cmentarz / m / " 22test" / mezarlık / Cmentarz jest stary i cichy. / Mezarlık eski ve sessiz.
+góra / ż / " 22test" / dağ / Ta góra jest bardzo wysoka. / Bu dağ çok yüksek.
+konsekwencja / ż / " 22test" / sonuç / Każda decyzja ma konsekwencje. / Her kararın sonuçları vardır.
+autostrada / ż / " 22test" / otoyol / Jedziemy autostradą do Krakowa. / Krakov'a otoyoldan gidiyoruz.
+prezent / m / " 22test" / hediye / Dostałem piękny prezent. / Güzel bir hediye aldım.
+strój / m / " 22test" / kıyafet / Założyłem elegancki strój. / Şık bir kıyafet giydim.
+zwyczaj / m / " 22test" / gelenek, adet / To stary polski zwyczaj. / Bu, eski bir Polonya adeti.
+przepis / m / " 22test" / tarif, kural / Znam dobry przepis na zupę. / İyi bir çorba tarifi biliyorum.
+operacja / ż / " 22test" / ameliyat / Operacja trwała dwie godziny. / Ameliyat iki saat sürdü.
+uroda / ż / " 22test" / güzellik / Ona słynie z urody. / O, güzelliğiyle ünlü.
+chirurgia / ż / " 22test" / cerrahi / Chirurgia plastyczna jest popularna. / Plastik cerrahi popüler.
+powiedzenie / n / " 22test" / atasözü, deyim / Znam takie polskie powiedzenie. / Böyle bir Polonya deyimi biliyorum.
+humor / m / " 22test" / ruh hali, mizah / Mam dziś dobry humor. / Bugün keyfim yerinde.
+wada / ż / " 22test" / dezavantaj, kusur / Ten plan ma jedną wadę. / Bu planın bir kusuru var.
+zaleta / ż / " 22test" / avantaj / Cierpliwość to jego zaleta. / Sabır onun bir meziyeti.
+wybór / m / " 22test" / seçim / Masz duży wybór. / Çok fazla seçeneğin var.
+radość / ż / " 22test" / sevinç, neşe / Dziecko skacze z radości. / Çocuk sevinçten zıplıyor.
+obowiązek / m / " 22test" / görev, sorumluluk / To mój obowiązek. / Bu benim sorumluluğum.
+weterynarz / m / " 22test" / veteriner / Zabrałem psa do weterynarza. / Köpeği veterinere götürdüm.
+thriller / m / " 22test" / gerilim romanı / Lubię czytać thrillery. / Gerilim romanları okumayı severim.
+strona / ż / " 22test" / sayfa / Otwórz stronę dziesiątą. / Onuncu sayfayı aç.
+zawód / m / " 22test" / meslek / Jaki jest twój zawód? / Mesleğin ne?
+cierpliwość / ż / " 22test" / sabır / Nauka wymaga cierpliwości. / Öğrenmek sabır gerektirir.
+pisarz / m / " 22test" / yazar / Ten pisarz ma wielu czytelników. / Bu yazarın çok okuru var.
+sen / m / " 22test" / uyku / Mam zdrowy sen. / Sağlıklı bir uykum var.
+jakość / ż / " 22test" / kalite / Jakość jest ważniejsza niż cena. / Kalite fiyattan daha önemli.
+podstawa / ż / " 22test" / temel / To podstawa dobrej pracy. / Bu, iyi bir işin temeli.
+odpoczynek / m / " 22test" / dinlenme / Potrzebuję trochę odpoczynku. / Biraz dinlenmeye ihtiyacım var.
+element / m / " 22test" / unsur, öğe / To ważny element planu. / Bu, planın önemli bir öğesi.
+leczenie / n / " 22test" / tedavi / Leczenie potrwa kilka tygodni. / Tedavi birkaç hafta sürecek.
+choroba / ż / " 22test" / hastalık / To poważna choroba. / Bu ciddi bir hastalık.
+rehabilitacja / ż / " 22test" / rehabilitasyon / Rehabilitacja po operacji jest ważna. / Ameliyattan sonra rehabilitasyon önemli.
+naukowiec / m / " 22test" / bilim insanı / Naukowiec bada nową szczepionkę. / Bilim insanı yeni bir aşı araştırıyor.
+ryzyko / n / " 22test" / risk / To duże ryzyko. / Bu büyük bir risk.
+zawał serca / m / " 22test" / kalp krizi / Stres może powodować zawał serca. / Stres kalp krizine yol açabilir.
+czynnik / m / " 22test" / faktör, etken / Stres to ważny czynnik. / Stres önemli bir etken.
+równowaga / ż / " 22test" / denge / Szukam równowagi w życiu. / Hayatta denge arıyorum.
+kierowca / m / " 22test" / sürücü, şoför / Kierowca autobusu jest miły. / Otobüs şoförü nazik.
+prędkość / ż / " 22test" / hız / Zmniejsz prędkość na zakręcie. / Virajda hızını azalt.
+jazda / ż / " 22test" / sürüş / Jazda samochodem była spokojna. / Araba sürüşü sakindi.
+ekolog / m / " 22test" / çevreci / Ekolodzy chronią przyrodę. / Çevreciler doğayı korur.
+jezioro / n / " 22test" / göl / Nad jeziorem jest spokojnie. / Göl kenarı sakin.
+miłośnik / m / " 22test" / hayran, meraklı / Jestem miłośnikiem gór. / Dağların meraklısıyım.
+las / m / " 22test" / orman / Idziemy na spacer do lasu. / Ormana yürüyüşe gidiyoruz.
+grzyb / m / " 22test" / mantar / Jesienią zbieramy grzyby w lesie. / Sonbaharda ormanda mantar toplarız.
+jagoda / ż / " 22test" / yaban mersini / Latem jem świeże jagody. / Yazın taze yaban mersini yerim.
+pieróg / m / " 22test" / pierogi (Polonya mantısı) / Uwielbiam pierogi z serem. / Peynirli pierogiye bayılırım.
+ptak / m / " 22test" / kuş / Ten ptak pięknie śpiewa. / Bu kuş çok güzel ötüyor.
+gatunek / m / " 22test" / tür / To rzadki gatunek zwierząt. / Bu, nadir bir hayvan türü.
+zabytek / m / " 22test" / tarihi eser / W mieście jest wiele zabytków. / Şehirde birçok tarihi eser var.
+podróżnik / m / " 22test" / gezgin / Ten podróżnik zwiedził cały świat. / Bu gezgin bütün dünyayı gezdi.
+miasteczko / n / " 22test" / kasaba / To spokojne, małe miasteczko. / Bu, sakin, küçük bir kasaba.
+lodziarnia / ż / " 22test" / dondurmacı / Latem chodzimy do lodziarni. / Yazın dondurmacıya gideriz.
+tradycja / ż / " 22test" / gelenek / To piękna rodzinna tradycja. / Bu, güzel bir aile geleneği.
+branża / ż / " 22test" / sektör / Pracuję w branży budowlanej. / İnşaat sektöründe çalışıyorum.
+ferma / ż / " 22test" / çiftlik / Jajka pochodzą z lokalnej fermy. / Yumurtalar yerel bir çiftlikten geliyor.
+wyrób / m / " 22test" / ürün / To wyrób ręczny. / Bu, el yapımı bir ürün.
+stolica / ż / " 22test" / başkent / Warszawa to stolica Polski. / Varşova Polonya'nın başkentidir.
+kolacja / ż / " 22test" / akşam yemeği / Jemy kolację o dziewiętnastej. / Akşam yemeğini saat yedide yeriz.
+szkolenie / n / " 22test" / eğitim, kurs / Mam szkolenie w pracy. / İşte bir eğitimim var.
+relacja / ż / " 22test" / rapor, ilişki / Mamy dobrą relację z klientami. / Müşterilerle iyi bir ilişkimiz var.
+pozdrowienie / n / " 22test" / selam / Przesyłam serdeczne pozdrowienia. / İçten selamlar gönderiyorum.
+student / m / " 22test" / öğrenci / Student uczy się do egzaminu. / Öğrenci sınava çalışıyor.
+redakcja / ż / " 22test" / editörlük / Pracuję w redakcji gazety. / Bir gazetenin yazı işlerinde çalışıyorum.
+spektakl / m / " 22test" / gösteri, tiyatro / Spektakl zaczyna się o dziewiętnastej. / Oyun saat yedide başlıyor.
+opinia / ż / " 22test" / görüş, yorum / Napisz swoją opinię o produkcie. / Ürün hakkında görüşünü yaz.
+ogłoszenie / n / " 22test" / ilan / Znalazłem mieszkanie przez ogłoszenie. / Daireyi ilan yoluyla buldum.
+konkurs / m / " 22test" / yarışma / Wygrałem konkurs fotograficzny. / Fotoğraf yarışmasını kazandım.
+świetny / przym. / " 22test" / harika, mükemmel / To był świetny pomysł. / Bu harika bir fikirdi.
+przygotowany / przym. / " 22test" / hazırlanmış / Jestem dobrze przygotowany do egzaminu. / Sınava iyi hazırlandım.
+drobny / przym. / " 22test" / küçük, ufak / To tylko drobny problem. / Bu sadece küçük bir sorun.
+pierwszy / przym. / " 22test" / birinci, ilk / To mój pierwszy dzień w pracy. / Bu, işteki ilk günüm.
+drugi / przym. / " 22test" / ikinci / Mieszkam na drugim piętrze. / İkinci katta oturuyorum.
+przytulny / przym. / " 22test" / sıcak, rahat / To bardzo przytulne mieszkanie. / Bu, çok rahat bir daire.
+jasny / przym. / " 22test" / aydınlık, açık / Mój pokój jest jasny. / Odam aydınlık.
+typowy / przym. / " 22test" / tipik / To typowy zimowy dzień. / Bu, tipik bir kış günü.
+lawendowy / przym. / " 22test" / lavanta rengi / Pomalowałem ścianę na lawendowo. / Duvarı lavanta rengine boyadım.
+błękitny / przym. / " 22test" / mavi, gök mavisi / Niebo jest dziś błękitne. / Bugün gökyüzü masmavi.
+zniszczony / przym. / " 22test" / yıpranmış, hasarlı / Ta droga jest zniszczona. / Bu yol yıpranmış.
+sztuczny / przym. / " 22test" / yapay, suni / To sztuczne kwiaty. / Bunlar yapay çiçekler.
+roślinny / przym. / " 22test" / bitkisel / Używam oleju roślinnego. / Bitkisel yağ kullanırım.
+skandynawski / przym. / " 22test" / İskandinav / Mam meble w stylu skandynawskim. / İskandinav tarzı mobilyalarım var.
+czysty / przym. / " 22test" / temiz / Powietrze tutaj jest czyste. / Buradaki hava temiz.
+cenny / przym. / " 22test" / değerli, kıymetli / To bardzo cenna rada. / Bu, çok değerli bir tavsiye.
+bliski / przym. / " 22test" / yakın / To mój bliski przyjaciel. / Bu, benim yakın arkadaşım.
+pracowity / przym. / " 22test" / çalışkan / Jest bardzo pracowitym uczniem. / Çok çalışkan bir öğrenci.
+egzotyczny / przym. / " 22test" / egzotik / Marzę o egzotycznej podróży. / Egzotik bir yolculuk hayal ediyorum.
+odważny / przym. / " 22test" / cesur / To był odważny wybór. / Bu, cesur bir seçimdi.
+międzynarodowy / przym. / " 22test" / uluslararası / Pracuję w międzynarodowej firmie. / Uluslararası bir şirkette çalışıyorum.
+światowy / przym. / " 22test" / dünya çapında / To artysta o światowej sławie. / Bu, dünya çapında ünlü bir sanatçı.
+południowo-wschodni / przym. / " 22test" / güneydoğu / Mieszkam w południowo-wschodniej części kraju. / Ülkenin güneydoğu kesiminde yaşıyorum.
+prowansalski / przym. / " 22test" / Provans tarzı / Lubię prowansalski styl. / Provans tarzını severim.
+miejski / przym. / " 22test" / kentsel, şehir / Korzystam z transportu miejskiego. / Şehir içi ulaşımı kullanırım.
+wakacyjny / przym. / " 22test" / tatille ilgili / To wakacyjny nastrój. / Bu, bir tatil havası.
+darmowy / przym. / " 22test" / bedava / To darmowa aplikacja. / Bu, bedava bir uygulama.
+nowoczesny / przym. / " 22test" / modern / To nowoczesny budynek. / Bu, modern bir bina.
+znany / przym. / " 22test" / bilinen, ünlü / To znany aktor. / Bu, ünlü bir aktör.
+amerykański / przym. / " 22test" / Amerikan / Oglądam amerykański film. / Amerikan filmi izliyorum.
+najwyższy / przym. / " 22test" / en yüksek / To najwyższy budynek w mieście. / Bu, şehirdeki en yüksek bina.
+najdłuższy / przym. / " 22test" / en uzun / To najdłuższa rzeka w kraju. / Bu, ülkedeki en uzun nehir.
+wschodni / przym. / " 22test" / doğu / Mieszkam we wschodniej Polsce. / Doğu Polonya'da yaşıyorum.
+początkujący / przym. / " 22test" / başlangıç seviyesinde / Jestem początkującym w tenisie. / Teniste başlangıç seviyesindeyim.
+zaawansowany / przym. / " 22test" / ileri düzey / To kurs dla zaawansowanych. / Bu, ileri düzey için bir kurs.
+niedoświadczony / przym. / " 22test" / deneyimsiz / Jest jeszcze niedoświadczony. / Henüz deneyimsiz.
+piękny / przym. / " 22test" / güzel / To piękny widok. / Bu, güzel bir manzara.
+wspaniały / przym. / " 22test" / muhteşem / Mieliśmy wspaniały dzień. / Muhteşem bir gün geçirdik.
+architektoniczny / przym. / " 22test" / mimari / To ciekawy projekt architektoniczny. / Bu, ilginç bir mimari proje.
+rzadki / przym. / " 22test" / nadir / To bardzo rzadki gatunek. / Bu, çok nadir bir tür.
+całodobowy / przym. / " 22test" / 24 saat açık / To sklep całodobowy. / Bu, 24 saat açık bir dükkân.
+obowiązkowy / przym. / " 22test" / zorunlu / Ten kurs jest obowiązkowy. / Bu kurs zorunlu.
+bogaty / przym. / " 22test" / zengin / To bardzo bogaty człowiek. / Bu, çok zengin bir insan.
+jednorazowy / przym. / " 22test" / tek kullanımlık / Nie używam jednorazowych kubków. / Tek kullanımlık bardak kullanmam.
+wielorazowy / przym. / " 22test" / çok kullanımlık / Kupiłem wielorazową butelkę. / Çok kullanımlık bir şişe aldım.
+foliowy / przym. / " 22test" / plastik, naylon / Nie biorę toreb foliowych. / Naylon poşet almam.
+materiałowy / przym. / " 22test" / kumaş / Używam torby materiałowej. / Bez çanta kullanırım.
+termiczny / przym. / " 22test" / termos / Mam kubek termiczny do kawy. / Kahve için termos bardağım var.
+zepsuty / przym. / " 22test" / bozuk, arızalı / Mój telefon jest zepsuty. / Telefonum bozuk.
+skuteczny / przym. / " 22test" / etkili / To skuteczna metoda. / Bu, etkili bir yöntem.
+prosty / przym. / " 22test" / basit / To bardzo proste zadanie. / Bu, çok basit bir görev.
+ruchomy / przym. / " 22test" / hareketli, değişken / Wielkanoc to ruchome święto. / Paskalya, tarihi değişen bir bayramdır.
+rodzinny / przym. / " 22test" / aile ile ilgili / To rodzinny obiad. / Bu, bir aile yemeği.
+skomplikowany / przym. / " 22test" / karmaşık / To skomplikowana sprawa. / Bu, karmaşık bir mesele.
+wolny / przym. / " 22test" / serbest, boş; yavaş / Czy to miejsce jest wolne? / Bu yer boş mu?
+masowy / przym. / " 22test" / toplu, kitlesel / To produkcja masowa. / Bu, kitlesel üretim.
+zakorkowany / przym. / " 22test" / tıkanmış (trafik) / Ulica jest zakorkowana rano. / Cadde sabahları tıkanıyor.
+odświętny / przym. / " 22test" / bayramlık, şık / Założyła odświętną sukienkę. / Bayramlık bir elbise giydi.
+towarzyski / przym. / " 22test" / sosyal / On jest bardzo towarzyski. / O, çok sosyal biri.
+najgorszy / przym. / " 22test" / en kötü / To był najgorszy dzień. / Bu, en kötü gündü.
+trudny / przym. / " 22test" / zor / To trudne pytanie. / Bu, zor bir soru.
+kryminalny / przym. / " 22test" / polisiye / Lubię filmy kryminalne. / Polisiye filmleri severim.
+krótki / przym. / " 22test" / kısa / To była krótka rozmowa. / Bu, kısa bir görüşmeydi.
+zdrowy / przym. / " 22test" / sağlıklı / Prowadzę zdrowy tryb życia. / Sağlıklı bir yaşam tarzım var.
+ważny / przym. / " 22test" / önemli / Mam dziś ważne spotkanie. / Bugün önemli bir toplantım var.
+najważniejszy / przym. / " 22test" / en önemli / Zdrowie jest najważniejsze. / En önemli şey sağlıktır.
+wysoki / przym. / " 22test" / yüksek / Ceny są bardzo wysokie. / Fiyatlar çok yüksek.
+wyższy / przym. / " 22test" / daha yüksek / Ten budynek jest wyższy. / Bu bina daha yüksek.
+mazurski / przym. / " 22test" / Mazurya'ya ait / Spędzamy lato nad mazurskim jeziorem. / Yazı bir Mazurya gölünün kenarında geçiririz.
+śliski / przym. / " 22test" / kaygan / Droga jest śliska zimą. / Yol kışın kaygan olur.
+uroczy / przym. / " 22test" / sevimli, şirin / To urocze miasteczko. / Bu, sevimli bir kasaba.
+wielokulturowy / przym. / " 22test" / çok kültürlü / Warszawa to wielokulturowe miasto. / Varşova çok kültürlü bir şehir.
+mrożony / przym. / " 22test" / dondurulmuş / Kupiłem mrożone warzywa. / Dondurulmuş sebze aldım.
+średniowieczny / przym. / " 22test" / ortaçağ / To średniowieczny zamek. / Bu, ortaçağdan kalma bir kale.
+ciągle / przysł. / " 22test" / sürekli / Ciągle pada deszcz. / Sürekli yağmur yağıyor.
+przede wszystkim / przysł. / " 22test" / her şeyden önce / Przede wszystkim liczy się zdrowie. / Her şeyden önce sağlık önemlidir.
+najczęściej / przysł. / " 22test" / en sık / Najczęściej jem w domu. / En çok evde yerim.
+obecnie / przysł. / " 22test" / şu anda / Obecnie mieszkam w Warszawie. / Şu anda Varşova'da yaşıyorum.
+szczególnie / przysł. / " 22test" / özellikle / Lubię owoce, szczególnie jabłka. / Meyveleri, özellikle elmayı severim.
+zdecydowanie / przysł. / " 22test" / kesinlikle / Zdecydowanie się zgadzam. / Kesinlikle katılıyorum.
+wcześniej / przysł. / " 22test" / daha önce / Byłem tu już wcześniej. / Buraya daha önce gelmiştim.
+nawet / przysł. / " 22test" / hatta, bile / Nawet dzieci to rozumieją. / Bunu çocuklar bile anlıyor.
+lepiej / przysł. / " 22test" / daha iyi / Dziś czuję się lepiej. / Bugün daha iyi hissediyorum.
+mniej / przysł. / " 22test" / daha az / Jem mniej cukru. / Daha az şeker yiyorum.
+więcej / przysł. / " 22test" / daha fazla / Chcę zarabiać więcej. / Daha fazla kazanmak istiyorum.
+dłużej / przysł. / " 22test" / daha uzun / Chcę spać dłużej. / Daha uzun uyumak istiyorum.
+szybciej / przysł. / " 22test" / daha hızlı / Musimy działać szybciej. / Daha hızlı hareket etmeliyiz.
+łatwiej / przysł. / " 22test" / daha kolay / Tak jest łatwiej. / Böylesi daha kolay.
+wolno / przysł. / " 22test" / yavaşça / Mów wolno, proszę. / Lütfen yavaş konuş.
+wkrótce / przysł. / " 22test" / yakında / Wkrótce wyjeżdżam. / Yakında yola çıkıyorum.
+niedawno / przysł. / " 22test" / kısa süre önce / Niedawno zmieniłem pracę. / Kısa süre önce iş değiştirdim.
+najchętniej / przysł. / " 22test" / en istekli şekilde / Najchętniej zostałbym w domu. / En çok evde kalmak isterdim.
+wspaniale / przysł. / " 22test" / harika / Wspaniale się bawiłem. / Harika vakit geçirdim.
+wyłącznie / przysł. / " 22test" / yalnızca, sadece / Płacę wyłącznie kartą. / Yalnızca kartla öderim.
+znad / przyim. (+D.) / " 22test" / -nın üzerinden/kenarından / Wracamy znad jeziora. / Göl kenarından dönüyoruz.
+że / spój. / " 22test" / ki / Wiem, że masz rację. / Haklı olduğunu biliyorum.
+kiedy / spój. / " 22test" / ne zaman; -dığında / Zadzwoń, kiedy przyjedziesz. / Geldiğinde ara.
+lub / spój. / " 22test" / veya / Kawa lub herbata? / Kahve mi çay mı?
+i / spój. / " 22test" / ve / Kupiłem chleb i masło. / Ekmek ve tereyağı aldım.
+a / spój. / " 22test" / ama, ve (karşıtlık) / Ja pracuję, a on odpoczywa. / Ben çalışıyorum, o ise dinleniyor.
+ponieważ / spój. / " 22test" / çünkü / Zostałem w domu, ponieważ padało. / Evde kaldım çünkü yağmur yağıyordu.
+ani / spój. / " 22test" / ne... ne... / Nie lubię ani kawy, ani herbaty. / Ne kahveyi ne çayı severim.
+ale / spój. / " 22test" / ama, fakat / Chcę iść, ale nie mam czasu. / Gitmek istiyorum ama zamanım yok.
+lecz / spój. / " 22test" / ama, fakat / To trudne, lecz możliwe. / Bu zor ama mümkün.
+więc / spój. / " 22test" / bu yüzden / Padało, więc zostałem w domu. / Yağmur yağıyordu, bu yüzden evde kaldım.
+dlatego / spój. / " 22test" / bu nedenle / Byłem chory, dlatego nie przyszedłem. / Hastaydım, bu nedenle gelmedim.
+żeby / spój. / " 22test" / için, diye / Uczę się, żeby zdać egzamin. / Sınavı geçmek için çalışıyorum.
+jeśli / spój. / " 22test" / eğer / Jeśli będzie ładna pogoda, pójdziemy na spacer. / Hava güzel olursa yürüyüşe çıkarız.
+jeżeli / spój. / " 22test" / eğer / Jeżeli chcesz, mogę ci pomóc. / İstersen sana yardım edebilirim.
+gdyby / spój. / " 22test" / eğer (koşul) / Gdybym miał czas, przyjechałbym. / Zamanım olsaydı gelirdim.
+chociaż / spój. / " 22test" / rağmen, her ne kadar / Wyszedłem, chociaż padało. / Yağmura rağmen dışarı çıktım.
+zanim / spój. / " 22test" / -den önce / Zjedz coś, zanim wyjdziesz. / Çıkmadan önce bir şeyler ye.
+bo / spój. / " 22test" / çünkü / Nie idę, bo jestem zmęczony. / Gitmiyorum çünkü yorgunum.
+ten/ta/to / zaim. / " 22test" / bu / Ten dom jest mój. / Bu ev benim.
+tamten / zaim. / " 22test" / şu / Wolę tamten stolik. / Şu masayı tercih ederim.
+który / zaim. / " 22test" / hangi; ki / Który autobus jedzie do centrum? / Hangi otobüs merkeze gidiyor?
+co / zaim. / " 22test" / ne / Co robisz w weekend? / Hafta sonu ne yapıyorsun?
+kto / zaim. / " 22test" / kim / Kto to jest? / Bu kim?
+swój / zaim. / " 22test" / kendi / Zabierz swój parasol. / Kendi şemsiyeni al.
+mój / zaim. / " 22test" / benim / To jest mój telefon. / Bu benim telefonum.
+twój / zaim. / " 22test" / senin / Gdzie jest twój samochód? / Senin araban nerede?
+nasz / zaim. / " 22test" / bizim / To jest nasz dom. / Bu bizim evimiz.
+wasz / zaim. / " 22test" / sizin / Gdzie jest wasz nauczyciel? / Sizin öğretmeniniz nerede?
+ich / zaim. / " 22test" / onların / To jest ich mieszkanie. / Bu, onların dairesi.
+każdy / zaim. / " 22test" / her, herkes / Każdy ma swoje zdanie. / Herkesin kendi görüşü var.
+wszystko / zaim. / " 22test" / her şey / Wszystko będzie dobrze. / Her şey yoluna girecek.
+nic / zaim. / " 22test" / hiçbir şey / Nic nie rozumiem. / Hiçbir şey anlamıyorum.
+nikt / zaim. / " 22test" / hiç kimse / Nikt nie przyszedł. / Hiç kimse gelmedi.
+coś / zaim. / " 22test" / bir şey / Chcę coś zjeść. / Bir şey yemek istiyorum.
+ktoś / zaim. / " 22test" / birisi / Ktoś dzwoni do drzwi. / Birisi kapıyı çalıyor.
+siebie/się / zaim. / " 22test" / kendini / Dbaj o siebie. / Kendine iyi bak.
+dwieście / licz. / " 22test" / iki yüz / Do miasta jest dwieście kilometrów. / Şehre iki yüz kilometre var.
+tysiąc / licz. / " 22test" / bin / Bilet kosztuje tysiąc złotych. / Bilet bin zloti.
