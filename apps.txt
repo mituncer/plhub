@@ -9,6 +9,7 @@ Polonyaca fiil secme-bulma / lehce-fiil-bulma.html / Polonyaca çok kullanılan 
 Polonyaca harf harf fiil yazma / lehce-fiil-yazma.html / Polonyca çok kullanılan fiilleri harf harf seçerek egzersiz yapma
 Polonyaca fiil hal egzersizi / polonca-hal-tasima-2.html / Polonyca isim-sıfat hallerini yerleştirme egzersizi
 Polonyaca kişi zamirleri egzersizi / zaimki_osobowe-4.html / Polonyaca kişi zamirlerini yazarak çalışma egzersizi
+Diyalog egzersizleri / pl_dialogi2608301.html / Diyalog çalış ve ezberle 
 - Sınavlar -
 B1 Sınav gramer testi / B1Sınav_C_Gramer-trenernew.html / B1 Sertifika sınavı gramer test örnekleri
 B1 Sınavı örnekleri / B1_egzamin_certyfikatowy-2 / Komple B1 Sertifika sınavı örnekleri
