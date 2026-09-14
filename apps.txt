@@ -5,7 +5,10 @@
 Polonyaca B1 Seviye Kelime Haznesi / PolonceKart260911.html / B1 kelimeleri çalışmak için flash kart benzeri aplikasyon 
 Polonyaca çoktan seçmeli B1 kelime testi / kelimetesti-b1-v15-sesli.html / B1 sertifika sınavında gerekli kelimelerin testi
 Polonyaca Sayıları Çalış / pl-liczby-1.html / Polonyaca sayı alıştırmaları 
-Polonyaca Kelimeleri Oku 2022 / Polonca_Kelime_Dinleme.html / 2022 B1 Testi önemli kelimeleri okur
+Polonyaca fiil secme-bulma / lehce-fiil-bulma.html / Polonyaca çok kullanılan fiilleri seçerek egzersiz yapma
+Polonyaca harf harf fiil yazma / lehce-fiil-yazma.html / Polonyca çok kullanılan fiilleri harf harf seçerek egzersiz yapma
+Polonyaca isim-sıfat hal egzersizi / polonca-hal-tasima-2.html / Polonyca isim-sıfat hallerini yerleştirme egzersizi
+Polonyaca kişi zamirleri egzersizi / zaimki_osobowe-4.html / Polonyaca kişi zamirlerini yazarak çalışma egzersizi
 - Sınavlar -
 B1 Sınav gramer testi / B1Sınav_C_Gramer-trenernew.html / B1 Sertifika sınavı gramer test örnekleri
 B1 Sınavı örnekleri / B1_egzamin_certyfikatowy-2 / Komple B1 Sertifika sınavı örnekleri
