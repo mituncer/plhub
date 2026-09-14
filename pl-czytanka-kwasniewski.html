@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Tajemniczy list — Czytanka B1</title>
+<style>
+  :root{
+    --paper:#F4F2ED; --paper2:#FBFAF6; --ink:#23201C; --ink-soft:#5C574E;
+    --line:#E2DDD1; --accent:#C1352B; --amber:#FBEFD6; --amber-line:#E7C878;
+    --good:#2E7D5B; --bad:#C1352B;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+    --sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  html,body{margin:0;padding:0;background:var(--paper);color:var(--ink);}
+  body{font-family:var(--sans);line-height:1.5;padding:0 0 48px;}
+  .wrap{max-width:640px;margin:0 auto;padding:0 18px;}
+  header{padding:26px 0 14px;border-bottom:1px solid var(--line);}
+  .kicker{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:700;}
+  h1{font-family:var(--serif);font-size:27px;line-height:1.15;margin:8px 0 4px;font-weight:600;}
+  .sub{font-size:13px;color:var(--ink-soft);}
+  .hint{display:flex;gap:10px;margin:16px 0 6px;font-size:12.5px;color:var(--ink-soft);flex-wrap:wrap;}
+  .hint b{color:var(--ink);}
+  .chip{background:var(--paper2);border:1px solid var(--line);border-radius:999px;padding:5px 11px;display:inline-flex;align-items:center;gap:6px;}
+  .toolbar{display:flex;gap:8px;margin:14px 0 2px;align-items:center;flex-wrap:wrap;}
+  .btn{font-family:var(--sans);font-size:13px;border:1px solid var(--line);background:var(--paper2);color:var(--ink);border-radius:10px;padding:8px 13px;cursor:pointer;font-weight:600;}
+  .btn:active{transform:translateY(1px);}
+  .btn.primary{background:var(--ink);color:#fff;border-color:var(--ink);}
+  .tb-note{font-size:11.5px;color:var(--ink-soft);flex-basis:100%;}
+  .story{font-family:var(--serif);font-size:20px;line-height:1.85;margin:16px 0 8px;letter-spacing:.1px;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;}
+  .sent{border-radius:6px;transition:background .18s;padding:1px 0;}
+  .sent.hl{background:var(--amber);box-shadow:0 0 0 4px var(--amber);}
+  w{cursor:pointer;padding:1px 1px;border-radius:4px;transition:background .12s;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;}
+  w.on{background:var(--accent);color:#fff;}
+  .sp{display:inline-block;width:2px;}
+  #tip{position:fixed;z-index:60;max-width:230px;background:var(--ink);color:#fff;font-family:var(--sans);font-size:14px;line-height:1.35;padding:9px 12px;border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.28);opacity:0;pointer-events:none;transform:translateY(4px);transition:opacity .14s,transform .14s;}
+  #tip.show{opacity:1;transform:translateY(0);pointer-events:auto;}
+  #tip .pl{font-weight:700;font-size:13px;color:#ffd7b0;margin-bottom:1px;}
+  #tip:after{content:"";position:absolute;left:var(--ax,20px);width:0;height:0;border:7px solid transparent;}
+  #tip.up:after{bottom:-13px;border-top-color:var(--ink);}
+  #tip.down:after{top:-13px;border-bottom-color:var(--ink);}
+  #sheet{position:fixed;left:0;right:0;bottom:0;z-index:70;transform:translateY(110%);transition:transform .26s cubic-bezier(.4,0,.2,1);}
+  #sheet.show{transform:translateY(0);}
+  .sheet-card{max-width:640px;margin:0 auto;background:var(--paper2);border:1px solid var(--line);border-bottom:none;border-radius:18px 18px 0 0;padding:18px 20px 24px;box-shadow:0 -10px 34px rgba(0,0,0,.16);}
+  .grip{width:40px;height:4px;background:var(--line);border-radius:99px;margin:0 auto 14px;}
+  .sheet-lbl{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:700;}
+  .sheet-pl{font-family:var(--serif);font-size:18px;margin:6px 0 12px;line-height:1.5;}
+  .sheet-tr{font-size:15.5px;background:var(--amber);border-radius:10px;padding:11px 13px;line-height:1.5;}
+  .sheet-row{display:flex;justify-content:space-between;align-items:center;margin-top:14px;}
+  .sheet-close{font-size:13px;color:var(--ink-soft);background:none;border:none;cursor:pointer;font-weight:600;}
+  .spk{border:1px solid var(--line);background:var(--paper);border-radius:10px;padding:8px 12px;cursor:pointer;font-size:14px;font-weight:600;}
+  #scrim{position:fixed;inset:0;background:rgba(20,18,15,.28);z-index:65;opacity:0;pointer-events:none;transition:opacity .22s;}
+  #scrim.show{opacity:1;pointer-events:auto;}
+  #menu{position:fixed;left:0;right:0;bottom:0;z-index:70;transform:translateY(110%);transition:transform .26s cubic-bezier(.4,0,.2,1);}
+  #menu.show{transform:translateY(0);}
+  .menu-sec{margin-bottom:16px;}
+  .menu-sec h4{font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:0 0 8px;}
+  .menu-how{font-size:13.5px;color:var(--ink-soft);line-height:1.9;}
+  .menu-how b{color:var(--ink);}
+  .mk-list{max-height:34vh;overflow:auto;margin:0 0 12px;}
+  .mk-item{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:8px 10px;border:1px solid var(--line);border-radius:9px;margin-bottom:6px;background:var(--paper);}
+  .mk-item .mw{font-family:var(--serif);font-size:15px;}
+  .mk-item .mg{font-size:12px;color:var(--ink-soft);}
+  .mk-item .mex{font-size:12px;color:var(--ink-soft);font-family:var(--serif);margin-top:3px;line-height:1.4;}
+  .mk-item .minfo{flex:1;min-width:0;}
+  .mk-item{cursor:pointer;}
+  .mk-item.sel{border-color:var(--accent);background:#FBEBE9;}
+  .mk-item .mk-pick{pointer-events:none;border:2px solid var(--line);background:var(--paper);color:#fff;width:26px;height:26px;border-radius:7px;font-size:15px;line-height:1;display:flex;align-items:center;justify-content:center;padding:0;flex:0 0 auto;}
+  .mk-item.sel .mk-pick{border-color:var(--accent);background:var(--accent);}
+  .mk-hint{font-size:12px;color:var(--ink-soft);margin:0 0 8px;}
+  .menu-actions .btn:disabled{opacity:.45;}
+  .mk-item button{border:none;background:none;color:var(--accent);font-size:16px;cursor:pointer;padding:2px 6px;}
+  .mk-empty{font-size:13px;color:var(--ink-soft);padding:6px 0;}
+  .menu-actions{display:flex;gap:8px;flex-wrap:wrap;}
+  w.marked{background:#F4D06A;color:var(--ink);border-radius:4px;}
+  w.on{background:var(--accent);color:#fff;}
+  .teaser{margin:20px 0 4px;padding:16px;border:1px dashed var(--amber-line);background:var(--amber);border-radius:14px;text-align:center;}
+  .teaser .tl{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:6px;}
+  .teaser .tq{font-family:var(--serif);font-size:16px;margin-bottom:12px;}
+  .cont-btn{width:100%;font-family:var(--sans);font-size:16px;font-weight:700;background:var(--ink);color:#fff;border:none;border-radius:12px;padding:14px;cursor:pointer;}
+  .cont-after{margin:18px 0 4px;}
+  .cont-btn:active{transform:translateY(1px);}
+  .cont-note{font-size:11.5px;color:var(--ink-soft);margin-top:8px;}
+  .part-div{margin:34px 0 2px;text-align:center;}
+  .part-div .line{border:none;border-top:1px solid var(--line);margin:0 0 -10px;}
+  .part-div span{background:var(--paper);padding:0 12px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:700;}
+  .locked{display:none;}
+  .ending{margin:22px 0 4px;padding:18px;border:1px solid var(--line);background:var(--paper2);border-radius:14px;text-align:center;font-family:var(--serif);font-size:17px;}
+  .ending .ke{font-family:var(--sans);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:6px;}
+  .quiz{margin-top:26px;padding-top:22px;border-top:1px solid var(--line);}
+  .quiz h2{font-family:var(--serif);font-size:21px;margin:0 0 4px;font-weight:600;}
+  .quiz .q-sub{font-size:12.5px;color:var(--ink-soft);margin-bottom:16px;}
+  .q{background:var(--paper2);border:1px solid var(--line);border-radius:14px;padding:15px 15px 12px;margin-bottom:14px;}
+  .q-num{font-size:11px;font-weight:700;letter-spacing:.12em;color:var(--accent);}
+  .q-txt{font-family:var(--serif);font-size:17px;margin:5px 0 12px;line-height:1.4;}
+  .opt{display:block;width:100%;text-align:left;font-family:var(--sans);font-size:14.5px;border:1px solid var(--line);background:var(--paper);border-radius:10px;padding:11px 13px;margin-bottom:8px;cursor:pointer;transition:.12s;color:var(--ink);}
+  .opt:active{transform:translateY(1px);}
+  .opt .k{display:inline-block;width:22px;font-weight:700;color:var(--ink-soft);}
+  .opt.correct{border-color:var(--good);background:#E9F4EE;}
+  .opt.correct .k{color:var(--good);}
+  .opt.wrong{border-color:var(--bad);background:#FBEBE9;}
+  .opt.wrong .k{color:var(--bad);}
+  .opt:disabled{cursor:default;opacity:1;}
+  .fb{font-size:13px;margin-top:6px;color:var(--ink-soft);display:none;}
+  .fb.show{display:block;}
+  .fb b{color:var(--ink);}
+  .result{display:none;text-align:center;margin-top:18px;padding:20px;border-radius:16px;background:var(--ink);color:#fff;}
+  .result.show{display:block;}
+  .result .big{font-family:var(--serif);font-size:40px;font-weight:600;}
+  .result .msg{font-size:14px;color:#e8e2d6;margin-top:2px;}
+  .result .btn{margin-top:14px;background:#fff;color:var(--ink);border:none;}
+  footer{text-align:center;font-size:11.5px;color:var(--ink-soft);margin-top:26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <!-- ===== BAŞLIK: h1 ve sub'ı hikayeye göre değiştir ===== -->
+  <header>
+    <div class="kicker">Czytanka · Poziom B1</div>
+    <h1>Cięższa zbroja</h1>
+    <div class="sub">Kwaśniewski o władzy, polityce i dialogu · w trzech częściach</div>
+  </header>
+
+  <div class="toolbar">
+    <button class="btn primary" id="playAll">🔊 Sesli oku</button>
+    <button class="btn" id="stopAll">⏹ Durdur</button>
+    <button class="btn" id="flagBtn" aria-label="Kelime listem">🚩 Liste</button>
+    <button class="btn" id="menuBtn" aria-label="Menü">⚙️</button>
+  </div>
+
+  <!-- CZĘŚĆ 1 -->
+  <div class="story" id="story1"></div>
+  <div class="teaser" id="teaser1">
+    <div class="tl">Ciąg dalszy nastąpi…</div>
+    <div class="tq">Co kryje list, którego nie wolno otwierać?</div>
+    <button class="cont-btn" id="contBtn1">Czytaj dalej ▸ 2. bölüm</button>
+    <div class="cont-note">İnternet gerekmez — dosya açıkken çalışır.</div>
+  </div>
+  <section class="quiz" id="quiz1">
+    <h2>Pytania · Część 1</h2>
+    <div class="q-sub">1. bölümü okuduktan sonra doğru cevabı seç.</div>
+    <div class="questions" id="questions1"></div>
+    <div class="result" id="result1"><div class="big score">0 / 5</div><div class="msg"></div><button class="btn retry">↻ Tekrar dene</button></div>
+  </section>
+
+  <div class="cont-after" id="contAfter1"><button class="cont-btn" id="contBtn1b">Czytaj dalej ▸ 2. bölüm</button></div>
+
+  <!-- CZĘŚĆ 2 -->
+  <div class="locked" id="part2">
+    <div class="part-div"><hr class="line"><span>Część 2</span></div>
+    <div class="story" id="story2"></div>
+    <div class="teaser" id="teaser2">
+      <div class="tl">Ciąg dalszy nastąpi…</div>
+      <div class="tq">Czy Anna odnajdzie tajemniczą szkatułkę?</div>
+      <button class="cont-btn" id="contBtn2">Czytaj dalej ▸ 3. bölüm</button>
+    </div>
+    <section class="quiz" id="quiz2">
+      <h2>Pytania · Część 2</h2>
+      <div class="q-sub">2. bölümü okuduktan sonra doğru cevabı seç.</div>
+      <div class="questions" id="questions2"></div>
+      <div class="result" id="result2"><div class="big score">0 / 5</div><div class="msg"></div><button class="btn retry">↻ Tekrar dene</button></div>
+    </section>
+    <div class="cont-after" id="contAfter2"><button class="cont-btn" id="contBtn2b">Czytaj dalej ▸ 3. bölüm</button></div>
+  </div>
+
+  <!-- CZĘŚĆ 3 -->
+  <div class="locked" id="part3">
+    <div class="part-div"><hr class="line"><span>Część 3</span></div>
+    <div class="story" id="story3"></div>
+    <div class="ending"><div class="ke">Koniec ✦ Son</div>To biurko na zawsze zmieniło życie Anny.</div>
+    <section class="quiz" id="quiz3">
+      <h2>Pytania · Część 3</h2>
+      <div class="q-sub">3. bölümü okuduktan sonra doğru cevabı seç.</div>
+      <div class="questions" id="questions3"></div>
+      <div class="result" id="result3"><div class="big score">0 / 5</div><div class="msg"></div><button class="btn retry">↻ Tekrar dene</button></div>
+    </section>
+  </div>
+
+  <footer>Elevate Thinking · Polski B1 · offline czytanka<br>Na podstawie doniesień: sport.pl (wywiad z A. Kwaśniewskim, wrzesień 2025)</footer>
+</div>
+
+<div id="tip"><div class="pl" id="tipPl"></div><div id="tipTr"></div></div>
+<div id="scrim"></div>
+<div id="sheet">
+  <div class="sheet-card">
+    <div class="grip"></div>
+    <div class="sheet-lbl">Zdanie · Cümle</div>
+    <div class="sheet-pl" id="sPl"></div>
+    <div class="sheet-tr" id="sTr"></div>
+    <div class="sheet-row"><button class="spk" id="sSpk">🔊 Przeczytaj</button><button class="sheet-close" id="sClose">Kapat ✕</button></div>
+  </div>
+</div>
+
+<div id="menu">
+  <div class="sheet-card">
+    <div class="grip"></div>
+    <div class="menu-sec">
+      <h4>Kelime listem · tüm czytankalar (<span id="mkCount">0</span>)</h4>
+      <div class="mk-list" id="mkList"></div>
+      <div class="mk-hint">Silmek için kelimeye dokun (seçilir), sonra “Seçileni sil”e bas.</div>
+      <div class="menu-actions">
+        <button class="btn" id="mkCopy">📋 Kopyala</button>
+        <button class="btn" id="mkDownload">⬇️ .txt indir</button>
+        <button class="btn" id="mkDelSel">🗑 Seçileni sil</button>
+        <button class="btn" id="mkClear">🗑 Temizle</button>
+      </div>
+    </div>
+    <div class="sheet-row" style="justify-content:flex-end;">
+      <button class="sheet-close" id="menuClose">Kapat ✕</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ================= VERİ BAŞLANGICI =================
+   Sadece aşağıdaki PART1/PART2/PART3 ve QUIZ1/2/3 dizilerini
+   yeni hikayeyle değiştir. Bunların altındaki hiçbir kodu değiştirme. */
+const PART1 = [
+ {pl:"Aleksander Kwaśniewski był prezydentem Polski przez dziesięć lat.",tr:"Aleksander Kwaśniewski on yıl boyunca Polonya cumhurbaşkanıydı.",
+  words:[["Aleksander","özel isim (erkek adı)"],["Kwaśniewski","özel isim (soyadı)"],["był","idi, -di","być"],["prezydentem","cumhurbaşkanı (Narzędnik)","prezydent","męski"],["Polski","Polonya'nın (Dopełniacz)","Polska","żeński"],["przez","boyunca"],["dziesięć","on (10)"],["lat.","yıl (Dopełniacz)","rok","męski"]]},
+ {pl:"Dzisiaj, jako doświadczony polityk, często komentuje życie publiczne.",tr:"Bugün, deneyimli bir siyasetçi olarak, sık sık kamu hayatını yorumluyor.",
+  words:[["Dzisiaj,","bugün"],["jako","olarak"],["doświadczony","deneyimli, tecrübeli","doświadczony"],["polityk,","siyasetçi","polityk","męski"],["często","sık sık"],["komentuje","yorumluyor","komentować"],["życie","hayat (Biernik)","życie","nijaki"],["publiczne.","kamusal, halka açık","publiczny"]]},
+ {pl:"W jednym z wywiadów użył ciekawego obrazu.",tr:"Bir röportajda ilginç bir imge kullandı.",
+  words:[["W","-da"],["jednym","bir(inde) (Miejscownik)","jeden"],["z","-den (arasından)"],["wywiadów","röportaj(lar) (Dopełniacz)","wywiad","męski"],["użył","kullandı (użyć + Dopełniacz)","użyć"],["ciekawego","ilginç (Dopełniacz)","ciekawy"],["obrazu.","imge, tablo (Dopełniacz)","obraz","męski"]]},
+ {pl:"Powiedział, że władza to jak cięższa zbroja.",tr:"Dedi ki iktidar daha ağır bir zırh gibidir.",
+  words:[["Powiedział,","söyledi, dedi","powiedzieć"],["że","-diğini, ki"],["władza","iktidar, güç","władza","żeński"],["to","(bu, ...-dir)"],["jak","gibi"],["cięższa","daha ağır (cięższa = ciężki'nin karşılaştırma hâli)","ciężki"],["zbroja.","zırh","zbroja","żeński"]]},
+ {pl:"Kiedy człowiek zajmuje ważne stanowisko, musi nosić większy ciężar.",tr:"İnsan önemli bir görev aldığında, daha büyük bir yük taşımak zorundadır.",
+  words:[["Kiedy","-dığında, ne zaman"],["człowiek","insan","człowiek","męski"],["zajmuje","üstleniyor (zajmować stanowisko = görev almak)","zajmować"],["ważne","önemli","ważny"],["stanowisko,","görev, mevki (Biernik)","stanowisko","nijaki"],["musi","zorunda, -meli","musieć"],["nosić","taşımak","nosić"],["większy","daha büyük","duży"],["ciężar.","yük, ağırlık (Biernik)","ciężar","męski"]]},
+ {pl:"Każda decyzja ma swoje skutki, a ludzie patrzą na niego bardzo uważnie.",tr:"Her kararın kendi sonuçları vardır ve insanlar ona çok dikkatle bakar.",
+  words:[["Każda","her","każdy"],["decyzja","karar","decyzja","żeński"],["ma","var, sahiptir","mieć"],["swoje","kendi (çoğul)"],["skutki,","sonuçlar (Biernik)","skutek","męski"],["a","ve, ise"],["ludzie","insanlar","ludzie","męski"],["patrzą","bakıyorlar (patrzeć na = ...-e bakmak)","patrzeć"],["na","-e"],["niego","ona, onu"],["bardzo","çok"],["uważnie.","dikkatle"]]},
+ {pl:"Zdaniem byłego prezydenta, wielu polityków o tym zapomina.",tr:"Eski cumhurbaşkanına göre, birçok siyasetçi bunu unutuyor.",
+  words:[["Zdaniem","göre (zdaniem = ...-e göre) (Narzędnik)","zdanie","nijaki"],["byłego","eski, önceki (Dopełniacz)","były"],["prezydenta,","cumhurbaşkanı(nın) (Dopełniacz)","prezydent","męski"],["wielu","birçok (Dopełniacz)","wiele"],["polityków","siyasetçi(ler) (Dopełniacz)","polityk","męski"],["o","hakkında (zapominać o = ...-i unutmak)"],["tym","bunu, bu (Miejscownik)","to"],["zapomina.","unutuyor","zapominać"]]},
+ {pl:"Myślą tylko o władzy, ale nie o odpowiedzialności.",tr:"Sadece iktidarı düşünüyorlar ama sorumluluğu değil.",
+  words:[["Myślą","düşünüyorlar (myśleć o = ...-i düşünmek)","myśleć"],["tylko","sadece"],["o","hakkında"],["władzy,","iktidar (Miejscownik)","władza","żeński"],["ale","ama"],["nie","değil"],["o","hakkında"],["odpowiedzialności.","sorumluluk (Miejscownik)","odpowiedzialność","żeński"]]},
+ {pl:"Kwaśniewski uważa, że dobry lider powinien być spokojny i cierpliwy.",tr:"Kwaśniewski, iyi bir liderin sakin ve sabırlı olması gerektiğini düşünüyor.",
+  words:[["Kwaśniewski","özel isim"],["uważa,","düşünüyor (uważać, że = ...diğini düşünmek)","uważać"],["że","-diğini, ki"],["dobry","iyi","dobry"],["lider","lider","lider","męski"],["powinien","-meli, gerekir","powinien"],["być","olmak","być"],["spokojny","sakin","spokojny"],["i","ve"],["cierpliwy.","sabırlı","cierpliwy"]]},
+ {pl:"Powinien też umieć słuchać innych ludzi.",tr:"Ayrıca başka insanları dinlemeyi de bilmelidir.",
+  words:[["Powinien","-meli","powinien"],["też","de, ayrıca"],["umieć","-ebilmek, bilmek","umieć"],["słuchać","dinlemek (słuchać + Dopełniacz)","słuchać"],["innych","başka, diğer (Dopełniacz)","inny"],["ludzi.","insanlar (Dopełniacz)","ludzie","męski"]]},
+ {pl:"Niestety, w polskiej polityce często jest inaczej.",tr:"Ne yazık ki Polonya siyasetinde çoğu zaman durum farklıdır.",
+  words:[["Niestety,","ne yazık ki"],["w","-de"],["polskiej","Polonya, Leh (Miejscownik)","polski"],["polityce","siyaset(te) (Miejscownik)","polityka","żeński"],["często","sık sık, çoğu zaman"],["jest","-dir"],["inaczej.","farklı, başka türlü"]]},
+ {pl:"Emocje są silniejsze niż rozmowa.",tr:"Duygular konuşmadan daha güçlüdür.",
+  words:[["Emocje","duygular","emocja","żeński"],["są","-dirler","być"],["silniejsze","daha güçlü","silny"],["niż","-den (karşılaştırma)"],["rozmowa.","konuşma, sohbet","rozmowa","żeński"]]},
+ {pl:"Właśnie dlatego, mówił, ostatnia sprawa w polskim sporcie wywołała tak wielką dyskusję.",tr:"İşte tam bu yüzden, dedi, Polonya sporundaki son mesele bu kadar büyük bir tartışmaya yol açtı.",
+  words:[["Właśnie","tam da, işte"],["dlatego,","bu yüzden, bunun için"],["mówił,","dedi, söylüyordu","mówić"],["ostatnia","son, sonuncu","ostatni"],["sprawa","mesele, konu","sprawa","żeński"],["w","-de"],["polskim","Polonya, Leh (Miejscownik)","polski"],["sporcie","spor(da) (Miejscownik)","sport","męski"],["wywołała","yol açtı, neden oldu","wywołać"],["tak","bu kadar, öyle"],["wielką","büyük (Biernik)","wielki"],["dyskusję.","tartışma (Biernik)","dyskusja","żeński"]]}
+];
+
+const PART2 = [
+ {pl:"O jaką sprawę chodziło?",tr:"Mesele neydi? (Söz konusu olan hangi meseleydi?)",
+  words:[["O","(chodzić o = söz konusu olmak)"],["jaką","hangi, nasıl (Biernik)","jaki"],["sprawę","mesele, konu (Biernik)","sprawa","żeński"],["chodziło?","söz konusuydu (chodziło o = ...söz konusuydu)","chodzić"]]},
+ {pl:"Radosław Piesiewicz był prezesem Polskiego Komitetu Olimpijskiego.",tr:"Radosław Piesiewicz, Polonya Olimpiyat Komitesi'nin başkanıydı.",
+  words:[["Radosław","özel isim (erkek adı)"],["Piesiewicz","özel isim (soyadı)"],["był","idi","być"],["prezesem","başkan (Narzędnik)","prezes","męski"],["Polskiego","Polonya (Dopełniacz)","polski"],["Komitetu","komite(nin) (Dopełniacz)","komitet","męski"],["Olimpijskiego.","olimpiyat (Dopełniacz)","olimpijski"]]},
+ {pl:"To bardzo ważna funkcja w polskim sporcie.",tr:"Bu, Polonya sporunda çok önemli bir görevdir.",
+  words:[["To","bu"],["bardzo","çok"],["ważna","önemli","ważny"],["funkcja","görev, işlev","funkcja","żeński"],["w","-de"],["polskim","Polonya (Miejscownik)","polski"],["sporcie.","spor(da) (Miejscownik)","sport","męski"]]},
+ {pl:"Niedawno jednak znalazł się w trudnej sytuacji i stał się bohaterem głośnej dyskusji w mediach.",tr:"Ancak kısa süre önce zor bir duruma düştü ve medyada gürültülü bir tartışmanın baş aktörü oldu.",
+  words:[["Niedawno","kısa süre önce"],["jednak","ancak, yine de"],["znalazł","buldu (znaleźć się = ...-de bulunmak)","znaleźć"],["się","(dönüşlü)"],["w","-de"],["trudnej","zor (Miejscownik)","trudny"],["sytuacji","durum(da) (Miejscownik)","sytuacja","żeński"],["i","ve"],["stał","oldu (stać się = ...olmak)","stać"],["się","(dönüşlü)"],["bohaterem","kahraman, baş aktör (Narzędnik)","bohater","męski"],["głośnej","gürültülü, ses getiren (Dopełniacz)","głośny"],["dyskusji","tartışma(nın) (Dopełniacz)","dyskusja","żeński"],["w","-de"],["mediach.","medya(da) (Miejscownik)","media"]]},
+ {pl:"Wielu ludzi zaczęło pytać, jak wybiera się osoby na takie stanowiska.",tr:"Birçok insan, bu tür görevlere kişilerin nasıl seçildiğini sormaya başladı.",
+  words:[["Wielu","birçok (Dopełniacz)","wiele"],["ludzi","insan(lar) (Dopełniacz)","ludzie","męski"],["zaczęło","başladı","zacząć"],["pytać,","sormak","pytać"],["jak","nasıl"],["wybiera","seçiliyor (wybierać się = seçilmek)","wybierać"],["się","(edilgen/dönüşlü)"],["osoby","kişiler (Biernik)","osoba","żeński"],["na","-e"],["takie","böyle, bu tür","taki"],["stanowiska.","görevler, mevkiler (Biernik)","stanowisko","nijaki"]]},
+ {pl:"Kwaśniewski, który sam kiedyś kierował tym komitetem, nie chciał milczeć.",tr:"Bir zamanlar bu komiteyi kendisi de yönetmiş olan Kwaśniewski, susmak istemedi.",
+  words:[["Kwaśniewski,","özel isim"],["który","ki o, -en (ilgi zamiri)"],["sam","kendisi, bizzat"],["kiedyś","bir zamanlar, vaktiyle"],["kierował","yönetiyordu (kierować + Narzędnik)","kierować"],["tym","bu (Narzędnik)","ten"],["komitetem,","komite(yi) (Narzędnik)","komitet","męski"],["nie","değil, -medi"],["chciał","istedi","chcieć"],["milczeć.","susmak, sessiz kalmak","milczeć"]]},
+ {pl:"Powiedział szczerze, że krytyka „nie spadła z nieba”.",tr:"Açıkça, eleştirinin „gökten düşmediğini” söyledi.",
+  words:[["Powiedział","söyledi","powiedzieć"],["szczerze,","açıkça, samimiyetle"],["że","-diğini"],["krytyka","eleştiri","krytyka","żeński"],["„nie","-medi (nie = değil/-medi)"],["spadła","düştü (spaść = düşmek)","spaść"],["z","-den"],["nieba”.","gök(ten) — nie spadła z nieba = sebepsiz değil (Dopełniacz)","niebo","nijaki"]]},
+ {pl:"Jego zdaniem problem zaczął się dużo wcześniej.",tr:"Ona göre sorun çok daha önce başladı.",
+  words:[["Jego","onun"],["zdaniem","göre (jego zdaniem = ona göre) (Narzędnik)","zdanie","nijaki"],["problem","sorun, problem","problem","męski"],["zaczął","başladı (zacząć się = başlamak)","zacząć"],["się","(dönüşlü)"],["dużo","çok (dużo wcześniej = çok daha önce)"],["wcześniej.","daha önce, daha erken"]]},
+ {pl:"Czasem ważne funkcje dostają ludzie z powodów politycznych, a nie dlatego, że są najlepsi.",tr:"Bazen önemli görevleri, en iyi oldukları için değil, siyasi sebeplerle insanlar alır.",
+  words:[["Czasem","bazen"],["ważne","önemli","ważny"],["funkcje","görevler (Biernik)","funkcja","żeński"],["dostają","alıyorlar, ediniyorlar","dostawać"],["ludzie","insanlar","ludzie","męski"],["z","-den (z powodów = sebeplerle)"],["powodów","sebep(ler) (Dopełniacz)","powód","męski"],["politycznych,","siyasi (Dopełniacz)","polityczny"],["a","ama, ise"],["nie","değil"],["dlatego,","o sebeple, o yüzden"],["że","-diği için, ki"],["są","-dirler","być"],["najlepsi.","en iyi(ler)","dobry"]]},
+ {pl:"To niebezpieczna droga, ostrzegał były prezydent.",tr:"Bu tehlikeli bir yol, diye uyardı eski cumhurbaşkanı.",
+  words:[["To","bu"],["niebezpieczna","tehlikeli","niebezpieczny"],["droga,","yol","droga","żeński"],["ostrzegał","uyarıyordu","ostrzegać"],["były","eski, önceki","były"],["prezydent.","cumhurbaşkanı","prezydent","męski"]]},
+ {pl:"Kiedy polityka miesza się ze sportem, cierpi na tym prestiż kraju.",tr:"Siyaset spora karıştığında, bundan ülkenin prestiji zarar görür.",
+  words:[["Kiedy","-dığında"],["polityka","siyaset","polityka","żeński"],["miesza","karışıyor (mieszać się = karışmak)","mieszać"],["się","(dönüşlü)"],["ze","ile, -e"],["sportem,","spor(a) (Narzędnik)","sport","męski"],["cierpi","zarar görüyor (cierpieć na = ...-den zarar görmek)","cierpieć"],["na","(cierpieć na = ...-den etkilenmek)"],["tym","bu (Miejscownik)","to"],["prestiż","prestij, itibar","prestiż","męski"],["kraju.","ülke(nin) (Dopełniacz)","kraj","męski"]]},
+ {pl:"Dlatego zaapelował do ludzi sportu o szybką i mądrą decyzję.",tr:"Bu yüzden spor camiasına hızlı ve akıllı bir karar için çağrıda bulundu.",
+  words:[["Dlatego","bu yüzden"],["zaapelował","çağrıda bulundu (apelować do...o... = ...için çağrı yapmak)","zaapelować"],["do","-e"],["ludzi","insan(lar) (Dopełniacz)","ludzie","męski"],["sportu","spor(un) — ludzie sportu = spor camiası (Dopełniacz)","sport","męski"],["o","için (zaapelować o = ...-i talep etmek)"],["szybką","hızlı (Biernik)","szybki"],["i","ve"],["mądrą","akıllı, bilgece (Biernik)","mądry"],["decyzję.","karar (Biernik)","decyzja","żeński"]]},
+ {pl:"Ale czy oni go posłuchają?",tr:"Ama onu dinleyecekler mi?",
+  words:[["Ale","ama"],["czy","-mi (soru)"],["oni","onlar"],["go","onu"],["posłuchają?","dinleyecekler mi (posłuchać = dinlemek)","posłuchać"]]}
+];
+
+const PART3 = [
+ {pl:"Kwaśniewski mówił jednak o czymś większym niż jedna sprawa.",tr:"Ancak Kwaśniewski tek bir meseleden daha büyük bir şeyden bahsediyordu.",
+  words:[["Kwaśniewski","özel isim"],["mówił","bahsediyordu (mówić o = ...-den bahsetmek)","mówić"],["jednak","ancak, yine de"],["o","hakkında, -den"],["czymś","bir şey (Miejscownik)","coś"],["większym","daha büyük (Miejscownik)","duży"],["niż","-den (karşılaştırma)"],["jedna","bir, tek","jeden"],["sprawa.","mesele, konu","sprawa","żeński"]]},
+ {pl:"Według niego w Polsce jest dziś za dużo nienawiści.",tr:"Ona göre bugün Polonya'da çok fazla nefret var.",
+  words:[["Według","göre"],["niego","onun (według niego = ona göre)"],["w","-de"],["Polsce","Polonya(da) (Miejscownik)","Polska","żeński"],["jest","var, -dir","być"],["dziś","bugün"],["za","fazla (za dużo = çok fazla)"],["dużo","çok"],["nienawiści.","nefret (Dopełniacz)","nienawiść","żeński"]]},
+ {pl:"Ludzie z różnych partii nie potrafią ze sobą rozmawiać.",tr:"Farklı partilerden insanlar birbirleriyle konuşamıyor.",
+  words:[["Ludzie","insanlar","ludzie","męski"],["z","-den"],["różnych","çeşitli, farklı (Dopełniacz)","różny"],["partii","parti(ler) (Dopełniacz)","partia","żeński"],["nie","-mıyor"],["potrafią","yapabiliyorlar, becerebiliyorlar","potrafić"],["ze","ile"],["sobą","kendileri(yle) — ze sobą = birbirleriyle (Narzędnik)","siebie"],["rozmawiać.","konuşmak, sohbet etmek","rozmawiać"]]},
+ {pl:"Zamiast szukać wspólnych rozwiązań, ciągle walczą i obrażają się nawzajem.",tr:"Ortak çözümler aramak yerine, sürekli kavga ediyor ve birbirlerini kırıyorlar.",
+  words:[["Zamiast","-mek yerine"],["szukać","aramak (szukać + Dopełniacz)","szukać"],["wspólnych","ortak (Dopełniacz)","wspólny"],["rozwiązań,","çözüm(ler) (Dopełniacz)","rozwiązanie","nijaki"],["ciągle","sürekli, durmadan"],["walczą","kavga ediyorlar, savaşıyorlar","walczyć"],["i","ve"],["obrażają","kırıyorlar (obrażać się = gücenmek)","obrażać"],["się","(dönüşlü)"],["nawzajem.","karşılıklı, birbirlerini"]]},
+ {pl:"Były prezydent nazwał to „kulturą dealów”.",tr:"Eski cumhurbaşkanı buna „anlaşmalar kültürü” adını verdi.",
+  words:[["Były","eski, önceki","były"],["prezydent","cumhurbaşkanı","prezydent","męski"],["nazwał","adını verdi, adlandırdı","nazwać"],["to","bunu, bu"],["„kulturą","kültür (Narzędnik)","kultura","żeński"],["dealów”.","anlaşma(lar) — kultura dealów = anlaşmalar kültürü (Dopełniacz)","deal","męski"]]},
+ {pl:"Oznacza to, że ważne decyzje często zapadają w tajemnicy, między politykami, a nie dla dobra obywateli.",tr:"Bu, önemli kararların çoğu zaman gizlice, siyasetçiler arasında alındığı, vatandaşların iyiliği için değil, anlamına gelir.",
+  words:[["Oznacza","anlamına gelir","oznaczać"],["to,","bu"],["że","-diğini, ki"],["ważne","önemli","ważny"],["decyzje","kararlar","decyzja","żeński"],["często","çoğu zaman"],["zapadają","alınıyor (decyzje zapadają = kararlar alınır)","zapadać"],["w","-de (w tajemnicy = gizlice)"],["tajemnicy,","sır, gizlilik (Miejscownik)","tajemnica","żeński"],["między","arasında"],["politykami,","siyasetçiler (arasında) (Narzędnik)","polityk","męski"],["a","ama, ise"],["nie","değil"],["dla","için"],["dobra","iyilik (dla dobra = iyiliği için) (Dopełniacz)","dobro","nijaki"],["obywateli.","vatandaşlar(ın) (Dopełniacz)","obywatel","męski"]]},
+ {pl:"Kwaśniewski uważa, że to musi się zmienić.",tr:"Kwaśniewski, bunun değişmesi gerektiğini düşünüyor.",
+  words:[["Kwaśniewski","özel isim"],["uważa,","düşünüyor","uważać"],["że","-diğini"],["to","bu"],["musi","-meli, zorunda","musieć"],["się","(dönüşlü)"],["zmienić.","değişmek, değiştirmek","zmienić"]]},
+ {pl:"Polska potrzebuje więcej spokoju, dialogu i szacunku.",tr:"Polonya'nın daha çok huzura, diyaloğa ve saygıya ihtiyacı var.",
+  words:[["Polska","Polonya","Polska","żeński"],["potrzebuje","ihtiyacı var (potrzebować + Dopełniacz)","potrzebować"],["więcej","daha çok, daha fazla"],["spokoju,","huzur, sükûnet (Dopełniacz)","spokój","męski"],["dialogu","diyalog (Dopełniacz)","dialog","męski"],["i","ve"],["szacunku.","saygı (Dopełniacz)","szacunek","męski"]]},
+ {pl:"Dobry polityk powinien pamiętać o zwykłych ludziach, a nie tylko o swojej władzy.",tr:"İyi bir siyasetçi sadece kendi iktidarını değil, sıradan insanları da düşünmelidir.",
+  words:[["Dobry","iyi","dobry"],["polityk","siyasetçi","polityk","męski"],["powinien","-meli","powinien"],["pamiętać","hatırlamak (pamiętać o = ...-i unutmamak)","pamiętać"],["o","hakkında"],["zwykłych","sıradan, olağan (Miejscownik)","zwykły"],["ludziach,","insan(lar) (Miejscownik)","ludzie","męski"],["a","ama, ise"],["nie","değil"],["tylko","sadece"],["o","hakkında"],["swojej","kendi (Miejscownik)","swój"],["władzy.","iktidar (Miejscownik)","władza","żeński"]]},
+ {pl:"Na koniec dodał coś ważnego.",tr:"Sonunda önemli bir şey ekledi.",
+  words:[["Na","(na koniec = sonunda)"],["koniec","son (na koniec = sonunda)","koniec","męski"],["dodał","ekledi","dodać"],["coś","bir şey"],["ważnego.","önemli (Dopełniacz)","ważny"]]},
+ {pl:"Powiedział, że demokracja jest jak ogród — trzeba o nią dbać każdego dnia.",tr:"Dedi ki demokrasi bir bahçe gibidir — her gün ona özen göstermek gerekir.",
+  words:[["Powiedział,","söyledi, dedi","powiedzieć"],["że","-diğini, ki"],["demokracja","demokrasi","demokracja","żeński"],["jest","-dir","być"],["jak","gibi"],["ogród","bahçe","ogród","męski"],["trzeba","gerekir, gerekli"],["o","(dbać o = ...-e özen göstermek)"],["nią","ona (o nią dbać = ona özen göstermek)"],["dbać","özen göstermek, bakmak","dbać"],["każdego","her (Dopełniacz)","każdy"],["dnia.","gün (każdego dnia = her gün) (Dopełniacz)","dzień","męski"]]},
+ {pl:"Jeśli o niej zapomnimy, szybko zniknie.",tr:"Onu unutursak, çabucak yok olur.",
+  words:[["Jeśli","eğer"],["o","hakkında"],["niej","onu (zapomnieć o niej = onu unutmak)"],["zapomnimy,","unutursak, unuturuz","zapomnieć"],["szybko","çabucak, hızla"],["zniknie.","yok olur, kaybolur","zniknąć"]]},
+ {pl:"To była poważna, ale i pełna nadziei myśl.",tr:"Bu ciddi, ama aynı zamanda umut dolu bir düşünceydi.",
+  words:[["To","bu"],["była","idi","być"],["poważna,","ciddi","poważny"],["ale","ama"],["i","hem de, aynı zamanda"],["pełna","dolu (pełna nadziei = umut dolu)","pełny"],["nadziei","umut (Dopełniacz)","nadzieja","żeński"],["myśl.","düşünce, fikir","myśl","żeński"]]}
+];
+
+const STORIES = [PART1, PART2, PART3];
+
+const QUIZ1 = [
+ {q:"Kim jest Aleksander Kwaśniewski?",opts:["obecnym premierem Polski","byłym prezydentem Polski","znanym polskim sportowcem","młodym dziennikarzem radia"],a:1,fb:"Kwaśniewski, 1995–2005 yılları arasında Polonya cumhurbaşkanıydı."},
+ {q:"Do czego Kwaśniewski porównał władzę?",opts:["do cięższej zbroi","do lekkiego płaszcza","do wygodnego fotela","do szybkiego auta"],a:0,fb:"Władza to jak „cięższa zbroja” — daha ağır bir zırh."},
+ {q:"Co musi nosić człowiek na ważnym stanowisku?",opts:["mniejszy ciężar","większy ciężar","piękny mundur","złoty medal"],a:1,fb:"Önemli görev = daha büyük bir yük (większy ciężar)."},
+ {q:"Jaki, zdaniem Kwaśniewskiego, powinien być dobry lider?",opts:["głośny i niecierpliwy","surowy i bardzo zimny","spokojny i cierpliwy","wesoły, ale nerwowy"],a:2,fb:"İyi lider sakin ve sabırlı (spokojny i cierpliwy) olmalı."},
+ {q:"Co, według tekstu, jest silniejsze niż rozmowa?",opts:["spokojna cisza","dobre prawo","wspólny plan","silne emocje"],a:3,fb:"Ne yazık ki güçlü duygular (emocje) konuşmadan güçlü."}
+];
+const QUIZ2 = [
+ {q:"Jaką funkcję pełnił Radosław Piesiewicz?",opts:["minister sportu i turystyki","trener reprezentacji narodowej","prezes komitetu olimpijskiego","dyrektor wielkiego stadionu"],a:2,fb:"Polonya Olimpiyat Komitesi başkanıydı (prezes komitetu olimpijskiego)."},
+ {q:"Co powiedział Kwaśniewski o krytyce?",opts:["że jest zupełnie niesprawiedliwa","że nie spadła z nieba","że pochodzi tylko z mediów","że nie ma żadnego znaczenia"],a:1,fb:"„Krytyka nie spadła z nieba” = eleştiri sebepsiz/kendiliğinden değil."},
+ {q:"Kiedy, zdaniem Kwaśniewskiego, zaczął się problem?",opts:["dopiero teraz","wczoraj rano","dużo wcześniej","zaraz po meczu"],a:2,fb:"Sorun çok daha önce (dużo wcześniej) başladı."},
+ {q:"Dlaczego czasem ludzie dostają ważne funkcje?",opts:["z powodów politycznych","bo zawsze są najlepsi","bo mają dużo szczęścia","dzięki zwykłej wygranej"],a:0,fb:"Bazen siyasi sebeplerle (z powodów politycznych), liyakatle değil."},
+ {q:"O co Kwaśniewski zaapelował do ludzi sportu?",opts:["o więcej pieniędzy","o nowego prezesa","o dłuższe wakacje","o mądrą decyzję"],a:3,fb:"Hızlı ve akıllı bir karar (mądra decyzja) için çağrı yaptı."}
+];
+const QUIZ3 = [
+ {q:"Czego, według Kwaśniewskiego, jest dziś za dużo w Polsce?",opts:["spokoju","wzajemnego szacunku","dialogu","nienawiści"],a:3,fb:"Ona göre bugün çok fazla nefret (nienawiść) var."},
+ {q:"Jak Kwaśniewski nazwał sposób podejmowania decyzji?",opts:["kulturą dialogu","kulturą pracy","kulturą dealów","kulturą ciszy"],a:2,fb:"Buna „anlaşmalar kültürü” (kultura dealów) dedi."},
+ {q:"O kim powinien pamiętać dobry polityk?",opts:["o zwykłych ludziach","o swojej własnej partii","o własnej wielkiej władzy","o bogatych firmach"],a:0,fb:"İyi siyasetçi sıradan insanları (zwykli ludzie) düşünmeli."},
+ {q:"Do czego Kwaśniewski porównał demokrację?",opts:["do wielkiej rzeki","do starego, pustego domu","do pięknego ogrodu","do wysokiej góry"],a:2,fb:"Demokrasi bir bahçe (ogród) gibidir — her gün özen ister."},
+ {q:"Jaka była myśl Kwaśniewskiego na koniec?",opts:["całkiem smutna i ciemna","wesoła, lekka i całkiem beztroska","zła i pełna wielkiego gniewu","poważna, lecz pełna nadziei"],a:3,fb:"Ciddi ama umut dolu (poważna, pełna nadziei) bir düşünceydi."}
+];
+
+/* ================= VERİ SONU — buradan sonrasını değiştirme ================= */
+
+function renderStory(containerId, arr, part){
+  const el=document.getElementById(containerId); el.innerHTML='';
+  arr.forEach((s,si)=>{
+    const sent=document.createElement('span');
+    sent.className='sent'; sent.dataset.part=part; sent.dataset.si=si;
+    s.words.forEach((pair,wi)=>{
+      const w=document.createElement('w');
+      w.textContent=pair[0];
+      w.dataset.g=pair[1];
+      w.dataset.pl=pair[0].replace(/[.,!?;:„”]/g,'');
+      if(pair[2]) w.dataset.base=pair[2];
+      if(pair[3]) w.dataset.gen=pair[3];
+      w.dataset.part=part; w.dataset.si=si;
+      sent.appendChild(w);
+      if(wi<s.words.length-1){const sp=document.createElement('span');sp.className='sp';sp.innerHTML='&nbsp;';sent.appendChild(sp);}
+    });
+    el.appendChild(sent); el.appendChild(document.createTextNode(' '));
+  });
+  applyMarks(el);
+}
+
+const tip=document.getElementById('tip'), tipPl=document.getElementById('tipPl'), tipTr=document.getElementById('tipTr');
+const sheet=document.getElementById('sheet'), scrim=document.getElementById('scrim');
+const sPl=document.getElementById('sPl'), sTr=document.getElementById('sTr');
+let pressTimer=null, longFired=false, activeWord=null, startX=0, startY=0, moved=false;
+const LONG_MS=500, MOVE_TOL=8;
+function cancelPress(){ if(pressTimer){clearTimeout(pressTimer);pressTimer=null;} }
+function clearWord(){ if(activeWord){activeWord.classList.remove('on');activeWord=null;} }
+function hideTip(){ tip.classList.remove('show'); }
+function showTip(w){
+  clearWord(); hideTip();
+  activeWord=w; w.classList.add('on');
+  tipPl.textContent=w.dataset.pl; tipTr.textContent=w.dataset.g;
+  tip.classList.add('show');
+  const r=w.getBoundingClientRect(), tw=tip.offsetWidth, th=tip.offsetHeight;
+  let left=Math.max(8,Math.min(r.left+r.width/2-tw/2,window.innerWidth-tw-8));
+  let top,cls;
+  if(r.top-th-14>6){ top=r.top-th-12; cls='up'; } else { top=r.bottom+12; cls='down'; }
+  tip.classList.remove('up','down'); tip.classList.add(cls);
+  const ax=Math.max(12,Math.min(r.left+r.width/2-left-7,tw-24));
+  tip.style.setProperty('--ax',ax+'px');
+  tip.style.left=left+'px'; tip.style.top=top+'px';
+}
+function showSentence(part,si){
+  const s=STORIES[part][si];
+  sPl.textContent=s.pl; sTr.textContent=s.tr;
+  sheet.dataset.part=part; sheet.dataset.si=si;
+  sheet.classList.add('show'); scrim.classList.add('show');
+  document.querySelectorAll('.sent').forEach(x=>x.classList.remove('hl'));
+  const el=document.querySelector('.sent[data-part="'+part+'"][data-si="'+si+'"]'); if(el) el.classList.add('hl');
+}
+function hideSentence(){ sheet.classList.remove('show'); scrim.classList.remove('show'); document.querySelectorAll('.sent').forEach(x=>x.classList.remove('hl')); }
+
+document.addEventListener('pointerdown',e=>{
+  const w=e.target.closest('w');
+  if(w){
+    longFired=false; moved=false; startX=e.clientX; startY=e.clientY;
+    pressTimer=setTimeout(()=>{ longFired=true; hideTip(); clearWord(); if(navigator.vibrate) navigator.vibrate(15); showSentence(+w.dataset.part,+w.dataset.si); },LONG_MS);
+  } else { hideTip(); clearWord(); }
+});
+document.addEventListener('pointermove',e=>{ if(!pressTimer) return; if(Math.abs(e.clientX-startX)>MOVE_TOL||Math.abs(e.clientY-startY)>MOVE_TOL){ moved=true; cancelPress(); } });
+let lastTap={el:null,t:0};
+document.addEventListener('pointerup',e=>{
+  cancelPress();
+  const w=e.target.closest('w'); if(!w) return;
+  if(longFired||moved) return;
+  const now=Date.now();
+  if(lastTap.el===w && now-lastTap.t<300){ hideTip(); clearWord(); toggleMark(w); lastTap={el:null,t:0}; }
+  else {
+    if(tip.classList.contains('show') && activeWord===w){ hideTip(); clearWord(); }
+    else { showTip(w); }
+    lastTap={el:w,t:now};
+  }
+});
+document.addEventListener('pointercancel',()=>{ moved=true; cancelPress(); });
+document.addEventListener('contextmenu',e=>{ if(e.target.closest('w')) e.preventDefault(); });
+window.addEventListener('scroll',()=>{ moved=true; cancelPress(); hideTip(); clearWord(); },{passive:true});
+document.addEventListener('touchmove',()=>{ moved=true; cancelPress(); hideTip(); clearWord(); },{passive:true});
+scrim.addEventListener('click',()=>{ hideSentence(); closeMenu(); });
+document.getElementById('sClose').addEventListener('click',hideSentence);
+
+/* ---------- İşaretleme + ortak kelime listesi (localStorage) + Dışa aktarma ---------- */
+const menu=document.getElementById('menu');
+/* Tüm czytankalar arasında paylaşılan kelime deposu.
+   content:// altında localStorage engelliyse oturum-içi kopyaya düşer (try/catch). */
+const VOCAB=(function(){
+  const KEY='czytanka_vocab_v1'; let mem=null;
+  function read(){ if(mem) return mem; try{ mem=JSON.parse(localStorage.getItem(KEY))||{}; }catch(_){ mem={}; } return mem; }
+  function write(){ try{ localStorage.setItem(KEY, JSON.stringify(read())); }catch(_){} }
+  return { all:()=>read(), has:k=>Object.prototype.hasOwnProperty.call(read(),k),
+    add:(k,rec)=>{ read()[k]=rec; write(); }, remove:k=>{ delete read()[k]; write(); }, clear:()=>{ mem={}; write(); } };
+})();
+function cleanMeaning(g){ const m=(g||'').replace(/\s*\([^)]*\)\s*/g,' ').replace(/\s+/g,' ').trim(); return m||g||''; }
+function vkey(pl){ return (pl||'').toLowerCase().replace(/[.,!?;:„”"()»«]/g,'').trim(); }
+function wordKey(w){ return vkey(w.dataset.base||w.dataset.pl||''); }
+function setMarkByKey(key,on){ document.querySelectorAll('w').forEach(w=>{ if(wordKey(w)===key) w.classList.toggle('marked',on); }); }
+function applyMarks(scope){ (scope||document).querySelectorAll('w').forEach(w=>{ const k=wordKey(w); if(k && VOCAB.has(k)) w.classList.add('marked'); }); }
+function toggleMark(w){
+  const key=wordKey(w); if(!key) return;
+  if(VOCAB.has(key)){ VOCAB.remove(key); setMarkByKey(key,false); }
+  else{
+    const part=+w.dataset.part, si=+w.dataset.si;
+    const s=(STORIES[part]&&STORIES[part][si])||{pl:'',tr:''};
+    VOCAB.add(key,{pl:w.dataset.base||w.dataset.pl||'', g:w.dataset.gen||'', tr:cleanMeaning(w.dataset.g), ex_pl:s.pl||'', ex_tr:s.tr||''});
+    setMarkByKey(key,true);
+  }
+  if(navigator.vibrate) navigator.vibrate(8);
+  if(menu.classList.contains('show')) renderMarked();
+}
+/* Dışa aktarma alan sırası: pl / cinsiyet / tag(boş) / tr / örnek_pl / örnek_tr */
+function markedRows(){
+  const store=VOCAB.all();
+  return Object.keys(store).sort().map(k=>{ const r=store[k]; return [r.pl||'', r.g||'', '', r.tr||'', r.ex_pl||'', r.ex_tr||'']; });
+}
+function exportText(){ return markedRows().map(r=>r.join('/')).join('\n'); }
+let selKeys=new Set();
+function updateDelBtn(){ const b=document.getElementById('mkDelSel'); if(!b) return; b.textContent=selKeys.size?('🗑 Seçileni sil ('+selKeys.size+')'):'🗑 Seçileni sil'; b.disabled=selKeys.size===0; }
+function renderMarked(){
+  const list=document.getElementById('mkList'), rows=markedRows();
+  document.getElementById('mkCount').textContent=rows.length;
+  const present=new Set(rows.map(r=>vkey(r[0]))); selKeys.forEach(k=>{ if(!present.has(k)) selKeys.delete(k); });
+  if(!rows.length){ list.innerHTML='<div class="mk-empty">Liste boş. Bir kelimeye çift dokununca renklenir ve buraya eklenir — başka czytankalarda da hatırlanır.</div>'; updateDelBtn(); return; }
+  list.innerHTML='';
+  rows.forEach(r=>{
+    const pl=r[0], gen=r[1], tr=r[3], ex=r[4], key=vkey(pl);
+    const sel=selKeys.has(key);
+    const row=document.createElement('div'); row.className='mk-item'+(sel?' sel':'');
+    const info=document.createElement('div'); info.className='minfo';
+    info.innerHTML='<div class="mw">'+pl+(gen?' <span class="mg">· '+gen+'</span>':'')+'</div><div class="mg">'+tr+'</div>'+(ex?'<div class="mex">'+ex+'</div>':'');
+    const b=document.createElement('button'); b.className='mk-pick'; b.textContent=sel?'✓':''; b.setAttribute('aria-label','Seç');
+    row.onclick=()=>{ if(selKeys.has(key)){ selKeys.delete(key); row.classList.remove('sel'); b.textContent=''; } else { selKeys.add(key); row.classList.add('sel'); b.textContent='✓'; } updateDelBtn(); };
+    row.appendChild(info); row.appendChild(b); list.appendChild(row);
+  });
+  updateDelBtn();
+}
+function openMenu(){ hideSentence(); selKeys.clear(); renderMarked(); menu.classList.add('show'); scrim.classList.add('show'); }
+function closeMenu(){ menu.classList.remove('show'); scrim.classList.remove('show'); }
+function flashBtn(id,txt){ const b=document.getElementById(id); const o=b.textContent; b.textContent=txt; setTimeout(()=>b.textContent=o,1200); }
+document.getElementById('menuBtn').addEventListener('click',openMenu);
+const _flag=document.getElementById('flagBtn'); if(_flag) _flag.addEventListener('click',openMenu);
+document.getElementById('menuClose').addEventListener('click',closeMenu);
+document.getElementById('mkCopy').addEventListener('click',async()=>{
+  const t=exportText(); if(!t){ flashBtn('mkCopy','Liste boş'); return; }
+  try{ await navigator.clipboard.writeText(t); flashBtn('mkCopy','✓ Kopyalandı'); }
+  catch(_){ const ta=document.createElement('textarea'); ta.value=t; document.body.appendChild(ta); ta.select(); try{document.execCommand('copy');}catch(e){} ta.remove(); flashBtn('mkCopy','✓ Kopyalandı'); }
+});
+document.getElementById('mkDownload').addEventListener('click',()=>{
+  const t=exportText(); if(!t){ flashBtn('mkDownload','Liste boş'); return; }
+  const blob=new Blob([t],{type:'text/plain;charset=utf-8'});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='slowka.txt';
+  document.body.appendChild(a); a.click(); setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},500);
+});
+document.getElementById('mkDelSel').addEventListener('click',()=>{
+  if(!selKeys.size){ flashBtn('mkDelSel','Önce seç'); return; }
+  selKeys.forEach(k=>{ VOCAB.remove(k); setMarkByKey(k,false); });
+  selKeys.clear(); renderMarked();
+});
+document.getElementById('mkClear').addEventListener('click',()=>{
+  if(!confirm('Tüm kelime listesi silinsin mi? Bu, tüm czytankalardaki ortak listeyi temizler.')) return;
+  VOCAB.clear(); document.querySelectorAll('w.marked').forEach(w=>w.classList.remove('marked')); renderMarked();
+});
+
+let part2Open=false, part3Open=false;
+function speak(text){
+  if(!('speechSynthesis' in window)) return;
+  window.speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text); u.lang='pl-PL'; u.rate=0.92;
+  const v=(window.speechSynthesis.getVoices()||[]).find(x=>/pl/i.test(x.lang));
+  if(v) u.voice=v; window.speechSynthesis.speak(u);
+}
+document.getElementById('sSpk').addEventListener('click',()=>speak(STORIES[+sheet.dataset.part][+sheet.dataset.si].pl));
+document.getElementById('playAll').addEventListener('click',()=>{
+  let t=PART1.map(s=>s.pl).join(' ');
+  if(part2Open) t+=' '+PART2.map(s=>s.pl).join(' ');
+  if(part3Open) t+=' '+PART3.map(s=>s.pl).join(' ');
+  speak(t);
+});
+document.getElementById('stopAll').addEventListener('click',()=>{ if('speechSynthesis' in window) window.speechSynthesis.cancel(); });
+if('speechSynthesis' in window){ window.speechSynthesis.onvoiceschanged=()=>{}; }
+
+function revealPart2(){
+  if(!part2Open){
+    part2Open=true;
+    renderStory('story2',PART2,1); buildQuiz('questions2','result2',QUIZ2);
+    document.getElementById('part2').classList.remove('locked');
+    const t=document.getElementById('teaser1'); if(t) t.style.display='none';
+    const c=document.getElementById('contAfter1'); if(c) c.style.display='none';
+  }
+  document.getElementById('part2').scrollIntoView({behavior:'smooth'});
+}
+function revealPart3(){
+  if(!part3Open){
+    part3Open=true;
+    renderStory('story3',PART3,2); buildQuiz('questions3','result3',QUIZ3);
+    document.getElementById('part3').classList.remove('locked');
+    const t=document.getElementById('teaser2'); if(t) t.style.display='none';
+    const c=document.getElementById('contAfter2'); if(c) c.style.display='none';
+  }
+  document.getElementById('part3').scrollIntoView({behavior:'smooth'});
+}
+['contBtn1','contBtn1b'].forEach(id=>{const b=document.getElementById(id); if(b) b.addEventListener('click',revealPart2);});
+['contBtn2','contBtn2b'].forEach(id=>{const b=document.getElementById(id); if(b) b.addEventListener('click',revealPart3);});
+
+const LETTERS=['A','B','C','D'];
+function buildQuiz(qId,rId,data){
+  const wrap=document.getElementById(qId), result=document.getElementById(rId);
+  wrap.innerHTML=''; result.classList.remove('show');
+  let answered=0, correct=0;
+  data.forEach((item,qi)=>{
+    const card=document.createElement('div'); card.className='q';
+    card.innerHTML='<div class="q-num">PYTANIE '+(qi+1)+'</div><div class="q-txt">'+item.q+'</div>';
+    item.opts.forEach((opt,oi)=>{
+      const b=document.createElement('button'); b.className='opt';
+      b.innerHTML='<span class="k">'+LETTERS[oi]+'</span>'+opt;
+      b.addEventListener('click',()=>{
+        if(card.dataset.done) return;
+        card.dataset.done='1'; answered++;
+        card.querySelectorAll('.opt').forEach((o,i)=>{ o.disabled=true; if(i===item.a) o.classList.add('correct'); });
+        if(oi===item.a) correct++; else b.classList.add('wrong');
+        const fb=card.querySelector('.fb');
+        fb.innerHTML=(oi===item.a?'✅ <b>Dobrze!</b> ':'❌ <b>Niepoprawnie.</b> ')+item.fb;
+        fb.classList.add('show');
+        if(answered===data.length){
+          result.querySelector('.score').textContent=correct+' / '+data.length;
+          const msgs=['Spróbuj jeszcze raz! 💪','Nieźle, ćwicz dalej.','Dobra robota!','Bardzo dobrze! 👏','Świetnie! Perfekcyjnie! 🎉'];
+          result.querySelector('.msg').textContent=msgs[correct];
+          result.classList.add('show');
+          result.scrollIntoView({behavior:'smooth',block:'center'});
+        }
+      });
+      card.appendChild(b);
+    });
+    const fb=document.createElement('div'); fb.className='fb'; card.appendChild(fb);
+    wrap.appendChild(card);
+  });
+  result.querySelector('.retry').onclick=()=>{ buildQuiz(qId,rId,data); wrap.scrollIntoView({behavior:'smooth'}); };
+}
+renderStory('story1', PART1, 0);
+buildQuiz('questions1','result1',QUIZ1);
+</script>
+</body>
+</html>
