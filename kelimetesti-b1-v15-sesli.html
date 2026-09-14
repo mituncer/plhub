@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Test Wielokrotnego Wyboru – B1 (689 Soru)</title>
+<style>
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  body {
+    margin: 0; padding: 0;
+    background: #0d1b2a;
+    color: #e8e6e3;
+    font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    min-height: 100vh;
+  }
+  .wrap { max-width: 560px; margin: 0 auto; padding: 14px 14px 40px; }
+
+  header { text-align: center; padding: 6px 0 10px; }
+  header h1 { font-size: 15px; margin: 0; color: #c9a227; letter-spacing: .5px; font-weight: 600; }
+  header .sub { font-size: 11px; color: #7f8c9b; margin-top: 3px; }
+
+  .bar { height: 6px; background: #1b2b3d; border-radius: 4px; overflow: hidden; margin: 10px 0 6px; }
+  .bar > div { height: 100%; background: #c9a227; width: 0%; transition: width .25s; }
+  .meta { display: flex; justify-content: space-between; font-size: 12px; color: #8fa0b0; margin-bottom: 14px; }
+  .meta b { color: #e8e6e3; }
+  .ok { color: #4caf7d; } .bad { color: #e06c6c; }
+
+  .card { background: #15263a; border: 1px solid #22374f; border-radius: 14px; padding: 20px 16px; }
+  .qnum { font-size: 12px; color: #c9a227; letter-spacing: 1px; }
+  .word { font-size: 30px; font-weight: 700; margin: 8px 0 2px; color: #fff; word-break: break-word; }
+  .pos { font-size: 12px; color: #7f8c9b; font-style: italic; margin-bottom: 16px; }
+
+  .opt {
+    display: block; width: 100%; text-align: left;
+    background: #1c2f45; color: #e8e6e3;
+    border: 1px solid #2b4159;
+    border-radius: 10px; padding: 14px 14px; margin-bottom: 10px;
+    font-size: 17px; cursor: pointer; transition: background .12s;
+  }
+  .opt span.l { display: inline-block; width: 26px; color: #c9a227; font-weight: 700; }
+  .opt:active { background: #26405c; }
+  .opt.correct { background: #1e5140; border-color: #4caf7d; }
+  .opt.wrong { background: #5a2626; border-color: #e06c6c; }
+  .opt[disabled] { cursor: default; }
+
+  .btn {
+    display: block; width: 100%; padding: 14px; margin-top: 12px;
+    background: #c9a227; color: #0d1b2a; border: 0; border-radius: 10px;
+    font-size: 16px; font-weight: 700; cursor: pointer;
+  }
+  .btn.sec { background: transparent; color: #8fa0b0; border: 1px solid #2b4159; font-weight: 500; }
+
+  /* Rapor */
+  .rep h2 { color: #c9a227; font-size: 18px; margin: 0 0 12px; text-align: center; }
+  .grid { display: flex; gap: 8px; margin-bottom: 16px; }
+  .box { flex: 1; background: #1c2f45; border-radius: 10px; padding: 12px 6px; text-align: center; }
+  .box .v { font-size: 22px; font-weight: 700; }
+  .box .k { font-size: 10px; color: #7f8c9b; margin-top: 3px; text-transform: uppercase; letter-spacing: .5px; }
+  .sect { font-size: 12px; color: #8fa0b0; margin: 18px 0 8px; border-bottom: 1px solid #22374f; padding-bottom: 5px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  td, th { padding: 7px 4px; border-bottom: 1px solid #1f3247; text-align: left; vertical-align: top; }
+  th { color: #7f8c9b; font-size: 11px; font-weight: 500; }
+  td.n { color: #c9a227; width: 34px; }
+  td.w { font-weight: 600; color: #fff; }
+  .mine { color: #e06c6c; }
+  .true { color: #4caf7d; }
+  .empty { text-align: center; color: #4caf7d; padding: 18px; font-size: 15px; }
+
+  /* Mod çubuğu (çoktan seçmeli / doğru-yanlış) */
+  .modebar { display:flex; gap:6px; margin:0 0 14px; }
+  .modebar button { flex:1; padding:9px; font-size:12px; border-radius:8px;
+    border:1px solid #2b4159; background:#1c2f45; color:#8fa0b0; cursor:pointer; font-weight:500; }
+  .modebar button.on { background:#c9a227; color:#0d1b2a; border-color:#c9a227; font-weight:700; }
+
+  /* Doğru / Yanlış modu */
+  .tfword { text-align:center; word-break:break-word; }
+  .tfq { font-size:20px; line-height:1.4; margin:2px 0 6px; color:#e8e6e3; text-align:center; }
+  .tfq b { color:#fff; }
+  .tfhint { font-size:12px; color:#7f8c9b; font-style:italic; margin:0 0 18px; }
+  .opt.tf { text-align:center; font-size:18px; font-weight:600; }
+  .opt.tf.correct { background:#1e5140; border-color:#4caf7d; }
+  .opt.tf.wrong { background:#5a2626; border-color:#e06c6c; }
+  .tag { display:inline-block; font-size:10px; color:#0d1b2a; background:#c9a227;
+    border-radius:4px; padding:1px 6px; margin-left:6px; vertical-align:middle; letter-spacing:.5px; }
+  .skiprow{ display:flex; gap:8px; margin:2px 0 0; }
+  .skiprow > button{ flex:1 1 0; width:auto; margin:0; }
+  .skip{ display:block; padding:9px; background:transparent;
+    color:#7f8c9b; border:1px dashed #33506e; border-radius:8px; font-size:12px; cursor:pointer; }
+  .skip:active{ background:#1c2f45; }
+  .skip.armed{ color:#c9a227; border-color:#c9a227; border-style:solid; background:#1c2f45; font-weight:600; }
+  .dunno{ display:block; padding:9px; background:transparent;
+    color:#c98a8a; border:1px dashed #6a4141; border-radius:8px; font-size:12px; cursor:pointer; }
+  .dunno:active{ background:#3a2020; }
+  .mini{ background:#1c2f45; color:#8fa0b0; border:1px solid #2b4159; border-radius:6px;
+    padding:5px 9px; font-size:11px; cursor:pointer; white-space:nowrap; }
+  .mini:active{ background:#26405c; }
+  .setcb{ width:18px; height:18px; accent-color:#4aa3ff; }
+
+  /* Soru ekranı 🔊 seslendirme butonu */
+  .spk{ display:inline-flex; align-items:center; justify-content:center; vertical-align:middle;
+    width:36px; height:36px; margin-left:8px; padding:0; font-size:18px; line-height:1;
+    background:#1c2f45; color:#c9a227; border:1px solid #2b4159; border-radius:9px; cursor:pointer; }
+  .spk:active{ background:#26405c; }
+  .spk.playing{ background:#c9a227; color:#0d1b2a; border-color:#c9a227; }
+
+  /* Otomatik oku satırı */
+  .autorow{ display:flex; align-items:center; justify-content:center; gap:8px; margin:0 0 12px; font-size:13px; color:#8fa0b0; }
+  .autorow label{ display:flex; align-items:center; gap:7px; cursor:pointer; }
+
+  /* Dinleme modu oynatıcısı */
+  #listenPanel h2{ color:#c9a227; font-size:18px; margin:0 0 10px; text-align:center; }
+  .lis-count{ text-align:center; font-size:12px; color:#64748b; margin:0 0 10px; }
+  .lis-card{ background:#1c2f45; border:1px solid #2b4159; border-radius:16px; padding:28px 16px;
+    text-align:center; margin-bottom:14px; min-height:150px;
+    display:flex; flex-direction:column; justify-content:center; align-items:center; }
+  .lis-word{ font-size:40px; font-weight:700; color:#fff; line-height:1.15; word-break:break-word; }
+  .lis-mean{ font-size:19px; color:#4aa3ff; margin-top:12px; min-height:24px; }
+  .lis-idx{ font-size:12px; color:#5c6b7a; margin-top:14px; }
+  .lis-bar{ width:100%; height:8px; background:#15263a; border-radius:4px; overflow:hidden; margin-bottom:14px; }
+  .lis-bar>div{ height:100%; background:#4aa3ff; width:0%; transition:width .2s; }
+  .lis-ctrls{ display:flex; gap:8px; margin-bottom:12px; }
+  .lis-ctrls button{ flex:1; border:none; border-radius:12px; padding:15px 6px; font-size:16px; font-weight:700; color:#fff; cursor:pointer; }
+  .lis-ctrls button:active{ transform:scale(.96); }
+  .lis-play{ background:#2e8b57; } .lis-pause{ background:#c9791f; }
+  .lis-prev,.lis-next{ background:#334a63; flex:.6; } .lis-reset{ background:#3a4d61; flex:.6; }
+  .lis-row{ display:flex; align-items:center; gap:10px; margin-bottom:10px; font-size:13px; color:#8fa0b0; }
+  .lis-row label{ white-space:nowrap; }
+  #listenPanel input[type=range]{ flex:1; accent-color:#4aa3ff; }
+  #listenPanel select{ background:#15263a; color:#e8e6e3; border:1px solid #2b4159; border-radius:8px; padding:7px; font-size:13px; flex:1; min-width:0; }
+  .lis-toggle{ display:flex; align-items:center; gap:7px; cursor:pointer; white-space:nowrap; }
+  .lis-warn{ color:#e0a96c; font-size:12px; text-align:center; margin-bottom:10px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>TEST WIELOKROTNEGO WYBORU — B1</h1>
+    <div class="sub">689 kelime · 3 test modu + 🔊 seslendirme + Dinleme modu</div>
+  </header>
+
+  <div class="bar"><div id="prog"></div></div>
+  <div class="meta">
+    <span>Cevaplanan <b id="cur">0</b> / <b id="tot">554</b></span>
+    <span><span class="ok" id="nok">0</span> ✓ · <span class="bad" id="nbad">0</span> ✗ · <b id="pct">%0</b></span>
+  </div>
+
+  <div class="modebar" id="modebar">
+    <button id="mMc" class="on">Lehçe → TR</button>
+    <button id="mMr">TR → Lehçe</button>
+    <button id="mTf">Doğru/Yanlış</button>
+  </div>
+  <div class="autorow" id="autorow">
+    <label><input type="checkbox" id="autoSpeak" class="setcb"> 🔊 Soruyu otomatik seslendir</label>
+  </div>
+  <div id="quiz" class="card"></div>
+  <div id="report" class="card rep" style="display:none"></div>
+  <div id="exclPanel" class="card rep" style="display:none"></div>
+  <div id="setPanel" class="card rep" style="display:none"></div>
+  <div id="listenPanel" class="card rep" style="display:none"></div>
+
+  <button class="btn sec" id="stop">Durdur ve değerlendir</button>
+  <button class="btn sec" id="reset">Testi sıfırla (yeni karışık sıra)</button>
+  <button class="btn sec" id="openSets">Set seç (<span id="setn">1</span>)</button>
+  <button class="btn sec" id="openExcl">Kolay kelime listesi (<span id="exn">0</span>)</button>
+  <button class="btn sec" id="openListen">🔊 Dinleme modu (komple liste)</button>
+</div>
+
+<script>
+var Q = [[1, "algorytm", "rzeczownik", ["kriter, ölçüt", "algoritma", "sanatçı", "patates kızartması"], "B", ["algorytm", "kryterium", "artysta", "frytki"], "A", "set1"], [2, "dzień", "rzeczownik", ["gün", "hafta", "ay", "yıl"], "A", ["tydzień", "dzień", "miesiąc", "rok"], "B", "set1"], [3, "trenować", "czasownik", ["yazdırmak, basmak", "tadilat yapmak", "antrenman yapmak", "taramak"], "C", ["drukować", "remontować", "skanować", "trenować"], "D", "set1"], [4, "nagle", "przysłówek", ["aniden, birdenbire", "ağırlıklı olarak", "asla, hiçbir zaman", "her zaman"], "A", ["głównie", "nigdy", "nagle", "zawsze"], "C", "set1"], [5, "opłacać się", "czasownik", ["uygun olmak", "geç kalmak", "öğrenmek", "kârlı olmak"], "D", ["opłacać się", "nadawać się", "spóźniać się", "uczyć się"], "A", "set1"], [6, "opóźnienie", "rzeczownik", ["tansiyon, basınç", "ilan", "gecikme, rötar", "istihdam"], "C", ["ciśnienie", "opóźnienie", "ogłoszenie", "zatrudnienie"], "B", "set1"], [7, "podręczny", "przymiotnik", ["yardımcı, faydalı", "el (bagajı)", "ciddi", "pratik"], "B", ["pomocny", "poważny", "praktyczny", "podręczny"], "D", "set1"], [8, "zamawiać", "czasownik", ["satışa çıkarmak", "esmek", "almak (ilaç)", "sipariş etmek"], "D", ["wystawiać", "wiać", "zamawiać", "zażywać"], "C", "set1"], [9, "zachorować", "czasownik", ["hastalanmak", "yürüyüş yapmak", "teşvik etmek", "teklif etmek"], "A", ["spacerować", "zachęcać", "zachorować", "oferować"], "C", "set1"], [10, "odpoczywać", "czasownik", ["keşfetmek", "dinlenmek", "kullanmak", "almak (ilaç)"], "B", ["odpoczywać", "odkrywać", "podróżować", "zażywać"], "A", "set1"], [11, "ulubiony", "przymiotnik", ["gecikmeli", "belirlenmiş", "favori, en sevilen", "yıpranmış, hasarlı"], "C", ["opóźniony", "ulubiony", "określony", "zniszczony"], "B", "set1"], [12, "czekać", "czasownik", ["zıplamak", "kaçınmak", "beklemek", "oturmak, yaşamak"], "C", ["skakać", "unikać", "mieszkać", "czekać"], "D", "set1"], [13, "parking", "rzeczownik", ["otopark", "park", "fiş, makbuz", "antrenman"], "A", ["parking", "park", "paragon", "trening"], "A", "set1"], [14, "chociaż", "spójnik", ["meğer ki/-medikçe", "-e rağmen", "çünkü, -dığı için", "ve, ile"], "B", ["chyba że", "chociaż", "ponieważ", "oraz"], "B", "set1"], [15, "podpisać", "czasownik", ["iyileştirmek", "seyahat etmek", "yapmak (ödev)", "imzalamak"], "D", ["poprawić", "podróżować", "podpisać", "odrabiać"], "C", "set1"], [16, "przyjmować", "czasownik", ["kiralamak", "gelmek, varmak", "seyahat etmek", "kabul etmek"], "D", ["wynajmować", "przyjmować", "przyjeżdżać", "podróżować"], "B", "set1"], [17, "remontować", "czasownik", ["tadilat yapmak", "sunmak, sergilemek", "antrenman yapmak", "pişirmek"], "A", ["prezentować", "trenować", "gotować", "remontować"], "D", "set1"], [18, "gatunek", "rzeczownik", ["koşul, şart", "muayenehane", "vergi", "tür"], "D", ["gatunek", "warunek", "gabinet", "podatek"], "A", "set1"], [19, "potrzebować", "czasownik", ["seyahat etmek", "sunmak, sergilemek", "denemek", "ihtiyaç duymak"], "D", ["podróżować", "prezentować", "potrzebować", "spróbować"], "C", "set1"], [20, "domowy", "przymiotnik", ["sağlıklı", "ev (ödevi)", "krem rengi", "yeni"], "B", ["zdrowy", "kremowy", "nowy", "domowy"], "D", "set1"], [21, "pokój", "rzeczownik", ["bank, sıra", "masa", "oda", "ev"], "C", ["pokój", "ławka", "stół", "dom"], "A", "set1"], [22, "przedstawienie", "rzeczownik", ["tatlılar, şekerlemeler", "festival", "gösteri, tiyatro oyunu", "sergi"], "C", ["słodycze", "przedstawienie", "festiwal", "list motywacyjny"], "B", "set1"], [23, "jesień", "rzeczownik", ["sonbahar", "ilkbahar", "kış", "yaz"], "A", ["wiosna", "jesień", "zima", "lato"], "B", "set1"], [24, "aby", "spójnik", ["diye, -mek için", "-mek/-mak için", "eğer, -seydi", "veya, ya da"], "B", ["żeby", "gdyby", "aby", "albo"], "C", "set1"], [25, "rozgrzewać się", "czasownik", ["ısınmak", "geç kalmak", "uygun olmak", "kayıt olmak"], "A", ["spóźniać się", "nadawać się", "zarejestrować się", "rozgrzewać się"], "D", "set1"], [26, "stacja", "rzeczownik", ["restoran", "okul", "salon", "istasyon"], "D", ["stacja", "restauracja", "szkoła", "salon"], "A", "set1"], [27, "frytki", "rzeczownik", ["mantı benzeri hamur", "patates kızartması", "elmalı turta", "balık"], "B", ["pierogi", "szarlotka", "frytki", "ryba"], "C", "set1"], [28, "tani", "przymiotnik", ["daha ucuz", "ucuz", "havacılık", "reşit"], "B", ["tańszy", "tani", "lotniczy", "pełnoletni"], "B", "set1"], [29, "zewnętrzny", "przymiotnik", ["belirli, somut", "elektronik", "açık hava, dış", "yapay"], "C", ["konkretny", "elektroniczny", "sztuczny", "zewnętrzny"], "D", "set1"], [30, "siatkarz", "rzeczownik", ["voleybolcu", "aktör, oyuncu", "doktor", "kaleci"], "A", ["siatkarz", "aktor", "lekarz", "bramkarz"], "A", "set1"], [31, "samolot", "rzeczownik", ["uçak", "taksi", "otobüs", "tren"], "A", ["taksówka", "autobus", "samolot", "pociąg"], "C", "set1"], [32, "rozgrzewka", "rzeczownik", ["esneme", "kondisyon", "yarı maraton", "ısınma"], "D", ["rozgrzewka", "rozciąganie", "kondycja", "półmaraton"], "A", "set1"], [33, "pracodawca", "rzeczownik", ["çalışan", "işveren", "üretici", "programcı"], "B", ["pracownik", "producent", "programista", "pracodawca"], "D", "set1"], [34, "hydraulik", "rzeczownik", ["çalışan", "analist", "tesisatçı", "göz doktoru"], "C", ["pracownik", "hydraulik", "analityk", "okulista"], "B", "set1"], [35, "firma", "rzeczownik", ["motivasyon mektubu", "sözleşme", "şirket, firma", "teklif"], "C", ["list motywacyjny", "umowa", "oferta", "firma"], "D", "set1"], [36, "bezpłatny", "przymiotnik", ["ikinci el/kullanılan", "karışık", "glutensiz", "ücretsiz, bedava"], "D", ["używany", "zmieszany", "bezpłatny", "bezglutenowy"], "C", "set1"], [37, "popularny", "przymiotnik", ["ciddi", "dönüş", "popüler", "el (bagajı)"], "C", ["popularny", "poważny", "powrotny", "podręczny"], "A", "set1"], [38, "podróż", "rzeczownik", ["seyahat, yolculuk", "mantı benzeri hamur", "tarife", "güverte"], "A", ["pierogi", "rozkład", "pokład", "podróż"], "D", "set1"], [39, "umowa", "rzeczownik", ["şirket, firma", "teklif", "sözleşme", "iş"], "C", ["umowa", "firma", "oferta", "praca"], "A", "set1"], [40, "pomocny", "przymiotnik", ["favori, en sevilen", "yardımcı, faydalı", "dönüş", "güçlü, şiddetli"], "B", ["ulubiony", "powrotny", "mocny", "pomocny"], "D", "set1"], [41, "słodycze", "rzeczownik", ["gösteri, tiyatro oyunu", "elmalı turta", "pastırma", "tatlılar, şekerlemeler"], "D", ["przedstawienie", "słodycze", "szarlotka", "boczek"], "B", "set1"], [42, "hotel", "rzeczownik", ["otel", "opera", "kütüphane", "okul"], "A", ["opera", "biblioteka", "hotel", "szkoła"], "C", "set1"], [43, "płatność", "rzeczownik", ["ücret", "ödeme", "vergi", "fiş, makbuz"], "B", ["platforma", "płatność", "podatek", "paragon"], "B", "set1"], [44, "produkcja", "rzeczownik", ["ürün", "üretici", "koleksiyon", "üretim"], "D", ["produkt", "producent", "produkcja", "kolekcja"], "C", "set1"], [45, "praktyczny", "przymiotnik", ["pratik", "turistik", "egzotik", "klasik"], "A", ["praktyczny", "turystyczny", "egzotyczny", "klasyczny"], "A", "set1"], [46, "naturalny", "przymiotnik", ["küçük, samimi", "açık hava, dış", "doğal", "geleneksel"], "C", ["kameralny", "naturalny", "zewnętrzny", "tradycyjny"], "B", "set1"], [47, "technologia", "rzeczownik", ["teknoloji", "bilgisayar", "telefon", "anakart"], "A", ["komputer", "telefon", "technologia", "płyta główna"], "C", "set1"], [48, "fryzura", "rzeczownik", ["kuaför", "saç modeli", "patates kızartması", "kültür"], "B", ["fryzjer", "frytki", "kultura", "fryzura"], "D", "set1"], [49, "albo", "spójnik", ["ama, fakat", "çünkü", "-mek/-mak için", "veya, ya da"], "D", ["albo", "ale", "choć", "aby"], "A", "set1"], [50, "tradycyjny", "przymiotnik", ["el (bagajı)", "pratik", "geleneksel", "eğitimsel"], "C", ["podręczny", "tradycyjny", "praktyczny", "edukacyjny"], "B", "set1"], [51, "intensywny", "przymiotnik", ["yoğun", "aktif", "verimli, etkili", "sebzeli"], "A", ["intensywny", "turystyczny", "efektywny", "warzywny"], "A", "set1"], [52, "odrabiać", "czasownik", ["yapmak (ödev)", "ulaşmak", "keşfetmek", "değerlendirmek"], "A", ["trafiać", "odkrywać", "odrabiać", "oceniać"], "C", "set1"], [53, "nad", "przyimek", ["dışında, haricinde", "üzerinde, üstünde", "altında", "-den/-dan"], "B", ["poza", "pod", "od", "nad"], "D", "set1"], [54, "abonament", "rzeczownik", ["yüzde", "fiş, makbuz", "fiyat", "abonelik"], "D", ["abonament", "procent", "paragon", "absolwent"], "A", "set1"], [55, "koło", "przyimek", ["yaklaşık, civarında", "yanında", "etrafında", "yakın"], "B", ["około", "koło", "wokół", "blisko"], "B", "set1"], [56, "dieta", "rzeczownik", ["ziyaret, muayene", "teşhis, tanı", "diyet", "muayene, inceleme"], "C", ["wizyta", "diagnoza", "dieta", "badanie"], "C", "set1"], [57, "śniadanie", "rzeczownik", ["yemek (tabak)", "öğle yemeği", "öğün", "kahvaltı"], "D", ["śniadanie", "siedzenie", "obiad", "posiłek"], "A", "set1"], [58, "taksówka", "rzeczownik", ["bisiklet", "taksi", "otobüs", "uçak"], "B", ["drożdżówka", "autobus", "samolot", "taksówka"], "D", "set1"], [59, "czy", "spójnik", ["yani", "ama, fakat", "mi, yoksa", "diye, -mek için"], "C", ["czyli", "czy", "lecz", "żeby"], "B", "set1"], [60, "spacerować", "czasownik", ["şarkı söylemek", "hastalanmak", "teklif etmek", "yürüyüş yapmak"], "D", ["śpiewać", "zachorować", "oferować", "spacerować"], "D", "set1"], [61, "okulista", "rzeczownik", ["göz doktoru", "hayran, meraklı", "sanatçı", "programcı"], "A", ["miłośnik", "artysta", "okulista", "programista"], "C", "set1"], [62, "studia", "rzeczownik", ["not, değerlendirme", "üniversite eğitimi", "sınıf", "bilim, öğrenim"], "B", ["stacja", "klasa", "studia", "nauka"], "C", "set1"], [63, "skrócić", "czasownik", ["değerlendirmek", "atmak", "kısaltmak", "dönmek"], "C", ["skrócić", "oceniać", "wrzucić", "skręcić"], "A", "set1"], [64, "galeria", "rzeczownik", ["muayenehane", "galeri", "opera", "spor salonu"], "B", ["gabinet", "galeria", "opera", "siłownia"], "B", "set1"], [65, "skręcić", "czasownik", ["kısaltmak", "atmak", "uçmak", "dönmek"], "D", ["skrócić", "wrzucić", "lecieć", "skręcić"], "D", "set1"], [66, "gdy", "spójnik", ["zaman, -dığında", "diye, -mek için", "mi, yoksa", "eğer, -seydi"], "A", ["gdy", "żeby", "czy", "gdyby"], "A", "set1"], [67, "rok", "rzeczownik", ["gün", "hafta", "yıl", "ay"], "C", ["dzień", "tydzień", "miesiąc", "rok"], "D", "set1"], [68, "coraz częściej", "przysłówek", ["daha önce", "nihayet, sonunda", "tamamen", "giderek daha sık"], "D", ["wcześniej", "coraz częściej", "wreszcie", "całkowicie"], "B", "set1"], [69, "tworzyć", "czasownik", ["kullanmak, yararlanmak", "açmak", "oluşturmak, yaratmak", "hayal etmek"], "C", ["tworzyć", "korzystać", "włączyć", "marzyć"], "A", "set1"], [70, "budzik", "rzeczownik", ["gün", "giyim", "üniversite eğitimi", "çalar saat"], "D", ["dzień", "odzież", "budzik", "studia"], "C", "set1"], [71, "język obcy", "rzeczownik", ["yabancı dil", "sahanda yumurta", "göl", "dil"], "A", ["jajecznica", "język obcy", "jezioro", "język"], "B", "set1"], [72, "przeciwgorączkowy", "przymiotnik", ["yıpranmış, hasarlı", "ateş düşürücü", "mesleki", "ilk gösterim"], "B", ["zniszczony", "charakterystyczny", "przeciwgorączkowy", "premierowy"], "C", "set1"], [73, "szafa", "rzeczownik", ["dolap", "duvar", "bank, sıra", "daire"], "A", ["ściana", "ławka", "mieszkanie", "szafa"], "D", "set1"], [74, "biegać", "czasownik", ["toplamak", "koşmak", "seçmek", "şarkı söylemek"], "B", ["zbierać", "biegać", "wybierać", "śpiewać"], "B", "set1"], [75, "kuchnia", "rzeczownik", ["duvar", "daire", "mutfak", "bank, sıra"], "C", ["ściana", "mieszkanie", "kuchnia", "ławka"], "C", "set1"], [76, "do", "przyimek", ["üzerinde, üstünde", "-den/-dan", "sonra, boyunca", "-e/-a, -e kadar"], "D", ["nad", "od", "po", "do"], "D", "set1"], [77, "problem", "rzeczownik", ["sorun", "program", "yüzde", "ürün"], "A", ["problem", "program", "procent", "produkt"], "A", "set1"], [78, "wyłączyć", "czasownik", ["açmak", "kapatmak", "tedavi etmek", "egzersiz yapmak"], "B", ["włączyć", "wyłączyć", "uczyć się", "ćwiczyć"], "B", "set1"], [79, "pisemny", "przymiotnik", ["soğuk", "yardımcı, faydalı", "yazılı", "ciddi"], "C", ["pisemny", "zimny", "pomocny", "poważny"], "A", "set1"], [80, "zachęcać", "czasownik", ["hastalanmak", "tavsiye etmek", "teşvik etmek", "dönmek, geri gelmek"], "C", ["zachorować", "polecać", "zachęcać", "wracać"], "C", "set1"], [81, "reżyser", "rzeczownik", ["antrenör", "kuaför", "uzman", "yönetmen"], "D", ["trener", "fryzjer", "ekspert", "reżyser"], "D", "set1"], [82, "jeżeli", "spójnik", ["eğer, şayet", "yani", "ancak, yine de", "ki, -dığını"], "A", ["czyli", "jednak", "że", "jeżeli"], "D", "set1"], [83, "tańszy", "przymiotnik", ["ucuz", "daha ucuz", "daha büyük", "taze"], "B", ["tani", "większy", "świeży", "tańszy"], "D", "set1"], [84, "sztuczna inteligencja", "rzeczownik", ["bilgisayar", "internet", "yapay zeka", "uygulama"], "C", ["rozmowa kwalifikacyjna", "sztuczna inteligencja", "internet", "aplikacja"], "B", "set1"], [85, "otwierać", "czasownik", ["seçmek", "toplamak", "gezmek", "açmak"], "D", ["wybierać", "zbierać", "otwierać", "zwiedzać"], "C", "set1"], [86, "elektryk", "rzeczownik", ["aktör, oyuncu", "analist", "doktor", "elektrikçi"], "D", ["aktor", "analityk", "lekarz", "elektryk"], "D", "set1"], [87, "pojemnik", "rzeczownik", ["konteyner, kap", "hayran, meraklı", "atık", "geri dönüşüm"], "A", ["pojemnik", "miłośnik", "odpady", "recykling"], "A", "set1"], [88, "zwłaszcza", "przysłówek", ["hâlâ, daha", "özellikle", "nihayet, sonunda", "her zaman"], "B", ["jeszcze", "wreszcie", "zwłaszcza", "wcześniej"], "C", "set1"], [89, "dzięki", "przyimek", ["sayesinde", "aracılığıyla/boyunca", "boyunca", "arasında"], "A", ["przez", "dzięki", "wzdłuż", "między"], "B", "set1"], [90, "film", "rzeczownik", ["festival", "müzik", "film", "kültür"], "C", ["festiwal", "muzyka", "film", "kultura"], "C", "set1"], [91, "absolwent", "rzeczownik", ["mezun", "müşteri", "üretici", "çalışan"], "A", ["klient", "producent", "absolwent", "pracownik"], "C", "set1"], [92, "biblioteka", "rzeczownik", ["havalimanı", "ofis, büro", "kütüphane", "spor salonu"], "C", ["lotnisko", "biblioteka", "literatura", "siłownia"], "B", "set1"], [93, "obok", "przyimek", ["yaklaşık, civarında", "yanında", "etrafında", "-den/-dan"], "B", ["około", "wokół", "obok", "od"], "C", "set1"], [94, "aż", "spójnik", ["-den/-dan (kıyas)", "ve, ile", "ve, ama", "-e kadar, ta ki"], "D", ["aż", "niż", "oraz", "a"], "A", "set1"], [95, "czysty", "przymiotnik", ["yağlı", "kapalı, çalışmıyor", "temiz", "ikinci el/kullanılan"], "C", ["czysty", "tłusty", "nieczynny", "używany"], "A", "set1"], [96, "lato", "rzeczownik", ["kış", "yaz", "ilkbahar", "sonbahar"], "B", ["zima", "lato", "wiosna", "jesień"], "B", "set1"], [97, "zatrudnić", "czasownik", ["yerine geçmek", "unutmak", "işe almak", "işten çıkarmak"], "C", ["zastąpić", "zatrudnić", "zapomnieć", "zwolnić"], "B", "set1"], [98, "ławka", "rzeczownik", ["gayrimenkul", "duvar", "bank, sıra", "dolap"], "C", ["ławka", "nieruchomość", "ściana", "szafa"], "A", "set1"], [99, "opera", "rzeczownik", ["galeri", "park", "otel", "opera"], "D", ["galeria", "park", "hotel", "opera"], "D", "set1"], [100, "miejscowość", "rzeczownik", ["yerleşim yeri", "beceri, yetenek", "şehir", "kasaba"], "A", ["umiejętność", "miasto", "miasteczko", "miejscowość"], "D", "set1"], [101, "sernik", "rzeczownik", ["cheesecake", "mantı benzeri hamur", "meyve suyu", "pastırma"], "A", ["sernik", "pierogi", "sok", "boczek"], "A", "set1"], [102, "restauracja", "rzeczownik", ["istasyon", "opera", "restoran", "ayırma tesisi"], "C", ["stacja", "rejestracja", "restauracja", "sortownia"], "C", "set1"], [103, "bieganie", "rzeczownik", ["esneme", "koşu", "antrenman", "maraton"], "B", ["rozciąganie", "bieganie", "trening", "maraton"], "B", "set1"], [104, "lub", "spójnik", ["çünkü", "-mek/-mak için", "ama, fakat", "veya"], "D", ["bo", "aby", "lub", "ale"], "C", "set1"], [105, "drukować", "czasownik", ["kazanmak, elde etmek", "yazdırmak, basmak", "satın almak", "tadı olmak"], "B", ["zdobywać", "kupować", "smakować", "drukować"], "D", "set1"], [106, "poważny", "przymiotnik", ["ciddi", "dönüş", "el (bagajı)", "yardımcı, faydalı"], "A", ["powrotny", "poważny", "podręczny", "pomocny"], "B", "set1"], [107, "architekt", "rzeczownik", ["sanatçı", "analist", "elektrikçi", "mimar"], "D", ["biblioteka", "analityk", "architekt", "elektryk"], "C", "set1"], [108, "za", "przyimek", ["-den/-dan, ile", "arkasında, için", "dışında, haricinde", "üzerinde, -e/-a"], "B", ["za", "z", "poza", "na"], "A", "set1"], [109, "chyba że", "spójnik", ["çünkü, -dığı için", "ayrıca, de/da", "meğer ki/-medikçe", "-e rağmen"], "C", ["ponieważ", "także", "chyba że", "chociaż"], "C", "set1"], [110, "wracać", "czasownik", ["çalışmak", "çalmak/oynamak (müzik)", "dönmek, geri gelmek", "atmak"], "C", ["pracować", "grać", "wrzucić", "wracać"], "D", "set1"], [111, "gorączka", "rzeczownik", ["organizma, vücut", "hastalık", "ateş", "titreme"], "C", ["organizm", "choroba", "gorączka", "dreszcze"], "C", "set1"], [112, "zwolnić", "czasownik", ["bölmek, paylaşmak", "unutmak", "değerlendirmek", "işten çıkarmak"], "D", ["zwolnić", "dzielić", "zapomnieć", "oceniać"], "A", "set1"], [113, "mieszkać", "czasownik", ["oturmak, yaşamak", "kalkmak, hareket etmek", "zıplamak", "hatırlamak"], "A", ["odjeżdżać", "skakać", "mieszkać", "pamiętać"], "C", "set1"], [114, "stewardessa", "rzeczownik", ["voleybolcu", "programcı", "sanatçı", "hostes"], "D", ["siatkarz", "programista", "artysta", "stewardessa"], "D", "set1"], [115, "edukacyjny", "przymiotnik", ["geleneksel", "eğitimsel", "verimli, etkili", "klasik"], "B", ["tradycyjny", "edukacyjny", "efektywny", "klasyczny"], "B", "set1"], [116, "znajomość", "rzeczownik", ["iletişim becerisi", "gayrimenkul", "gıda", "bilgi, yeterlilik"], "D", ["komunikatywność", "nieruchomość", "żywność", "znajomość"], "D", "set1"], [117, "pokaz", "rzeczownik", ["resim, tablo", "müzik", "gösteri, oyun", "gösterim"], "D", ["pokaz", "obraz", "muzyka", "spektakl"], "A", "set1"], [118, "posiłek", "rzeczownik", ["öğün", "kahvaltı", "akşam yemeği", "öğle yemeği"], "A", ["śniadanie", "posiłek", "kolacja", "obiad"], "B", "set1"], [119, "mocny", "przymiotnik", ["yardımcı, faydalı", "güçlü, şiddetli", "soğuk", "serbest, boş"], "B", ["mocny", "pomocny", "zimny", "wolny"], "A", "set1"], [120, "uważać", "czasownik", ["dikkat etmek", "kullanmak", "gezmek", "anlamına gelmek"], "A", ["używać", "uważać", "zwiedzać", "oznaczać"], "B", "set1"], [121, "wakacje", "rzeczownik", ["gezi", "tatil", "gezi, yolculuk", "bagaj"], "B", ["wakacje", "wycieczka", "wyjazd", "bagaż"], "A", "set1"], [122, "szkoła", "rzeczownik", ["okul", "mağaza, dükkan", "havalimanı", "istasyon"], "A", ["sklep", "lotnisko", "stacja", "szkoła"], "D", "set1"], [123, "ekspert", "rzeczownik", ["yönetmen", "uzman", "doktor", "antrenör"], "B", ["reżyser", "ekspert", "lekarz", "trener"], "B", "set1"], [124, "diagnoza", "rzeczownik", ["ziyaret, muayene", "vitamin", "diyet", "teşhis, tanı"], "D", ["wizyta", "diagnoza", "witamina", "dieta"], "B", "set1"], [125, "odkrywać", "czasownik", ["keşfetmek", "kazanmak, elde etmek", "dinlenmek", "teklif etmek"], "A", ["zdobywać", "odpoczywać", "oferować", "odkrywać"], "D", "set1"], [126, "wycieczka", "rzeczownik", ["tatil", "gezi", "tarife", "havayolu"], "B", ["wycieczka", "wakacje", "rozkład", "linia lotnicza"], "A", "set1"], [127, "sprawdzić", "czasownik", ["yürüyüş yapmak", "iyileştirmek", "kontrol etmek", "yürütmek"], "C", ["sprawdzić", "spacerować", "poprawić", "prowadzić"], "A", "set1"], [128, "choroba", "rzeczownik", ["hastalık", "ateş", "organizma, vücut", "muayene, inceleme"], "A", ["gorączka", "organizm", "choroba", "badanie"], "C", "set1"], [129, "fizyczny", "przymiotnik", ["turistik", "yapay", "egzotik", "fiziksel"], "D", ["turystyczny", "sztuczny", "egzotyczny", "fizyczny"], "D", "set1"], [130, "muzyk", "rzeczownik", ["kullanıcı", "öğrenci", "yönetmen", "müzisyen"], "D", ["użytkownik", "muzyk", "uczeń", "reżyser"], "B", "set1"], [131, "porządek", "rzeczownik", ["düzen", "düşüş", "vergi", "öğün"], "A", ["porównanie", "podatek", "posiłek", "porządek"], "D", "set1"], [132, "czas", "rzeczownik", ["fiyat", "zaman", "çorba", "kış"], "B", ["cena", "czas", "zupa", "zima"], "B", "set1"], [133, "choć", "spójnik", ["meğer ki/-medikçe", "mi, yoksa", "bu yüzden, o hâlde", "-e rağmen"], "D", ["chyba że", "choć", "czy", "więc"], "B", "set1"], [134, "internet", "rzeczownik", ["internet", "bilgisayar", "telefon", "teknoloji"], "A", ["internet", "komputer", "telefon", "technologia"], "A", "set1"], [135, "literatura", "rzeczownik", ["resim, tablo", "konser", "edebiyat", "kültür"], "C", ["temperatura", "koncert", "literatura", "kultura"], "C", "set1"], [136, "niepotrzebny", "przymiotnik", ["unutulmaz", "kapalı, çalışmıyor", "gereksiz", "açık hava, dış"], "C", ["niezapomniany", "nieczynny", "niepotrzebny", "zewnętrzny"], "C", "set1"], [137, "witamina", "rzeczownik", ["ziyaret, muayene", "vitamin", "mineral", "teşhis, tanı"], "B", ["wizyta", "minerał", "diagnoza", "witamina"], "D", "set1"], [138, "odjeżdżać", "czasownik", ["kullanmak, yararlanmak", "kalkmak, hareket etmek", "gezmek", "gelmek, varmak"], "B", ["odjeżdżać", "korzystać", "zwiedzać", "przyjeżdżać"], "A", "set1"], [139, "wykształcenie", "rzeczownik", ["ödev, görev", "ders, konferans", "not, değerlendirme", "eğitim"], "D", ["zadanie", "wykład", "przedstawienie", "wykształcenie"], "D", "set1"], [140, "region", "rzeczownik", ["bölge", "belediye", "şehir", "kasaba"], "A", ["gmina", "miasto", "miasteczko", "region"], "D", "set1"], [141, "schronisko", "rzeczownik", ["havalimanı", "ayırma tesisi", "barınak", "filarmoni"], "C", ["schronisko", "lotnisko", "sortownia", "filharmonia"], "A", "set1"], [142, "pełnoletni", "przymiotnik", ["havacılık", "reşit", "açık hava, dış", "bir sonraki"], "B", ["lotniczy", "zewnętrzny", "pełnoletni", "kolejny"], "C", "set1"], [143, "boleć", "czasownik", ["tavsiye etmek", "uçmak", "ağrımak", "düşünmek"], "C", ["boleć", "polecać", "lecieć", "pomyśleć"], "A", "set1"], [144, "około", "przyimek", ["üzerinde, -den fazla", "etrafında", "yanında", "yaklaşık, civarında"], "D", ["ponad", "wokół", "koło", "około"], "D", "set1"], [145, "jakość", "rzeczownik", ["çöp kutusu", "ödeme", "kalite", "maliyet"], "C", ["kosz", "jakość", "płatność", "koszt"], "B", "set1"], [146, "powietrze", "rzeczownik", ["tahmin", "sıcaklık", "hava", "hava durumu"], "C", ["powietrze", "prognoza", "temperatura", "pogoda"], "A", "set1"], [147, "wychodzić", "czasownik", ["kontrol etmek", "yürütmek", "çıkmak", "kapatmak"], "C", ["wychodzić", "sprawdzić", "prowadzić", "wyłączyć"], "A", "set1"], [148, "dojechać", "czasownik", ["gitmek (araçla)", "dinlemek", "yürüyerek ulaşmak", "ulaşmak"], "D", ["jechać", "słuchać", "dojechać", "odjeżdżać"], "C", "set1"], [149, "ogłoszenie", "rzeczownik", ["soğuma", "gecikme, rötar", "ilan", "koltuk"], "C", ["ochłodzenie", "ogłoszenie", "opóźnienie", "siedzenie"], "B", "set1"], [150, "chory", "przymiotnik", ["hasta", "dijital", "yeni", "deri"], "A", ["cyfrowy", "nowy", "chory", "skórzany"], "C", "set1"], [151, "pamiętać", "czasownik", ["oturmak, yaşamak", "uçmak (sık sık)", "hatırlamak", "şarkı söylemek"], "C", ["mieszkać", "pamiętać", "latać", "śpiewać"], "B", "set1"], [152, "paragon", "rzeczownik", ["yarı maraton", "fiş, makbuz", "ücret", "yüzde"], "B", ["półmaraton", "opłata", "paragon", "procent"], "C", "set1"], [153, "wyjazd", "rzeczownik", ["gezi, yolculuk", "konaklama, kalış", "güverte", "bagaj"], "A", ["pobyt", "pokład", "bagaż", "wyjazd"], "D", "set1"], [154, "oferta", "rzeczownik", ["şirket, firma", "teklif", "işe alım", "iş"], "B", ["firma", "oferta", "rekrutacja", "praca"], "B", "set1"], [155, "zdrowie", "rzeczownik", ["muayene, inceleme", "diyet", "sağlık", "titreme"], "C", ["badanie", "dieta", "zdrowie", "dreszcze"], "C", "set1"], [156, "droga", "rzeczownik", ["program", "seyahat, yolculuk", "yol", "tahmin"], "C", ["program", "podróż", "droga", "prognoza"], "C", "set1"], [157, "wymagać", "czasownik", ["çekmek", "satışa çıkarmak", "dikkat etmek", "gerektirmek"], "D", ["przyciągać", "wystawiać", "uważać", "wymagać"], "D", "set1"], [158, "wspólny", "przymiotnik", ["ortak", "serbest, boş", "yardımcı, faydalı", "ciddi"], "A", ["wspólny", "wolny", "pomocny", "poważny"], "A", "set1"], [159, "przyjeżdżać", "czasownik", ["kalkmak, hareket etmek", "gelmek, varmak", "kabul etmek", "özür dilemek"], "B", ["odjeżdżać", "przyjeżdżać", "przyjmować", "przepraszać"], "B", "set1"], [160, "możliwość", "rzeczownik", ["yerleşim yeri", "gıda", "ödeme", "olanak, imkân"], "D", ["miejscowość", "żywność", "możliwość", "płatność"], "C", "set1"], [161, "sortować", "czasownik", ["pişirmek", "ayırmak", "teklif etmek", "mal olmak"], "B", ["gotować", "oferować", "sortować", "kosztować"], "C", "set1"], [162, "znowu", "przysłówek", ["yine, tekrar", "her zaman", "ağırlıklı olarak", "dikkatlice"], "A", ["zawsze", "głównie", "uważnie", "znowu"], "D", "set1"], [163, "często", "przysłówek", ["daha önce", "hâlâ, daha", "sıcak (biçimde)", "sık sık"], "D", ["często", "wcześniej", "jeszcze", "ciepło"], "A", "set1"], [164, "aktywny", "przymiotnik", ["aktif", "verimli, etkili", "sebzeli", "pratik"], "A", ["efektywny", "aktywny", "warzywny", "praktyczny"], "B", "set1"], [165, "ciepły", "przymiotnik", ["sıcak, ılık", "ilginç", "akıcı, uzman", "taze"], "A", ["ciekawy", "biegły", "świeży", "ciepły"], "D", "set1"], [166, "lotnisko", "rzeczownik", ["barınak", "havalimanı", "spor salonu", "ayırma tesisi"], "B", ["lotnisko", "schronisko", "siłownia", "sortownia"], "A", "set1"], [167, "oceniać", "czasownik", ["yerine getirmek", "değerlendirmek", "yapmak (ödev)", "beklemek"], "B", ["spełniać", "oceniać", "odrabiać", "czekać"], "B", "set1"], [168, "ciekawy", "przymiotnik", ["ilginç", "sıcak, ılık", "daha büyük", "dijital"], "A", ["ciepły", "większy", "cyfrowy", "ciekawy"], "D", "set1"], [169, "uczyć się", "czasownik", ["öğretmek", "sevinmek", "kârlı olmak", "öğrenmek"], "D", ["uczyć się", "uczyć", "cieszyć się", "opłacać się"], "A", "set1"], [170, "zapomnieć", "czasownik", ["düşünmek", "sipariş etmek", "yerine geçmek", "unutmak"], "D", ["zatrudnić", "zapomnieć", "zamawiać", "zastąpić"], "B", "set1"], [171, "rynek", "rzeczownik", ["pazar, piyasa", "patates kızartması", "tür", "koşul, şart"], "A", ["frytki", "gatunek", "rynek", "warunek"], "C", "set1"], [172, "a", "spójnik", ["-e kadar, ta ki", "-mek/-mak için", "ne\\... ne de", "ve, ama"], "D", ["aż", "aby", "ani", "a"], "D", "set1"], [173, "kryterium", "rzeczownik", ["bilgisayar", "kriter, ölçüt", "algoritma", "patates kızartması"], "B", ["kryterium", "komputer", "algorytm", "literatura"], "A", "set1"], [174, "więc", "spójnik", ["ama, fakat", "bu yüzden, o hâlde", "ne zaman, -dığında", "ayrıca, de/da"], "B", ["lecz", "więc", "kiedy", "również"], "B", "set1"], [175, "ponieważ", "spójnik", ["-den/-dan (kıyas)", "-e rağmen", "çünkü, -dığı için", "ayrıca, de/da"], "C", ["natomiast", "ponieważ", "chociaż", "również"], "B", "set1"], [176, "kolacja", "rzeczownik", ["yemek (tabak)", "kahvaltı", "öğle yemeği", "akşam yemeği"], "D", ["danie", "śniadanie", "kolacja", "obiad"], "C", "set1"], [177, "miasteczko", "rzeczownik", ["kasaba", "şehir", "yerleşim yeri", "belediye"], "A", ["miasteczko", "miasto", "miejscowość", "gmina"], "A", "set1"], [178, "prezentować", "czasownik", ["sunmak, sergilemek", "kazanmak, elde etmek", "ihtiyaç duymak", "tadilat yapmak"], "A", ["zdobywać", "potrzebować", "remontować", "prezentować"], "D", "set1"], [179, "biuro", "rzeczownik", ["sinema", "kütüphane", "muayenehane", "ofis, büro"], "D", ["kino", "biblioteka", "biuro", "gabinet"], "C", "set1"], [180, "syn", "rzeczownik", ["aile", "oğul", "anne", "kız (evlat)"], "B", ["rodzina", "mama", "córka", "syn"], "D", "set1"], [181, "nigdy", "przysłówek", ["aniden, birdenbire", "yalnızca, sadece", "asla, hiçbir zaman", "ağırlıklı olarak"], "C", ["nigdy", "nagle", "jedynie", "głównie"], "A", "set1"], [182, "spóźniać się", "czasownik", ["geç kalmak", "kârlı olmak", "uygun olmak", "ısınmak"], "A", ["opłacać się", "spóźniać się", "nadawać się", "rozgrzewać się"], "B", "set1"], [183, "jednak", "spójnik", ["eğer, şayet", "ancak, yine de", "eğer", "ne zaman, -dığında"], "B", ["jeżeli", "jeśli", "jednak", "kiedy"], "C", "set1"], [184, "od", "przyimek", ["altında", "-e/-a, -e kadar", "-den/-dan", "sonra, boyunca"], "C", ["pod", "do", "po", "od"], "D", "set1"], [185, "kiedy", "spójnik", ["eğer, -seydi", "bu yüzden, o hâlde", "diye, -mek için", "ne zaman, -dığında"], "D", ["gdyby", "więc", "kiedy", "żeby"], "C", "set1"], [186, "kurtka", "rzeczownik", ["kıyafet, giysi", "etek", "ceket, mont", "giyim"], "C", ["kurtka", "ubranie", "spódnica", "odzież"], "A", "set1"], [187, "wiedza", "rzeczownik", ["ziyaret, muayene", "bilgi", "ilkbahar", "hayvan"], "B", ["wizyta", "wiedza", "wiosna", "zwierzę"], "B", "set1"], [188, "mięso", "rzeczownik", ["meyve suyu", "mantı benzeri hamur", "ekmek", "et"], "D", ["sok", "pierogi", "chleb", "mięso"], "D", "set1"], [189, "porównanie", "rzeczownik", ["karşılaştırma", "kıyafet, giysi", "esneme", "kahvaltı"], "A", ["porównanie", "ubranie", "rozciąganie", "śniadanie"], "A", "set1"], [190, "uruchamiać", "czasownik", ["dinlemek", "başlatmak", "ulaşmak", "sipariş etmek"], "B", ["przyciągać", "uruchamiać", "trafiać", "zamawiać"], "B", "set1"], [191, "świeży", "przymiotnik", ["daha büyük", "daha ucuz", "taze", "sıcak, ılık"], "C", ["większy", "tańszy", "świeży", "ciepły"], "C", "set1"], [192, "warzywo", "rzeczownik", ["gıda", "elmalı turta", "şarküteri, salam", "sebze"], "D", ["żywność", "warzywo", "szarlotka", "wędlina"], "B", "set1"], [193, "rodzina", "rzeczownik", ["aile", "kız (evlat)", "anne", "oğul"], "A", ["córka", "mama", "wędlina", "rodzina"], "D", "set1"], [194, "renowacja", "rzeczownik", ["restorasyon", "tadilat", "onarım", "servis, tamir"], "A", ["renowacja", "rekrutacja", "naprawa", "serwis"], "A", "set1"], [195, "imieniny", "rzeczownik", ["tansiyon, basınç", "isim günü", "antrenman", "ay"], "B", ["ciśnienie", "trening", "imieniny", "miesiąc"], "C", "set1"], [196, "cieszyć się", "czasownik", ["sevinmek", "öğrenmek", "kârlı olmak", "geç kalmak"], "A", ["uczyć się", "opłacać się", "spóźniać się", "cieszyć się"], "D", "set1"], [197, "chleb", "rzeczownik", ["pastırma", "et", "ekmek", "tatlılar, şekerlemeler"], "C", ["chleb", "boczek", "mięso", "słodycze"], "A", "set1"], [198, "trener", "rzeczownik", ["yönetmen", "kuaför", "uzman", "antrenör"], "D", ["reżyser", "fryzjer", "trener", "ekspert"], "C", "set1"], [199, "jechać", "czasownik", ["kalkmak, hareket etmek", "gitmek (araçla)", "dinlemek", "ulaşmak"], "B", ["odjeżdżać", "jechać", "słuchać", "dojechać"], "B", "set1"], [200, "kod kreskowy", "rzeczownik", ["kondisyon", "havalimanı", "barkod", "titreme"], "C", ["komunikatywność", "lotnisko", "dreszcze", "kod kreskowy"], "D", "set1"], [201, "gotówka", "rzeczownik", ["ücret", "vergi", "sermaye", "nakit"], "D", ["gotówka", "opłata", "podatek", "kapitał"], "A", "set1"], [202, "wiać", "czasownik", ["sipariş etmek", "esmek", "çalmak/oynamak (müzik)", "geçmek (sınav)"], "B", ["zamawiać", "wiać", "grać", "zdać"], "B", "set1"], [203, "grać", "czasownik", ["kullanmak, yararlanmak", "esmek", "çalmak/oynamak (müzik)", "geçmek (sınav)"], "C", ["korzystać", "wiać", "grać", "zdać"], "C", "set1"], [204, "pociąg", "rzeczownik", ["taksi", "bisiklet", "uçak", "tren"], "D", ["pociąg", "taksówka", "rower", "samolot"], "A", "set1"], [205, "półmaraton", "rzeczownik", ["yarı maraton", "sopalar (yürüyüş)", "spor", "maraton"], "A", ["programista", "półmaraton", "sport", "maraton"], "B", "set1"], [206, "transport", "rzeczownik", ["konaklama, kalış", "seyahat, yolculuk", "ulaşım", "otostop"], "C", ["sortownia", "podróż", "autostop", "transport"], "D", "set1"], [207, "określony", "przymiotnik", ["belirlenmiş", "belirli, somut", "krem rengi", "gecikmeli"], "A", ["konkretny", "kremowy", "określony", "opóźniony"], "C", "set1"], [208, "lecz", "spójnik", ["mi, yoksa", "ama, fakat", "bu yüzden, o hâlde", "yani"], "B", ["czy", "więc", "czyli", "lecz"], "D", "set1"], [209, "pokład", "rzeczownik", ["tarife", "seyahat, yolculuk", "konaklama, kalış", "güverte"], "D", ["pokład", "rozkład", "podróż", "pobyt"], "A", "set1"], [210, "naprawić", "czasownik", ["iyileştirmek", "tamir etmek", "kontrol etmek", "sipariş etmek"], "B", ["naprawić", "poprawić", "sprawdzić", "zamawiać"], "A", "set1"], [211, "słońce", "rzeczownik", ["soğuma", "yağmur", "güneş", "tahmin"], "C", ["ochłodzenie", "słońce", "deszcz", "prognoza"], "B", "set1"], [212, "kurs", "rzeczownik", ["ceket, mont", "çöp kutusu", "kültür", "kurs"], "D", ["kurtka", "kosz", "kurs", "kultura"], "C", "set1"], [213, "podatek", "rzeczownik", ["vergi", "düşüş", "ücret", "ödeme"], "A", ["spadek", "opłata", "podatek", "płatność"], "C", "set1"], [214, "autobus", "rzeczownik", ["bisiklet", "otobüs", "taksi", "uçak"], "B", ["rower", "taksówka", "samolot", "autobus"], "D", "set1"], [215, "pracownik", "rzeczownik", ["çalışan", "işveren", "kullanıcı", "hayran, meraklı"], "A", ["pracodawca", "pracownik", "użytkownik", "miłośnik"], "B", "set1"], [216, "muzyka", "rzeczownik", ["gösterim", "sergi", "müzik", "kültür"], "C", ["muzyka", "pokaz", "wystawa", "kultura"], "A", "set1"], [217, "rejestracja", "rzeczownik", ["kampanya, eylem", "sunum", "restoran", "kayıt, tescil"], "D", ["akcja", "prezentacja", "rejestracja", "restauracja"], "C", "set1"], [218, "lecieć", "czasownik", ["istemek", "tedavi etmek", "uçmak", "zorunda olmak"], "C", ["chcieć", "leczyć", "musieć", "lecieć"], "D", "set1"], [219, "zrezygnować", "czasownik", ["antrenman yapmak", "vazgeçmek", "sunmak, sergilemek", "kabul etmek"], "B", ["trenować", "prezentować", "zrezygnować", "przyjmować"], "C", "set1"], [220, "ściana", "rzeczownik", ["dolap", "mutfak", "bank, sıra", "duvar"], "D", ["szafa", "ściana", "kuchnia", "ławka"], "B", "set1"], [221, "prezentacja", "rzeczownik", ["sunum", "hediye", "kayıt, tescil", "işe alım"], "A", ["prezent", "rejestracja", "rekrutacja", "prezentacja"], "D", "set1"], [222, "umiejętność", "rzeczownik", ["iletişim becerisi", "beceri, yetenek", "ödeme", "yerleşim yeri"], "B", ["umiejętność", "komunikatywność", "płatność", "miejscowość"], "A", "set1"], [223, "jeść", "czasownik", ["yürüyerek ulaşmak", "gitmek (araçla)", "yemek yemek", "oturmak, yaşamak"], "C", ["dojść", "jeść", "jechać", "mieszkać"], "B", "set1"], [224, "życie", "rzeczownik", ["hayat, yaşam", "gün", "gezi", "yemek (tabak)"], "A", ["dzień", "wycieczka", "danie", "życie"], "D", "set1"], [225, "przyciągać", "czasownik", ["çekmek", "kabul etmek", "gelmek, varmak", "hazırlamak"], "A", ["przyciągać", "przyjmować", "przyjeżdżać", "przygotowywać"], "A", "set1"], [226, "badanie", "rzeczownik", ["koşullar, şartlar", "diyet", "muayene, inceleme", "sağlık"], "C", ["badanie", "warunki", "dieta", "zdrowie"], "A", "set1"], [227, "pływać", "czasownik", ["kullanmak", "almak (ilaç)", "yüzmek", "ödemek"], "C", ["używać", "pływać", "zażywać", "płacić"], "B", "set1"], [228, "plan", "rzeczownik", ["ödeme", "ücret", "yaz", "plan"], "D", ["płatność", "opłata", "lato", "plan"], "D", "set1"], [229, "pić", "czasownik", ["satın almak", "içmek", "ödemek", "giymek, taşımak"], "B", ["kupić", "płacić", "pić", "nosić"], "C", "set1"], [230, "język", "rzeczownik", ["dil", "yabancı dil", "müzisyen", "göl"], "A", ["język obcy", "język", "muzyk", "jezioro"], "B", "set1"], [231, "pod", "przyimek", ["sonra, boyunca", "-den/-dan", "üzerinde, -den fazla", "altında"], "D", ["po", "od", "ponad", "pod"], "D", "set1"], [232, "bagaż", "rzeczownik", ["gezi, yolculuk", "bagaj", "bilet", "tatil"], "B", ["wyjazd", "bilet", "bagaż", "wakacje"], "C", "set1"], [233, "zwierzę", "rzeczownik", ["hava", "sağlık", "bilgi", "hayvan"], "D", ["zwierzę", "powietrze", "zdrowie", "wiedza"], "A", "set1"], [234, "ochłodzenie", "rzeczownik", ["güneş", "hava", "soğuma", "hava durumu"], "C", ["doświadczenie", "ochłodzenie", "powietrze", "pogoda"], "B", "set1"], [235, "zamiast", "przyimek", ["sırasında, esnasında", "yerine", "arkasında, için", "dışında, haricinde"], "B", ["podczas", "za", "zamiast", "poza"], "C", "set1"], [236, "ciepło", "przysłówek", ["sık sık", "sıcak (biçimde)", "nihayet, sonunda", "tamamen"], "B", ["często", "wreszcie", "całkowicie", "ciepło"], "D", "set1"], [237, "platforma", "rzeczownik", ["anakart", "akıllı telefon", "platform", "uygulama"], "C", ["platforma", "płyta główna", "smartfon", "aplikacja"], "A", "set1"], [238, "według", "przyimek", ["boyunca", "için", "arasında", "-e göre"], "D", ["wzdłuż", "według", "dla", "między"], "B", "set1"], [239, "wcześniej", "przysłówek", ["giderek daha sık", "her gün", "dikkatlice", "daha önce"], "D", ["coraz częściej", "codziennie", "wcześniej", "uważnie"], "C", "set1"], [240, "na", "przyimek", ["üzerinde, -e/-a", "arkasında, için", "için", "dışında, haricinde"], "A", ["za", "dla", "poza", "na"], "D", "set1"], [241, "sklep", "rzeczownik", ["ders, konferans", "mağaza, dükkan", "salon", "okul"], "B", ["wykład", "sklep", "salon", "szkoła"], "B", "set1"], [242, "CV", "rzeczownik", ["iş", "işe alım", "kurum", "özgeçmiş"], "D", ["CV", "praca", "rekrutacja", "instytucja"], "A", "set1"], [243, "skanować", "czasownik", ["tadı olmak", "taramak", "antrenman yapmak", "ayırmak"], "B", ["skanować", "smakować", "trenować", "sortować"], "A", "set1"], [244, "gdyby", "spójnik", ["zaman, -dığında", "eğer, -seydi", "-mek/-mak için", "diye, -mek için"], "B", ["kiedy", "aby", "gdyby", "żeby"], "C", "set1"], [245, "kremowy", "przymiotnik", ["krem rengi", "ev (ödevi)", "sağlıklı", "dijital"], "A", ["domowy", "zdrowy", "kremowy", "cyfrowy"], "C", "set1"], [246, "lotniczy", "przymiotnik", ["elektronik", "kapalı, çalışmıyor", "havacılık", "dönüş"], "C", ["elektroniczny", "nieczynny", "powrotny", "lotniczy"], "D", "set1"], [247, "opóźniony", "przymiotnik", ["gecikmeli", "yıpranmış, hasarlı", "favori, en sevilen", "yardımcı, faydalı"], "A", ["zniszczony", "ulubiony", "opóźniony", "pomocny"], "C", "set1"], [248, "analityk", "rzeczownik", ["elektrikçi", "analist", "mimar", "tesisatçı"], "B", ["elektryk", "analityk", "architekt", "hydraulik"], "B", "set1"], [249, "koszt", "rzeczownik", ["ücret", "sermaye", "maliyet", "yüzde"], "C", ["opłata", "kapitał", "procent", "koszt"], "D", "set1"], [250, "boczek", "rzeczownik", ["tatlılar, şekerlemeler", "meyve suyu", "cheesecake", "pastırma"], "D", ["boczek", "słodycze", "sok", "sernik"], "A", "set1"], [251, "powrotny", "przymiotnik", ["dönüş", "ciddi", "yardımcı, faydalı", "belirli, somut"], "A", ["powrotny", "poważny", "pomocny", "konkretny"], "A", "set1"], [252, "minerał", "rzeczownik", ["vitamin", "kas", "diyet", "mineral"], "D", ["witamina", "mięsień", "dieta", "minerał"], "D", "set1"], [253, "dojść", "czasownik", ["kazanmak, elde etmek", "ulaşmak", "yürüyerek ulaşmak", "yemek yemek"], "C", ["dojść", "zdobywać", "dojechać", "jeść"], "A", "set1"], [254, "spacer", "rzeczownik", ["yürüyüş", "spor", "maraton", "yarı maraton"], "A", ["sport", "spacer", "maraton", "półmaraton"], "B", "set1"], [255, "padać", "czasownik", ["geçmek (sınav)", "vermek, iade etmek", "yağmak", "izlemek, seyretmek"], "C", ["zdać", "oddać", "padać", "oglądać"], "C", "set1"], [256, "wynajmować", "czasownik", ["kabul etmek", "vazgeçmek", "kiralamak", "antrenman yapmak"], "C", ["przyjmować", "wynajmować", "zrezygnować", "trenować"], "B", "set1"], [257, "zawody", "rzeczownik", ["kondisyon", "maraton", "yürüyüş", "yarışma"], "D", ["kondycja", "maraton", "zawody", "spacer"], "C", "set1"], [258, "jajecznica", "rzeczownik", ["cheesecake", "tatlılar, şekerlemeler", "sahanda yumurta", "pastırma"], "C", ["technologia", "słodycze", "boczek", "jajecznica"], "D", "set1"], [259, "przy", "przyimek", ["yanında, -de/-da", "önünde, -den önce", "aracılığıyla/boyunca", "dışında, haricinde"], "A", ["przed", "przy", "przez", "poza"], "B", "set1"], [260, "móc", "czasownik", ["reddetmek", "-ebilmek", "içmek", "ağrımak"], "B", ["odmówić", "pić", "boleć", "móc"], "D", "set1"], [261, "bramkarz", "rzeczownik", ["voleybolcu", "doktor", "programcı", "kaleci"], "D", ["bramkarz", "siatkarz", "lekarz", "programista"], "A", "set1"], [262, "procent", "rzeczownik", ["yüzde", "abonelik", "fiyat", "fiş, makbuz"], "A", ["abonament", "procent", "cena", "paragon"], "B", "set1"], [263, "córka", "rzeczownik", ["trafik sıkışıklığı", "kız (evlat)", "anne", "aile"], "B", ["korki", "mama", "córka", "rodzina"], "C", "set1"], [264, "komputer", "rzeczownik", ["akıllı telefon", "telefon", "internet", "bilgisayar"], "D", ["smartfon", "telefon", "internet", "komputer"], "D", "set1"], [265, "suplement", "rzeczownik", ["tansiyon, basınç", "kas", "sakatlık", "takviye"], "D", ["ciśnienie", "suplement", "mięsień", "kontuzja"], "B", "set1"], [266, "telefon", "rzeczownik", ["telefon", "akıllı telefon", "teknoloji", "internet"], "A", ["telefon", "smartfon", "technologia", "internet"], "A", "set1"], [267, "przed", "przyimek", ["aracılığıyla/boyunca", "önünde, -den önce", "yanında, -de/-da", "altında"], "B", ["przez", "przy", "pod", "przed"], "D", "set1"], [268, "wybierać", "czasownik", ["toplamak", "açmak", "seçmek", "koşmak"], "C", ["zbierać", "otwierać", "wybierać", "biegać"], "C", "set1"], [269, "gmina", "rzeczownik", ["yerleşim yeri", "belediye", "bölge", "şehir"], "B", ["gmina", "miejscowość", "region", "miasto"], "A", "set1"], [270, "dodatkowo", "przysłówek", ["ek olarak, ayrıca", "yoğun bir şekilde", "hızlı, çabuk", "tamamen"], "A", ["intensywnie", "szybko", "dodatkowo", "całkowicie"], "C", "set1"], [271, "recykling", "rzeczownik", ["konteyner, kap", "konteyner", "geri dönüşüm", "atık"], "C", ["pojemnik", "recykling", "kontener", "renowacja"], "B", "set1"], [272, "żeby", "spójnik", ["ne zaman, -dığında", "-mek/-mak için", "ki, -dığını", "diye, -mek için"], "D", ["kiedy", "aby", "że", "żeby"], "D", "set1"], [273, "skakać", "czasownik", ["zıplamak", "taramak", "beklemek", "kaçınmak"], "A", ["skanować", "skakać", "czekać", "unikać"], "B", "set1"], [274, "tłusty", "przymiotnik", ["temiz", "yağlı", "turistik", "daha ucuz"], "B", ["tłusty", "czysty", "turystyczny", "tańszy"], "A", "set1"], [275, "używany", "przymiotnik", ["karakteristik, tipik", "ikinci el/kullanılan", "deri", "sebzeli"], "B", ["używany", "charakterystyczny", "skórzany", "warzywny"], "A", "set1"], [276, "spóźnienie", "rzeczownik", ["tansiyon, basınç", "istihdam", "gecikme", "koltuk"], "C", ["spóźnienie", "ciśnienie", "zatrudnienie", "siedzenie"], "A", "set1"], [277, "chcieć", "czasownik", ["istemek", "uçmak", "zorunda olmak", "koşmak"], "A", ["lecieć", "musieć", "chcieć", "biegać"], "C", "set1"], [278, "konkretny", "przymiotnik", ["ücretsiz, bedava", "belirli, somut", "dönüş", "belirlenmiş"], "B", ["bezpłatny", "powrotny", "określony", "konkretny"], "D", "set1"], [279, "całkowicie", "przysłówek", ["ağırlıklı olarak", "nihayet, sonunda", "tamamen", "her gün"], "C", ["głównie", "wreszcie", "codziennie", "całkowicie"], "D", "set1"], [280, "postanowić", "czasownik", ["iyileştirmek", "taramak", "reddetmek", "karar vermek"], "D", ["postanowić", "poprawić", "skanować", "proponować"], "A", "set1"], [281, "spadek", "rzeczownik", ["düşüş", "vergi", "satış", "toplam"], "A", ["podatek", "spadek", "sprzedaż", "suma"], "B", "set1"], [282, "lekarz", "rzeczownik", ["voleybolcu", "kaleci", "elektrikçi", "doktor"], "D", ["siatkarz", "bramkarz", "lekarz", "elektryk"], "C", "set1"], [283, "większy", "przymiotnik", ["daha büyük", "sıcak, ılık", "ilginç", "taze"], "A", ["ciepły", "większy", "ciekawy", "świeży"], "B", "set1"], [284, "miesiąc", "rzeczownik", ["hafta", "ay", "gün", "yıl"], "B", ["tydzień", "dzień", "miesiąc", "rok"], "C", "set1"], [285, "podczas", "przyimek", ["dışında, haricinde", "altında", "sırasında, esnasında", "üzerinde, -den fazla"], "C", ["poza", "zamiast", "ponad", "podczas"], "D", "set1"], [286, "w", "przyimek", ["-e/-a, -e kadar", "arasında", "etrafında", "-de/-da, içinde"], "D", ["do", "w", "wśród", "wokół"], "B", "set1"], [287, "suma", "rzeczownik", ["maliyet", "fiyat", "toplam", "düşüş"], "C", ["koszt", "cena", "suma", "spadek"], "C", "set1"], [288, "mieszkaniec", "rzeczownik", ["hayran, meraklı", "programcı", "kullanıcı", "sakin, oturan"], "D", ["miłośnik", "programista", "mieszkaniec", "użytkownik"], "C", "set1"], [289, "szarlotka", "rzeczownik", ["mayalı pasta", "tatlılar, şekerlemeler", "elmalı turta", "meyve suyu"], "C", ["drożdżówka", "słodycze", "sok", "szarlotka"], "D", "set1"], [290, "sprzedać", "czasownik", ["satmak", "şarkı söylemek", "denemek", "yerine getirmek"], "A", ["sprzedać", "śpiewać", "spróbować", "spełniać"], "A", "set1"], [291, "producent", "rzeczownik", ["mezun", "işveren", "üretici", "çalışan"], "C", ["absolwent", "producent", "pracodawca", "pracownik"], "B", "set1"], [292, "jeśli", "spójnik", ["yani", "ancak, yine de", "eğer", "ne\\... ne de"], "C", ["czyli", "jednak", "ani", "jeśli"], "D", "set1"], [293, "wykład", "rzeczownik", ["üniversite eğitimi", "ders, konferans", "eğitim", "sınıf"], "B", ["wykład", "studia", "wykształcenie", "klasa"], "A", "set1"], [294, "żywność", "rzeczownik", ["sebze", "şarküteri, salam", "gıda", "sahanda yumurta"], "C", ["warzywo", "żywność", "wędlina", "jajecznica"], "B", "set1"], [295, "marsz", "rzeczownik", ["maraton", "yürüyüş", "yarı maraton", "spor"], "B", ["maraton", "półmaraton", "marsz", "sport"], "C", "set1"], [296, "wreszcie", "przysłówek", ["giderek daha sık", "daha önce", "nihayet, sonunda", "hâlâ, daha"], "C", ["coraz częściej", "wcześniej", "jeszcze", "wreszcie"], "D", "set1"], [297, "ale", "spójnik", ["veya, ya da", "-e kadar, ta ki", "-mek/-mak için", "ama, fakat"], "D", ["albo", "aż", "ale", "aby"], "C", "set1"], [298, "produkt", "rzeczownik", ["ürün", "üretim", "üretici", "yüzde"], "A", ["produkcja", "produkt", "producent", "procent"], "B", "set1"], [299, "jedynie", "przysłówek", ["ağırlıklı olarak", "dikkatlice", "hâlâ, daha", "yalnızca, sadece"], "D", ["głównie", "jedynie", "uważnie", "jeszcze"], "B", "set1"], [300, "wystawa", "rzeczownik", ["festival", "sergi", "gösteri, oyun", "gösteri, tiyatro oyunu"], "B", ["wystawa", "festiwal", "spektakl", "przedstawienie"], "A", "set1"], [301, "drożdżówka", "rzeczownik", ["mayalı pasta", "elmalı turta", "pastırma", "mantı benzeri hamur"], "A", ["drożdżówka", "szarlotka", "rozgrzewka", "pierogi"], "A", "set1"], [302, "finansowy", "przymiotnik", ["daha ucuz", "yoğun", "yeni", "finansal"], "D", ["tańszy", "intensywny", "finansowy", "nowy"], "C", "set1"], [303, "instytucja", "rzeczownik", ["kurum", "işe alım", "organizasyon", "motivasyon mektubu"], "A", ["rekrutacja", "organizacja", "list motywacyjny", "instytucja"], "D", "set1"], [304, "kontuzja", "rzeczownik", ["teşhis, tanı", "organizma, vücut", "sakatlık", "ateş"], "C", ["kontuzja", "diagnoza", "organizm", "gorączka"], "A", "set1"], [305, "ponad", "przyimek", ["sırasında, esnasında", "üzerinde, -den fazla", "dışında, haricinde", "altında"], "B", ["podczas", "ponad", "poza", "pod"], "B", "set1"], [306, "spełniać", "czasownik", ["satışa çıkarmak", "şarkı söylemek", "değerlendirmek", "yerine getirmek"], "D", ["spełniać", "wystawiać", "śpiewać", "oceniać"], "A", "set1"], [307, "karta", "rzeczownik", ["kart", "sanatçı", "teklif", "sermaye"], "A", ["artysta", "karta", "oferta", "kapitał"], "B", "set1"], [308, "rozciąganie", "rzeczownik", ["koşu", "ısınma", "esneme", "antrenman"], "C", ["bieganie", "rozgrzewka", "ochłodzenie", "rozciąganie"], "D", "set1"], [309, "ekran", "rzeczownik", ["internet", "ekran", "program", "telefon"], "B", ["internet", "program", "ekran", "telefon"], "C", "set1"], [310, "ćwiczyć", "czasownik", ["oluşturmak, yaratmak", "öğretmek", "açmak", "egzersiz yapmak"], "D", ["tworzyć", "uczyć", "włączyć", "ćwiczyć"], "D", "set1"], [311, "blisko", "przyimek", ["yakın", "yanında", "yaklaşık, civarında", "etrafında"], "A", ["dzięki", "około", "blisko", "wokół"], "C", "set1"], [312, "aktor", "rzeczownik", ["hayran, meraklı", "besteci", "aktör, oyuncu", "yazar"], "C", ["miłośnik", "kompozytor", "aktor", "autor"], "C", "set1"], [313, "rekrutacja", "rzeczownik", ["organizasyon", "kurum", "işe alım", "iş"], "C", ["organizacja", "rekrutacja", "instytucja", "praca"], "B", "set1"], [314, "zastępować", "czasownik", ["hastalanmak", "yerine geçmek", "uyuyakalmak", "antrenman yapmak"], "B", ["zachorować", "zaspać", "trenować", "zastępować"], "D", "set1"], [315, "jezioro", "rzeczownik", ["dil", "yabancı dil", "sonbahar", "göl"], "D", ["jezioro", "język", "język obcy", "jesień"], "A", "set1"], [316, "osoba", "rzeczownik", ["kişi", "göz doktoru", "sanatçı", "hayran, meraklı"], "A", ["okulista", "artysta", "miłośnik", "osoba"], "D", "set1"], [317, "przygotowywać", "czasownik", ["kabul etmek", "hazırlamak", "pişirmek", "çekmek"], "B", ["przygotowywać", "przyjmować", "przeprowadzić się", "przyciągać"], "A", "set1"], [318, "włączyć", "czasownik", ["kapatmak", "açmak", "tedavi etmek", "egzersiz yapmak"], "B", ["wyłączyć", "włączyć", "leczyć", "ćwiczyć"], "B", "set1"], [319, "natomiast", "spójnik", ["-e rağmen", "bu yüzden", "ancak, yine de", "ise, oysa"], "D", ["natomiast", "chociaż", "dlatego", "jednak"], "A", "set1"], [320, "przepraszać", "czasownik", ["özür dilemek", "gelmek, varmak", "taşınmak", "çekmek"], "A", ["przyjeżdżać", "przepraszać", "przeprowadzić się", "przyciągać"], "B", "set1"], [321, "spódnica", "rzeczownik", ["giyim", "kıyafet, giysi", "ceket, mont", "etek"], "D", ["siłownia", "ubranie", "spódnica", "kurtka"], "C", "set1"], [322, "akademicki", "przymiotnik", ["akademik", "ilk gösterim", "pratik", "geleneksel"], "A", ["premierowy", "praktyczny", "tradycyjny", "akademicki"], "D", "set1"], [323, "pomyśleć", "czasownik", ["tavsiye etmek", "düşünmek", "ağrımak", "unutmak"], "B", ["polecać", "boleć", "pomyśleć", "zapomnieć"], "C", "set1"], [324, "dlatego", "spójnik", ["ise, oysa", "hem\\... hem de", "veya, ya da", "bu yüzden"], "D", ["natomiast", "zarówno", "albo", "dlatego"], "D", "set1"], [325, "uczeń", "rzeczownik", ["öğrenci", "üretici", "antrenör", "müşteri"], "A", ["producent", "trener", "uczeń", "klient"], "C", "set1"], [326, "zawodowy", "przymiotnik", ["sağlıklı", "mesleki", "ev (ödevi)", "finansal"], "B", ["zawodowy", "zdrowy", "domowy", "finansowy"], "A", "set1"], [327, "odpady", "rzeczownik", ["çöp kutusu", "konteyner, kap", "konteyner", "atık"], "D", ["kosz", "odpady", "pojemnik", "kontener"], "B", "set1"], [328, "latać", "czasownik", ["yağmak", "uçmak (sık sık)", "hatırlamak", "izlemek, seyretmek"], "B", ["padać", "pamiętać", "oglądać", "latać"], "D", "set1"], [329, "klasa", "rzeczownik", ["ders, konferans", "bilim, öğrenim", "ders", "sınıf"], "D", ["klasa", "wykład", "nauka", "lekcja"], "A", "set1"], [330, "targi", "rzeczownik", ["bölge", "mantı benzeri hamur", "fuar", "koşullar, şartlar"], "C", ["region", "targi", "pierogi", "warunki"], "B", "set1"], [331, "między", "przyimek", ["arasında", "-e rağmen", "yanında, -de/-da", "sayesinde"], "A", ["mimo", "przy", "między", "dzięki"], "C", "set1"], [332, "gwarancja", "rzeczownik", ["restorasyon", "uygulama", "garanti", "restoran"], "C", ["renowacja", "aplikacja", "restauracja", "gwarancja"], "D", "set1"], [333, "gabinet", "rzeczownik", ["mağaza, dükkan", "sinema", "galeri", "muayenehane"], "D", ["gabinet", "sklep", "kino", "galeria"], "A", "set1"], [334, "rozmowa kwalifikacyjna", "rzeczownik", ["motivasyon mektubu", "iş görüşmesi", "işe alım", "organizasyon"], "B", ["list motywacyjny", "rozmowa kwalifikacyjna", "rekrutacja", "organizacja"], "B", "set1"], [335, "bezglutenowy", "przymiotnik", ["glutensiz", "ücretsiz, bedava", "bilgisayarlı", "yeni"], "A", ["bezpłatny", "komputerowy", "bezglutenowy", "przeciwgorączkowy"], "C", "set1"], [336, "nieruchomość", "rzeczownik", ["bilgi, yeterlilik", "koltuk", "gayrimenkul", "daire"], "C", ["punktualność", "siedzenie", "mieszkanie", "nieruchomość"], "D", "set1"], [337, "trening", "rzeczownik", ["antrenman", "yarı maraton", "esneme", "koşu"], "A", ["trening", "półmaraton", "rozciąganie", "bieganie"], "A", "set1"], [338, "pogoda", "rzeczownik", ["seyahat, yolculuk", "hava durumu", "hava", "tahmin"], "B", ["podróż", "pogoda", "powietrze", "prognoza"], "B", "set1"], [339, "ani", "spójnik", ["-den/-dan (kıyas)", "ve, ama", "-e kadar, ta ki", "ne\\... ne de"], "D", ["niż", "a", "aż", "ani"], "D", "set1"], [340, "koncert", "rzeczownik", ["kültür", "edebiyat", "konser", "resim, tablo"], "C", ["kultura", "literatura", "koncert", "obraz"], "C", "set1"], [341, "poza", "przyimek", ["sonra, boyunca", "üzerinde, -den fazla", "altında", "dışında, haricinde"], "D", ["poza", "po", "ponad", "pod"], "A", "set1"], [342, "fryzjer", "rzeczownik", ["yönetmen", "antrenör", "kuaför", "yolcu"], "C", ["fryzjer", "reżyser", "trener", "pasażer"], "A", "set1"], [343, "egzamin", "rzeczownik", ["sınav", "ödev, görev", "ders", "not, değerlendirme"], "A", ["zadanie", "lekcja", "egzamin", "ocena"], "C", "set1"], [344, "serwis", "rzeczownik", ["mantı benzeri hamur", "servis, tamir", "restorasyon", "onarım"], "B", ["pierogi", "renowacja", "serwis", "naprawa"], "C", "set1"], [345, "zadanie", "rzeczownik", ["eğitim", "ödev, görev", "sınav", "ders, konferans"], "B", ["wykształcenie", "zadanie", "egzamin", "wykład"], "B", "set1"], [346, "park", "rzeczownik", ["park", "opera", "sinema", "galeri"], "A", ["opera", "park", "kino", "galeria"], "B", "set1"], [347, "polecać", "czasownik", ["gitmek (araçla)", "düşünmek", "tavsiye etmek", "ağrımak"], "C", ["jechać", "pomyśleć", "boleć", "polecać"], "D", "set1"], [348, "że", "spójnik", ["diye, -mek için", "-e kadar, ta ki", "ayrıca, de/da", "ki, -dığını"], "D", ["żeby", "aż", "także", "że"], "D", "set1"], [349, "organizm", "rzeczownik", ["ateş", "organizma, vücut", "muayene, inceleme", "hastalık"], "B", ["gorączka", "badanie", "organizm", "choroba"], "C", "set1"], [350, "kondycja", "rzeczownik", ["kondisyon", "yarışma", "maraton", "sopalar (yürüyüş)"], "A", ["kondycja", "zawody", "maraton", "kontuzja"], "A", "set1"], [351, "smartfon", "rzeczownik", ["koşullar, şartlar", "platform", "akıllı telefon", "telefon"], "C", ["warunki", "smartfon", "platforma", "telefon"], "B", "set1"], [352, "sieć", "rzeczownik", ["yapay zeka", "ekran", "internet", "ağ, zincir"], "D", ["sztuczna inteligencja", "ekran", "internet", "sieć"], "D", "set1"], [353, "punktualność", "rzeczownik", ["dakiklik", "ödeme", "beceri, yetenek", "iletişim becerisi"], "A", ["płatność", "umiejętność", "komunikatywność", "punktualność"], "D", "set1"], [354, "po", "przyimek", ["altında", "sonra, boyunca", "dışında, haricinde", "-e/-a, -e kadar"], "B", ["pod", "poza", "do", "po"], "D", "set1"], [355, "leczyć", "czasownik", ["egzersiz yapmak", "açmak", "tedavi etmek", "öğretmek"], "C", ["ćwiczyć", "włączyć", "uczyć", "leczyć"], "D", "set1"], [356, "zniszczony", "przymiotnik", ["gecikmeli", "karışık", "kapalı, çalışmıyor", "yıpranmış, hasarlı"], "D", ["stacjonarny", "zmieszany", "zniszczony", "nieczynny"], "C", "set1"], [357, "mimo", "przyimek", ["-e rağmen", "-e/-a, -e kadar", "yakın", "arasında"], "A", ["mimo", "do", "blisko", "między"], "A", "set1"], [358, "niespodzianka", "rzeczownik", ["gayrimenkul", "sürpriz", "aile", "etek"], "B", ["nieruchomość", "niespodzianka", "linia lotnicza", "spódnica"], "B", "set1"], [359, "kultura", "rzeczownik", ["edebiyat", "resim, tablo", "konser", "kültür"], "D", ["literatura", "obraz", "koncert", "kultura"], "D", "set1"], [360, "nosić", "czasownik", ["yürüyerek ulaşmak", "içmek", "zorunda olmak", "giymek, taşımak"], "D", ["nosić", "dojść", "pić", "musieć"], "A", "set1"], [361, "obraz", "rzeczownik", ["gösteri, oyun", "kültür", "resim, tablo", "gösterim"], "C", ["spektakl", "kultura", "obraz", "pokaz"], "C", "set1"], [362, "lot", "rzeczownik", ["uçuş", "konaklama, kalış", "bilet", "havayolu"], "A", ["pobyt", "bilet", "lot", "linia lotnicza"], "C", "set1"], [363, "jeszcze", "przysłówek", ["nihayet, sonunda", "hâlâ, daha", "yalnızca, sadece", "özellikle"], "B", ["wreszcie", "jeszcze", "jedynie", "zwłaszcza"], "B", "set1"], [364, "oferować", "czasownik", ["ayırmak", "yürüyüş yapmak", "teklif etmek", "pişirmek"], "C", ["sortować", "oferować", "spacerować", "gotować"], "B", "set1"], [365, "kosz", "rzeczownik", ["konteyner", "çöp kutusu", "atık", "konteyner, kap"], "B", ["kontener", "kosz", "odpady", "pojemnik"], "B", "set1"], [366, "zarówno", "spójnik", ["diye, -mek için", "bu yüzden", "ayrıca, de/da", "hem\\... hem de"], "D", ["żeby", "dlatego", "zarówno", "również"], "C", "set1"], [367, "autostop", "rzeczownik", ["otostop", "seyahat, yolculuk", "ulaşım", "tatil"], "A", ["autostop", "podróż", "transport", "wakacje"], "A", "set1"], [368, "maszyna", "rzeczownik", ["yürüyüş", "müzik", "makine", "anne"], "C", ["maszyna", "marsz", "muzyka", "maraton"], "A", "set1"], [369, "ubranie", "rzeczownik", ["kıyafet, giysi", "muayene, inceleme", "giyim", "ceket, mont"], "A", ["ubranie", "badanie", "odzież", "kurtka"], "A", "set1"], [370, "organizacja", "rzeczownik", ["iş görüşmesi", "kurum", "organizasyon", "işe alım"], "C", ["rozmowa kwalifikacyjna", "organizacja", "instytucja", "rekrutacja"], "B", "set1"], [371, "zatrudnienie", "rzeczownik", ["meslek", "istihdam", "organizasyon", "işe alım"], "B", ["przedstawienie", "organizacja", "zatrudnienie", "rekrutacja"], "C", "set1"], [372, "wyprodukować", "czasownik", ["yazdırmak, basmak", "üretmek", "denemek", "seyahat etmek"], "B", ["przygotowywać", "spróbować", "podróżować", "wyprodukować"], "D", "set1"], [373, "obiad", "rzeczownik", ["öğle yemeği", "kahvaltı", "akşam yemeği", "öğün"], "A", ["obiad", "śniadanie", "kolacja", "posiłek"], "A", "set1"], [374, "uczyć", "czasownik", ["öğrenmek", "öğretmek", "tedavi etmek", "egzersiz yapmak"], "B", ["uczyć się", "leczyć", "ćwiczyć", "uczyć"], "D", "set1"], [375, "festiwal", "rzeczownik", ["sergi", "gösteri, oyun", "film", "festival"], "D", ["wystawa", "festiwal", "spektakl", "film"], "B", "set1"], [376, "zaspać", "czasownik", ["yerine geçmek", "almak (ilaç)", "geçmek (sınav)", "uyuyakalmak"], "D", ["zastąpić", "zażywać", "zaspać", "zdać"], "C", "set1"], [377, "temperatura", "rzeczownik", ["sıcaklık", "tahmin", "soğuma", "hava durumu"], "A", ["temperatura", "prognoza", "ochłodzenie", "pogoda"], "A", "set1"], [378, "opłata", "rzeczownik", ["ödeme", "vergi", "sermaye", "ücret"], "D", ["płatność", "opłata", "podatek", "kapitał"], "B", "set1"], [379, "rozkład", "rzeczownik", ["güverte", "seyahat, yolculuk", "tarife", "gezi"], "C", ["pokład", "podróż", "rozkład", "wycieczka"], "C", "set1"], [380, "korzystać", "czasownik", ["kalkmak, hareket etmek", "kullanmak, yararlanmak", "oluşturmak, yaratmak", "mal olmak"], "B", ["odjeżdżać", "tworzyć", "kosztować", "korzystać"], "D", "set1"], [381, "cena", "rzeczownik", ["yüzde", "toplam", "fiyat", "abonelik"], "C", ["cena", "procent", "suma", "abonament"], "A", "set1"], [382, "praca", "rzeczownik", ["iş", "işe alım", "şirket, firma", "organizasyon"], "A", ["rekrutacja", "praca", "firma", "organizacja"], "B", "set1"], [383, "stacjonarny", "przymiotnik", ["popüler", "geleneksel", "yapay", "sabit"], "D", ["popularny", "tradycyjny", "stacjonarny", "turystyczny"], "C", "set1"], [384, "komputerowy", "przymiotnik", ["ilk gösterim", "krem rengi", "bilgisayarlı", "ev (ödevi)"], "C", ["premierowy", "kremowy", "bezglutenowy", "komputerowy"], "D", "set1"], [385, "wiosna", "rzeczownik", ["kış", "sonbahar", "ilkbahar", "yaz"], "C", ["zima", "jesień", "lato", "wiosna"], "D", "set1"], [386, "intensywnie", "przysłówek", ["yoğun bir şekilde", "asla, hiçbir zaman", "yalnızca, sadece", "her gün"], "A", ["intensywnie", "coraz częściej", "jedynie", "codziennie"], "A", "set1"], [387, "głównie", "przysłówek", ["dikkatlice", "ağırlıklı olarak", "yalnızca, sadece", "düzenli olarak"], "B", ["uważnie", "głównie", "jedynie", "regularnie"], "B", "set1"], [388, "odzież", "rzeczownik", ["etek", "kıyafet, giysi", "ceket, mont", "giyim"], "D", ["spódnica", "ubranie", "odzież", "kurtka"], "C", "set1"], [389, "bez", "przyimek", ["-sız/-siz, olmadan", "aracılığıyla/boyunca", "-den/-dan, ile", "arkasında, için"], "A", ["bez", "przez", "z", "za"], "A", "set1"], [390, "przez", "przyimek", ["aracılığıyla/boyunca", "sırasında, esnasında", "yanında, -de/-da", "önünde, -den önce"], "A", ["podczas", "przez", "przy", "przed"], "B", "set1"], [391, "komponować", "czasownik", ["teklif etmek", "taramak", "tadilat yapmak", "oluşturmak"], "D", ["proponować", "komponować", "skanować", "remontować"], "B", "set1"], [392, "siedzenie", "rzeczownik", ["daire", "duvar", "koltuk", "gayrimenkul"], "C", ["mieszkanie", "ściana", "nieruchomość", "siedzenie"], "D", "set1"], [393, "użytkownik", "rzeczownik", ["kullanıcı", "çalışan", "hayran, meraklı", "müzisyen"], "A", ["pracownik", "użytkownik", "miłośnik", "płyta główna"], "B", "set1"], [394, "podróżować", "czasownik", ["ihtiyaç duymak", "seyahat etmek", "teşhis koymak", "kabul etmek"], "B", ["potrzebować", "diagnozować", "podróżować", "przyjmować"], "C", "set1"], [395, "cyfrowy", "przymiotnik", ["sağlıklı", "dijital", "krem rengi", "yeni"], "B", ["cyfrowy", "zdrowy", "kremowy", "nowy"], "A", "set1"], [396, "tydzień", "rzeczownik", ["giyim", "ay", "hafta", "gün"], "C", ["odzież", "miesiąc", "tydzień", "dzień"], "C", "set1"], [397, "kolejny", "przymiotnik", ["serbest, boş", "belirli, somut", "ortak", "bir sonraki"], "D", ["wolny", "konkretny", "wspólny", "kolejny"], "D", "set1"], [398, "naprawa", "rzeczownik", ["restorasyon", "servis, tamir", "tadilat", "onarım"], "D", ["renowacja", "serwis", "naprawa", "remont"], "C", "set1"], [399, "stres", "rzeczownik", ["seans", "antrenör", "masa", "stres"], "D", ["stres", "seans", "trener", "stół"], "A", "set1"], [400, "marzyć", "czasownik", ["oluşturmak, yaratmak", "hayal etmek", "açmak", "öğretmek"], "B", ["marzyć", "tworzyć", "włączyć", "uczyć"], "A", "set1"], [401, "kapitał", "rzeczownik", ["ücret", "nakit", "sermaye", "maliyet"], "C", ["opłata", "kapitał", "gotówka", "koszt"], "B", "set1"], [402, "dom", "rzeczownik", ["masa", "oda", "gayrimenkul", "ev"], "D", ["stół", "pokój", "nieruchomość", "dom"], "D", "set1"], [403, "ocena", "rzeczownik", ["not, değerlendirme", "üniversite eğitimi", "ders", "bilim, öğrenim"], "A", ["studia", "lekcja", "ocena", "nauka"], "C", "set1"], [404, "kontener", "rzeczownik", ["çöp kutusu", "konteyner", "geri dönüşüm", "atık"], "B", ["kosz", "recykling", "odpady", "kontener"], "D", "set1"], [405, "artysta", "rzeczownik", ["sanatçı", "göz doktoru", "mimar", "programcı"], "A", ["artysta", "okulista", "architekt", "programista"], "A", "set1"], [406, "uczestniczyć", "czasownik", ["katılmak", "egzersiz yapmak", "öğretmek", "tedavi etmek"], "A", ["ćwiczyć", "spóźniać się", "leczyć", "uczestniczyć"], "D", "set1"], [407, "wśród", "przyimek", ["-den/-dan", "altında", "arasında", "etrafında"], "C", ["od", "wśród", "pod", "wokół"], "B", "set1"], [408, "ciśnienie", "rzeczownik", ["kas", "muayene, inceleme", "tansiyon, basınç", "takviye"], "C", ["mięsień", "badanie", "ciśnienie", "suplement"], "C", "set1"], [409, "pies", "rzeczownik", ["et", "köpek", "mantı benzeri hamur", "ağ, zincir"], "B", ["mięso", "pierogi", "pies", "sieć"], "C", "set1"], [410, "zupa", "rzeczownik", ["balık", "elmalı turta", "mayalı pasta", "çorba"], "D", ["zupa", "ryba", "szarlotka", "drożdżówka"], "A", "set1"], [411, "ryba", "rzeczownik", ["patates kızartması", "balık", "çorba", "sebze"], "B", ["frytki", "ryba", "zupa", "warzywo"], "B", "set1"], [412, "niż", "spójnik", ["çünkü, -dığı için", "ayrıca, de/da", "-den/-dan (kıyas)", "ne\\... ne de"], "C", ["ponieważ", "również", "ani", "niż"], "D", "set1"], [413, "robot", "rzeczownik", ["program", "robot", "internet", "ekran"], "B", ["robot", "program", "internet", "ekran"], "A", "set1"], [414, "stół", "rzeczownik", ["ev", "dolap", "oda", "masa"], "D", ["dom", "stół", "szafa", "pokój"], "B", "set1"], [415, "bo", "spójnik", ["veya, ya da", "-mek/-mak için", "veya", "çünkü"], "D", ["albo", "aby", "bo", "lub"], "C", "set1"], [416, "lekcja", "rzeczownik", ["not, değerlendirme", "sınıf", "bilim, öğrenim", "ders"], "D", ["kolekcja", "klasa", "nauka", "lekcja"], "D", "set1"], [417, "płacić", "czasownik", ["yüzmek", "uçmak", "içmek", "ödemek"], "D", ["płacić", "pływać", "lecieć", "pić"], "A", "set1"], [418, "działać", "czasownik", ["çalışmak, işlemek", "bölmek, paylaşmak", "uyuyakalmak", "almak (ilaç)"], "A", ["dzielić", "działać", "zaspać", "zażywać"], "B", "set1"], [419, "kosztować", "czasownik", ["pişirmek", "ayırmak", "mal olmak", "tadilat yapmak"], "C", ["gotować", "kosztować", "sortować", "remontować"], "B", "set1"], [420, "sprzedaż", "rzeczownik", ["satış", "düşüş", "vergi", "yüzde"], "A", ["sprzedaż", "spódnica", "podatek", "procent"], "A", "set1"], [421, "kolekcja", "rzeczownik", ["ders", "koleksiyon", "akşam yemeği", "kondisyon"], "B", ["lekcja", "kolacja", "kolekcja", "kondycja"], "C", "set1"], [422, "program", "rzeczownik", ["ekran", "program", "robot", "platform"], "B", ["ekran", "robot", "platforma", "program"], "D", "set1"], [423, "skórzany", "przymiotnik", ["karışık", "ikinci el/kullanılan", "deri", "el (bagajı)"], "C", ["zmieszany", "używany", "skórzany", "podręczny"], "C", "set1"], [424, "zażywać", "czasownik", ["kullanmak", "kazanmak, elde etmek", "almak (ilaç)", "yüzmek"], "C", ["używać", "zdobywać", "pływać", "zażywać"], "D", "set1"], [425, "zawód", "rzeczownik", ["meslek", "istihdam", "iş", "sözleşme"], "A", ["zawód", "zatrudnienie", "praca", "umowa"], "A", "set1"], [426, "klient", "rzeczownik", ["mezun", "göz doktoru", "müşteri", "üretici"], "C", ["absolwent", "okulista", "producent", "klient"], "D", "set1"], [427, "korki", "rzeczownik", ["patates kızartması", "aktör, oyuncu", "trafik sıkışıklığı", "kız (evlat)"], "C", ["frytki", "korki", "aktor", "córka"], "B", "set1"], [428, "egzotyczny", "przymiotnik", ["egzotik", "pratik", "fiziksel", "turistik"], "A", ["praktyczny", "fizyczny", "egzotyczny", "turystyczny"], "C", "set1"], [429, "wędlina", "rzeczownik", ["sebze", "sahanda yumurta", "şarküteri, salam", "mantı benzeri hamur"], "C", ["wędlina", "warzywo", "jajecznica", "pierogi"], "A", "set1"], [430, "proponować", "czasownik", ["oluşturmak", "teklif etmek", "seyahat etmek", "denemek"], "B", ["proponować", "komponować", "podróżować", "spróbować"], "A", "set1"], [431, "gotować", "czasownik", ["pişirmek", "ayırmak", "mal olmak", "tadilat yapmak"], "A", ["sortować", "gotować", "kosztować", "remontować"], "B", "set1"], [432, "efektywny", "przymiotnik", ["ikinci el/kullanılan", "verimli, etkili", "yoğun", "aktif"], "B", ["używany", "intensywny", "efektywny", "aktywny"], "C", "set1"], [433, "warunek", "rzeczownik", ["koşullar, şartlar", "tür", "pazar, piyasa", "koşul, şart"], "D", ["warunki", "gatunek", "rynek", "warunek"], "D", "set1"], [434, "śpiewać", "czasownik", ["şarkı söylemek", "yürüyüş yapmak", "yüzmek", "denemek"], "A", ["spacerować", "śpiewać", "pływać", "spróbować"], "B", "set1"], [435, "warunki", "rzeczownik", ["trafik sıkışıklığı", "koşullar, şartlar", "sebze", "koşul, şart"], "B", ["korki", "warzywo", "warunek", "warunki"], "D", "set1"], [436, "pracować", "czasownik", ["yürüyüş yapmak", "satın almak", "denemek", "çalışmak"], "D", ["spacerować", "pracować", "kupować", "spróbować"], "B", "set1"], [437, "klimat", "rzeczownik", ["iklim, ortam", "şirket, firma", "kış", "müşteri"], "A", ["firma", "zima", "klimat", "klient"], "C", "set1"], [438, "zwiedzać", "czasownik", ["kalkmak, hareket etmek", "gezmek", "açmak", "toplamak"], "B", ["zwiedzać", "odjeżdżać", "otwierać", "zbierać"], "A", "set1"], [439, "zakup", "rzeczownik", ["fiş, makbuz", "sermaye", "satın alma", "düşüş"], "C", ["paragon", "kapitał", "zakup", "spadek"], "C", "set1"], [440, "klasyczny", "przymiotnik", ["fiziksel", "pratik", "turistik", "klasik"], "D", ["fizyczny", "klasyczny", "praktyczny", "turystyczny"], "B", "set1"], [441, "kupować", "czasownik", ["yazdırmak, basmak", "taramak", "satın almak", "çalışmak"], "C", ["drukować", "skanować", "pracować", "kupować"], "D", "set1"], [442, "wzrok", "rzeczownik", ["görme, görüş", "koşullar, şartlar", "meyve suyu", "yıl"], "A", ["warunki", "sok", "rok", "wzrok"], "D", "set1"], [443, "elektroniczny", "przymiotnik", ["havacılık", "elektronik", "egzotik", "açık hava, dış"], "B", ["elektroniczny", "charakterystyczny", "egzotyczny", "zewnętrzny"], "A", "set1"], [444, "jogurt", "rzeczownik", ["mantı benzeri hamur", "patates kızartması", "elmalı turta", "yoğurt"], "D", ["pierogi", "frytki", "szarlotka", "jogurt"], "D", "set1"], [445, "nieczynny", "przymiotnik", ["kapalı, çalışmıyor", "yıpranmış, hasarlı", "el (bagajı)", "unutulmaz"], "A", ["zniszczony", "podręczny", "nieczynny", "niezapomniany"], "C", "set1"], [446, "maraton", "rzeczownik", ["maraton", "yarı maraton", "yürüyüş", "kondisyon"], "A", ["półmaraton", "maraton", "marsz", "kondycja"], "B", "set1"], [447, "prezent", "rzeczownik", ["sunum", "hediye", "yüzde", "üretici"], "B", ["prezent", "prezentacja", "procent", "producent"], "A", "set1"], [448, "mama", "rzeczownik", ["kız (evlat)", "aile", "anne", "oğul"], "C", ["córka", "rodzina", "mama", "syn"], "C", "set1"], [449, "z", "przyimek", ["arkasında, için", "-sız/-siz, olmadan", "yanında, -de/-da", "-den/-dan, ile"], "D", ["z", "za", "bez", "przy"], "A", "set1"], [450, "salon", "rzeczownik", ["salon", "spor salonu", "mağaza, dükkan", "havuz"], "A", ["siłownia", "sklep", "basen", "salon"], "D", "set1"], [451, "zastąpić", "czasownik", ["yerine geçmek", "uyuyakalmak", "sipariş etmek", "işe almak"], "A", ["zaspać", "zamawiać", "zastąpić", "zatrudnić"], "C", "set1"], [452, "seans", "rzeczownik", ["gösteri, oyun", "sergi", "seans", "gösterim"], "C", ["spektakl", "seans", "wystawa", "pokaz"], "B", "set1"], [453, "wrzucić", "czasownik", ["kısaltmak", "atmak", "dönmek", "dönmek, geri gelmek"], "B", ["skrócić", "skręcić", "wracać", "wrzucić"], "D", "set1"], [454, "kameralny", "przymiotnik", ["belirli, somut", "belirlenmiş", "doğal", "küçük, samimi"], "D", ["konkretny", "kameralny", "określony", "naturalny"], "B", "set1"], [455, "pierogi", "rzeczownik", ["mantı benzeri hamur", "tatlılar, şekerlemeler", "cheesecake", "et"], "A", ["pierogi", "słodycze", "sernik", "mięso"], "A", "set1"], [456, "pasażer", "rzeczownik", ["yolcu", "yönetmen", "kuaför", "uzman"], "A", ["reżyser", "fryzjer", "pasażer", "ekspert"], "C", "set1"], [457, "nauka", "rzeczownik", ["not, değerlendirme", "bilim, öğrenim", "sınıf", "ders"], "B", ["nauka", "ocena", "klasa", "lekcja"], "A", "set1"], [458, "akcja", "rzeczownik", ["sopalar (yürüyüş)", "istasyon", "kampanya, eylem", "ders"], "C", ["kijki", "akcja", "stacja", "lekcja"], "B", "set1"], [459, "zdać", "czasownik", ["geçmek (sınav)", "yağmak", "vermek, iade etmek", "esmek"], "A", ["padać", "oddać", "wiać", "zdać"], "D", "set1"], [460, "wrażenie", "rzeczownik", ["koltuk", "kıyafet, giysi", "izlenim", "ilan"], "C", ["siedzenie", "ubranie", "wrażenie", "ogłoszenie"], "C", "set1"], [461, "trafiać", "czasownik", ["yapmak (ödev)", "satışa çıkarmak", "dönmek, geri gelmek", "ulaşmak"], "D", ["trafiać", "odrabiać", "wystawiać", "wracać"], "A", "set1"], [462, "włoski", "przymiotnik", ["İtalyan", "havacılık", "serbest, boş", "pahalı"], "A", ["lotniczy", "włoski", "wolny", "drogi"], "B", "set1"], [463, "wystawiać", "czasownik", ["sipariş etmek", "esmek", "satışa çıkarmak", "kullanmak, yararlanmak"], "C", ["zamawiać", "wystawiać", "wiać", "korzystać"], "B", "set1"], [464, "deszcz", "rzeczownik", ["hava", "hava durumu", "yağmur", "güneş"], "C", ["powietrze", "pogoda", "deszcz", "słońce"], "C", "set1"], [465, "pobyt", "rzeczownik", ["seyahat, yolculuk", "güverte", "konaklama, kalış", "uçuş"], "C", ["podróż", "pokład", "lot", "pobyt"], "D", "set1"], [466, "ruch", "rzeczownik", ["mutfak", "hareket", "ekmek", "öğrenci"], "B", ["ruch", "kuchnia", "chleb", "uczeń"], "A", "set1"], [467, "książka", "rzeczownik", ["voleybolcu", "ateş", "okul", "kitap"], "D", ["siatkarz", "gorączka", "szkoła", "książka"], "D", "set1"], [468, "list motywacyjny", "rzeczownik", ["gösteri, tiyatro oyunu", "motivasyon mektubu", "kurum", "iş görüşmesi"], "B", ["przedstawienie", "list motywacyjny", "instytucja", "rozmowa kwalifikacyjna"], "B", "set1"], [469, "wzdłuż", "przyimek", ["-e göre", "için", "arasında", "boyunca"], "D", ["według", "dla", "wzdłuż", "wśród"], "C", "set1"], [470, "sztuczny", "przymiotnik", ["fiziksel", "yapay", "egzotik", "klasik"], "B", ["sztuczny", "fizyczny", "egzotyczny", "klasyczny"], "A", "set1"], [471, "niezapomniany", "przymiotnik", ["kapalı, çalışmıyor", "gereksiz", "karışık", "unutulmaz"], "D", ["elektroniczny", "niepotrzebny", "zmieszany", "niezapomniany"], "D", "set1"], [472, "dla", "przyimek", ["için", "-e/-a, -e kadar", "üzerinde, -e/-a", "-e göre"], "A", ["do", "na", "dla", "według"], "C", "set1"], [473, "lek", "rzeczownik", ["takviye", "ilaç", "diyet", "muayene, inceleme"], "B", ["lek", "suplement", "dieta", "badanie"], "A", "set1"], [474, "zawsze", "przysłówek", ["nihayet, sonunda", "hâlâ, daha", "sık sık", "her zaman"], "D", ["zawsze", "wreszcie", "jeszcze", "często"], "A", "set1"], [475, "oglądać", "czasownik", ["yağmak", "izlemek, seyretmek", "vermek, iade etmek", "uçmak (sık sık)"], "B", ["polecać", "oglądać", "oddać", "latać"], "B", "set1"], [476, "remont", "rzeczownik", ["restorasyon", "servis, tamir", "onarım", "tadilat"], "D", ["renowacja", "serwis", "naprawa", "remont"], "D", "set1"], [477, "komunikatywność", "rzeczownik", ["bilgi, yeterlilik", "dakiklik", "gıda", "iletişim becerisi"], "D", ["znajomość", "punktualność", "komunikatywność", "list motywacyjny"], "C", "set1"], [478, "drogi", "przymiotnik", ["sağlıklı", "ev (ödevi)", "İtalyan", "pahalı"], "D", ["zdrowy", "drogi", "domowy", "włoski"], "B", "set1"], [479, "już", "przysłówek", ["hâlâ, daha", "dikkatlice", "artık, zaten", "yine, tekrar"], "C", ["jeszcze", "uważnie", "znowu", "już"], "D", "set1"], [480, "płyta główna", "rzeczownik", ["platform", "anakart", "uygulama", "teknoloji"], "B", ["linia lotnicza", "aplikacja", "technologia", "płyta główna"], "D", "set1"], [481, "prowadzić", "czasownik", ["kontrol etmek", "taşınmak", "yürütmek", "çalışmak"], "C", ["sprawdzić", "przeprowadzić się", "prowadzić", "pracować"], "C", "set1"], [482, "sport", "rzeczownik", ["yürüyüş", "yarı maraton", "spor", "gol"], "C", ["sport", "spacer", "półmaraton", "gol"], "A", "set1"], [483, "forma", "rzeczownik", ["form", "şirket, firma", "platform", "kız (evlat)"], "A", ["forma", "firma", "platforma", "córka"], "A", "set1"], [484, "odmówić", "czasownik", ["karar vermek", "reddetmek", "iyileştirmek", "pişirmek"], "B", ["postanowić", "odmówić", "poprawić", "gotować"], "B", "set1"], [485, "poprawić", "czasownik", ["iyileştirmek", "tamir etmek", "kontrol etmek", "karar vermek"], "A", ["naprawić", "sprawdzić", "poprawić", "postanowić"], "C", "set1"], [486, "premierowy", "przymiotnik", ["bilgisayarlı", "krem rengi", "ilk gösterim", "sağlıklı"], "C", ["komputerowy", "premierowy", "kremowy", "zdrowy"], "B", "set1"], [487, "siłownia", "rzeczownik", ["ayırma tesisi", "spor salonu", "filarmoni", "salon"], "B", ["sortownia", "filharmonia", "siłownia", "salon"], "C", "set1"], [488, "spektakl", "rzeczownik", ["mağaza, dükkan", "sergi", "festival", "gösteri, oyun"], "D", ["sklep", "spektakl", "wystawa", "festiwal"], "B", "set1"], [489, "przeprowadzić się", "czasownik", ["taşınmak", "yürütmek", "özür dilemek", "kayıt olmak"], "A", ["prowadzić", "przepraszać", "zarejestrować się", "przeprowadzić się"], "D", "set1"], [490, "szybko", "przysłówek", ["yine, tekrar", "sık sık", "hızlı, çabuk", "her zaman"], "C", ["szybko", "znowu", "często", "zawsze"], "A", "set1"], [491, "zarejestrować się", "czasownik", ["taşınmak", "kayıt olmak", "ısınmak", "uygun olmak"], "B", ["przeprowadzić się", "rozgrzewać się", "zarejestrować się", "nadawać się"], "C", "set1"], [492, "turystyczny", "przymiotnik", ["pratik", "karakteristik, tipik", "egzotik", "turistik"], "D", ["praktyczny", "charakterystyczny", "egzotyczny", "turystyczny"], "D", "set1"], [493, "uważnie", "przysłówek", ["dikkatlice", "ağırlıklı olarak", "yalnızca, sadece", "daha önce"], "A", ["uważnie", "głównie", "jedynie", "wcześniej"], "A", "set1"], [494, "używać", "czasownik", ["almak (ilaç)", "kullanmak", "yüzmek", "kazanmak, elde etmek"], "B", ["używać", "zażywać", "pływać", "zdobywać"], "A", "set1"], [495, "wizyta", "rzeczownik", ["organizma, vücut", "ziyaret, muayene", "vitamin", "diyet"], "B", ["organizm", "wizyta", "witamina", "dieta"], "B", "set1"], [496, "także", "spójnik", ["ki, -dığını", "meğer ki/-medikçe", "ayrıca, de/da", "diye, -mek için"], "C", ["że", "chyba że", "także", "żeby"], "C", "set1"], [497, "danie", "rzeczownik", ["muayene, inceleme", "öğün", "kahvaltı", "yemek (tabak)"], "D", ["badanie", "posiłek", "śniadanie", "danie"], "D", "set1"], [498, "aplikacja", "rzeczownik", ["platform", "anakart", "yapay zeka", "uygulama"], "D", ["platforma", "aplikacja", "płyta główna", "sztuczna inteligencja"], "B", "set1"], [499, "zimny", "przymiotnik", ["soğuk", "yazılı", "güçlü, şiddetli", "serbest, boş"], "A", ["pisemny", "mocny", "zimny", "wolny"], "C", "set1"], [500, "tytuł", "rzeczownik", ["kurum", "konaklama, kalış", "başlık", "sanatçı"], "C", ["instytucja", "pobyt", "artysta", "tytuł"], "D", "set1"], [501, "stopień", "rzeczownik", ["sonbahar", "hafta", "derece", "kas"], "C", ["stopień", "jesień", "tydzień", "mięsień"], "A", "set1"], [502, "charakterystyczny", "przymiotnik", ["ikinci el/kullanılan", "karakteristik, tipik", "pratik", "turistik"], "B", ["przeciwgorączkowy", "charakterystyczny", "praktyczny", "turystyczny"], "B", "set1"], [503, "rower", "rzeczownik", ["bisiklet", "antrenör", "tren", "taksi"], "A", ["trener", "pociąg", "rower", "taksówka"], "C", "set1"], [504, "wolny", "przymiotnik", ["ortak", "güçlü, şiddetli", "bir sonraki", "serbest, boş"], "D", ["wspólny", "mocny", "kolejny", "wolny"], "D", "set1"], [505, "miłośnik", "rzeczownik", ["hayran, meraklı", "tansiyon, basınç", "kullanıcı", "çalışan"], "A", ["miłośnik", "ciśnienie", "użytkownik", "pracownik"], "A", "set1"], [506, "mięsień", "rzeczownik", ["tansiyon, basınç", "kas", "mineral", "titreme"], "B", ["ciśnienie", "mięsień", "minerał", "dreszcze"], "B", "set1"], [507, "miasto", "rzeczownik", ["kasaba", "şehir", "belediye", "yerleşim yeri"], "B", ["miasteczko", "gmina", "miasto", "miejscowość"], "C", "set1"], [508, "zdobywać", "czasownik", ["kalkmak, hareket etmek", "kullanmak", "kazanmak, elde etmek", "almak (ilaç)"], "C", ["odjeżdżać", "używać", "zażywać", "zdobywać"], "D", "set1"], [509, "unikać", "czasownik", ["beklemek", "zıplamak", "oturmak, yaşamak", "kaçınmak"], "D", ["czekać", "skakać", "unikać", "mieszkać"], "C", "set1"], [510, "bilet", "rzeczownik", ["bilet", "uçuş", "konaklama, kalış", "bagaj"], "A", ["bilet", "lot", "pobyt", "bagaż"], "A", "set1"], [511, "spróbować", "czasownik", ["yürüyüş yapmak", "ayırmak", "denemek", "çalışmak"], "C", ["spacerować", "spróbować", "sortować", "pracować"], "B", "set1"], [512, "mieszkanie", "rzeczownik", ["koltuk", "dolap", "duvar", "daire"], "D", ["siedzenie", "mieszkaniec", "ściana", "mieszkanie"], "D", "set1"], [513, "biegły", "przymiotnik", ["ücretsiz, bedava", "taze", "sıcak, ılık", "akıcı, uzman"], "D", ["bezpłatny", "świeży", "ciepły", "biegły"], "D", "set1"], [514, "oznaczać", "czasownik", ["anlamına gelmek", "kalkmak, hareket etmek", "dikkat etmek", "gezmek"], "A", ["oznaczać", "odjeżdżać", "uważać", "zwiedzać"], "A", "set1"], [515, "kupić", "czasownik", ["içmek", "satın almak", "ödemek", "giymek, taşımak"], "B", ["pić", "kupić", "płacić", "nosić"], "B", "set1"], [516, "słuchać", "czasownik", ["gitmek (araçla)", "ulaşmak", "başlatmak", "dinlemek"], "D", ["jechać", "dojechać", "słuchać", "uruchamiać"], "C", "set1"], [517, "musieć", "czasownik", ["uçmak", "istemek", "zorunda olmak", "şarkı söylemek"], "C", ["lecieć", "chcieć", "musieć", "śpiewać"], "C", "set1"], [518, "zmieszany", "przymiotnik", ["karışık", "deri", "yıpranmış, hasarlı", "daha büyük"], "A", ["skórzany", "zniszczony", "większy", "zmieszany"], "D", "set1"], [519, "doświadczenie", "rzeczownik", ["izlenim", "deneyim", "ilan", "gösteri, tiyatro oyunu"], "B", ["doświadczenie", "wrażenie", "ogłoszenie", "przedstawienie"], "A", "set1"], [520, "kijki", "rzeczownik", ["trafik sıkışıklığı", "koşu", "sopalar (yürüyüş)", "kondisyon"], "C", ["kijki", "korki", "bieganie", "kondycja"], "A", "set1"], [521, "codziennie", "przysłówek", ["her gün", "daha önce", "yoğun bir şekilde", "yalnızca, sadece"], "A", ["wcześniej", "codziennie", "intensywnie", "jedynie"], "B", "set1"], [522, "kino", "rzeczownik", ["sinema", "ofis, büro", "muayenehane", "okul"], "A", ["biuro", "kino", "gabinet", "szkoła"], "B", "set1"], [523, "przeprowadzić się", "czasownik", ["yürütmek", "özür dilemek", "kayıt olmak", "taşınmak"], "D", ["przeprowadzić się", "prowadzić", "przepraszać", "zarejestrować się"], "A", "set1"], [524, "bezpłatnie", "przysłówek", ["düzenli olarak", "ücretsiz olarak", "yalnızca, sadece", "ağırlıklı olarak"], "B", ["regularnie", "bezpłatnie", "jedynie", "głównie"], "B", "set1"], [525, "również", "spójnik", ["hem\\... hem de", "çünkü, -dığı için", "-den/-dan (kıyas)", "ayrıca, de/da"], "D", ["zarówno", "również", "ponieważ", "niż"], "B", "set1"], [526, "basen", "rzeczownik", ["salon", "mağaza, dükkan", "havuz", "merkez"], "C", ["salon", "sklep", "basen", "centrum"], "C", "set1"], [527, "smakować", "czasownik", ["tadı olmak", "taramak", "yazdırmak, basmak", "ayırmak"], "A", ["skanować", "smakować", "drukować", "sortować"], "B", "set1"], [528, "linia lotnicza", "rzeczownik", ["seyahat, yolculuk", "havayolu", "uçuş", "gezi"], "B", ["podróż", "list motywacyjny", "wycieczka", "linia lotnicza"], "D", "set1"], [529, "czyli", "spójnik", ["mi, yoksa", "eğer, şayet", "yani", "eğer"], "C", ["czyli", "czy", "jeżeli", "jeśli"], "A", "set1"], [530, "gol", "rzeczownik", ["yarı maraton", "gol", "spor", "yarışma"], "B", ["półmaraton", "sport", "gol", "zawody"], "C", "set1"], [531, "oraz", "spójnik", ["-e kadar, ta ki", "ve, ile", "-e rağmen", "çünkü, -dığı için"], "B", ["aż", "chociaż", "ponieważ", "oraz"], "D", "set1"], [532, "centrum", "rzeczownik", ["müze", "havuz", "galeri", "merkez"], "D", ["muzeum", "basen", "centrum", "galeria"], "C", "set1"], [533, "sortownia", "rzeczownik", ["ayırma tesisi", "mağaza, dükkan", "filarmoni", "spor salonu"], "A", ["sklep", "filharmonia", "siłownia", "sortownia"], "D", "set1"], [534, "programista", "rzeczownik", ["göz doktoru", "işveren", "programcı", "üretici"], "C", ["programista", "temperatura", "pracodawca", "producent"], "A", "set1"], [535, "decyzja", "rzeczownik", ["yağmur", "ders", "kondisyon", "karar"], "D", ["deszcz", "lekcja", "kondycja", "decyzja"], "D", "set1"], [536, "warzywny", "przymiotnik", ["aktif", "ikinci el/kullanılan", "sebzeli", "ciddi"], "C", ["warzywny", "efektywny", "używany", "poważny"], "A", "set1"], [537, "prognoza", "rzeczownik", ["tahmin", "hava durumu", "hava", "sıcaklık"], "A", ["pogoda", "powietrze", "prognoza", "temperatura"], "C", "set1"], [538, "sok", "rzeczownik", ["et", "meyve suyu", "cheesecake", "pastırma"], "B", ["mięso", "sok", "sernik", "boczek"], "B", "set1"], [539, "dzielić", "czasownik", ["çalışmak, işlemek", "işten çıkarmak", "bölmek, paylaşmak", "toplamak"], "C", ["dzielić", "działać", "zwolnić", "zbierać"], "A", "set1"], [540, "wokół", "przyimek", ["yaklaşık, civarında", "etrafında", "yanında", "arasında"], "B", ["około", "koło", "wokół", "wśród"], "C", "set1"], [541, "dreszcze", "rzeczownik", ["teşhis, tanı", "kas", "sağlık", "titreme"], "D", ["diagnoza", "mięsień", "zdrowie", "dreszcze"], "D", "set1"], [542, "zdrowy", "przymiotnik", ["sağlıklı", "ev (ödevi)", "dijital", "mesleki"], "A", ["domowy", "zdrowy", "cyfrowy", "zawodowy"], "B", "set1"], [543, "muzeum", "rzeczownik", ["merkez", "müze", "okul", "otel"], "B", ["centrum", "szkoła", "hotel", "muzeum"], "D", "set1"], [544, "nadawać się", "czasownik", ["kârlı olmak", "geç kalmak", "uygun olmak", "ısınmak"], "C", ["opłacać się", "nadawać się", "spóźniać się", "rozgrzewać się"], "B", "set1"], [545, "oddać", "czasownik", ["geçmek (sınav)", "vermek, iade etmek", "yağmak", "izlemek, seyretmek"], "B", ["zdać", "padać", "oddać", "oglądać"], "C", "set1"], [546, "zima", "rzeczownik", ["ilkbahar", "kış", "yaz", "sonbahar"], "B", ["wiosna", "zima", "lato", "jesień"], "B", "set1"], [547, "nowy", "przymiotnik", ["ev (ödevi)", "sağlıklı", "krem rengi", "yeni"], "D", ["nowy", "domowy", "zdrowy", "kremowy"], "A", "set1"], [548, "filharmonia", "rzeczownik", ["spor salonu", "ayırma tesisi", "barınak", "filarmoni"], "D", ["płyta główna", "filharmonia", "sortownia", "schronisko"], "B", "set1"], [549, "regularnie", "przysłówek", ["düzenli olarak", "ücretsiz olarak", "ağırlıklı olarak", "dikkatlice"], "A", ["bezpłatnie", "głównie", "uważnie", "regularnie"], "D", "set1"], [550, "wyśmienity", "przymiotnik", ["kapalı, çalışmıyor", "ilk gösterim", "leziz, mükemmel", "karışık"], "C", ["nieczynny", "premierowy", "wyśmienity", "zmieszany"], "C", "set1"], [551, "diagnozować", "czasownik", ["teşhis koymak", "seyahat etmek", "pişirmek", "taramak"], "A", ["diagnozować", "podróżować", "potrzebować", "skanować"], "A", "set1"], [552, "kompozytor", "rzeczownik", ["aktör, oyuncu", "kullanıcı", "yazar", "besteci"], "D", ["aktor", "użytkownik", "kompozytor", "autor"], "C", "set1"], [553, "zbierać", "czasownik", ["beklemek", "açmak", "toplamak", "seçmek"], "C", ["czekać", "otwierać", "zbierać", "wybierać"], "C", "set1"], [554, "autor", "rzeczownik", ["aktör, oyuncu", "yazar", "besteci", "antrenör"], "B", ["aktor", "kompozytor", "trener", "autor"], "D", "set1"], [555, "żakiet", "rzeczownik", ["(kadın) ceket, blazer", "gösteri, tiyatro oyunu", "(yün) bere, şapka", "atkı, kaşkol"], "A", ["przedstawienie", "czapka", "szalik", "żakiet"], "D", "set1"], [556, "półbut", "rzeczownik", ["ayakkabı", "(bağcıklı) ayakkabı", "şemsiye", "bere (yassı, resmî)"], "B", ["półbut", "but", "parasolka", "beret"], "A", "set1"], [557, "czapka", "rzeczownik", ["(küçük) fular", "pijama", "(yün) bere, şapka", "(kadın) ceket, blazer"], "C", ["apaszka", "czapka", "piżama", "żakiet"], "B", "set1"], [558, "sweter", "rzeczownik", ["kazak", "(kadın) ceket, blazer", "bere (yassı, resmî)", "(kısa) çorap"], "A", ["żakiet", "beret", "sweter", "skarpetka"], "C", "set1"], [559, "płaszcz", "rzeczownik", ["(küçük) fular", "şemsiye", "gömlek", "palto, manto"], "D", ["płaszcz", "apaszka", "parasolka", "koszula"], "A", "set1"], [560, "but", "rzeczownik", ["ayakkabı", "(bağcıklı) ayakkabı", "bere (yassı, resmî)", "sweatshirt, üst"], "A", ["półbut", "beret", "bluza", "but"], "D", "set1"], [561, "sukienka", "rzeczownik", ["cep", "elbise", "iç çamaşırı", "(kadın) ceket, blazer"], "B", ["kieszeń", "sukienka", "bielizna", "żakiet"], "B", "set1"], [562, "beret", "rzeczownik", ["ayakkabı", "(kadın) ceket, blazer", "bere (yassı, resmî)", "kazak"], "C", ["but", "żakiet", "beret", "sweter"], "C", "set1"], [563, "bluza", "rzeczownik", ["iç çamaşırı", "ayakkabı", "(yün) bere, şapka", "sweatshirt, üst"], "D", ["bielizna", "but", "czapka", "bluza"], "D", "set1"], [564, "dżinsy", "rzeczownik", ["kot pantolon", "giyim", "şort", "(kadın) ceket, blazer"], "A", ["dżinsy", "odzież", "szorty", "żakiet"], "A", "set1"], [565, "skarpetka", "rzeczownik", ["(küçük) fular", "(kısa) çorap", "yelek", "ceket, mont"], "B", ["apaszka", "skarpetka", "kamizelka", "kurtka"], "B", "set1"], [566, "bielizna", "rzeczownik", ["sweatshirt, üst", "elbise", "iç çamaşırı", "cep"], "C", ["bluza", "sukienka", "bielizna", "kieszeń"], "C", "set1"], [567, "biustonosz", "rzeczownik", ["iç çamaşırı", "gömlek", "ayakkabı", "sutyen"], "D", ["biustonosz", "bielizna", "koszula", "umiejętność"], "A", "set1"], [568, "sandał", "rzeczownik", ["atkı, kaşkol", "sandalet", "kıyafet, giysi", "gecelik"], "B", ["szalik", "sandał", "ubranie", "koszula nocna"], "B", "set1"], [569, "szlafrok", "rzeczownik", ["(kadın) ceket, blazer", "gömlek", "sabahlık, bornoz", "atkı, kaşkol"], "C", ["szczeniak", "koszula", "szlafrok", "szalik"], "C", "set1"], [570, "koszula nocna", "rzeczownik", ["gömlek", "sabahlık, bornoz", "cep", "gecelik"], "D", ["komunikatywność", "szlafrok", "kieszeń", "koszula nocna"], "D", "set1"], [571, "torebka", "rzeczownik", ["ceket, mont", "elbise", "el çantası", "eldiven"], "C", ["kurtka", "torebka", "sukienka", "rękawiczka"], "B", "set1"], [572, "szalik", "rzeczownik", ["atkı, kaşkol", "sabahlık, bornoz", "sandalet", "(kadın) ceket, blazer"], "A", ["szalik", "szlafrok", "sandał", "żakiet"], "A", "set1"], [573, "apaszka", "rzeczownik", ["palto, manto", "(küçük) fular", "(yün) bere, şapka", "şemsiye"], "B", ["płaszcz", "czapka", "apaszka", "parasolka"], "C", "set1"], [574, "parasolka", "rzeczownik", ["(küçük) fular", "(takım) ceket", "yelek", "şemsiye"], "D", ["apaszka", "marynarka", "kamizelka", "parasolka"], "D", "set1"], [575, "rękawiczka", "rzeczownik", ["eldiven", "yelek", "(küçük) fular", "el çantası"], "A", ["rękawiczka", "kamizelka", "błyskawica", "torebka"], "A", "set1"], [576, "marynarka", "rzeczownik", ["şemsiye", "(takım) ceket", "(küçük) fular", "(kısa) çorap"], "B", ["marynarka", "parasolka", "apaszka", "skarpetka"], "A", "set1"], [577, "kamizelka", "rzeczownik", ["eldiven", "(kısa) çorap", "yelek", "şemsiye"], "C", ["rękawiczka", "skarpetka", "kamizelka", "parasolka"], "C", "set1"], [578, "krawat", "rzeczownik", ["ceket, mont", "kravat", "eldiven", "(kadın) ceket, blazer"], "B", ["kurtka", "krawat", "rękawiczka", "żakiet"], "B", "set1"], [579, "koszula", "rzeczownik", ["gömlek", "gecelik", "sabahlık, bornoz", "cep"], "A", ["koszula nocna", "szlafrok", "kieszeń", "koszula"], "D", "set1"], [580, "kieszeń", "rzeczownik", ["elbise", "cep", "(kadın) ceket, blazer", "iç çamaşırı"], "B", ["sukienka", "kieszeń", "żakiet", "bielizna"], "B", "set1"], [581, "szorty", "rzeczownik", ["atkı, kaşkol", "sabahlık, bornoz", "ceket, mont", "şort"], "D", ["szalik", "szlafrok", "szorty", "kurtka"], "C", "set1"], [582, "piżama", "rzeczownik", ["(yün) bere, şapka", "sweatshirt, üst", "pijama", "iç çamaşırı"], "C", ["piżama", "czapka", "bluza", "bielizna"], "A", "set1"], [583, "włosy", "rzeczownik", ["burun", "avuç içi", "gövde", "saç"], "D", ["włosy", "nos", "dłoń", "tułów"], "A", "set1"], [584, "brew", "rzeczownik", ["kaş", "el, kol", "çene, sakal", "karın"], "A", ["ręka", "brew", "broda", "brzuch"], "B", "set1"], [585, "ucho", "rzeczownik", ["karın", "gövde", "ağız, dudaklar", "kulak"], "D", ["ucho", "brzuch", "tułów", "usta"], "A", "set1"], [586, "rzęsa", "rzeczownik", ["kirpik", "el, kol", "omuz", "ağız, dudaklar"], "A", ["ręka", "ramię", "usta", "rzęsa"], "D", "set1"], [587, "oko", "rzeczownik", ["ayak bileği", "burun", "göz", "kulak"], "C", ["kostka", "nos", "ucho", "oko"], "D", "set1"], [588, "nos", "rzeczownik", ["saç", "burun", "bıyık", "ayak bileği"], "B", ["włosy", "wąs", "kostka", "nos"], "D", "set1"], [589, "policzek", "rzeczownik", ["parmak", "topuk", "yanak", "sırt"], "C", ["porządek", "pięta", "plecy", "policzek"], "D", "set1"], [590, "wąs", "rzeczownik", ["burun", "saç", "kaş", "bıyık"], "D", ["nos", "włosy", "wąs", "brew"], "C", "set1"], [591, "usta", "rzeczownik", ["ağız, dudaklar", "üniversite eğitimi", "ayak bileği", "ayak (taban)"], "A", ["studia", "kostka", "stopa", "usta"], "D", "set1"], [592, "broda", "rzeczownik", ["ayak (taban)", "çene, sakal", "karın", "kaş"], "B", ["stopa", "broda", "brzuch", "brew"], "B", "set1"], [593, "gardło", "rzeczownik", ["avuç içi", "saç", "boğaz", "gövde"], "C", ["galeria", "włosy", "tułów", "gardło"], "D", "set1"], [594, "szyja", "rzeczownik", ["ayak (taban)", "ağız, dudaklar", "kirpik", "boyun"], "D", ["stopa", "usta", "szyja", "rzęsa"], "C", "set1"], [595, "ręka", "rzeczownik", ["kirpik", "kaş", "el, kol", "ayak bileği"], "C", ["rzęsa", "ręka", "brew", "kostka"], "B", "set1"], [596, "ramię", "rzeczownik", ["topuk", "el, kol", "kirpik", "omuz"], "D", ["ramię", "pięta", "ręka", "rzęsa"], "A", "set1"], [597, "dłoń", "rzeczownik", ["avuç içi", "çene, sakal", "gövde", "boğaz"], "A", ["broda", "tułów", "dłoń", "gardło"], "C", "set1"], [598, "palec", "rzeczownik", ["sırt", "parmak", "ayak (taban)", "topuk"], "B", ["plecy", "palec", "stopa", "pięta"], "B", "set1"], [599, "tułów", "rzeczownik", ["gövde", "avuç içi", "saç", "boğaz"], "A", ["dłoń", "włosy", "tułów", "gardło"], "C", "set1"], [600, "brzuch", "rzeczownik", ["kulak", "karın", "kaş", "çene, sakal"], "B", ["zapach", "brzuch", "brew", "broda"], "B", "set1"], [601, "stopa", "rzeczownik", ["ağız, dudaklar", "ayak bileği", "ayak (taban)", "parmak"], "C", ["usta", "stopa", "kostka", "palec"], "B", "set1"], [602, "kostka", "rzeczownik", ["ağız, dudaklar", "ayak bileği", "ayak (taban)", "el, kol"], "B", ["kurtka", "kostka", "stopa", "ręka"], "B", "set1"], [603, "pięta", "rzeczownik", ["topuk", "ağız, dudaklar", "omuz", "parmak"], "A", ["pięta", "usta", "ramię", "palec"], "A", "set1"], [604, "plecy", "rzeczownik", ["parmak", "topuk", "saç", "sırt"], "D", ["palec", "pięta", "plecy", "włosy"], "C", "set1"], [605, "jeleń", "rzeczownik", ["hayvan", "at", "köpek yavrusu, enik", "geyik"], "D", ["jeleń", "zwierzę", "koń", "szczeniak"], "A", "set1"], [606, "kot", "rzeczownik", ["at", "kedi yavrusu", "kedi", "inek"], "C", ["koń", "kotek", "kot", "krowa"], "C", "set1"], [607, "kotek", "rzeczownik", ["köpek yavrusu, enik", "at", "kedi", "kedi yavrusu"], "D", ["szczeniak", "kotek", "koń", "kot"], "B", "set1"], [608, "szczeniak", "rzeczownik", ["köpek yavrusu, enik", "tatlılar, şekerlemeler", "ördek", "tay"], "A", ["słodycze", "siedzenie", "szczeniak", "źrebak"], "C", "set1"], [609, "koń", "rzeczownik", ["kedi", "at", "kedi yavrusu", "inek"], "B", ["kot", "kotek", "krowa", "koń"], "D", "set1"], [610, "źrebak", "rzeczownik", ["köpek yavrusu, enik", "hayvan", "tay", "kedi yavrusu"], "C", ["źrebak", "szczeniak", "zwierzę", "kotek"], "A", "set1"], [611, "krowa", "rzeczownik", ["kedi", "inek", "at", "kedi yavrusu"], "B", ["kot", "koń", "kotek", "krowa"], "D", "set1"], [612, "gęś", "rzeczownik", ["kaz", "köpek", "geyik", "kedi yavrusu"], "A", ["gęś", "pies", "jeleń", "kotek"], "A", "set1"], [613, "kaczka", "rzeczownik", ["inek", "kedi yavrusu", "ördek", "köpek yavrusu, enik"], "C", ["kaczka", "krowa", "kotek", "szczeniak"], "A", "set1"], [614, "burza", "rzeczownik", ["bulut", "gökkuşağı", "tahmin", "fırtına"], "D", ["chmura", "tęcza", "burza", "prognoza"], "C", "set1"], [615, "wiatr", "rzeczownik", ["hava", "toprak, yeryüzü", "rüzgâr", "şimşek"], "C", ["powietrze", "ziemia", "błyskawica", "wiatr"], "D", "set1"], [616, "ziemia", "rzeczownik", ["toprak, yeryüzü", "(kadın) ceket, blazer", "rüzgâr", "gökyüzü"], "A", ["żakiet", "ziemia", "wiatr", "niebo"], "B", "set1"], [617, "niebo", "rzeczownik", ["toprak, yeryüzü", "soğuma", "güneş", "gökyüzü"], "D", ["niebo", "ziemia", "ochłodzenie", "słońce"], "A", "set1"], [618, "tęcza", "rzeczownik", ["fırtına", "gökkuşağı", "yağmur", "toprak, yeryüzü"], "B", ["burza", "deszcz", "tęcza", "ziemia"], "C", "set1"], [619, "chmura", "rzeczownik", ["bulut", "fırtına", "bulutluluk", "sıcaklık"], "A", ["burza", "zachmurzenie", "chmura", "temperatura"], "C", "set1"], [620, "błyskawica", "rzeczownik", ["rüzgâr", "hava", "fırtına", "şimşek"], "D", ["rękawiczka", "powietrze", "burza", "błyskawica"], "D", "set1"], [621, "zachmurzenie", "rzeczownik", ["toprak, yeryüzü", "bulut", "bulutluluk", "soğuma"], "C", ["zatrudnienie", "chmura", "zachmurzenie", "ochłodzenie"], "C", "set1"], [622, "błąd", "rzeczownik", ["sweatshirt, üst", "öğle yemeği", "hata", "güverte"], "C", ["bluza", "obiad", "błąd", "pokład"], "C", "set1"], [623, "cierpliwość", "rzeczownik", ["olanak, imkân", "sabır", "yerleşim yeri", "gayrimenkul"], "B", ["możliwość", "cierpliwość", "miejscowość", "nieruchomość"], "B", "set1"], [624, "poczucie", "rzeczownik", ["his, duygu", "tren", "hayat, yaşam", "yanak"], "A", ["pociąg", "życie", "poczucie", "policzek"], "C", "set1"], [625, "przedmiot", "rzeczownik", ["satış", "ders, nesne", "hediye", "gösteri, tiyatro oyunu"], "B", ["sprzedaż", "przedmiot", "prezent", "przedstawienie"], "B", "set1"], [626, "rozmowa", "rzeczownik", ["seyahat, yolculuk", "konuşma, sohbet", "inek", "sözleşme"], "B", ["podróż", "rozkład", "umowa", "rozmowa"], "D", "set1"], [627, "śmiech", "rzeczownik", ["beceri, yetenek", "ay", "ağ, zincir", "gülme, kahkaha"], "D", ["umiejętność", "miesiąc", "śmiech", "sieć"], "C", "set1"], [628, "uzależnienie", "rzeczownik", ["bağımlılık", "gecikme, rötar", "gecikme", "istihdam"], "A", ["opóźnienie", "uzależnienie", "spóźnienie", "zatrudnienie"], "B", "set1"], [629, "przycisk", "rzeczownik", ["baharat", "hayat, yaşam", "çalışan", "düğme, buton"], "D", ["przyprawa", "przycisk", "życie", "pracownik"], "B", "set1"], [630, "racja", "rzeczownik", ["kampanya, eylem", "istasyon", "haklılık, hak", "iş"], "C", ["racja", "akcja", "stacja", "praca"], "A", "set1"], [631, "plamka", "rzeczownik", ["(küçük) leke", "palto, manto", "plan", "ücret"], "A", ["płaszcz", "plan", "opłata", "plamka"], "D", "set1"], [632, "zapach", "rzeczownik", ["koku", "(yün) bere, şapka", "satın alma", "yürüyüş"], "A", ["zapach", "czapka", "zakup", "spacer"], "A", "set1"], [633, "wahanie", "rzeczownik", ["muayene, inceleme", "ödev, görev", "yemek (tabak)", "tereddüt"], "D", ["badanie", "zadanie", "danie", "wahanie"], "D", "set1"], [634, "koperta", "rzeczownik", ["trafik sıkışıklığı", "zarf (mektup)", "opera", "teklif"], "B", ["koperta", "koncert", "opera", "oferta"], "A", "set1"], [635, "szmatka", "rzeczownik", ["bez, paçavra", "elmalı turta", "voleybolcu", "ayak bileği"], "A", ["szarlotka", "siatkarz", "kostka", "szmatka"], "D", "set1"], [636, "przyprawa", "rzeczownik", ["mayalı pasta", "gıda", "baharat", "sebze"], "C", ["przyprawa", "drożdżówka", "żywność", "warzywo"], "A", "set1"], [637, "zabytek", "rzeczownik", ["(kadın) ceket, blazer", "tür", "vergi", "tarihi eser, anıt"], "D", ["żakiet", "zabytek", "gatunek", "podatek"], "B", "set1"], [638, "liczyć się", "czasownik", ["önemli olmak, sayılmak", "ses etmek, haber vermek", "sevinmek", "öğrenmek"], "A", ["liczyć się", "odzywać się", "cieszyć się", "uczyć się"], "A", "set1"], [639, "opowiadać", "czasownik", ["yağmak", "izlemek, seyretmek", "anlatmak", "söylemek"], "C", ["padać", "oglądać", "powiedzieć", "opowiadać"], "D", "set1"], [640, "pozwolić", "czasownik", ["işten çıkarmak", "izin vermek", "iyileştirmek", "koymak, yerleştirmek"], "B", ["zwolnić", "pozwolić", "poprawić", "postawić"], "B", "set1"], [641, "rozwijać", "czasownik", ["geliştirmek", "gelişmek", "gezmek", "izin vermek"], "A", ["rozwijać się", "zwiedzać", "rozwijać", "pozwolić"], "C", "set1"], [642, "rozwijać się", "czasownik", ["geliştirmek", "gelişmek", "ses etmek, haber vermek", "ısınmak"], "B", ["rozwijać", "rozwijać się", "odzywać się", "rozgrzewać się"], "B", "set1"], [643, "sprawiać", "czasownik", ["kontrol etmek", "tamir etmek", "sebep olmak", "iyileştirmek"], "C", ["sprawdzić", "naprawić", "poprawić", "sprawiać"], "D", "set1"], [644, "ułatwiać", "czasownik", ["uçmak (sık sık)", "sipariş etmek", "sebep olmak", "kolaylaştırmak"], "D", ["ułatwiać", "latać", "zamawiać", "sprawiać"], "A", "set1"], [645, "wyobrazić sobie", "czasownik", ["bir kenara koymak, (para) ayırmak", "hayal etmek, gözünde canlandırmak", "taşınmak", "razı olmak, anlaşmak"], "B", ["wyobrazić sobie", "odłożyć", "przeprowadzić się", "zgodzić się"], "A", "set1"], [646, "zarabiać", "czasownik", ["para kazanmak", "yapmak (ödev)", "sipariş etmek", "ulaşmak"], "A", ["odrabiać", "zamawiać", "trafiać", "zarabiać"], "D", "set1"], [647, "znaleźć", "czasownik", ["gerekir, yapılmalı", "anlamına gelmek", "bulmak", "tedavi etmek"], "C", ["należy", "oznaczać", "znaleźć", "leczyć"], "C", "set1"], [648, "zostać", "czasownik", ["uyuyakalmak", "koymak, yerleştirmek", "sormak", "kalmak"], "D", ["zaspać", "postawić", "zapytać", "zostać"], "D", "set1"], [649, "ściszyć", "czasownik", ["egzersiz yapmak", "sesini kısmak", "öğretmek", "tedavi etmek"], "B", ["ćwiczyć", "uczyć", "leczyć", "ściszyć"], "D", "set1"], [650, "wystrzelić", "czasownik", ["satışa çıkarmak", "bölmek, paylaşmak", "çıkmak", "ateş etmek"], "D", ["wystawiać", "wystrzelić", "potrzebować", "wychodzić"], "B", "set1"], [651, "zacząć", "czasownik", ["anlamına gelmek", "teşvik etmek", "başlamak", "almak (ilaç)"], "C", ["oznaczać", "zachęcać", "zacząć", "zażywać"], "C", "set1"], [652, "pokazywać", "czasownik", ["almak (ilaç)", "dinlenmek", "kullanmak", "göstermek"], "D", ["pokazywać", "zażywać", "odpoczywać", "używać"], "A", "set1"], [653, "siedzieć", "czasownik", ["kalkmak, hareket etmek", "oturmak (bir yerde)", "bölmek, paylaşmak", "söylemek"], "B", ["odjeżdżać", "siedzieć", "dzielić", "powiedzieć"], "B", "set1"], [654, "podobać się", "czasownik", ["hoşuna gitmek, beğenmek", "ses etmek, haber vermek", "geç kalmak", "kârlı olmak"], "A", ["odzywać się", "spóźniać się", "podobać się", "opłacać się"], "C", "set1"], [655, "odłożyć", "czasownik", ["hayal etmek, gözünde canlandırmak", "açmak", "bir kenara koymak, (para) ayırmak", "tedavi etmek"], "C", ["odłożyć", "wyobrazić sobie", "włączyć", "leczyć"], "A", "set1"], [656, "odzywać się", "czasownik", ["uygun olmak", "gelişmek", "ses etmek, haber vermek", "hoşuna gitmek, beğenmek"], "C", ["nadawać się", "odzywać się", "rozwijać się", "podobać się"], "B", "set1"], [657, "uśmiechnąć się", "czasownik", ["geç kalmak", "gülümsemek", "kârlı olmak", "uygun olmak"], "B", ["spóźniać się", "rozgrzewać się", "uśmiechnąć się", "nadawać się"], "C", "set1"], [658, "powiedzieć", "czasownik", ["oturmak (bir yerde)", "gezmek", "söylemek", "yürütmek"], "C", ["postanowić", "zwiedzać", "prowadzić", "powiedzieć"], "D", "set1"], [659, "wyciągać", "czasownik", ["işaret etmek, belirtmek", "gerektirmek", "çekmek", "çıkarmak, dışarı çekmek"], "D", ["wskazać", "wyciągać", "wymagać", "przyciągać"], "B", "set1"], [660, "zapytać", "czasownik", ["sormak", "uyuyakalmak", "almak (ilaç)", "yakalamak"], "A", ["zapytać", "zaspać", "zażywać", "złapać"], "A", "set1"], [661, "zgodzić się", "czasownik", ["razı olmak, anlaşmak", "ses etmek, haber vermek", "taşınmak", "hoşuna gitmek, beğenmek"], "A", ["odzywać się", "przeprowadzić się", "zgodzić się", "podobać się"], "C", "set1"], [662, "udawać", "czasownik", ["bir kenara koymak, (para) ayırmak", "numara yapmak, -mış gibi yapmak", "dikkat etmek", "kullanmak"], "B", ["odłożyć", "uważać", "używać", "udawać"], "D", "set1"], [663, "przekonać", "czasownik", ["satmak", "özür dilemek", "kabul etmek", "ikna etmek"], "D", ["sprzedać", "przepraszać", "przekonać", "przyjmować"], "C", "set1"], [664, "spojrzeć", "czasownik", ["oturmak (bir yerde)", "bakmak, göz atmak", "kontrol etmek", "satmak"], "B", ["spojrzeć", "siedzieć", "sprawdzić", "sprzedać"], "A", "set1"], [665, "wskazać", "czasownik", ["çıkarmak, dışarı çekmek", "zıplamak", "dikkat etmek", "işaret etmek, belirtmek"], "D", ["wyciągać", "wskazać", "skakać", "uważać"], "B", "set1"], [666, "złapać", "czasownik", ["uyuyakalmak", "yakalamak", "sormak", "uçmak (sık sık)"], "B", ["zaspać", "zapytać", "latać", "złapać"], "D", "set1"], [667, "obiecać", "czasownik", ["tavsiye etmek", "koşmak", "söz vermek", "toplamak"], "C", ["polecać", "biegać", "obiecać", "zbierać"], "C", "set1"], [668, "postawić", "czasownik", ["koymak, yerleştirmek", "kullanmak, yararlanmak", "iyileştirmek", "karar vermek"], "A", ["korzystać", "postawić", "poprawić", "postanowić"], "B", "set1"], [669, "zauważyć", "czasownik", ["dikkat etmek", "almak (ilaç)", "fark etmek", "sipariş etmek"], "C", ["zauważyć", "uważać", "zażywać", "zamawiać"], "A", "set1"], [670, "zdjąć", "czasownik", ["geçmek (sınav)", "yağmak", "vermek, iade etmek", "(giysi) çıkarmak"], "D", ["zdać", "padać", "oddać", "zdjąć"], "D", "set1"], [671, "podkreślić", "czasownik", ["bir kenara koymak, (para) ayırmak", "imzalamak", "altını çizmek, vurgulamak", "izin vermek"], "C", ["podkreślić", "podróżować", "podpisać", "pozwolić"], "A", "set1"], [672, "należy", "czasownik", ["gerekir, yapılmalı", "bir kenara koymak, (para) ayırmak", "tedavi etmek", "bulmak"], "A", ["odłożyć", "leczyć", "znaleźć", "należy"], "D", "set1"], [673, "trzeba", "czasownik", ["ihtiyaç duymak", "gerek, lazım", "antrenman yapmak", "satmak"], "B", ["potrzebować", "trzeba", "trenować", "sprzedać"], "B", "set1"], [674, "niezbędny", "przymiotnik", ["kapalı, çalışmıyor", "gereksiz", "unutulmaz", "vazgeçilmez, elzem"], "D", ["nieczynny", "niepotrzebny", "niezbędny", "niezapomniany"], "C", "set1"], [675, "różny", "przymiotnik", ["farklı, çeşitli", "ciddi", "güçlü, şiddetli", "soğuk"], "A", ["poważny", "różny", "mocny", "zimny"], "B", "set1"], [676, "szczęśliwy", "przymiotnik", ["uygun, yerinde", "mutlu", "yıpranmış, hasarlı", "yapay"], "B", ["właściwy", "szczęśliwy", "zniszczony", "sztuczny"], "B", "set1"], [677, "wybrany", "przymiotnik", ["ikinci el/kullanılan", "rahat, konforlu", "seçilmiş, seçilen", "deri"], "C", ["wybrany", "używany", "wygodny", "skórzany"], "A", "set1"], [678, "wygodny", "przymiotnik", ["rahat, konforlu", "seçilmiş, seçilen", "serbest, boş", "ortak"], "A", ["wybrany", "wolny", "wygodny", "wspólny"], "C", "set1"], [679, "ukryty", "przymiotnik", ["gizli, saklı", "ikinci el/kullanılan", "yağlı", "basit"], "A", ["używany", "tłusty", "ukryty", "prosty"], "C", "set1"], [680, "prosty", "przymiotnik", ["temiz", "yağlı", "dönüş", "basit"], "D", ["czysty", "tłusty", "powrotny", "prosty"], "D", "set1"], [681, "dziwny", "przymiotnik", ["tuhaf, garip", "soğuk", "sebzeli", "ikinci el/kullanılan"], "A", ["zimny", "dziwny", "warzywny", "używany"], "B", "set1"], [682, "podobny", "przymiotnik", ["verilen, verilmiş", "yardımcı, faydalı", "benzer", "el (bagajı)"], "C", ["podobny", "podany", "pomocny", "podręczny"], "A", "set1"], [683, "wyjątkowy", "przymiotnik", ["seçilmiş, seçilen", "eşsiz, benzersiz", "krem rengi", "dijital"], "B", ["finansowy", "kremowy", "cyfrowy", "wyjątkowy"], "D", "set1"], [684, "poprawny", "przymiotnik", ["popüler", "verilen, verilmiş", "ciddi", "doğru, hatasız"], "D", ["poprawny", "popularny", "podany", "poważny"], "A", "set1"], [685, "właściwy", "przymiotnik", ["ücretsiz, bedava", "İtalyan", "klasik", "uygun, yerinde"], "D", ["bezpłatny", "włoski", "właściwy", "klasyczny"], "C", "set1"], [686, "podany", "przymiotnik", ["yardımcı, faydalı", "verilen, verilmiş", "ciddi", "benzer"], "B", ["pomocny", "poważny", "podobny", "podany"], "D", "set1"], [687, "przede wszystkim", "przysłówek", ["nihayet, sonunda", "her zaman", "hızlı, çabuk", "her şeyden önce, öncelikle"], "D", ["wreszcie", "zawsze", "szybko", "przede wszystkim"], "D", "set1"], [688, "chętnie", "przysłówek", ["her şeyden önce, öncelikle", "ücretsiz olarak", "seve seve, memnuniyetle", "yalnızca, sadece"], "C", ["przede wszystkim", "bezpłatnie", "jedynie", "chętnie"], "D", "set1"], [689, "nadal", "przysłówek", ["aniden, birdenbire", "hâlâ, hâlen", "asla, hiçbir zaman", "ek olarak, ayrıca"], "B", ["nadal", "nagle", "nigdy", "dodatkowo"], "A", "set1"]];
+var LET = ['A','B','C','D'];
+var QBASE = Q.length;
+var UPKEY = 'plTest554uploads';
+var WEBKEY = 'plTest554weburl';
+var armDel = null;
+var KEY = 'plTest554r6';
+var EXKEY = 'plTest554excl';
+var EX = {};
+var exSort = 'recent';
+var SETKEY = 'plTest554sets';
+var SEL = null;   /* secili set adlari; null = hepsi */
+/* S = { order:[...], i:answered, ok, wrong:[qNum,word,my,correct,answerPos], mode:'mc'|'tf', retry:[qIndex...] } */
+var S = null;
+var locked = false;
+var armExclude = false;
+var tf = null;          /* transient TF presentation: {qi,fromRetry,tries,correctAns,candidate} */
+var sinceRetry = 0;
+var lastCand = {};      /* qi -> en son gösterilen çeviri (tekrarı önlemek için) */
+
+/* ---------- SESLENDİRME (TTS) ---------- */
+var TTSVOICES = [], plVoice = null, TTShasPl = false;
+function loadVoices(){
+  if(!('speechSynthesis' in window)) return;
+  TTSVOICES = speechSynthesis.getVoices() || [];
+  var pl = TTSVOICES.filter(function(v){ return v.lang && v.lang.toLowerCase().indexOf('pl')===0; });
+  TTShasPl = pl.length>0;
+  if(pl.length){ if(!plVoice || pl.indexOf(plVoice)===-1) plVoice = pl[0]; }
+  else if(!plVoice) plVoice = TTSVOICES[0] || null;
+  var sel = $('lisVoice');
+  if(sel){
+    var list = pl.length ? pl : TTSVOICES;
+    sel.innerHTML='';
+    list.forEach(function(v){ var o=document.createElement('option'); o.value=TTSVOICES.indexOf(v); o.textContent=v.name+' ('+v.lang+')'; sel.appendChild(o); });
+    if(plVoice) sel.value = TTSVOICES.indexOf(plVoice);
+  }
+  var w=$('lisWarn'); if(w) w.style.display = (!TTShasPl && LWORDS.length) ? 'block' : 'none';
+}
+if('speechSynthesis' in window){
+  try{ loadVoices(); }catch(e){}
+  if(speechSynthesis.onvoiceschanged!==undefined) speechSynthesis.onvoiceschanged = loadVoices;
+}
+/* Tek kelimeyi seslendir (soru ekranındaki 🔊 butonu için) */
+function speakWord(text, rate, btn){
+  if(!('speechSynthesis' in window) || !text) return;
+  try{ speechSynthesis.cancel(); }catch(e){}
+  var u = new SpeechSynthesisUtterance(text);
+  u.lang='pl-PL'; if(plVoice) u.voice=plVoice; u.rate = rate || 0.9;
+  if(btn){ btn.className='spk playing'; u.onend=u.onerror=function(){ btn.className='spk'; }; }
+  try{ speechSynthesis.speak(u); }catch(e){}
+}
+
+/* ---------- DİNLEME MODU (komple liste) ---------- */
+var LWORDS = [], lidx = 0, lplaying = false, ltimer = null, lShuffle = false;
+function buildListenList(){
+  /* Seçili setlerdeki tüm kelimeler; pl = başlık, tr = doğru Türkçe karşılık */
+  var a=[], i;
+  for(i=0;i<Q.length;i++){
+    if(!inSel(i)) continue;
+    var d=Q[i], tr=d[3][LET.indexOf(d[4])];
+    a.push({ pl:d[1], tr:tr, n:d[0] });
+  }
+  a.sort(function(x,y){ return x.n-y.n; });
+  if(lShuffle){ for(i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i]; a[i]=a[j]; a[j]=t; } }
+  LWORDS=a;
+}
+function lisStop(){
+  lplaying=false; if(ltimer){ clearTimeout(ltimer); ltimer=null; }
+  if('speechSynthesis' in window){ try{ speechSynthesis.cancel(); }catch(e){} }
+  var pb=$('lisPlay'); if(pb){ pb.textContent='▶ Oynat'; pb.className='lis-play'; }
+}
+function lisPaint(){
+  if(!LWORDS.length) return;
+  var w=LWORDS[lidx];
+  var we=$('lisWord'), me=$('lisMean'), ie=$('lisIdx'), ce=$('lisCount'), bv=$('lisBarV');
+  if(we) we.textContent=w.pl;
+  if(me) me.textContent=($('lisShow')&&$('lisShow').checked)? w.tr : '';
+  if(ie) ie.textContent='#'+w.n;
+  if(ce) ce.textContent=(lidx+1)+' / '+LWORDS.length;
+  if(bv) bv.style.width=((lidx+1)/LWORDS.length*100)+'%';
+}
+function lisSpeak(onEnd){
+  if(!('speechSynthesis' in window)){ onEnd(); return; }
+  try{ speechSynthesis.cancel(); }catch(e){}
+  var u=new SpeechSynthesisUtterance(LWORDS[lidx].pl);
+  u.lang='pl-PL'; if(plVoice) u.voice=plVoice;
+  u.rate = $('lisRate') ? parseFloat($('lisRate').value) : 0.9;
+  u.onend=onEnd; u.onerror=onEnd;
+  try{ speechSynthesis.speak(u); }catch(e){ onEnd(); }
+}
+function lisStep(){
+  if(!lplaying) return;
+  lisPaint();
+  lisSpeak(function(){
+    if(!lplaying) return;
+    var wait=($('lisDelay')?parseFloat($('lisDelay').value):1)*1000;
+    ltimer=setTimeout(function(){
+      if(!lplaying) return;
+      if(lidx<LWORDS.length-1){ lidx++; lisStep(); }
+      else if($('lisRepeat')&&$('lisRepeat').checked){ lidx=0; lisStep(); }
+      else { lisStop(); var we=$('lisWord'); if(we) we.textContent='✓ Bitti'; var me=$('lisMean'); if(me) me.textContent=''; }
+    }, wait);
+  });
+}
+function lisPlay(){
+  if(lplaying || !LWORDS.length) return;
+  lplaying=true; var pb=$('lisPlay'); if(pb){ pb.textContent='⏸ Duraklat'; pb.className='lis-pause'; }
+  lisStep();
+}
+function openListen(){
+  lisStop();
+  buildListenList();
+  $('quiz').style.display='none'; $('report').style.display='none'; $('modebar').style.display='none';
+  $('exclPanel').style.display='none'; $('setPanel').style.display='none';
+  var ar=$('autorow'); if(ar) ar.style.display='none';
+  $('listenPanel').style.display='block';
+  renderListen(); window.scrollTo(0,0);
+}
+function closeListen(){
+  lisStop();
+  $('listenPanel').style.display='none';
+  render(); window.scrollTo(0,0);
+}
+function renderListen(){
+  var h='<h2>🔊 DİNLEME MODU</h2>';
+  h+='<div class="lis-count" id="lisSub">Seçili setlerdeki tüm kelimeler okunur (soru sorulmaz). Aktif: '+selLabel()+' · '+LWORDS.length+' kelime</div>';
+  h+='<div class="lis-warn" id="lisWarn" style="display:none">⚠️ Cihazda Polonca (pl-PL) ses yok. Yine de okunur ama telaffuz farklı olabilir. Chrome / Opera önerilir.</div>';
+  h+='<div class="lis-card"><div class="lis-word" id="lisWord">▶ Oynat</div><div class="lis-mean" id="lisMean"></div><div class="lis-idx" id="lisIdx"></div></div>';
+  h+='<div class="lis-count" id="lisCount"></div>';
+  h+='<div class="lis-bar"><div id="lisBarV"></div></div>';
+  h+='<div class="lis-ctrls">'+
+     '<button class="lis-prev" id="lisPrev">⏮</button>'+
+     '<button class="lis-play" id="lisPlay">▶ Oynat</button>'+
+     '<button class="lis-next" id="lisNext">⏭</button>'+
+     '<button class="lis-reset" id="lisReset">↺</button></div>';
+  h+='<div class="lis-row"><label>Bekleme</label><input type="range" id="lisDelay" min="0" max="4" step="0.25" value="1"><span id="lisDelayV">1.00 sn</span></div>';
+  h+='<div class="lis-row"><label>Hız</label><input type="range" id="lisRate" min="0.5" max="1.2" step="0.1" value="0.9"><span id="lisRateV">0.9x</span></div>';
+  h+='<div class="lis-row" style="flex-wrap:wrap"><label class="lis-toggle"><input type="checkbox" id="lisShow" checked> Türkçe göster</label>'+
+     '<label class="lis-toggle"><input type="checkbox" id="lisRepeat"> Başa dön</label>'+
+     '<label class="lis-toggle"><input type="checkbox" id="lisShuf"'+(lShuffle?' checked':'')+'> Karıştır</label></div>';
+  h+='<div class="lis-row"><label>Ses</label><select id="lisVoice"></select></div>';
+  h+='<div class="lis-count" style="margin:6px 0 14px">Ekranı açık tutun; ekran kapanırsa ses durabilir.</div>';
+  h+='<button class="btn" id="lisClose">← Teste dön</button>';
+  var p=$('listenPanel'); p.innerHTML=h;
+  loadVoices();
+  lidx=0; lisPaint();
+  $('lisPlay').onclick=function(){ lplaying?lisStop():lisPlay(); };
+  $('lisNext').onclick=function(){ lisStop(); if(lidx<LWORDS.length-1) lidx++; lisPaint(); };
+  $('lisPrev').onclick=function(){ lisStop(); if(lidx>0) lidx--; lisPaint(); };
+  $('lisReset').onclick=function(){ lisStop(); lidx=0; lisPaint(); };
+  $('lisDelay').oninput=function(){ $('lisDelayV').textContent=parseFloat(this.value).toFixed(2)+' sn'; };
+  $('lisRate').oninput=function(){ $('lisRateV').textContent=parseFloat(this.value).toFixed(1)+'x'; };
+  $('lisShow').onchange=lisPaint;
+  $('lisShuf').onchange=function(){ lShuffle=this.checked; lisStop(); buildListenList(); lidx=0; lisPaint();
+    var s=$('lisSub'); if(s) s.innerHTML='Seçili setlerdeki tüm kelimeler okunur (soru sorulmaz). Aktif: '+selLabel()+' · '+LWORDS.length+' kelime'; };
+  $('lisVoice').onchange=function(){ var v=TTSVOICES[parseInt(this.value)]; if(v) plVoice=v; };
+  $('lisClose').onclick=closeListen;
+}
+
+
+/* ---------- KOLAY KELIME (CIKARMA) ---------- */
+function allTags(){ var t=[],i,g; for(i=0;i<Q.length;i++){ g=Q[i][7]||'set1'; if(t.indexOf(g)===-1) t.push(g); } t.sort(); return t; }
+function tagCount(g){ var n=0,i; for(i=0;i<Q.length;i++) if((Q[i][7]||'set1')===g) n++; return n; }
+function loadSets(){ var t=allTags(); SEL=t.slice();
+  try{ var r=localStorage.getItem(SETKEY); if(r){ var a=JSON.parse(r);
+    if(a&&a.length){ var k=[],i; for(i=0;i<a.length;i++) if(t.indexOf(a[i])!==-1) k.push(a[i]);
+      if(k.length) SEL=k; } } }catch(e){} }
+function saveSets(){ try{ localStorage.setItem(SETKEY, JSON.stringify(SEL)); }catch(e){} }
+function inSel(qi){ return SEL.indexOf(Q[qi][7]||'set1') !== -1; }
+function selLabel(){ var t=allTags(); return (SEL.length===t.length) ? 'T\u00fcm setler' : SEL.join(', '); }
+function loadEX(){ EX={}; try{ var r=localStorage.getItem(EXKEY); if(r){ var a=JSON.parse(r);
+  if(Array.isArray(a)){ for(var i=0;i<a.length;i++) EX[a[i]]=i+1; }
+  else if(a&&typeof a==='object'){ for(var k in a){ EX[k]=a[k]; } } } }catch(e){} }
+function saveEX(){ try{ localStorage.setItem(EXKEY, JSON.stringify(EX)); }catch(e){} }
+function sortEx(nums){ var a=nums.slice();
+  if(exSort==='az') a.sort(function(x,y){ var dx=byNum(x),dy=byNum(y); return (dx?dx[1]:'').localeCompare(dy?dy[1]:'','pl'); });
+  else if(exSort==='num') a.sort(function(x,y){ return x-y; });
+  else a.sort(function(x,y){ return (EX[y]||0)-(EX[x]||0) || (x-y); });
+  return a; }
+function exSortBarHTML(){ return '<div class="modebar" style="margin:0 0 10px">'+
+  '<button id="exsRecent" class="'+(exSort==='recent'?'on':'')+'">Son eklenen</button>'+
+  '<button id="exsAz" class="'+(exSort==='az'?'on':'')+'">A\u2013Z</button>'+
+  '<button id="exsNum" class="'+(exSort==='num'?'on':'')+'">Soru no</button></div>'; }
+function idxOfNum(num){ for(var i=0;i<Q.length;i++) if(Q[i][0]===num) return i; return -1; }
+function activeOrder(){
+  var a=[],i,j,t;
+  for(i=0;i<Q.length;i++){ if(!EX[Q[i][0]] && inSel(i)) a.push(i); }
+  for(i=a.length-1;i>0;i--){ j=Math.floor(Math.random()*(i+1)); t=a[i]; a[i]=a[j]; a[j]=t; }
+  return a;
+}
+function skipBtnHTML(){ return '<div class="skiprow">'+
+  '<button class="skip" id="skipBtn">\u2298 \u00c7ok kolay</button>'+
+  '<button class="dunno" id="dunnoBtn">Bilmiyorum \u2717</button>'+
+  '</div>'; }
+function wireSkip(){ var sb=$('skipBtn'); if(sb) sb.onclick=toggleArm; var db=$('dunnoBtn'); if(db) db.onclick=markDontKnow; }
+function toggleArm(){
+  if(locked) return;
+  armExclude=!armExclude;
+  var sb=$('skipBtn');
+  if(sb){
+    if(armExclude){ sb.className='skip armed'; sb.innerHTML='\u2713 Do\u011fruysa \u00e7\u0131kar'; }
+    else { sb.className='skip'; sb.innerHTML='\u2298 \u00c7ok kolay'; }
+  }
+}
+/* Bilmiyorum: seçim yapmadan yanlış say, doğruyu göster, ilerle */
+function markDontKnow(){
+  if(locked) return;
+  if(S.mode==='tf'){ dontKnowTF(); return; }
+  locked=true; armExclude=false;
+  var d=Q[S.order[S.i]];
+  var right=(S.mode==='mr')?d[6]:d[4];
+  var bs=$('quiz').getElementsByClassName('opt');
+  for(var k=0;k<bs.length;k++){ var l=bs[k].getAttribute('data-l'); bs[k].disabled=true; if(l===right) bs[k].className='opt correct'; }
+  S.i++;
+  S.wrong.push([d[0], d[1], 'DK', right, S.i, S.mode]);
+  save(); meta();
+  setTimeout(function(){
+    if(S.i % 50===0 || S.i>=S.order.length) report(S.i>=S.order.length);
+    else render();
+  }, 1100);
+}
+function dontKnowTF(){
+  if(locked || !tf) return;
+  locked=true; armExclude=false;
+  var d=Q[tf.qi];
+  var bs=$('quiz').getElementsByClassName('opt');
+  for(var k=0;k<bs.length;k++){ var a=bs[k].getAttribute('data-a'); bs[k].disabled=true; if(a===tf.correctAns) bs[k].className='opt tf correct'; }
+  var fromRetry=tf.fromRetry, tries=tf.tries, qi=tf.qi;
+  if(!S.retry) S.retry=[];
+  if(!fromRetry && tries===0){
+    S.wrong.push([d[0], d[1], 'DK', d[4], S.i+1, 'tf']);
+    S.retry.push(qi); S.i++;
+    save(); meta(); setTimeout(afterTF, 1100); return;
+  }
+  if(!fromRetry && tries===1){
+    S.retry.push(qi); S.i++;
+    save(); meta(); setTimeout(afterTF, 1100); return;
+  }
+  S.retry.push(qi);
+  save(); meta(); setTimeout(function(){ tf=null; render(); }, 1100);
+}
+function restoreNum(num){
+  if(!EX[num]) return;
+  delete EX[num]; saveEX();
+  var idx=idxOfNum(num);
+  if(idx>=0 && inSel(idx) && S.order.indexOf(idx)===-1){
+    var lo=S.i, hi=S.order.length, pos=lo+Math.floor(Math.random()*(hi-lo+1));
+    S.order.splice(pos,0,idx);
+  }
+  save();
+}
+function restoreAll(){
+  var nums=Object.keys(EX).map(Number);
+  for(var i=0;i<nums.length;i++){
+    delete EX[nums[i]];
+    var idx=idxOfNum(nums[i]);
+    if(idx>=0 && inSel(idx) && S.order.indexOf(idx)===-1){
+      var lo=S.i, hi=S.order.length, pos=lo+Math.floor(Math.random()*(hi-lo+1));
+      S.order.splice(pos,0,idx);
+    }
+  }
+  saveEX(); save();
+}
+function exportExcl(){
+  var nums=Object.keys(EX).map(Number).sort(function(a,b){return a-b;});
+  var lines=[];
+  for(var i=0;i<nums.length;i++){ var ln=fullLine(nums[i]); if(ln) lines.push(ln); }
+  downloadText(lines.join('\n')+'\n', 'kolay-'+expName());
+}
+function openSetPanel(){
+  armDel=null;
+  lisStop();
+  $('quiz').style.display='none'; $('report').style.display='none'; $('modebar').style.display='none';
+  $('exclPanel').style.display='none'; $('listenPanel').style.display='none';
+  var ar=$('autorow'); if(ar) ar.style.display='none';
+  $('setPanel').style.display='block'; renderSets(); window.scrollTo(0,0);
+}
+function closeSetPanel(){ $('setPanel').style.display='none'; render(); window.scrollTo(0,0); }
+function applySets(next){
+  if(!next.length){ alert('En az bir set se\u00e7meslisin.'); return; }
+  var same = (next.length===SEL.length) && next.every(function(x){ return SEL.indexOf(x)!==-1; });
+  if(same){ closeSetPanel(); return; }
+  if(!confirm('Se\u00e7ilen setlerle yeni bir tur ba\u015flat\u0131ls\u0131n m\u0131? (mevcut ilerleme s\u0131f\u0131rlan\u0131r, kolay kelime listen korunur)')) return;
+  SEL=next; saveSets();
+  var m=S.mode; S=fresh(); S.mode=m; save();
+  $('setPanel').style.display='none'; render(); window.scrollTo(0,0);
+}
+function renderSets(){
+  var t=allTags(), i, h='<h2>SETLER</h2>';
+  h+='<div class="sect">\u00c7al\u0131\u015fmak istedi\u011fin setleri se\u00e7. Aktif: '+selLabel()+'</div>';
+  h+='<table><tr><th></th><th>Set</th><th>Kelime</th><th></th></tr>';
+  var bt=builtinTags();
+  for(i=0;i<t.length;i++){
+    var on = SEL.indexOf(t[i])!==-1;
+    var isUp = bt.indexOf(t[i])===-1;
+    var del = isUp ? '<button class="mini" data-del="'+t[i]+'">'+(armDel===t[i]?'\u2713 onayla':'sil')+'</button>' : '';
+    h+='<tr><td><input type="checkbox" class="setcb" data-t="'+t[i]+'"'+(on?' checked':'')+'></td>'+
+       '<td class="w">'+t[i]+'</td><td class="true">'+tagCount(t[i])+'</td><td>'+del+'</td></tr>';
+  }
+  h+='</table>';
+  h+='<div class="sect">Yeni set y\u00fckle (.txt s\u00f6zl\u00fck)</div>';
+  h+='<div id="upMsg" style="font-size:12px;color:#8fa0b0;line-height:1.5;margin:0 0 8px">Bi\u00e7im: <b>pl / cins / tag / tr / \u00f6rnekPL / \u00f6rnekTR / \u00e7ePL1 / \u00e7ePL2 / \u00e7eTR1 / \u00e7eTR2</b> (her alan / ile). Dosyadaki 2+2 \u00e7eldiriciye 1 rastgele eklenir; yoksa hepsi t\u00fcr baz\u0131nda se\u00e7ilir. Do\u011fru cevap hi\u00e7 en uzun \u015f\u0131k olmaz.</div>';
+  h+='<input type="file" id="upFile" accept=".txt,text/plain" style="display:none">';
+  h+='<button class="btn sec" id="upBtn">Dosya se\u00e7 ve y\u00fckle</button>';
+  var lastWeb=''; try{ lastWeb=localStorage.getItem(WEBKEY)||''; }catch(e){}
+  h+='<div style="text-align:center;font-size:11px;color:#5c6b7a;margin:8px 0 6px">— ya da —</div>';
+  h+='<input type="url" id="webUrl" inputmode="url" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="https://… .txt bağlantısı (GitHub raw)" value="'+escAttr(lastWeb)+'" style="display:block;width:100%;padding:12px;margin:0 0 8px;background:#1c2f45;color:#e8e6e3;border:1px solid #2b4159;border-radius:10px;font-size:14px">';
+  h+='<button class="btn sec" id="webBtn">Web\'ten Yükle</button>';
+  h+='<div style="font-size:11px;color:#5c6b7a;margin:2px 0 0;line-height:1.5">Kutuyu <b>boş bırakıp</b> basarsan, bu uygulamanın bulunduğu klasördeki .txt dosyaları listelenir; birine dokununca yüklenir.</div>';
+  h+='<div id="webList" style="display:none;margin:8px 0 0"></div>';
+  h+='<button class="btn sec" id="setAll">Hepsini se\u00e7</button>';
+  h+='<button class="btn" id="setApply">Uygula</button>';
+  h+='<button class="btn sec" id="setClose">Vazge\u00e7</button>';
+  var p=$('setPanel'); p.innerHTML=h;
+  var cbs=p.getElementsByClassName('setcb');
+  var picked=function(){ var out=[],k; for(k=0;k<cbs.length;k++) if(cbs[k].checked) out.push(cbs[k].getAttribute('data-t')); return out; };
+  $('setAll').onclick=function(){ for(var k=0;k<cbs.length;k++) cbs[k].checked=true; };
+  $('setApply').onclick=function(){ applySets(picked()); };
+  $('setClose').onclick=closeSetPanel;
+  $('upBtn').onclick=function(){ $('upFile').click(); };
+  $('upFile').onchange=function(e){ var f=e.target.files&&e.target.files[0]; e.target.value=''; if(f) handleFile(f); };
+  $('webBtn').onclick=function(){ loadFromWeb(); };
+  var dels=p.getElementsByClassName('mini');
+  for(var di=0;di<dels.length;di++){ if(dels[di].getAttribute('data-del')!==null){ dels[di].onclick=function(){ var nm=this.getAttribute('data-del'); if(armDel!==nm){ armDel=nm; renderSets(); } else { deleteSet(nm); } }; } }
+}
+function openExclPanel(){
+  lisStop();
+  $('quiz').style.display='none'; $('report').style.display='none'; $('modebar').style.display='none';
+  $('setPanel').style.display='none'; $('listenPanel').style.display='none';
+  var ar=$('autorow'); if(ar) ar.style.display='none';
+  $('exclPanel').style.display='block'; renderExcl(); window.scrollTo(0,0);
+}
+function closeExclPanel(){ $('exclPanel').style.display='none'; render(); window.scrollTo(0,0); }
+function renderExcl(){
+  var nums=sortEx(Object.keys(EX).map(Number));
+  var h='<h2>KOLAY KELIMELER \u00b7 \u00c7IKARILAN ('+nums.length+')</h2>';
+  h+='<div class="sect">Bu kelimeler teste girmez. \u0130stedi\u011fini geri alabilirsin.</div>';
+  if(!nums.length){
+    h+='<div class="empty">Hen\u00fcz kelime \u00e7\u0131karmad\u0131n. Test s\u0131ras\u0131nda bir sorunun alt\u0131ndaki \u201c&#9216; \u00c7ok kolay\u201d ile i\u015faretleyip soruyu do\u011fru cevaplay\u0131nca eklenir.</div>';
+  } else {
+    h+=exSortBarHTML();
+    h+='<table><tr><th>Kelime</th><th>Anlam</th><th></th></tr>';
+    for(var i=0;i<nums.length;i++){
+      var d=byNum(nums[i]); if(!d) continue;
+      var tr=d[3][LET.indexOf(d[4])];
+      h+='<tr><td class="w">'+d[1]+'</td><td class="true">'+tr+'</td><td><button class="mini" data-n="'+nums[i]+'">geri al</button></td></tr>';
+    }
+    h+='</table>';
+    h+='<button class="btn sec" id="exExport">Listeyi d\u0131\u015fa aktar (.txt)</button>';
+    h+='<button class="btn sec" id="exAll">Hepsini geri al</button>';
+  }
+  h+='<button class="btn" id="exClose">Teste d\u00f6n</button>';
+  var p=$('exclPanel'); p.innerHTML=h;
+  var bs=p.getElementsByClassName('mini');
+  for(var k=0;k<bs.length;k++) bs[k].onclick=function(){ restoreNum(Number(this.getAttribute('data-n'))); renderExcl(); meta(); };
+  if($('exExport')) $('exExport').onclick=exportExcl;
+  if($('exAll')) $('exAll').onclick=function(){ if(confirm('T\u00fcm \u00e7\u0131kar\u0131lan kelimeler geri al\u0131ns\u0131n m\u0131?')){ restoreAll(); renderExcl(); meta(); } };
+  var setS=function(m){ return function(){ exSort=m; renderExcl(); }; };
+  if($('exsRecent')) $('exsRecent').onclick=setS('recent');
+  if($('exsAz')) $('exsAz').onclick=setS('az');
+  if($('exsNum')) $('exsNum').onclick=setS('num');
+  $('exClose').onclick=closeExclPanel;
+}
+
+var $ = function(id){ return document.getElementById(id); };
+
+/* ---------- YUKLENEN SOZLUK SETLERI ---------- */
+function loadUP(){ try{ var r=localStorage.getItem(UPKEY); if(r){ var a=JSON.parse(r); if(Array.isArray(a)) return a; } }catch(e){} return []; }
+function saveUP(a){ try{ localStorage.setItem(UPKEY, JSON.stringify(a)); }catch(e){} }
+function shuf(arr){ var a=arr.slice(),i,j,t; for(i=a.length-1;i>0;i--){ j=Math.floor(Math.random()*(i+1)); t=a[i]; a[i]=a[j]; a[j]=t; } return a; }
+function builtinTags(){ var a=[],i,g; for(i=0;i<QBASE;i++){ g=Q[i][7]||'set1'; if(a.indexOf(g)===-1) a.push(g); } return a; }
+function globalPools(){ var GTR=[],GPL=[],i; for(i=0;i<QBASE;i++){ GTR.push(Q[i][3][LET.indexOf(Q[i][4])]); GPL.push(Q[i][5][LET.indexOf(Q[i][6])]); } return {tr:GTR, pl:GPL}; }
+
+/* tur -> kaba sinif (celdirici havuzunu gruplamak icin) */
+function posClass(t){
+  t=(t||'').toLowerCase();
+  if(t.indexOf('czas')===0 || t==='dk' || t==='ndk') return 'v';
+  if(t==='ż'||t==='n'||t==='m'||t==='lm'||t.indexOf('rzecz')===0) return 'n';
+  if(t.indexOf('przym')===0) return 'adj';
+  if(t.indexOf('przysł')===0 || t.indexOf('przysl')===0) return 'adv';
+  if(t.indexOf('spój')===0 || t.indexOf('spoj')===0) return 'conj';
+  if(t.indexOf('przyim')===0) return 'prep';
+  if(t.indexOf('zaim')===0 || t==='ta' || t==='się' || t==='sie') return 'pron';
+  if(t.indexOf('licz')===0) return 'num';
+  return 'x';
+}
+
+/* havuzdan 'need' adet tekrarsiz celdirici; dogru cevap tek basina EN UZUN olmasin */
+function pickDistractors(correct, pool, exclude, need){
+  var ex={},i,v; for(i=0;i<exclude.length;i++) ex[exclude[i]]=1;
+  var cand=[],seen={};
+  for(i=0;i<pool.length;i++){ v=pool[i]; if(v && v!==correct && !ex[v] && !seen[v]){ seen[v]=1; cand.push(v); } }
+  cand=shuf(cand);
+  var out=cand.slice(0,need);
+  if(out.length===need){
+    var longest=true;
+    for(i=0;i<out.length;i++){ if(out[i].length>=correct.length){ longest=false; break; } }
+    if(longest){
+      var longer=cand.slice(need).filter(function(x){ return x.length>=correct.length; });
+      if(longer.length){ var si=0; for(i=1;i<out.length;i++) if(out[i].length<out[si].length) si=i; out[si]=longer[Math.floor(Math.random()*longer.length)]; }
+    }
+  }
+  return out;
+}
+function fixLongest(opts, extraPool, used){
+  var cl=opts[0].length,i,longest=true;
+  for(i=1;i<opts.length;i++) if(opts[i].length>=cl){ longest=false; break; }
+  if(longest){
+    var pool=extraPool.filter(function(x){ return x && x.length>=cl && used.indexOf(x)===-1 && opts.indexOf(x)===-1; });
+    if(pool.length){ var si=1; for(i=2;i<opts.length;i++) if(opts[i].length<opts[si].length) si=i; opts[si]=pool[Math.floor(Math.random()*pool.length)]; }
+  }
+  return opts;
+}
+/* dogru + 3 celdirici (pools sirayla: ayni tur -> ayni set -> yerlesik) -> 4 sik, karistir */
+function buildOpts(correct, fileDist, pools){
+  var opts=[correct], used=[correct], i, v, pi, pk;
+  for(i=0;i<fileDist.length && opts.length<4;i++){ v=fileDist[i]; if(v && v!==correct && used.indexOf(v)===-1){ opts.push(v); used.push(v); } }
+  for(pi=0; pi<pools.length && opts.length<4; pi++){
+    pk=pickDistractors(correct, pools[pi]||[], used, 4-opts.length);
+    for(i=0;i<pk.length;i++){ opts.push(pk[i]); used.push(pk[i]); }
+  }
+  while(opts.length<4) opts.push('\u2014');
+  var extra=[]; for(pi=0;pi<pools.length;pi++) extra=extra.concat(pools[pi]||[]);
+  fixLongest(opts, extra, used);
+  var order=shuf([0,1,2,3]), shuffled=[], letter='A';
+  for(i=0;i<4;i++){ shuffled.push(opts[order[i]]); if(order[i]===0) letter=LET[i]; }
+  return { opts:shuffled, letter:letter };
+}
+function rebuildUploads(){
+  var up=loadUP(); if(!up.length){ injectUploads(); return; }
+  var G=globalPools(), i, j;
+  for(i=0;i<up.length;i++){
+    var st=up[i], ws=st.words||[], trAll=[], plAll=[], trCls={}, plCls={}, c;
+    for(j=0;j<ws.length;j++){
+      c=posClass(ws[j].typ); trAll.push(ws[j].tr); plAll.push(ws[j].pl);
+      (trCls[c]=trCls[c]||[]).push(ws[j].tr); (plCls[c]=plCls[c]||[]).push(ws[j].pl);
+    }
+    for(j=0;j<ws.length;j++){
+      var w=ws[j]; c=posClass(w.typ);
+      var tb=buildOpts(w.tr, w.dtr||[], [ trCls[c]||[], trAll, G.tr ]);
+      var pb=buildOpts(w.pl, w.dpl||[], [ plCls[c]||[], plAll, G.pl ]);
+      w.trOpts=tb.opts; w.trLetter=tb.letter; w.plOpts=pb.opts; w.plLetter=pb.letter;
+    }
+  }
+  saveUP(up); injectUploads();
+}
+function injectUploads(){
+  if(Q.length>QBASE) Q.length=QBASE;
+  var up=loadUP(), i, j, needBuild=false;
+  for(i=0;i<up.length;i++){ var ws=up[i].words||[]; for(j=0;j<ws.length;j++){ if(!ws[j].trOpts||!ws[j].plOpts) needBuild=true; } }
+  if(needBuild){ rebuildUploads(); return; }
+  for(i=0;i<up.length;i++){ var st=up[i], w2=st.words||[]; for(j=0;j<w2.length;j++){ var w=w2[j];
+    Q.push([ w.n, w.pl, (w.typ||st.name), w.trOpts, w.trLetter, w.plOpts, w.plLetter, st.name ]); } }
+}
+
+/* GLOBAL BICIM (her alan / ile ayrilir):
+   pl / cins / tag / tr / ornekPL / ornekTR / plCel1 / plCel2 / trCel1 / trCel2
+   Gecerli alan sayisi: 2 (pl/tr), 4, 6, ya da 10. Alan icinde / olan satirlar (kayik)
+   sessizce bozulmasin diye atlanir ve kullaniciya bildirilir. */
+function cleanTag(s){ return (s||'').replace(/^["'\s]+|["'\s]+$/g,'').trim(); }
+function parseSetFile(text){
+  var lines=text.split(/\r?\n/), rows=[], bad=[], i, k;
+  for(i=0;i<lines.length;i++){
+    var raw=lines[i].replace(/^\uFEFF/,'').trim();
+    if(!raw) continue;
+    var f=raw.split(/\s+\/\s+/); for(k=0;k<f.length;k++) f[k]=f[k].trim();
+    var n=f.length;
+    if(n!==2 && n!==4 && n!==6 && n!==10){ bad.push(f[0]||('sat\u0131r '+(i+1))); continue; }
+    var pl=f[0], typ=(n>=4?f[1]:''), tag=(n>=4?cleanTag(f[2]):''), tr=(n>=4?f[3]:f[1]);
+    var exPl=(n>=6?f[4]:''), exTr=(n>=6?f[5]:'');
+    var dpl=[], dtr=[];
+    if(n>=10){ if(f[6])dpl.push(f[6]); if(f[7])dpl.push(f[7]); if(f[8])dtr.push(f[8]); if(f[9])dtr.push(f[9]); }
+    if(!pl || !tr){ bad.push(f[0]||('sat\u0131r '+(i+1))); continue; }
+    rows.push({ pl:pl, tr:tr, typ:typ, tag:tag, exPl:exPl, exTr:exTr, dpl:dpl, dtr:dtr, raw:raw });
+  }
+  return { rows:rows, bad:bad };
+}
+function setMsg(m){ var e=$('upMsg'); if(e) e.innerHTML=m; }
+function handleFile(file){
+  var reader=new FileReader();
+  reader.onload=function(){ ingestText(String(reader.result||''), file.name); };
+  reader.onerror=function(){ setMsg('Dosya okunamadı.'); };
+  reader.readAsText(file,'utf-8');
+}
+/* Dosya ya da web'ten gelen metni ayrıştırıp yeni set olarak ekle (ortak) */
+function ingestText(text, srcName){
+  var pr=parseSetFile(String(text||''));
+  var recs=pr.rows, bad=pr.bad;
+  if(!recs.length){ setMsg('Geçerli satır yok. Biçim: pl / cins / tag / tr / örnekPL / örnekTR / çePL1 / çePL2 / çeTR1 / çeTR2 (her alan / ile).'); return false; }
+  var up=loadUP();
+  /* set adi: dosyadaki tek tutarli etiket varsa onu, yoksa kaynak adini kullan */
+  var tset={},ti; for(ti=0;ti<recs.length;ti++){ if(recs[ti].tag) tset[recs[ti].tag]=1; }
+  var tkeys=Object.keys(tset);
+  var base;
+  if(tkeys.length===1){ base=tkeys[0]; }
+  else { base=(srcName||'set').replace(/\.[^.]+$/,''); }
+  base=base.replace(/[^0-9A-Za-z\u00c0-\u024f _\-]/g,'').trim(); if(!base) base='set';
+  var taken=allTags().concat(up.map(function(x){ return x.name; })), name=base, kk=2;
+  while(taken.indexOf(name)!==-1){ name=base+'-'+kk; kk++; }
+  var mx=0,i,z; for(i=0;i<Q.length;i++) if(Q[i][0]>mx) mx=Q[i][0];
+  for(i=0;i<up.length;i++){ var ww=up[i].words||[]; for(z=0;z<ww.length;z++) if(ww[z].n>mx) mx=ww[z].n; }
+  for(i=0;i<recs.length;i++) recs[i].n=++mx;
+  up.push({ name:name, words:recs });
+  saveUP(up); rebuildUploads();
+  var warn = bad.length ? ' <span style="color:#e0a96c">⚠ '+bad.length+' satır atlandı (alan içinde / var): '+bad.slice(0,8).join(', ')+(bad.length>8?'…':'')+'</span>' : '';
+  renderSets();  /* önce paneli yenile (yeni set tabloda görünsün) */
+  setMsg(recs.length+' kelime yüklendi — “'+name+'”.'+warn+' Aşağıdan işaretleyip <b>Uygula</b>.');  /* sonra mesaj yaz ki silinmesin */
+  return true;
+}
+/* github.com/.../blob/... bağlantısını otomatik olarak raw'a çevir */
+function normUrl(u){
+  u=(u||'').trim();
+  var m=u.match(/^https?:\/\/github\.com\/([^\/]+)\/([^\/]+)\/blob\/(.+)$/);
+  if(m){ u='https://raw.githubusercontent.com/'+m[1]+'/'+m[2]+'/'+m[3]; }
+  return u;
+}
+/* URL'den metin çek (XHR; eski Android tarayıcılarında da çalışır) */
+function fetchText(url){
+  return new Promise(function(resolve,reject){
+    try{
+      var xhr=new XMLHttpRequest();
+      xhr.open('GET', url, true);
+      try{ xhr.responseType='text'; }catch(e){}
+      xhr.timeout=20000;
+      xhr.onload=function(){
+        var ok=(xhr.status>=200 && xhr.status<300) || xhr.status===0;
+        if(ok) resolve(xhr.responseText||xhr.response||'');
+        else reject(new Error('HTTP '+xhr.status));
+      };
+      xhr.onerror=function(){ reject(new Error('ağ/CORS hatası')); };
+      xhr.ontimeout=function(){ reject(new Error('zaman aşımı')); };
+      xhr.send();
+    }catch(e){ reject(e); }
+  });
+}
+function escAttr(s){ return String(s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;'); }
+function loadFromWeb(){
+  var inp=$('webUrl');
+  var url=normUrl(inp?inp.value:'');
+  if(!url){ listWeb(); return; }
+  if(!/^https?:\/\//i.test(url)){ setMsg('<span style="color:#e06c6c">Bağlantı http(s):// ile başlamalı.</span>'); return; }
+  try{ localStorage.setItem(WEBKEY, url); }catch(e){}
+  if(inp) inp.value=url;
+  setMsg('Yükleniyor…');
+  fetchText(url).then(function(text){
+    var nm=(url.split('?')[0].split('#')[0].split('/').pop())||'web';
+    ingestText(text, nm);
+  }).catch(function(err){
+    setMsg('<span style="color:#e06c6c">Yüklenemedi: '+((err&&err.message)||err)+'. Bağlantıyı ve internet erişimini kontrol et. GitHub için <b>raw</b> bağlantı kullan.</span>');
+  });
+}
+/* Bu uygulamanın barındığı klasördeki dosyaları API ile bul (proje ve kullanıcı sitesi yapısını dener) */
+function webApiContents(){
+  var host=location.hostname;                 // ör. mituncer.github.io
+  var owner=host.split('.')[0];
+  var segs=location.pathname.split('/').filter(Boolean);
+  var dirSegs=segs.slice();
+  if(dirSegs.length && dirSegs[dirSegs.length-1].indexOf('.')!==-1) dirSegs.pop();  // dosya adını at
+  var candidates=[];
+  if(dirSegs.length) candidates.push({ repo:dirSegs[0], path:dirSegs.slice(1).join('/') }); // proje sitesi
+  candidates.push({ repo:owner+'.github.io', path:dirSegs.join('/') });                      // kullanıcı sitesi
+  var i=0;
+  function tryNext(){
+    if(i>=candidates.length) return Promise.reject(new Error('klasör bulunamadı'));
+    var c=candidates[i++];
+    var b='https://api.github.com/repos/'+owner+'/'+c.repo+'/contents';
+    var url=c.path ? (b+'/'+c.path) : b;
+    return fetch(url,{ headers:{ 'Accept':'application/vnd.github+json' }, cache:'no-store' })
+      .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
+      .then(function(d){ if(Array.isArray(d)) return d; throw new Error('beklenmeyen yanıt'); })
+      .catch(function(){ return tryNext(); });
+  }
+  return tryNext();
+}
+var webFiles=[];
+function isTxtName(n){ n=(n||'').toLowerCase(); return n.slice(-4)==='.txt'; }
+function closeWebList(){ var b=$('webList'); if(b){ b.style.display='none'; b.innerHTML=''; } }
+function listWeb(){
+  var box=$('webList'); if(!box) return;
+  box.style.display='block';
+  box.innerHTML='<div style="color:#8fa0b0;font-size:13px;text-align:center;padding:10px">⏳ Dosyalar listeleniyor…</div>';
+  webApiContents().then(function(data){
+    webFiles=data.filter(function(x){ return x.type==='file' && isTxtName(x.name); }).map(function(x){ return x.name; });
+    if(!webFiles.length){ box.innerHTML='<div style="color:#8fa0b0;font-size:13px;text-align:center;padding:10px">Bu klasörde .txt dosyası yok.</div>'; return; }
+    var out='',k;
+    for(k=0;k<webFiles.length;k++){
+      out+='<button class="opt" data-wi="'+k+'" style="font-size:15px;margin-bottom:8px">📄 '+escAttr(webFiles[k])+'</button>';
+    }
+    out+='<button class="mini" id="webListClose" style="width:100%;padding:9px">Kapat</button>';
+    box.innerHTML=out;
+    var bs=box.getElementsByClassName('opt');
+    for(k=0;k<bs.length;k++) bs[k].onclick=function(){ pickWeb(Number(this.getAttribute('data-wi'))); };
+    if($('webListClose')) $('webListClose').onclick=closeWebList;
+  }).catch(function(e){
+    box.innerHTML='<div style="color:#e0a96c;font-size:12px;text-align:center;padding:10px;line-height:1.5">⚠ Liste alınamadı: '+((e&&e.message)||e)+'. Sayfayı github.io adresinden aç ya da az sonra dene (saatte 60 istek sınırı). Dilersen üstteki kutuya .txt bağlantısını elle de yapıştırabilirsin.</div>';
+  });
+}
+function pickWeb(i){
+  var name=webFiles[i]; if(!name) return;
+  setMsg('Yükleniyor… '+name);
+  fetch('./'+encodeURIComponent(name),{ cache:'no-store' }).then(function(r){
+    if(!r.ok) throw new Error('HTTP '+r.status); return r.text();
+  }).then(function(text){
+    ingestText(text, name);   // başarılıysa panel yenilenir + mesaj yazılır
+  }).catch(function(e){
+    setMsg('<span style="color:#e06c6c">Okunamadı: '+((e&&e.message)||e)+'.</span>');
+  });
+}
+function deleteSet(name){
+  var up=loadUP().filter(function(x){ return x.name!==name; });
+  saveUP(up); armDel=null; injectUploads();
+  SEL=SEL.filter(function(x){ return x!==name; });
+  if(!SEL.length) SEL=allTags().slice();
+  saveSets();
+  var m=S.mode; S=fresh(); S.mode=m; save();
+  renderSets();
+}
+
+function shuffled(n){
+  var a = [], i, j, t;
+  for (i = 0; i < n; i++) a.push(i);
+  for (i = n - 1; i > 0; i--) { j = Math.floor(Math.random() * (i + 1)); t = a[i]; a[i] = a[j]; a[j] = t; }
+  return a;
+}
+function fresh(){ return { order: activeOrder(), i: 0, ok: 0, wrong: [], mode: 'mc', retry: [] }; }
+
+function save(){ try { localStorage.setItem(KEY, JSON.stringify(S)); } catch(e){} }
+function load(){
+  try {
+    var r = localStorage.getItem(KEY);
+    if (r) {
+      var o = JSON.parse(r);
+      if (o && typeof o.i === 'number' && o.order && o.order.length <= Q.length) {
+        S = o;
+        if (S.mode !== 'tf' && S.mode !== 'mc' && S.mode !== 'mr') S.mode = 'mc';
+      var okSel = true;
+      for (var z = 0; z < o.order.length; z++) { if (!inSel(o.order[z])) { okSel = false; break; } }
+      if (!okSel) { var mm = o.mode; S = fresh(); S.mode = mm; save(); return; }
+        if (!S.retry) S.retry = [];
+        return;
+      }
+    }
+  } catch(e){}
+  S = fresh();
+}
+
+function meta(){
+  $('cur').innerHTML = S.i;
+  $('tot').innerHTML = S.order.length;
+  $('nok').innerHTML = S.ok;
+  $('nbad').innerHTML = S.wrong.length;
+  $('pct').innerHTML = '%' + (S.i ? Math.round(S.ok / S.i * 100) : 0);
+  $('prog').style.width = (S.order.length ? (S.i / S.order.length * 100) : 0) + '%';
+  var exnEl = $('exn'); if (exnEl) exnEl.innerHTML = Object.keys(EX).length;
+  var snEl = $('setn'); if (snEl) snEl.innerHTML = SEL.length;
+}
+
+function updateModeBar(){
+  $('mMc').className = (S.mode === 'mc') ? 'on' : '';
+  $('mMr').className = (S.mode === 'mr') ? 'on' : '';
+  $('mTf').className = (S.mode === 'tf') ? 'on' : '';
+}
+
+function render(){
+  meta();
+  updateModeBar();
+  var moreRetry = S.retry && S.retry.length;
+  var atEnd = (S.i >= S.order.length) && (S.mode !== 'tf' || !moreRetry);
+  if (atEnd) { report(true); return; }
+  $('report').style.display = 'none';
+  $('exclPanel').style.display = 'none';
+  $('setPanel').style.display = 'none';
+  $('quiz').style.display = 'block';
+  $('modebar').style.display = 'flex';
+  $('listenPanel').style.display = 'none';
+  lisStop();
+  var ar = $('autorow'); if (ar) ar.style.display = (S.mode === 'mr') ? 'none' : 'flex';
+  armExclude = false;
+  if (S.mode === 'tf') renderTF(); else if (S.mode === 'mr') renderMR(); else renderMC();
+  locked = false;
+}
+
+/* ---------- ÇOKTAN SEÇMELİ ---------- */
+function renderMC(){
+  var d = Q[S.order[S.i]];
+  var h = '<div class="qnum">SORU ' + d[0] + '</div>' +
+          '<div class="word">' + d[1] + ' <button class="spk" id="spkBtn" title="Dinle">🔊</button></div>' +
+          '<div class="pos">(' + d[2] + ')</div>';
+  for (var j = 0; j < 4; j++) {
+    h += '<button class="opt" data-l="' + LET[j] + '"><span class="l">' + LET[j] + ')</span>' + d[3][j] + '</button>';
+  }
+  h += skipBtnHTML();
+  var q = $('quiz'); q.innerHTML = h;
+  var bs = q.getElementsByClassName('opt');
+  for (var k = 0; k < bs.length; k++) bs[k].onclick = pickMC;
+  wireSkip();
+  var sp = $('spkBtn'); if (sp) sp.onclick = function(){ speakWord(d[1], 0.9, sp); };
+  if ($('autoSpeak') && $('autoSpeak').checked) speakWord(d[1], 0.9, sp);
+}
+
+function pickMC(){
+  if (locked) return;
+  locked = true;
+  var wasArmed = armExclude; armExclude = false;
+  var my = this.getAttribute('data-l');
+  var d = Q[S.order[S.i]];
+  var right = d[4];
+  var bs = $('quiz').getElementsByClassName('opt');
+  for (var k = 0; k < bs.length; k++) {
+    var l = bs[k].getAttribute('data-l');
+    bs[k].disabled = true;
+    if (l === right) bs[k].className = 'opt correct';
+    else if (l === my) bs[k].className = 'opt wrong';
+  }
+  S.i++;
+  if (my === right) S.ok++;
+  else S.wrong.push([d[0], d[1], my, right, S.i, 'mc']);
+  if (wasArmed && my === right) { EX[d[0]] = Date.now(); saveEX(); }
+  save(); meta();
+  var delay = (my === right) ? 180 : 1100;
+  setTimeout(function(){
+    if (S.i % 50 === 0 || S.i >= S.order.length) report(S.i >= S.order.length);
+    else render();
+  }, delay);
+}
+
+/* ---------- DOĞRU / YANLIŞ ---------- */
+function renderMR(){
+  var d = Q[S.order[S.i]];
+  var prompt = d[3][LET.indexOf(d[4])];
+  var h = '<div class="qnum">SORU ' + d[0] + '</div>' +
+          '<div class="word">' + prompt + '</div>' +
+          '<div class="pos">(' + d[2] + ' \u00b7 Leh\u00e7esini se\u00e7)</div>';
+  for (var j = 0; j < 4; j++) {
+    h += '<button class="opt" data-l="' + LET[j] + '"><span class="l">' + LET[j] + ')</span>' + d[5][j] + '</button>';
+  }
+  h += skipBtnHTML();
+  var q = $('quiz'); q.innerHTML = h;
+  var bs = q.getElementsByClassName('opt');
+  for (var k = 0; k < bs.length; k++) bs[k].onclick = pickMR;
+  wireSkip();
+}
+function pickMR(){
+  if (locked) return;
+  locked = true;
+  var wasArmed = armExclude; armExclude = false;
+  var my = this.getAttribute('data-l');
+  var d = Q[S.order[S.i]];
+  var right = d[6];
+  var bs = $('quiz').getElementsByClassName('opt');
+  for (var k = 0; k < bs.length; k++) {
+    var l = bs[k].getAttribute('data-l');
+    bs[k].disabled = true;
+    if (l === right) bs[k].className = 'opt correct';
+    else if (l === my) bs[k].className = 'opt wrong';
+  }
+  S.i++;
+  if (my === right) S.ok++;
+  else S.wrong.push([d[0], d[1], my, right, S.i, 'mr']);
+  if (wasArmed && my === right) { EX[d[0]] = Date.now(); saveEX(); }
+  save(); meta();
+  var delay = (my === right) ? 180 : 1100;
+  setTimeout(function(){
+    if (S.i % 50 === 0 || S.i >= S.order.length) report(S.i >= S.order.length);
+    else render();
+  }, delay);
+}
+
+function makeTF(qi, fromRetry, tries, avoid){
+  var d = Q[qi];
+  if (avoid === undefined) avoid = lastCand[qi];   /* aynı kelime tekrar sorulursa önceki çeviriyi tekrarlama */
+  var correctText = d[3][LET.indexOf(d[4])];
+  var distract = [];
+  for (var j = 0; j < 4; j++) if (LET[j] !== d[4]) distract.push(d[3][j]);
+
+  var showCorrect = Math.random() < 0.5;
+  var candidate;
+  if (showCorrect) {
+    candidate = correctText;
+    if (candidate === avoid) showCorrect = false;   /* doğru olan bir önce gösterildiyse çeldirici göster */
+  }
+  if (!showCorrect) {
+    var pool = distract.filter(function(t){ return t !== avoid; });
+    if (!pool.length) pool = distract;
+    candidate = pool[Math.floor(Math.random() * pool.length)];
+  }
+  lastCand[qi] = candidate;
+  return { qi: qi, fromRetry: fromRetry, tries: tries, correctAns: showCorrect ? 'D' : 'Y', candidate: candidate };
+}
+
+function nextTF(){
+  var moreRetry = S.retry && S.retry.length;
+  if (moreRetry && sinceRetry >= 6) { sinceRetry = 0; return makeTF(S.retry.shift(), true, 0); }
+  if (S.i < S.order.length) { sinceRetry++; return makeTF(S.order[S.i], false, 0); }
+  if (moreRetry) { sinceRetry = 0; return makeTF(S.retry.shift(), true, 0); }
+  return null;
+}
+
+function renderTF(){
+  if (!tf) tf = nextTF();
+  if (!tf) { report(true); return; }
+  var d = Q[tf.qi];
+  var tag = tf.fromRetry ? '<span class="tag">TEKRAR</span>' : '';
+  var h = '<div class="qnum">SORU ' + d[0] + tag + '</div>' +
+          '<div class="word tfword">' + d[1] + ' <button class="spk" id="spkBtn" title="Dinle">🔊</button></div>' +
+          '<div class="pos">(' + d[2] + ')</div>' +
+          '<div class="tfq">= <b>' + tf.candidate + '</b></div>' +
+          '<div class="tfhint">Bu çeviri doğru mu?</div>' +
+          '<button class="opt tf" data-a="D">✓ Doğru</button>' +
+          '<button class="opt tf" data-a="Y">✗ Yanlış</button>' +
+          skipBtnHTML();
+  var q = $('quiz'); q.innerHTML = h;
+  var bs = q.getElementsByClassName('opt');
+  for (var k = 0; k < bs.length; k++) bs[k].onclick = pickTF;
+  wireSkip();
+  var sp = $('spkBtn'); if (sp) sp.onclick = function(){ speakWord(d[1], 0.9, sp); };
+  if ($('autoSpeak') && $('autoSpeak').checked) speakWord(d[1], 0.9, sp);
+  locked = false;
+}
+
+function afterTF(){
+  tf = null;
+  if (S.i > 0 && S.i % 50 === 0 && !(S.i >= S.order.length && !(S.retry && S.retry.length))) report(false);
+  else if (S.i >= S.order.length && !(S.retry && S.retry.length)) report(true);
+  else render();
+}
+
+function pickTF(){
+  if (locked) return;
+  locked = true;
+  var wasArmed = armExclude; armExclude = false;
+  var ans = this.getAttribute('data-a');
+  var ok = (ans === tf.correctAns);
+  var bs = $('quiz').getElementsByClassName('opt');
+  for (var k = 0; k < bs.length; k++) {
+    var a = bs[k].getAttribute('data-a');
+    bs[k].disabled = true;
+    if (a === tf.correctAns) bs[k].className = 'opt tf correct';
+    else if (a === ans) bs[k].className = 'opt tf wrong';
+  }
+
+  var isFresh = !tf.fromRetry;
+  var d = Q[tf.qi];
+
+  if (ok) {
+    if (isFresh && tf.tries === 0) { S.ok++; S.i++; }
+    else if (isFresh && tf.tries === 1) { S.i++; }        /* wrong daha önce sayıldı, şimdi ilerle */
+    /* fromRetry doğru: kuyruktan zaten çıktı, istatistik değişmez */
+    if (wasArmed) { EX[d[0]] = Date.now(); if (S.retry) S.retry = S.retry.filter(function(x){ return x !== tf.qi; }); saveEX(); }
+    save(); meta();
+    setTimeout(afterTF, 180);
+    return;
+  }
+
+  /* YANLIŞ */
+  if (isFresh && tf.tries === 0) {
+    var myChoice = (tf.correctAns === 'D') ? 'RED' : LET[d[3].indexOf(tf.candidate)];
+    S.wrong.push([d[0], d[1], myChoice, d[4], S.i + 1, 'tf']);
+    if (tf.correctAns === 'D') {
+      /* doğru çeviriyi yanlış sandın: düzeltmede öğrendin → hemen sorma, ileride sor */
+      if (!S.retry) S.retry = [];
+      S.retry.push(tf.qi);
+      S.i++;
+      save(); meta();
+      setTimeout(afterTF, 1100);
+    } else {
+      /* yanlış çeviriyi doğru sandın: hemen bir kez daha sor */
+      save(); meta();
+      setTimeout(function(){ tf = makeTF(tf.qi, false, 1); renderTF(); }, 1100);
+    }
+    return;
+  }
+  if (isFresh && tf.tries === 1) {
+    /* ikinci kez yanlış: ileride tekrar sor */
+    if (!S.retry) S.retry = [];
+    S.retry.push(tf.qi);
+    S.i++;
+    save(); meta();
+    setTimeout(afterTF, 1100);
+    return;
+  }
+  /* fromRetry yanlış: kuyruğa geri koy, ileride yine sor (istatistik değişmez) */
+  if (!S.retry) S.retry = [];
+  S.retry.push(tf.qi);
+  save(); meta();
+  setTimeout(function(){ tf = null; render(); }, 1100);
+}
+
+/* ---------- RAPOR ---------- */
+function letterText(d, l, mode){
+  if (l === 'RED') return '— (doğruyu reddettin)';
+  if (l === 'DK') return '— (bilmiyorum)';
+  var i = LET.indexOf(l);
+  if (i < 0 || !d) return '—';
+  var arr = (mode === 'mr') ? d[5] : d[3];
+  return l + ') ' + arr[i];
+}
+function byNum(n){ for (var i = 0; i < Q.length; i++) if (Q[i][0] === n) return Q[i]; return null; }
+function grid(ok, bad, p){
+  return '<div class="grid">' +
+    '<div class="box"><div class="v ok">' + ok + '</div><div class="k">Doğru</div></div>' +
+    '<div class="box"><div class="v bad">' + bad + '</div><div class="k">Yanlış</div></div>' +
+    '<div class="box"><div class="v">%' + p + '</div><div class="k">Başarı</div></div>' +
+    '</div>';
+}
+
+function pad2(n){ return (n < 10 ? '0' : '') + n; }
+function expName(){
+  var d = new Date();
+  return pad2(d.getFullYear() % 100) + pad2(d.getMonth() + 1) + pad2(d.getDate()) +
+         pad2(d.getMinutes()) + pad2(d.getSeconds()) + '.txt';
+}
+/* Bir kelimeyi, içe alındığı satır biçiminde birebir üret (yerleşikler için 4 alanlı temiz satır).
+   Boş orta alan üretmez; çünkü boş alan ' / ' ile geri yüklenince parse'ı bozar. */
+function reconstructRec(w){
+  if(!w.typ || !w.tag) return [w.pl, w.tr].join(' / ');   /* eksik alan varsa güvenli 2 alan */
+  var base=[w.pl, w.typ, w.tag, w.tr];
+  var hasEx = !!(w.exPl && w.exTr);
+  var hasD  = !!(w.dpl && w.dpl.length>=2 && w.dtr && w.dtr.length>=2);
+  if(hasEx && hasD) return base.concat([w.exPl, w.exTr, w.dpl[0], w.dpl[1], w.dtr[0], w.dtr[1]]).join(' / ');
+  if(hasEx) return base.concat([w.exPl, w.exTr]).join(' / ');
+  return base.join(' / ');
+}
+function fullLine(num){
+  var up=loadUP(), i, j;
+  for(i=0;i<up.length;i++){ var ws=up[i].words||[];
+    for(j=0;j<ws.length;j++){ if(ws[j].n===num){ var w=ws[j];
+      return w.raw ? w.raw : reconstructRec(w);   /* içe alınmışsa: orijinal satır birebir */
+    } }
+  }
+  var d=byNum(num); if(!d) return null;            /* yerleşik: 4 alanlı temiz satır */
+  var tr=d[3][LET.indexOf(d[4])];
+  return [d[1], d[2], (d[7]||'set1'), tr].join(' / ');
+}
+function downloadText(text, fname){
+  var blob=new Blob([text],{type:'text/plain;charset=utf-8'});
+  var url=URL.createObjectURL(blob), a=document.createElement('a');
+  a.href=url; a.download=fname; document.body.appendChild(a); a.click();
+  setTimeout(function(){ document.body.removeChild(a); URL.revokeObjectURL(url); }, 400);
+}
+function exportWrong(){
+  var ws = S.wrong.slice().sort(function(a, b){ return a[0] - b[0]; });
+  var seen={}, lines=[];
+  for (var i = 0; i < ws.length; i++) {
+    var num=ws[i][0];
+    if(seen[num]) continue; seen[num]=1;           /* aynı kelime birden çok yanlışsa tek satır */
+    var ln=fullLine(num);
+    if(ln) lines.push(ln);
+  }
+  downloadText(lines.join('\n') + '\n', expName());
+}
+
+function report(fin){
+  lisStop();
+  $('quiz').style.display = 'none';
+  $('modebar').style.display = 'none';
+  $('exclPanel').style.display = 'none';
+  $('setPanel').style.display = 'none';
+  $('listenPanel').style.display = 'none';
+  var arR = $('autorow'); if (arR) arR.style.display = 'none';
+  var r = $('report'); r.style.display = 'block';
+  window.scrollTo(0, 0);
+
+  var done = S.i;
+  if (done === 0) {
+    r.innerHTML = '<h2>DEĞERLENDİRME</h2><div class="empty">Henüz soru cevaplamadın.</div>' +
+                  '<button class="btn" id="cont">Teste dön</button>';
+    $('cont').onclick = function(){ render(); window.scrollTo(0, 0); };
+    return;
+  }
+
+  var blockStart = Math.floor((done - 1) / 50) * 50 + 1;
+  var blockWrong = [];
+  for (var i = 0; i < S.wrong.length; i++) {
+    var ap = S.wrong[i][4];
+    if (ap >= blockStart && ap <= done) blockWrong.push(S.wrong[i]);
+  }
+  var blockCount = done - blockStart + 1;
+  var blockOk = blockCount - blockWrong.length;
+
+  var totOk = done - S.wrong.length;
+  var pct  = Math.round(totOk / done * 1000) / 10;
+  var bpct = Math.round(blockOk / blockCount * 1000) / 10;
+
+  var h = '<h2>' + (fin ? 'TEST TAMAMLANDI'
+                        : 'ARA DEĞERLENDİRME · ' + blockStart + '–' + done + '. cevap') + '</h2>';
+
+  h += '<div class="sect">Bu bölüm (' + blockStart + '–' + done + '. cevap)</div>';
+  h += grid(blockOk, blockWrong.length, bpct);
+
+  h += '<div class="sect">Genel · toplam ' + done + ' cevap</div>';
+  h += grid(totOk, S.wrong.length, pct);
+
+  h += '<div class="sect">Baştan itibaren TÜM yanlışlar (' + S.wrong.length + ')</div>';
+  if (!S.wrong.length) {
+    h += '<div class="empty">Hiç yanlışın yok. Doskonale!</div>';
+  } else {
+    var ws = S.wrong.slice().sort(function(a, b){ return a[0] - b[0]; });
+    h += '<table><tr><th>Soru</th><th>Kelime</th><th>Senin seçimin</th><th>Doğrusu</th></tr>';
+    for (var j = 0; j < ws.length; j++) {
+      var w = ws[j], d = byNum(w[0]); var wm = w[5] || 'mc';
+      var kel = (wm === 'mr' && d) ? d[3][LET.indexOf(d[4])] : w[1];
+      h += '<tr><td class="n">' + w[0] + '</td><td class="w">' + kel + '</td>' +
+           '<td class="mine">' + letterText(d, w[2], wm) + '</td>' +
+           '<td class="true">' + letterText(d, w[3], wm) + '</td></tr>';
+    }
+    h += '</table>';
+  }
+
+  if (S.wrong.length) h += '<button class="btn sec" id="exp">Yanlışları dışarı aktar (.txt)</button>';
+  if (fin) h += '<button class="btn" id="again">Baştan başla (yeni karışık sıra)</button>';
+  else     h += '<button class="btn" id="cont">Devam et</button>';
+
+  r.innerHTML = h;
+  if (S.wrong.length) $('exp').onclick = exportWrong;
+  if (fin) $('again').onclick = reset;
+  else     $('cont').onclick = function(){ render(); window.scrollTo(0, 0); };
+}
+
+/* ---------- KONTROL ---------- */
+function reset(){
+  rebuildUploads();
+  S = fresh();
+  tf = null; sinceRetry = 0; lastCand = {};
+  save();
+  render();
+  window.scrollTo(0, 0);
+}
+function setMode(m){
+  if (S.mode === m) return;
+  S.mode = m; tf = null; sinceRetry = 0; lastCand = {};
+  save();
+  render(); window.scrollTo(0, 0);
+}
+
+$('mMc').onclick   = function(){ setMode('mc'); };
+$('mMr').onclick   = function(){ setMode('mr'); };
+$('mTf').onclick   = function(){ setMode('tf'); };
+$('stop').onclick  = function(){ report(false); };
+$('reset').onclick = function(){ if (confirm('Tüm ilerleme silinsin, yeni karışık sıra başlasın mı?')) reset(); };
+$('openExcl').onclick = openExclPanel;
+$('openSets').onclick = openSetPanel;
+$('openListen').onclick = openListen;
+
+/* Otomatik seslendirme: durumu hatırla; açınca devam etsin, kapatınca sussun */
+(function initAutoSpeak(){
+  var cb = $('autoSpeak'); if(!cb) return;
+  try{ cb.checked = (localStorage.getItem('plTest554auto') === '1'); }catch(e){}
+  cb.onchange = function(){
+    try{ localStorage.setItem('plTest554auto', cb.checked ? '1' : '0'); }catch(e){}
+    if(cb.checked){
+      /* Açar açmaz şu anki kelimeyi oku — hem geri bildirim, hem de (özellikle Android'de)
+         ses motorunu bu dokunuşla uyandırır ki sonraki sorular da otomatik okunabilsin. */
+      var d = (S && S.order && S.order.length) ? Q[S.order[S.i]] : null;
+      if(S && S.mode !== 'mr' && d) speakWord(d[1], 0.9, $('spkBtn'));
+    } else if('speechSynthesis' in window){
+      try{ speechSynthesis.cancel(); }catch(e){}
+    }
+  };
+})();
+
+loadEX();
+injectUploads();
+loadSets();
+load();
+render();
+</script>
+</body>
+</html>
