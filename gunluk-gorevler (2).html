@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#EEF1F5">
+<title>Günlük Görevler</title>
+<style>
+  :root{
+    --bg:#EEF1F5; --surface:#FFFFFF; --ink:#1C2430; --muted:#68727F;
+    --line:#E2E7EE; --line2:#EDF1F6;
+    --primary:#3D51C9; --primary-soft:#EAECFB;
+    --run:#E5842A; --run-soft:#FBE9D4;
+    --done:#1E9E62; --done-soft:#E0F2E8;
+    --danger:#D8494A; --danger-soft:#FBE6E6;
+    --radius:16px; --shadow:0 1px 2px rgba(28,36,48,.06), 0 6px 20px rgba(28,36,48,.05);
+    --mono:ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:var(--sans); background:var(--bg); color:var(--ink);
+    line-height:1.45; padding:env(safe-area-inset-top) env(safe-area-inset-right) 0 env(safe-area-inset-left);
+    -webkit-text-size-adjust:100%;
+  }
+  .wrap{max-width:560px; margin:0 auto; padding:18px 16px 120px;}
+
+  /* Header */
+  header{display:flex; align-items:flex-start; justify-content:space-between; gap:12px; margin-bottom:16px;}
+  .today-label{font-size:13px; color:var(--muted); letter-spacing:.02em;}
+  .today-date{font-size:24px; font-weight:700; margin-top:2px;}
+  .bell{
+    flex:0 0 auto; width:46px; height:46px; border-radius:14px; border:1px solid var(--line);
+    background:var(--surface); font-size:20px; cursor:pointer; display:grid; place-items:center;
+    color:var(--muted); transition:transform .12s ease;
+  }
+  .bell:active{transform:scale(.94);}
+  .bell.on{color:var(--primary); border-color:var(--primary-soft); background:var(--primary-soft);}
+
+  /* Tabs */
+  .tabs{display:flex; gap:6px; background:var(--surface); border:1px solid var(--line);
+    border-radius:14px; padding:5px; margin-bottom:18px;}
+  .tab{flex:1; text-align:center; padding:9px 8px; border-radius:10px; font-size:14.5px;
+    font-weight:600; color:var(--muted); cursor:pointer; border:none; background:none;
+    font-family:inherit; transition:all .12s ease;}
+  .tab.active{background:var(--ink); color:#fff;}
+
+  .notice{font-size:12.5px; color:var(--muted); background:var(--line2); border:1px solid var(--line);
+    border-radius:12px; padding:10px 12px; margin-bottom:16px; display:none;}
+  .notice.show{display:block;}
+
+  /* Task card */
+  .card{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
+    box-shadow:var(--shadow); padding:14px 14px 12px; margin-bottom:12px; position:relative; overflow:hidden;}
+  .card.running{border-color:var(--run-soft);}
+  .card.done{background:#FAFCFB;}
+  .accent{position:absolute; left:0; top:0; bottom:0; width:4px; background:transparent;}
+  .card.running .accent{background:var(--run);}
+  .card.done .accent{background:var(--done);}
+
+  .row1{display:flex; align-items:flex-start; gap:12px;}
+  .check{flex:0 0 auto; width:28px; height:28px; border-radius:9px; border:2px solid var(--line);
+    background:var(--surface); cursor:pointer; display:grid; place-items:center; margin-top:1px;
+    transition:all .12s ease; color:#fff; font-size:16px; line-height:1;}
+  .check:active{transform:scale(.9);}
+  .card.done .check{background:var(--done); border-color:var(--done);}
+  .titlebox{flex:1; min-width:0;}
+  .title{font-size:16.5px; font-weight:650; word-break:break-word;}
+  .card.done .title{color:var(--muted); text-decoration:line-through; text-decoration-color:#BFCad6;}
+  .meta{display:flex; flex-wrap:wrap; gap:6px; margin-top:6px;}
+  .chip{font-size:12px; color:var(--muted); background:var(--line2); border-radius:999px;
+    padding:3px 9px; display:inline-flex; align-items:center; gap:4px;}
+  .chip.rem{color:var(--primary); background:var(--primary-soft);}
+
+  /* Timer block */
+  .timer{margin-top:12px; padding-top:12px; border-top:1px solid var(--line2);}
+  .timer.hidden{display:none;}
+  .barwrap{height:8px; background:var(--line2); border-radius:999px; overflow:hidden;}
+  .bar{height:100%; width:0%; background:var(--primary); border-radius:999px; transition:width .4s linear;}
+  .card.running .bar{background:var(--run);}
+  .card.done .bar{background:var(--done);}
+  .timerbottom{display:flex; align-items:center; justify-content:space-between; margin-top:9px; gap:10px;}
+  .clock{font-family:var(--mono); font-size:20px; font-weight:600; font-variant-numeric:tabular-nums; letter-spacing:.01em;}
+  .card.running .clock{color:var(--run);}
+  .goal{color:var(--muted); font-weight:400; font-size:15px;}
+  .tbtns{display:flex; gap:8px;}
+  .tbtn{border:1px solid var(--line); background:var(--surface); border-radius:11px; padding:8px 14px;
+    font-size:14px; font-weight:650; font-family:inherit; cursor:pointer; color:var(--ink);
+    display:inline-flex; align-items:center; gap:6px; transition:all .12s ease;}
+  .tbtn:active{transform:scale(.95);}
+  .tbtn.play{background:var(--primary); border-color:var(--primary); color:#fff;}
+  .tbtn.pause{background:var(--run); border-color:var(--run); color:#fff;}
+  .tbtn.ghost{width:42px; justify-content:center; padding:8px; color:var(--muted);}
+
+  /* Compact today list (yoğun liste görünümü) */
+  .card.compact{padding:0; margin-bottom:8px;}
+  .crow{display:flex; align-items:center; gap:11px; padding:11px 13px;}
+  .check.sm{width:24px; height:24px; border-radius:7px; margin-top:0; font-size:14px;}
+  .ctitle{flex:1; min-width:0; display:flex; align-items:center; gap:8px;}
+  .ctname{font-size:15.5px; font-weight:600; white-space:nowrap; overflow:hidden;
+    text-overflow:ellipsis; min-width:0; flex:0 1 auto;}
+  .card.compact.done .ctname{color:var(--muted); text-decoration:line-through; text-decoration-color:#BFCad6;}
+  .minchip{flex:0 0 auto; font-size:11px; font-weight:600; color:var(--primary); background:var(--primary-soft);
+    border-radius:999px; padding:2px 7px; font-family:var(--mono);}
+  .ctimer{flex:0 0 auto; display:flex; align-items:center; gap:7px;}
+  .cclock{font-family:var(--mono); font-size:14.5px; font-weight:600; font-variant-numeric:tabular-nums; color:var(--ink);}
+  .card.compact.running .cclock{color:var(--run);}
+  .cgoal{color:var(--muted); font-weight:400; font-size:12px;}
+  .pbtn{width:34px; height:34px; border-radius:10px; border:none; background:var(--primary); color:#fff;
+    font-size:14px; cursor:pointer; display:grid; place-items:center; flex:0 0 auto;}
+  .pbtn.on{background:var(--run);}
+  .pbtn:active{transform:scale(.9);}
+  .rbtn{width:32px; height:32px; border-radius:10px; border:1px solid var(--line); background:var(--surface);
+    color:var(--muted); font-size:15px; cursor:pointer; display:grid; place-items:center; flex:0 0 auto;}
+  .rbtn:active{transform:scale(.9);}
+  .cbar{height:3px; background:var(--line2); border-radius:0 0 var(--radius) var(--radius); overflow:hidden;}
+  .cbar i{display:block; height:100%; width:0%; background:var(--primary); transition:width .4s linear;}
+  .card.compact.running .cbar i{background:var(--run);}
+  .card.compact.done .cbar i{background:var(--done);}
+
+  /* Manage list row */
+  .mrow{display:flex; align-items:center; gap:12px;}
+  .mrow .titlebox{cursor:pointer;}
+  .icobtn{flex:0 0 auto; width:40px; height:40px; border-radius:11px; border:1px solid var(--line);
+    background:var(--surface); cursor:pointer; display:grid; place-items:center; font-size:17px; color:var(--muted);}
+  .icobtn:active{transform:scale(.92);}
+  .icobtn.del{color:var(--danger);}
+
+  .empty{text-align:center; color:var(--muted); padding:36px 16px; font-size:15px;}
+  .empty b{color:var(--ink); font-weight:600;}
+
+  /* Bottom bar */
+  .bottombar{position:fixed; left:0; right:0; bottom:0; z-index:20;
+    padding:10px 16px calc(10px + env(safe-area-inset-bottom));
+    background:linear-gradient(to top, var(--bg) 70%, rgba(238,241,245,0));}
+  .bottombar .inner{max-width:560px; margin:0 auto; display:flex; gap:10px;}
+  .bbtn{flex:1; border:1px solid var(--line); background:var(--surface); color:var(--ink);
+    border-radius:14px; padding:14px 12px; font-size:15px; font-weight:650; font-family:inherit;
+    cursor:pointer; display:inline-flex; align-items:center; justify-content:center; gap:8px; box-shadow:var(--shadow);}
+  .bbtn:active{transform:scale(.97);}
+  .bbtn.on{background:var(--primary-soft); border-color:var(--primary); color:var(--primary);}
+  .bbtn.primary{background:var(--ink); border-color:var(--ink); color:#fff;}
+
+  /* Read-only satirlar (Dun / Yarin) */
+  .card.ro .crow{cursor:default;}
+  .check.ro{border-radius:999px; border-width:2px; cursor:default;}
+  .check.ro.yes{background:var(--done); border-color:var(--done);}
+  .check.ro.dot{background:var(--line2); border-color:var(--line);}
+  .statuschip{flex:0 0 auto; font-size:12px; font-weight:600; border-radius:999px; padding:3px 10px;}
+  .statuschip.yes{color:var(--done); background:var(--done-soft);}
+  .statuschip.no{color:var(--muted); background:var(--line2);}
+  .robar{font-family:var(--mono); font-size:13px; color:var(--muted); flex:0 0 auto;}
+  .daynote{font-size:12.5px; color:var(--muted); background:var(--line2); border:1px solid var(--line);
+    border-radius:12px; padding:10px 12px; margin-bottom:12px;}
+
+  /* Modal */
+  .overlay{position:fixed; inset:0; background:rgba(20,26,34,.42); backdrop-filter:blur(2px);
+    display:none; align-items:flex-end; justify-content:center; z-index:50;}
+  .overlay.show{display:flex;}
+  .sheet{background:var(--surface); width:100%; max-width:560px; border-radius:22px 22px 0 0;
+    padding:20px 18px calc(22px + env(safe-area-inset-bottom)); max-height:92vh; overflow-y:auto;
+    animation:up .22s ease;}
+  @keyframes up{from{transform:translateY(24px); opacity:.6;} to{transform:translateY(0); opacity:1;}}
+  .sheet h2{margin:2px 0 18px; font-size:19px;}
+  .field{margin-bottom:16px;}
+  .field label{display:block; font-size:13.5px; font-weight:600; color:var(--muted); margin-bottom:7px;}
+  .input{width:100%; padding:13px 14px; border:1.5px solid var(--line); border-radius:12px;
+    font-size:16px; font-family:inherit; color:var(--ink); background:var(--surface);}
+  .input:focus{outline:none; border-color:var(--primary);}
+  .seg{display:flex; flex-wrap:wrap; gap:8px;}
+  .seg button{flex:1 1 auto; min-width:calc(50% - 4px); padding:11px 8px; border:1.5px solid var(--line);
+    background:var(--surface); border-radius:11px; font-size:14px; font-weight:600; font-family:inherit;
+    color:var(--ink); cursor:pointer;}
+  .seg button.sel{background:var(--primary-soft); border-color:var(--primary); color:var(--primary);}
+  .days{display:flex; gap:6px; margin-top:10px;}
+  .days.hidden{display:none;}
+  .days button{flex:1; padding:10px 0; border:1.5px solid var(--line); background:var(--surface);
+    border-radius:10px; font-size:13px; font-weight:600; font-family:inherit; color:var(--ink); cursor:pointer;}
+  .days button.sel{background:var(--ink); border-color:var(--ink); color:#fff;}
+  .remlist{display:flex; flex-direction:column; gap:8px; margin-bottom:10px;}
+  .remitem{display:flex; align-items:center; justify-content:space-between; background:var(--primary-soft);
+    color:var(--primary); border-radius:10px; padding:8px 8px 8px 14px; font-weight:600; font-family:var(--mono);}
+  .remitem button{border:none; background:none; color:var(--primary); font-size:20px; cursor:pointer; padding:0 8px;}
+  .remadd{display:flex; gap:8px;}
+  .remadd .input{flex:1;}
+  .remadd button{border:1.5px dashed var(--primary); color:var(--primary); background:var(--primary-soft);
+    border-radius:12px; padding:0 16px; font-weight:700; font-size:15px; font-family:inherit; cursor:pointer;}
+  .hint{font-size:12px; color:var(--muted); margin-top:6px;}
+  .sheetbtns{display:flex; gap:10px; margin-top:22px;}
+  .btn{flex:1; padding:14px; border-radius:13px; font-size:16px; font-weight:700; font-family:inherit;
+    border:none; cursor:pointer;}
+  .btn.primary{background:var(--primary); color:#fff;}
+  .btn.sec{background:var(--line2); color:var(--ink); border:1px solid var(--line);}
+  .btn.dangerbtn{background:var(--danger-soft); color:var(--danger); border:1px solid var(--danger-soft);}
+
+  /* Confirm dialog */
+  .confirm .sheet{max-width:400px; border-radius:20px; margin:auto 14px; align-self:center; animation:pop .18s ease;}
+  .confirm{align-items:center;}
+  @keyframes pop{from{transform:scale(.96); opacity:.5;} to{transform:scale(1); opacity:1;}}
+
+  /* Toast */
+  .toast{position:fixed; left:50%; transform:translateX(-50%) translateY(-16px);
+    top:calc(10px + env(safe-area-inset-top)); z-index:90; background:var(--ink); color:#fff;
+    padding:13px 18px; border-radius:14px; font-size:14.5px; font-weight:600; box-shadow:0 8px 24px rgba(0,0,0,.25);
+    opacity:0; pointer-events:none; transition:all .25s ease; max-width:90%; text-align:center;}
+  .toast.show{opacity:1; transform:translateX(-50%) translateY(0);}
+  .toast.rem{background:var(--run);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <div class="today-label" id="viewLabel">Bugün</div>
+      <div class="today-date" id="todayDate">—</div>
+    </div>
+    <button class="bell" id="bell" title="Hatırlatmalar">🔔</button>
+  </header>
+
+  <div class="tabs">
+    <button class="tab" data-view="yesterday">Dün</button>
+    <button class="tab active" data-view="today">Bugün</button>
+    <button class="tab" data-view="tomorrow">Yarın</button>
+  </div>
+
+  <div class="notice" id="notice"></div>
+
+  <div id="list"></div>
+</div>
+
+<div class="bottombar"><div class="inner">
+  <button class="bbtn" id="manageBtn">☰ Tüm görevler</button>
+  <button class="bbtn primary" id="addBtn">＋ Yeni görev</button>
+</div></div>
+
+<!-- Add / Edit sheet -->
+<div class="overlay" id="editOverlay">
+  <div class="sheet">
+    <h2 id="editTitle">Yeni görev</h2>
+    <div class="field">
+      <label for="fName">Görev</label>
+      <input class="input" id="fName" type="text" placeholder="ör. Fiil çalış" autocomplete="off">
+    </div>
+    <div class="field">
+      <label>Ne zaman?</label>
+      <div class="seg" id="fSeg">
+        <button data-sch="daily">Her gün</button>
+        <button data-sch="weekday">Hafta içi</button>
+        <button data-sch="weekend">Hafta sonu</button>
+        <button data-sch="custom">Seçili günler</button>
+      </div>
+      <div class="days hidden" id="fDays">
+        <button data-d="1">Pzt</button><button data-d="2">Sal</button>
+        <button data-d="3">Çar</button><button data-d="4">Per</button>
+        <button data-d="5">Cum</button><button data-d="6">Cmt</button>
+        <button data-d="0">Paz</button>
+      </div>
+    </div>
+    <div class="field">
+      <label for="fGoal">Süre hedefi — dakika <span style="font-weight:400">(isteğe bağlı)</span></label>
+      <input class="input" id="fGoal" type="number" inputmode="numeric" min="1" placeholder="ör. 30 → zamanlayıcı açılır">
+      <div class="hint">Süre girersen görevde başlat/durdur zamanlayıcısı çıkar. Boş bırakırsan sadece işaretlenir.</div>
+    </div>
+    <div class="field">
+      <label>Hatırlatma saatleri <span style="font-weight:400">(isteğe bağlı)</span></label>
+      <div class="remlist" id="fRemList"></div>
+      <div class="remadd">
+        <input class="input" id="fRemTime" type="time">
+        <button id="fRemAdd" type="button">Ekle</button>
+      </div>
+      <div class="hint">Bu görev için her gün seçtiğin saatlerde bildirim gelir.</div>
+    </div>
+    <div class="sheetbtns">
+      <button class="btn sec" id="editCancel">İptal</button>
+      <button class="btn primary" id="editSave">Kaydet</button>
+    </div>
+  </div>
+</div>
+
+<!-- Confirm dialog -->
+<div class="overlay confirm" id="confirmOverlay">
+  <div class="sheet">
+    <h2 id="confirmTitle" style="margin-bottom:8px;">Emin misin?</h2>
+    <p id="confirmText" style="color:var(--muted); margin:0 0 20px; font-size:15px;"></p>
+    <div class="sheetbtns" style="margin-top:0;">
+      <button class="btn sec" id="confirmNo">Vazgeç</button>
+      <button class="btn dangerbtn" id="confirmYes">Sil</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+"use strict";
+const KEY = "gunluk_gorevler_v1";
+const DAY_TR = ["Pazar","Pazartesi","Salı","Çarşamba","Perşembe","Cuma","Cumartesi"];
+const MON_TR = ["Ocak","Şubat","Mart","Nisan","Mayıs","Haziran","Temmuz","Ağustos","Eylül","Ekim","Kasım","Aralık"];
+
+let state = { tasks: [], lastReset: null };
+let view = "today";
+let editingId = null;      // null = new
+let editSch = "daily";
+let editDays = [];
+let editRems = [];
+let audioCtx = null;
+
+/* ---------- storage ---------- */
+function dateStr(d){
+  return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+}
+function todayStr(){ return dateStr(new Date()); }
+function dowOf(s){ const p=s.split("-"); return new Date(+p[0], +p[1]-1, +p[2]).getDay(); }
+function uid(){ return Date.now().toString(36)+Math.random().toString(36).slice(2,7); }
+
+function load(){
+  try{
+    const raw = localStorage.getItem(KEY);
+    if(raw){ state = JSON.parse(raw); }
+  }catch(e){ state = { tasks:[], lastReset:null }; }
+  if(!state.tasks){ state.tasks = []; }
+  if(!state.history){ state.history = {}; }
+
+  // İlk açılışta örnek görevler (kolayca silinebilir)
+  if(state.tasks.length === 0 && !state.lastReset){
+    state.tasks = [
+      mk("Fiil çalış", "daily", [], 30, ["08:30"]),
+      mk("İsim çekimlemesi çalış", "weekday", [], 20, ["19:00"]),
+      mk("Kelime tekrarı", "daily", [], null, []),
+    ];
+  }
+  dailyReset();
+  save();
+}
+function mk(name, sch, days, goal, rems){
+  return { id:uid(), name, sch, days:days||[], goalMin:goal||null,
+           rems:rems||[], done:false, elapsed:0, running:false, lastStart:null, fired:{} };
+}
+function save(){
+  try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){}
+}
+function dailyReset(){
+  const t = todayStr();
+  if(state.lastReset && state.lastReset !== t){
+    // kapanan gunun ozetini sakla
+    if(!state.history) state.history = {};
+    const dow = dowOf(state.lastReset);
+    const snap = {};
+    state.tasks.forEach(x=>{
+      if(isSchedDow(x, dow)) snap[x.id] = { name:x.name, done:!!x.done, elapsed:liveElapsed(x), goalMin:x.goalMin };
+    });
+    state.history[state.lastReset] = snap;
+    const keys = Object.keys(state.history).sort();
+    while(keys.length > 14){ delete state.history[keys.shift()]; }
+    // yeni gun icin sifirla
+    state.tasks.forEach(x=>{
+      x.done=false; x.elapsed=0; x.running=false; x.lastStart=null; x.fired={};
+    });
+    state.lastReset = t;
+  } else if(!state.lastReset){
+    state.lastReset = t;
+  }
+}
+
+/* ---------- helpers ---------- */
+function isSchedDow(x, d){
+  if(x.sch==="daily") return true;
+  if(x.sch==="weekday") return d>=1 && d<=5;
+  if(x.sch==="weekend") return d===0 || d===6;
+  if(x.sch==="custom") return (x.days||[]).includes(d);
+  return true;
+}
+function isToday(x){ return isSchedDow(x, new Date().getDay()); }
+function schLabel(x){
+  if(x.sch==="daily") return "Her gün";
+  if(x.sch==="weekday") return "Hafta içi";
+  if(x.sch==="weekend") return "Hafta sonu";
+  if(x.sch==="custom"){
+    const names=["Paz","Pzt","Sal","Çar","Per","Cum","Cmt"];
+    const order=[1,2,3,4,5,6,0];
+    return order.filter(d=>(x.days||[]).includes(d)).map(d=>names[d]).join(", ") || "Gün seçilmedi";
+  }
+  return "";
+}
+function liveElapsed(x){
+  let e = x.elapsed||0;
+  if(x.running && x.lastStart){ e += Math.floor((Date.now()-x.lastStart)/1000); }
+  return e;
+}
+function fmt(sec){
+  sec=Math.max(0,Math.floor(sec));
+  const m=Math.floor(sec/60), s=sec%60;
+  return String(m).padStart(2,"0")+":"+String(s).padStart(2,"0");
+}
+
+/* ---------- render ---------- */
+function renderHeader(){
+  const labels={yesterday:"Dün",today:"Bugün",tomorrow:"Yarın",manage:"Tüm görevler"};
+  document.getElementById("viewLabel").textContent = labels[view]||"Bugün";
+  const el=document.getElementById("todayDate");
+  if(view==="manage"){
+    el.textContent = state.tasks.length+" görev";
+  }else{
+    const d=new Date();
+    if(view==="yesterday") d.setDate(d.getDate()-1);
+    else if(view==="tomorrow") d.setDate(d.getDate()+1);
+    el.textContent = DAY_TR[d.getDay()]+", "+d.getDate()+" "+MON_TR[d.getMonth()];
+  }
+}
+function setActiveNav(){
+  document.querySelectorAll(".tab").forEach(x=> x.classList.toggle("active", x.dataset.view===view));
+  document.getElementById("manageBtn").classList.toggle("on", view==="manage");
+}
+function updateNotice(){
+  const n=document.getElementById("notice");
+  const perm = ("Notification" in window) ? Notification.permission : "unsupported";
+  const bell=document.getElementById("bell");
+  if(perm==="granted"){
+    bell.classList.add("on");
+    n.classList.remove("show");
+  }else{
+    bell.classList.remove("on");
+    const anyRem = state.tasks.some(x=>x.rems && x.rems.length);
+    if(anyRem){
+      n.classList.add("show");
+      n.innerHTML = (perm==="unsupported")
+        ? "Bu tarayıcı bildirim desteklemiyor. Hatırlatma saatinde uygulama açıksa uyarı yine de ekranda gösterilir."
+        : "Bildirimler kapalı. Hatırlatmaların çalışması için 🔔 simgesine dokunup izin ver.";
+    }else{
+      n.classList.remove("show");
+    }
+  }
+}
+
+function render(){
+  renderHeader();
+  updateNotice();
+  const list=document.getElementById("list");
+  list.innerHTML="";
+  if(view==="today") return renderToday(list);
+  if(view==="yesterday") return renderYesterday(list);
+  if(view==="tomorrow") return renderTomorrow(list);
+  if(view==="manage") return renderManage(list);
+}
+function renderToday(list){
+  let items = state.tasks.filter(isToday);
+  items.sort((a,b)=> (a.done?1:0)-(b.done?1:0));
+  if(items.length===0){
+    list.innerHTML='<div class="empty">Bugün için görev yok.<br>Alttaki <b>＋ Yeni görev</b> ile ekleyebilirsin.</div>';
+    return;
+  }
+  items.forEach(x=> list.appendChild(cardToday(x)));
+}
+function renderManage(list){
+  const items = state.tasks.slice();
+  if(items.length===0){
+    list.innerHTML='<div class="empty">Henüz görev yok.<br>Alttaki <b>＋ Yeni görev</b> ile başla.</div>';
+    return;
+  }
+  items.forEach(x=> list.appendChild(cardManage(x)));
+}
+function renderYesterday(list){
+  const d=new Date(); d.setDate(d.getDate()-1);
+  const ys=dateStr(d), dow=d.getDay();
+  const snap=(state.history||{})[ys];
+  let rows;
+  if(snap){
+    rows=Object.keys(snap).map(id=> Object.assign({id}, snap[id]));
+  }else{
+    rows=state.tasks.filter(x=>isSchedDow(x,dow)).map(x=>({id:x.id,name:x.name,done:false,elapsed:0,goalMin:x.goalMin,noRec:true}));
+  }
+  if(rows.length===0){ list.innerHTML='<div class="empty">Dün için görev yoktu.</div>'; return; }
+  if(!snap){
+    const n=document.createElement("div"); n.className="daynote";
+    n.textContent="Dün uygulama açılmadı — durum kaydı yok, sadece o güne planlı görevler gösteriliyor.";
+    list.appendChild(n);
+  }
+  rows.sort((a,b)=> (a.done?1:0)-(b.done?1:0));
+  rows.forEach(r=> list.appendChild(cardYesterday(r)));
+}
+function renderTomorrow(list){
+  const d=new Date(); d.setDate(d.getDate()+1);
+  const dow=d.getDay();
+  const items=state.tasks.filter(x=>isSchedDow(x,dow));
+  if(items.length===0){ list.innerHTML='<div class="empty">Yarın için planlı görev yok.</div>'; return; }
+  items.forEach(x=> list.appendChild(cardTomorrow(x)));
+}
+
+function cardToday(x){
+  const el=document.createElement("div");
+  el.className="card compact"+(x.done?" done":"")+(x.running?" running":"");
+  const hasTimer = x.goalMin!=null;
+  const e=liveElapsed(x);
+  const goal=hasTimer? x.goalMin*60 : 0;
+  const pct=(hasTimer&&goal)? Math.min(100, e/goal*100):0;
+
+  let rem="";
+  (x.rems||[]).forEach(r=> rem+='<span class="minchip">🔔'+r+'</span>');
+
+  let right="";
+  if(hasTimer){
+    right='<div class="ctimer">'+
+        '<span class="cclock" id="clk-'+x.id+'">'+fmt(e)+'<span class="cgoal">/'+fmt(goal)+'</span></span>'+
+        ((e>0 && !x.running)?'<button class="rbtn" data-act="reset" title="Sıfırla">↺</button>':'')+
+        '<button class="pbtn '+(x.running?'on':'')+'" data-act="play" title="'+(x.running?'Durdur':'Başlat')+'">'+(x.running?'⏸':'▶')+'</button>'+
+      '</div>';
+  }
+
+  el.innerHTML=
+    '<div class="accent"></div>'+
+    '<div class="crow">'+
+      '<div class="check sm" data-act="toggle">'+(x.done?"✓":"")+'</div>'+
+      '<div class="ctitle"><span class="ctname">'+esc(x.name)+'</span>'+rem+'</div>'+
+      right+
+    '</div>'+
+    (hasTimer?'<div class="cbar"><i id="bar-'+x.id+'" style="width:'+pct+'%"></i></div>':'');
+
+  el.querySelector('[data-act="toggle"]').onclick=()=>toggleDone(x.id);
+  if(hasTimer){
+    const play=el.querySelector('[data-act="play"]');
+    const reset=el.querySelector('[data-act="reset"]');
+    if(play) play.onclick=()=>toggleTimer(x.id);
+    if(reset) reset.onclick=()=>askResetTimer(x.id);
+  }
+  return el;
+}
+
+function cardYesterday(r){
+  const el=document.createElement("div");
+  el.className="card compact ro"+(r.done?" done":"");
+  const timed=r.goalMin!=null;
+  const status=r.noRec ? '' :
+    (r.done?'<span class="statuschip yes">Yapıldı</span>':'<span class="statuschip no">Yapılmadı</span>');
+  const robar=timed?'<span class="robar">'+fmt(r.elapsed||0)+'/'+fmt(r.goalMin*60)+'</span>':'';
+  el.innerHTML=
+    '<div class="accent"></div>'+
+    '<div class="crow">'+
+      '<div class="check ro '+(r.done?'yes':'dot')+'">'+(r.done?'✓':'')+'</div>'+
+      '<div class="ctitle"><span class="ctname">'+esc(r.name)+'</span></div>'+
+      robar+status+
+    '</div>';
+  return el;
+}
+
+function cardTomorrow(x){
+  const el=document.createElement("div");
+  el.className="card compact ro";
+  let chips="";
+  if(x.goalMin!=null) chips+='<span class="minchip" style="color:var(--muted);background:var(--line2)">⏱'+x.goalMin+'dk</span>';
+  (x.rems||[]).forEach(r=> chips+='<span class="minchip">🔔'+r+'</span>');
+  el.innerHTML=
+    '<div class="accent"></div>'+
+    '<div class="crow">'+
+      '<div class="check ro dot"></div>'+
+      '<div class="ctitle"><span class="ctname">'+esc(x.name)+'</span>'+chips+'</div>'+
+    '</div>';
+  return el;
+}
+
+function cardManage(x){
+  const el=document.createElement("div");
+  el.className="card";
+  let meta='<span class="chip">'+esc(schLabel(x))+'</span>';
+  if(x.goalMin!=null) meta+='<span class="chip">⏱ '+x.goalMin+' dk</span>';
+  (x.rems||[]).forEach(r=> meta+='<span class="chip rem">🔔 '+r+'</span>');
+  el.innerHTML=
+    '<div class="mrow">'+
+      '<div class="titlebox" data-act="edit">'+
+        '<div class="title">'+esc(x.name)+'</div>'+
+        '<div class="meta">'+meta+'</div>'+
+      '</div>'+
+      '<button class="icobtn" data-act="edit" title="Düzenle">✎</button>'+
+      '<button class="icobtn del" data-act="del" title="Sil">🗑</button>'+
+    '</div>';
+  el.querySelectorAll('[data-act="edit"]').forEach(b=> b.onclick=()=>openEdit(x.id));
+  el.querySelector('[data-act="del"]').onclick=()=>askDelete(x.id);
+  return el;
+}
+
+function esc(s){ return (s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+
+/* ---------- actions ---------- */
+function findTask(id){ return state.tasks.find(t=>t.id===id); }
+
+function toggleDone(id){
+  const x=findTask(id); if(!x) return;
+  x.done=!x.done;
+  if(x.done && x.running){ // işaretlenince sayacı durdur
+    x.elapsed=liveElapsed(x); x.running=false; x.lastStart=null;
+  }
+  save(); render();
+}
+function toggleTimer(id){
+  const x=findTask(id); if(!x) return;
+  if(x.running){
+    x.elapsed=liveElapsed(x); x.running=false; x.lastStart=null;
+  }else{
+    x.running=true; x.lastStart=Date.now();
+    ensureAudio();
+  }
+  save(); render();
+}
+function askResetTimer(id){
+  const x=findTask(id); if(!x) return;
+  showConfirm("Zamanlayıcıyı sıfırla", "\""+x.name+"\" için geçen süre sıfırlanacak.", "Sıfırla", ()=>{
+    x.elapsed=0; x.running=false; x.lastStart=null;
+    save(); render();
+  });
+}
+function askDelete(id){
+  const x=findTask(id); if(!x) return;
+  showConfirm("Görevi sil", "\""+x.name+"\" kalıcı olarak silinsin mi?", "Sil", ()=>{
+    state.tasks=state.tasks.filter(t=>t.id!==id);
+    save(); render(); toast("Görev silindi");
+  });
+}
+
+/* ---------- tick (timer + reminders) ---------- */
+let lastMinute="";
+function tick(){
+  // canlı sayaçları güncelle
+  state.tasks.forEach(x=>{
+    if(x.running && x.goalMin!=null){
+      const e=liveElapsed(x);
+      const clk=document.getElementById("clk-"+x.id);
+      const bar=document.getElementById("bar-"+x.id);
+      if(clk) clk.innerHTML=fmt(e)+'<span class="cgoal">/'+fmt(x.goalMin*60)+'</span>';
+      if(bar) bar.style.width=Math.min(100, e/(x.goalMin*60)*100)+"%";
+    }
+  });
+  // gün değiştiyse sıfırla
+  const t=todayStr();
+  if(state.lastReset!==t){ dailyReset(); save(); render(); }
+  // hatırlatma kontrolü (dakikada bir)
+  const now=new Date();
+  const hm=String(now.getHours()).padStart(2,"0")+":"+String(now.getMinutes()).padStart(2,"0");
+  if(hm!==lastMinute){
+    lastMinute=hm;
+    checkReminders(hm);
+  }
+}
+function checkReminders(hm){
+  let changed=false;
+  state.tasks.forEach(x=>{
+    if(!isToday(x)) return;
+    if(x.done) return;
+    (x.rems||[]).forEach(r=>{
+      if(r===hm && !(x.fired && x.fired[r])){
+        fireReminder(x, r);
+        if(!x.fired) x.fired={};
+        x.fired[r]=true; changed=true;
+      }
+    });
+  });
+  if(changed) save();
+}
+function fireReminder(x, time){
+  // OS bildirimi
+  try{
+    if(("Notification" in window) && Notification.permission==="granted"){
+      const n=new Notification("Görev hatırlatması", {
+        body: x.name + (x.goalMin?(" · "+x.goalMin+" dk"):""),
+        tag: x.id+"-"+time, renotify:true
+      });
+      n.onclick=()=>{ window.focus(); n.close(); };
+    }
+  }catch(e){}
+  // titreşim + ses + ekran uyarısı (uygulama açıkken her hâlükârda)
+  try{ if(navigator.vibrate) navigator.vibrate([200,100,200]); }catch(e){}
+  beep();
+  toast("🔔 "+x.name, true);
+}
+
+/* ---------- ses ---------- */
+function ensureAudio(){
+  try{
+    if(!audioCtx){ audioCtx=new (window.AudioContext||window.webkitAudioContext)(); }
+    if(audioCtx.state==="suspended") audioCtx.resume();
+  }catch(e){}
+}
+function beep(){
+  try{
+    ensureAudio(); if(!audioCtx) return;
+    [0,0.18,0.36].forEach(off=>{
+      const o=audioCtx.createOscillator(), g=audioCtx.createGain();
+      o.type="sine"; o.frequency.value=880;
+      o.connect(g); g.connect(audioCtx.destination);
+      const t=audioCtx.currentTime+off;
+      g.gain.setValueAtTime(0.0001,t);
+      g.gain.exponentialRampToValueAtTime(0.25,t+0.02);
+      g.gain.exponentialRampToValueAtTime(0.0001,t+0.14);
+      o.start(t); o.stop(t+0.15);
+    });
+  }catch(e){}
+}
+
+/* ---------- toast ---------- */
+let toastT=null;
+function toast(msg, isRem){
+  const el=document.getElementById("toast");
+  el.textContent=msg;
+  el.className="toast show"+(isRem?" rem":"");
+  clearTimeout(toastT);
+  toastT=setTimeout(()=>{ el.className="toast"+(isRem?" rem":""); }, isRem?5000:2200);
+}
+
+/* ---------- confirm ---------- */
+let confirmCb=null;
+function showConfirm(title, text, yesLabel, cb){
+  document.getElementById("confirmTitle").textContent=title;
+  document.getElementById("confirmText").textContent=text;
+  document.getElementById("confirmYes").textContent=yesLabel||"Sil";
+  confirmCb=cb;
+  document.getElementById("confirmOverlay").classList.add("show");
+}
+function closeConfirm(){ document.getElementById("confirmOverlay").classList.remove("show"); confirmCb=null; }
+
+/* ---------- edit sheet ---------- */
+function openNew(){
+  editingId=null; editSch="daily"; editDays=[]; editRems=[];
+  document.getElementById("editTitle").textContent="Yeni görev";
+  document.getElementById("fName").value="";
+  document.getElementById("fGoal").value="";
+  syncEditUI();
+  openSheet();
+  setTimeout(()=>document.getElementById("fName").focus(), 120);
+}
+function openEdit(id){
+  const x=findTask(id); if(!x) return;
+  editingId=id; editSch=x.sch; editDays=(x.days||[]).slice(); editRems=(x.rems||[]).slice();
+  document.getElementById("editTitle").textContent="Görevi düzenle";
+  document.getElementById("fName").value=x.name;
+  document.getElementById("fGoal").value=x.goalMin!=null? x.goalMin : "";
+  syncEditUI();
+  openSheet();
+}
+function openSheet(){ document.getElementById("editOverlay").classList.add("show"); }
+function closeSheet(){ document.getElementById("editOverlay").classList.remove("show"); }
+
+function syncEditUI(){
+  document.querySelectorAll("#fSeg button").forEach(b=>{
+    b.classList.toggle("sel", b.dataset.sch===editSch);
+  });
+  document.getElementById("fDays").classList.toggle("hidden", editSch!=="custom");
+  document.querySelectorAll("#fDays button").forEach(b=>{
+    b.classList.toggle("sel", editDays.includes(parseInt(b.dataset.d)));
+  });
+  renderRemList();
+}
+function renderRemList(){
+  const box=document.getElementById("fRemList");
+  box.innerHTML="";
+  editRems.sort();
+  editRems.forEach((r,i)=>{
+    const row=document.createElement("div");
+    row.className="remitem";
+    row.innerHTML="<span>🔔 "+r+"</span><button data-i='"+i+"'>×</button>";
+    row.querySelector("button").onclick=()=>{ editRems.splice(i,1); renderRemList(); };
+    box.appendChild(row);
+  });
+}
+function saveEdit(){
+  const name=document.getElementById("fName").value.trim();
+  if(!name){ toast("Görev adı gerekli"); document.getElementById("fName").focus(); return; }
+  if(editSch==="custom" && editDays.length===0){ toast("En az bir gün seç"); return; }
+  let goal=parseInt(document.getElementById("fGoal").value,10);
+  if(isNaN(goal)||goal<=0) goal=null;
+
+  if(editingId){
+    const x=findTask(editingId);
+    x.name=name; x.sch=editSch; x.days=editDays.slice();
+    x.rems=editRems.slice();
+    // hedef değişimi: sayaç durumunu koru ama hedef kalkarsa sayacı temizle
+    if(goal==null){ x.goalMin=null; x.running=false; x.lastStart=null; }
+    else x.goalMin=goal;
+  }else{
+    state.tasks.push(mk(name, editSch, editDays.slice(), goal, editRems.slice()));
+  }
+  save(); closeSheet(); render();
+  toast(editingId?"Güncellendi":"Görev eklendi");
+}
+
+/* ---------- bell / notifications ---------- */
+function onBell(){
+  ensureAudio();
+  if(!("Notification" in window)){ toast("Tarayıcı bildirim desteklemiyor"); updateNotice(); return; }
+  if(Notification.permission==="granted"){
+    toast("Bildirimler açık ✓"); updateNotice(); return;
+  }
+  if(Notification.permission==="denied"){
+    toast("Bildirim izni engellenmiş — tarayıcı ayarlarından açmalısın");
+    updateNotice(); return;
+  }
+  Notification.requestPermission().then(p=>{
+    updateNotice();
+    if(p==="granted"){ toast("Bildirimler açık ✓"); }
+    else toast("Bildirim izni verilmedi");
+  });
+}
+
+/* ---------- events ---------- */
+document.querySelectorAll(".tab").forEach(t=>{
+  t.onclick=()=>{ view=t.dataset.view; setActiveNav(); render(); };
+});
+document.getElementById("manageBtn").onclick=()=>{
+  view = (view==="manage") ? "today" : "manage";
+  setActiveNav(); render();
+};
+document.getElementById("addBtn").onclick=openNew;
+document.getElementById("bell").onclick=onBell;
+
+document.querySelectorAll("#fSeg button").forEach(b=>{
+  b.onclick=()=>{ editSch=b.dataset.sch; syncEditUI(); };
+});
+document.querySelectorAll("#fDays button").forEach(b=>{
+  b.onclick=()=>{
+    const d=parseInt(b.dataset.d);
+    if(editDays.includes(d)) editDays=editDays.filter(x=>x!==d);
+    else editDays.push(d);
+    syncEditUI();
+  };
+});
+document.getElementById("fRemAdd").onclick=()=>{
+  const v=document.getElementById("fRemTime").value;
+  if(!v){ toast("Bir saat seç"); return; }
+  if(!editRems.includes(v)) editRems.push(v);
+  document.getElementById("fRemTime").value="";
+  renderRemList();
+};
+document.getElementById("editSave").onclick=saveEdit;
+document.getElementById("editCancel").onclick=closeSheet;
+document.getElementById("editOverlay").onclick=(e)=>{ if(e.target.id==="editOverlay") closeSheet(); };
+
+document.getElementById("confirmYes").onclick=()=>{ const cb=confirmCb; closeConfirm(); if(cb) cb(); };
+document.getElementById("confirmNo").onclick=closeConfirm;
+document.getElementById("confirmOverlay").onclick=(e)=>{ if(e.target.id==="confirmOverlay") closeConfirm(); };
+
+document.addEventListener("visibilitychange", ()=>{ if(!document.hidden){ dailyReset(); render(); } });
+window.addEventListener("focus", ()=>{ dailyReset(); render(); });
+
+/* ---------- init ---------- */
+load();
+render();
+setInterval(tick, 1000);
+</script>
+</body>
+</html>
