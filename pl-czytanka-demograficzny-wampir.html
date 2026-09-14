@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Warszawa — demograficzny wampir? · Czytanka B1</title>
+<style>
+  :root{
+    --paper:#F4F2ED; --paper2:#FBFAF6; --ink:#23201C; --ink-soft:#5C574E;
+    --line:#E2DDD1; --accent:#C1352B; --amber:#FBEFD6; --amber-line:#E7C878;
+    --good:#2E7D5B; --bad:#C1352B;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+    --sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  html,body{margin:0;padding:0;background:var(--paper);color:var(--ink);}
+  body{font-family:var(--sans);line-height:1.5;padding:0 0 48px;}
+  .wrap{max-width:640px;margin:0 auto;padding:0 18px;}
+  header{padding:26px 0 14px;border-bottom:1px solid var(--line);}
+  .kicker{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:700;}
+  h1{font-family:var(--serif);font-size:27px;line-height:1.15;margin:8px 0 4px;font-weight:600;}
+  .sub{font-size:13px;color:var(--ink-soft);}
+  .hint{display:flex;gap:10px;margin:16px 0 6px;font-size:12.5px;color:var(--ink-soft);flex-wrap:wrap;}
+  .hint b{color:var(--ink);}
+  .chip{background:var(--paper2);border:1px solid var(--line);border-radius:999px;padding:5px 11px;display:inline-flex;align-items:center;gap:6px;}
+  .toolbar{display:flex;gap:8px;margin:14px 0 2px;align-items:center;flex-wrap:wrap;}
+  .btn{font-family:var(--sans);font-size:13px;border:1px solid var(--line);background:var(--paper2);color:var(--ink);border-radius:10px;padding:8px 13px;cursor:pointer;font-weight:600;}
+  .btn:active{transform:translateY(1px);}
+  .btn.primary{background:var(--ink);color:#fff;border-color:var(--ink);}
+  .tb-note{font-size:11.5px;color:var(--ink-soft);flex-basis:100%;}
+  .story{font-family:var(--serif);font-size:20px;line-height:1.85;margin:16px 0 8px;letter-spacing:.1px;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;}
+  .sent{border-radius:6px;transition:background .18s;padding:1px 0;}
+  .sent.hl{background:var(--amber);box-shadow:0 0 0 4px var(--amber);}
+  w{cursor:pointer;padding:1px 1px;border-radius:4px;transition:background .12s;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;}
+  w.on{background:var(--accent);color:#fff;}
+  .sp{display:inline-block;width:2px;}
+  #tip{position:fixed;z-index:60;max-width:230px;background:var(--ink);color:#fff;font-family:var(--sans);font-size:14px;line-height:1.35;padding:9px 12px;border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.28);opacity:0;pointer-events:none;transform:translateY(4px);transition:opacity .14s,transform .14s;}
+  #tip.show{opacity:1;transform:translateY(0);pointer-events:auto;}
+  #tip .pl{font-weight:700;font-size:13px;color:#ffd7b0;margin-bottom:1px;}
+  #tip:after{content:"";position:absolute;left:var(--ax,20px);width:0;height:0;border:7px solid transparent;}
+  #tip.up:after{bottom:-13px;border-top-color:var(--ink);}
+  #tip.down:after{top:-13px;border-bottom-color:var(--ink);}
+  #sheet{position:fixed;left:0;right:0;bottom:0;z-index:70;transform:translateY(110%);transition:transform .26s cubic-bezier(.4,0,.2,1);}
+  #sheet.show{transform:translateY(0);}
+  .sheet-card{max-width:640px;margin:0 auto;background:var(--paper2);border:1px solid var(--line);border-bottom:none;border-radius:18px 18px 0 0;padding:18px 20px 24px;box-shadow:0 -10px 34px rgba(0,0,0,.16);}
+  .grip{width:40px;height:4px;background:var(--line);border-radius:99px;margin:0 auto 14px;}
+  .sheet-lbl{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:700;}
+  .sheet-pl{font-family:var(--serif);font-size:18px;margin:6px 0 12px;line-height:1.5;}
+  .sheet-tr{font-size:15.5px;background:var(--amber);border-radius:10px;padding:11px 13px;line-height:1.5;}
+  .sheet-row{display:flex;justify-content:space-between;align-items:center;margin-top:14px;}
+  .sheet-close{font-size:13px;color:var(--ink-soft);background:none;border:none;cursor:pointer;font-weight:600;}
+  .spk{border:1px solid var(--line);background:var(--paper);border-radius:10px;padding:8px 12px;cursor:pointer;font-size:14px;font-weight:600;}
+  #scrim{position:fixed;inset:0;background:rgba(20,18,15,.28);z-index:65;opacity:0;pointer-events:none;transition:opacity .22s;}
+  #scrim.show{opacity:1;pointer-events:auto;}
+  #menu{position:fixed;left:0;right:0;bottom:0;z-index:70;transform:translateY(110%);transition:transform .26s cubic-bezier(.4,0,.2,1);}
+  #menu.show{transform:translateY(0);}
+  .menu-sec{margin-bottom:16px;}
+  .menu-sec h4{font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:0 0 8px;}
+  .menu-how{font-size:13.5px;color:var(--ink-soft);line-height:1.9;}
+  .menu-how b{color:var(--ink);}
+  .mk-list{max-height:34vh;overflow:auto;margin:0 0 12px;}
+  .mk-item{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:8px 10px;border:1px solid var(--line);border-radius:9px;margin-bottom:6px;background:var(--paper);}
+  .mk-item .mw{font-family:var(--serif);font-size:15px;}
+  .mk-item .mg{font-size:12px;color:var(--ink-soft);}
+  .mk-item .mex{font-size:12px;color:var(--ink-soft);font-family:var(--serif);margin-top:3px;line-height:1.4;}
+  .mk-item .minfo{flex:1;min-width:0;}
+  .mk-item{cursor:pointer;}
+  .mk-item.sel{border-color:var(--accent);background:#FBEBE9;}
+  .mk-item .mk-pick{pointer-events:none;border:2px solid var(--line);background:var(--paper);color:#fff;width:26px;height:26px;border-radius:7px;font-size:15px;line-height:1;display:flex;align-items:center;justify-content:center;padding:0;flex:0 0 auto;}
+  .mk-item.sel .mk-pick{border-color:var(--accent);background:var(--accent);}
+  .mk-hint{font-size:12px;color:var(--ink-soft);margin:0 0 8px;}
+  .menu-actions .btn:disabled{opacity:.45;}
+  .mk-item button{border:none;background:none;color:var(--accent);font-size:16px;cursor:pointer;padding:2px 6px;}
+  .mk-empty{font-size:13px;color:var(--ink-soft);padding:6px 0;}
+  .menu-actions{display:flex;gap:8px;flex-wrap:wrap;}
+  w.marked{background:#F4D06A;color:var(--ink);border-radius:4px;}
+  w.on{background:var(--accent);color:#fff;}
+  .teaser{margin:20px 0 4px;padding:16px;border:1px dashed var(--amber-line);background:var(--amber);border-radius:14px;text-align:center;}
+  .teaser .tl{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:6px;}
+  .teaser .tq{font-family:var(--serif);font-size:16px;margin-bottom:12px;}
+  .cont-btn{width:100%;font-family:var(--sans);font-size:16px;font-weight:700;background:var(--ink);color:#fff;border:none;border-radius:12px;padding:14px;cursor:pointer;}
+  .cont-after{margin:18px 0 4px;}
+  .cont-btn:active{transform:translateY(1px);}
+  .cont-note{font-size:11.5px;color:var(--ink-soft);margin-top:8px;}
+  .part-div{margin:34px 0 2px;text-align:center;}
+  .part-div .line{border:none;border-top:1px solid var(--line);margin:0 0 -10px;}
+  .part-div span{background:var(--paper);padding:0 12px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:700;}
+  .locked{display:none;}
+  .ending{margin:22px 0 4px;padding:18px;border:1px solid var(--line);background:var(--paper2);border-radius:14px;text-align:center;font-family:var(--serif);font-size:17px;}
+  .ending .ke{font-family:var(--sans);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:6px;}
+  .quiz{margin-top:26px;padding-top:22px;border-top:1px solid var(--line);}
+  .quiz h2{font-family:var(--serif);font-size:21px;margin:0 0 4px;font-weight:600;}
+  .quiz .q-sub{font-size:12.5px;color:var(--ink-soft);margin-bottom:16px;}
+  .q{background:var(--paper2);border:1px solid var(--line);border-radius:14px;padding:15px 15px 12px;margin-bottom:14px;}
+  .q-num{font-size:11px;font-weight:700;letter-spacing:.12em;color:var(--accent);}
+  .q-txt{font-family:var(--serif);font-size:17px;margin:5px 0 12px;line-height:1.4;}
+  .opt{display:block;width:100%;text-align:left;font-family:var(--sans);font-size:14.5px;border:1px solid var(--line);background:var(--paper);border-radius:10px;padding:11px 13px;margin-bottom:8px;cursor:pointer;transition:.12s;color:var(--ink);}
+  .opt:active{transform:translateY(1px);}
+  .opt .k{display:inline-block;width:22px;font-weight:700;color:var(--ink-soft);}
+  .opt.correct{border-color:var(--good);background:#E9F4EE;}
+  .opt.correct .k{color:var(--good);}
+  .opt.wrong{border-color:var(--bad);background:#FBEBE9;}
+  .opt.wrong .k{color:var(--bad);}
+  .opt:disabled{cursor:default;opacity:1;}
+  .fb{font-size:13px;margin-top:6px;color:var(--ink-soft);display:none;}
+  .fb.show{display:block;}
+  .fb b{color:var(--ink);}
+  .result{display:none;text-align:center;margin-top:18px;padding:20px;border-radius:16px;background:var(--ink);color:#fff;}
+  .result.show{display:block;}
+  .result .big{font-family:var(--serif);font-size:40px;font-weight:600;}
+  .result .msg{font-size:14px;color:#e8e2d6;margin-top:2px;}
+  .result .btn{margin-top:14px;background:#fff;color:var(--ink);border:none;}
+  footer{text-align:center;font-size:11.5px;color:var(--ink-soft);margin-top:26px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <!-- ===== BAŞLIK: h1 ve sub'ı hikayeye göre değiştir ===== -->
+  <header>
+    <div class="kicker">Czytanka · Poziom B1</div>
+    <h1>Warszawa — demograficzny wampir?</h1>
+    <div class="sub">Czy dawne miasta wojewódzkie mają szansę? · w trzech częściach</div>
+  </header>
+
+  <div class="toolbar">
+    <button class="btn primary" id="playAll">🔊 Sesli oku</button>
+    <button class="btn" id="stopAll">⏹ Durdur</button>
+    <button class="btn" id="flagBtn" aria-label="Kelime listem">🚩 Liste</button>
+    <button class="btn" id="menuBtn" aria-label="Menü">⚙️</button>
+  </div>
+
+  <!-- CZĘŚĆ 1 -->
+  <div class="story" id="story1"></div>
+  <div class="teaser" id="teaser1">
+    <div class="tl">Ciąg dalszy nastąpi…</div>
+    <div class="tq">Czy małe miasto może stać się ich nowym domem?</div>
+    <button class="cont-btn" id="contBtn1">Czytaj dalej ▸ 2. bölüm</button>
+    <div class="cont-note">İnternet gerekmez — dosya açıkken çalışır.</div>
+  </div>
+  <section class="quiz" id="quiz1">
+    <h2>Pytania · Część 1</h2>
+    <div class="q-sub">1. bölümü okuduktan sonra doğru cevabı seç.</div>
+    <div class="questions" id="questions1"></div>
+    <div class="result" id="result1"><div class="big score">0 / 5</div><div class="msg"></div><button class="btn retry">↻ Tekrar dene</button></div>
+  </section>
+
+  <div class="cont-after" id="contAfter1"><button class="cont-btn" id="contBtn1b">Czytaj dalej ▸ 2. bölüm</button></div>
+
+  <!-- CZĘŚĆ 2 -->
+  <div class="locked" id="part2">
+    <div class="part-div"><hr class="line"><span>Część 2</span></div>
+    <div class="story" id="story2"></div>
+    <div class="teaser" id="teaser2">
+      <div class="tl">Ciąg dalszy nastąpi…</div>
+      <div class="tq">Co powie im tajemniczy starszy pan?</div>
+      <button class="cont-btn" id="contBtn2">Czytaj dalej ▸ 3. bölüm</button>
+    </div>
+    <section class="quiz" id="quiz2">
+      <h2>Pytania · Część 2</h2>
+      <div class="q-sub">2. bölümü okuduktan sonra doğru cevabı seç.</div>
+      <div class="questions" id="questions2"></div>
+      <div class="result" id="result2"><div class="big score">0 / 5</div><div class="msg"></div><button class="btn retry">↻ Tekrar dene</button></div>
+    </section>
+    <div class="cont-after" id="contAfter2"><button class="cont-btn" id="contBtn2b">Czytaj dalej ▸ 3. bölüm</button></div>
+  </div>
+
+  <!-- CZĘŚĆ 3 -->
+  <div class="locked" id="part3">
+    <div class="part-div"><hr class="line"><span>Część 3</span></div>
+    <div class="story" id="story3"></div>
+    <div class="ending"><div class="ke">Koniec ✦ Son</div>Może prawdziwe życie czeka trochę dalej niż centrum stolicy.</div>
+    <section class="quiz" id="quiz3">
+      <h2>Pytania · Część 3</h2>
+      <div class="q-sub">3. bölümü okuduktan sonra doğru cevabı seç.</div>
+      <div class="questions" id="questions3"></div>
+      <div class="result" id="result3"><div class="big score">0 / 5</div><div class="msg"></div><button class="btn retry">↻ Tekrar dene</button></div>
+    </section>
+  </div>
+
+  <footer>Elevate Thinking · Polski B1 · offline czytanka<br>Na podstawie tematu z: warszawa.wyborcza.pl (demografia miast — „demograficzny wampir”)</footer>
+</div>
+
+<div id="tip"><div class="pl" id="tipPl"></div><div id="tipTr"></div></div>
+<div id="scrim"></div>
+<div id="sheet">
+  <div class="sheet-card">
+    <div class="grip"></div>
+    <div class="sheet-lbl">Zdanie · Cümle</div>
+    <div class="sheet-pl" id="sPl"></div>
+    <div class="sheet-tr" id="sTr"></div>
+    <div class="sheet-row"><button class="spk" id="sSpk">🔊 Przeczytaj</button><button class="sheet-close" id="sClose">Kapat ✕</button></div>
+  </div>
+</div>
+
+<div id="menu">
+  <div class="sheet-card">
+    <div class="grip"></div>
+    <div class="menu-sec">
+      <h4>Kelime listem · tüm czytankalar (<span id="mkCount">0</span>)</h4>
+      <div class="mk-list" id="mkList"></div>
+      <div class="mk-hint">Silmek için kelimeye dokun (seçilir), sonra “Seçileni sil”e bas.</div>
+      <div class="menu-actions">
+        <button class="btn" id="mkCopy">📋 Kopyala</button>
+        <button class="btn" id="mkDownload">⬇️ .txt indir</button>
+        <button class="btn" id="mkDelSel">🗑 Seçileni sil</button>
+        <button class="btn" id="mkClear">🗑 Temizle</button>
+      </div>
+    </div>
+    <div class="sheet-row" style="justify-content:flex-end;">
+      <button class="sheet-close" id="menuClose">Kapat ✕</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ================= VERİ BAŞLANGICI =================
+   Sadece aşağıdaki PART1/PART2/PART3 ve QUIZ1/2/3 dizilerini
+   yeni hikayeyle değiştir. Bunların altındaki hiçbir kodu değiştirme. */
+const PART1 = [
+ {pl:"Kasia i Marek od trzech lat mieszkają w Warszawie i oboje pracują w dużej firmie.",tr:"Kasia ve Marek üç yıldır Varşova'da yaşıyor ve ikisi de büyük bir şirkette çalışıyor.",
+  words:[["Kasia","özel isim (kadın adı)"],["i","ve"],["Marek","özel isim (erkek adı)"],["od","-dan beri (od trzech lat = üç yıldır)"],["trzech","üç (Dopełniacz)","trzy"],["lat","yıl (od trzech lat = üç yıldır) (Dopełniacz)","rok","męski"],["mieszkają","yaşıyorlar, oturuyorlar","mieszkać"],["w","-da"],["Warszawie","Varşova'da (Miejscownik)","Warszawa","żeński"],["i","ve"],["oboje","ikisi de, her ikisi"],["pracują","çalışıyorlar","pracować"],["w","-da"],["dużej","büyük (Miejscownik)","duży"],["firmie.","şirket(te) (Miejscownik)","firma","żeński"]]},
+ {pl:"Stolica bardzo im się podoba, ale ceny mieszkań są ogromne.",tr:"Başkenti çok seviyorlar ama konut fiyatları çok yüksek.",
+  words:[["Stolica","başkent","stolica","żeński"],["bardzo","çok"],["im","onlara"],["się","(dönüşlü)"],["podoba,","hoşlarına gidiyor (podobać się = hoşuna gitmek)","podobać"],["ale","ama, fakat"],["ceny","fiyatlar","cena","żeński"],["mieszkań","konut(ların), daire(lerin) (Dopełniacz)","mieszkanie","nijaki"],["są","-dirler"],["ogromne.","çok büyük, muazzam","ogromny"]]},
+ {pl:"Za małe mieszkanie trzeba dziś zapłacić majątek.",tr:"Küçük bir daire için bugün bir servet ödemek gerekiyor.",
+  words:[["Za","için, karşılığında"],["małe","küçük","mały"],["mieszkanie","daire (Biernik)","mieszkanie","nijaki"],["trzeba","gerekir, lazım"],["dziś","bugün"],["zapłacić","ödemek (dokonany)","zapłacić"],["majątek.","servet, mal varlığı","majątek","męski"]]},
+ {pl:"Marek często mówi, że Warszawa jest jak „demograficzny wampir”.",tr:"Marek sık sık Varşova'nın bir „demografik vampir” gibi olduğunu söylüyor.",
+  words:[["Marek","özel isim"],["często","sık sık"],["mówi,","söylüyor, diyor","mówić"],["że","-diğini, ki"],["Warszawa","Varşova","Warszawa","żeński"],["jest","-dir"],["jak","gibi"],["demograficzny","demografik, nüfusla ilgili","demograficzny"],["wampir.","vampir","wampir","męski"]]},
+ {pl:"Przyciąga młodych ludzi z całej Polski i powoli zabiera mieszkańców mniejszym miastom.",tr:"Bütün Polonya'dan genç insanları kendine çekiyor ve yavaşça daha küçük şehirlerden sakinlerini alıyor.",
+  words:[["Przyciąga","çekiyor, cezbediyor","przyciągać"],["młodych","genç (Biernik)","młody"],["ludzi","insanlar(ı) (Biernik)","ludzie"],["z","-dan"],["całej","bütün, tüm (Dopełniacz)","cały"],["Polski","Polonya(dan) (Dopełniacz)","Polska","żeński"],["i","ve"],["powoli","yavaşça"],["zabiera","alıyor, götürüyor","zabierać"],["mieszkańców","sakinler(i), oturanlar (Biernik)","mieszkaniec","męski"],["mniejszym","daha küçük (Celownik)","mały"],["miastom.","şehirler(e) (Celownik)","miasto","nijaki"]]},
+ {pl:"Coraz więcej osób z prowincji marzy o pracy i życiu w stolicy.",tr:"Taşradan gitgide daha çok kişi başkentte iş ve yaşam hayali kuruyor.",
+  words:[["Coraz","gitgide (coraz więcej = gitgide daha çok)"],["więcej","daha çok"],["osób","kişi(ler) (Dopełniacz)","osoba","żeński"],["z","-dan"],["prowincji","taşra(dan), il (Dopełniacz)","prowincja","żeński"],["marzy","hayal ediyor (marzyć o = ...hayalini kurmak)","marzyć"],["o","hakkında"],["pracy","iş (Miejscownik)","praca","żeński"],["i","ve"],["życiu","yaşam (Miejscownik)","życie","nijaki"],["w","-da"],["stolicy.","başkent(te) (Miejscownik)","stolica","żeński"]]},
+ {pl:"Dlatego małe miasta pustoszeją, a Warszawa wciąż rośnie.",tr:"Bu yüzden küçük şehirler boşalıyor, Varşova ise sürekli büyüyor.",
+  words:[["Dlatego","bu yüzden, bu nedenle"],["małe","küçük","mały"],["miasta","şehirler","miasto","nijaki"],["pustoszeją,","boşalıyorlar, ıssızlaşıyor","pustoszeć"],["a","ise, ama"],["Warszawa","Varşova","Warszawa","żeński"],["wciąż","hâlâ, sürekli"],["rośnie.","büyüyor, artıyor","rosnąć"]]},
+ {pl:"Pewnego wieczoru Kasia powiedziała cicho: „Może nie musimy mieszkać w samym centrum?”.",tr:"Bir akşam Kasia sessizce dedi ki: „Belki tam merkezde yaşamak zorunda değiliz?”.",
+  words:[["Pewnego","bir (belirli) (Dopełniacz)","pewien"],["wieczoru","akşam (pewnego wieczoru = bir akşam) (Dopełniacz)","wieczór","męski"],["Kasia","özel isim"],["powiedziała","dedi, söyledi","powiedzieć"],["cicho:","sessizce, alçak sesle"],["Może","belki"],["nie","değil, -maz"],["musimy","zorundayız, mecburuz","musieć"],["mieszkać","yaşamak, oturmak","mieszkać"],["w","-da"],["samym","ta, tam (samym centrum = tam merkezde) (Miejscownik)","sam"],["centrum?","merkez (Miejscownik)","centrum","nijaki"]]},
+ {pl:"Może wystarczy mieszkać blisko?",tr:"Belki yakında oturmak yeterli?",
+  words:[["Może","belki"],["wystarczy","yeter, yeterli olur","wystarczyć"],["mieszkać","oturmak, yaşamak","mieszkać"],["blisko?","yakın(da)"]]},
+ {pl:"Marek spojrzał na mapę i zauważył kilka miast oddalonych o sześćdziesiąt kilometrów.",tr:"Marek haritaya baktı ve altmış kilometre uzaklıktaki birkaç şehri fark etti.",
+  words:[["Marek","özel isim"],["spojrzał","baktı (spojrzeć na = ...-e bakmak)","spojrzeć"],["na","-e"],["mapę","harita (Biernik)","mapa","żeński"],["i","ve"],["zauważył","fark etti","zauważyć"],["kilka","birkaç"],["miast","şehir(ler) (Dopełniacz)","miasto","nijaki"],["oddalonych","uzak(taki) (Dopełniacz)","oddalony"],["o","(o ... kilometrów = ... kilometre kadar)"],["sześćdziesiąt","altmış (60)"],["kilometrów.","kilometre (Dopełniacz)","kilometr","męski"]]},
+ {pl:"Czy takie miasto mogłoby stać się ich nowym domem?",tr:"Böyle bir şehir onların yeni evi olabilir mi?",
+  words:[["Czy","(soru edatı) mı"],["takie","böyle, öyle","taki"],["miasto","şehir","miasto","nijaki"],["mogłoby","olabilir mi (tryb przypuszczający)","móc"],["stać","olmak (stać się = ...olmak)","stać"],["się","(dönüşlü)"],["ich","onların"],["nowym","yeni (Narzędnik)","nowy"],["domem?","ev (Narzędnik)","dom","męski"]]}
+];
+
+const PART2 = [
+ {pl:"W następną sobotę para pojechała pociągiem do dawnego miasta wojewódzkiego.",tr:"Ertesi cumartesi çift, trenle eski bir voyvodalık (il) şehrine gitti.",
+  words:[["W","-da"],["następną","ertesi, sonraki (Biernik)","następny"],["sobotę","cumartesi (Biernik)","sobota","żeński"],["para","çift","para","żeński"],["pojechała","gitti (araçla)","pojechać"],["pociągiem","trenle (Narzędnik)","pociąg","męski"],["do","-e"],["dawnego","eski, eskiden (Dopełniacz)","dawny"],["miasta","şehir (Dopełniacz)","miasto","nijaki"],["wojewódzkiego.","voyvodalık, il- (miasto wojewódzkie = il merkezi) (Dopełniacz)","wojewódzki"]]},
+ {pl:"Kiedyś było ono ważnym ośrodkiem, ale po reformie straciło swój status.",tr:"Bir zamanlar önemli bir merkezdi ama reformdan sonra statüsünü kaybetti.",
+  words:[["Kiedyś","bir zamanlar, eskiden"],["było","idi"],["ono","o (nijaki)"],["ważnym","önemli (Narzędnik)","ważny"],["ośrodkiem,","merkez (Narzędnik)","ośrodek","męski"],["ale","ama"],["po","-dan sonra"],["reformie","reform (Miejscownik)","reforma","żeński"],["straciło","kaybetti","stracić"],["swój","kendi (Biernik)","swój"],["status.","statü, konum (Biernik)","status","męski"]]},
+ {pl:"Na dworcu powitała ich cisza i spokój.",tr:"İstasyonda onları sessizlik ve huzur karşıladı.",
+  words:[["Na","-da"],["dworcu","gar, istasyon (Miejscownik)","dworzec","męski"],["powitała","karşıladı","powitać"],["ich","onları"],["cisza","sessizlik","cisza","żeński"],["i","ve"],["spokój.","huzur, sükûnet","spokój","męski"]]},
+ {pl:"Ulice były szerokie, a w parku bawiły się dzieci.",tr:"Caddeler genişti, parkta ise çocuklar oynuyordu.",
+  words:[["Ulice","caddeler, sokaklar","ulica","żeński"],["były","idiler"],["szerokie,","geniş","szeroki"],["a","ise"],["w","-da"],["parku","park(ta) (Miejscownik)","park","męski"],["bawiły","oynuyordu (bawić się = oynamak)","bawić"],["się","(dönüşlü)"],["dzieci.","çocuklar","dziecko","nijaki"]]},
+ {pl:"Kasia od razu zauważyła, że mieszkania kosztują tu o połowę mniej niż w Warszawie.",tr:"Kasia hemen, dairelerin burada Varşova'dakinden yarı yarıya daha ucuz olduğunu fark etti.",
+  words:[["Kasia","özel isim"],["od","(od razu = hemen)"],["razu","(od razu = hemen, derhal)"],["zauważyła,","fark etti","zauważyć"],["że","-diğini, ki"],["mieszkania","daireler","mieszkanie","nijaki"],["kosztują","...ediyor, ...değerinde (fiyat)","kosztować"],["tu","burada"],["o","(o połowę = yarı yarıya)"],["połowę","yarı, yarısı (Biernik)","połowa","żeński"],["mniej","daha az"],["niż","-den (karşılaştırma)"],["w","-da"],["Warszawie.","Varşova(da) (Miejscownik)","Warszawa","żeński"]]},
+ {pl:"Na jednym budynku wisiał wielki baner dewelopera: „Zamieszkaj blisko stolicy!”.",tr:"Bir binada büyük bir müteahhit afişi asılıydı: „Başkente yakın otur!”.",
+  words:[["Na","-da"],["jednym","bir (Miejscownik)","jeden"],["budynku","bina(da) (Miejscownik)","budynek","męski"],["wisiał","asılıydı, asılı duruyordu","wisieć"],["wielki","büyük, kocaman","wielki"],["baner","afiş, pankart","baner","męski"],["dewelopera:","müteahhit(in), inşaatçı (Dopełniacz)","deweloper","męski"],["Zamieszkaj","otur, yerleş (emir · tryb rozkazujący)","zamieszkać"],["blisko","yakın(ında)"],["stolicy!","başkent(e) (Dopełniacz)","stolica","żeński"]]},
+ {pl:"Marek uśmiechnął się, bo do Warszawy było naprawdę niedaleko.",tr:"Marek gülümsedi, çünkü Varşova'ya gerçekten yakındı.",
+  words:[["Marek","özel isim"],["uśmiechnął","gülümsedi","uśmiechnąć"],["się,","(dönüşlü)"],["bo","çünkü"],["do","-e"],["Warszawy","Varşova(ya) (Dopełniacz)","Warszawa","żeński"],["było","idi"],["naprawdę","gerçekten"],["niedaleko.","uzak değil, yakın"]]},
+ {pl:"Jednak nie wszystko było idealne.",tr:"Ancak her şey ideal değildi.",
+  words:[["Jednak","ancak, yine de"],["nie","değil"],["wszystko","her şey","wszystko"],["było","idi"],["idealne.","ideal, kusursuz","idealny"]]},
+ {pl:"Sklepów było mniej, a wieczorem miasto wydawało się puste.",tr:"Daha az dükkân vardı, akşamları ise şehir boş görünüyordu.",
+  words:[["Sklepów","dükkân(lar) (Dopełniacz)","sklep","męski"],["było","vardı"],["mniej","daha az"],["a","ise"],["wieczorem","akşam(ları)","wieczór","męski"],["miasto","şehir","miasto","nijaki"],["wydawało","görünüyordu (wydawać się = ...gibi görünmek)","wydawać"],["się","(dönüşlü)"],["puste.","boş, ıssız","pusty"]]},
+ {pl:"Młodzi ludzie wciąż wyjeżdżali stąd do większych miast.",tr:"Genç insanlar hâlâ buradan daha büyük şehirlere gidiyordu.",
+  words:[["Młodzi","genç","młody"],["ludzie","insanlar","ludzie"],["wciąż","hâlâ, sürekli"],["wyjeżdżali","gidiyorlardı, ayrılıyorlardı","wyjeżdżać"],["stąd","buradan"],["do","-e"],["większych","daha büyük (Dopełniacz)","duży"],["miast.","şehir(ler) (Dopełniacz)","miasto","nijaki"]]},
+ {pl:"Kasia zastanawiała się, czy takie miejsce ma szansę złapać „drugi oddech”.",tr:"Kasia, böyle bir yerin „ikinci bir nefes” yakalama şansı olup olmadığını düşünüyordu.",
+  words:[["Kasia","özel isim"],["zastanawiała","düşünüyordu (zastanawiać się = düşünmek)","zastanawiać"],["się,","(dönüşlü)"],["czy","...-ıp ...-madığını, mı"],["takie","böyle","taki"],["miejsce","yer","miejsce","nijaki"],["ma","var (ma szansę = şansı var)","mieć"],["szansę","şans (Biernik)","szansa","żeński"],["złapać","yakalamak (dokonany)","złapać"],["drugi","ikinci","drugi"],["oddech.","nefes, soluk (drugi oddech = ikinci nefes) (Biernik)","oddech","męski"]]},
+ {pl:"Nagle podszedł do nich starszy mężczyzna z uśmiechem.",tr:"Aniden yaşlıca bir adam gülümseyerek onlara yaklaştı.",
+  words:[["Nagle","aniden, birdenbire"],["podszedł","yaklaştı (podejść do = ...-e yaklaşmak)","podejść"],["do","-e"],["nich","onlar(a)"],["starszy","yaşlıca, daha yaşlı","stary"],["mężczyzna","adam, erkek","mężczyzna","męski"],["z","ile"],["uśmiechem.","gülümseme(yle) (Narzędnik)","uśmiech","męski"]]}
+];
+
+const PART3 = [
+ {pl:"Starszy pan przedstawił się jako pan Tadeusz i od razu zaczął opowiadać o mieście.",tr:"Yaşlı adam kendini Tadeusz Bey olarak tanıttı ve hemen şehir hakkında anlatmaya başladı.",
+  words:[["Starszy","yaşlı(ca), daha yaşlı","stary"],["pan","bey, adam","pan","męski"],["przedstawił","tanıttı (przedstawić się = kendini tanıtmak)","przedstawić"],["się","(dönüşlü)"],["jako","olarak, gibi"],["pan","bey"],["Tadeusz","özel isim (erkek adı)"],["i","ve"],["od","(od razu = hemen)"],["razu","(od razu = hemen)"],["zaczął","başladı","zacząć"],["opowiadać","anlatmak","opowiadać"],["o","hakkında"],["mieście.","şehir (Miejscownik)","miasto","nijaki"]]},
+ {pl:"Powiedział, że wiele rodzin z Warszawy już się tu przeprowadziło.",tr:"Varşova'dan birçok ailenin çoktan buraya taşındığını söyledi.",
+  words:[["Powiedział,","söyledi, dedi","powiedzieć"],["że","-diğini, ki"],["wiele","birçok, çok"],["rodzin","aile(ler) (Dopełniacz)","rodzina","żeński"],["z","-dan"],["Warszawy","Varşova(dan) (Dopełniacz)","Warszawa","żeński"],["już","çoktan, artık"],["się","(dönüşlü)"],["tu","buraya, burada"],["przeprowadziło.","taşındı (przeprowadzić się = taşınmak)","przeprowadzić"]]},
+ {pl:"Ludzie szukają ciszy, świeżego powietrza i tańszych mieszkań.",tr:"İnsanlar sessizlik, temiz hava ve daha ucuz daireler arıyor.",
+  words:[["Ludzie","insanlar","ludzie"],["szukają","arıyorlar (szukać + Dopełniacz)","szukać"],["ciszy,","sessizlik (Dopełniacz)","cisza","żeński"],["świeżego","taze, temiz (Dopełniacz)","świeży"],["powietrza","hava (Dopełniacz)","powietrze","nijaki"],["i","ve"],["tańszych","daha ucuz (Dopełniacz)","tani"],["mieszkań.","daire(ler) (Dopełniacz)","mieszkanie","nijaki"]]},
+ {pl:"Dzięki nowej linii kolejowej dojazd do stolicy trwa krótko.",tr:"Yeni demiryolu hattı sayesinde başkente ulaşım kısa sürüyor.",
+  words:[["Dzięki","sayesinde"],["nowej","yeni (Celownik)","nowy"],["linii","hat (Celownik)","linia","żeński"],["kolejowej","demiryolu- (linia kolejowa = demiryolu hattı) (Celownik)","kolejowy"],["dojazd","ulaşım, gidiş","dojazd","męski"],["do","-e"],["stolicy","başkent(e) (Dopełniacz)","stolica","żeński"],["trwa","sürüyor, sürer","trwać"],["krótko.","kısa (sürede)"]]},
+ {pl:"„Nasze miasto powoli budzi się do życia” — powiedział z dumą.",tr:"„Şehrimiz yavaşça yeniden hayata uyanıyor” — dedi gururla.",
+  words:[["Nasze","bizim","nasz"],["miasto","şehir","miasto","nijaki"],["powoli","yavaşça"],["budzi","uyanıyor (budzić się = uyanmak)","budzić"],["się","(dönüşlü)"],["do","(budzić się do życia = hayata uyanmak)"],["życia","yaşam (Dopełniacz)","życie","nijaki"],["powiedział","dedi","powiedzieć"],["z","ile"],["dumą.","gurur(la) (Narzędnik)","duma","żeński"]]},
+ {pl:"Kasia i Marek słuchali z zainteresowaniem.",tr:"Kasia ve Marek ilgiyle dinliyordu.",
+  words:[["Kasia","özel isim"],["i","ve"],["Marek","özel isim"],["słuchali","dinliyorlardı (słuchać + Dopełniacz)","słuchać"],["z","ile"],["zainteresowaniem.","ilgi(yle) (Narzędnik)","zainteresowanie","nijaki"]]},
+ {pl:"Zrozumieli, że takie miasta nie muszą być tylko „drugim wyborem”.",tr:"Böyle şehirlerin sadece „ikinci bir tercih” olmak zorunda olmadığını anladılar.",
+  words:[["Zrozumieli,","anladılar","zrozumieć"],["że","-diğini"],["takie","böyle","taki"],["miasta","şehirler","miasto","nijaki"],["nie","değil"],["muszą","zorunda(lar)","musieć"],["być","olmak"],["tylko","sadece"],["drugim","ikinci (Narzędnik)","drugi"],["wyborem.","tercih, seçim (drugi wybór = ikinci tercih) (Narzędnik)","wybór","męski"]]},
+ {pl:"Mogą stać się spokojnym domem dla ludzi zmęczonych wielkim miastem.",tr:"Büyük şehirden yorulmuş insanlar için huzurlu bir ev olabilirler.",
+  words:[["Mogą","-abilirler","móc"],["stać","olmak (stać się = ...olmak)","stać"],["się","(dönüşlü)"],["spokojnym","huzurlu, sakin (Narzędnik)","spokojny"],["domem","ev (Narzędnik)","dom","męski"],["dla","için"],["ludzi","insan(lar) (Dopełniacz)","ludzie"],["zmęczonych","yorgun, bıkmış (Dopełniacz)","zmęczony"],["wielkim","büyük (Narzędnik)","wielki"],["miastem.","şehir(den) (Narzędnik)","miasto","nijaki"]]},
+ {pl:"W drodze powrotnej para długo rozmawiała o przyszłości.",tr:"Dönüş yolunda çift, gelecek hakkında uzun uzun konuştu.",
+  words:[["W","-da"],["drodze","yol (Miejscownik)","droga","żeński"],["powrotnej","dönüş- (droga powrotna = dönüş yolu) (Miejscownik)","powrotny"],["para","çift","para","żeński"],["długo","uzun süre"],["rozmawiała","konuşuyordu (rozmawiać o = ...hakkında konuşmak)","rozmawiać"],["o","hakkında"],["przyszłości.","gelecek (Miejscownik)","przyszłość","żeński"]]},
+ {pl:"Może nie warto walczyć o drogie mieszkanie w centrum?",tr:"Belki merkezde pahalı bir daire için mücadele etmeye değmez?",
+  words:[["Może","belki"],["nie","değil (nie warto = değmez)"],["warto","değer (nie warto = değmez)"],["walczyć","mücadele etmek (walczyć o = ...için mücadele)","walczyć"],["o","için"],["drogie","pahalı","drogi"],["mieszkanie","daire (Biernik)","mieszkanie","nijaki"],["w","-da"],["centrum?","merkez (Miejscownik)","centrum","nijaki"]]},
+ {pl:"Może prawdziwe życie czeka trochę dalej?",tr:"Belki gerçek hayat biraz daha ötede bekliyor?",
+  words:[["Może","belki"],["prawdziwe","gerçek, hakiki","prawdziwy"],["życie","hayat, yaşam","życie","nijaki"],["czeka","bekliyor","czekać"],["trochę","biraz"],["dalej?","daha ileride, daha ötede"]]},
+ {pl:"Kiedy pociąg wjeżdżał do Warszawy, oboje już wiedzieli, że wkrótce podejmą ważną decyzję.",tr:"Tren Varşova'ya girerken, ikisi de yakında önemli bir karar vereceklerini artık biliyordu.",
+  words:[["Kiedy","-dığında, ...-iken"],["pociąg","tren","pociąg","męski"],["wjeżdżał","giriyordu (araç)","wjeżdżać"],["do","-e"],["Warszawy","Varşova(ya) (Dopełniacz)","Warszawa","żeński"],["oboje","ikisi de"],["już","artık, çoktan"],["wiedzieli,","biliyorlardı","wiedzieć"],["że","-eceğini, -diğini"],["wkrótce","yakında, kısa süre içinde"],["podejmą","verecekler (podjąć decyzję = karar vermek · dokonany)","podjąć"],["ważną","önemli (Biernik)","ważny"],["decyzję.","karar (Biernik)","decyzja","żeński"]]}
+];
+
+const STORIES = [PART1, PART2, PART3];
+
+const QUIZ1 = [
+ {q:"Gdzie mieszkają Kasia i Marek?",opts:["w małym mieście","na wsi pod lasem","za granicą","w Warszawie"],a:3,fb:"Varşova'da (w Warszawie), başkentte yaşıyorlar."},
+ {q:"Dlaczego Marek nazywa Warszawę „demograficznym wampirem”?",opts:["bo jest po prostu starym miastem","bo zabiera mieszkańców innym miastom","bo lubi głośne nocne życie","bo ma bardzo dużo pięknych starych budynków"],a:1,fb:"Diğer şehirlerden sakinleri kendine çektiği için (zabiera mieszkańców)."},
+ {q:"Ile trzeba dziś zapłacić za małe mieszkanie w stolicy?",opts:["całkiem sporo, majątek","niewielką sumę pieniędzy","prawie zupełnie nic","prawie tyle co nic"],a:0,fb:"Bir servet (majątek) — yani hayli çok."},
+ {q:"Co zaproponowała Kasia pewnego wieczoru?",opts:["wyjazd na stałe daleko za granicę","kupno nowego drogiego auta","mieszkanie blisko stolicy","dłuższy urlop nad ciepłym morzem"],a:2,fb:"Merkezde değil, başkente yakın oturmayı önerdi (blisko)."},
+ {q:"O ile kilometrów oddalone były miasta na mapie?",opts:["o pięćdziesiąt kilometrów","o sześćdziesiąt kilometrów","o siedemdziesiąt kilometrów","o osiemdziesiąt kilometrów"],a:1,fb:"Altmış kilometre (sześćdziesiąt) uzaklıktaydılar."}
+];
+const QUIZ2 = [
+ {q:"Czym para pojechała do dawnego miasta wojewódzkiego?",opts:["pociągiem","samochodem","autobusem","rowerem"],a:0,fb:"Trenle (pociągiem) gittiler."},
+ {q:"Jak zmieniło się miasto po reformie?",opts:["stało się stolicą całego kraju","zniknęło zupełnie z mapy Polski","straciło status wojewódzki","bardzo szybko urosło"],a:2,fb:"İl (voyvodalık) statüsünü kaybetti (straciło status)."},
+ {q:"Ile kosztują mieszkania w tym mieście w porównaniu z Warszawą?",opts:["dużo więcej","dokładnie tyle samo","trochę drożej","o połowę mniej"],a:3,fb:"Yarı yarıya daha ucuz (o połowę mniej)."},
+ {q:"Co obiecywał baner dewelopera?",opts:["dobrze płatną pracę w mieście","wygodne życie blisko stolicy","wakacje w ciepłych krajach","tani i szybki samochód"],a:1,fb:"Başkente yakınlığı — „Zamieszkaj blisko stolicy”."},
+ {q:"Dokąd wciąż wyjeżdżali młodzi ludzie?",opts:["do większych miast","do małych, cichych wiosek","do innych krajów","nad polskie morze"],a:0,fb:"Daha büyük şehirlere (do większych miast)."}
+];
+const QUIZ3 = [
+ {q:"Jak przedstawił się starszy pan?",opts:["jako turysta z Warszawy","jako sprzedawca mieszkań","jako pan Tadeusz","jako listonosz z okolicy"],a:2,fb:"Kendini Tadeusz Bey (pan Tadeusz) olarak tanıttı."},
+ {q:"Czego szukają ludzie przeprowadzający się z Warszawy?",opts:["hałasu i wielkich tłumów","ciszy i tańszych mieszkań","wysokich cen i hałasu w centrum","bardzo długiej drogi do pracy"],a:1,fb:"Sessizlik ve daha ucuz daireler (ciszy, tańszych mieszkań)."},
+ {q:"Dzięki czemu dojazd do stolicy jest krótki?",opts:["dzięki nowej linii kolejowej","dzięki szerokiej nowej autostradzie","dzięki pobliskiemu dużemu lotnisku","dzięki szybkiej drodze wodnej"],a:0,fb:"Yeni demiryolu hattı (linia kolejowa) sayesinde."},
+ {q:"Co Kasia i Marek zrozumieli podczas rozmowy?",opts:["że powinni jak najszybciej wrócić do centrum","że takie miasto może być dobrym domem","że nie warto się tam przeprowadzać","że życie bywa czasem naprawdę trudne"],a:1,fb:"Böyle şehirlerin iyi bir ev olabileceğini anladılar."},
+ {q:"Jaką decyzję prawdopodobnie podejmą Kasia i Marek?",opts:["zostaną w drogim mieszkaniu w centrum stolicy","wyjadą na stałe za daleką granicę","kupią drogie sportowe auto","przeprowadzą się bliżej, poza stolicę"],a:3,fb:"Muhtemelen başkentin dışına taşınacaklar (przeprowadzą się poza stolicę)."}
+];
+
+/* ================= VERİ SONU — buradan sonrasını değiştirme ================= */
+
+function renderStory(containerId, arr, part){
+  const el=document.getElementById(containerId); el.innerHTML='';
+  arr.forEach((s,si)=>{
+    const sent=document.createElement('span');
+    sent.className='sent'; sent.dataset.part=part; sent.dataset.si=si;
+    s.words.forEach((pair,wi)=>{
+      const w=document.createElement('w');
+      w.textContent=pair[0];
+      w.dataset.g=pair[1];
+      w.dataset.pl=pair[0].replace(/[.,!?;:„”]/g,'');
+      if(pair[2]) w.dataset.base=pair[2];
+      if(pair[3]) w.dataset.gen=pair[3];
+      w.dataset.part=part; w.dataset.si=si;
+      sent.appendChild(w);
+      if(wi<s.words.length-1){const sp=document.createElement('span');sp.className='sp';sp.innerHTML='&nbsp;';sent.appendChild(sp);}
+    });
+    el.appendChild(sent); el.appendChild(document.createTextNode(' '));
+  });
+  applyMarks(el);
+}
+
+const tip=document.getElementById('tip'), tipPl=document.getElementById('tipPl'), tipTr=document.getElementById('tipTr');
+const sheet=document.getElementById('sheet'), scrim=document.getElementById('scrim');
+const sPl=document.getElementById('sPl'), sTr=document.getElementById('sTr');
+let pressTimer=null, longFired=false, activeWord=null, startX=0, startY=0, moved=false;
+const LONG_MS=500, MOVE_TOL=8;
+function cancelPress(){ if(pressTimer){clearTimeout(pressTimer);pressTimer=null;} }
+function clearWord(){ if(activeWord){activeWord.classList.remove('on');activeWord=null;} }
+function hideTip(){ tip.classList.remove('show'); }
+function showTip(w){
+  clearWord(); hideTip();
+  activeWord=w; w.classList.add('on');
+  tipPl.textContent=w.dataset.pl; tipTr.textContent=w.dataset.g;
+  tip.classList.add('show');
+  const r=w.getBoundingClientRect(), tw=tip.offsetWidth, th=tip.offsetHeight;
+  let left=Math.max(8,Math.min(r.left+r.width/2-tw/2,window.innerWidth-tw-8));
+  let top,cls;
+  if(r.top-th-14>6){ top=r.top-th-12; cls='up'; } else { top=r.bottom+12; cls='down'; }
+  tip.classList.remove('up','down'); tip.classList.add(cls);
+  const ax=Math.max(12,Math.min(r.left+r.width/2-left-7,tw-24));
+  tip.style.setProperty('--ax',ax+'px');
+  tip.style.left=left+'px'; tip.style.top=top+'px';
+}
+function showSentence(part,si){
+  const s=STORIES[part][si];
+  sPl.textContent=s.pl; sTr.textContent=s.tr;
+  sheet.dataset.part=part; sheet.dataset.si=si;
+  sheet.classList.add('show'); scrim.classList.add('show');
+  document.querySelectorAll('.sent').forEach(x=>x.classList.remove('hl'));
+  const el=document.querySelector('.sent[data-part="'+part+'"][data-si="'+si+'"]'); if(el) el.classList.add('hl');
+}
+function hideSentence(){ sheet.classList.remove('show'); scrim.classList.remove('show'); document.querySelectorAll('.sent').forEach(x=>x.classList.remove('hl')); }
+
+document.addEventListener('pointerdown',e=>{
+  const w=e.target.closest('w');
+  if(w){
+    longFired=false; moved=false; startX=e.clientX; startY=e.clientY;
+    pressTimer=setTimeout(()=>{ longFired=true; hideTip(); clearWord(); if(navigator.vibrate) navigator.vibrate(15); showSentence(+w.dataset.part,+w.dataset.si); },LONG_MS);
+  } else { hideTip(); clearWord(); }
+});
+document.addEventListener('pointermove',e=>{ if(!pressTimer) return; if(Math.abs(e.clientX-startX)>MOVE_TOL||Math.abs(e.clientY-startY)>MOVE_TOL){ moved=true; cancelPress(); } });
+let lastTap={el:null,t:0};
+document.addEventListener('pointerup',e=>{
+  cancelPress();
+  const w=e.target.closest('w'); if(!w) return;
+  if(longFired||moved) return;
+  const now=Date.now();
+  if(lastTap.el===w && now-lastTap.t<300){ hideTip(); clearWord(); toggleMark(w); lastTap={el:null,t:0}; }
+  else {
+    if(tip.classList.contains('show') && activeWord===w){ hideTip(); clearWord(); }
+    else { showTip(w); }
+    lastTap={el:w,t:now};
+  }
+});
+document.addEventListener('pointercancel',()=>{ moved=true; cancelPress(); });
+document.addEventListener('contextmenu',e=>{ if(e.target.closest('w')) e.preventDefault(); });
+window.addEventListener('scroll',()=>{ moved=true; cancelPress(); hideTip(); clearWord(); },{passive:true});
+document.addEventListener('touchmove',()=>{ moved=true; cancelPress(); hideTip(); clearWord(); },{passive:true});
+scrim.addEventListener('click',()=>{ hideSentence(); closeMenu(); });
+document.getElementById('sClose').addEventListener('click',hideSentence);
+
+/* ---------- İşaretleme + ortak kelime listesi (localStorage) + Dışa aktarma ---------- */
+const menu=document.getElementById('menu');
+/* Tüm czytankalar arasında paylaşılan kelime deposu.
+   content:// altında localStorage engelliyse oturum-içi kopyaya düşer (try/catch). */
+const VOCAB=(function(){
+  const KEY='czytanka_vocab_v1'; let mem=null;
+  function read(){ if(mem) return mem; try{ mem=JSON.parse(localStorage.getItem(KEY))||{}; }catch(_){ mem={}; } return mem; }
+  function write(){ try{ localStorage.setItem(KEY, JSON.stringify(read())); }catch(_){} }
+  return { all:()=>read(), has:k=>Object.prototype.hasOwnProperty.call(read(),k),
+    add:(k,rec)=>{ read()[k]=rec; write(); }, remove:k=>{ delete read()[k]; write(); }, clear:()=>{ mem={}; write(); } };
+})();
+function cleanMeaning(g){ const m=(g||'').replace(/\s*\([^)]*\)\s*/g,' ').replace(/\s+/g,' ').trim(); return m||g||''; }
+function vkey(pl){ return (pl||'').toLowerCase().replace(/[.,!?;:„”"()»«]/g,'').trim(); }
+function wordKey(w){ return vkey(w.dataset.base||w.dataset.pl||''); }
+function setMarkByKey(key,on){ document.querySelectorAll('w').forEach(w=>{ if(wordKey(w)===key) w.classList.toggle('marked',on); }); }
+function applyMarks(scope){ (scope||document).querySelectorAll('w').forEach(w=>{ const k=wordKey(w); if(k && VOCAB.has(k)) w.classList.add('marked'); }); }
+function toggleMark(w){
+  const key=wordKey(w); if(!key) return;
+  if(VOCAB.has(key)){ VOCAB.remove(key); setMarkByKey(key,false); }
+  else{
+    const part=+w.dataset.part, si=+w.dataset.si;
+    const s=(STORIES[part]&&STORIES[part][si])||{pl:'',tr:''};
+    VOCAB.add(key,{pl:w.dataset.base||w.dataset.pl||'', g:w.dataset.gen||'', tr:cleanMeaning(w.dataset.g), ex_pl:s.pl||'', ex_tr:s.tr||''});
+    setMarkByKey(key,true);
+  }
+  if(navigator.vibrate) navigator.vibrate(8);
+  if(menu.classList.contains('show')) renderMarked();
+}
+/* Dışa aktarma alan sırası: pl / cinsiyet / tag(boş) / tr / örnek_pl / örnek_tr */
+function markedRows(){
+  const store=VOCAB.all();
+  return Object.keys(store).sort().map(k=>{ const r=store[k]; return [r.pl||'', r.g||'', '', r.tr||'', r.ex_pl||'', r.ex_tr||'']; });
+}
+function exportText(){ return markedRows().map(r=>r.join('/')).join('\n'); }
+let selKeys=new Set();
+function updateDelBtn(){ const b=document.getElementById('mkDelSel'); if(!b) return; b.textContent=selKeys.size?('🗑 Seçileni sil ('+selKeys.size+')'):'🗑 Seçileni sil'; b.disabled=selKeys.size===0; }
+function renderMarked(){
+  const list=document.getElementById('mkList'), rows=markedRows();
+  document.getElementById('mkCount').textContent=rows.length;
+  const present=new Set(rows.map(r=>vkey(r[0]))); selKeys.forEach(k=>{ if(!present.has(k)) selKeys.delete(k); });
+  if(!rows.length){ list.innerHTML='<div class="mk-empty">Liste boş. Bir kelimeye çift dokununca renklenir ve buraya eklenir — başka czytankalarda da hatırlanır.</div>'; updateDelBtn(); return; }
+  list.innerHTML='';
+  rows.forEach(r=>{
+    const pl=r[0], gen=r[1], tr=r[3], ex=r[4], key=vkey(pl);
+    const sel=selKeys.has(key);
+    const row=document.createElement('div'); row.className='mk-item'+(sel?' sel':'');
+    const info=document.createElement('div'); info.className='minfo';
+    info.innerHTML='<div class="mw">'+pl+(gen?' <span class="mg">· '+gen+'</span>':'')+'</div><div class="mg">'+tr+'</div>'+(ex?'<div class="mex">'+ex+'</div>':'');
+    const b=document.createElement('button'); b.className='mk-pick'; b.textContent=sel?'✓':''; b.setAttribute('aria-label','Seç');
+    row.onclick=()=>{ if(selKeys.has(key)){ selKeys.delete(key); row.classList.remove('sel'); b.textContent=''; } else { selKeys.add(key); row.classList.add('sel'); b.textContent='✓'; } updateDelBtn(); };
+    row.appendChild(info); row.appendChild(b); list.appendChild(row);
+  });
+  updateDelBtn();
+}
+function openMenu(){ hideSentence(); selKeys.clear(); renderMarked(); menu.classList.add('show'); scrim.classList.add('show'); }
+function closeMenu(){ menu.classList.remove('show'); scrim.classList.remove('show'); }
+function flashBtn(id,txt){ const b=document.getElementById(id); const o=b.textContent; b.textContent=txt; setTimeout(()=>b.textContent=o,1200); }
+document.getElementById('menuBtn').addEventListener('click',openMenu);
+const _flag=document.getElementById('flagBtn'); if(_flag) _flag.addEventListener('click',openMenu);
+document.getElementById('menuClose').addEventListener('click',closeMenu);
+document.getElementById('mkCopy').addEventListener('click',async()=>{
+  const t=exportText(); if(!t){ flashBtn('mkCopy','Liste boş'); return; }
+  try{ await navigator.clipboard.writeText(t); flashBtn('mkCopy','✓ Kopyalandı'); }
+  catch(_){ const ta=document.createElement('textarea'); ta.value=t; document.body.appendChild(ta); ta.select(); try{document.execCommand('copy');}catch(e){} ta.remove(); flashBtn('mkCopy','✓ Kopyalandı'); }
+});
+document.getElementById('mkDownload').addEventListener('click',()=>{
+  const t=exportText(); if(!t){ flashBtn('mkDownload','Liste boş'); return; }
+  const blob=new Blob([t],{type:'text/plain;charset=utf-8'});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='slowka.txt';
+  document.body.appendChild(a); a.click(); setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},500);
+});
+document.getElementById('mkDelSel').addEventListener('click',()=>{
+  if(!selKeys.size){ flashBtn('mkDelSel','Önce seç'); return; }
+  selKeys.forEach(k=>{ VOCAB.remove(k); setMarkByKey(k,false); });
+  selKeys.clear(); renderMarked();
+});
+document.getElementById('mkClear').addEventListener('click',()=>{
+  if(!confirm('Tüm kelime listesi silinsin mi? Bu, tüm czytankalardaki ortak listeyi temizler.')) return;
+  VOCAB.clear(); document.querySelectorAll('w.marked').forEach(w=>w.classList.remove('marked')); renderMarked();
+});
+
+let part2Open=false, part3Open=false;
+function speak(text){
+  if(!('speechSynthesis' in window)) return;
+  window.speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text); u.lang='pl-PL'; u.rate=0.92;
+  const v=(window.speechSynthesis.getVoices()||[]).find(x=>/pl/i.test(x.lang));
+  if(v) u.voice=v; window.speechSynthesis.speak(u);
+}
+document.getElementById('sSpk').addEventListener('click',()=>speak(STORIES[+sheet.dataset.part][+sheet.dataset.si].pl));
+document.getElementById('playAll').addEventListener('click',()=>{
+  let t=PART1.map(s=>s.pl).join(' ');
+  if(part2Open) t+=' '+PART2.map(s=>s.pl).join(' ');
+  if(part3Open) t+=' '+PART3.map(s=>s.pl).join(' ');
+  speak(t);
+});
+document.getElementById('stopAll').addEventListener('click',()=>{ if('speechSynthesis' in window) window.speechSynthesis.cancel(); });
+if('speechSynthesis' in window){ window.speechSynthesis.onvoiceschanged=()=>{}; }
+
+function revealPart2(){
+  if(!part2Open){
+    part2Open=true;
+    renderStory('story2',PART2,1); buildQuiz('questions2','result2',QUIZ2);
+    document.getElementById('part2').classList.remove('locked');
+    const t=document.getElementById('teaser1'); if(t) t.style.display='none';
+    const c=document.getElementById('contAfter1'); if(c) c.style.display='none';
+  }
+  document.getElementById('part2').scrollIntoView({behavior:'smooth'});
+}
+function revealPart3(){
+  if(!part3Open){
+    part3Open=true;
+    renderStory('story3',PART3,2); buildQuiz('questions3','result3',QUIZ3);
+    document.getElementById('part3').classList.remove('locked');
+    const t=document.getElementById('teaser2'); if(t) t.style.display='none';
+    const c=document.getElementById('contAfter2'); if(c) c.style.display='none';
+  }
+  document.getElementById('part3').scrollIntoView({behavior:'smooth'});
+}
+['contBtn1','contBtn1b'].forEach(id=>{const b=document.getElementById(id); if(b) b.addEventListener('click',revealPart2);});
+['contBtn2','contBtn2b'].forEach(id=>{const b=document.getElementById(id); if(b) b.addEventListener('click',revealPart3);});
+
+const LETTERS=['A','B','C','D'];
+function buildQuiz(qId,rId,data){
+  const wrap=document.getElementById(qId), result=document.getElementById(rId);
+  wrap.innerHTML=''; result.classList.remove('show');
+  let answered=0, correct=0;
+  data.forEach((item,qi)=>{
+    const card=document.createElement('div'); card.className='q';
+    card.innerHTML='<div class="q-num">PYTANIE '+(qi+1)+'</div><div class="q-txt">'+item.q+'</div>';
+    item.opts.forEach((opt,oi)=>{
+      const b=document.createElement('button'); b.className='opt';
+      b.innerHTML='<span class="k">'+LETTERS[oi]+'</span>'+opt;
+      b.addEventListener('click',()=>{
+        if(card.dataset.done) return;
+        card.dataset.done='1'; answered++;
+        card.querySelectorAll('.opt').forEach((o,i)=>{ o.disabled=true; if(i===item.a) o.classList.add('correct'); });
+        if(oi===item.a) correct++; else b.classList.add('wrong');
+        const fb=card.querySelector('.fb');
+        fb.innerHTML=(oi===item.a?'✅ <b>Dobrze!</b> ':'❌ <b>Niepoprawnie.</b> ')+item.fb;
+        fb.classList.add('show');
+        if(answered===data.length){
+          result.querySelector('.score').textContent=correct+' / '+data.length;
+          const msgs=['Spróbuj jeszcze raz! 💪','Nieźle, ćwicz dalej.','Dobra robota!','Bardzo dobrze! 👏','Świetnie! Perfekcyjnie! 🎉'];
+          result.querySelector('.msg').textContent=msgs[correct];
+          result.classList.add('show');
+          result.scrollIntoView({behavior:'smooth',block:'center'});
+        }
+      });
+      card.appendChild(b);
+    });
+    const fb=document.createElement('div'); fb.className='fb'; card.appendChild(fb);
+    wrap.appendChild(card);
+  });
+  result.querySelector('.retry').onclick=()=>{ buildQuiz(qId,rId,data); wrap.scrollIntoView({behavior:'smooth'}); };
+}
+renderStory('story1', PART1, 0);
+buildQuiz('questions1','result1',QUIZ1);
+</script>
+</body>
+</html>
