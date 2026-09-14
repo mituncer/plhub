@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no">
+<title>Polonca · Hal Taşıma</title>
+<style>
+  :root{
+    --bg:#0E1726; --bg2:#0A1120; --panel:#16223A; --panel2:#1C2B47; --line:#2A3A5C;
+    --txt:#EAF0F9; --muted:#93A3BE; --faint:#5C6E8C;
+    --N:#35B99A; --B:#E5675B; --D:#E0A44B; --Mc:#A98BE6; --C:#5B8DEF;
+    --serif:Georgia,'Times New Roman',serif;
+    --sans:'Segoe UI',system-ui,-apple-system,Roboto,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;height:100%;overscroll-behavior:none}
+  body{
+    background:radial-gradient(1000px 480px at 85% -10%,rgba(169,139,230,.10),transparent 60%),
+               radial-gradient(800px 460px at -10% 110%,rgba(53,185,154,.08),transparent 60%),var(--bg);
+    color:var(--txt);font-family:var(--sans);height:100dvh;display:flex;flex-direction:column;
+    padding:env(safe-area-inset-top) 5px calc(env(safe-area-inset-bottom) + 8px);
+    -webkit-text-size-adjust:100%;user-select:none;
+  }
+  .wrap{max-width:none;width:100%;margin:0 auto;display:flex;flex-direction:column;flex:1;min-height:0}
+
+  header{display:flex;align-items:center;justify-content:space-between;padding:5px 2px 3px}
+  header h1{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin:0}
+  header h1 span{color:var(--faint)}
+  .stat{font-size:12px;color:var(--muted);white-space:nowrap}
+  .stat b{color:var(--txt);font-variant-numeric:tabular-nums}
+  .stat .ok{color:var(--N)} .stat .no{color:var(--B)}
+
+  .hintline{font-size:12px;color:var(--faint);text-align:center;padding:0 0 4px;min-height:14px}
+
+  /* Tepsi — sürüklenecek fiiller */
+  .tray{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;
+        background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:12px 10px;min-height:64px;margin-top:10px}
+  .chip{position:relative;font-family:var(--serif);font-size:15px;font-weight:700;color:var(--txt);
+        background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);
+        border-radius:11px;padding:9px 13px;touch-action:none;cursor:grab;box-shadow:0 2px 6px rgba(0,0,0,.25)}
+  .chip .en{display:none;font-family:var(--sans);font-weight:400;font-size:10px;color:var(--muted);margin-top:2px}
+  .chip.showen .en{display:block}
+  .chip.lift{opacity:.25}
+  .chip:active{cursor:grabbing}
+
+  /* Sürüklenen hayalet */
+  .ghost{position:fixed;left:0;top:0;z-index:50;pointer-events:none;font-family:var(--serif);font-size:15px;
+         font-weight:700;color:var(--txt);background:var(--panel2);border:1px solid var(--txt);
+         border-radius:11px;padding:9px 13px;box-shadow:0 10px 24px rgba(0,0,0,.5);transform:translate(-999px,-999px)}
+  .ghost.bad{border-color:var(--B);animation:shake .3s}
+  @keyframes shake{0%,100%{margin-left:0}25%{margin-left:-7px}75%{margin-left:7px}}
+
+  /* Sütunlar */
+  .lanes{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;flex:1;min-height:0;margin-top:6px;width:100%}
+  .lane{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:12px;
+        background:var(--panel);overflow:hidden;transition:background .15s,border-color .15s}
+  .lane .head{font-size:10.5px;line-height:1.15;font-weight:800;letter-spacing:.03em;text-transform:uppercase;
+        text-align:center;padding:7px 2px;border-bottom:1px solid var(--line);word-break:break-word}
+  .lane .pron{display:block;font-family:var(--serif);font-weight:400;font-style:italic;text-transform:none;
+        letter-spacing:0;font-size:9px;margin-top:3px;opacity:.9}
+  .lane .drop{flex:1;padding:5px 4px;display:flex;flex-direction:column;gap:4px;align-items:stretch;overflow-y:auto}
+  .lane[data-c="N"] .head{color:var(--N)} .lane[data-c="B"] .head{color:var(--B)}
+  .lane[data-c="D"] .head{color:var(--D)} .lane[data-c="Mc"] .head{color:var(--Mc)}
+  .lane[data-c="C"] .head{color:var(--C)}
+  .lane[data-c="N"]{border-top:3px solid var(--N)} .lane[data-c="B"]{border-top:3px solid var(--B)}
+  .lane[data-c="D"]{border-top:3px solid var(--D)} .lane[data-c="Mc"]{border-top:3px solid var(--Mc)}
+  .lane[data-c="C"]{border-top:3px solid var(--C)}
+  .lane.hot{background:var(--panel2)}
+  .lane.hot[data-c="N"]{border-color:var(--N)} .lane.hot[data-c="B"]{border-color:var(--B)}
+  .lane.hot[data-c="D"]{border-color:var(--D)} .lane.hot[data-c="Mc"]{border-color:var(--Mc)}
+  .lane.hot[data-c="C"]{border-color:var(--C)}
+
+  .tag{font-family:var(--serif);font-size:12px;line-height:1.2;font-weight:700;text-align:center;
+       padding:6px 4px;border-radius:7px;word-break:break-word;background:var(--bg2);border:1px solid var(--line);animation:pop .2s}
+  .lane[data-c="N"] .tag{color:var(--N);border-color:rgba(53,185,154,.45)}
+  .lane[data-c="B"] .tag{color:var(--B);border-color:rgba(229,103,91,.45)}
+  .lane[data-c="D"] .tag{color:var(--D);border-color:rgba(224,164,75,.45)}
+  .lane[data-c="Mc"] .tag{color:var(--Mc);border-color:rgba(169,139,230,.45)}
+  .lane[data-c="C"] .tag{color:var(--C);border-color:rgba(91,141,239,.45)}
+  @keyframes pop{from{transform:scale(.6);opacity:0}to{transform:scale(1);opacity:1}}
+
+  .tip{position:fixed;z-index:60;background:var(--txt);color:#0B1220;font:700 13px var(--sans);
+       padding:6px 11px;border-radius:9px;box-shadow:0 8px 20px rgba(0,0,0,.55);pointer-events:none;
+       max-width:60vw;opacity:0;transform:translateY(4px);transition:opacity .16s,transform .16s}
+  .tip.show{opacity:1;transform:translateY(0)}
+
+  .foot{display:flex;gap:8px;margin-top:10px;align-items:center}
+  .btn{flex:1;border:1px solid var(--line);background:var(--panel);color:var(--txt);
+       font:700 14px var(--sans);padding:12px;border-radius:12px;cursor:pointer}
+  .btn.primary{background:var(--txt);color:#0B1220;border-color:var(--txt)}
+  .btn:active{transform:scale(.99)}
+  .icobtn{flex:0 0 auto;width:48px;border:1px solid var(--line);background:var(--panel);color:var(--muted);
+          font-size:16px;border-radius:12px;cursor:pointer}
+  .icobtn.on{color:var(--txt);background:var(--panel2)}
+  .btn.reset{flex:0 0 auto;width:100%;margin-top:8px;background:transparent;color:var(--B);border-color:rgba(229,103,91,.4);font-weight:600}
+  :focus-visible{outline:2px solid var(--C);outline-offset:2px}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Hal <span>·</span> Taşıma</h1>
+    <div class="stat"><b class="ok" id="ok">0</b> doğru · <b class="no" id="no">0</b> hata</div>
+  </header>
+
+  <div class="hintline" id="hint">Fiili tutup doğru sütuna bırak. (Dokununca sesli okur.)</div>
+
+  <div class="lanes" id="lanes"></div>
+
+  <div class="tray" id="tray"></div>
+
+  <div class="foot">
+    <button class="icobtn" id="enBtn" onclick="toggleEn()" aria-label="İngilizce göster">EN</button>
+    <button class="btn primary" onclick="newSet()">Yeni set</button>
+    <button class="icobtn on" id="sndBtn" onclick="toggleSnd()" aria-label="Ses">🔊</button>
+  </div>
+  <button class="btn reset" onclick="resetAll()">Sıfırla</button>
+</div>
+
+<script>
+/* ---- Haller (soldan sağa: N B D Mc C) ---- */
+const LANES=[
+  {c:'N', name:'NARZĘDNIK',  pron:'kim? czym?'},
+  {c:'B', name:'BIERNIK',    pron:'kogo? co?'},
+  {c:'D', name:'DOPEŁNIACZ', pron:'kogo? czego?'},
+  {c:'C', name:'CELOWNIK',   pron:'komu? czemu?'}
+];
+
+/* ---- Fiiller ---- */
+const V=[
+  // NARZĘDNIK
+  {v:'być',c:'N',pl:'Jestem inżynierem.',en:'to be'},
+  {v:'interesować się',c:'N',pl:'Interesuję się sportem.',en:'to be interested in'},
+  {v:'opiekować się',c:'N',pl:'Opiekuję się babcią.',en:'to take care of'},
+  {v:'zajmować się',c:'N',pl:'Zajmuję się marketingiem.',en:'to deal with'},
+  {v:'martwić się',c:'N',pl:'Martwię się zdrowiem.',en:'to worry about'},
+  {v:'kierować',c:'N',pl:'Kieruję zespołem.',en:'to manage'},
+  {v:'rządzić',c:'N',pl:'Prezydent rządzi krajem.',en:'to govern'},
+  {v:'zostać',c:'N',pl:'Chcę zostać lekarzem.',en:'to become'},
+  {v:'jeździć',c:'N',pl:'Jeżdżę samochodem.',en:'to travel by'},
+  {v:'stresować się',c:'N',pl:'Stresuję się egzaminem.',en:'to be stressed about'},
+
+  // BIERNIK
+  {v:'mieć',c:'B',pl:'Mam nowy samochód.',en:'to have'},
+  {v:'pić',c:'B',pl:'Piję kawę.',en:'to drink'},
+  {v:'jeść',c:'B',pl:'Jem obiad.',en:'to eat'},
+  {v:'lubić',c:'B',pl:'Lubię tę książkę.',en:'to like'},
+  {v:'czytać',c:'B',pl:'Czytam gazetę.',en:'to read'},
+  {v:'kupować',c:'B',pl:'Kupuję telefon.',en:'to buy'},
+  {v:'oglądać',c:'B',pl:'Oglądam film.',en:'to watch'},
+  {v:'gotować',c:'B',pl:'Gotuję obiad.',en:'to cook'},
+  {v:'znać',c:'B',pl:'Znam tego człowieka.',en:'to know'},
+  {v:'zamawiać',c:'B',pl:'Zamawiam pizzę.',en:'to order'},
+
+  // DOPEŁNIACZ
+  {v:'bać się',c:'D',pl:'Boję się ciemności.',en:'to be afraid of'},
+  {v:'szukać',c:'D',pl:'Szukam pracy.',en:'to look for'},
+  {v:'słuchać',c:'D',pl:'Słucham muzyki.',en:'to listen to'},
+  {v:'uczyć się',c:'D',pl:'Uczę się polskiego.',en:'to learn'},
+  {v:'używać',c:'D',pl:'Używam telefonu.',en:'to use'},
+  {v:'potrzebować',c:'D',pl:'Potrzebuję pomocy.',en:'to need'},
+  {v:'unikać',c:'D',pl:'Unikam tłumów.',en:'to avoid'},
+  {v:'bronić',c:'D',pl:'Bronię swojego zdania.',en:'to defend'},
+  {v:'brakować',c:'D',pl:'Brakuje mi czasu.',en:'to lack'},
+
+  // CELOWNIK
+  {v:'pomagać',c:'C',pl:'Pomagam mamie.',en:'to help'},
+  {v:'dziękować',c:'C',pl:'Dziękuję nauczycielowi.',en:'to thank'},
+  {v:'ufać',c:'C',pl:'Ufam przyjacielowi.',en:'to trust'},
+  {v:'wierzyć',c:'C',pl:'Wierzę tobie.',en:'to believe'},
+  {v:'przeszkadzać',c:'C',pl:'Nie przeszkadzaj bratu.',en:'to disturb'},
+  {v:'gratulować',c:'C',pl:'Gratuluję ci sukcesu.',en:'to congratulate'},
+  {v:'życzyć',c:'C',pl:'Życzę ci szczęścia.',en:'to wish'},
+  {v:'kibicować',c:'C',pl:'Kibicuję drużynie.',en:'to support (a team)'},
+  {v:'podobać się',c:'C',pl:'Podoba mi się ten film.',en:'to appeal to'}
+];
+
+let stats={ok:0,no:0}, showEn=false, snd=true, used=new Set();
+
+/* ---- Sütunları kur ---- */
+const lanesEl=document.getElementById('lanes');
+LANES.forEach(l=>{
+  const d=document.createElement('div'); d.className='lane'; d.dataset.c=l.c;
+  d.innerHTML=`<div class="head">${l.name}<span class="pron">${l.pron}</span></div><div class="drop"></div>`;
+  lanesEl.appendChild(d);
+});
+
+/* ---- Yeni set ---- */
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function newSet(){
+  const tray=document.getElementById('tray'); tray.innerHTML='';   // sütunlar kalsın, sadece tepsi yenilensin
+  let cand=V.filter(p=>!used.has(p.v));
+  if(cand.length===0){ setHint('Tüm fiiller yerleşti — Sıfırla ile baştan başla.'); return; }
+  // en az 3 farklı hal olacak şekilde 6 fiil seç
+  let pick, tries=0;
+  do{ pick=shuffle([...cand]).slice(0,6); tries++; }
+  while(cand.length>=6 && new Set(pick.map(p=>p.c)).size<3 && tries<25);
+  shuffle(pick).forEach(p=>{
+    const c=document.createElement('div'); c.className='chip'+(showEn?' showen':'');
+    c.innerHTML=`<span>${p.v}</span><span class="en">${p.en}</span>`;
+    c.dataset.c=p.c; c._data=p;
+    attachDrag(c);
+    tray.appendChild(c);
+  });
+  setHint('Fiili tutup doğru sütuna bırak.');
+}
+
+/* ---- Sürükle-bırak (pointer, dokunma uyumlu) ---- */
+let ghost=null, drag=null, moved=false, sx=0, sy=0;
+function attachDrag(chip){
+  chip.addEventListener('pointerdown',e=>{
+    if(chip.dataset.done)return;
+    drag=chip; moved=false; sx=e.clientX; sy=e.clientY;
+    chip.setPointerCapture(e.pointerId);
+  });
+  chip.addEventListener('pointermove',e=>{
+    if(drag!==chip)return;
+    const dx=e.clientX-sx, dy=e.clientY-sy;
+    if(!moved && Math.hypot(dx,dy)<7)return;
+    if(!moved){ moved=true; chip.classList.add('lift');
+      ghost=document.createElement('div'); ghost.className='ghost'; ghost.textContent=chip._data.v;
+      document.body.appendChild(ghost); }
+    e.preventDefault();
+    ghost.style.transform=`translate(${e.clientX-ghost.offsetWidth/2}px,${e.clientY-ghost.offsetHeight/2}px)`;
+    highlight(e.clientX,e.clientY);
+  });
+  chip.addEventListener('pointerup',e=>{
+    if(drag!==chip)return;
+    if(!moved){ say(chip._data.pl); showMeaning(chip,chip._data.en); drag=null; return; }  // dokunma → oku + anlam
+    const lane=laneAt(e.clientX,e.clientY);
+    clearHot();
+    if(lane && lane.dataset.c===chip.dataset.c){ place(chip,lane); }
+    else { fail(lane); chip.classList.remove('lift'); }
+    if(ghost){ghost.remove();ghost=null;}
+    drag=null;
+  });
+  chip.addEventListener('pointercancel',()=>{chip.classList.remove('lift');clearHot();if(ghost){ghost.remove();ghost=null;}drag=null;});
+}
+function laneAt(x,y){
+  for(const l of document.querySelectorAll('.lane')){
+    const r=l.getBoundingClientRect();
+    if(x>=r.left&&x<=r.right&&y>=r.top&&y<=r.bottom)return l;
+  } return null;
+}
+function highlight(x,y){ clearHot(); const l=laneAt(x,y); if(l)l.classList.add('hot'); }
+function clearHot(){ document.querySelectorAll('.lane.hot').forEach(l=>l.classList.remove('hot')); }
+
+function place(chip,lane){
+  chip.dataset.done='1';
+  const d=chip._data;
+  const t=document.createElement('div'); t.className='tag'; t.textContent=d.v; t.dataset.v=d.v;
+  t.onclick=()=>{ say(d.pl); showMeaning(t,d.en); };
+  insertSorted(lane.querySelector('.drop'), t, d.v);   // A→Z sırala
+  chip.remove();
+  used.add(d.v);
+  stats.ok++; document.getElementById('ok').textContent=stats.ok;
+  say(d.pl);
+  setHint(`✓ ${d.v} → ${lane.querySelector('.head').firstChild.textContent} · ${d.en}`);
+  if(!document.querySelector('#tray .chip')) setTimeout(()=>{setHint('Set tamam — "Yeni set" ile üzerine ekle.');},300);
+}
+function insertSorted(drop, tagEl, name){
+  const next=[...drop.children].find(t=> (t.dataset.v||'').localeCompare(name,'pl') > 0 );
+  if(next) drop.insertBefore(tagEl,next); else drop.appendChild(tagEl);
+}
+function resetAll(){
+  used=new Set();
+  document.querySelectorAll('.drop').forEach(d=>d.innerHTML='');
+  stats={ok:0,no:0};
+  document.getElementById('ok').textContent=0; document.getElementById('no').textContent=0;
+  newSet();
+  setHint('Sıfırlandı. Yeni sıralamaya başla.');
+}
+function fail(lane){
+  stats.no++; document.getElementById('no').textContent=stats.no;
+  if(ghost){ghost.classList.add('bad');}
+  const where=lane?lane.querySelector('.head').firstChild.textContent:'—';
+  setHint(`✕ Değil (${where}). Tekrar dene.`);
+}
+function setHint(t){document.getElementById('hint').textContent=t;}
+
+/* ---- Ses ---- */
+let plVoice=null;
+function pickVoice(){const vs=speechSynthesis.getVoices();plVoice=vs.find(v=>/pl(-|_)?/i.test(v.lang))||vs.find(v=>/polish/i.test(v.name))||null}
+if('speechSynthesis' in window){pickVoice();speechSynthesis.onvoiceschanged=pickVoice}
+function say(t){ if(!snd||!('speechSynthesis' in window))return;
+  speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='pl-PL';u.rate=.9;if(plVoice)u.voice=plVoice;speechSynthesis.speak(u);}
+
+/* Dokununca anlamı göster, 2 sn sonra kaybolsun */
+let tipEl=null, tipTimer=null;
+function showMeaning(target,text){
+  if(tipEl){tipEl.remove();tipEl=null;} clearTimeout(tipTimer);
+  const b=document.createElement('div'); b.className='tip'; b.textContent=text;
+  document.body.appendChild(b);
+  const r=target.getBoundingClientRect();
+  let bx=r.left + r.width/2 - b.offsetWidth/2;
+  bx=Math.max(6,Math.min(bx,window.innerWidth-b.offsetWidth-6));
+  let by=r.top - b.offsetHeight - 6; if(by<6) by=r.bottom+6;
+  b.style.left=bx+'px'; b.style.top=by+'px';
+  requestAnimationFrame(()=>b.classList.add('show'));
+  tipEl=b;
+  tipTimer=setTimeout(()=>{ b.classList.remove('show'); setTimeout(()=>{b.remove(); if(tipEl===b)tipEl=null;},180); },2000);
+}
+
+function toggleEn(){showEn=!showEn;document.getElementById('enBtn').classList.toggle('on',showEn);
+  document.querySelectorAll('.chip').forEach(c=>c.classList.toggle('showen',showEn));}
+function toggleSnd(){snd=!snd;document.getElementById('sndBtn').classList.toggle('on',snd);if(!snd)speechSynthesis.cancel();}
+
+newSet();
+</script>
+</body>
+</html>

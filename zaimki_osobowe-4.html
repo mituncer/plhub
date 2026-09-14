@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zaimki osobowe — Kişi Zamirleri Alıştırma</title>
+<style>
+  :root{
+    --bg:#0f1720; --card:#182430; --card2:#1e2c3a; --ink:#e8eef4; --muted:#9fb0c0;
+    --line:#2c3d4e; --acc:#4fb0ff; --good:#37c98a; --bad:#ff6b6b; --warn:#ffcf5c;
+    --chip:#243546;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink);
+    line-height:1.5;-webkit-tap-highlight-color:transparent}
+  .wrap{max-width:640px;margin:0 auto;padding:14px 14px 40px}
+  h1{font-size:1.25rem;margin:.2em 0 .1em}
+  .sub{color:var(--muted);font-size:.9rem;margin-bottom:14px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin:12px 0}
+  .row{display:flex;flex-wrap:wrap;gap:8px}
+  button{font:inherit;cursor:pointer;border:none;border-radius:10px;padding:11px 14px;color:#fff;background:var(--acc);font-weight:600}
+  button.sec{background:var(--chip);color:var(--ink);border:1px solid var(--line);font-weight:600}
+  button.ghost{background:transparent;color:var(--acc);border:1px solid var(--acc)}
+  button:disabled{opacity:.5;cursor:default}
+  .cases{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}
+  .cases button{width:100%;background:var(--chip);color:var(--ink);border:1px solid var(--line);text-align:left}
+  .cases button.on{background:var(--acc);color:#04121e;border-color:var(--acc)}
+  .cases button .cnt{float:right;color:var(--muted);font-weight:400;font-size:.8rem}
+  .cases button.on .cnt{color:#04121e}
+  .cue{display:inline-block;background:var(--chip);border:1px solid var(--line);border-radius:20px;padding:4px 12px;font-weight:700;margin-bottom:10px}
+  .sent{font-size:1.35rem;font-weight:600;margin:6px 0 12px;word-spacing:2px}
+  .gap{display:inline-block;min-width:70px;border-bottom:3px solid var(--warn);text-align:center;color:var(--warn);font-weight:800;padding:0 6px}
+  input[type=text]{width:100%;font-size:1.2rem;padding:12px;border-radius:10px;border:2px solid var(--line);
+    background:#0c141c;color:var(--ink);outline:none;text-align:center}
+  input[type=text]:focus{border-color:var(--acc)}
+  .hintbox{margin:10px 0;padding:10px 12px;border-radius:10px;border:1px dashed var(--line);background:var(--card2);color:var(--muted);font-size:.92rem}
+  .hintbox b{color:var(--warn)}
+  .fb{margin-top:12px;padding:12px;border-radius:10px;font-weight:600}
+  .fb.ok{background:rgba(55,201,138,.15);border:1px solid var(--good);color:#bff3da}
+  .fb.no{background:rgba(255,107,107,.15);border:1px solid var(--bad);color:#ffd4d4}
+  .fb small{display:block;font-weight:400;color:var(--muted);margin-top:6px}
+  .fb .ans{color:var(--good);font-weight:800}
+  .top{display:flex;justify-content:space-between;align-items:center;font-size:.9rem;color:var(--muted);margin-bottom:6px}
+  .score{font-weight:800;color:var(--acc)}
+  .bar{height:8px;background:var(--line);border-radius:6px;overflow:hidden;margin-bottom:12px}
+  .bar > i{display:block;height:100%;background:var(--acc);width:0;transition:width .3s}
+  .spk{background:var(--chip);border:1px solid var(--line);color:var(--ink);padding:8px 12px;border-radius:10px;font-size:.95rem}
+  .tr{color:var(--muted);font-size:.9rem;margin:4px 0 0}
+  .legend{font-size:.85rem;color:var(--muted)}
+  .legend b{color:var(--ink)}
+  table{width:100%;border-collapse:collapse;font-size:.82rem}
+  th,td{border:1px solid var(--line);padding:6px 5px;text-align:center}
+  th{background:var(--chip);color:var(--acc);position:sticky;top:0}
+  td:first-child,th:first-child{background:var(--card2);font-weight:700;color:var(--warn)}
+  .modal{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:flex-start;justify-content:center;padding:12px;overflow:auto;z-index:9}
+  .modal.show{display:flex}
+  .modal .card{max-width:720px;width:100%;margin-top:10px}
+  .np{color:var(--acc);font-weight:700}
+  .big{font-size:2.2rem;font-weight:800;color:var(--acc);text-align:center;margin:6px 0}
+  .center{text-align:center}
+  .pillrow{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+  .pill{background:var(--chip);border:1px solid var(--line);border-radius:8px;padding:6px 10px;font-size:.85rem}
+  .hidden{display:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- SETUP -->
+  <div id="setup">
+    <h1>Zaimki osobowe — Kişi Zamirleri</h1>
+    <div class="sub">6 hal alıştırması · rastgele 10 soruluk test · gizli hal ipucu</div>
+
+    <div class="card">
+      <div style="font-weight:700;margin-bottom:4px">Hangi hal(ler)?</div>
+      <div class="legend" style="margin-bottom:8px">Birden çok hal seçebilirsin. Varsayılan: <b>hepsi</b>.</div>
+      <div class="cases" id="caseGrid"></div>
+      <div class="row" style="margin-top:8px">
+        <button class="ghost" style="flex:1;font-size:.85rem" onclick="selectAll()">Tümü</button>
+        <button class="ghost" style="flex:1;font-size:.85rem" onclick="clearSel()">Temizle</button>
+      </div>
+      <div class="legend" style="margin-top:8px">Seçili havuz: <b id="poolInfo" class="np">0</b> soru</div>
+    </div>
+
+    <div class="card">
+      <div style="font-weight:700;margin-bottom:6px">Puanlama</div>
+      <div class="legend">
+        • Hal ipucu <b>gizliyken</b> doğru cevap → <b style="color:var(--good)">2 puan</b><br>
+        • Hal ipucunu <b>açtıysan</b> ve doğru → <b style="color:var(--warn)">1 puan</b><br>
+        • Yanlış → 0 puan &nbsp;|&nbsp; 10 soru · maksimum <b>20 puan</b>
+      </div>
+    </div>
+
+    <div class="row">
+      <button style="flex:1" onclick="startTest()">▶ Testi Başlat (10 soru)</button>
+      <button class="sec" onclick="openTable()">📋 Tablo</button>
+    </div>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="quiz" class="hidden">
+    <div class="top">
+      <span>Soru <b id="qnum">1</b>/10 · <span id="qcase" class="np"></span></span>
+      <span class="score">Puan: <span id="score">0</span></span>
+    </div>
+    <div class="bar"><i id="barfill"></i></div>
+
+    <div class="card">
+      <div class="cue" id="cue">👤</div>
+      <div class="sent" id="sent"></div>
+      <p class="tr hidden" id="tr"></p>
+      <button class="ghost" style="padding:6px 10px;font-size:.85rem" id="trBtn" onclick="toggleTr()">Cümle çevirisi</button>
+
+      <div class="hintbox hidden" id="hintShown"></div>
+
+      <div style="margin:14px 0 8px">
+        <input type="text" id="ans" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="doğru biçimi yaz…">
+      </div>
+
+      <div class="row">
+        <button style="flex:1" id="submitBtn" onclick="submitAns()">Cevapla</button>
+      </div>
+      <div class="row" style="margin-top:8px">
+        <button class="sec" id="hintBtn" style="flex:1" onclick="showHint()">💡 Hangi hal? (−1)</button>
+        <button class="sec" id="tableBtnQ" style="flex:1" onclick="openTable(true)">📋 Tablo (−1)</button>
+      </div>
+
+      <div id="fb" class="fb hidden"></div>
+      <div class="row" style="margin-top:12px">
+        <button class="sec hidden" id="spkBtn" onclick="speakSentence()">🔊 Cümleyi dinle</button>
+        <button class="hidden" id="nextBtn" style="flex:1" onclick="nextQ()">Sonraki →</button>
+      </div>
+    </div>
+    <button class="ghost" style="font-size:.85rem" onclick="quitTest()">✕ Testi bitir</button>
+  </div>
+
+  <!-- RESULT -->
+  <div id="result" class="hidden">
+    <div class="card center">
+      <h1 style="margin-top:0">Sonuç</h1>
+      <div class="big"><span id="finalScore">0</span> / <span id="finalMax">20</span></div>
+      <div id="grade" class="sub" style="font-size:1rem"></div>
+      <div class="pillrow" id="breakdown" style="justify-content:center"></div>
+      <div class="row" style="margin-top:16px;justify-content:center">
+        <button onclick="startTest()">🔁 Yeni Test</button>
+        <button class="sec" onclick="backHome()">🏠 Ana Menü</button>
+        <button class="sec" onclick="openTable()">📋 Tablo</button>
+      </div>
+    </div>
+    <div class="card">
+      <div style="font-weight:700;margin-bottom:8px">Cevaplar</div>
+      <div id="review"></div>
+    </div>
+  </div>
+
+  <div class="sub center" style="margin-top:20px">Zaimki osobowe · offline · B1</div>
+</div>
+
+<!-- TABLO MODAL -->
+<div class="modal" id="tableModal" onclick="if(event.target===this)closeTable()">
+  <div class="card">
+    <div class="row" style="justify-content:space-between;align-items:center">
+      <div style="font-weight:800;font-size:1.05rem">📋 Çekim & İpucu Tablosu</div>
+      <button class="sec" onclick="closeTable()">✕</button>
+    </div>
+    <div class="legend" style="margin:8px 0">Kısa/uzun biçim <b>/</b> ile; przyimek (edat) sonrası <b>n-</b>'li biçim kullanılır.</div>
+    <div style="overflow:auto;max-height:46vh;border:1px solid var(--line);border-radius:10px">
+      <table id="declTable"></table>
+    </div>
+    <div style="font-weight:700;margin:14px 0 6px">Hangi hal? — İpuçları</div>
+    <div id="triggers"></div>
+  </div>
+</div>
+
+<script>
+/* ---------- VERİ ---------- */
+const CASES = ["Narzędnik","Biernik","Dopełniacz","Miejscownik","Celownik"];
+const CUES = {ja:"ja",ty:"ty",on:"on",ona:"ona",ono:"ono",my:"my",wy:"wy",oni:"oni",one:"one"};
+// Kişi ipucu her zaman Polonyaca:
+function cueText(q){ return CUES[q.cue]; }
+
+// q: {cue(kişi anahtarı), case, sent(___ boşluklu), tr, answers[]}
+const POOL = [
+ // ---- DOPEŁNIACZ (G) ----
+ {cue:"ja",  c:"Dopełniacz", s:"Nie ma ___ w domu.",            tr:"Ben evde yokum.",           a:["mnie"]},
+ {cue:"ty",  c:"Dopełniacz", s:"Szukam ___.",                   tr:"Seni arıyorum.",            a:["ciebie","cię","cie"]},
+ {cue:"on",  c:"Dopełniacz", s:"Nie znam ___.",                 tr:"Onu tanımıyorum.",          a:["go","jego"]},
+ {cue:"on",  c:"Dopełniacz", s:"Idę do ___.",                   tr:"Ona (yanına) gidiyorum.",   a:["niego"]},
+ {cue:"ona", c:"Dopełniacz", s:"Słucham ___.",                  tr:"Onu dinliyorum.",           a:["jej"]},
+ {cue:"ona", c:"Dopełniacz", s:"Dostałem list od ___.",         tr:"Ondan bir mektup aldım.",   a:["niej"]},
+ {cue:"my",  c:"Dopełniacz", s:"Nie ma ___ w pracy.",           tr:"Biz işte yokuz.",           a:["nas"]},
+ {cue:"wy",  c:"Dopełniacz", s:"To prezent dla ___.",           tr:"Bu sizin için bir hediye.", a:["was"]},
+ {cue:"oni", c:"Dopełniacz", s:"Nie ma ___ tutaj.",             tr:"Onlar burada yok.",         a:["ich"]},
+ {cue:"oni", c:"Dopełniacz", s:"Idę bez ___.",                  tr:"Onlarsız gidiyorum.",       a:["nich"]},
+ {cue:"ja",  c:"Dopełniacz", s:"Zrób to dla ___.",              tr:"Bunu benim için yap.",      a:["mnie"]},
+ {cue:"ty",  c:"Dopełniacz", s:"Nie ma ___ na liście.",         tr:"Sen listede yoksun.",       a:["ciebie","cię","cie"]},
+ {cue:"ono", c:"Dopełniacz", s:"Stoję obok ___.",               tr:"Onun yanında duruyorum.",   a:["niego"]},
+ {cue:"ona", c:"Dopełniacz", s:"Boję się ___.",                 tr:"Ondan korkuyorum.",         a:["jej"]},
+ {cue:"wy",  c:"Dopełniacz", s:"To zależy od ___.",             tr:"Bu size bağlı.",            a:["was"]},
+ {cue:"ja",  c:"Dopełniacz", s:"Usiądź obok ___.",              tr:"Benim yanıma otur.",        a:["mnie"]},
+ {cue:"on",  c:"Dopełniacz", s:"Potrzebuję ___.",               tr:"Ona ihtiyacım var.",        a:["go","jego"]},
+ {cue:"ty",  c:"Dopełniacz", s:"Bez ___ nie pójdę.",            tr:"Sensiz gitmem.",            a:["ciebie","cię","cie"]},
+ {cue:"ona", c:"Dopełniacz", s:"Wróciłem od ___.",              tr:"Onun yanından döndüm.",     a:["niej"]},
+ {cue:"my",  c:"Dopełniacz", s:"Zrób to dla ___.",              tr:"Bunu bizim için yap.",      a:["nas"]},
+
+ // ---- CELOWNIK (C) ----
+ {cue:"ja",  c:"Celownik", s:"Daj ___ tę książkę.",             tr:"Bu kitabı bana ver.",       a:["mi","mnie"]},
+ {cue:"ty",  c:"Celownik", s:"Dziękuję ___.",                   tr:"Sana teşekkür ederim.",     a:["ci","tobie"]},
+ {cue:"on",  c:"Celownik", s:"Pomagam ___.",                    tr:"Ona yardım ediyorum.",      a:["mu","jemu"]},
+ {cue:"ona", c:"Celownik", s:"Powiedziałem ___ prawdę.",        tr:"Ona gerçeği söyledim.",     a:["jej"]},
+ {cue:"my",  c:"Celownik", s:"Pokaż ___ zdjęcia.",             tr:"Bize fotoğrafları göster.", a:["nam"]},
+ {cue:"wy",  c:"Celownik", s:"Kupiłem ___ prezenty.",           tr:"Size hediyeler aldım.",     a:["wam"]},
+ {cue:"oni", c:"Celownik", s:"Ufam ___.",                       tr:"Onlara güveniyorum.",       a:["im"]},
+ {cue:"ja",  c:"Celownik", s:"Jest ___ zimno.",                 tr:"Ben üşüyorum (bana soğuk).",a:["mi"]},
+ {cue:"ty",  c:"Celownik", s:"Dzięki ___ zdałem egzamin.",      tr:"Sayende sınavı geçtim.",    a:["tobie"]},
+ {cue:"on",  c:"Celownik", s:"Zrobił to przeciwko ___.",        tr:"Bunu ona karşı yaptı.",     a:["niemu"]},
+ {cue:"ona", c:"Celownik", s:"Daj ___ trochę czasu.",           tr:"Ona biraz zaman ver.",      a:["jej"]},
+ {cue:"oni", c:"Celownik", s:"Dzięki ___ wygraliśmy.",          tr:"Onlar sayesinde kazandık.", a:["nim"]},
+ {cue:"wy",  c:"Celownik", s:"Dziękujemy ___ za pomoc.",        tr:"Yardım için size teşekkürler.", a:["wam"]},
+ {cue:"on",  c:"Celownik", s:"Dałem ___ klucze.",               tr:"Ona anahtarları verdim.",   a:["mu","jemu"]},
+ {cue:"ja",  c:"Celownik", s:"Pomóż ___, proszę.",              tr:"Lütfen bana yardım et.",    a:["mi","mnie"]},
+ {cue:"oni", c:"Celownik", s:"Powiedz ___ prawdę.",             tr:"Onlara gerçeği söyle.",     a:["im"]},
+ {cue:"ty",  c:"Celownik", s:"Wierzę ___.",                     tr:"Sana inanıyorum.",          a:["ci","tobie"]},
+ {cue:"ona", c:"Celownik", s:"Kupię ___ kwiaty.",               tr:"Ona çiçek alacağım.",       a:["jej"]},
+
+ // ---- BIERNIK (B) ----
+ {cue:"ja",  c:"Biernik", s:"Widzisz ___?",                     tr:"Beni görüyor musun?",       a:["mnie"]},
+ {cue:"ty",  c:"Biernik", s:"Kocham ___.",                      tr:"Seni seviyorum.",           a:["cię","ciebie","cie"]},
+ {cue:"on",  c:"Biernik", s:"Znam ___ dobrze.",                 tr:"Onu iyi tanıyorum.",        a:["go","jego"]},
+ {cue:"on",  c:"Biernik", s:"Czekam na ___.",                   tr:"Onu bekliyorum.",           a:["niego"]},
+ {cue:"ona", c:"Biernik", s:"Lubię ___.",                       tr:"Onu seviyorum.",            a:["ją","ja"]},
+ {cue:"ona", c:"Biernik", s:"Czekam na ___.",                   tr:"Onu bekliyorum.",           a:["nią","nia"]},
+ {cue:"ono", c:"Biernik", s:"Mam ___ (to dziecko).",            tr:"Ona sahibim (o çocuğa).",   a:["je"]},
+ {cue:"my",  c:"Biernik", s:"Oni znają ___.",                   tr:"Onlar bizi tanıyor.",       a:["nas"]},
+ {cue:"wy",  c:"Biernik", s:"Zapraszam ___.",                   tr:"Sizi davet ediyorum.",      a:["was"]},
+ {cue:"oni", c:"Biernik", s:"Widzę ___.",                       tr:"Onları görüyorum.",         a:["ich"]},
+ {cue:"one", c:"Biernik", s:"Kupiłem kwiaty i postawiłem ___ w wazonie.", tr:"Çiçek aldım ve onları vazoya koydum.", a:["je"]},
+ {cue:"ty",  c:"Biernik", s:"Proszę ___ o pomoc.",              tr:"Senden yardım istiyorum.",  a:["cię","ciebie","cie"]},
+ {cue:"ona", c:"Biernik", s:"Patrzę na ___.",                   tr:"Ona bakıyorum.",            a:["nią","nia"]},
+ {cue:"oni", c:"Biernik", s:"Martwię się o ___.",               tr:"Onlar için endişeleniyorum.", a:["nich"]},
+ {cue:"on",  c:"Biernik", s:"Kocham ___.",                      tr:"Onu seviyorum.",            a:["go","jego"]},
+ {cue:"my",  c:"Biernik", s:"Poczekaj na ___.",                 tr:"Bizi bekle.",               a:["nas"]},
+ {cue:"ja",  c:"Biernik", s:"Zrobił to przez ___.",             tr:"Bunu benim yüzümden yaptı.",a:["mnie"]},
+ {cue:"ty",  c:"Biernik", s:"Rozumiem ___.",                    tr:"Seni anlıyorum.",           a:["cię","ciebie","cie"]},
+ {cue:"ona", c:"Biernik", s:"Znam ___ od dawna.",               tr:"Onu uzun zamandır tanıyorum.", a:["ją","ja"]},
+ {cue:"oni", c:"Biernik", s:"Zaprosiłem ___ na kolację.",       tr:"Onları akşam yemeğine davet ettim.", a:["ich"]},
+
+ // ---- NARZĘDNIK (N) ----
+ {cue:"ja",  c:"Narzędnik", s:"Chodź ze ___.",                  tr:"Benimle gel.",              a:["mną","mna"]},
+ {cue:"ty",  c:"Narzędnik", s:"Idę z ___.",                     tr:"Seninle gidiyorum.",        a:["tobą","toba"]},
+ {cue:"on",  c:"Narzędnik", s:"Rozmawiam z ___.",               tr:"Onunla konuşuyorum.",       a:["nim"]},
+ {cue:"ona", c:"Narzędnik", s:"Spotkałem się z ___.",           tr:"Onunla buluştum.",          a:["nią","nia"]},
+ {cue:"my",  c:"Narzędnik", s:"Chodźcie z ___.",                tr:"Bizimle gelin.",            a:["nami"]},
+ {cue:"wy",  c:"Narzędnik", s:"Pojadę z ___.",                  tr:"Sizinle gideceğim.",        a:["wami"]},
+ {cue:"oni", c:"Narzędnik", s:"Pracuję z ___.",                 tr:"Onlarla çalışıyorum.",      a:["nimi"]},
+ {cue:"ja",  c:"Narzędnik", s:"Opiekuje się ___.",              tr:"Bana bakıyor (ilgileniyor).", a:["mną","mna"]},
+ {cue:"on",  c:"Narzędnik", s:"Siedzę przed ___.",              tr:"Onun önünde oturuyorum.",   a:["nim"]},
+ {cue:"ona", c:"Narzędnik", s:"Interesuję się ___.",            tr:"Onunla ilgileniyorum.",     a:["nią","nia"]},
+ {cue:"one", c:"Narzędnik", s:"Bawię się ___ (te zabawki).",    tr:"Onlarla oynuyorum (oyuncaklar).", a:["nimi"]},
+ {cue:"ty",  c:"Narzędnik", s:"Co jest przed ___?",             tr:"Senin önünde ne var?",      a:["tobą","toba"]},
+ {cue:"my",  c:"Narzędnik", s:"Oni interesują się ___.",        tr:"Onlar bizimle ilgileniyor.",a:["nami"]},
+ {cue:"ja",  c:"Narzędnik", s:"Usiądź za ___.",                 tr:"Benim arkama otur.",        a:["mną","mna"]},
+ {cue:"ty",  c:"Narzędnik", s:"Chcę z ___ porozmawiać.",        tr:"Seninle konuşmak istiyorum.", a:["tobą","toba"]},
+ {cue:"on",  c:"Narzędnik", s:"Idę za ___.",                    tr:"Onun arkasından gidiyorum.",a:["nim"]},
+ {cue:"oni", c:"Narzędnik", s:"Zgadzam się z ___.",             tr:"Onlarla aynı fikirdeyim.",  a:["nimi"]},
+ {cue:"ona", c:"Narzędnik", s:"Pójdę z ___ do kina.",           tr:"Onunla sinemaya gideceğim.",a:["nią","nia"]},
+
+ // ---- MIEJSCOWNIK (Ms) ----
+ {cue:"ja",  c:"Miejscownik", s:"Mówią o ___.",                 tr:"Benim hakkımda konuşuyorlar.", a:["mnie"]},
+ {cue:"ty",  c:"Miejscownik", s:"Myślę o ___.",                 tr:"Seni düşünüyorum.",         a:["tobie"]},
+ {cue:"on",  c:"Miejscownik", s:"Rozmawiamy o ___.",            tr:"Onun hakkında konuşuyoruz.",a:["nim"]},
+ {cue:"ona", c:"Miejscownik", s:"Opowiedz mi o ___.",           tr:"Bana onu anlat.",           a:["niej"]},
+ {cue:"my",  c:"Miejscownik", s:"Piszą o ___ w gazecie.",       tr:"Gazetede bizden bahsediyorlar.", a:["nas"]},
+ {cue:"wy",  c:"Miejscownik", s:"Nie zapomnę o ___.",           tr:"Sizi unutmayacağım.",       a:["was"]},
+ {cue:"oni", c:"Miejscownik", s:"Myślę o ___.",                 tr:"Onları düşünüyorum.",       a:["nich"]},
+ {cue:"ja",  c:"Miejscownik", s:"Pamiętasz o ___?",             tr:"Beni hatırlıyor musun?",    a:["mnie"]},
+ {cue:"on",  c:"Miejscownik", s:"Przy ___ czuję się bezpiecznie.", tr:"Onun yanında güvende hissediyorum.", a:["nim"]},
+ {cue:"ona", c:"Miejscownik", s:"Po ___ przyszła jej siostra.", tr:"Ondan sonra kız kardeşi geldi.", a:["niej"]},
+ {cue:"on",  c:"Miejscownik", s:"Opowiadali o ___.",            tr:"Onun hakkında anlatıyorlardı.", a:["nim"]},
+ {cue:"ty",  c:"Miejscownik", s:"Wszyscy mówią o ___.",         tr:"Herkes senden bahsediyor.", a:["tobie"]},
+ {cue:"ona", c:"Miejscownik", s:"Marzę o ___.",                 tr:"Onu hayal ediyorum.",       a:["niej"]},
+ {cue:"my",  c:"Miejscownik", s:"Zapomnieli o ___.",            tr:"Bizi unuttular.",           a:["nas"]},
+ {cue:"oni", c:"Miejscownik", s:"Dyskutujemy o ___.",           tr:"Onlar hakkında tartışıyoruz.", a:["nich"]},
+ {cue:"wy",  c:"Miejscownik", s:"Słyszałem o ___.",             tr:"Sizi duydum (hakkınızda).", a:["was"]},
+
+ // ---- EK SORULAR ----
+ // Dopełniacz
+ {cue:"ja",  c:"Dopełniacz", s:"Nie rób tego beze ___.",        tr:"Bunu bensiz yapma.",        a:["mnie"]},
+ {cue:"on",  c:"Dopełniacz", s:"Nienawidzę ___.",               tr:"Ondan nefret ediyorum.",    a:["go","jego"]},
+ {cue:"ty",  c:"Dopełniacz", s:"Brakuje mi ___.",               tr:"Seni özlüyorum (sen eksiksin).", a:["ciebie","cię","cie"]},
+ {cue:"oni", c:"Dopełniacz", s:"Wracam od ___.",                tr:"Onların yanından dönüyorum.", a:["nich"]},
+ // Celownik
+ {cue:"my",  c:"Celownik", s:"Przeciwko ___ nikt nie wygra.",   tr:"Bize karşı kimse kazanamaz.", a:["nam"]},
+ {cue:"ja",  c:"Celownik", s:"Przynieś ___ wodę.",              tr:"Bana su getir.",            a:["mi","mnie"]},
+ {cue:"on",  c:"Celownik", s:"Przyglądam się ___.",             tr:"Ona dikkatle bakıyorum.",   a:["mu","jemu"]},
+ {cue:"wy",  c:"Celownik", s:"Powiem ___ coś ważnego.",         tr:"Size önemli bir şey söyleyeceğim.", a:["wam"]},
+ // Biernik
+ {cue:"ja",  c:"Biernik", s:"Poczekaj na ___.",                 tr:"Beni bekle.",               a:["mnie"]},
+ {cue:"on",  c:"Biernik", s:"Kupiłem ___ wczoraj (ten bilet).", tr:"Onu dün aldım (bu bilet).", a:["go","jego"]},
+ {cue:"ona", c:"Biernik", s:"Wierzę w ___.",                    tr:"Ona inanıyorum.",           a:["nią","nia"]},
+ {cue:"one", c:"Biernik", s:"Patrzę na ___ (te obrazy).",       tr:"Onlara bakıyorum (o tablolar).", a:["nie"]},
+ // Narzędnik
+ {cue:"on",  c:"Narzędnik", s:"Zajmuję się ___.",               tr:"Onunla ilgileniyorum.",     a:["nim"]},
+ {cue:"ty",  c:"Narzędnik", s:"Stoję za ___.",                  tr:"Senin arkanda duruyorum.",  a:["tobą","toba"]},
+ {cue:"oni", c:"Narzędnik", s:"Mieszkam nad ___.",              tr:"Onların üstünde oturuyorum.", a:["nimi"]},
+ {cue:"my",  c:"Narzędnik", s:"Oni pojadą z ___.",              tr:"Onlar bizimle gidecek.",    a:["nami"]},
+ // Miejscownik
+ {cue:"ja",  c:"Miejscownik", s:"Nie myśl o ___.",              tr:"Beni düşünme.",             a:["mnie"]},
+ {cue:"on",  c:"Miejscownik", s:"Marzę o ___.",                 tr:"Onu hayal ediyorum.",       a:["nim"]},
+ {cue:"ona", c:"Miejscownik", s:"Rozmawialiśmy o ___.",         tr:"Onun hakkında konuştuk.",   a:["niej"]},
+ {cue:"wy",  c:"Miejscownik", s:"Czytałem o ___ w książce.",    tr:"Sizin hakkınızda kitapta okudum.", a:["was"]},
+];
+
+/* ---------- Çekim tablosu verisi ---------- */
+const DECL = [
+ ["ja","mną","mnie","mnie","(o) mnie","mi / mnie"],
+ ["ty","tobą","ciebie / cię","ciebie / cię","(o) tobie","tobie / ci"],
+ ["on","(z) nim","(je)go / niego","(je)go / niego","(o) nim","(je)mu / niemu"],
+ ["ona","nią","ją / nią","jej / niej","(o) niej","jej / niej"],
+ ["ono","nim","je / nie","(je)go / niego","(o) nim","(je)mu / niemu"],
+ ["my","nami","nas","nas","(o) nas","nam"],
+ ["wy","wami","was","was","(o) was","wam"],
+ ["oni","nimi","ich / nich","ich / nich","(o) nich","im / nim"],
+ ["one","nimi","je / nie","ich / nich","(o) nich","im / nim"],
+];
+const TRIG = [
+ ["Narzędnik","z kim? z czym? — z, przed, nad, pod, za, między; interesować się, opiekować się"],
+ ["Biernik","kogo? co? — widzieć, znać, lubić, mieć, kochać; na, o, w, za, przez (yön); prosić o"],
+ ["Dopełniacz","kogo? czego? — nie ma, bez, dla, do, od, u, obok/koło; szukać, słuchać, potrzebować, bać się"],
+ ["Miejscownik","o kim? o czym? — DAİMA edat: o, w, na, przy, po"],
+ ["Celownik","komu? czemu? — dawać, pomagać, dziękować, ufać, wierzyć; dzięki, przeciwko, ku; „jest mi zimno”"],
+];
+
+/* ---------- Durum ---------- */
+let selected = new Set(CASES);   // varsayılan: hepsi seçili
+let test = [], idx = 0, score = 0, results = [], hintUsed = false, answered = false;
+
+/* ---------- Kurulum ---------- */
+function countFor(c){ return POOL.filter(q=>q.c===c).length; }
+function selectedList(){ return CASES.filter(c=>selected.has(c)); }
+function buildCaseGrid(){
+  const g = document.getElementById("caseGrid");
+  g.innerHTML = "";
+  CASES.forEach(c=>{
+    const b = document.createElement("button");
+    b.className = selected.has(c) ? "on" : "";
+    b.innerHTML = c + '<span class="cnt">'+countFor(c)+'</span>';
+    b.onclick = ()=>{ selected.has(c)?selected.delete(c):selected.add(c); buildCaseGrid(); };
+    g.appendChild(b);
+  });
+  updatePoolInfo();
+}
+function selectAll(){ selected = new Set(CASES); buildCaseGrid(); }
+function clearSel(){ selected = new Set(); buildCaseGrid(); }
+function updatePoolInfo(){
+  const cs = selectedList();
+  document.getElementById("poolInfo").textContent = POOL.filter(q=>cs.includes(q.c)).length;
+}
+function selLabel(){
+  const cs = selectedList();
+  if(cs.length===CASES.length) return "Tüm haller karışık";
+  if(cs.length<=2) return cs.join(" + ");
+  return cs.length+" hal karışık";
+}
+buildCaseGrid();
+
+/* ---------- Test ---------- */
+function shuffle(arr){ for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];} return arr; }
+
+function startTest(){
+  const cs = selectedList();
+  if(cs.length===0){ alert("En az bir hal seç."); return; }
+  const src = POOL.filter(q=>cs.includes(q.c));
+  test = shuffle(src.slice()).slice(0, Math.min(10, src.length));
+  idx=0; score=0; results=[];
+  show("quiz"); renderQ();
+}
+function show(id){ ["setup","quiz","result"].forEach(s=>document.getElementById(s).classList.toggle("hidden", s!==id)); window.scrollTo(0,0); }
+
+function renderQ(){
+  answered=false; hintUsed=false;
+  const q = test[idx];
+  document.getElementById("qnum").textContent = idx+1;
+  document.getElementById("qcase").textContent = selLabel();
+  document.getElementById("score").textContent = score;
+  document.getElementById("barfill").style.width = (idx/test.length*100)+"%";
+
+  const cEl=document.getElementById("cue"), ct=cueText(q);
+  if(ct){ cEl.textContent="👤 "+ct; cEl.classList.remove("hidden"); }
+  else { cEl.classList.add("hidden"); }
+  document.getElementById("sent").innerHTML = q.s.replace("___",'<span class="gap">?</span>');
+  const trEl = document.getElementById("tr"); trEl.textContent = q.tr; trEl.classList.add("hidden");
+  document.getElementById("trBtn").textContent = "Cümle çevirisi";
+
+  const hs = document.getElementById("hintShown"); hs.classList.add("hidden");
+  const inp = document.getElementById("ans"); inp.value=""; inp.disabled=false; inp.focus();
+  document.getElementById("submitBtn").disabled=false;
+  document.getElementById("hintBtn").disabled=false;
+  document.getElementById("hintBtn").classList.remove("hidden");
+  document.getElementById("fb").classList.add("hidden");
+  document.getElementById("nextBtn").classList.add("hidden");
+  document.getElementById("spkBtn").classList.add("hidden");
+}
+
+function toggleTr(){
+  const t=document.getElementById("tr");
+  t.classList.toggle("hidden");
+  document.getElementById("trBtn").textContent = t.classList.contains("hidden")?"Cümle çevirisi":"Çeviriyi gizle";
+}
+
+function showHint(){
+  if(answered) return;
+  hintUsed=true;
+  const q=test[idx];
+  const hs=document.getElementById("hintShown");
+  hs.innerHTML = "Hangi hal? → <b>"+q.c+"</b> &nbsp;<span style='color:var(--muted)'>(ipucu açık: doğru = 1 puan)</span>";
+  hs.classList.remove("hidden");
+  document.getElementById("hintBtn").disabled=true;
+}
+
+function norm(s){ return s.trim().toLowerCase().replace(/\s+/g," "); }
+
+function submitAns(){
+  if(answered) return;
+  const q=test[idx];
+  const val=norm(document.getElementById("ans").value);
+  if(!val){ document.getElementById("ans").focus(); return; }
+  answered=true;
+  const ok = q.a.map(norm).includes(val);
+  let pts=0;
+  if(ok) pts = hintUsed?1:2;
+  score+=pts;
+  results.push({q, val, ok, pts, hintUsed});
+
+  document.getElementById("ans").disabled=true;
+  document.getElementById("submitBtn").disabled=true;
+  document.getElementById("hintBtn").disabled=true;
+  document.getElementById("score").textContent=score;
+
+  const fb=document.getElementById("fb");
+  fb.classList.remove("hidden");
+  const full = q.s.replace("___", q.a[0]);
+  const forms = q.a.join(" / ");
+  if(ok){
+    fb.className="fb ok";
+    fb.innerHTML = "✔ Doğru! <b>+"+pts+" puan</b>"+(hintUsed?" (yardım açıktı)":" (ipucusuz)")+
+      "<small>Hal: <b class='np'>"+q.c+"</b> · Biçim(ler): "+forms+"<br>“"+full+"”</small>";
+  }else{
+    fb.className="fb no";
+    fb.innerHTML = "✗ Yanlış. Doğru cevap: <span class='ans'>"+forms+"</span>"+
+      "<small>Hal: <b class='np'>"+q.c+"</b><br>“"+full+"”</small>";
+  }
+  window._full = full;
+  document.getElementById("spkBtn").classList.remove("hidden");
+  const nb=document.getElementById("nextBtn"); nb.classList.remove("hidden");
+  nb.textContent = (idx===test.length-1) ? "Sonuçları gör ✓" : "Sonraki →";
+  document.getElementById("barfill").style.width = ((idx+1)/test.length*100)+"%";
+}
+
+function nextQ(){
+  if(idx===test.length-1){ finish(); }
+  else { idx++; renderQ(); }
+}
+
+function speakSentence(){
+  const txt = window._full || test[idx].s.replace("___", test[idx].a[0]);
+  try{
+    const u=new SpeechSynthesisUtterance(txt);
+    u.lang="pl-PL"; u.rate=.9;
+    const v=speechSynthesis.getVoices().find(x=>x.lang&&x.lang.toLowerCase().startsWith("pl"));
+    if(v) u.voice=v;
+    speechSynthesis.cancel(); speechSynthesis.speak(u);
+  }catch(e){}
+}
+
+function finish(){
+  show("result");
+  const max = test.length*2;
+  document.getElementById("finalScore").textContent=score;
+  document.getElementById("finalMax").textContent=max;
+  const pct = max? Math.round(score/max*100):0;
+  const nofull = results.filter(r=>r.ok&&!r.hintUsed).length;
+  const withhint = results.filter(r=>r.ok&&r.hintUsed).length;
+  const wrong = results.filter(r=>!r.ok).length;
+  let g = pct>=90?"Świetnie! Mükemmel 🎉":pct>=70?"Bardzo dobrze! İyi iş 👍":pct>=50?"Nieźle — biraz daha çalış 💪":"Jeszcze raz — tekrar dene 🔁";
+  document.getElementById("grade").textContent = g+" ("+pct+"%)";
+  document.getElementById("breakdown").innerHTML =
+    '<span class="pill">İpucusuz doğru: <b style="color:var(--good)">'+nofull+'</b></span>'+
+    '<span class="pill">İpuçlu doğru: <b style="color:var(--warn)">'+withhint+'</b></span>'+
+    '<span class="pill">Yanlış: <b style="color:var(--bad)">'+wrong+'</b></span>';
+
+  const rv=document.getElementById("review"); rv.innerHTML="";
+  results.forEach((r,i)=>{
+    const d=document.createElement("div");
+    d.style.cssText="padding:8px 0;border-bottom:1px solid var(--line);font-size:.92rem";
+    const mark = r.ok?"<span style='color:var(--good)'>✔ +"+r.pts+"</span>":"<span style='color:var(--bad)'>✗ 0</span>";
+    const cs = cueText(r.q) ? " · "+cueText(r.q) : "";
+    d.innerHTML = "<b>"+(i+1)+".</b> "+mark+" &nbsp;<span class='np'>"+r.q.c+"</span>"+cs+
+      "<br><span style='color:var(--muted)'>"+r.q.s.replace("___","<b style='color:var(--warn)'>"+r.q.a[0]+"</b>")+"</span>"+
+      (r.ok?"":"<br>Senin: <span style='color:var(--bad)'>"+(r.val||"—")+"</span> → Doğru: <span style='color:var(--good)'>"+r.q.a.join(" / ")+"</span>");
+    rv.appendChild(d);
+  });
+}
+
+function quitTest(){ if(confirm("Testi bitirip sonuçlara geç?")) finish(); }
+function backHome(){ show("setup"); buildCaseGrid(); }
+
+/* ---------- Tablo modal ---------- */
+function buildTable(){
+  const t=document.getElementById("declTable");
+  const head=["","Narz.","Biern.","Dopeł.","Miejsc.","Celow."];
+  let html="<tr>"+head.map(h=>"<th>"+h+"</th>").join("")+"</tr>";
+  DECL.forEach(row=>{ html+="<tr>"+row.map((c,i)=>i===0?"<td>"+c+"</td>":"<td>"+c+"</td>").join("")+"</tr>"; });
+  t.innerHTML=html;
+  const tr=document.getElementById("triggers");
+  tr.innerHTML = TRIG.map(([c,d])=>'<div style="padding:6px 0;border-bottom:1px solid var(--line)"><b class="np">'+c+'</b><br><span style="color:var(--muted);font-size:.85rem">'+d+'</span></div>').join("");
+}
+function openTable(fromQuiz){
+  const quizOn = !document.getElementById('quiz').classList.contains('hidden');
+  if(fromQuiz && quizOn && !answered){
+    hintUsed = true;
+    const hs=document.getElementById("hintShown");
+    if(hs.classList.contains("hidden")){
+      hs.innerHTML = "📋 Tablo açıldı → bu soruda doğru = <b>1 puan</b>.";
+      hs.classList.remove("hidden");
+    }
+  }
+  buildTable(); document.getElementById("tableModal").classList.add("show");
+}
+function closeTable(){ document.getElementById("tableModal").classList.remove("show"); }
+
+/* Enter ile cevapla / sonraki */
+document.getElementById("ans").addEventListener("keydown",e=>{
+  if(e.key==="Enter"){ e.preventDefault(); answered?nextQ():submitAns(); }
+});
+document.addEventListener("keydown",e=>{ if(e.key==="Enter"&&answered&&document.getElementById("ans").disabled) nextQ(); });
+
+// sesleri önceden yükle
+if('speechSynthesis' in window){ speechSynthesis.getVoices(); speechSynthesis.onvoiceschanged=()=>speechSynthesis.getVoices(); }
+</script>
+</body>
+</html>
