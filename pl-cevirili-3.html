@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Zapamiętaj — trener tekstów</title>
+<style>
+  :root{
+    --bg:#12151d;--bg2:#161a24;--surface:#1b2130;--surface2:#212838;--line:#2b3446;
+    --ink:#eae7de;--ink-soft:#b7bccb;--muted:#7f889c;
+    --lamp:#f0b64a;--lamp-soft:#f0b64a33;--known:#7fc79a;--known-soft:#7fc79a22;
+    --font-display:Georgia,'Iowan Old Style','Times New Roman',serif;
+    --font-ui:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{font-family:var(--font-ui);background:var(--bg);color:var(--ink);line-height:1.5;min-height:100vh;padding:0 0 env(safe-area-inset-bottom)}
+  .wrap{max-width:720px;margin:0 auto;padding:22px 18px 90px}
+
+  header{position:relative;padding:22px 4px 6px;overflow:hidden}
+  header::before{content:"";position:absolute;top:-120px;left:50%;transform:translateX(-50%);width:340px;height:300px;border-radius:50%;background:radial-gradient(circle,var(--lamp-soft),transparent 68%);pointer-events:none}
+  .eyebrow{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--lamp);font-weight:600}
+  h1{font-family:var(--font-display);font-weight:400;font-size:1.8rem;line-height:1.15;margin:8px 0 4px;letter-spacing:-.01em}
+  h1 em{font-style:italic;color:var(--ink-soft)}
+  .sub{color:var(--muted);font-size:.9rem}
+
+  /* ---- input panel ---- */
+  .panel{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px;margin-top:18px}
+  .panel label{display:block;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0 0 6px}
+  .panel input[type=text],.panel textarea{
+    width:100%;font-family:var(--font-ui);font-size:1rem;color:var(--ink);
+    background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:11px 12px;resize:vertical}
+  .panel textarea{min-height:190px;line-height:1.55;font-size:1.02rem}
+  .panel .row{display:flex;gap:10px;align-items:flex-end;margin-top:12px;flex-wrap:wrap}
+  .panel .row > div{flex:1;min-width:130px}
+  select{width:100%;font-family:var(--font-ui);font-size:.95rem;color:var(--ink);background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+  .field{margin-top:12px}
+  .lib{margin-top:12px}
+  .lib-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+  .lib-chip{display:inline-flex;align-items:center;gap:8px;font-size:.82rem;color:var(--ink-soft);background:var(--surface2);border:1px solid var(--line);border-radius:999px;padding:6px 6px 6px 12px;cursor:pointer}
+  .lib-chip:hover{border-color:var(--muted)}
+  .lib-chip .x{color:var(--muted);border:0;background:none;cursor:pointer;font-size:1rem;line-height:1;padding:2px 6px;border-radius:50%}
+  .lib-chip .x:hover{color:#e58}
+
+  .btn{font-family:var(--font-ui);font-size:.86rem;font-weight:500;color:var(--ink-soft);background:var(--surface2);border:1px solid var(--line);border-radius:10px;padding:11px 14px;cursor:pointer;transition:.2s;display:inline-flex;align-items:center;justify-content:center;gap:7px}
+  .btn:hover{border-color:var(--muted);color:var(--ink)}
+  .btn svg{width:15px;height:15px;flex:0 0 auto}
+  .btn.primary{background:var(--lamp);border-color:var(--lamp);color:#1a1408;font-weight:600}
+  .btn.primary:hover{filter:brightness(1.05)}
+  .btn.wide{width:100%;padding:13px}
+
+  /* ---- study header bar ---- */
+  .barhead{display:flex;align-items:center;gap:10px;margin-top:18px;flex-wrap:wrap}
+  .barhead .title{font-family:var(--font-display);font-size:1.15rem;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;cursor:pointer}
+  .barhead .title.full{white-space:normal;overflow:visible;text-overflow:clip}
+  .barhead .meta{font-size:.76rem;color:var(--muted)}
+
+  .progress{display:flex;align-items:center;gap:12px;margin-top:16px}
+  .ring{position:relative;width:50px;height:50px;flex:0 0 auto}
+  .ring svg{transform:rotate(-90deg)}
+  .ring .track{stroke:var(--line)}
+  .ring .fill{stroke:var(--lamp);stroke-linecap:round;transition:stroke-dashoffset .5s ease}
+  .ring .count{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:.95rem}
+  .progress .ptext{font-size:.86rem;color:var(--ink-soft)}
+  .progress .ptext b{color:var(--ink);font-weight:600}
+
+  .chain{display:flex;align-items:center;gap:2px;margin:20px 0 6px;flex-wrap:wrap}
+  .bead{display:flex;align-items:center;gap:6px;flex:0 1 auto}
+  .bead button{font-family:var(--font-display);font-size:.82rem;color:var(--ink-soft);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:6px 12px;cursor:pointer;transition:.25s;white-space:nowrap}
+  .bead button:hover{border-color:var(--muted)}
+  .bead.lit button{color:#1a1408;background:var(--lamp);border-color:var(--lamp);font-weight:600;box-shadow:0 0 16px var(--lamp-soft)}
+  .bead .link{color:var(--line);font-size:.9rem}
+  .bead:last-child .link{display:none}
+
+  .modes{display:flex;gap:6px;background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:5px;margin:18px 0 4px;position:sticky;top:8px;z-index:5;box-shadow:0 6px 20px #0006}
+  .modes button{flex:1;font-family:var(--font-ui);font-size:.82rem;font-weight:500;color:var(--ink-soft);background:transparent;border:0;border-radius:8px;padding:9px 6px;cursor:pointer;transition:.2s}
+  .modes button.active{background:var(--surface2);color:var(--ink);box-shadow:0 1px 0 #ffffff0f inset}
+  .modes button small{display:block;font-size:.62rem;color:var(--muted);letter-spacing:.03em;margin-top:1px}
+  .modes button.active small{color:var(--ink-soft)}
+
+  .block{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px 18px 12px;margin-top:14px;transition:border-color .3s,box-shadow .3s;scroll-margin-top:74px}
+  .block.known{border-color:#34503f;box-shadow:0 0 0 1px var(--known-soft)}
+  .bhead{display:flex;align-items:center;gap:12px}
+  .bnum{font-family:var(--font-display);font-size:1.15rem;color:var(--lamp);line-height:1;min-width:20px}
+  .bhead.tappable{cursor:pointer;border-radius:10px;margin:-4px -6px 0;padding:4px 6px}
+  .bhead.tappable:active{background:var(--bg2)}
+  .btoggle{font-family:var(--font-ui);font-size:.72rem;font-weight:500;color:var(--ink-soft);background:var(--surface2);border:1px solid var(--line);border-radius:8px;padding:4px 10px;cursor:pointer;pointer-events:none}
+  .btrans{font-family:var(--font-ui);font-size:.72rem;font-weight:500;color:var(--lamp);background:var(--surface2);border:1px solid var(--line);border-radius:8px;padding:4px 10px;cursor:pointer}
+  .btrans.on{background:var(--lamp-soft);border-color:var(--lamp-soft)}
+  .blocktrans{margin-top:8px;padding:10px 12px;border-left:2px solid var(--lamp);background:var(--bg2);border-radius:8px;color:var(--ink-soft);font-size:.95rem;line-height:1.55}
+  .block.known .bnum{color:var(--known)}
+  .achip{font-size:.74rem;color:var(--lamp);border:1px solid #4a3d1e;background:#241d0e;border-radius:999px;padding:4px 10px;white-space:nowrap;cursor:pointer;margin-left:auto}
+  .achip:hover{filter:brightness(1.15)}
+  .block.known .achip{color:var(--known);border-color:#2f4a39;background:#14241b}
+  .picker{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 2px;padding:11px;background:var(--bg2);border:1px solid var(--line);border-radius:12px}
+  .picker .hint{width:100%;font-size:.74rem;color:var(--muted);margin-bottom:3px}
+  .word{font-family:var(--font-display);font-size:.92rem;color:var(--ink-soft);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:5px 11px;cursor:pointer;transition:.15s}
+  .word:hover{border-color:var(--muted);color:var(--ink)}
+  .word.cur{background:var(--lamp);border-color:var(--lamp);color:#1a1408;font-weight:600}
+  .pickact{display:flex;gap:8px;width:100%;margin-top:8px;padding-top:9px;border-top:1px solid var(--line)}
+  .mini.split{color:var(--lamp);border-color:#4a3d1e}
+  .mini.setk{color:#1a1408;background:var(--lamp);border-color:var(--lamp);font-weight:600}
+  .mini.setk:disabled{background:var(--surface2);color:var(--muted);border-color:var(--line)}
+  .mini.split:hover{background:#241d0e}
+  .mini:disabled{opacity:.4;cursor:default}
+
+  .text{font-family:var(--font-display);font-size:1.14rem;line-height:1.9;color:var(--ink);margin:12px 0 4px;-webkit-user-select:none;user-select:none}
+  .w{cursor:pointer;border-radius:5px;padding:0 1px;transition:background .12s}
+  .w.masked{background:transparent}
+  .w:active{background:var(--lamp-soft)}
+  .w.mark{background:#ffb703!important;color:#1a1408!important;border-radius:5px}
+  #tip .tipflag{margin-left:9px;border:none;background:transparent;color:var(--muted);font-size:1.15rem;cursor:pointer;line-height:1;padding:3px 7px;vertical-align:middle;pointer-events:auto;-webkit-tap-highlight-color:transparent}
+  #tip .tipflag.on{color:#ffb703}
+  .editbox{width:100%;font-family:var(--font-display);font-size:1.1rem;line-height:1.65;color:var(--ink);background:var(--bg2);border:1px solid var(--lamp);border-radius:12px;padding:12px;margin:12px 0 4px;resize:vertical;min-height:96px}
+  .editbtns{display:flex;gap:8px;margin-top:4px}
+  .editbtns .btn{padding:9px 16px}
+  .fl{color:var(--lamp);font-weight:700;text-shadow:0 1px 2px rgba(0,0,0,.6)}
+  .dots{color:#9aa3b6;letter-spacing:.5px}
+
+  .hidden-tap{display:flex;align-items:center;justify-content:center;gap:8px;min-height:74px;margin:12px 0 4px;border:1px dashed var(--line);border-radius:12px;color:var(--muted);font-size:.9rem;cursor:pointer;background:var(--bg2);transition:.2s;text-align:center;padding:10px}
+  .hidden-tap:hover{border-color:var(--muted);color:var(--ink-soft)}
+  .hidden-tap b{font-family:var(--font-display);color:var(--lamp);font-weight:400;font-style:italic}
+
+  .editrow{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+  .mini{font-family:var(--font-ui);font-size:.74rem;color:var(--muted);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 9px;cursor:pointer;transition:.15s}
+  .mini:hover{border-color:var(--muted);color:var(--ink-soft)}
+  .bfoot{display:flex;gap:8px;margin-top:10px;padding-top:12px;border-top:1px solid var(--line)}
+  .bfoot .btn{padding:9px 12px;font-size:.83rem}
+  .bfoot .know{margin-left:auto}
+  .bfoot .play.speaking{color:var(--lamp);border-color:var(--lamp)}
+  .bfoot .know.on{background:var(--known-soft);border-color:#34503f;color:var(--known)}
+
+  .allbar{display:flex;gap:10px;margin-top:20px}
+  .allbar .btn{flex:1}
+  .allbar .btn:disabled{opacity:.45;pointer-events:none}
+  .ratebar{display:flex;align-items:center;gap:10px;margin-top:10px}
+  .ratebar .ratelbl{font-size:.8rem;color:var(--ink-soft);flex:0 0 auto}
+  .ratebar input[type=range]{flex:1;accent-color:var(--lamp)}
+  .ratebar #rateVal{font-size:.82rem;color:var(--lamp);min-width:38px;text-align:right;flex:0 0 auto}
+  .foot{text-align:center;color:var(--muted);font-size:.74rem;margin-top:24px;line-height:1.7}
+  .foot b{color:var(--ink-soft)}
+  .hide{display:none!important}
+
+  /* ---- translate mode ---- */
+  .w.tap{background:var(--lamp-soft);box-shadow:0 0 0 2px var(--lamp-soft)}
+  .text.trans .w{cursor:pointer}
+  .text.trans .w:hover{background:#ffffff10}
+  #tip{position:fixed;z-index:120;max-width:82vw;background:#0c0f16;border:1px solid var(--line);
+       color:var(--ink);padding:9px 13px;border-radius:11px;font-family:var(--font-ui);font-size:.95rem;
+       line-height:1.4;box-shadow:0 10px 34px #000a;display:none;pointer-events:none}
+  #tip .pl{color:var(--lamp);font-weight:700}
+  #tip .tr{color:var(--ink-soft)}
+  #tip .none{color:#e8a37a;font-style:italic;font-size:.86rem}
+
+  /* ---- overlay + modals (sentence view + wide editor) ---- */
+  .ovl{position:fixed;inset:0;background:#05070bcc;z-index:100;display:none;align-items:center;
+       justify-content:center;padding:18px}
+  .ovl.on{display:flex}
+  .sheet{background:var(--surface);border:1px solid var(--line);border-radius:18px;width:100%;
+          box-shadow:0 24px 70px #000b;max-height:90vh;overflow:auto;-webkit-overflow-scrolling:touch}
+  .sheet.sent{max-width:520px;padding:22px}
+  .sheet.edit{max-width:760px;padding:20px 20px 18px}
+  .sheet .lab{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--lamp);font-weight:600;margin-bottom:6px}
+  .sheet .plbig{font-family:var(--font-display);font-size:1.15rem;line-height:1.55;margin-bottom:14px;color:var(--ink)}
+  .sheet .trbig{font-size:1rem;line-height:1.55;color:var(--ink-soft);padding-top:14px;border-top:1px solid var(--line)}
+  .sheet .trbig.none{color:var(--muted);font-style:italic}
+  .sheet .mtitle{font-family:var(--font-display);font-size:1.2rem;margin-bottom:2px}
+  .sheet .msub{font-size:.82rem;color:var(--muted);margin-bottom:14px}
+  .sheet .fgroup{margin-top:14px}
+  .sheet .fgroup label{display:block;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 6px}
+  .sheet .fgroup .note{font-size:.74rem;color:var(--muted);margin:-2px 0 6px;text-transform:none;letter-spacing:0}
+  .sheet textarea{width:100%;font-family:var(--font-ui);font-size:1rem;color:var(--ink);background:var(--bg2);
+       border:1px solid var(--line);border-radius:12px;padding:12px;resize:vertical;line-height:1.6}
+  .sheet textarea.tpl{font-family:var(--font-display);font-size:1.08rem;min-height:150px}
+  .sheet textarea.ttr{min-height:130px}
+  .sheet textarea.tgl{min-height:110px;font-size:.95rem}
+  .sheet .mbtns{display:flex;gap:10px;margin-top:18px}
+  .sheet .mbtns .btn{flex:1;padding:13px}
+
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+  :focus-visible{outline:2px solid var(--lamp);outline-offset:2px;border-radius:6px}
+  /* ---- pull (pl-paragraf) picker ---- */
+  .sheet.pull{max-width:640px;padding:16px}
+  .pullbar{position:sticky;top:0;background:var(--surface);padding-bottom:10px;margin-bottom:4px;z-index:3}
+  .pullbar .btn{width:100%}
+  .pulllist{margin-top:4px}
+  .pullrow{border:1px solid var(--line);border-radius:12px;padding:12px;margin-top:10px;background:var(--bg2)}
+  .prhead{display:flex;align-items:center;gap:10px}
+  .prhead .pt{flex:1;font-family:var(--font-display);font-size:1.02rem;color:var(--ink)}
+  .pall{padding:8px 12px;white-space:nowrap}
+  .pchips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+  .pchip{font-family:var(--font-ui);font-size:.8rem;color:var(--ink-soft);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:6px 10px;cursor:pointer}
+  .pchip:hover{border-color:var(--muted);color:var(--ink)}
+  .pnote{font-size:.82rem;color:var(--muted);padding:8px 2px}
+  .pnote.err{color:#e58}
+  .prhead .pdel{border:1px solid var(--line);background:var(--surface);color:var(--muted);border-radius:8px;width:30px;height:30px;font-size:1.05rem;line-height:1;cursor:pointer;flex:0 0 auto}
+  .prhead .pdel:hover{color:#e58;border-color:#e58}
+  .prestore{display:flex;align-items:center;gap:10px;font-size:.8rem;color:var(--muted);padding:2px 2px 8px}
+  .plink{background:none;border:0;color:var(--lamp);cursor:pointer;font-size:.82rem;padding:0}
+  .plink:hover{text-decoration:underline}
+  .btn.pull{margin-top:12px}
+  .mkbtn{position:relative}
+  .mkbtn .bdg{position:absolute;top:-7px;right:-7px;min-width:17px;height:17px;padding:0 4px;border-radius:9px;background:#e2554d;color:#fff;font-size:.62rem;font-weight:700;line-height:17px;text-align:center}
+  .mkbtn .bdg.zero{display:none}
+  .sheet.marks{max-width:600px;padding:20px;display:flex;flex-direction:column;max-height:82vh}
+  .mklist{overflow:auto;margin:4px 0 12px;flex:1}
+  .mkrow{display:flex;gap:10px;align-items:flex-start;padding:9px 2px;border-bottom:1px solid var(--line)}
+  .mkrow .pl2{font-family:var(--font-display);color:var(--lamp);font-size:1rem}
+  .mkrow .gl2{color:var(--ink-soft);font-size:.9rem}
+  .mkrow .cx{font-size:.76rem;color:var(--muted);line-height:1.45;margin-top:3px}
+  .mkrow .x{margin-left:auto;color:var(--muted);cursor:pointer;font-size:1.2rem;line-height:1;padding:2px 6px;flex:0 0 auto}
+  .mkempty{color:var(--muted);font-size:.86rem;text-align:center;padding:24px 10px;line-height:1.6}
+  #toast{position:fixed;left:50%;bottom:80px;transform:translateX(-50%);background:var(--surface);border:1px solid var(--line);color:var(--ink);padding:9px 15px;border-radius:10px;z-index:200;font-size:.84rem;opacity:0;transition:opacity .3s;pointer-events:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Trener zapamiętywania</div>
+    <h1>Wklej tekst, <em>ucz się bloku po bloku</em></h1>
+    <div class="sub">Program sam dzieli tekst na bloki i wybiera kotwice.</div>
+  </header>
+
+  <!-- INPUT -->
+  <section class="panel" id="inputPanel">
+    <label for="titleIn">Tytuł (opcjonalnie)</label>
+    <input type="text" id="titleIn" placeholder="np. Mój tekst o AI">
+    <div class="field">
+      <label for="textIn">Tekst</label>
+      <textarea id="textIn" placeholder="Wklej tutaj swój tekst. Oddziel akapity pustą linią — każdy akapit stanie się blokiem. Jeśli wkleisz jeden długi akapit, program podzieli go na bloki po ~3 zdania."></textarea>
+    </div>
+    <div class="row">
+      <div>
+        <label for="langIn">Głos / dil</label>
+        <select id="langIn">
+          <option value="pl-PL">Polski</option>
+          <option value="tr-TR">Türkçe</option>
+          <option value="en-US">English</option>
+          <option value="de-DE">Deutsch</option>
+        </select>
+      </div>
+      <div style="flex:2">
+        <button class="btn primary wide" id="buildBtn">Utwórz materiał</button>
+      </div>
+    </div>
+    <button class="btn wide pull" id="pullBtn">⇩ pl-paragraf'tan çek (metin + çeviri)</button>
+    <button class="btn wide" id="importBtn">⤓ Wczytaj z pliku (jeden tekst)</button>
+    <input type="file" id="importFile" accept=".json,application/json" hidden>
+    <div class="lib" id="libWrap">
+      <label>Zapisane teksty</label>
+      <div class="lib-list" id="libList"></div>
+    </div>
+  </section>
+
+  <!-- STUDY -->
+  <section id="study" class="hide">
+    <div class="barhead">
+      <div class="title" id="curTitle">—</div>
+      <button class="btn mkbtn" id="mkBtn" title="Moje słówka"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V4m0 0h10l-2 3 2 3H5"/></svg><span class="bdg zero" id="mkCount">0</span></button>
+      <button class="btn" id="autoBtn" title="Wróć do automatycznego podziału">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 6V3L8 7l4 4V8a4 4 0 1 1-4 4H6a6 6 0 1 0 6-6z"/></svg>
+        Auto
+      </button>
+      <button class="btn" id="newBtn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11 5h2v6h6v2h-6v6h-2v-6H5v-2h6z"/></svg>
+        Nowy / zmień
+      </button>
+    </div>
+    <div class="progress">
+      <div class="ring">
+        <svg width="50" height="50" viewBox="0 0 52 52">
+          <circle class="track" cx="26" cy="26" r="22" fill="none" stroke-width="4"></circle>
+          <circle id="ringFill" class="fill" cx="26" cy="26" r="22" fill="none" stroke-width="4" stroke-dasharray="138.2" stroke-dashoffset="138.2"></circle>
+        </svg>
+        <div class="count"><span id="ringCount">0</span>/<span id="ringTotal">0</span></div>
+      </div>
+      <div class="ptext">Opanowane bloki<br><b id="ptext">—</b></div>
+    </div>
+
+    <nav class="chain" id="chain" aria-label="Kotwice"></nav>
+
+    <div class="modes" role="tablist">
+      <button data-mode="full" class="active">Pełny<small>tam metin</small></button>
+      <button data-mode="letters">Litery<small>ilk harfler</small></button>
+      <button data-mode="hidden">Ukryty<small>ezberden</small></button>
+    </div>
+
+    <main id="blocks"></main>
+
+    <div class="allbar">
+      <button class="btn primary" id="playAll"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>Start</button>
+      <button class="btn" id="pauseBtn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg>Pauza</button>
+      <button class="btn" id="stopBtn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 6h12v12H6z"/></svg>Stop</button>
+    </div>
+    <div class="ratebar">
+      <span class="ratelbl">Tempo czytania</span>
+      <input type="range" id="rate" min="0.5" max="1.4" step="0.05" value="0.9">
+      <span id="rateVal">0.9×</span>
+    </div>
+
+    <div class="foot">
+      Kotwice (dotknij chip, aby zmienić): <b id="anchorLine">—</b><br>
+      Dotknij słowo → odkryj/ukryj to słowo · dotknij nagłówka bloku → cały blok · przytrzymaj → popraw.<br>
+      🌐 <b>Çeviri</b> modunda: kelimeye dokun → anlamı · uzun bas → cümle çevirisi. Çevirileri <b>Popraw tekst</b>'ten girersin.
+    </div>
+  </section>
+</div>
+
+<!-- word tooltip -->
+<div id="tip"></div>
+
+<!-- sentence translation modal -->
+<div class="ovl" id="sentOvl">
+  <div class="sheet sent">
+    <div class="lab">Zdanie · Cümle</div>
+    <div class="plbig" id="sentPl"></div>
+    <div class="trbig" id="sentTr"></div>
+    <div class="mbtns">
+      <button class="btn" id="sentEdit">✎ Popraw / Çeviriyi düzenle</button>
+      <button class="btn primary" id="sentClose">Zamknij · Kapat</button>
+    </div>
+  </div>
+</div>
+
+<!-- wide edit modal (text + translation + glossary) -->
+<div class="ovl" id="editOvl">
+  <div class="sheet edit">
+    <div class="mtitle" id="editTitle">Popraw tekst</div>
+    <div class="msub">Metni, çevirisini ve kelime sözlüğünü düzenle. Sözlük tüm metin için ortaktır.</div>
+    <div class="fgroup">
+      <label>Tekst (polski)</label>
+      <textarea class="tpl" id="editPl"></textarea>
+    </div>
+    <div class="fgroup">
+      <label>Tłumaczenie · Çeviri</label>
+      <div class="note">Her satır bir cümlenin çevirisi — Lehçe cümlelerle aynı sırada.</div>
+      <textarea class="ttr" id="editTr"></textarea>
+    </div>
+    <div class="fgroup">
+      <label>Słowniczek · Kelime sözlüğü</label>
+      <div class="note">Her satır: <b>słowo = anlam</b> · örn. <i>niezbędny = gerekli, vazgeçilmez</i></div>
+      <textarea class="tgl" id="editGloss"></textarea>
+    </div>
+    <div class="mbtns">
+      <button class="btn" id="editCancel">Anuluj · İptal</button>
+      <button class="btn primary" id="editSave">Zapisz · Kaydet</button>
+    </div>
+  </div>
+</div>
+
+<!-- pull from pl-paragraf -->
+<div class="ovl" id="pullOvl">
+  <div class="sheet pull">
+    <div class="pullbar"><button class="btn" id="pullBack">← Geri</button></div>
+    <div class="mtitle">pl-paragraf'tan çek</div>
+    <div class="msub">Bir metni ya da tek bir paragrafı, çevirileri ve sözlüğüyle birlikte içeri al.</div>
+    <div class="fgroup">
+      <label>Kaynak dosya</label>
+      <div class="note">pl-paragraf HTML dosyasını seç (pl-25_prgrafs.html ya da başka adlı). İçindeki metinler okunur; seçtiğin çevirisiyle yüklenir ve kütüphanende kalır.</div>
+      <div style="margin:8px 0"><button class="btn primary" id="pullPick">📁 HTML dosyası seç</button></div>
+      <input type="file" id="pullFile" style="display:none">
+      <div id="pullStatus" class="pnote"></div>
+      <div id="pullBuiltin" class="pulllist"></div>
+    </div>
+    <div class="fgroup">
+      <label>Yapıştır (pl-paragraf → ⇪ Aktar ile kopyalanan JSON)</label>
+      <textarea class="tgl" id="pullPaste" placeholder="pl-paragraf'ta bir metni açıp ⇪ Aktar'a bas, sonra buraya yapıştır ve Yükle'ye bas."></textarea>
+      <div class="mbtns"><button class="btn" id="pullLoad">Yükle</button></div>
+      <div id="pullPasteResult" class="pulllist"></div>
+    </div>
+    <div class="mbtns"><button class="btn primary" id="pullClose">Kapat</button></div>
+  </div>
+</div>
+
+<div class="ovl" id="mkOvl">
+  <div class="sheet marks">
+    <div class="lab">Nie znam · Bilmediğim kelimeler</div>
+    <div class="msub" id="mkSub" style="margin-bottom:8px">0 słów</div>
+    <div class="mklist" id="mkList"></div>
+    <div class="mbtns" style="flex-wrap:wrap">
+      <button class="btn" id="mkCopy">Kopiuj</button>
+      <button class="btn" id="mkTxt">Pobierz .txt</button>
+      <button class="btn" id="mkClear">Wyczyść</button>
+      <button class="btn primary" id="mkClose">Zamknij</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ---------- storage ---------- */
+const LIB='zap_lib_v2', LAST='zap_last_v2', MODEKEY='zap_mode_v2';
+function jget(k,f){ try{ return JSON.parse(localStorage.getItem(k)) ?? f; }catch(e){ return f; } }
+function jset(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
+function progKey(id){ return 'zap_prog_'+id; }
+
+let lib=jget(LIB,[]);       // [{id,title,text,lang,anchors:{},ts}]
+let mode=jget(MODEKEY,'full'); if(mode==='trans') mode='full';
+let cur=null;               // current entry
+let allSents=[];            // flat sentence list of current text
+let counts=[];              // sentences per block (grouping)
+let blocks=[];              // [{sentences,anchor}]
+let known=new Set();
+let revealed=new Set();
+let pickingIndex=null;   // which block's anchor word-picker is open
+let pickSel=null;        // Set of word indices selected in the picker (multi-word anchor)
+let editingIndex=null;   // which block is being text-edited
+let blockView={};        // per-block display override: {i:'full'|'letters'} (base view)
+let wordOv={};           // per-block set of word indices flipped from the base view
+let transShown={};       // per-block: show full-block translation panel
+let trans=[];            // per-sentence translation, aligned 1:1 with allSents
+let glossMap={};         // shared word glossary for the current text: {lowercaseWord: meaning}
+
+/* ---------- text processing ---------- */
+const STOP=new Set(("i w z na do że to nie się jest są dla bardzo dużo albo oraz ale bo jak co tak moim mnie mi tym temu te także jednak kiedy który która które którym można też już czy o u za po pod nad przez bez między jako lub ani czyli więc oto tego tej ten ta ta to tych tam tu być mam masz ma mamy mają "+
+"the a an and or but of to in on for with at by from as is are was were be been this that these those it its my your his her our their you we they i he she "+
+"ve ile bir bu şu için gibi çok daha en ama fakat ancak ki de da ise diye").split(/\s+/));
+
+function splitSentences(par){
+  let t=par.replace(/\s+/g,' ').trim();
+  ['np','itd','itp','tzn','tj','dr','prof','mgr','inż','godz','ul','nr','tzw','vs','ok'].forEach(a=>{
+    t=t.replace(new RegExp('(^|\\s)'+a+'\\.','gi'),'$1'+a+'\u2225');
+  });
+  let parts=t.split(/(?<=[.!?…])\s+/);
+  return parts.map(s=>s.replace(/\u2225/g,'.').trim()).filter(Boolean);
+}
+function pickAnchor(sentences,used){
+  const words=(sentences.join(' ').toLowerCase().match(/\p{L}[\p{L}’'\-]*/gu)||[]);
+  const cand=words.filter(w=>[...w].length>=5 && !STOP.has(w));
+  cand.sort((a,b)=>[...b].length-[...a].length);
+  for(const w of cand) if(!used.has(w)) return w;
+  return cand[0] || words.find(w=>!STOP.has(w)) || words[0] || 'blok';
+}
+// Words that may sit between two picked words and still read as one phrase.
+const CONNECTORS=new Set('i oraz albo lub a ale że więc bo czy ani z ze w we do na po od za o u jak to się jest są nie'.split(' '));
+// Build a multi-word anchor from selected word indices:
+//  - adjacent picks (or joined by a single connector) → joined with a space (phrase)
+//  - picks that are far apart → separated by a comma
+function composeAnchor(pickWords, sel){
+  const idxs=[...sel].sort((a,b)=>a-b);
+  if(!idxs.length) return '';
+  let out=pickWords[idxs[0]].text.toLowerCase();
+  for(let k=1;k<idxs.length;k++){
+    const prev=idxs[k-1], curi=idxs[k], gap=curi-prev-1;
+    const w=pickWords[curi].text.toLowerCase();
+    if(gap===0){ out+=' '+w; }
+    else if(gap===1 && CONNECTORS.has(pickWords[prev+1].text.toLowerCase())){ out+=' '+pickWords[prev+1].text.toLowerCase()+' '+w; }
+    else { out+=', '+w; }
+  }
+  return out;
+}
+// Turn text into a flat sentence list + an auto grouping (counts per block).
+// Only BLANK lines split paragraphs; single line breaks are treated as soft
+// wraps and joined, so sentences are never cut at a random line break.
+function segment(text){
+  const paras=text.split(/\n[ \t]*\n+/).map(p=>p.replace(/\s*\n\s*/g,' ').trim()).filter(Boolean);
+  const sents=[]; const counts=[];
+  if(paras.length>=2){
+    paras.forEach(p=>{ const ss=splitSentences(p); if(ss.length){ ss.forEach(s=>sents.push(s)); counts.push(ss.length); } });
+  }else{
+    const ss=splitSentences((paras[0]||text.replace(/\s*\n\s*/g,' ')).trim());
+    ss.forEach(s=>sents.push(s));
+    for(let i=0;i<ss.length;i+=3) counts.push(Math.min(3,ss.length-i));
+  }
+  if(!counts.length && sents.length) counts.push(sents.length);
+  return {sents,counts};
+}
+function blocksFrom(sents,counts){
+  const out=[]; let idx=0; const used=new Set();
+  counts.forEach(c=>{
+    const seg=sents.slice(idx,idx+c); idx+=c;
+    if(!seg.length) return;
+    const a=pickAnchor(seg,used); used.add(a);
+    out.push({sentences:seg,anchor:a});
+  });
+  return out;
+}
+function hash(str){ let h=0; for(let i=0;i<str.length;i++){ h=(h<<5)-h+str.charCodeAt(i); h|=0; } return 'x'+Math.abs(h).toString(36); }
+
+/* ---------- library UI ---------- */
+function renderLib(){
+  const el=document.getElementById('libList');
+  el.innerHTML='';
+  if(!lib.length){ el.innerHTML='<span style="color:var(--muted);font-size:.82rem">Jeszcze nic nie zapisano.</span>'; return; }
+  lib.slice().reverse().forEach(entry=>{
+    const chip=document.createElement('span');
+    chip.className='lib-chip';
+    const t=document.createElement('span'); t.textContent=entry.title||'(bez tytułu)'; t.style.cursor='pointer';
+    t.onclick=()=>openEntry(entry.id);
+    const x=document.createElement('button'); x.className='x'; x.textContent='×'; x.title='Usuń';
+    x.onclick=(e)=>{ e.stopPropagation(); if(confirm('Usunąć „'+(entry.title||'ten tekst')+'”?')){ lib=lib.filter(l=>l.id!==entry.id); jset(LIB,lib); try{localStorage.removeItem(progKey(entry.id));}catch(_){} renderLib(); } };
+    const dl=document.createElement('button'); dl.className='x'; dl.textContent='⤓'; dl.title='Zapisz do pliku';
+    dl.onclick=(e)=>{ e.stopPropagation(); exportEntry(entry); };
+    chip.appendChild(t); chip.appendChild(dl); chip.appendChild(x); el.appendChild(chip);
+  });
+}
+
+/* ---------- build & open ---------- */
+document.getElementById('buildBtn').onclick=()=>{
+  const text=document.getElementById('textIn').value.trim();
+  if(!text){ alert('Wklej najpierw tekst.'); return; }
+  let title=document.getElementById('titleIn').value.trim();
+  if(!title){ title=text.replace(/\s+/g,' ').slice(0,80)+(text.length>80?'…':''); }
+  const lang=document.getElementById('langIn').value;
+  const id=hash(text);
+  let entry=lib.find(l=>l.id===id);
+  if(entry){ entry.title=title; entry.lang=lang; }
+  else { entry={id,title,text,lang,anchors:{},ts:Date.now()}; lib.push(entry); }
+  jset(LIB,lib); renderLib();
+  openEntry(id);
+};
+
+function rebuildBlocks(){
+  blocks=blocksFrom(allSents,counts);
+  cur.anchors=cur.anchors||{};
+  blocks.forEach((b,i)=>{ if(cur.anchors[i]) b.anchor=cur.anchors[i]; });
+  document.getElementById('ringTotal').textContent=blocks.length;
+}
+function openEntry(id){
+  cur=lib.find(l=>l.id===id); if(!cur) return;
+  jset(LAST,id);
+  const seg=segment(cur.text);
+  // use a saved custom sentence list (from mid-sentence splits) if it is consistent
+  if(cur.sents && cur.counts && cur.counts.reduce((a,b)=>a+b,0)===cur.sents.length){
+    allSents=cur.sents.slice(); counts=cur.counts.slice();
+  }else{
+    allSents=seg.sents.slice();
+    counts=(cur.counts && cur.counts.reduce((a,b)=>a+b,0)===allSents.length) ? cur.counts.slice() : seg.counts.slice();
+    cur.counts=counts.slice(); jset(LIB,lib);
+  }
+  rebuildBlocks();
+  known=new Set(jget(progKey(id),{known:[]}).known||[]);
+  glossMap=(cur.gloss && typeof cur.gloss==='object')?Object.assign({},cur.gloss):{};
+  trans=(Array.isArray(cur.trans)&&cur.trans.length===allSents.length)?cur.trans.slice():new Array(allSents.length).fill('');
+  revealed=new Set(); pickingIndex=null; pickSel=null; editingIndex=null; blockView={}; wordOv={}; transShown={};
+  document.getElementById('curTitle').textContent=cur.title;
+  document.getElementById('curTitle').classList.remove('full');
+  document.getElementById('langIn').value=cur.lang||'pl-PL';
+  document.getElementById('inputPanel').classList.add('hide');
+  document.getElementById('study').classList.remove('hide');
+  setMode(mode,true);
+  paState='idle'; paIdx=0; setPAicon();
+  renderChain(); renderBlocks(); updateProgress();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function saveGrouping(){ if(cur){ cur.counts=counts.slice(); cur.sents=allSents.slice(); cur.trans=trans.slice(); cur.gloss=Object.assign({},glossMap); cur.anchors={}; jset(LIB,lib); } }
+function mergeDown(i){                 // join block i with i+1
+  if(i<0||i>=counts.length-1) return;
+  counts[i]+=counts[i+1]; counts.splice(i+1,1);
+  known.clear(); revealed.clear(); pickingIndex=null; pickSel=null; blockView={}; wordOv={};
+  saveGrouping(); saveProg(); rebuildBlocks(); renderChain(); renderBlocks(); updateProgress();
+}
+function splitBlock(i){                 // split block i into two halves by sentence
+  if(counts[i]<2) return;
+  const half=Math.ceil(counts[i]/2);
+  counts.splice(i,1,half,counts[i]-half);
+  known.clear(); revealed.clear(); pickingIndex=null; pickSel=null; blockView={}; wordOv={};
+  saveGrouping(); saveProg(); rebuildBlocks(); renderChain(); renderBlocks(); updateProgress();
+}
+function splitAfterWord(i, si, end){    // split block i right after a chosen word
+  const g0=counts.slice(0,i).reduce((a,b)=>a+b,0);
+  const G=g0+si;                        // global index of the sentence holding the word
+  const S=allSents[G];
+  const A=S.slice(0,end).trim();
+  const B=S.slice(end).replace(/^[\s,;:.!?…–—-]+/,'').trim();
+  const C=counts[i];
+  if(!B){
+    // word is at end of its sentence → split at sentence boundary
+    const left=si+1, right=C-left;
+    if(right<=0){ alert('Po tym słowie nic już nie ma do oddzielenia.'); return; }
+    counts.splice(i,1,left,right);
+  }else{
+    const oldT=trans[G]||'';
+    allSents.splice(G,1,A,B);           // break the sentence into two pieces
+    trans.splice(G,1,oldT,'');          // keep translation on first piece, empty on second
+    const left=si+1;                    // sentences 0..si-1 + piece A
+    const right=(C+1)-left;             // piece B + rest of block
+    counts.splice(i,1,left,right);
+  }
+  known.clear(); revealed.clear(); pickingIndex=null; pickSel=null; blockView={}; wordOv={};
+  saveGrouping(); saveProg(); rebuildBlocks(); renderChain(); renderBlocks(); updateProgress();
+}
+function resetGrouping(){
+  const seg=segment(cur.text);
+  allSents=seg.sents.slice(); counts=seg.counts.slice();
+  trans=new Array(allSents.length).fill('');   // sentence boundaries change → clear per-sentence translations (glossary kept)
+  delete cur.sents; delete cur.trans;
+  known.clear(); revealed.clear(); pickingIndex=null; pickSel=null; blockView={}; wordOv={};
+  saveGrouping(); saveProg(); rebuildBlocks(); renderChain(); renderBlocks(); updateProgress();
+}
+function saveProg(){ if(cur) jset(progKey(cur.id),{known:[...known]}); }
+function persistCustom(){ if(cur){ cur.counts=counts.slice(); cur.sents=allSents.slice(); cur.trans=trans.slice(); cur.gloss=Object.assign({},glossMap); jset(LIB,lib); } }
+function parseGloss(text){
+  const out={};
+  (text||'').split('\n').forEach(line=>{
+    const eq=line.indexOf('=');
+    if(eq<0) return;
+    const k=line.slice(0,eq).trim().toLowerCase();
+    const v=line.slice(eq+1).trim();
+    if(k) out[k]=v;
+  });
+  return out;
+}
+function serializeGloss(map){
+  return Object.keys(map).map(k=>k+' = '+map[k]).join('\n');
+}
+function editBlock(i, text, trText, glText){
+  const newSents=splitSentences((text||'').replace(/\s*\n\s*/g,' ').trim());
+  const trLines=(trText||'').split('\n');
+  const g0=counts.slice(0,i).reduce((a,b)=>a+b,0);
+  const oldCount=counts[i];
+  glossMap=parseGloss(glText);                 // glossary is shared for the whole text
+  if(newSents.length===0){                     // emptied → drop the block (structural)
+    allSents.splice(g0, oldCount);
+    trans.splice(g0, oldCount);
+    counts.splice(i,1);
+    known.clear(); if(cur) cur.anchors={};
+  }else{
+    const newTrans=newSents.map((_,k)=>(trLines[k]!==undefined?trLines[k].trim():''));
+    allSents.splice(g0, oldCount, ...newSents);
+    trans.splice(g0, oldCount, ...newTrans);
+    counts[i]=newSents.length;
+    if(cur&&cur.anchors) delete cur.anchors[i];  // re-pick anchor from edited text
+  }
+  editingIndex=null; pickingIndex=null; pickSel=null; blockView={}; wordOv={};
+  persistCustom(); saveProg(); rebuildBlocks(); renderChain(); renderBlocks(); updateProgress();
+}
+function attachPress(el, onLong, onTap){
+  let timer=null, longFired=false, moved=false, sx=0, sy=0, touchTime=0, tgt=null;
+  const startTimer=()=>{ longFired=false; clearTimeout(timer); timer=setTimeout(()=>{ timer=null; longFired=true; onLong&&onLong(tgt); }, 500); };
+  const stopTimer=()=>{ if(timer){ clearTimeout(timer); timer=null; } };
+  const far=(x,y)=>Math.abs(x-sx)>10 || Math.abs(y-sy)>10;
+
+  el.addEventListener('touchstart',(e)=>{ touchTime=Date.now(); moved=false; tgt=e.target; const t=e.touches[0]; sx=t.clientX; sy=t.clientY; startTimer(); },{passive:true});
+  el.addEventListener('touchmove',(e)=>{ const t=e.touches[0]; if(far(t.clientX,t.clientY)){ moved=true; stopTimer(); } },{passive:true});
+  el.addEventListener('touchend',(e)=>{ touchTime=Date.now(); const pending=!!timer; stopTimer(); if(!longFired && !moved && pending){ if(onTap){ e.preventDefault(); onTap(tgt); } } },{passive:false});
+  el.addEventListener('touchcancel',()=>{ moved=true; stopTimer(); });
+
+  el.addEventListener('mousedown',(e)=>{ if(e.button!==0||Date.now()-touchTime<700) return; moved=false; tgt=e.target; sx=e.clientX; sy=e.clientY; startTimer(); });
+  el.addEventListener('mousemove',(e)=>{ if(timer && far(e.clientX,e.clientY)){ moved=true; stopTimer(); } });
+  el.addEventListener('mouseup',(e)=>{ if(Date.now()-touchTime<700) return; const pending=!!timer; stopTimer(); if(!longFired && !moved && pending) onTap&&onTap(tgt); });
+  el.addEventListener('mouseleave',stopTimer);
+  el.addEventListener('contextmenu',(e)=>{ e.preventDefault(); stopTimer(); longFired=true; onLong&&onLong(tgt); });
+}
+
+document.getElementById('autoBtn').onclick=()=>{
+  if(confirm('Wrócić do automatycznego podziału? Twoje ręczne łączenie i kotwice zostaną zresetowane.')) resetGrouping();
+};
+document.getElementById('newBtn').onclick=()=>{
+  document.getElementById('study').classList.add('hide');
+  document.getElementById('inputPanel').classList.remove('hide');
+  document.getElementById('textIn').value='';
+  document.getElementById('titleIn').value='';
+  if('speechSynthesis' in window) speechSynthesis.cancel();
+  renderLib();
+  window.scrollTo({top:0,behavior:'smooth'});
+};
+
+/* ---------- render study ---------- */
+function renderChain(){
+  const el=document.getElementById('chain'); el.innerHTML='';
+  const anchorLine=[];
+  blocks.forEach((b,i)=>{
+    anchorLine.push(b.anchor);
+    const bead=document.createElement('div');
+    bead.className='bead'+(known.has(i)?' lit':'');
+    const btn=document.createElement('button'); btn.textContent=b.anchor; btn.title='Blok '+(i+1);
+    btn.onclick=()=>document.getElementById('blk'+i).scrollIntoView({behavior:'smooth',block:'start'});
+    const link=document.createElement('span'); link.className='link'; link.textContent='→';
+    bead.appendChild(btn); bead.appendChild(link); el.appendChild(bead);
+  });
+  document.getElementById('anchorLine').textContent=anchorLine.join(' → ');
+}
+function firstLetters(text){
+  return text.replace(/\p{L}[\p{L}’']*/gu,w=>{
+    const rest=[...w].length-1;
+    return '<span class="fl">'+w[0]+'</span><span class="dots">'+'·'.repeat(rest)+'</span>';
+  });
+}
+function wordFL(w){
+  const rest=[...w].length-1;
+  return '<span class="fl">'+w[0]+'</span>'+(rest>0?'<span class="dots">'+'·'.repeat(rest)+'</span>':'');
+}
+// Render a block's text as individually tappable words; each word shows full or
+// first-letter depending on the block base view and any per-word override.
+function renderWords(tx, b, i){
+  const base = blockView[i] || (mode==='letters'?'letters':'full');
+  const baseLetters = base==='letters';
+  const ov = wordOv[i];
+  const g0=counts.slice(0,i).reduce((a,c)=>a+c,0);
+  const frag=document.createDocumentFragment();
+  let wi=0;
+  b.sentences.forEach((s,si)=>{
+    if(si>0) frag.appendChild(document.createTextNode(' '));
+    const re=/(\p{L}[\p{L}’'\-]*)|([^\p{L}]+)/gu; let m;
+    while((m=re.exec(s))){
+      if(m[1]){
+        const idx=wi++;
+        const isLetters = ov&&ov.has(idx) ? !baseLetters : baseLetters;
+        const span=document.createElement('span'); span.className='w'; span.dataset.wi=idx;
+        span.dataset.key=m[1].toLowerCase(); span.dataset.full=m[1]; span.dataset.gi=g0+si;
+        if(isLetters){ span.innerHTML=wordFL(m[1]); span.classList.add('masked'); }
+        else span.textContent=m[1];
+        if(isMarked(span.dataset.key)) span.classList.add('mark');
+        frag.appendChild(span);
+      }else{
+        frag.appendChild(document.createTextNode(m[2]));
+      }
+    }
+  });
+  tx.appendChild(frag);
+}
+// Translate mode: full text, every word tappable. Each word carries its lowercase
+// key (glossary lookup) and its global sentence index (sentence-translation modal).
+function renderTransWords(tx, b, i){
+  const g0=counts.slice(0,i).reduce((a,c)=>a+c,0);
+  const frag=document.createDocumentFragment();
+  b.sentences.forEach((s,si)=>{
+    if(si>0) frag.appendChild(document.createTextNode(' '));
+    const gi=g0+si;
+    const re=/(\p{L}[\p{L}’'\-]*)|([^\p{L}]+)/gu; let m;
+    while((m=re.exec(s))){
+      if(m[1]){
+        const span=document.createElement('span'); span.className='w';
+        span.textContent=m[1];
+        span.dataset.key=m[1].toLowerCase();
+        span.dataset.gi=gi;
+        frag.appendChild(span);
+      }else frag.appendChild(document.createTextNode(m[2]));
+    }
+  });
+  tx.appendChild(frag);
+}
+function renderBlocks(){
+  const host=document.getElementById('blocks'); host.innerHTML='';
+  blocks.forEach((b,i)=>{
+    const card=document.createElement('article');
+    card.className='block'+(known.has(i)?' known':''); card.id='blk'+i;
+
+    const head=document.createElement('div'); head.className='bhead';
+    const canToggle = (mode==='full'||mode==='letters');
+    const baseV = blockView[i] || (mode==='letters'?'letters':'full');
+    const toggleLabel = baseV==='letters' ? 'Pełny' : 'Litery';
+    const toggleHtml = canToggle ? `<button class="btoggle" title="Cały blok: Litery ↔ Pełny">${toggleLabel}</button>` : '';
+    const transHtml = canToggle ? `<button class="btrans${transShown[i]?' on':''}" title="Bu bloğun çevirisini göster/gizle">Çeviri</button>` : '';
+    head.innerHTML=`<div class="bnum">${i+1}</div>${toggleHtml}${transHtml}<div class="achip" title="Wybierz kotwicę">🔑 ${b.anchor}</div>`;
+    head.querySelector('.achip').onclick=(e)=>{ e.stopPropagation(); pickingIndex = (pickingIndex===i? null : i); pickSel=null; renderBlocks(); };
+    const _bt=head.querySelector('.btrans'); if(_bt) _bt.onclick=(e)=>{ e.stopPropagation(); transShown[i]=!transShown[i]; renderBlocks(); };
+    if(canToggle){
+      head.classList.add('tappable');
+      head.onclick=()=>{
+        const now = blockView[i] || (mode==='letters'?'letters':'full');
+        blockView[i] = now==='letters' ? 'full' : 'letters';
+        if(wordOv[i]) wordOv[i].clear();
+        renderBlocks();
+      };
+    }
+    card.appendChild(head);
+
+    if(pickingIndex===i){
+      if(!pickSel) pickSel=new Set();
+      const pick=document.createElement('div'); pick.className='picker';
+      // ordered word list for this block (array index === word index)
+      const pickWords=[];
+      b.sentences.forEach((s,si)=>{ const re=/\p{L}[\p{L}’'\-]*/gu; let m; while((m=re.exec(s))){ pickWords.push({text:m[0],si,start:m.index,end:m.index+m[0].length}); } });
+      const preview=composeAnchor(pickWords, pickSel);
+      const hint=document.createElement('div'); hint.className='hint';
+      hint.innerHTML = pickSel.size
+        ? 'Kotwica: <b style="color:var(--lamp)">'+ preview +'</b> — dotknij słowa, aby dodać/usunąć.'
+        : 'Dotknij słowa, aby zbudować kotwicę (możesz wybrać kilka).';
+      pick.appendChild(hint);
+      pickWords.forEach((w,idx)=>{
+        const pill=document.createElement('button');
+        pill.className='word'+(pickSel.has(idx)?' cur':'');
+        pill.textContent=w.text;
+        pill.onclick=()=>{ pickSel.has(idx)?pickSel.delete(idx):pickSel.add(idx); renderBlocks(); };
+        pick.appendChild(pill);
+      });
+      const actions=document.createElement('div'); actions.className='pickact';
+      const setBtn=document.createElement('button'); setBtn.className='mini setk';
+      setBtn.textContent='🔑 Ustaw kotwicę'; setBtn.disabled=!pickSel.size;
+      setBtn.onclick=()=>{ const a=composeAnchor(pickWords,pickSel); if(a){ b.anchor=a; cur.anchors[i]=a; jset(LIB,lib); pickingIndex=null; pickSel=null; renderChain(); renderBlocks(); } };
+      actions.appendChild(setBtn);
+      const splitBtn=document.createElement('button'); splitBtn.className='mini split';
+      splitBtn.textContent='✂ Podziel po ostatnim'; splitBtn.disabled=!pickSel.size;
+      splitBtn.onclick=()=>{ const idxs=[...pickSel].sort((a,b)=>a-b); const last=pickWords[idxs[idxs.length-1]]; splitAfterWord(i, last.si, last.end); };
+      actions.appendChild(splitBtn);
+      const done=document.createElement('button'); done.className='mini'; done.textContent='Gotowe';
+      done.onclick=()=>{ pickingIndex=null; pickSel=null; renderBlocks(); };
+      actions.appendChild(done);
+      pick.appendChild(actions);
+      card.appendChild(pick);
+    }
+
+    const full=b.sentences.join(' ');
+    if(mode==='hidden' && !revealed.has(i)){
+      const tap=document.createElement('div'); tap.className='hidden-tap';
+      tap.innerHTML=`Kotwica: <b>${b.anchor}</b> — dotknij, aby sprawdzić`;
+      tap.onclick=()=>{ revealed.add(i); renderBlocks(); };
+      card.appendChild(tap);
+    }else if(mode==='hidden'){
+      const tx=document.createElement('div'); tx.className='text';
+      tx.textContent=full;
+      attachPress(tx,
+        ()=>openEditModal(i),
+        ()=>{ revealed.delete(i); renderBlocks(); }
+      );
+      card.appendChild(tx);
+    }else{
+      const tx=document.createElement('div'); tx.className='text';
+      renderWords(tx, b, i);
+      attachPress(tx,
+        (target)=>{ const w=target&&target.closest?target.closest('.w'):null; if(w) showTip(w); },  // uzun bas = çeviri baloncuğu (içinde flama ile işaretleme)
+        (target)=>{                                                                                  // tek dokunuş = kelimeyi göster/gizle
+          const wEl = target && target.closest ? target.closest('.w') : null;
+          if(!wEl) return;
+          const wi=+wEl.dataset.wi;
+          if(!wordOv[i]) wordOv[i]=new Set();
+          wordOv[i].has(wi) ? wordOv[i].delete(wi) : wordOv[i].add(wi);
+          renderBlocks();
+        }
+      );
+      card.appendChild(tx);
+    }
+    if(transShown[i] && (mode==='full'||mode==='letters')){
+      const g0t=counts.slice(0,i).reduce((a,c)=>a+c,0);
+      const parts=[];
+      for(let si=0; si<counts[i]; si++){ const t=(trans[g0t+si]||'').trim(); if(t) parts.push(t); }
+      const bt=document.createElement('div'); bt.className='blocktrans';
+      bt.textContent = parts.length ? parts.join(' ') : '(çeviri yok — Popraw tekst’ten ekle)';
+      card.appendChild(bt);
+    }
+
+    const edit=document.createElement('div'); edit.className='editrow';
+    const ep=document.createElement('button'); ep.className='mini'; ep.textContent='✎ Popraw tekst';
+    ep.title='Metin + çeviri + sözlük (albo przytrzymaj tekst)';
+    ep.onclick=()=>openEditModal(i);
+    edit.appendChild(ep);
+    if(counts[i]>1){
+      const sp=document.createElement('button'); sp.className='mini'; sp.textContent='✂ Podziel';
+      sp.title='Podziel ten blok na dwa'; sp.onclick=()=>splitBlock(i); edit.appendChild(sp);
+    }
+    if(i<blocks.length-1){
+      const mg=document.createElement('button'); mg.className='mini'; mg.textContent='⌵ Połącz z następnym';
+      mg.title='Połącz z blokiem poniżej'; mg.onclick=()=>mergeDown(i); edit.appendChild(mg);
+    }
+    if(edit.children.length) card.appendChild(edit);
+
+    const foot=document.createElement('div'); foot.className='bfoot';
+    const play=document.createElement('button'); play.className='btn play';
+    play.innerHTML=`<svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.8-1-3.3-2.5-4v8c1.5-.7 2.5-2.2 2.5-4z"/></svg>Słuchaj`;
+    play.onclick=()=>playSequence(b.sentences,play);
+    foot.appendChild(play);
+
+    const know=document.createElement('button'); know.className='btn know'+(known.has(i)?' on':'');
+    know.innerHTML=known.has(i)?`<svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2l-3.5-3.5L4 14.2 9 19.2 20 8.2l-1.5-1.5z"/></svg>Umiem`:'Umiem to';
+    know.onclick=()=>{ known.has(i)?known.delete(i):known.add(i); saveProg(); renderChain(); renderBlocks(); updateProgress(); };
+    foot.appendChild(know);
+    card.appendChild(foot);
+    host.appendChild(card);
+  });
+  refreshMarkUI();
+}
+function updateProgress(){
+  const n=known.size,t=blocks.length||1;
+  document.getElementById('ringFill').style.strokeDashoffset=138.2*(1-n/t);
+  document.getElementById('ringCount').textContent=n;
+  document.getElementById('ringTotal').textContent=blocks.length;
+  document.getElementById('ptext').textContent = n===0?'Zacznij od bloku 1' : n>=blocks.length?'Cały tekst opanowany 🎉' : n+' z '+blocks.length+' gotowe';
+}
+
+/* ---------- modes ---------- */
+function setMode(m,silent){
+  mode=m; jset(MODEKEY,m); pickingIndex=null; editingIndex=null; blockView={}; wordOv={}; transShown={};
+  if(typeof hideTip==='function') hideTip();
+  ['editOvl','sentOvl'].forEach(id=>{ const el=document.getElementById(id); if(el) el.classList.remove('on'); });
+  document.querySelectorAll('.modes button').forEach(b=>b.classList.toggle('active',b.dataset.mode===m));
+  if(m!=='hidden') revealed.clear();
+  if(!silent) renderBlocks();
+}
+document.querySelectorAll('.modes button').forEach(btn=>btn.onclick=()=>setMode(btn.dataset.mode));
+
+/* ---------- speech ---------- */
+let voices=[]; function loadVoices(){ voices=speechSynthesis.getVoices(); }
+if('speechSynthesis' in window){ loadVoices(); speechSynthesis.onvoiceschanged=loadVoices; }
+let speakRate=+jget('zap_rate',0.9)||0.9;
+let speakingBtn=null;
+function clearSpeaking(){ if(speakingBtn){speakingBtn.classList.remove('speaking');speakingBtn=null;} }
+function pickVoice(lang){ return voices.find(v=>(v.lang||'').toLowerCase()===lang.toLowerCase()) || voices.find(v=>(v.lang||'').toLowerCase().startsWith(lang.slice(0,2).toLowerCase())); }
+function playSequence(sentences,btn){
+  if(!('speechSynthesis' in window)){ alert('Ta przeglądarka nie obsługuje głosu.'); return; }
+  stopAll(); clearSpeaking();
+  const lang=(cur&&cur.lang)||'pl-PL', v=pickVoice(lang);
+  if(btn){ btn.classList.add('speaking'); speakingBtn=btn; }
+  let idx=0;
+  const next=()=>{
+    if(idx>=sentences.length){ clearSpeaking(); return; }
+    let txt=sentences[idx++];
+    if(lang.startsWith('pl')) txt=txt.replace(/\bAI\b/g,'A I');
+    const u=new SpeechSynthesisUtterance(txt);
+    u.lang=lang; u.rate=speakRate; if(v)u.voice=v;
+    u.onend=next; u.onerror=()=>{clearSpeaking();};
+    speechSynthesis.speak(u);
+  };
+  next();
+}
+/* whole-text player: play / pause / resume / stop */
+let paState='idle', paIdx=0, paList=[];
+const ICON_PLAY='<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
+const ICON_PAUSE='<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg>';
+function setPAicon(){
+  const b=document.getElementById('playAll');
+  b.innerHTML=ICON_PLAY+(paState==='paused'?'Wznów':'Start');
+  const pb=document.getElementById('pauseBtn'); if(pb) pb.disabled=(paState!=='playing');
+}
+function paNext(){
+  if(paIdx>=paList.length){ stopAll(); return; }
+  const lang=(cur&&cur.lang)||'pl-PL', v=pickVoice(lang);
+  let txt=paList[paIdx]; if(lang.startsWith('pl')) txt=txt.replace(/\bAI\b/g,'A I');
+  const u=new SpeechSynthesisUtterance(txt); u.lang=lang; u.rate=speakRate; if(v)u.voice=v;
+  u.onend=()=>{ paIdx++; if(paState==='playing') paNext(); };
+  u.onerror=()=>{ paIdx++; if(paState==='playing') paNext(); };
+  speechSynthesis.speak(u);
+}
+function startPA(){
+  if(!('speechSynthesis' in window)) return;
+  if(paState==='idle'){ speechSynthesis.cancel(); clearSpeaking(); paList=blocks.flatMap(b=>b.sentences); paIdx=0; paState='playing'; setPAicon(); paNext(); }
+  else if(paState==='paused'){ speechSynthesis.resume(); paState='playing'; setPAicon(); }
+}
+function pausePA(){ if(('speechSynthesis' in window) && paState==='playing'){ speechSynthesis.pause(); paState='paused'; setPAicon(); } }
+function stopAll(){ if('speechSynthesis' in window) speechSynthesis.cancel(); paState='idle'; paIdx=0; setPAicon(); }
+document.getElementById('playAll').onclick=startPA;
+document.getElementById('pauseBtn').onclick=pausePA;
+document.getElementById('stopBtn').onclick=()=>{ stopAll(); clearSpeaking(); };
+(function(){ const r=document.getElementById('rate'), rv=document.getElementById('rateVal');
+  if(!r) return;
+  const show=()=>{ rv.textContent=(Math.round(speakRate*100)/100)+'×'; };
+  r.value=speakRate; show();
+  r.oninput=()=>{ speakRate=parseFloat(r.value)||0.9; show(); };
+  r.onchange=()=>{ jset('zap_rate',speakRate); };
+})();
+
+/* title: tap to see the full (long) form */
+document.getElementById('curTitle').onclick=function(){ this.classList.toggle('full'); };
+
+/* export ONE entry to a single file */
+function exportEntry(entry){
+  const data={ _type:'zapamietaj-entry', v:1, title:entry.title||'', text:entry.text||'', lang:entry.lang||'pl-PL',
+    counts:entry.counts||null, sents:entry.sents||null, trans:entry.trans||null, gloss:entry.gloss||null, anchors:entry.anchors||{} };
+  const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json;charset=utf-8'});
+  const url=URL.createObjectURL(blob); const a=document.createElement('a');
+  const fn=((entry.title||'tekst').replace(/[^\p{L}\p{N} _-]/gu,'').trim().slice(0,40))||'tekst';
+  a.href=url; a.download=fn+'.json'; document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(url),1500);
+}
+/* import ONE entry from a single file */
+function importEntryFile(file){
+  const r=new FileReader();
+  r.onload=()=>{ let d; try{ d=JSON.parse(r.result); }catch(e){ alert('Nie udało się odczytać pliku (nieprawidłowy JSON).'); return; }
+    if(!d || typeof d.text!=='string' || !d.text.trim()){ alert('Plik nie zawiera tekstu.'); return; }
+    const id=hash(d.text);
+    if(lib.find(l=>l.id===id) && !confirm('Ten tekst już istnieje w bibliotece. Nadpisać?')) return;
+    const entry={ id, title:(d.title&&d.title.trim())||('Import '+new Date().toLocaleDateString()), text:d.text, lang:d.lang||'pl-PL', anchors:(d.anchors&&typeof d.anchors==='object')?d.anchors:{}, ts:Date.now() };
+    if(Array.isArray(d.counts)) entry.counts=d.counts;
+    if(Array.isArray(d.sents)) entry.sents=d.sents;
+    if(Array.isArray(d.trans)) entry.trans=d.trans;
+    if(d.gloss && typeof d.gloss==='object') entry.gloss=d.gloss;
+    lib=lib.filter(l=>l.id!==id); lib.push(entry); jset(LIB,lib); renderLib(); openEntry(id);
+  };
+  r.readAsText(file);
+}
+document.getElementById('importBtn').onclick=()=>document.getElementById('importFile').click();
+document.getElementById('importFile').onchange=(e)=>{ const f=e.target.files&&e.target.files[0]; if(f) importEntryFile(f); e.target.value=''; };
+
+/* ---------- translate: tooltip + sentence modal ---------- */
+function escapeHtml(s){ return (s||'').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])); }
+const tipEl=document.getElementById('tip');
+function clearTapMark(){ document.querySelectorAll('.w.tap').forEach(x=>x.classList.remove('tap')); }
+function showTip(w){
+  curTipW=w;
+  const key=w.dataset.key||''; const disp=w.dataset.full||w.textContent;
+  const g=glossMap[key];
+  const body = g
+    ? '<span class="pl">'+escapeHtml(disp)+'</span> → <span class="tr">'+escapeHtml(g)+'</span>'
+    : '<span class="pl">'+escapeHtml(disp)+'</span> <span class="none">(çeviri yok — Popraw tekst → sözlük)</span>';
+  tipEl.innerHTML = body + '<button id="tipFlag" class="tipflag'+(isMarked(key)?' on':'')+'" title="Zaznacz słowo · işaretle">⚑</button>';
+  tipEl.style.display='block';
+  const fb=document.getElementById('tipFlag');
+  if(fb) fb.onclick=(e)=>{ e.stopPropagation(); if(!curTipW) return; toggleMarkEl(curTipW); const on=isMarked(curTipW.dataset.key||''); fb.classList.toggle('on', on); refreshMarkUI(); toast(on?'Zaznaczono ⚑':'Usunięto'); };
+  const r=w.getBoundingClientRect(), tw=tipEl.offsetWidth, th=tipEl.offsetHeight;
+  let left=Math.max(8, Math.min(r.left+r.width/2-tw/2, window.innerWidth-tw-8));
+  let top=r.top-th-8; if(top<8) top=r.bottom+8;
+  tipEl.style.left=left+'px'; tipEl.style.top=top+'px';
+  clearTapMark(); w.classList.add('tap');
+}
+function hideTip(){ if(tipEl){ tipEl.style.display='none'; } clearTapMark(); }
+document.addEventListener('pointerdown',e=>{ if(!e.target.closest('.w') && !e.target.closest('#tip')) hideTip(); });
+window.addEventListener('scroll',hideTip,{passive:true});
+
+/* ---------- nie znam: global marked-word list (flag inside the tooltip) ---------- */
+let curTipW=null;
+function getMarks(){ return jget('zap_marks',{}); }
+function setMarks(m){ jset('zap_marks',m); }
+function isMarked(key){ return !!key && Object.prototype.hasOwnProperty.call(getMarks(), key); }
+function delMark(key){ const m=getMarks(); delete m[key]; setMarks(m); }
+function marksCount(){ return Object.keys(getMarks()).length; }
+function addMarkEl(w){
+  const key=w.dataset.key||''; if(!key) return;
+  const m=getMarks(); if(m[key]) return;
+  const gi=+w.dataset.gi;
+  m[key]={ w:w.dataset.full||w.textContent||'', gl:glossMap[key]||'', pl:allSents[gi]||'', tr:(trans[gi]||''), dt:cur?cur.title:'' };
+  setMarks(m);
+}
+function toggleMarkEl(w){
+  const key=w.dataset.key||''; if(!key) return;
+  if(isMarked(key)) delMark(key); else addMarkEl(w);
+  document.querySelectorAll('.w').forEach(el=>{ if((el.dataset.key||'')===key) el.classList.toggle('mark', isMarked(key)); });
+}
+function refreshMarkUI(){
+  const n=marksCount(); const c=document.getElementById('mkCount');
+  if(c){ c.textContent=n; c.classList.toggle('zero', n===0); }
+  const ovl=document.getElementById('mkOvl'); if(ovl && ovl.classList.contains('on')) renderMarkList();
+}
+function renderMarkList(){
+  const m=getMarks(); const keys=Object.keys(m);
+  document.getElementById('mkSub').textContent = keys.length + (keys.length===1?' słowo':' słów');
+  const host=document.getElementById('mkList'); host.innerHTML='';
+  if(!keys.length){ host.innerHTML='<div class="mkempty">Brak słów.<br>Przytrzymaj słowo, a w dymku dotknij flagi ⚑, aby je zaznaczyć (słowo zrobi się żółte).</div>'; return; }
+  keys.forEach(k=>{ const it=m[k];
+    const row=document.createElement('div'); row.className='mkrow';
+    const b=document.createElement('div'); b.style.minWidth='0';
+    b.innerHTML='<div><span class="pl2">'+escapeHtml(it.w)+'</span>'+(it.gl?' <span class="gl2">→ '+escapeHtml(it.gl)+'</span>':'')+'</div>'+
+                '<div class="cx">'+escapeHtml(it.pl)+(it.tr?'<br>'+escapeHtml(it.tr):'')+'</div>';
+    const x=document.createElement('div'); x.className='x'; x.textContent='×';
+    x.onclick=()=>{ delMark(k); renderMarkList(); refreshMarkUI(); renderBlocks(); };
+    row.appendChild(b); row.appendChild(x); host.appendChild(row);
+  });
+}
+function marksTxt(){ const m=getMarks(); return Object.keys(m).map(k=>{ const it=m[k]; return [it.w,'','',it.gl||'',it.pl||'',it.tr||''].join(' / '); }).join('\n'); }
+document.getElementById('mkBtn').onclick=()=>{ document.getElementById('mkOvl').classList.add('on'); renderMarkList(); };
+document.getElementById('mkClose').onclick=()=>{ document.getElementById('mkOvl').classList.remove('on'); };
+document.getElementById('mkOvl').onclick=(e)=>{ if(e.target.id==='mkOvl') document.getElementById('mkOvl').classList.remove('on'); };
+document.getElementById('mkCopy').onclick=async()=>{ const t=marksTxt(); if(!t){ toast('Lista jest pusta'); return; }
+  try{ await navigator.clipboard.writeText(t); toast('Skopiowano'); }
+  catch(e){ const ta=document.createElement('textarea'); ta.value=t; ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta); ta.focus(); ta.select(); try{document.execCommand('copy'); toast('Skopiowano');}catch(_){ toast('Nie udało się'); } ta.remove(); } };
+document.getElementById('mkTxt').onclick=()=>{ const t=marksTxt(); if(!t){ toast('Lista jest pusta'); return; }
+  const blob=new Blob(['\ufeff'+t],{type:'text/plain;charset=utf-8'}); const url=URL.createObjectURL(blob);
+  const a=document.createElement('a'); a.href=url; a.download='slowka_nie_znam.txt'; document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(url),1500); };
+document.getElementById('mkClear').onclick=()=>{ if(!marksCount()) return; if(confirm('Usunąć wszystkie zapisane słówka?')){ setMarks({}); renderMarkList(); refreshMarkUI(); renderBlocks(); } };
+let toastT=null;
+function toast(msg){ let el=document.getElementById('toast'); if(!el){ el=document.createElement('div'); el.id='toast'; document.body.appendChild(el);} el.textContent=msg; el.style.opacity='1'; clearTimeout(toastT); toastT=setTimeout(()=>{ el.style.opacity='0'; },1400); }
+
+const sentOvl=document.getElementById('sentOvl');
+let sentGi=null;
+function blockOfSentence(gi){ let acc=0; for(let k=0;k<counts.length;k++){ if(gi<acc+counts[k]) return k; acc+=counts[k]; } return Math.max(0,counts.length-1); }
+function openSentence(gi){
+  sentGi=gi;
+  document.getElementById('sentPl').textContent=allSents[gi]||'';
+  const tr=(trans[gi]||'').trim();
+  const trEl=document.getElementById('sentTr');
+  if(tr){ trEl.textContent=tr; trEl.classList.remove('none'); }
+  else { trEl.textContent='(çeviri yok — aşağıdaki Popraw düğmesiyle ekleyebilirsin)'; trEl.classList.add('none'); }
+  hideTip(); sentOvl.classList.add('on');
+}
+function closeSentence(){ sentOvl.classList.remove('on'); }
+document.getElementById('sentClose').onclick=closeSentence;
+sentOvl.addEventListener('click',e=>{ if(e.target===sentOvl) closeSentence(); });
+document.getElementById('sentEdit').onclick=()=>{ if(sentGi==null) return; const bi=blockOfSentence(sentGi); closeSentence(); openEditModal(bi); };
+
+/* ---------- wide edit modal (text + translation + glossary) ---------- */
+const editOvl=document.getElementById('editOvl');
+function openEditModal(i){
+  editingIndex=i; pickingIndex=null; pickSel=null;
+  const g0=counts.slice(0,i).reduce((a,c)=>a+c,0), cnt=counts[i];
+  document.getElementById('editTitle').textContent='Popraw tekst — Blok '+(i+1);
+  document.getElementById('editPl').value=allSents.slice(g0,g0+cnt).join('\n');          // one sentence per line
+  document.getElementById('editTr').value=trans.slice(g0,g0+cnt).map(t=>t||'').join('\n'); // aligned translations
+  document.getElementById('editGloss').value=serializeGloss(glossMap);                     // shared glossary
+  hideTip(); editOvl.classList.add('on');
+  setTimeout(()=>{ document.getElementById('editPl').focus(); },30);
+}
+function closeEditModal(){ editingIndex=null; editOvl.classList.remove('on'); }
+document.getElementById('editCancel').onclick=closeEditModal;
+editOvl.addEventListener('click',e=>{ if(e.target===editOvl) closeEditModal(); });
+document.getElementById('editSave').onclick=()=>{
+  const i=editingIndex; if(i==null) return;
+  const pl=document.getElementById('editPl').value;
+  const tr=document.getElementById('editTr').value;
+  const gl=document.getElementById('editGloss').value;
+  editOvl.classList.remove('on');
+  editBlock(i, pl, tr, gl);   // splice text+translation, update glossary, persist, re-render
+};
+document.addEventListener('keydown',e=>{
+  if(e.key!=='Escape') return;
+  if(pullOvl.classList.contains('on')) closePull();
+  else if(editOvl.classList.contains('on')) closeEditModal();
+  else if(sentOvl.classList.contains('on')) closeSentence();
+  else hideTip();
+});
+
+/* ---------- pull from pl-paragraf ---------- */
+const PULL_CACHE_KEY='plzap_src_cache';
+function findLiteral(src,name){
+  const m=src.match(new RegExp('const\\s+'+name+'\\s*='));
+  if(!m) return null;
+  let i=m.index+m[0].length;
+  while(i<src.length && ' \t\r\n'.indexOf(src[i])>=0) i++;
+  const open=src[i], close=open==='['?']':(open==='{'?'}':null);
+  if(!close) return null;
+  let depth=0,inStr=false,q='',esc=false;
+  for(let j=i;j<src.length;j++){
+    const ch=src[j];
+    if(inStr){ if(esc)esc=false; else if(ch==='\\')esc=true; else if(ch===q)inStr=false; continue; }
+    if(ch==='"'||ch==="'"||ch==='`'){ inStr=true; q=ch; continue; }
+    if(ch===open) depth++;
+    else if(ch===close){ depth--; if(depth===0) return src.slice(i,j+1); }
+  }
+  return null;
+}
+function parseSourceHtml(html){
+  const sm=html.match(/<script[\s\S]*?>([\s\S]*)<\/script>/i);
+  const src=sm?sm[1]:html;
+  const tLit=findLiteral(src,'TEXTS'), gLit=findLiteral(src,'GLOSS');
+  if(!tLit) return null;
+  let texts,gloss={};
+  try{ texts=Function('return ('+tLit+')')(); }catch(e){ return null; }
+  if(gLit){ try{ gloss=Function('return ('+gLit+')')(); }catch(e){ gloss={}; } }
+  if(!Array.isArray(texts)) return null;
+  return { texts:texts.map(t=>({id:t.id,title:t.title,paragraphs:t.paragraphs})), gloss:gloss||{} };
+}
+const PULL_HIDDEN_KEY='plzap_pull_hidden_v1';
+function getHidden(){ return new Set(jget(PULL_HIDDEN_KEY,[])); }
+function setHidden(set){ jset(PULL_HIDDEN_KEY,[...set]); }
+function normalizePayload(obj){
+  if(!obj || typeof obj!=='object') return null;
+  let texts=null, gloss=(obj.gloss&&typeof obj.gloss==='object')?obj.gloss:{};
+  if(Array.isArray(obj.texts)) texts=obj.texts;
+  else if(obj.text && Array.isArray(obj.text.paragraphs)) texts=[obj.text];
+  else if(Array.isArray(obj.paragraphs)) texts=[obj];
+  if(!texts||!texts.length) return null;
+  return {texts, gloss};
+}
+function importFromParagraf(textObj, gloss, paragraphIndex){
+  let paras=textObj.paragraphs||[];
+  let title=textObj.title||'(pl-paragraf)';
+  if(paragraphIndex!=null){ paras=[paras[paragraphIndex]]; title=title+' — akapit '+(paragraphIndex+1); }
+  const sents=[], tr=[], cnts=[];
+  paras.forEach(par=>{ let c=0; (par||[]).forEach(s=>{ if(s&&s.pl){ sents.push(String(s.pl).trim()); tr.push(String(s.en||'').trim()); c++; } }); if(c) cnts.push(c); });
+  if(!sents.length) return null;
+  const text=paras.map(par=>(par||[]).map(s=>s.pl).join(' ')).join('\n\n');
+  const id=hash(text);
+  const glossObj={};
+  if(gloss && typeof gloss==='object'){
+    const words=new Set((sents.join(' ').toLowerCase().match(/\p{L}[\p{L}’'\-]*/gu)||[]));
+    words.forEach(w=>{ if(gloss[w]!=null) glossObj[w]=gloss[w]; });
+  }
+  let entry=lib.find(l=>l.id===id);
+  if(entry && Array.isArray(entry.trans) && entry.trans.some(x=>x&&x.trim())){ return id; }  // aynı metin çevirili duruyor → ezme, sadece aç
+  if(entry){
+    entry.title=title; entry.text=text; entry.lang=entry.lang||'pl-PL';
+    entry.sents=sents.slice(); entry.counts=cnts.slice(); entry.trans=tr.slice();
+    entry.gloss=Object.assign({}, entry.gloss||{}, glossObj); entry.anchors={};
+  }else{
+    entry={ id, title, text, lang:'pl-PL', anchors:{}, sents:sents.slice(), counts:cnts.slice(), trans:tr.slice(), gloss:glossObj, ts:Date.now() };
+    lib.push(entry);
+  }
+  jset(LIB,lib);
+  return id;
+}
+function renderPullPicker(payload, host, allowHide){
+  host.innerHTML='';
+  const p=normalizePayload(payload);
+  if(!p){ host.innerHTML='<div class="pnote">Veri bulunamadı ya da tanınmayan biçim.</div>'; return; }
+  const hidden=allowHide?getHidden():new Set();
+  const visible=p.texts.filter(t=>!(allowHide && hidden.has(t.id)));
+  if(allowHide && hidden.size){
+    const bar=document.createElement('div'); bar.className='prestore';
+    const info=document.createElement('span'); info.textContent=hidden.size+' gizli';
+    const btn=document.createElement('button'); btn.className='plink'; btn.textContent='↩ Gizlenenleri geri getir';
+    btn.onclick=()=>{ setHidden(new Set()); renderPullPicker(payload, host, allowHide); };
+    bar.appendChild(info); bar.appendChild(btn); host.appendChild(bar);
+  }
+  if(!visible.length){ const d=document.createElement('div'); d.className='pnote'; d.textContent='Liste boş (hepsi gizlendi).'; host.appendChild(d); return; }
+  visible.forEach(t=>{
+    const row=document.createElement('div'); row.className='pullrow';
+    const head=document.createElement('div'); head.className='prhead';
+    const tt=document.createElement('div'); tt.className='pt'; tt.textContent=t.title||'(bez tytułu)';
+    const all=document.createElement('button'); all.className='btn primary pall'; all.textContent='Tümünü al';
+    all.onclick=()=>{ const id=importFromParagraf(t,p.gloss,null); if(id){ closePull(); renderLib(); openEntry(id); } };
+    head.appendChild(tt); head.appendChild(all);
+    if(allowHide){
+      const del=document.createElement('button'); del.className='pdel'; del.textContent='×'; del.title='Bu metni listeden gizle';
+      del.onclick=()=>{ const h=getHidden(); h.add(t.id); setHidden(h); renderPullPicker(payload, host, allowHide); };
+      head.appendChild(del);
+    }
+    row.appendChild(head);
+    const chips=document.createElement('div'); chips.className='pchips';
+    (t.paragraphs||[]).forEach((par,pi)=>{
+      const c=document.createElement('button'); c.className='pchip';
+      c.textContent='Akapit '+(pi+1)+' ('+(par?par.length:0)+' zd.)';
+      c.title=(par&&par[0]&&par[0].pl)?par[0].pl:'';
+      c.onclick=()=>{ const id=importFromParagraf(t,p.gloss,pi); if(id){ closePull(); renderLib(); openEntry(id); } };
+      chips.appendChild(c);
+    });
+    row.appendChild(chips); host.appendChild(row);
+  });
+}
+const pullOvl=document.getElementById('pullOvl');
+function openPull(){
+  const host=document.getElementById('pullBuiltin');
+  const cached=jget(PULL_CACHE_KEY,null);
+  if(cached && normalizePayload(cached)){ renderPullPicker(cached, host, false); setSrcStatus(cached.texts.length+' metin (kayıtlı). Değiştirmek için yeni dosya seç.'); }
+  else { host.innerHTML=''; setSrcStatus('Başlamak için “📁 HTML dosyası seç”e bas.'); }
+  document.getElementById('pullPaste').value='';
+  document.getElementById('pullPasteResult').innerHTML='';
+  pullOvl.classList.add('on');
+}
+function closePull(){ pullOvl.classList.remove('on'); }
+document.getElementById('pullBtn').onclick=openPull;
+document.getElementById('pullClose').onclick=closePull;
+var _pb=document.getElementById('pullBack'); if(_pb) _pb.onclick=closePull;
+function setSrcStatus(msg,kind){ const el=document.getElementById('pullStatus'); if(el){ el.textContent=msg||''; el.className='pnote'+(kind==='err'?' err':''); } }
+function loadFromText(text,label){
+  if(!text || !text.trim()){ setSrcStatus('Dosya boş görünüyor.','err'); return; }
+  const payload=parseSourceHtml(text);
+  if(!payload){ setSrcStatus('Bu dosyada pl-paragraf verisi (TEXTS/GLOSS) bulunamadı. Doğru dosyayı seçtin mi?','err'); return; }
+  jset(PULL_CACHE_KEY, payload);
+  renderPullPicker(payload, document.getElementById('pullBuiltin'), false);
+  setSrcStatus(payload.texts.length+' metin yüklendi'+(label?(' — '+label):'')+'. Aşağıdan seç.');
+}
+document.getElementById('pullPick').onclick=function(){ document.getElementById('pullFile').click(); };
+document.getElementById('pullFile').addEventListener('change',function(e){
+  const f=e.target.files&&e.target.files[0]; if(!f) return;
+  setSrcStatus('Dosya okunuyor…');
+  const r=new FileReader();
+  r.onload=function(){ loadFromText(String(r.result||''), f.name); };
+  r.onerror=function(){ setSrcStatus('Dosya okunamadı.','err'); };
+  r.readAsText(f);
+  e.target.value='';
+});
+pullOvl.addEventListener('click',e=>{ if(e.target===pullOvl) closePull(); });
+document.getElementById('pullLoad').onclick=()=>{
+  const raw=document.getElementById('pullPaste').value.trim();
+  const res=document.getElementById('pullPasteResult');
+  if(!raw){ res.innerHTML='<div class="pnote">Önce JSON yapıştır.</div>'; return; }
+  let obj=null; try{ obj=JSON.parse(raw); }catch(e){ res.innerHTML='<div class="pnote err">Geçersiz JSON.</div>'; return; }
+  if(!normalizePayload(obj)){ res.innerHTML='<div class="pnote err">Tanınmayan veri biçimi.</div>'; return; }
+  const np=normalizePayload(obj); jset(PULL_CACHE_KEY,{texts:np.texts,gloss:np.gloss});
+  renderPullPicker(obj, document.getElementById('pullBuiltin'), false);
+  setSrcStatus(np.texts.length+' metin (yapıştırıldı, kaydedildi).');
+};
+
+/* ---------- init ---------- */
+// Preloaded starter text (added once; if the user deletes it, it won't return).
+const SEED_TITLE='Moje zainteresowania — sztuczna inteligencja';
+const SEED_TEXT=[
+"Moim największym zainteresowaniem jest sztuczna inteligencja i pisanie aplikacji z jej pomocą. Bardzo lubię tworzyć nowe programy i poznawać nowe technologie. Praca z AI daje mi radość i dużo satysfakcji. Każdy nowy projekt jest dla mnie przygodą.",
+"Najczęściej pracuję nad aplikacjami wieczorem, kiedy mam dużo wolnego czasu. Lubię proste programy, dlatego chętnie piszę aplikacje na telefon albo małe strony internetowe. Uważam, że sztuczna inteligencja bardzo pomaga w nauce. Czasem jednak wybieram trudniejsze projekty, bo dzięki nim mogę się więcej nauczyć.",
+"Sztuczna inteligencja to nie tylko praca. Moim zdaniem to także dobra zabawa. Dzięki temu mogę szybciej rozwiązywać problemy i lepiej rozumieć technologię. Ważne dla mnie jest także rozmawianie z AI. Rozmowy te uczą mnie nowych rzeczy.",
+"W czasie pisania aplikacji zawsze próbuję nowych pomysłów. Czasem program działa bardzo dobrze, a czasem są błędy, ale zawsze jest ciekawie. Z drugiej strony praca z AI wymaga cierpliwości i uwagi.",
+"Podsumowując, sztuczna inteligencja jest dla mnie najlepszym hobby. Jednak najważniejsze jest to, że daje mi radość, wiedzę i nowe doświadczenia."
+].join("\n\n");
+// Turkish translations for the starter text, aligned 1:1 with its 18 sentences.
+const SEED_TRANS=[
+"En büyük ilgi alanım yapay zeka ve onun yardımıyla uygulama yazmaktır.",
+"Yeni programlar oluşturmayı ve yeni teknolojileri tanımayı çok severim.",
+"Yapay zeka ile çalışmak bana keyif ve çokça tatmin veriyor.",
+"Her yeni proje benim için bir maceradır.",
+"En çok akşamları, çokça boş vaktim olduğunda uygulamalar üzerinde çalışırım.",
+"Basit programları severim, bu yüzden seve seve telefon uygulamaları ya da küçük internet siteleri yazarım.",
+"Yapay zekanın öğrenmede çok yardımcı olduğunu düşünüyorum.",
+"Yine de bazen daha zor projeler seçerim, çünkü onlar sayesinde daha çok şey öğrenebilirim.",
+"Yapay zeka yalnızca iş demek değildir.",
+"Bence aynı zamanda güzel bir eğlencedir.",
+"Bu sayede sorunları daha hızlı çözebilir ve teknolojiyi daha iyi anlayabilirim.",
+"Yapay zeka ile sohbet etmek de benim için önemlidir.",
+"Bu sohbetler bana yeni şeyler öğretir.",
+"Uygulama yazarken her zaman yeni fikirler denerim.",
+"Bazen program çok iyi çalışır, bazen de hatalar olur, ama her zaman ilginçtir.",
+"Öte yandan yapay zeka ile çalışmak sabır ve dikkat gerektirir.",
+"Özetle, yapay zeka benim için en iyi hobidir.",
+"Ama en önemlisi, bana keyif, bilgi ve yeni deneyimler vermesidir."
+];
+// Polish → Turkish word glossary for the starter text.
+const SEED_GLOSS={
+"moim":"benim","największym":"en büyük","zainteresowaniem":"ilgi alanı","jest":"-dir (olmak)",
+"sztuczna":"yapay","inteligencja":"zeka","i":"ve","pisanie":"yazma (yazmak)","pisania":"yazma (w czasie pisania = yazma sırasında)",
+"aplikacji":"uygulama(nın)","z":"ile","jej":"onun","pomocą":"yardım (jej pomocą = onun yardımıyla)",
+"bardzo":"çok","lubię":"severim","tworzyć":"oluşturmak","nowe":"yeni","programy":"programlar",
+"poznawać":"tanımak, öğrenmek","technologie":"teknolojiler","praca":"iş, çalışma","ai":"yapay zeka (AI)",
+"daje":"verir","mi":"bana","radość":"keyif, sevinç","dużo":"çok, bolca","satysfakcji":"tatmin",
+"każdy":"her","nowy":"yeni","projekt":"proje","dla":"için","mnie":"beni, bana","przygodą":"macera",
+"najczęściej":"en sık","pracuję":"çalışırım","nad":"üzerinde","aplikacjami":"uygulamalar (üzerinde)",
+"wieczorem":"akşamları","kiedy":"-dığında, ne zaman","mam":"bende var (sahibim)","wolnego":"boş","czasu":"vakit, zaman",
+"proste":"basit","dlatego":"bu yüzden","chętnie":"seve seve, isteyerek","piszę":"yazarım",
+"aplikacje":"uygulamalar","na":"-e, için (na telefon = telefona)","telefon":"telefon","albo":"ya da","małe":"küçük",
+"strony":"siteler; sayfalar","internetowe":"internet (siteleri)","uważam":"düşünüyorum, sanıyorum",
+"że":"ki, -dığını","pomaga":"yardımcı olur","w":"-de, içinde","nauce":"öğrenme (w nauce = öğrenmede)","czasem":"bazen",
+"jednak":"yine de, ancak","wybieram":"seçerim","trudniejsze":"daha zor","projekty":"projeler",
+"bo":"çünkü","dzięki":"sayesinde","nim":"onlar (dzięki nim = onlar sayesinde)","mogę":"-ebilirim",
+"się":"(dönüşlü ek: kendi)","więcej":"daha çok","nauczyć":"öğrenmek","to":"bu, şu; -dir","nie":"değil, hayır","tylko":"sadece",
+"zdaniem":"görüş (moim zdaniem = bence)","także":"ayrıca, de","dobra":"iyi, güzel","zabawa":"eğlence",
+"temu":"bu (dzięki temu = bu sayede)","szybciej":"daha hızlı","rozwiązywać":"çözmek","problemy":"sorunlar",
+"lepiej":"daha iyi","rozumieć":"anlamak","technologię":"teknoloji","ważne":"önemli",
+"rozmawianie":"sohbet etme, konuşma","rozmowy":"sohbetler, konuşmalar","te":"bu, bunlar","uczą":"öğretir(ler)",
+"nowych":"yeni","rzeczy":"şeyler","czasie":"zaman (w czasie = sırasında)","zawsze":"her zaman","próbuję":"denerim",
+"pomysłów":"fikirler","program":"program","działa":"çalışır","dobrze":"iyi","a":"ve, ama","są":"-dırlar (var)",
+"błędy":"hatalar","ale":"ama","ciekawie":"ilginç (bir şekilde)","drugiej":"ikinci, diğer (z drugiej strony = öte yandan)",
+"wymaga":"gerektirir","cierpliwości":"sabır","uwagi":"dikkat","podsumowując":"özetle, özetleyerek",
+"najlepszym":"en iyi","hobby":"hobi","najważniejsze":"en önemlisi","wiedzę":"bilgi","doświadczenia":"deneyimler"
+};
+const sid=hash(SEED_TEXT);
+if(!jget('zap_seeded_v2',false)){
+  jset('zap_seeded_v2',true);
+  if(!lib.find(l=>l.id===sid)){ lib.push({id:sid,title:SEED_TITLE,text:SEED_TEXT,lang:'pl-PL',anchors:{},trans:SEED_TRANS.slice(),gloss:Object.assign({},SEED_GLOSS),ts:Date.now()}); jset(LIB,lib); }
+  jset(LAST,sid);
+}
+// Migration: if a previously seeded copy exists without translations, embed them now.
+(function(){
+  const e=lib.find(l=>l.id===sid); if(!e) return; let changed=false;
+  if(!Array.isArray(e.trans) || !e.trans.some(x=>x&&x.trim())){ e.trans=SEED_TRANS.slice(); changed=true; }
+  if(!e.gloss || !Object.keys(e.gloss).length){ e.gloss=Object.assign({},SEED_GLOSS); changed=true; }
+  if(changed) jset(LIB,lib);
+})();
+renderLib();
+const last=jget(LAST,null);
+if(last && lib.find(l=>l.id===last)) openEntry(last);
+</script>
+</body>
+</html>
