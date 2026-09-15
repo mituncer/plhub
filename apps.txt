@@ -10,7 +10,8 @@ Polonyaca harf harf fiil yazma / lehce-fiil-yazma.html / Polonyca çok kullanıl
 Polonyaca fiil hal egzersizi / polonca-hal-tasima-2.html / Polonyca isim-sıfat hallerini yerleştirme egzersizi
 Polonyaca kişi zamirleri egzersizi / zaimki_osobowe-4.html / Polonyaca kişi zamirlerini yazarak çalışma egzersizi
 Monolog egzersizleri / pl-cevirili-3.html / Monolog çalış ve ezberle
-Diyalog egzersizleri / pl_dialogi2608301.html / Diyalog çalış ve ezberle 
+Monolog köprüler / monolog-kopruler-2.html / Kolay monolog için her yere uyan parçalar 
+Diyalog egzersizleri / pl_dialogi5.html / Diyalog çalış ve ezberle 
 - Sınavlar -
 B1 Sınav gramer testi / B1Sınav_C_Gramer-trenernew.html / B1 Sertifika sınavı gramer test örnekleri
 B1 Sınavı örnekleri / B1_egzamin_certyfikatowy-2 / Komple B1 Sertifika sınavı örnekleri
