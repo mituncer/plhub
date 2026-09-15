@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Polonca Sıfat & Zarf Testi</title>
+<style>
+  :root{
+    --bg:#f4f7fb; --card:#ffffff; --ink:#1c2530; --muted:#64748b;
+    --brand:#1f4e79; --brand2:#3b7dc4; --ok:#15803d; --okbg:#dcfce7;
+    --bad:#b91c1c; --badbg:#fee2e2; --line:#e2e8f0; --gold:#b8860b;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.4;padding:8px}
+  .wrap{max-width:640px;margin:0 auto}
+  header{text-align:center;margin-bottom:6px}
+  h1{font-size:16px;margin:0;color:var(--brand);display:inline}
+  .sub{color:var(--muted);font-size:11px;display:inline;margin-left:6px}
+
+  .bar{display:flex;gap:8px;align-items:center;justify-content:space-between;
+    background:var(--card);border:1px solid var(--line);border-radius:11px;
+    padding:6px 12px;margin-bottom:7px;font-size:13px}
+  .bar b{color:var(--brand)}
+  .streak{color:var(--gold);font-weight:700}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:13px;
+    padding:11px 12px;box-shadow:0 4px 18px rgba(20,40,80,.05)}
+  .qtag{display:inline-block;font-size:10px;letter-spacing:.4px;text-transform:uppercase;
+    color:var(--brand2);font-weight:700;margin-bottom:5px}
+  .q{font-size:18px;font-weight:500;margin-bottom:9px}
+  .q .hl{display:block;color:var(--ink);background:#f1f6fc;border:1px solid #dbe7f5;
+    padding:8px 11px;border-radius:9px;font-weight:600;line-height:1.4}
+  .q .hl b{color:var(--brand);background:#fff;border:1px dashed var(--brand2);
+    padding:0 9px;border-radius:5px;letter-spacing:2px;font-weight:700}
+  .q .tr{display:block;margin-top:5px;color:var(--muted);font-size:12.5px;font-weight:400;font-style:italic;line-height:1.35}
+
+  .opts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .opt{padding:13px 10px;border:1.5px solid var(--line);border-radius:11px;
+    background:#fff;font-size:18px;font-weight:500;cursor:pointer;text-align:center;transition:.12s}
+  .opt:active{transform:scale(.99)}
+  .opt.correct{background:var(--okbg);border-color:var(--ok);color:var(--ok);font-weight:600}
+  .opt.wrong{background:var(--badbg);border-color:var(--bad);color:var(--bad);font-weight:600}
+  .opt.dim{opacity:.5}
+
+  .fb{margin-top:8px;font-size:13px;min-height:16px}
+  .fb.ok{color:var(--ok)} .fb.bad{color:var(--bad)}
+  .fb .ex{display:block;color:var(--ink);margin-top:4px;font-size:12px;line-height:1.35}
+  .fb .ex .full{color:var(--muted)}
+  .fb .ex .forms{display:block;margin-top:3px;color:var(--muted);font-size:11px}
+
+  .badge{display:inline-block;font-weight:800;padding:3px 10px;border-radius:8px;
+    font-size:13.5px;margin:1px 0 3px;letter-spacing:.2px}
+  .badge.adj{background:#e0edff;color:#1f4e79;border:1.5px solid #9cc0ea}
+  .badge.adv{background:#fff1dc;color:#9a5b00;border:1.5px solid #e5b877}
+
+  .next{margin-top:9px;width:100%;padding:11px;border:none;border-radius:11px;
+    background:var(--brand);color:#fff;font-size:15px;font-weight:600;cursor:pointer;
+    opacity:0;pointer-events:none;transition:.15s}
+  .next.show{opacity:1;pointer-events:auto}
+
+  footer{text-align:center;color:var(--muted);font-size:11px;margin-top:7px}
+  .reset{background:none;border:none;color:var(--brand2);cursor:pointer;font-size:12px;text-decoration:underline}
+
+  .progress{display:flex;gap:4px;justify-content:center;margin-bottom:8px}
+  .progress .dot{width:15px;height:7px;border-radius:5px;background:#dde5ef;transition:.2s}
+  .progress .dot.ok{background:var(--ok)}
+  .progress .dot.bad{background:var(--bad)}
+  .progress .dot.cur{background:var(--brand2);box-shadow:0 0 0 2px #bcd6f0}
+
+  .eval{text-align:center;padding:4px 2px}
+  .eval .score{font-size:38px;font-weight:800;color:var(--brand);line-height:1.05;margin:2px 0}
+  .eval .score small{font-size:18px;color:var(--muted);font-weight:600}
+  .eval .msg{font-size:15px;font-weight:600;margin:3px 0 8px}
+  .evalbar{height:10px;border-radius:8px;background:#e9eef5;overflow:hidden;margin:0 0 4px}
+  .evalbar>div{height:100%;background:linear-gradient(90deg,#3b7dc4,#1f4e79);width:0;transition:width .5s}
+  .evalpct{font-size:11.5px;color:var(--muted);margin-bottom:8px}
+  .review{text-align:left;margin-top:8px}
+  .review h4{margin:0 0 6px;font-size:13px;color:var(--ink)}
+  .review .item{font-size:12px;background:#f8fafc;border:1px solid var(--line);
+    border-left:3px solid var(--bad);border-radius:8px;padding:6px 9px;margin-bottom:5px;line-height:1.4}
+  .review .item .w{font-weight:700;color:var(--brand)}
+  .review .item .tag{font-size:10.5px;font-weight:700;padding:1px 6px;border-radius:6px;margin-left:4px}
+  .review .item .tag.adj{background:#e0edff;color:#1f4e79}
+  .review .item .tag.adv{background:#fff1dc;color:#9a5b00}
+  .review .item .s{display:block;color:var(--muted);margin-top:2px}
+  .eval .allok{background:#dcfce7;border:1px solid #86efac;color:#15803d;
+    border-radius:10px;padding:10px;font-weight:600;margin-top:6px}
+  .cont{margin-top:10px;width:100%;padding:12px;border:none;border-radius:11px;
+    background:var(--ok);color:#fff;font-size:15px;font-weight:700;cursor:pointer}
+  .again{margin-top:6px;background:none;border:none;color:var(--brand2);
+    text-decoration:underline;cursor:pointer;font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Polonca Sıfat &amp; Zarf Testi</h1>
+    <div class="sub">Cümledeki boşluğa hangi biçim gelir? · B1</div>
+  </header>
+
+  <div class="bar">
+    <span>Soru: <b id="qnum">1</b></span>
+    <span>Doğru: <b id="score">0</b> / <span id="total">0</span></span>
+    <span class="streak" id="streak">🔥 0</span>
+  </div>
+
+  <div class="card">
+    <div class="qtag">Boşluğa hangi biçim gelmeli?</div>
+    <div class="progress" id="progress"></div>
+    <div id="quiz">
+      <div class="q" id="question"></div>
+      <div class="opts" id="opts"></div>
+      <div class="fb" id="fb"></div>
+      <button class="next" id="next">Sonraki soru →</button>
+    </div>
+    <div id="eval" class="eval" style="display:none"></div>
+  </div>
+
+  <footer>
+    <div><b id="poolsize">0</b> farklı cümle · eril / dişil / nötr / zarf ayrımı · karışık sırayla</div>
+    <button class="reset" id="reset">Sıfırla</button>
+  </footer>
+</div>
+
+<script>
+/* ---------- VERİ: her kelime 4 biçim (eril m / dişil f / nötr n / zarf adv) + cümleler ---------- */
+const DATA = [
+  {m:"nowy", f:"nowa", n:"nowe", adv:"nowo", sents:[
+    {form:"m", pl:"Mój sąsiad kupił {x} samochód, który wygląda naprawdę imponująco.", tr:"Komşum, gerçekten etkileyici görünen YENİ bir araba aldı."},
+    {form:"f", pl:"W naszej dzielnicy powstała {x} szkoła, do której chodzi mój syn.", tr:"Mahallemizde, oğlumun gittiği YENİ bir okul açıldı."},
+    {form:"n", pl:"Rodzice kupili {x} mieszkanie, które ma trzy duże pokoje.", tr:"Ailem, üç büyük odası olan YENİ bir daire aldı."},
+    {form:"adv", pl:"Po remoncie kuchnia wygląda zupełnie {x}, chociaż meble są te same.", tr:"Tadilattan sonra mutfak, mobilyalar aynı olsa da tamamen YENİ görünüyor."},
+    {form:"m", pl:"Dostałem {x} telefon, ponieważ stary przestał się włączać.", tr:"Eskisi açılmayı bıraktığı için YENİ bir telefon aldım."},
+    {form:"n", pl:"To urządzenie jest {x} i działa znacznie ciszej niż poprzednie.", tr:"Bu cihaz YENİ ve öncekinden çok daha sessiz çalışıyor."},
+  ]},
+  {m:"stary", f:"stara", n:"stare", adv:"staro", sents:[
+    {form:"m", pl:"W piwnicy stoi {x} rower, którego już nikt nie używa.", tr:"Bodrumda, artık kimsenin kullanmadığı ESKİ bir bisiklet duruyor."},
+    {form:"f", pl:"Na półce leży {x} książka, którą dostałem od dziadka.", tr:"Rafta, dedemden aldığım ESKİ bir kitap duruyor."},
+    {form:"n", pl:"Kupiliśmy {x} auto, ponieważ nie mieliśmy dużo pieniędzy.", tr:"Çok paramız olmadığı için ESKİ bir araba aldık."},
+    {form:"adv", pl:"Ten aktor jest tak charakteryzowany, że na scenie zawsze wygląda {x}.", tr:"Bu oyuncu öyle makyajlanıyor ki sahnede hep YAŞLI görünüyor."},
+    {form:"m", pl:"Nasz {x} komputer działa bardzo wolno i często się zawiesza.", tr:"ESKİ bilgisayarımız çok yavaş çalışıyor ve sık sık donuyor."},
+    {form:"f", pl:"To bardzo {x} tradycja, którą znają wszyscy w naszym regionie.", tr:"Bu, bölgemizde herkesin bildiği çok ESKİ bir gelenek."},
+  ]},
+  {m:"szybki", f:"szybka", n:"szybkie", adv:"szybko", sents:[
+    {form:"m", pl:"Kupiłem {x} komputer, żeby montować filmy bez żadnych problemów.", tr:"Sorunsuz video düzenleyebilmek için HIZLI bir bilgisayar aldım."},
+    {form:"f", pl:"To była {x} decyzja, której teraz trochę żałuję.", tr:"Bu, şimdi biraz pişman olduğum HIZLI (aceleci) bir karardı."},
+    {form:"n", pl:"Nowe łącze internetowe jest naprawdę {x}, więc strony ładują się od razu.", tr:"Yeni internet bağlantısı gerçekten HIZLI, bu yüzden sayfalar hemen yükleniyor."},
+    {form:"adv", pl:"Musimy działać {x}, ponieważ zostało nam bardzo mało czasu.", tr:"HIZLI hareket etmeliyiz, çünkü çok az zamanımız kaldı."},
+    {form:"adv", pl:"On zawsze mówi tak {x}, że trudno cokolwiek zrozumieć.", tr:"O her zaman o kadar HIZLI konuşuyor ki bir şey anlamak zor."},
+    {form:"m", pl:"Potrzebujemy {x} transport, żeby zdążyć na lotnisko przed odlotem.", tr:"Uçuştan önce havaalanına yetişmek için HIZLI bir ulaşım lazım."},
+  ]},
+  {m:"wolny", f:"wolna", n:"wolne", adv:"wolno", sents:[
+    {form:"m", pl:"Ten pociąg jest bardzo {x} i zatrzymuje się na każdej stacji.", tr:"Bu tren çok YAVAŞ ve her istasyonda duruyor."},
+    {form:"f", pl:"Obsługa w tej restauracji jest {x}, dlatego czekaliśmy prawie godzinę.", tr:"Bu restoranda servis YAVAŞ, bu yüzden neredeyse bir saat bekledik."},
+    {form:"n", pl:"Moje łącze jest dzisiaj {x}, więc nie mogę obejrzeć filmu.", tr:"Bağlantım bugün YAVAŞ, bu yüzden film izleyemiyorum."},
+    {form:"adv", pl:"Proszę mówić {x}, ponieważ dopiero uczę się polskiego.", tr:"Lütfen YAVAŞ konuşun, çünkü daha yeni Lehçe öğreniyorum."},
+    {form:"adv", pl:"Na tej drodze trzeba jechać {x}, żeby nie przegapić zjazdu.", tr:"Bu yolda çıkışı kaçırmamak için YAVAŞ sürmek gerekir."},
+    {form:"m", pl:"Wybraliśmy {x} tryb prania, ponieważ nasze ubrania są delikatne.", tr:"Kıyafetlerimiz hassas olduğu için YAVAŞ yıkama modunu seçtik."},
+  ]},
+  {m:"dobry", f:"dobra", n:"dobre", adv:"dobrze", sents:[
+    {form:"m", pl:"Znam pewien {x} sklep, w którym można kupić świeże warzywa.", tr:"Taze sebze alınabilen İYİ bir dükkân biliyorum."},
+    {form:"f", pl:"To jest naprawdę {x} okazja, żeby nauczyć się czegoś nowego.", tr:"Bu, yeni bir şey öğrenmek için gerçekten İYİ bir fırsat."},
+    {form:"n", pl:"Wczoraj obejrzeliśmy {x} przedstawienie w teatrze miejskim.", tr:"Dün şehir tiyatrosunda İYİ bir oyun izledik."},
+    {form:"adv", pl:"Po urlopie czuję się {x}, dlatego mam ochotę wrócić do pracy.", tr:"İzinden sonra kendimi İYİ hissediyorum, bu yüzden işe dönmek istiyorum."},
+    {form:"adv", pl:"On mówi po angielsku bardzo {x}, chociaż nigdy nie był za granicą.", tr:"Hiç yurt dışında bulunmamasına rağmen çok İYİ İngilizce konuşuyor."},
+    {form:"m", pl:"Mój brat to {x} kierowca, który nigdy nie miał wypadku.", tr:"Kardeşim, hiç kaza yapmamış İYİ bir sürücü."},
+  ]},
+  {m:"zły", f:"zła", n:"złe", adv:"źle", sents:[
+    {form:"m", pl:"To był {x} pomysł, ponieważ nikt nie chciał w tym uczestniczyć.", tr:"Bu KÖTÜ bir fikirdi, çünkü kimse buna katılmak istemedi."},
+    {form:"f", pl:"Dzisiaj jest {x} pogoda, dlatego zostaniemy w domu do wieczora.", tr:"Bugün hava KÖTÜ, bu yüzden akşama kadar evde kalacağız."},
+    {form:"n", pl:"To było {x} przedstawienie, więc wyszliśmy jeszcze przed końcem.", tr:"Bu KÖTÜ bir gösteriydi, bu yüzden daha bitmeden çıktık."},
+    {form:"adv", pl:"Ostatnio śpię bardzo {x}, dlatego jestem ciągle zmęczony.", tr:"Son zamanlarda çok KÖTÜ uyuyorum, bu yüzden sürekli yorgunum."},
+    {form:"adv", pl:"Ten uczeń napisał test {x}, ponieważ w ogóle się nie uczył.", tr:"Bu öğrenci hiç çalışmadığı için testi KÖTÜ yaptı."},
+    {form:"m", pl:"Mieliśmy naprawdę {x} dzień, bo wszystko szło nie po naszej myśli.", tr:"Her şey istediğimiz gibi gitmediği için gerçekten KÖTÜ bir gün geçirdik."},
+  ]},
+  {m:"czysty", f:"czysta", n:"czyste", adv:"czysto", sents:[
+    {form:"m", pl:"Po sprzątaniu cały korytarz był {x} i pachniał świeżością.", tr:"Temizlikten sonra bütün koridor TEMİZDİ ve tazelik kokuyordu."},
+    {form:"f", pl:"W dzbanku jest {x} woda, którą przefiltrowałem dzisiaj rano.", tr:"Sürahide, bu sabah süzdüğüm TEMİZ su var."},
+    {form:"n", pl:"Dziecko włożyło {x} ubranie, zanim poszło do szkoły.", tr:"Çocuk okula gitmeden önce TEMİZ giysi giydi."},
+    {form:"adv", pl:"Ona zawsze gotuje bardzo {x}, dlatego w kuchni nie ma bałaganu.", tr:"O her zaman çok TEMİZ (bir şekilde) yemek yapar, bu yüzden mutfakta dağınıklık olmaz."},
+    {form:"m", pl:"Ten ręcznik jest {x}, więc możesz go spokojnie użyć.", tr:"Bu havlu TEMİZ, yani gönül rahatlığıyla kullanabilirsin."},
+    {form:"adv", pl:"W tym szpitalu jest bardzo {x}, dlatego pacjenci czują się dobrze.", tr:"Bu hastanede çok TEMİZ, bu yüzden hastalar kendini iyi hissediyor."},
+  ]},
+  {m:"ciepły", f:"ciepła", n:"ciepłe", adv:"ciepło", sents:[
+    {form:"m", pl:"Włożyłem {x} sweter, ponieważ na dworze mocno wiał wiatr.", tr:"Dışarıda rüzgâr sert estiği için SICAK bir kazak giydim."},
+    {form:"f", pl:"Ta herbata jest jeszcze {x}, więc uważaj, żeby się nie poparzyć.", tr:"Bu çay hâlâ SICAK, bu yüzden yanmamaya dikkat et."},
+    {form:"n", pl:"Zjedliśmy {x} śniadanie, zanim wyruszyliśmy w długą podróż.", tr:"Uzun bir yolculuğa çıkmadan önce SICAK bir kahvaltı yedik."},
+    {form:"adv", pl:"Zimą trzeba ubierać się {x}, żeby nie zachorować podczas mrozów.", tr:"Kışın ayazda hastalanmamak için SICAK giyinmek gerekir."},
+    {form:"m", pl:"Wczoraj był wyjątkowo {x} wieczór, więc długo siedzieliśmy na tarasie.", tr:"Dün olağanüstü SICAK bir akşamdı, bu yüzden terasta uzun süre oturduk."},
+    {form:"adv", pl:"Dziś na dworze jest {x}, dlatego dzieci bawią się w parku.", tr:"Bugün dışarısı SICAK, bu yüzden çocuklar parkta oynuyor."},
+  ]},
+  {m:"zimny", f:"zimna", n:"zimne", adv:"zimno", sents:[
+    {form:"m", pl:"Ten prysznic jest zbyt {x}, dlatego nie chcę pod nim stać.", tr:"Bu duş fazla SOĞUK, bu yüzden altında durmak istemiyorum."},
+    {form:"f", pl:"Ta zupa jest już {x}, więc poproszę kelnera o nową.", tr:"Bu çorba artık SOĞUK, o yüzden garsondan yenisini rica edeceğim."},
+    {form:"n", pl:"To mleko jest za {x}, żeby dać je małemu dziecku.", tr:"Bu süt, küçük bir çocuğa vermek için fazla SOĞUK."},
+    {form:"adv", pl:"Wczoraj wieczorem było bardzo {x}, więc szybko wróciliśmy do domu.", tr:"Dün akşam çok SOĞUKTU, bu yüzden çabucak eve döndük."},
+    {form:"m", pl:"Wiał {x} wiatr, który przenikał nawet przez grubą kurtkę.", tr:"Kalın montu bile delip geçen SOĞUK bir rüzgâr esiyordu."},
+    {form:"adv", pl:"Zrobiło się {x}, dlatego założyłem czapkę oraz rękawiczki.", tr:"Hava SOĞUDU, bu yüzden bere ve eldiven taktım."},
+  ]},
+  {m:"jasny", f:"jasna", n:"jasne", adv:"jasno", sents:[
+    {form:"m", pl:"Wybraliśmy {x} kolor ścian, żeby pokój wydawał się większy.", tr:"Oda daha büyük görünsün diye AÇIK bir duvar rengi seçtik."},
+    {form:"f", pl:"To bardzo {x} sala, w której łatwo się uczyć nawet wieczorem.", tr:"Bu, akşam bile kolayca ders çalışılabilen çok AYDINLIK bir salon."},
+    {form:"n", pl:"Nasze biuro jest {x}, ponieważ ma bardzo duże okna.", tr:"Ofisimiz, çok büyük pencereleri olduğu için AYDINLIK."},
+    {form:"adv", pl:"W tym pokoju jest bardzo {x}, dlatego nie potrzebuję lampy.", tr:"Bu odada çok AYDINLIK, bu yüzden lambaya ihtiyacım yok."},
+    {form:"adv", pl:"Nowa żarówka świeci tak {x}, że widać każdy najmniejszy szczegół.", tr:"Yeni ampul o kadar AYDINLIK ışık veriyor ki en küçük ayrıntı bile görünüyor."},
+    {form:"m", pl:"Miała na sobie {x} płaszcz, który łatwo było zauważyć w tłumie.", tr:"Üzerinde, kalabalıkta kolayca fark edilen AÇIK renk bir palto vardı."},
+  ]},
+  {m:"ciekawy", f:"ciekawa", n:"ciekawe", adv:"ciekawie", sents:[
+    {form:"m", pl:"Przeczytałem {x} artykuł o historii starożytnego Rzymu.", tr:"Antik Roma tarihi hakkında İLGİNÇ bir makale okudum."},
+    {form:"f", pl:"To jest {x} propozycja, nad którą musimy się dobrze zastanowić.", tr:"Bu, üzerinde iyice düşünmemiz gereken İLGİNÇ bir teklif."},
+    {form:"n", pl:"Zwiedziliśmy {x} muzeum, w którym spędziliśmy kilka godzin.", tr:"Birkaç saat geçirdiğimiz İLGİNÇ bir müze gezdik."},
+    {form:"adv", pl:"Przewodnik opowiadał o zamku tak {x}, że nikt się nie nudził.", tr:"Rehber kaleyi o kadar İLGİNÇ anlattı ki kimse sıkılmadı."},
+    {form:"m", pl:"Ten wykład był naprawdę {x}, więc wiele się z niego nauczyłem.", tr:"Bu ders gerçekten İLGİNÇTİ, bu yüzden ondan çok şey öğrendim."},
+    {form:"adv", pl:"Ona zawsze pisze bardzo {x}, dlatego jej blog czyta wiele osób.", tr:"O her zaman çok İLGİNÇ yazıyor, bu yüzden blogunu çok kişi okuyor."},
+  ]},
+  {m:"drogi", f:"droga", n:"drogie", adv:"drogo", sents:[
+    {form:"m", pl:"Ten zegarek jest zbyt {x}, żebym mógł go teraz kupić.", tr:"Bu saat, şu an alabilmem için fazla PAHALI."},
+    {form:"f", pl:"Ta restauracja jest dość {x}, dlatego chodzimy tam tylko od święta.", tr:"Bu restoran oldukça PAHALI, o yüzden oraya sadece özel günlerde gideriz."},
+    {form:"n", pl:"Kupili {x} mieszkanie w centrum, chociaż mają niewielkie dochody.", tr:"Az gelirleri olmasına rağmen merkezde PAHALI bir daire aldılar."},
+    {form:"adv", pl:"W tym sklepie wszystko kosztuje {x}, więc rzadko tam robię zakupy.", tr:"Bu dükkânda her şey PAHALIYA mal oluyor, o yüzden orada nadiren alışveriş yaparım."},
+    {form:"m", pl:"To był bardzo {x} bilet, ale koncert naprawdę był tego wart.", tr:"Bu çok PAHALI bir biletti ama konser gerçekten buna değdi."},
+    {form:"adv", pl:"Naprawa samochodu wyszła {x}, dlatego musiałem wziąć pożyczkę.", tr:"Arabanın tamiri PAHALIYA çıktı, bu yüzden kredi çekmek zorunda kaldım."},
+  ]},
+  {m:"mądry", f:"mądra", n:"mądre", adv:"mądrze", sents:[
+    {form:"m", pl:"Nasz dziadek to {x} człowiek, który zawsze służy dobrą radą.", tr:"Dedemiz, her zaman iyi bir tavsiye veren AKILLI bir insan."},
+    {form:"f", pl:"To była {x} decyzja, dzięki której uniknęliśmy wielu problemów.", tr:"Bu, sayesinde birçok sorundan kurtulduğumuz AKILLICA bir karardı."},
+    {form:"n", pl:"Powiedział jedno {x} zdanie, które wszyscy zapamiętali na długo.", tr:"Herkesin uzun süre aklında kalan AKILLICA bir cümle söyledi."},
+    {form:"adv", pl:"Ona zawsze postępuje {x}, dlatego ludzie proszą ją o radę.", tr:"O her zaman AKILLICA davranır, bu yüzden insanlar ona akıl danışır."},
+    {form:"m", pl:"Mój starszy brat jest bardzo {x} i skończył studia z wyróżnieniem.", tr:"Ağabeyim çok AKILLI ve üniversiteyi dereceyle bitirdi."},
+    {form:"adv", pl:"Musimy zainwestować nasze oszczędności {x}, żeby nie stracić pieniędzy.", tr:"Para kaybetmemek için birikimlerimizi AKILLICA yatırmalıyız."},
+  ]},
+  {m:"miły", f:"miła", n:"miłe", adv:"miło", sents:[
+    {form:"m", pl:"Nasz nowy sąsiad jest bardzo {x} i zawsze pomaga starszym osobom.", tr:"Yeni komşumuz çok NAZİK ve hep yaşlılara yardım ediyor."},
+    {form:"f", pl:"To była naprawdę {x} niespodzianka, której zupełnie się nie spodziewałem.", tr:"Bu, hiç beklemediğim gerçekten HOŞ bir sürprizdi."},
+    {form:"n", pl:"Spędziliśmy razem {x} popołudnie, grając w gry planszowe.", tr:"Kutu oyunları oynayarak birlikte HOŞ bir öğleden sonra geçirdik."},
+    {form:"adv", pl:"Bardzo {x} się z tobą rozmawia, dlatego czas mija tak szybko.", tr:"Seninle konuşmak çok HOŞ, bu yüzden zaman böyle çabuk geçiyor."},
+    {form:"m", pl:"Kelner był tak {x}, że zostawiliśmy mu naprawdę duży napiwek.", tr:"Garson o kadar NAZİKTİ ki ona gerçekten büyük bir bahşiş bıraktık."},
+    {form:"adv", pl:"Było mi bardzo {x}, kiedy podziękowałeś mi przed całą grupą.", tr:"Bütün grubun önünde bana teşekkür ettiğinde çok HOŞUMA gitti."},
+  ]},
+  {m:"bezpieczny", f:"bezpieczna", n:"bezpieczne", adv:"bezpiecznie", sents:[
+    {form:"m", pl:"Ten most jest w pełni {x}, mimo że wygląda na bardzo stary.", tr:"Bu köprü çok eski görünse de tamamen GÜVENLİ."},
+    {form:"f", pl:"Ta okolica jest {x}, dlatego rodziny chętnie się tu wprowadzają.", tr:"Bu bölge GÜVENLİ, bu yüzden aileler buraya seve seve taşınıyor."},
+    {form:"n", pl:"To miejsce jest {x}, więc dzieci mogą bawić się tu bez obaw.", tr:"Burası GÜVENLİ, bu yüzden çocuklar burada endişesiz oynayabilir."},
+    {form:"m", pl:"Kupiłem {x} fotelik dla dziecka, który spełnia wszystkie normy.", tr:"Tüm standartları karşılayan GÜVENLİ bir çocuk koltuğu aldım."},
+    {form:"f", pl:"Nasza szkoła jest {x}, ponieważ przy wejściu zawsze stoi ochroniarz.", tr:"Okulumuz GÜVENLİ, çünkü girişte hep bir güvenlikçi duruyor."},
+    {form:"n", pl:"Nowe przejście dla pieszych jest {x}, bo ma wyraźne oznakowanie.", tr:"Yeni yaya geçidi GÜVENLİ, çünkü belirgin işaretlemesi var."},
+  ]},
+  {m:"spokojny", f:"spokojna", n:"spokojne", adv:"spokojnie", sents:[
+    {form:"m", pl:"Wybraliśmy {x} hotel z dala od hałaśliwego centrum miasta.", tr:"Şehrin gürültülü merkezinden uzakta SAKİN bir otel seçtik."},
+    {form:"f", pl:"To bardzo {x} okolica, w której prawie nie słychać samochodów.", tr:"Bu, neredeyse araba sesi duyulmayan çok SAKİN bir bölge."},
+    {form:"n", pl:"Jezioro było tego ranka zupełnie {x}, bez najmniejszej fali.", tr:"Göl o sabah, en ufak dalga olmadan tamamen SAKİNDİ."},
+    {form:"adv", pl:"Proszę, usiądź i wytłumacz mi wszystko {x}, bez pośpiechu.", tr:"Lütfen otur ve her şeyi acele etmeden SAKİNCE anlat."},
+    {form:"m", pl:"Mój dziadek to {x} człowiek, którego trudno czymkolwiek zdenerwować.", tr:"Dedem, herhangi bir şeyle sinirlendirmesi zor SAKİN bir insan."},
+    {form:"adv", pl:"Dzieci w końcu zasnęły, więc mogliśmy {x} dokończyć rozmowę.", tr:"Çocuklar sonunda uyudu, böylece konuşmayı SAKİNCE bitirebildik."},
+  ]},
+  {m:"głośny", f:"głośna", n:"głośne", adv:"głośno", sents:[
+    {form:"m", pl:"Za oknem był {x} koncert, dlatego długo nie mogłem zasnąć.", tr:"Pencerenin dışında GÜRÜLTÜLÜ bir konser vardı, bu yüzden uzun süre uyuyamadım."},
+    {form:"f", pl:"To była zbyt {x} impreza, więc sąsiedzi wezwali policję.", tr:"Bu fazla GÜRÜLTÜLÜ bir partiydi, bu yüzden komşular polis çağırdı."},
+    {form:"n", pl:"To urządzenie jest {x}, dlatego wolę używać go w ciągu dnia.", tr:"Bu cihaz GÜRÜLTÜLÜ, bu yüzden onu gündüz kullanmayı tercih ederim."},
+    {form:"adv", pl:"On zawsze mówi bardzo {x}, jakby wszyscy wokół byli głusi.", tr:"O her zaman, çevredeki herkes sağırmış gibi çok YÜKSEK SESLE konuşur."},
+    {form:"adv", pl:"W tej kawiarni jest zbyt {x}, żeby spokojnie porozmawiać.", tr:"Bu kafede rahatça konuşmak için fazla GÜRÜLTÜLÜ."},
+    {form:"m", pl:"Usłyszeliśmy {x} huk, który dochodził z sąsiedniego pokoju.", tr:"Yan odadan gelen YÜKSEK (sesli) bir gümbürtü duyduk."},
+  ]},
+  {m:"cichy", f:"cicha", n:"ciche", adv:"cicho", sents:[
+    {form:"m", pl:"Znaleźliśmy {x} zakątek w parku, gdzie można spokojnie poczytać.", tr:"Parkta, rahatça kitap okunabilecek SESSİZ bir köşe bulduk."},
+    {form:"f", pl:"To bardzo {x} ulica, na której prawie nie ma ruchu.", tr:"Bu, neredeyse hiç trafik olmayan çok SESSİZ bir sokak."},
+    {form:"n", pl:"Wybraliśmy {x} miejsce z tyłu sali, żeby nikomu nie przeszkadzać.", tr:"Kimseyi rahatsız etmemek için salonun arkasında SESSİZ bir yer seçtik."},
+    {form:"adv", pl:"Mów {x}, ponieważ dziecko właśnie zasnęło w sąsiednim pokoju.", tr:"SESSİZCE konuş, çünkü çocuk az önce yan odada uyudu."},
+    {form:"adv", pl:"Wieczorem w naszej dzielnicy jest bardzo {x} i przyjemnie.", tr:"Akşamları mahallemizde çok SESSİZ ve huzurlu oluyor."},
+    {form:"m", pl:"Mój kolega jest {x} i rzadko zabiera głos na spotkaniach.", tr:"Arkadaşım SESSİZ biri ve toplantılarda nadiren söz alır."},
+  ]},
+
+  {m:"luźny", f:"luźna", n:"luźne", adv:"luźno", sents:[
+    {form:"m", pl:"Wolę {x} sweter, w którym mogę swobodnie poruszać ramionami.", tr:"İçinde omuzlarımı rahatça oynatabildiğim BOL bir kazağı tercih ederim."},
+    {form:"f", pl:"To bardzo {x} sukienka, dlatego jest wygodna nawet w upalny dzień.", tr:"Bu çok BOL bir elbise, bu yüzden sıcak bir günde bile rahat."},
+    {form:"n", pl:"To ubranie jest zbyt {x}, więc wygląda na tobie trochę niechlujnie.", tr:"Bu giysi fazla BOL, bu yüzden üzerinde biraz özensiz duruyor."},
+    {form:"adv", pl:"Ta koszula leży na tobie {x}, dlatego możesz w niej wygodnie pracować.", tr:"Bu gömlek üzerine BOL (gevşek) oturuyor, bu yüzden içinde rahatça çalışabilirsin."},
+    {form:"m", pl:"Panuje tu {x} nastrój, dlatego wszyscy czują się bardzo swobodnie.", tr:"Burada GEVŞEK/rahat bir hava hâkim, bu yüzden herkes kendini serbest hissediyor."},
+    {form:"adv", pl:"Zawiązałem szalik {x}, żeby nie było mi za gorąco podczas spaceru.", tr:"Yürüyüş sırasında fazla sıcak olmasın diye atkıyı GEVŞEK bağladım."},
+  ]},
+  {m:"obcisły", f:"obcisła", n:"obcisłe", adv:"obciśle", sents:[
+    {form:"m", pl:"Ten sweter jest za {x}, dlatego trudno mi w nim swobodnie oddychać.", tr:"Bu kazak fazla DAR, bu yüzden içinde rahatça nefes almakta zorlanıyorum."},
+    {form:"f", pl:"Ta bluzka jest zbyt {x}, więc chyba zwrócę ją do sklepu.", tr:"Bu bluz fazla DAR, o yüzden galiba onu mağazaya iade edeceğim."},
+    {form:"n", pl:"To ubranie jest bardzo {x}, dlatego nie jest wygodne na co dzień.", tr:"Bu giysi çok DAR, bu yüzden günlük kullanım için rahat değil."},
+    {form:"adv", pl:"Ta koszulka leży na nim tak {x}, że widać każdy mięsień.", tr:"Bu tişört üzerine o kadar DAR oturuyor ki her kas görünüyor."},
+    {form:"m", pl:"Ten kostium kąpielowy jest {x}, ale bardzo dobrze się w nim pływa.", tr:"Bu mayo DAR (vücuda oturan) ama içinde çok iyi yüzülüyor."},
+    {form:"n", pl:"Takie {x} ubranie zupełnie nie pasuje na oficjalne spotkanie.", tr:"Böyle DAR bir giysi resmi bir toplantıya hiç uygun değil."},
+  ]},
+  {m:"cienki", f:"cienka", n:"cienkie", adv:"cienko", sents:[
+    {form:"m", pl:"Ten lód na jeziorze jest bardzo {x}, więc nie wolno po nim chodzić.", tr:"Göldeki bu buz çok İNCE, bu yüzden üzerinde yürümek yasak."},
+    {form:"f", pl:"To bardzo {x} kartka, dlatego łatwo przebić ją długopisem.", tr:"Bu çok İNCE bir kâğıt, bu yüzden tükenmezle kolayca delinir."},
+    {form:"n", pl:"Kupiłem {x} etui, które prawie nie zwiększa grubości telefonu.", tr:"Telefonun kalınlığını neredeyse artırmayan İNCE bir kılıf aldım."},
+    {form:"adv", pl:"Pokrój chleb {x}, ponieważ robimy delikatne kanapki na przyjęcie.", tr:"Ekmeği İNCE dilimle, çünkü davet için hafif sandviçler yapıyoruz."},
+    {form:"m", pl:"Miałem na sobie tylko {x} sweter, dlatego szybko zmarzłem na dworze.", tr:"Üzerimde sadece İNCE bir kazak vardı, bu yüzden dışarıda çabuk üşüdüm."},
+    {form:"adv", pl:"Ona zawsze kroi wędlinę bardzo {x}, żeby starczyło dla wszystkich.", tr:"O, herkese yetsin diye şarküteriyi hep çok İNCE keser."},
+  ]},
+  {m:"gruby", f:"gruba", n:"grube", adv:"grubo", sents:[
+    {form:"m", pl:"Zimą noszę {x} szalik, który dobrze chroni mnie przed mrozem.", tr:"Kışın, beni ayaza karşı iyi koruyan KALIN bir atkı takarım."},
+    {form:"f", pl:"To {x} książka, którą będę czytał przez cały miesiąc.", tr:"Bu, bütün ay boyunca okuyacağım KALIN bir kitap."},
+    {form:"n", pl:"Na łóżku leży {x} koc, pod którym jest naprawdę ciepło.", tr:"Yatakta, altında gerçekten sıcak olan KALIN bir battaniye duruyor."},
+    {form:"adv", pl:"Posmaruj chleb {x} masłem, ponieważ dzieci są bardzo głodne.", tr:"Ekmeğe KALIN (bolca) tereyağı sür, çünkü çocuklar çok aç."},
+    {form:"m", pl:"Ten mur jest tak {x}, że nie słychać przez niego żadnych dźwięków.", tr:"Bu duvar o kadar KALIN ki içinden hiçbir ses duyulmuyor."},
+    {form:"n", pl:"Wybrałem {x} drewno, ponieważ ma być podstawą całej konstrukcji.", tr:"Bütün yapının temeli olacağı için KALIN bir kereste seçtim."},
+  ]},
+  {m:"lekki", f:"lekka", n:"lekkie", adv:"lekko", sents:[
+    {form:"m", pl:"Ten plecak jest bardzo {x}, dlatego wygodnie nosi się go cały dzień.", tr:"Bu sırt çantası çok HAFİF, bu yüzden bütün gün rahatça taşınıyor."},
+    {form:"f", pl:"To {x} kurtka, idealna na chłodne wiosenne wieczory.", tr:"Bu, serin bahar akşamları için ideal HAFİF bir ceket."},
+    {form:"n", pl:"Zamówiłem {x} danie, ponieważ nie chciałem jeść dużo przed snem.", tr:"Uyumadan önce çok yemek istemediğim için HAFİF bir yemek söyledim."},
+    {form:"adv", pl:"Dotknij ekranu {x}, ponieważ inaczej możesz go łatwo uszkodzić.", tr:"Ekrana HAFİFÇE dokun, çünkü yoksa ona kolayca zarar verebilirsin."},
+    {form:"m", pl:"Wiał {x} wiatr, który przyjemnie chłodził nas w upalny dzień.", tr:"Sıcak bir günde bizi hoşça serinleten HAFİF bir rüzgâr esiyordu."},
+    {form:"adv", pl:"Uderzył {x} w stół, żeby zwrócić na siebie uwagę gości.", tr:"Misafirlerin dikkatini çekmek için masaya HAFİFÇE vurdu."},
+  ]},
+  {m:"ciężki", f:"ciężka", n:"ciężkie", adv:"ciężko", sents:[
+    {form:"m", pl:"Ten karton jest zbyt {x}, żebym mógł podnieść go zupełnie sam.", tr:"Bu koli, tamamen tek başıma kaldırabilmem için fazla AĞIR."},
+    {form:"f", pl:"To była {x} praca, po której bardzo bolały mnie plecy.", tr:"Bu, ardından sırtımın çok ağrıdığı AĞIR bir işti."},
+    {form:"n", pl:"Niosłem {x} pudło przez całe schody i strasznie się zmęczyłem.", tr:"AĞIR bir kutuyu bütün merdiven boyunca taşıdım ve çok yoruldum."},
+    {form:"adv", pl:"Po chorobie oddycha mu się {x}, dlatego unika większego wysiłku.", tr:"Hastalıktan sonra zor nefes alıyor, bu yüzden büyük efordan kaçınıyor."},
+    {form:"m", pl:"To bardzo {x} temat, o którym trudno rozmawiać ze spokojem.", tr:"Bu, sükûnetle konuşulması zor AĞIR (çetin) bir konu."},
+    {form:"adv", pl:"Ostatnio {x} mi się pracuje, ponieważ mam zbyt wiele obowiązków.", tr:"Son zamanlarda zorlanarak (AĞIR) çalışıyorum, çünkü çok fazla sorumluluğum var."},
+  ]},
+  {m:"długi", f:"długa", n:"długie", adv:"długo", sents:[
+    {form:"m", pl:"To był bardzo {x} film, który trwał prawie trzy godziny.", tr:"Bu, neredeyse üç saat süren çok UZUN bir filmdi."},
+    {form:"f", pl:"Przed nami {x} droga, dlatego lepiej wyruszyć wcześnie rano.", tr:"Önümüzde UZUN bir yol var, bu yüzden sabah erkenden yola çıkmak daha iyi."},
+    {form:"n", pl:"Napisał {x} wypracowanie, które zajęło mu aż pięć stron.", tr:"Tam beş sayfa tutan UZUN bir kompozisyon yazdı."},
+    {form:"adv", pl:"Czekałem na autobus tak {x}, że w końcu wróciłem pieszo.", tr:"Otobüsü o kadar UZUN bekledim ki sonunda yürüyerek döndüm."},
+    {form:"m", pl:"Mam {x} weekend, ponieważ w poniedziałek wypada święto.", tr:"UZUN bir hafta sonum var, çünkü pazartesi bayrama denk geliyor."},
+    {form:"adv", pl:"Nie rozmawialiśmy ze sobą zbyt {x}, ponieważ obaj się spieszyliśmy.", tr:"Birbirimizle çok UZUN konuşmadık, çünkü ikimiz de aceleliydik."},
+  ]},
+  {m:"krótki", f:"krótka", n:"krótkie", adv:"krótko", sents:[
+    {form:"m", pl:"To był {x} urlop, dlatego prawie w ogóle nie zdążyłem odpocząć.", tr:"Bu KISA bir tatildi, bu yüzden neredeyse hiç dinlenemedim."},
+    {form:"f", pl:"To bardzo {x} przerwa, więc zdążymy tylko wypić kawę.", tr:"Bu çok KISA bir mola, o yüzden ancak bir kahve içmeye yeteriz."},
+    {form:"n", pl:"Wygłosił {x} przemówienie, które trwało zaledwie dwie minuty.", tr:"Yalnızca iki dakika süren KISA bir konuşma yaptı."},
+    {form:"adv", pl:"Streść tę historię {x}, ponieważ nie mamy zbyt wiele czasu.", tr:"Bu hikâyeyi KISACA özetle, çünkü çok fazla zamanımız yok."},
+    {form:"m", pl:"Kupiłem {x} kabel, więc muszę siedzieć blisko gniazdka.", tr:"KISA bir kablo aldım, bu yüzden prize yakın oturmak zorundayım."},
+    {form:"adv", pl:"Ostrzygłem się bardzo {x}, żeby latem nie było mi za gorąco.", tr:"Yazın fazla sıcak olmasın diye saçımı çok KISA kestirdim."},
+  ]},
+  {m:"mokry", f:"mokra", n:"mokre", adv:"mokro", sents:[
+    {form:"m", pl:"Mój płaszcz jest zupełnie {x}, ponieważ zaskoczył mnie deszcz.", tr:"Paltom tamamen ISLAK, çünkü yağmura yakalandım."},
+    {form:"f", pl:"Podłoga w łazience jest {x}, więc uważaj, żeby się nie poślizgnąć.", tr:"Banyodaki zemin ISLAK, o yüzden kaymamaya dikkat et."},
+    {form:"n", pl:"Twoje ubranie jest {x}, dlatego lepiej wysuszyć je od razu.", tr:"Giysin ISLAK, bu yüzden onu hemen kurutmak daha iyi."},
+    {form:"adv", pl:"Na dworze jest dziś {x}, ponieważ pada od samego rana.", tr:"Bugün dışarısı ISLAK (yağışlı), çünkü sabahtan beri yağıyor."},
+    {form:"m", pl:"Ten ręcznik jest jeszcze {x}, więc weź sobie inny z szafy.", tr:"Bu havlu hâlâ ISLAK, o yüzden dolaptan başka bir tane al."},
+    {form:"adv", pl:"W piwnicy jest {x}, dlatego nie trzymamy tam żadnych książek.", tr:"Bodrum ISLAK (rutubetli), bu yüzden orada hiç kitap tutmuyoruz."},
+  ]},
+  {m:"suchy", f:"sucha", n:"suche", adv:"sucho", sents:[
+    {form:"m", pl:"Ten chleb jest już {x}, więc zrobię z niego grzanki.", tr:"Bu ekmek artık KURU, o yüzden ondan kızarmış ekmek yapacağım."},
+    {form:"f", pl:"Moja skóra jest zimą bardzo {x}, dlatego często używam kremu.", tr:"Cildim kışın çok KURU, bu yüzden sık sık krem kullanıyorum."},
+    {form:"n", pl:"Drewno jest już {x}, więc możemy spokojnie rozpalić w kominku.", tr:"Odun artık KURU, böylece gönül rahatlığıyla şömineyi yakabiliriz."},
+    {form:"adv", pl:"Latem jest tu bardzo {x}, ponieważ prawie nigdy nie pada.", tr:"Yazın burası çok KURU, çünkü neredeyse hiç yağmur yağmaz."},
+    {form:"m", pl:"Ten koc jest już {x}, więc możesz go schować do szafy.", tr:"Bu battaniye artık KURU, o yüzden onu dolaba kaldırabilirsin."},
+    {form:"adv", pl:"W tym magazynie jest {x}, dlatego dobrze nadaje się do przechowywania mąki.", tr:"Bu depo KURU, bu yüzden un saklamaya çok uygun."},
+  ]},
+];
+
+/* ---------- YARDIMCILAR ---------- */
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function pick(arr){return arr[Math.floor(Math.random()*arr.length)];}
+
+const ALL_FORMS = [...new Set(DATA.flatMap(w=>[w.m,w.f,w.n,w.adv]))];
+const TOTAL_SENTS = DATA.reduce((s,w)=>s+w.sents.length,0);
+
+const GENDER_TR = {m:"eril (rodzaj męski)", f:"dişil (rodzaj żeński)", n:"nötr (rodzaj nijaki)"};
+const GENDER_SHORT = {m:"eril", f:"dişil", n:"nötr"};
+
+/* Şıklar: aynı kelimenin 4 biçimi (eril/dişil/nötr/zarf).
+   Doğru cevap tek başına en uzun olursa, en kısa (zarf olmayan) çeldiriciyi
+   başka bir kelimenin >= uzunluktaki biçimiyle değiştirip ipucu kırılır. */
+function buildOptions(word, correct){
+  let opts=[word.m, word.f, word.n, word.adv];
+  const mx=Math.max(...opts.map(o=>o.length));
+  const uniqueLongest = correct.length===mx && opts.filter(o=>o.length===mx).length===1;
+  if(uniqueLongest){
+    const pad = shuffle(ALL_FORMS.filter(f=>!opts.includes(f) && f.length>=correct.length));
+    if(pad.length){
+      const advCorrect = (correct===word.adv);
+      let dropIdx=-1,min=Infinity;
+      opts.forEach((o,i)=>{
+        if(o===correct) return;
+        if(!advCorrect && o===word.adv) return; // sıfat sorusunda zarf çeldiricisini koru
+        if(o.length<min){min=o.length;dropIdx=i;}
+      });
+      if(dropIdx<0){ opts.forEach((o,i)=>{ if(o!==correct && o.length<min){min=o.length;dropIdx=i;} }); }
+      if(dropIdx>=0) opts[dropIdx]=pad[0];
+    }
+  }
+  return shuffle(opts);
+}
+
+/* ---------- SORU ÜRETİMİ ---------- */
+let lastKey="";
+function makeQuestion(){
+  for(let tries=0; tries<25; tries++){
+    const w=pick(DATA);
+    const s=pick(w.sents);
+    const correct = s.form==="m"?w.m : s.form==="f"?w.f : s.form==="n"?w.n : w.adv;
+    const opts=buildOptions(w, correct);
+    // güvenlik: hâlâ tek başına en uzunsa (ör. bezpiecznie) bu soruyu atla
+    const mx=Math.max(...opts.map(o=>o.length));
+    if(correct.length===mx && opts.filter(o=>o.length===mx).length===1) continue;
+
+    const key=w.m+"|"+s.pl;
+    if(key===lastKey && tries<12) continue;
+    lastKey=key;
+
+    const isAdv = (s.form==="adv");
+    const blanked = s.pl.replace("{x}", "<b>____</b>");
+    const full    = s.pl.replace("{x}", "<b>"+correct+"</b>");
+
+    const badge = isAdv
+      ? `<span class="badge adv">➡️ ZARF gerekir</span>`
+      : `<span class="badge adj">➡️ SIFAT gerekir · ${GENDER_TR[s.form]}</span>`;
+    const reason = isAdv
+      ? "Boşluk bir <b>fiili/eylemi</b> niteliyor → <b>zarf</b>."
+      : `Boşluk bir <b>ismi</b> niteliyor → ismin cinsine uyan <b>sıfat</b>.`;
+
+    return {
+      correct,
+      options: opts,
+      isAdv,
+      formLabel: isAdv ? "ZARF" : ("SIFAT · " + GENDER_SHORT[s.form]),
+      sentence: s.pl.replace("{x}", correct),
+      html:`<span class="hl">${blanked}</span><span class="tr">🔸 ${s.tr}</span>`,
+      ex: `${badge}<span class="ex">${reason}<br>`
+        + `<span class="full">Doğru cümle: „${full}”</span>`
+        + `<span class="forms">Biçimler → eril: <b>${w.m}</b> · dişil: <b>${w.f}</b> · nötr: <b>${w.n}</b> · zarf: <b>${w.adv}</b></span>`
+        + `</span>`
+    };
+  }
+  // teorik fallback
+  const w=DATA[0], s=w.sents[0];
+  return {correct:w.m, options:shuffle([w.m,w.f,w.n,w.adv]),
+    html:`<span class="hl">${s.pl.replace("{x}","<b>____</b>")}</span><span class="tr">🔸 ${s.tr}</span>`, ex:""};
+}
+
+/* ---------- DURUM & UI ---------- */
+const BATCH = 10; // her turda soru sayısı
+let state={n:0,score:0,total:0,streak:0,answered:false,cur:null,
+           batch:[], wrong:[]}; // batch: bu turdaki sonuçlar (true/false), wrong: yanlışlar
+const $=id=>document.getElementById(id);
+
+function renderProgress(){
+  const box=$("progress");box.innerHTML="";
+  const cur=state.batch.length; // sıradaki (cevaplanmamış) sorunun indeksi
+  for(let i=0;i<BATCH;i++){
+    const d=document.createElement("div");
+    d.className="dot";
+    if(i<cur) d.classList.add(state.batch[i]?"ok":"bad");
+    else if(i===cur && !state.evalOpen) d.classList.add("cur");
+    box.appendChild(d);
+  }
+}
+
+function loadQuestion(){
+  state.answered=false;
+  state.cur=makeQuestion();
+  state.n++;
+  $("qnum").textContent=state.n;
+  $("question").innerHTML=state.cur.html;
+  $("fb").innerHTML="";$("fb").className="fb";
+  const nx=$("next");
+  nx.classList.remove("show");
+  nx.textContent="Sonraki soru →";
+  const box=$("opts");box.innerHTML="";
+  state.cur.options.forEach(opt=>{
+    const b=document.createElement("button");
+    b.className="opt";b.textContent=opt;
+    b.onclick=()=>choose(b,opt);
+    box.appendChild(b);
+  });
+  renderProgress();
+}
+
+function choose(btn,opt){
+  if(state.answered)return;
+  state.answered=true;state.total++;
+  const correct=state.cur.correct;
+  const isRight=(opt===correct);
+  [...document.querySelectorAll(".opt")].forEach(b=>{
+    if(b.textContent===correct)b.classList.add("correct");
+    else if(b===btn)b.classList.add("wrong");
+    else b.classList.add("dim");
+    b.style.pointerEvents="none";
+  });
+  const fb=$("fb");
+  if(isRight){
+    state.score++;state.streak++;
+    fb.className="fb ok";
+    fb.innerHTML="✔ Doğru!<br>"+state.cur.ex;
+  } else {
+    state.streak=0;
+    fb.className="fb bad";
+    fb.innerHTML="✘ Yanlış. Doğrusu: <b>"+correct+"</b><br>"+state.cur.ex;
+    state.wrong.push({word:correct, label:state.cur.formLabel,
+                      isAdv:state.cur.isAdv, sent:state.cur.sentence, chosen:opt});
+  }
+  state.batch.push(isRight);
+  $("score").textContent=state.score;
+  $("total").textContent=state.total;
+  $("streak").textContent="🔥 "+state.streak;
+  renderProgress();
+
+  const nx=$("next");
+  if(state.batch.length>=BATCH){
+    nx.textContent="📊 "+BATCH+" sorunun sonucunu gör";
+  }
+  nx.classList.add("show");
+}
+
+function showEval(){
+  state.evalOpen=true;
+  const right=state.batch.filter(Boolean).length;
+  const pct=Math.round(100*right/BATCH);
+  let msg;
+  if(right===10) msg="Mükemmel! 🎉 Hepsi doğru.";
+  else if(right>=8) msg="Çok iyi! 👏 Neredeyse kusursuz.";
+  else if(right>=6) msg="İyi gidiyorsun. 🙂 Biraz daha pratik işe yarar.";
+  else if(right>=4) msg="Fena değil. Yanlışları gözden geçir.";
+  else msg="Bu biçimleri biraz daha çalışmak iyi olur. Pes etme! 💪";
+
+  let review;
+  if(state.wrong.length===0){
+    review=`<div class="allok">Bu turda hiç hata yok — tebrikler! ✅</div>`;
+  } else {
+    const items=state.wrong.map(w=>{
+      const tagCls=w.isAdv?"adv":"adj";
+      const sent=w.sent.replace(w.word, "<b>"+w.word+"</b>");
+      return `<div class="item"><span class="w">${w.word}</span>`
+           + `<span class="tag ${tagCls}">${w.label}</span>`
+           + `<span class="s">„${sent}”</span></div>`;
+    }).join("");
+    review=`<div class="review"><h4>Gözden geçir (${state.wrong.length} yanlış):</h4>${items}</div>`;
+  }
+
+  $("quiz").style.display="none";
+  const ev=$("eval");
+  ev.style.display="block";
+  ev.innerHTML =
+      `<div class="score">${right} <small>/ ${BATCH}</small></div>`
+    + `<div class="msg">${msg}</div>`
+    + `<div class="evalbar"><div id="evbar"></div></div>`
+    + `<div class="evalpct">%${pct} başarı · toplam ${state.n} soruda ${state.score} doğru</div>`
+    + review
+    + `<button class="cont" id="cont">Devam et → sonraki ${BATCH} soru</button>`
+    + `<br><button class="again" id="againBtn">Baştan başla (sayaçları sıfırla)</button>`;
+  // animasyonlu bar
+  setTimeout(()=>{const b=$("evbar"); if(b) b.style.width=pct+"%";},50);
+  $("cont").onclick=nextBatch;
+  $("againBtn").onclick=fullReset;
+  renderProgress();
+}
+
+function nextBatch(){
+  state.batch=[]; state.wrong=[]; state.evalOpen=false;
+  $("eval").style.display="none";
+  $("quiz").style.display="block";
+  loadQuestion();
+}
+
+function fullReset(){
+  state={n:0,score:0,total:0,streak:0,answered:false,cur:null,batch:[],wrong:[],evalOpen:false};
+  $("score").textContent=0;$("total").textContent=0;$("streak").textContent="🔥 0";
+  $("eval").style.display="none";
+  $("quiz").style.display="block";
+  loadQuestion();
+}
+
+$("next").onclick=()=>{
+  if(state.batch.length>=BATCH) showEval();
+  else loadQuestion();
+};
+$("reset").onclick=fullReset;
+
+$("poolsize").textContent = TOTAL_SENTS;
+loadQuestion();
+</script>
+</body>
+</html>
