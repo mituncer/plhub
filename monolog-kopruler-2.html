@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Monolog — Köprü Paragrafları + Açılış Cümleleri (B1)</title>
+<style>
+  :root{ --fs: 15px; }
+  *{ box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  body{ margin:0; background:#f6f1e7; color:#2a2620;
+    font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+    font-size:var(--fs); line-height:1.5; }
+  header{ position:sticky; top:0; z-index:5; background:#3a4a3f; color:#f6f1e7;
+    padding:12px 14px; box-shadow:0 2px 6px rgba(0,0,0,.2); }
+  header h1{ margin:0; font-size:1.02rem; font-weight:600; }
+  header p{ margin:4px 0 0; font-size:.78rem; opacity:.85; }
+  .controls{ display:flex; gap:8px; align-items:center; margin-top:8px; flex-wrap:wrap; }
+  .controls button{ background:#f6f1e7; color:#3a4a3f; border:none; border-radius:6px;
+    padding:5px 12px; font-size:.82rem; font-weight:600; }
+  .controls button#readAllBtn{ background:#c7a15a; color:#26210f; }
+  .controls button#readAllBtn.on{ background:#b04b3f; color:#fff; }
+  .controls label{ display:flex; align-items:center; gap:6px; font-size:.8rem;
+    color:#f6f1e7; font-weight:600; }
+  .controls input[type=range]{ width:104px; accent-color:#c7a15a; }
+  .controls #rateVal{ min-width:38px; text-align:left; }
+  .card.reading{ box-shadow:0 0 0 2px #c7a15a, 0 1px 3px rgba(0,0,0,.06); }
+  .card.reading .topic{ background:#efe6cf; }
+  .tabs{ display:flex; gap:6px; margin-top:10px; }
+  .tabs .tab{ flex:1; background:#2c3931; color:#cfe0d4; border:1px solid #56685c;
+    border-radius:8px 8px 0 0; padding:8px 6px; font-size:.85rem; font-weight:700; text-align:center; }
+  .tabs .tab.active{ background:#f6f1e7; color:#26332b; border-bottom-color:#f6f1e7; }
+  .wrap{ padding:12px; max-width:960px; margin:0 auto; }
+  .pane{ display:none; } .pane.active{ display:block; }
+  .card{ background:#fffdf8; border:1px solid #e0d8c6; border-radius:10px;
+    margin-bottom:14px; overflow:hidden; box-shadow:0 1px 3px rgba(0,0,0,.06); }
+  .topic{ background:#eef0e9; padding:8px 12px; border-bottom:1px solid #e0d8c6; }
+  .topic .n{ display:inline-block; background:#3a4a3f; color:#f6f1e7; width:22px; height:22px;
+    line-height:22px; text-align:center; border-radius:50%; font-size:.78rem; font-weight:700; margin-right:7px; }
+  .topic .pl{ font-weight:700; color:#26332b; }
+  .topic .tr{ color:#7a6f5a; font-size:.86rem; }
+  .hook{ padding:5px 12px; font-size:.75rem; color:#8a6d3b; background:#faf6ec; border-bottom:1px dashed #e6dcc6; }
+  .row{ display:grid; grid-template-columns:1fr 1fr; }
+  .col{ padding:11px 12px; }
+  .col.pl{ border-right:1px solid #ece4d3; background:#fffdf8; }
+  .col.tr{ background:#fbf9f3; color:#4a4436; }
+  .lbl{ display:block; font-size:.64rem; letter-spacing:.05em; text-transform:uppercase;
+    color:#a99f88; margin-bottom:4px; font-weight:700; }
+  .say{ float:right; border:none; background:#e7ede8; color:#3a4a3f; border-radius:6px;
+    padding:2px 8px; font-size:.85rem; cursor:pointer; margin-left:6px; }
+  .say:active{ background:#cdd9cf; }
+  .pltext{ color:#26332b; }
+  .intro{ background:#eef4ef; border:1px solid #d3e0d6; border-radius:8px; padding:9px 12px;
+    font-size:.82rem; color:#3a4a3f; margin-bottom:12px; }
+  footer{ text-align:center; color:#9c937d; font-size:.74rem; padding:16px; }
+  @media (max-width:520px){ .col.pl{ font-size:.96em; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>Monolog — B1 · Wypowiedź argumentacyjna</h1>
+  <p>Açılış cümlesi seç → köprü paragrafı ekle → 2-3 argüman → kısa sonuç</p>
+  <div class="tabs">
+    <div class="tab active" data-p="brdg" onclick="tab('brdg')">🔗 Köprü paragrafları</div>
+    <div class="tab" data-p="open" onclick="tab('open')">✳️ Açılış cümleleri</div>
+  </div>
+  <div class="controls">
+    <button id="readAllBtn" onclick="readAll()">▶️ Tümünü oku</button>
+    <label>Hız
+      <input type="range" min="0.5" max="1.3" step="0.05" value="0.92" oninput="setRate(this.value)">
+      <span id="rateVal">0.9×</span>
+    </label>
+    <button onclick="fs(1)">A+</button>
+    <button onclick="fs(-1)">A−</button>
+    <button onclick="stopAll()">⏹ Sesi durdur</button>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="pane active" id="brdg"></div>
+  <div class="pane" id="open">
+    <div class="intro">Bu cümleler her konuya uyar. Bir tanesini seç, monologa onunla başla — konunun adını tekrar etme. Sonra sağdaki köprü paragrafına geç.</div>
+    <div id="openlist"></div>
+  </div>
+</div>
+
+<footer>Kolay cümleler, kısa tut. Köprüden sonra: <b>po pierwsze… poza tym… z drugiej strony…</b> ve sonda <b>podsumowując…</b></footer>
+
+<script>
+const OPENERS = [
+ {pl:"Moim zdaniem to bardzo ważny i aktualny temat.", tr:"Bence bu çok önemli ve güncel bir konu."},
+ {pl:"Uważam, że to temat, który dotyczy wielu ludzi.", tr:"Bence bu, birçok insanı ilgilendiren bir konu."},
+ {pl:"Myślę, że to jeden z najważniejszych tematów naszych czasów.", tr:"Bence bu, çağımızın en önemli konularından biri."},
+ {pl:"Moim zdaniem to bardzo ciekawy temat.", tr:"Bence bu çok ilginç bir konu."},
+ {pl:"Uważam, że to ważne pytanie.", tr:"Bence bu önemli bir soru."},
+ {pl:"Myślę, że każdy człowiek myśli o tym inaczej.", tr:"Bence her insan bunu farklı düşünür."},
+ {pl:"Moim zdaniem to temat bardzo mi bliski.", tr:"Bence bu bana çok yakın bir konu."},
+ {pl:"Uważam, że to trudny temat, bo ma dwie strony.", tr:"Bence bu zor bir konu, çünkü iki yüzü var."},
+ {pl:"Myślę, że dziś dużo się o tym mówi.", tr:"Bence bugün bunun hakkında çok konuşuluyor."},
+ {pl:"Moim zdaniem warto o tym porozmawiać.", tr:"Bence bunun hakkında konuşmaya değer."}
+];
+
+const DATA = [
+ {n:1, tp:"Języki obce", tt:"Yabancı diller", hook:"mühendis · 17+ millet · haftalık seyahat",
+  pl:"Jestem inżynierem. W mojej pracy są ludzie z ponad siedemnastu krajów. Rozmawiamy ze sobą po angielsku. Prawie co tydzień jadę za granicę. Tam też muszę mówić w obcym języku. Dlatego dobrze wiem, że bez języków trudno dziś żyć i pracować. Kiedy znasz języki, masz więcej pracy i więcej przyjaciół.",
+  tr:"Ben mühendisim. İşimde on yediden fazla ülkeden insan var. Birbirimizle İngilizce konuşuyoruz. Neredeyse her hafta yurtdışına gidiyorum. Orada da yabancı dilde konuşmam gerekiyor. Bu yüzden iyi biliyorum ki bugün dil olmadan yaşamak ve çalışmak zor. Dil bildiğinde daha çok iş ve daha çok arkadaşın olur."},
+
+ {n:2, tp:"Mieszkanie za granicą", tt:"Yurtdışında yaşamak", hook:"Varşova · evi Polonya'da · buradaki hayatı seviyor",
+  pl:"Ja mieszkam za granicą. Mój dom jest w Warszawie. Mieszkam tu od wielu lat. Bardzo lubię życie w Polsce. Pochodzę z Turcji, ale teraz Polska to mój dom. Na początku było trudno. Nie znałem języka i ludzi. Teraz mam tu pracę i przyjaciół. Dlatego znam dobre i złe strony życia w innym kraju.",
+  tr:"Ben yurtdışında yaşıyorum. Evim Varşova'da. Uzun yıllardır burada yaşıyorum. Polonya'daki hayatı çok seviyorum. Türkiye'denim, ama artık Polonya benim evim. Başta zordu. Dili ve insanları tanımıyordum. Şimdi burada işim ve arkadaşlarım var. Bu yüzden başka bir ülkede yaşamanın iyi ve kötü yanlarını biliyorum."},
+
+ {n:3, tp:"Nowe technologie / sztuczna inteligencja", tt:"Teknoloji / yapay zeka", hook:"her gün AI · mühendis",
+  pl:"W pracy codziennie używam sztucznej inteligencji. Ona pomaga mi pisać teksty i szukać informacji. Jestem inżynierem, więc widzę nowe maszyny i programy. Technologia zmienia się bardzo szybko. Praca jest teraz łatwiejsza i szybsza. Ale jest też problem. Ludzie mogą zapomnieć, jak myśleć samodzielnie. Dlatego technologia ma zalety, ale ma też wady.",
+  tr:"İşte her gün yapay zeka kullanıyorum. Metin yazmama ve bilgi aramama yardım ediyor. Mühendisim, bu yüzden yeni makineler ve programlar görüyorum. Teknoloji çok hızlı değişiyor. İş artık daha kolay ve daha hızlı. Ama bir sorun da var. İnsanlar kendi başına düşünmeyi unutabilir. Bu yüzden teknolojinin avantajları var, ama dezavantajları da var."},
+
+ {n:4, tp:"Podróżowanie", tt:"Seyahat etmek", hook:"haftalık yurtdışı seyahat",
+  pl:"Podróże są dziś częścią naszego życia. Ja podróżuję prawie co tydzień. Często jestem w innym mieście albo w innym kraju. Lubię poznawać nowe miejsca i nowych ludzi. Ale częste podróże są też męczące. Czasem tęsknię za domem i za rodziną. Dlatego znam dobre i złe strony podróży.",
+  tr:"Seyahat bugün hayatımızın bir parçası. Ben neredeyse her hafta seyahat ediyorum. Sık sık başka bir şehirde ya da başka bir ülkedeyim. Yeni yerler ve yeni insanlar tanımayı seviyorum. Ama sık seyahat yorucu da. Bazen evimi ve ailemi özlüyorum. Bu yüzden seyahatin iyi ve kötü yanlarını biliyorum."},
+
+ {n:5, tp:"Praca zdalna czy praca w biurze", tt:"Uzaktan mı ofiste mi çalışma", hook:"uluslararası firma · sık yolculuk",
+  pl:"Dziś wielu ludzi pracuje w domu. To zaczęło się po pandemii. Ja pracuję w dużej, międzynarodowej firmie. Czasem pracuję w biurze, a czasem w podróży albo w domu. Praca w domu jest wygodna. Nie tracę czasu na dojazd. Ale w biurze łatwiej rozmawiać z ludźmi. Dlatego znam obie formy pracy.",
+  tr:"Bugün birçok insan evde çalışıyor. Bu, pandemiden sonra başladı. Ben büyük, uluslararası bir firmada çalışıyorum. Bazen ofiste, bazen yolda ya da evde çalışıyorum. Evde çalışmak rahat. Yolda zaman kaybetmiyorum. Ama ofiste insanlarla konuşmak daha kolay. Bu yüzden her iki çalışma biçimini de biliyorum."},
+
+ {n:6, tp:"Życie w dużym mieście czy na wsi", tt:"Büyük şehir mi köy mü", hook:"Varşova · Cunda yazlık",
+  pl:"Ja mieszkam w Warszawie. To duże miasto. W mieście jest praca, sklepy i teatry. Ale jest też dużo hałasu i aut. Mam też mały dom nad morzem w Turcji. Tam jest cicho i spokojnie. Lubię oba miejsca. W mieście pracuję, a nad morzem odpoczywam. Dlatego znam życie w mieście i w spokojnym miejscu.",
+  tr:"Ben Varşova'da yaşıyorum. Bu büyük bir şehir. Şehirde iş, mağazalar ve tiyatrolar var. Ama çok gürültü ve araba da var. Türkiye'de deniz kenarında küçük bir evim de var. Orası sessiz ve sakin. Her iki yeri de seviyorum. Şehirde çalışıyorum, deniz kenarında dinleniyorum. Bu yüzden hem şehirdeki hem de sakin bir yerdeki hayatı biliyorum."},
+
+ {n:7, tp:"Nauka języka w dorosłym wieku", tt:"Yetişkinlikte dil öğrenmek", hook:"Gülay ile birlikte Lehçe",
+  pl:"Ja i moja żona uczymy się polskiego. Mamy tę samą nauczycielkę. Nie jesteśmy już młodzi, ale bardzo się staramy. Uczymy się gramatyki i nowych słów. Czasem jest trudno i wolno. Ale krok po kroku robimy postępy. Dlatego wiem, że dorosły człowiek też może nauczyć się języka. Trzeba tylko mieć cierpliwość i uczyć się regularnie.",
+  tr:"Ben ve eşim Lehçe öğreniyoruz. Aynı öğretmenimiz var. Artık genç değiliz, ama çok çabalıyoruz. Gramer ve yeni kelimeler öğreniyoruz. Bazen zor ve yavaş oluyor. Ama adım adım ilerliyoruz. Bu yüzden biliyorum ki yetişkin bir insan da dil öğrenebilir. Sadece sabırlı olmak ve düzenli çalışmak gerekiyor."},
+
+ {n:8, tp:"Studia za granicą", tt:"Yurtdışında eğitim", hook:"Alara · Kanada · Toronto · doktora",
+  pl:"Moja córka studiuje w Kanadzie. Robi doktorat z immunologii na uniwersytecie w Toronto. Uczy się na bardzo dobrej uczelni. Ma tam nowe możliwości i dobrych profesorów. Ale mieszka daleko od domu. Czasem tęskni za rodziną. Studia za granicą są drogie i trudne. Ale dają też dużo wiedzy i doświadczenia. Dlatego znam plusy i minusy nauki za granicą.",
+  tr:"Kızım Kanada'da okuyor. Toronto'daki üniversitede immünoloji doktorası yapıyor. Çok iyi bir üniversitede okuyor. Orada yeni imkânları ve iyi profesörleri var. Ama evden uzakta yaşıyor. Bazen ailesini özlüyor. Yurtdışında eğitim pahalı ve zor. Ama çok bilgi ve deneyim de veriyor. Bu yüzden yurtdışında okumanın artılarını ve eksilerini biliyorum."},
+
+ {n:9, tp:"Znaczenie rodziny", tt:"Ailenin önemi", hook:"aile farklı ülkelerde · uzaktan iletişim",
+  pl:"Dla mnie rodzina jest najważniejsza. Moja rodzina mieszka w różnych krajach. Córka studiuje w Kanadzie. Ja i żona mieszkamy w Polsce. Rzadko jesteśmy razem w jednym miejscu. Dlatego często dzwonimy i piszemy do siebie. Internet bardzo nam pomaga. Nawet z daleka czujemy się blisko. Dlatego wiem, jak ważny jest kontakt z rodziną.",
+  tr:"Benim için aile en önemli şey. Ailem farklı ülkelerde yaşıyor. Kızım Kanada'da okuyor. Ben ve eşim Polonya'da yaşıyoruz. Nadiren aynı yerde birlikte oluyoruz. Bu yüzden sık sık birbirimizi arıyor ve yazıyoruz. İnternet bize çok yardım ediyor. Uzaktan bile birbirimize yakın hissediyoruz. Bu yüzden aileyle iletişimin ne kadar önemli olduğunu biliyorum."},
+
+ {n:10, tp:"Ochrona środowiska", tt:"Çevre koruma", hook:"inşaat mühendisi · doğaya etki",
+  pl:"Jestem inżynierem i pracuję w budownictwie. Budujemy drogi, mosty i tunele. Takie projekty zmieniają przyrodę. Dlatego musimy pracować uważnie. Trzeba chronić drzewa, wodę i zwierzęta. Dziś pogoda na świecie bardzo się zmienia. Widzę, że ochrona środowiska jest coraz ważniejsza. Każdy człowiek może pomóc, także w małych sprawach.",
+  tr:"Ben mühendisim ve inşaatta çalışıyorum. Yollar, köprüler ve tüneller yapıyoruz. Bu tür projeler doğayı değiştiriyor. Bu yüzden dikkatli çalışmamız gerekiyor. Ağaçları, suyu ve hayvanları korumak gerek. Bugün dünyada hava çok değişiyor. Görüyorum ki çevre koruma gitgide daha önemli. Her insan, küçük şeylerde bile yardım edebilir."},
+
+ {n:11, tp:"Turystyka masowa", tt:"Kitle turizmi", hook:"Cunda adası · yazın turist yoğunluğu",
+  pl:"Turystyka ma dwie strony. Mam mały dom na wyspie w Turcji. Latem przyjeżdża tam bardzo dużo turystów. To dobrze dla sklepów i restauracji. Ludzie zarabiają pieniądze. Ale jest też problem. Ulice są brudne, bo jest dużo śmieci. Samochody stoją wszędzie i blokują drogi. Mieszkańcy są zmęczeni. Dlatego widzę, że turystyka pomaga, ale też przeszkadza.",
+  tr:"Turizmin iki yüzü var. Türkiye'de bir adada küçük bir evim var. Yazın oraya çok fazla turist geliyor. Bu, mağazalar ve restoranlar için iyi. İnsanlar para kazanıyor. Ama bir sorun da var. Sokaklar kirli, çünkü çok çöp var. Arabalar her yerde duruyor ve yolları tıkıyor. Yerli halk yorgun. Bu yüzden turizmin hem yardım ettiğini hem de rahatsız ettiğini görüyorum."},
+
+ {n:12, tp:"Zdrowy tryb życia", tt:"Sağlıklı yaşam", hook:"çok çalışma · sık seyahat · stres",
+  pl:"Dziś trudno żyć zdrowo. Ja dużo pracuję i mam mało czasu. Często podróżuję i jem w restauracjach albo w samolocie. Nie zawsze mam czas na sport. Czasem śpię za mało i jestem zmęczony. Wiem, że to nie jest dobre dla zdrowia. Dlatego staram się więcej chodzić i pić dużo wody. Zdrowie jest najważniejsze, więc trzeba o nie dbać.",
+  tr:"Bugün sağlıklı yaşamak zor. Ben çok çalışıyorum ve az vaktim var. Sık seyahat ediyorum ve restoranlarda ya da uçakta yemek yiyorum. Her zaman spora vaktim olmuyor. Bazen az uyuyorum ve yorgun oluyorum. Biliyorum ki bu sağlık için iyi değil. Bu yüzden daha çok yürümeye ve bol su içmeye çalışıyorum. Sağlık en önemli şey, bu yüzden ona dikkat etmek gerek."},
+
+ {n:13, tp:"Czytanie książek", tt:"Kitap okumak", hook:"ekonomi · felsefe · edebiyat okuma",
+  pl:"Ja lubię czytać książki. Najbardziej lubię książki o ekonomii, filozofii i literaturze. Czytam trochę każdego dnia, często wieczorem. Książki dają mi nowe pomysły. Uczę się z nich, jak myślą inni ludzie. Kiedy czytam, lepiej rozumiem świat. Dziś ludzie mają mało czasu na czytanie. Ale myślę, że warto czytać, bo książki są jak dobrzy przyjaciele.",
+  tr:"Ben kitap okumayı seviyorum. En çok ekonomi, felsefe ve edebiyat kitaplarını seviyorum. Her gün biraz okuyorum, çoğu zaman akşamları. Kitaplar bana yeni fikirler veriyor. Onlardan başka insanların nasıl düşündüğünü öğreniyorum. Okuduğumda dünyayı daha iyi anlıyorum. Bugün insanların okumaya az vakti var. Ama bence okumaya değer, çünkü kitaplar iyi arkadaşlar gibidir."},
+
+ {n:14, tp:"Hobby i kolekcjonowanie", tt:"Hobi ve koleksiyon", hook:"eski dolma kalem · Omega saat koleksiyonu",
+  pl:"Ja mam ciekawe hobby. Kolekcjonuję stare pióra i zegarki. Szukam ich w sklepach i w internecie. Każda rzecz ma swoją historię. Kiedy patrzę na nie, czuję spokój i radość. Hobby pomaga mi odpocząć po pracy. Uczy mnie też cierpliwości, bo dobre rzeczy trzeba znaleźć powoli. Myślę, że każdy człowiek powinien mieć jakąś pasję.",
+  tr:"Benim ilginç bir hobim var. Eski dolma kalemler ve saatler topluyorum. Onları mağazalarda ve internette arıyorum. Her eşyanın kendi hikâyesi var. Onlara baktığımda huzur ve mutluluk hissediyorum. Hobi, işten sonra dinlenmeme yardım ediyor. Bana sabır da öğretiyor, çünkü iyi şeyleri yavaşça bulmak gerek. Bence her insanın bir tutkusu olmalı."},
+
+ {n:15, tp:"Praca w jednej firmie przez całe życie", tt:"Ömür boyu tek firmada çalışmak", hook:"30+ yıl aynı firma",
+  pl:"Dziś ludzie często zmieniają pracę. Ja jestem inny. Pracuję w tej samej firmie od ponad trzydziestu lat. Dobrze znam moją firmę i moich kolegów. Firma też mi ufa. To daje spokój i pewność. Ale rozumiem młodych ludzi. Oni chcą próbować nowych rzeczy. Zmiana pracy daje nowe doświadczenie i czasem więcej pieniędzy. Dlatego widzę dobre strony obu dróg.",
+  tr:"Bugün insanlar sık sık iş değiştiriyor. Ben farklıyım. Otuz yılı aşkın süredir aynı firmada çalışıyorum. Firmamı ve iş arkadaşlarımı iyi tanıyorum. Firma da bana güveniyor. Bu, huzur ve güven veriyor. Ama gençleri de anlıyorum. Onlar yeni şeyler denemek istiyor. İş değiştirmek yeni deneyim ve bazen daha çok para veriyor. Bu yüzden her iki yolun da iyi yanlarını görüyorum."},
+
+ {n:16, tp:"Uczenie się przez całe życie", tt:"Yaşam boyu öğrenme", hook:"hâlâ Lehçe + yeni teknolojiler öğreniyor",
+  pl:"Ja pracuję już od wielu lat. Ale wciąż uczę się nowych rzeczy. Teraz uczę się języka polskiego. Uczę się też nowych technologii i programów. Świat zmienia się szybko, więc trzeba się uczyć. Nauka trzyma umysł młody i aktywny. Nie ma wieku na naukę. Człowiek może uczyć się przez całe życie.",
+  tr:"Ben uzun yıllardır çalışıyorum. Ama hâlâ yeni şeyler öğreniyorum. Şimdi Lehçe öğreniyorum. Yeni teknolojiler ve programlar da öğreniyorum. Dünya hızlı değişiyor, bu yüzden öğrenmek gerek. Öğrenmek zihni genç ve aktif tutuyor. Öğrenmenin yaşı yok. İnsan ömür boyu öğrenebilir."}
+];
+
+let rate = 0.92;          // okuma hızı (slider ile değişir)
+let readingAll = false;   // "tümünü oku" modu açık mı
+let readIndex = 0;        // sıradaki köprü
+const bridgeCards = [];    // köprü kartları (DATA sırasıyla)
+
+const brdg = document.getElementById('brdg');
+DATA.forEach(d=>{
+  const c = document.createElement('div');
+  c.className='card';
+  c.innerHTML = `
+    <div class="topic"><span class="n">${d.n}</span><span class="pl">${d.tp}</span> <span class="tr">— ${d.tt}</span></div>
+    <div class="hook">🔗 kişisel bağ: ${d.hook}</div>
+    <div class="row">
+      <div class="col pl"><button class="say" aria-label="oku">🔊</button><span class="lbl">Polski</span><span class="pltext">${d.pl}</span></div>
+      <div class="col tr"><span class="lbl">Türkçe</span>${d.tr}</div>
+    </div>`;
+  c.querySelector('.say').addEventListener('click',()=>speak(d.pl));
+  bridgeCards.push(c);
+  brdg.appendChild(c);
+});
+
+const openlist = document.getElementById('openlist');
+OPENERS.forEach((o,i)=>{
+  const c = document.createElement('div');
+  c.className='card';
+  c.innerHTML = `
+    <div class="row">
+      <div class="col pl"><button class="say" aria-label="oku">🔊</button><span class="lbl">Açılış ${i+1} · Polski</span><span class="pltext">${o.pl}</span></div>
+      <div class="col tr"><span class="lbl">Türkçe</span>${o.tr}</div>
+    </div>`;
+  c.querySelector('.say').addEventListener('click',()=>speak(o.pl));
+  openlist.appendChild(c);
+});
+
+function tab(id){
+  document.querySelectorAll('.pane').forEach(p=>p.classList.toggle('active',p.id===id));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.p===id));
+  stopAll();
+}
+function plVoice(){
+  return window.speechSynthesis.getVoices().find(x=>x.lang && x.lang.toLowerCase().startsWith('pl'));
+}
+function makeUtter(text){
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang='pl-PL'; u.rate=rate;
+  const v = plVoice(); if(v) u.voice=v;
+  return u;
+}
+// Tek paragraf oku (🔊 butonları) — sıralı okumayı durdurur
+function speak(text){
+  if(!('speechSynthesis' in window)) return;
+  readingAll=false; clearHighlight(); updateReadBtn();
+  window.speechSynthesis.cancel();
+  window.speechSynthesis.speak(makeUtter(text));
+}
+
+// Tüm köprüleri baştan sona sırayla oku
+function readAll(){
+  if(!('speechSynthesis' in window)) return;
+  if(readingAll){ stopAll(); return; }        // tekrar basınca durdur
+  // köprü sekmesine geç
+  document.querySelectorAll('.pane').forEach(p=>p.classList.toggle('active',p.id==='brdg'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.p==='brdg'));
+  window.speechSynthesis.cancel();
+  readingAll=true; readIndex=0; updateReadBtn();
+  readNext();
+}
+function readNext(){
+  if(!readingAll) return;
+  if(readIndex>=DATA.length){ readingAll=false; clearHighlight(); updateReadBtn(); return; }
+  highlight(readIndex);
+  const u = makeUtter(DATA[readIndex].pl);
+  u.onend = ()=>{ if(readingAll){ readIndex++; readNext(); } };
+  window.speechSynthesis.speak(u);
+}
+function highlight(i){
+  clearHighlight();
+  const c = bridgeCards[i];
+  if(c){ c.classList.add('reading'); c.scrollIntoView({behavior:'smooth',block:'center'}); }
+}
+function clearHighlight(){ bridgeCards.forEach(c=>c.classList.remove('reading')); }
+function updateReadBtn(){
+  const b = document.getElementById('readAllBtn');
+  if(!b) return;
+  b.textContent = readingAll ? '⏸ Durdur' : '▶️ Tümünü oku';
+  b.classList.toggle('on', readingAll);
+}
+function setRate(v){
+  rate = parseFloat(v);
+  document.getElementById('rateVal').textContent = (Math.round(rate*10)/10)+'×';
+  // Not: değişen hız, o an okunan paragraf bittikten sonra devreye girer.
+}
+function stopAll(){
+  readingAll=false; clearHighlight(); updateReadBtn();
+  if('speechSynthesis' in window) window.speechSynthesis.cancel();
+}
+function fs(dir){
+  const cur = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--fs'));
+  document.documentElement.style.setProperty('--fs', Math.min(22, Math.max(12, cur+dir))+'px');
+}
+if('speechSynthesis' in window){ window.speechSynthesis.onvoiceschanged=()=>{}; }
+</script>
+</body>
+</html>
