@@ -9,6 +9,7 @@ Polonyaca fiil secme-bulma / lehce-fiil-bulma.html / Polonyaca çok kullanılan 
 Polonyaca harf harf fiil yazma / lehce-fiil-yazma.html / Polonyca çok kullanılan fiilleri harf harf seçerek egzersiz yapma
 Polonyaca fiil hal egzersizi / polonca-hal-tasima-2.html / Polonyca isim-sıfat hallerini yerleştirme egzersizi
 Polonyaca kişi zamirleri egzersizi / zaimki_osobowe-4.html / Polonyaca kişi zamirlerini yazarak çalışma egzersizi
+Sıfat mi? Zarf mı? / Polonca_Sifat_Zarf_Test-1.html / Sıfat Zarf egzersizi 
 Monolog egzersizleri / pl-cevirili-3.html / Monolog çalış ve ezberle
 Monolog köprüler / monolog-kopruler-2.html / Kolay monolog için her yere uyan parçalar 
 Diyalog egzersizleri / pl_dialogi-5.html / Diyalog çalış ve ezberle 
@@ -16,7 +17,7 @@ Diyalog egzersizleri / pl_dialogi-5.html / Diyalog çalış ve ezberle
 B1 Sınav gramer testi / B1Sınav_C_Gramer-trenernew.html / B1 Sertifika sınavı gramer test örnekleri
 B1 Sınavı örnekleri / B1_egzamin_certyfikatowy-2 / Komple B1 Sertifika sınavı örnekleri
 - Hikayeler -
-pl-czytanka-odmlodzenie.html
+Revitalisation/ pl-czytanka-odmlodzenie.html / Sen de dene
 Hikaye - Cięższa zbroja / pl-czytanka-kwasniewski.html / Aleksander Kwaśniewski, Piesiewicz Davası, Güç, Polonya Nefreti ve Anlaşma Kültürü Üzerine
 Hikaye - Burza / pl-czytanka-burza.html / Mami & Tom — weather, climate change, the storm, then the Magda phone-call twist
 Hikaye - Warszawa — demograficzny wampir? / pl-czytanka-demograficzny-wampir.html / How Warszawa eat other cities around..
