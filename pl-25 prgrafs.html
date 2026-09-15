@@ -1,0 +1,2227 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Polonca Çalışma</title>
+<style>
+  :root{
+    --bg:#f5f2ec;--ink:#1c1a17;--muted:#6b6459;--line:#ddd6ca;
+    --accent:#2f6d5b;--accent-soft:#dcebe4;--warn:#b4532a;--gold:#ffe9a8;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Segoe UI",system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;padding:22px 16px 80px;max-width:720px;margin:0 auto}
+  .kicker{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:6px}
+  h1{font-size:1.5rem;font-weight:700;letter-spacing:-.01em}
+
+  /* ---------- HOME ---------- */
+  #home .sub{color:var(--muted);font-size:.9rem;margin:6px 0 18px}
+  .card{display:block;width:100%;text-align:left;background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:12px;cursor:pointer;transition:transform .06s ease,box-shadow .15s}
+  .card:hover{box-shadow:0 6px 18px rgba(28,26,23,.08)}
+  .card:active{transform:translateY(1px)}
+  .card .ct{font-size:1.08rem;font-weight:700;color:var(--ink);margin-bottom:4px}
+  .card .ct .cnum{color:var(--accent);font-weight:800}
+  .card .cp{font-size:.85rem;color:var(--muted);overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+  .card .badge{display:inline-block;margin-top:10px;font-size:.7rem;font-weight:700;letter-spacing:.05em;color:var(--accent);background:var(--accent-soft);border:1px solid #c4ddd1;border-radius:20px;padding:3px 10px}
+
+  /* ---------- READER ---------- */
+  #reader-screen{display:none}
+  .sticky-wrap{position:sticky;top:0;z-index:40;background:var(--bg);padding:8px 0 8px;margin-bottom:6px}
+  .bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:8px}
+  .chip{font:inherit;font-weight:600;cursor:pointer;border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:9px;padding:9px 13px}
+  .chip:active{transform:translateY(1px)}
+  .seg{display:flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff}
+  .segbtn{font:inherit;font-weight:600;cursor:pointer;border:none;background:transparent;color:var(--muted);padding:9px 13px}
+  .segbtn.active{background:var(--accent);color:#fff}
+  .rate{display:flex;align-items:center;gap:7px;margin-left:auto;font-size:.82rem;color:var(--muted)}
+  .rate input[type=range]{width:92px}
+  .rate output{font-variant-numeric:tabular-nums;font-weight:700;color:var(--ink);min-width:2.3em}
+
+  .controls{display:flex;flex-wrap:wrap;gap:9px;align-items:center;padding:11px 13px;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 6px 18px rgba(28,26,23,.08)}
+  button.act{font:inherit;font-weight:600;cursor:pointer;border:none;border-radius:9px;padding:10px 15px;background:var(--accent);color:#fff;transition:transform .06s ease,opacity .15s}
+  button.act:active{transform:translateY(1px)}
+  button.ghost{background:#eee9df;color:var(--ink)}
+  button.act:disabled{opacity:.4;cursor:default}
+  .loop{display:flex;align-items:center;gap:7px;font-size:.85rem;font-weight:600;color:var(--ink);cursor:pointer;padding:6px 10px;border:1px solid var(--line);border-radius:9px;background:#faf8f3}
+  .loop input{width:17px;height:17px;accent-color:var(--accent)}
+  .loop.on{background:var(--accent-soft);border-color:#c4ddd1}
+  .counter{font-weight:700;font-variant-numeric:tabular-nums;color:var(--ink);padding:0 6px;min-width:3.6em;text-align:center}
+
+  .status{margin:2px 0 12px;font-size:.78rem;color:var(--muted)}
+  .status.warn{color:var(--warn)}
+  .howto{font-size:.8rem;color:var(--muted);background:var(--accent-soft);border:1px solid #c4ddd1;border-radius:10px;padding:9px 13px;margin-bottom:14px}
+  .howto b{color:var(--ink)}
+
+  .text{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px;font-size:1.12rem;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+  .text h2{font-size:1rem;margin-bottom:12px;font-weight:700}
+  .text p{margin-bottom:14px}.text p:last-child{margin-bottom:0}
+  .s{border-radius:4px;transition:background .2s}
+  .s.active{background:var(--gold);box-shadow:0 0 0 3px var(--gold)}
+  .w{cursor:pointer;border-radius:3px;transition:background .12s}
+  .w:hover{background:#eef3f0}.w.tapped{background:#cfe6db}
+
+  #tip{position:fixed;z-index:50;max-width:80vw;background:#1c1a17;color:#fff;padding:8px 12px;border-radius:9px;font-size:.95rem;line-height:1.35;box-shadow:0 6px 24px rgba(0,0,0,.25);display:none;pointer-events:none}
+  #tip .pl{color:var(--gold);font-weight:700}#tip .en{opacity:.95}#tip .none{color:#f0c0a8;font-style:italic;font-size:.85rem}
+  #overlay{position:fixed;inset:0;background:rgba(28,26,23,.55);z-index:60;display:none;align-items:center;justify-content:center;padding:20px}
+  #modal{background:#fff;border-radius:16px;max-width:520px;width:100%;padding:22px;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+  #modal .lab{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:6px}
+  #modal .pl{font-size:1.1rem;font-weight:600;margin-bottom:16px;line-height:1.5}
+  #modal .en{font-size:1rem;color:#2a2721;line-height:1.55;padding-top:14px;border-top:1px solid var(--line)}
+  #modal .close{margin-top:20px;width:100%;text-align:center}
+</style>
+</head>
+<body>
+
+<!-- HOME -->
+<div id="home">
+  <div class="kicker">Nauka polskiego</div>
+  <h1>Polonca Çalışma</h1>
+  <p class="sub">Çalışmak istediğin metni seç.</p>
+  <div id="homeList"></div>
+</div>
+
+<!-- READER -->
+<div id="reader-screen">
+  <div class="sticky-wrap">
+    <div class="bar">
+      <button class="chip" id="home-btn">← Menü</button>
+      <div class="seg">
+        <button class="segbtn active" data-mode="listen">🎧 Dinleme</button>
+        <button class="segbtn" data-mode="sentence">🗣️ Cümle cümle</button>
+      </div>
+      <label class="rate">Hız
+        <input id="rate" type="range" min="0.5" max="1.2" step="0.05" value="0.9">
+        <output id="rateVal">0.90</output>
+      </label>
+    </div>
+
+    <div class="controls" id="listenCtrls">
+      <button class="act" id="play">▶ Odtwórz</button>
+      <button class="act ghost" id="pause" disabled>⏸ Pauza</button>
+      <button class="act ghost" id="stop" disabled>⏹ Stop</button>
+      <label class="loop" id="loopLab"><input type="checkbox" id="loop"> 🔁 Sürekli</label>
+    </div>
+
+    <div class="controls" id="sentCtrls" style="display:none">
+      <button class="act ghost" id="prev">⏮ Geri</button>
+      <button class="act" id="repeat">🔁 Tekrar</button>
+      <button class="act" id="next">⏭ İleri</button>
+      <span class="counter" id="counter">– / –</span>
+    </div>
+  </div>
+
+  <div class="status" id="status"></div>
+  <div class="howto">👆 <b>Kelimeye dokun</b> → İngilizcesi &nbsp;·&nbsp; ✋ <b>Uzun bas</b> → cümle çevirisi</div>
+
+  <div class="text" id="reader"></div>
+</div>
+
+<div id="tip"></div>
+<div id="overlay"><div id="modal">
+  <div class="lab">Zdanie · Cümle</div>
+  <div class="pl" id="mPl"></div>
+  <div class="en" id="mEn"></div>
+  <button class="act ghost close" id="mClose">Zamknij · Kapat</button>
+</div></div>
+
+<script>
+(function(){
+  /* ================= CONTENT ================= */
+  const TEXTS = [
+    {
+      id:"ai",
+      title:"Moje zainteresowania – sztuczna inteligencja",
+      paragraphs:[
+        [
+          {pl:"Moim największym zainteresowaniem jest sztuczna inteligencja i pisanie aplikacji z jej pomocą.", en:"My greatest interest is artificial intelligence and writing applications with its help."},
+          {pl:"Bardzo lubię tworzyć nowe programy i poznawać nowe technologie.", en:"I really like creating new programs and getting to know new technologies."},
+          {pl:"Praca z AI daje mi radość i dużo satysfakcji.", en:"Working with AI gives me joy and a lot of satisfaction."},
+          {pl:"Każdy nowy projekt jest dla mnie przygodą.", en:"Every new project is an adventure for me."}
+        ],
+        [
+          {pl:"Najczęściej pracuję nad aplikacjami wieczorem, kiedy mam dużo wolnego czasu.", en:"I most often work on applications in the evening, when I have a lot of free time."},
+          {pl:"Lubię proste programy, dlatego chętnie piszę aplikacje na telefon albo małe strony internetowe.", en:"I like simple programs, that's why I gladly write phone apps or small websites."},
+          {pl:"Uważam, że sztuczna inteligencja bardzo pomaga w nauce.", en:"I believe that artificial intelligence helps a lot in learning."},
+          {pl:"Czasem jednak wybieram trudniejsze projekty, bo dzięki nim mogę się więcej nauczyć.", en:"Sometimes, however, I choose harder projects, because thanks to them I can learn more."}
+        ],
+        [
+          {pl:"Sztuczna inteligencja to nie tylko praca.", en:"Artificial intelligence is not only work."},
+          {pl:"Moim zdaniem to także dobra zabawa.", en:"In my opinion it is also good fun."},
+          {pl:"Dzięki temu mogę szybciej rozwiązywać problemy i lepiej rozumieć technologię.", en:"Thanks to this I can solve problems faster and understand technology better."},
+          {pl:"Ważne dla mnie jest także rozmawianie z AI.", en:"Talking with AI is also important to me."},
+          {pl:"Rozmowy te uczą mnie nowych rzeczy.", en:"These conversations teach me new things."}
+        ],
+        [
+          {pl:"W czasie pisania aplikacji zawsze próbuję nowych pomysłów.", en:"While writing applications I always try new ideas."},
+          {pl:"Czasem program działa bardzo dobrze, a czasem są błędy, ale zawsze jest ciekawie.", en:"Sometimes the program works very well, and sometimes there are errors, but it is always interesting."},
+          {pl:"Z drugiej strony praca z AI wymaga cierpliwości i uwagi.", en:"On the other hand, working with AI requires patience and attention."}
+        ],
+        [
+          {pl:"Podsumowując, sztuczna inteligencja jest dla mnie najlepszym hobby.", en:"To sum up, artificial intelligence is the best hobby for me."},
+          {pl:"Jednak najważniejsze jest to, że daje mi radość, wiedzę i nowe doświadczenia.", en:"However, the most important thing is that it gives me joy, knowledge and new experiences."}
+        ]
+      ]
+    }
+    ,
+    {
+      id:"studia",
+      title:"Czy w dzisiejszych czasach warto studiować?",
+      paragraphs:[
+        [
+          {pl:"Moim zdaniem warto studiować, ale nie zawsze jest to konieczne.", en:"In my opinion it is worth studying, but it is not always necessary."},
+          {pl:"Studia dają dużo wiedzy i rozwijają człowieka.", en:"Studies give a lot of knowledge and develop a person."},
+          {pl:"Na uniwersytecie poznajemy nowych ludzi, uczymy się języków obcych i różnych przedmiotów.", en:"At university we meet new people, learn foreign languages and various subjects."},
+          {pl:"Dzięki temu możemy znaleźć lepszą pracę i zarabiać więcej pieniędzy.", en:"Thanks to this we can find a better job and earn more money."}
+        ],
+        [
+          {pl:"Z drugiej strony, nie każdy musi studiować.", en:"On the other hand, not everyone has to study."},
+          {pl:"Niektórzy wolą uczyć się zawodu w szkole technicznej albo iść do pracy od razu po maturze.", en:"Some prefer to learn a trade at a technical school or go to work right after their final school exams (matura)."},
+          {pl:"W dzisiejszych czasach liczy się także doświadczenie i praktyczne umiejętności.", en:"Nowadays experience and practical skills also matter."},
+          {pl:"Czasem ktoś bez studiów może być bardzo dobrym specjalistą.", en:"Sometimes someone without a degree can be a very good specialist."}
+        ],
+        [
+          {pl:"Podsumowując, warto studiować, jeśli ktoś ma pasję i chce rozwijać się w wybranym kierunku.", en:"To sum up, it is worth studying if someone has a passion and wants to develop in a chosen field."},
+          {pl:"Jednak najważniejsze jest, aby robić to, co daje radość i poczucie sensu w życiu.", en:"However, the most important thing is to do what gives joy and a sense of meaning in life."}
+        ]
+      ]
+    },
+    {
+      id:"internet",
+      title:"Internet jest dziś niezbędny do życia",
+      paragraphs:[
+        [
+          {pl:"Uważam, że internet jest dziś naprawdę niezbędny.", en:"I believe that the internet is really essential today."},
+          {pl:"Prawie każdy korzysta z internetu codziennie: w domu, w pracy, w szkole.", en:"Almost everyone uses the internet every day: at home, at work, at school."},
+          {pl:"Dzięki internetowi możemy szybko czytać wiadomości, oglądać filmy, słuchać muzyki i kupować różne rzeczy online.", en:"Thanks to the internet we can quickly read the news, watch films, listen to music and buy various things online."},
+          {pl:"To bardzo wygodne, bo nie musimy wychodzić z domu.", en:"It is very convenient, because we don't have to leave the house."}
+        ],
+        [
+          {pl:"Internet pomaga także w nauce.", en:"The internet also helps in learning."},
+          {pl:"Uczniowie i studenci mogą znaleźć materiały, ćwiczenia, słowniki i książki elektroniczne.", en:"Pupils and students can find materials, exercises, dictionaries and e-books."},
+          {pl:"W czasie pandemii internet pozwolił na lekcje online i spotkania przez komputer.", en:"During the pandemic the internet made online lessons and meetings via computer possible."}
+        ],
+        [
+          {pl:"Bardzo ważna jest komunikacja.", en:"Communication is very important."},
+          {pl:"Przez internet mamy kontakt z rodziną, znajomymi i ludźmi z innych krajów.", en:"Through the internet we have contact with family, friends and people from other countries."},
+          {pl:"Możemy pisać wiadomości, dzwonić i rozmawiać przez kamerę.", en:"We can write messages, make calls and talk via camera."},
+          {pl:"To ułatwia życie i daje poczucie bliskości.", en:"It makes life easier and gives a sense of closeness."}
+        ],
+        [
+          {pl:"Oczywiście są też minusy: uzależnienie, fałszywe informacje i brak ruchu.", en:"Of course there are also downsides: addiction, false information and lack of physical activity."},
+          {pl:"Jednak według mnie internet jest dzisiaj konieczny i trudno sobie wyobrazić świat bez niego.", en:"However, in my opinion the internet is necessary today and it is hard to imagine a world without it."}
+        ]
+      ]
+    },
+    {
+      id:"podroze",
+      title:"Moje zainteresowania – podróże",
+      paragraphs:[
+        [
+          {pl:"Moim największym zainteresowaniem są podróże.", en:"My greatest interest is travelling."},
+          {pl:"Bardzo lubię jeździć do nowych miejsc i poznawać inne miasta oraz kraje.", en:"I really like going to new places and getting to know other cities and countries."},
+          {pl:"Podróże dają mi radość i dużo dobrych wspomnień.", en:"Travelling gives me joy and a lot of good memories."},
+          {pl:"Każdy wyjazd jest dla mnie przygodą.", en:"Every trip is an adventure for me."}
+        ],
+        [
+          {pl:"Najczęściej podróżuję w wakacje, kiedy mam dużo wolnego czasu.", en:"I travel most often during the holidays, when I have a lot of free time."},
+          {pl:"Lubię morze, dlatego chętnie jadę nad Bałtyk albo do ciepłych krajów.", en:"I like the sea, that's why I gladly go to the Baltic or to warm countries."},
+          {pl:"Tam mogę pływać, spacerować po plaży i odpoczywać na słońcu.", en:"There I can swim, walk on the beach and rest in the sun."},
+          {pl:"Czasem jednak wybieram góry, bo tam można chodzić na długie spacery i podziwiać piękne widoki.", en:"Sometimes, however, I choose the mountains, because there you can go on long walks and admire beautiful views."}
+        ],
+        [
+          {pl:"Podróże to nie tylko odpoczynek.", en:"Travelling is not only rest."},
+          {pl:"Lubię też zwiedzać muzea, stare kościoły i inne zabytki.", en:"I also like to visit museums, old churches and other monuments."},
+          {pl:"Dzięki temu mogę lepiej poznać historię i kulturę danego miejsca.", en:"Thanks to this I can get to know the history and culture of a given place better."},
+          {pl:"Ważne dla mnie jest także spotykanie nowych ludzi.", en:"Meeting new people is also important to me."},
+          {pl:"Rozmowy z nimi uczą mnie otwartości.", en:"Conversations with them teach me openness."}
+        ],
+        [
+          {pl:"W czasie podróży zawsze próbuję lokalnego jedzenia.", en:"During my travels I always try the local food."},
+          {pl:"Czasem smakuje bardzo dobrze, a czasem jest dziwne, ale zawsze ciekawe.", en:"Sometimes it tastes very good, and sometimes it is strange, but always interesting."},
+          {pl:"Lubię też robić zdjęcia, żeby pamiętać wszystkie chwile.", en:"I also like taking photos, in order to remember all the moments."}
+        ],
+        [
+          {pl:"Podsumowując, podróże są dla mnie najlepszym hobby.", en:"To sum up, travelling is the best hobby for me."},
+          {pl:"Dają mi szczęście, odpoczynek i nowe doświadczenia.", en:"It gives me happiness, rest and new experiences."}
+        ]
+      ]
+    },
+    {
+      id:"towarzyskie",
+      title:"Życie towarzyskie jest bardzo ważne",
+      paragraphs:[
+        [
+          {pl:"Moim zdaniem życie towarzyskie jest naprawdę bardzo ważne.", en:"In my opinion social life is really very important."},
+          {pl:"Każdy człowiek potrzebuje kontaktu z innymi ludźmi.", en:"Every person needs contact with other people."},
+          {pl:"Samotność może być smutna, a spotkania ze znajomymi i rodziną dają nam radość i energię.", en:"Loneliness can be sad, while meetings with friends and family give us joy and energy."}
+        ],
+        [
+          {pl:"Życie towarzyskie to przede wszystkim wspólne rozmowy.", en:"Social life is above all shared conversations."},
+          {pl:"Kiedy spotykam się z przyjaciółmi, mogę opowiadać o moich problemach, a także słuchać ich historii.", en:"When I meet with friends, I can talk about my problems, and also listen to their stories."},
+          {pl:"To pomaga lepiej rozumieć innych i czuć, że nie jesteśmy sami.", en:"This helps to understand others better and to feel that we are not alone."}
+        ],
+        [
+          {pl:"Bardzo lubię też wspólne wyjścia.", en:"I also really like going out together."},
+          {pl:"Razem idziemy do kina, kawiarni albo na spacer.", en:"Together we go to the cinema, a café or for a walk."},
+          {pl:"Takie chwile budują przyjaźń i zostają w pamięci na długo.", en:"Such moments build friendship and stay in the memory for a long time."},
+          {pl:"Dzięki temu życie jest ciekawsze i bardziej kolorowe.", en:"Thanks to this life is more interesting and more colourful."}
+        ],
+        [
+          {pl:"Życie towarzyskie jest ważne także dla zdrowia.", en:"Social life is also important for health."},
+          {pl:"Śmiech i rozmowy redukują stres i sprawiają, że mamy lepszy nastrój.", en:"Laughter and conversations reduce stress and make us have a better mood."},
+          {pl:"Czujemy się potrzebni i szczęśliwsi.", en:"We feel needed and happier."}
+        ],
+        [
+          {pl:"Podsumowując, zgadzam się z opinią, że życie towarzyskie jest bardzo ważne.", en:"To sum up, I agree with the opinion that social life is very important."},
+          {pl:"Bez przyjaciół i kontaktów z ludźmi świat byłby smutny i pusty.", en:"Without friends and contact with people the world would be sad and empty."}
+        ]
+      ]
+    },
+    {
+      id:"stambul",
+      title:"Najważniejsze atrakcje turystyczne w Turcji – Stambuł",
+      paragraphs:[
+        [
+          {pl:"Moim zdaniem, kiedy mówimy o Turcji, nie musimy opowiadać o wielu miastach.", en:"In my opinion, when we talk about Turkey, we don't have to talk about many cities."},
+          {pl:"Wystarczy mówić o Stambule, bo to naprawdę wyjątkowe miejsce.", en:"It is enough to talk about Istanbul, because it is a truly exceptional place."}
+        ],
+        [
+          {pl:"Stambuł to ogromne miasto, w którym mieszka wiele milionów ludzi.", en:"Istanbul is a huge city in which many millions of people live."},
+          {pl:"Jest wyjątkowy, bo leży na dwóch kontynentach – w Europie i w Azji.", en:"It is exceptional, because it lies on two continents – in Europe and in Asia."},
+          {pl:"Historia Stambułu jest bardzo długa i bogata.", en:"The history of Istanbul is very long and rich."},
+          {pl:"Było to kiedyś miasto Bizancjum, potem Konstantynopol, a dzisiaj jest nowoczesnym centrum Turcji.", en:"It was once the city of Byzantium, then Constantinople, and today it is a modern centre of Turkey."}
+        ],
+        [
+          {pl:"Ja sam spędziłem w Stambule sześć lat, ponieważ tam studiowałem.", en:"I myself spent six years in Istanbul, because I studied there."},
+          {pl:"To był ważny czas w moim życiu.", en:"It was an important time in my life."},
+          {pl:"Mogłem dobrze poznać to miasto, jego kulturę i mieszkańców.", en:"I was able to get to know this city, its culture and its residents well."}
+        ],
+        [
+          {pl:"Najważniejsze atrakcje turystyczne to Hagia Sofia, Błękitny Meczet i Pałac Topkapi.", en:"The most important tourist attractions are Hagia Sophia, the Blue Mosque and Topkapi Palace."},
+          {pl:"Turyści lubią też spacerować po Bosforze, podziwiać mosty i statki.", en:"Tourists also like to stroll along the Bosphorus and to admire the bridges and ships."},
+          {pl:"Stambuł ma też piękne bazary, gdzie można kupić przyprawy, herbatę i pamiątki.", en:"Istanbul also has beautiful bazaars, where you can buy spices, tea and souvenirs."}
+        ],
+        [
+          {pl:"Podsumowując, nie trzeba mówić o innych miejscach, kiedy mamy Stambuł.", en:"To sum up, there is no need to talk about other places when we have Istanbul."},
+          {pl:"To serce Turcji i jedno z najpiękniejszych miast świata.", en:"It is the heart of Turkey and one of the most beautiful cities in the world."}
+        ]
+      ]
+    },
+    {
+      id:"tempo",
+      title:"Dzisiejsze tempo życia jest za szybkie",
+      paragraphs:[
+        [
+          {pl:"Moim zdaniem dzisiejsze tempo życia naprawdę jest za szybkie.", en:"In my opinion today's pace of life really is too fast."},
+          {pl:"Ludzie żyją w pośpiechu, mają dużo obowiązków i często brakuje im czasu na odpoczynek.", en:"People live in a hurry, have a lot of duties and often lack time to rest."}
+        ],
+        [
+          {pl:"Każdego dnia wstajemy wcześnie, idziemy do pracy albo do szkoły, a potem wracamy zmęczeni.", en:"Every day we get up early, go to work or to school, and then come back tired."},
+          {pl:"Często musimy robić zakupy, gotować, sprzątać.", en:"Often we have to do the shopping, cook and clean."},
+          {pl:"Wiele osób pracuje długo, nawet po dziesięć godzin dziennie.", en:"Many people work long hours, even ten hours a day."},
+          {pl:"Przez to nie mają czasu dla rodziny i przyjaciół.", en:"Because of this they have no time for family and friends."}
+        ],
+        [
+          {pl:"Szybkie tempo życia ma także wpływ na zdrowie.", en:"A fast pace of life also has an impact on health."},
+          {pl:"Ludzie są zestresowani, źle śpią i mają mało ruchu.", en:"People are stressed, sleep badly and get little exercise."},
+          {pl:"Czasami jemy fast food, bo nie mamy czasu na zdrowy posiłek.", en:"Sometimes we eat fast food, because we don't have time for a healthy meal."},
+          {pl:"To nie jest dobre dla organizmu.", en:"This is not good for the body."}
+        ],
+        [
+          {pl:"Z drugiej strony, nowoczesny świat daje nam też możliwości.", en:"On the other hand, the modern world also gives us opportunities."},
+          {pl:"Dzięki technologii możemy szybko komunikować się i podróżować.", en:"Thanks to technology we can communicate and travel quickly."},
+          {pl:"Jednak trzeba pamiętać o równowadze.", en:"However, we must remember about balance."}
+        ],
+        [
+          {pl:"Podsumowując, zgadzam się, że tempo życia jest dziś za szybkie.", en:"To sum up, I agree that the pace of life is too fast today."},
+          {pl:"Dlatego ważne jest, aby umieć odpoczywać, dbać o zdrowie i spędzać czas z bliskimi.", en:"That's why it is important to know how to rest, take care of one's health and spend time with loved ones."}
+        ]
+      ]
+    },
+    {
+      id:"decyzje",
+      title:"Najważniejsze decyzje w życiu człowieka",
+      paragraphs:[
+        [
+          {pl:"Każdy człowiek w swoim życiu podejmuje różne decyzje.", en:"Every person makes various decisions in their life."},
+          {pl:"Niektóre są małe i proste, na przykład co zjeść albo gdzie spędzić weekend.", en:"Some are small and simple, for example what to eat or where to spend the weekend."},
+          {pl:"Inne decyzje są bardzo ważne i mają wpływ na całe życie.", en:"Other decisions are very important and have an impact on one's whole life."}
+        ],
+        [
+          {pl:"Moim zdaniem najważniejsze decyzje dotyczą edukacji i pracy.", en:"In my opinion the most important decisions concern education and work."},
+          {pl:"Kiedy kończymy szkołę, musimy wybrać studia albo zawód.", en:"When we finish school, we have to choose studies or a profession."},
+          {pl:"To trudna decyzja, bo od niej zależy przyszłość i to, czy będziemy zadowoleni w życiu.", en:"It is a difficult decision, because our future and whether we will be satisfied in life depend on it."}
+        ],
+        [
+          {pl:"Bardzo ważne są też decyzje związane z rodziną.", en:"Decisions connected with family are also very important."},
+          {pl:"Wybór partnera, małżeństwo czy posiadanie dzieci to kroki, które zmieniają całe życie człowieka.", en:"Choosing a partner, marriage or having children are steps that change a person's whole life."},
+          {pl:"Takie decyzje wymagają odpowiedzialności i dojrzałości.", en:"Such decisions require responsibility and maturity."}
+        ],
+        [
+          {pl:"Nie możemy zapominać także o zdrowiu.", en:"We also cannot forget about health."},
+          {pl:"Decyzje dotyczące stylu życia, na przykład czy uprawiamy sport, czy palimy papierosy, mają ogromne znaczenie dla naszego samopoczucia i długości życia.", en:"Decisions concerning lifestyle, for example whether we do sport or whether we smoke cigarettes, have enormous significance for our wellbeing and the length of our life."}
+        ],
+        [
+          {pl:"Podsumowując, najważniejsze decyzje w życiu człowieka dotyczą pracy, rodziny i zdrowia.", en:"To sum up, the most important decisions in a person's life concern work, family and health."},
+          {pl:"Trzeba podejmować je mądrze, bo od nich zależy nasze szczęście i przyszłość.", en:"We must make them wisely, because our happiness and future depend on them."}
+        ]
+      ]
+    },
+    {
+      id:"pieniadze",
+      title:"Co bym zrobił, gdybym wygrał dużą sumę pieniędzy?",
+      paragraphs:[
+        [
+          {pl:"Czasami myślę, co by było, gdybym wygrał dużą sumę pieniędzy na loterii.", en:"Sometimes I think about what it would be like if I won a large sum of money in the lottery."},
+          {pl:"To bardzo ciekawa sytuacja, bo takie pieniądze mogą zmienić całe życie.", en:"It is a very interesting situation, because such money can change one's whole life."}
+        ],
+        [
+          {pl:"Najpierw pomyślałbym o rodzinie.", en:"First I would think about my family."},
+          {pl:"Chciałbym pomóc rodzicom i rodzeństwu, żeby żyli spokojnie i bez problemów finansowych.", en:"I would like to help my parents and siblings, so that they could live peacefully and without financial problems."},
+          {pl:"Kupiłbym im mieszkania albo samochody.", en:"I would buy them flats or cars."}
+        ],
+        [
+          {pl:"Drugim krokiem byłaby podróż.", en:"The second step would be travel."},
+          {pl:"Bardzo lubię zwiedzać świat, więc spełniłbym swoje marzenia.", en:"I really like exploring the world, so I would fulfil my dreams."},
+          {pl:"Pojechałbym do wielu krajów, na przykład do Włoch, Hiszpanii i Japonii.", en:"I would go to many countries, for example to Italy, Spain and Japan."},
+          {pl:"Dzięki temu mógłbym poznać nowe kultury i zobaczyć piękne miejsca.", en:"Thanks to this I could get to know new cultures and see beautiful places."}
+        ],
+        [
+          {pl:"Oczywiście zadbałbym też o przyszłość.", en:"Of course I would also take care of the future."},
+          {pl:"Zainwestowałbym część pieniędzy w naukę, na przykład w kursy językowe.", en:"I would invest part of the money in education, for example in language courses."},
+          {pl:"Chciałbym też otworzyć własną firmę, aby mieć stałe źródło dochodu.", en:"I would also like to open my own company, in order to have a steady source of income."}
+        ],
+        [
+          {pl:"Nie zapomniałbym również o innych ludziach.", en:"I would also not forget about other people."},
+          {pl:"Część pieniędzy oddałbym na cele charytatywne, żeby pomóc potrzebującym.", en:"I would give part of the money to charity, in order to help those in need."}
+        ],
+        [
+          {pl:"Podsumowując, gdybym wygrał dużą sumę pieniędzy, wykorzystałbym ją mądrze: dla rodziny, dla siebie i dla innych.", en:"To sum up, if I won a large sum of money, I would use it wisely: for my family, for myself and for others."}
+        ]
+      ]
+    },
+    {
+      id:"pandemia",
+      title:"Jak pandemia koronawirusa wpłynęła na nasze życie?",
+      paragraphs:[
+        [
+          {pl:"Moim zdaniem pandemia koronawirusa bardzo zmieniła nasze życie.", en:"In my opinion the coronavirus pandemic changed our life a great deal."},
+          {pl:"Wszyscy musieliśmy przyzwyczaić się do nowych zasad i ograniczeń.", en:"We all had to get used to new rules and restrictions."},
+          {pl:"Na początku było to trudne, bo musieliśmy nosić maski, myć ręce i zachowywać dystans społeczny.", en:"At the beginning it was difficult, because we had to wear masks, wash our hands and keep social distance."}
+        ],
+        [
+          {pl:"Pandemia wpłynęła także na szkołę i pracę.", en:"The pandemic also affected school and work."},
+          {pl:"Uczniowie i studenci musieli uczyć się online w domu.", en:"Pupils and students had to learn online at home."},
+          {pl:"Nie mogliśmy spotykać się z przyjaciółmi tak często jak wcześniej.", en:"We could not meet with friends as often as before."},
+          {pl:"W pracy wiele osób zaczęło pracować zdalnie, co było wygodne, ale też czasami trudne, bo brakowało kontaktu z innymi ludźmi.", en:"At work many people started working remotely, which was convenient, but also sometimes difficult, because contact with other people was lacking."}
+        ],
+        [
+          {pl:"Pandemia zmieniła też nasze życie codzienne.", en:"The pandemic also changed our everyday life."},
+          {pl:"Więcej czasu spędzaliśmy w domu, gotowaliśmy, sprzątaliśmy i staraliśmy się znaleźć nowe hobby.", en:"We spent more time at home, cooked, cleaned and tried to find new hobbies."},
+          {pl:"Ludzie zaczęli też bardziej dbać o zdrowie i higienę.", en:"People also started to take more care of their health and hygiene."}
+        ],
+        [
+          {pl:"Z drugiej strony pandemia nauczyła nas cierpliwości i odpowiedzialności.", en:"On the other hand, the pandemic taught us patience and responsibility."},
+          {pl:"Wiele osób pomogło innym, na przykład starszym sąsiadom.", en:"Many people helped others, for example elderly neighbours."}
+        ],
+        [
+          {pl:"Podsumowując, pandemia koronawirusa miała duży wpływ na nasze życie.", en:"To sum up, the coronavirus pandemic had a great impact on our life."},
+          {pl:"Zmieniła pracę, szkołę, kontakty z ludźmi i nasze nawyki, ale także nauczyła nas wartości zdrowia i wzajemnej pomocy.", en:"It changed work, school, contacts with people and our habits, but it also taught us the value of health and mutual help."}
+        ]
+      ]
+    },
+    {
+      id:"urlop",
+      title:"Gdzie najbardziej lubię spędzać urlop",
+      paragraphs:[
+        [
+          {pl:"Moim zdaniem najlepsze miejsce na urlop zależy od tego, czego szukamy.", en:"In my opinion the best place for a holiday depends on what we are looking for."},
+          {pl:"Ja najbardziej lubię spędzać urlop nad morzem.", en:"I most of all like to spend my holiday by the sea."},
+          {pl:"Morze daje mi spokój i relaks.", en:"The sea gives me calm and relaxation."},
+          {pl:"Lubię leżeć na plaży, pływać w wodzie i spacerować brzegiem morza.", en:"I like lying on the beach, swimming in the water and walking along the seashore."}
+        ],
+        [
+          {pl:"Lubię też odkrywać nowe miejsca i podróżować.", en:"I also like discovering new places and travelling."},
+          {pl:"Kiedy odwiedzam nowe miasta, czuję się ciekawie i szczęśliwie.", en:"When I visit new cities, I feel curious and happy."},
+          {pl:"Najbardziej lubię zwiedzać miasta, które mają morze.", en:"I most of all like visiting cities that have the sea."},
+          {pl:"Wtedy mogę połączyć przyjemność z relaksem nad wodą i odkrywać nowe miejsca.", en:"Then I can combine pleasure with relaxation by the water and discover new places."}
+        ],
+        [
+          {pl:"W wakacje zwykle jadę do ciepłych krajów lub nad Bałtyk.", en:"During the holidays I usually go to warm countries or to the Baltic."},
+          {pl:"Lubię ciepłe słońce, świeże powietrze i piękne widoki.", en:"I like the warm sun, fresh air and beautiful views."},
+          {pl:"Morze jest też idealne do uprawiania sportów, na przykład pływania, żeglowania albo jazdy na rowerze wzdłuż wybrzeża.", en:"The sea is also ideal for doing sports, for example swimming, sailing or cycling along the coast."}
+        ],
+        [
+          {pl:"Urlop to dla mnie czas na relaks i zapomnienie o pracy czy szkole.", en:"A holiday is for me a time for relaxation and forgetting about work or school."},
+          {pl:"Chcę spędzać go w miejscach, gdzie mogę odpocząć, czuć spokój i nabrać energii.", en:"I want to spend it in places where I can rest, feel calm and gain energy."}
+        ],
+        [
+          {pl:"Podsumowując, najbardziej lubię spędzać urlop nad morzem i odkrywać nowe miasta.", en:"To sum up, I most of all like to spend my holiday by the sea and discover new cities."},
+          {pl:"To miejsce daje mi szczęście, relaks i piękne wspomnienia.", en:"This place gives me happiness, relaxation and beautiful memories."}
+        ]
+      ]
+    },
+    {
+      id:"czaswolny",
+      title:"Jak spędzają czas wolny mieszkańcy mojego kraju?",
+      paragraphs:[
+        [
+          {pl:"Mieszkańcy Turcji spędzają czas wolny na różne sposoby.", en:"The residents of Turkey spend their free time in various ways."},
+          {pl:"Wiele osób lubi spędzać czas z rodziną i przyjaciółmi.", en:"Many people like to spend time with family and friends."},
+          {pl:"Ludzie często spotykają się w domach, w parkach lub w kawiarniach.", en:"People often meet in homes, in parks or in cafés."},
+          {pl:"To daje im radość i pozwala odpocząć po pracy lub szkole.", en:"This gives them joy and lets them rest after work or school."}
+        ],
+        [
+          {pl:"Ludzie wolą także robić różne aktywności z rodziną.", en:"People also prefer to do various activities with their family."},
+          {pl:"Często jeżdżą na wycieczki do pobliskich miast i odwiedzają znajomych w innych miastach.", en:"They often go on trips to nearby cities and visit friends in other cities."},
+          {pl:"Turcy bardzo lubią pikniki, szczególnie nad rzeką, jeziorem lub morzem.", en:"Turks really like picnics, especially by a river, lake or the sea."},
+          {pl:"Wspólne jedzenie z rodziną i rozmowy na świeżym powietrzu są bardzo popularne i sprawiają dużo przyjemności.", en:"Eating together with family and conversations in the open air are very popular and give a lot of pleasure."}
+        ],
+        [
+          {pl:"Turcy również kochają wakacje nad morzem.", en:"Turks also love holidays by the sea."},
+          {pl:"Latem wiele osób jedzie do popularnych miejsc nadmorskich, na przykład do Antalyi, Bodrum czy Izmiru.", en:"In summer many people go to popular seaside places, for example to Antalya, Bodrum or Izmir."},
+          {pl:"Morze daje spokój, relaks i możliwość pływania.", en:"The sea gives calm, relaxation and the possibility of swimming."}
+        ],
+        [
+          {pl:"Sport i aktywność fizyczna także są ważne.", en:"Sport and physical activity are also important."},
+          {pl:"Ludzie biegają, jeżdżą na rowerze, grają w piłkę lub chodzą na siłownię.", en:"People run, cycle, play ball or go to the gym."},
+          {pl:"Młodzież często spędza czas z przyjaciółmi, grając w gry komputerowe lub oglądając filmy.", en:"Young people often spend time with friends, playing computer games or watching films."}
+        ],
+        [
+          {pl:"Podsumowując, mieszkańcy Turcji spędzają czas wolny z rodziną, przyjaciółmi, na piknikach i wakacjach nad morzem.", en:"To sum up, the residents of Turkey spend their free time with family, friends, at picnics and on holidays by the sea."},
+          {pl:"Dzięki temu mają radość, odpoczynek i dobre wspomnienia.", en:"Thanks to this they have joy, rest and good memories."}
+        ]
+      ]
+    },
+    {
+      id:"sport",
+      title:"Jaki sport lepiej uprawiać zimą, a jaki latem",
+      paragraphs:[
+        [
+          {pl:"Moim zdaniem, sport jest ważny przez cały rok, ale wybór zależy od pory roku.", en:"In my opinion, sport is important all year round, but the choice depends on the season."},
+          {pl:"Latem najlepiej uprawiać sporty na świeżym powietrzu, w ciepłej i słonecznej pogodzie.", en:"In summer it is best to do sports in the open air, in warm and sunny weather."},
+          {pl:"Ludzie lubią pływać w morzu, jeździć na rowerze, biegać lub grać w piłkę nożną na boisku.", en:"People like to swim in the sea, cycle, run or play football on a pitch."},
+          {pl:"Sport latem daje dużo radości i pozwala cieszyć się słońcem.", en:"Sport in summer gives a lot of joy and lets you enjoy the sun."}
+        ],
+        [
+          {pl:"Zimą warto wybrać sporty, które można uprawiać w chłodniejszej pogodzie.", en:"In winter it is worth choosing sports that can be done in cooler weather."},
+          {pl:"Popularne są narty, snowboard, łyżwy i biegi narciarskie.", en:"Skiing, snowboarding, ice skating and cross-country skiing are popular."},
+          {pl:"Sporty zimowe są świetne dla zdrowia, poprawiają kondycję i dają dużo zabawy.", en:"Winter sports are great for health, they improve fitness and give a lot of fun."},
+          {pl:"Oczywiście w zimie można też chodzić na spacery, biegać lub ćwiczyć w domu.", en:"Of course in winter you can also go for walks, run or exercise at home."}
+        ],
+        [
+          {pl:"Ważne jest, aby dostosować sport do pogody i własnych możliwości.", en:"It is important to adjust the sport to the weather and one's own abilities."},
+          {pl:"Latem sport na świeżym powietrzu jest przyjemny i daje energię, a zimą sporty zimowe lub ćwiczenia w domu pomagają zachować formę i zdrowie.", en:"In summer sport in the open air is pleasant and gives energy, while in winter winter sports or exercising at home help to keep fit and healthy."}
+        ],
+        [
+          {pl:"Podsumowując, latem najlepiej uprawiać sport na zewnątrz, a zimą sporty zimowe lub ćwiczenia w domu.", en:"To sum up, in summer it is best to do sport outdoors, and in winter winter sports or exercising at home."},
+          {pl:"Dzięki temu możemy być zdrowi i aktywni przez cały rok.", en:"Thanks to this we can be healthy and active all year round."}
+        ]
+      ]
+    },
+    {
+      id:"marzenia",
+      title:"Moje marzenia z dzieciństwa",
+      paragraphs:[
+        [
+          {pl:"Kiedy byłem dzieckiem, chciałem zostać inżynierem budownictwa.", en:"When I was a child, I wanted to become a construction engineer."},
+          {pl:"Marzyłem o tym, żeby budować domy, mosty i inne budynki, które będą użyteczne dla ludzi.", en:"I dreamed of building houses, bridges and other buildings that would be useful to people."},
+          {pl:"Chciałem, żeby moja praca pomagała ludziom i była ważna dla społeczeństwa.", en:"I wanted my work to help people and to be important for society."}
+        ],
+        [
+          {pl:"Kiedy byłem mały, lubiłem bawić się klockami Lego.", en:"When I was little, I liked playing with Lego bricks."},
+          {pl:"Budowałem z nich domy, wieże i mosty.", en:"I built houses, towers and bridges out of them."},
+          {pl:"To było bardzo ciekawe i rozwijało moją wyobraźnię.", en:"It was very interesting and developed my imagination."},
+          {pl:"Dzięki tym zabawom nauczyłem się planować i myśleć logicznie.", en:"Thanks to these games I learned to plan and to think logically."}
+        ],
+        [
+          {pl:"Teraz spełniam swoje marzenia.", en:"Now I am fulfilling my dreams."},
+          {pl:"Zostałem inżynierem budownictwa i buduję prawdziwe budynki.", en:"I became a construction engineer and I build real buildings."},
+          {pl:"To jest moja praca i pasja.", en:"This is my work and passion."},
+          {pl:"Czuję się szczęśliwy, kiedy widzę, że moje projekty są użyteczne dla ludzi.", en:"I feel happy when I see that my projects are useful to people."}
+        ],
+        [
+          {pl:"Podsumowując, moje marzenia z dzieciństwa były związane z budowaniem i pomaganiem innym.", en:"To sum up, my childhood dreams were connected with building and helping others."},
+          {pl:"Teraz mogę je realizować i czuć satysfakcję z tego, co robię.", en:"Now I can realise them and feel satisfaction from what I do."}
+        ]
+      ]
+    },
+    {
+      id:"kuchnia",
+      title:"Kuchnia mojego kraju",
+      paragraphs:[
+        [
+          {pl:"Kuchnia Turcji jest bardzo smaczna.", en:"Turkish cuisine is very tasty."},
+          {pl:"W Turcji jest wiele tradycyjnych potraw.", en:"In Turkey there are many traditional dishes."},
+          {pl:"Wiele z nich robi się z mięsa.", en:"Many of them are made from meat."},
+          {pl:"Mięso jest ważne w tureckiej kuchni.", en:"Meat is important in Turkish cuisine."},
+          {pl:"Ludzie używają też dużo przypraw.", en:"People also use a lot of spices."},
+          {pl:"Przyprawy dodają smaku jedzeniu i są bardzo ważne.", en:"Spices add flavour to food and are very important."}
+        ],
+        [
+          {pl:"Najpopularniejsze dania to kebab, köfte, pide i lahmacun.", en:"The most popular dishes are kebab, köfte, pide and lahmacun."},
+          {pl:"Ludzie lubią też zupy, na przykład zupę z soczewicy.", en:"People also like soups, for example lentil soup."},
+          {pl:"Na deser jedzą baklavę lub inne słodkie ciasta.", en:"For dessert they eat baklava or other sweet pastries."},
+          {pl:"Każdego dnia pijemy herbatę, a kawa turecka jest znana na całym świecie.", en:"Every day we drink tea, and Turkish coffee is known all over the world."}
+        ],
+        [
+          {pl:"W Turcji ludzie jedzą razem z rodziną.", en:"In Turkey people eat together with their family."},
+          {pl:"Często jedzą w domu lub w restauracji.", en:"They often eat at home or in a restaurant."},
+          {pl:"Podczas jedzenia rozmawiają i spędzają czas razem.", en:"During the meal they talk and spend time together."},
+          {pl:"Ludzie w Turcji czasem jedzą nie tylko żeby się najadać, ale też dla przyjemności.", en:"People in Turkey sometimes eat not only to fill themselves up, but also for pleasure."},
+          {pl:"Jedzenie może być hobby i jest bardzo ważne.", en:"Food can be a hobby and is very important."}
+        ],
+        [
+          {pl:"Gotowanie jest elementem kultury i tradycji.", en:"Cooking is an element of culture and tradition."},
+          {pl:"Kuchnia turecka jest znana także w innych krajach.", en:"Turkish cuisine is also known in other countries."},
+          {pl:"Jedzenie jest smaczne i zdrowe.", en:"The food is tasty and healthy."}
+        ],
+        [
+          {pl:"Podsumowując, kuchnia Turcji jest smaczna i prosta.", en:"To sum up, Turkish cuisine is tasty and simple."},
+          {pl:"Ludzie jedzą zdrowo, spotykają się z rodziną i cieszą się wspólnym czasem przy stole.", en:"People eat healthily, meet with family and enjoy the shared time at the table."}
+        ]
+      ]
+    },
+    {
+      id:"milosc",
+      title:"Czym jest prawdziwa miłość",
+      paragraphs:[
+        [
+          {pl:"Moim zdaniem prawdziwa miłość to szczere uczucie między ludźmi.", en:"In my opinion true love is a sincere feeling between people."},
+          {pl:"Prawdziwa miłość to nie tylko zakochanie, ale także przyjaźń, szacunek i zaufanie.", en:"True love is not only being in love, but also friendship, respect and trust."},
+          {pl:"Kiedy kochamy kogoś, chcemy, żeby ta osoba była szczęśliwa i bezpieczna.", en:"When we love someone, we want that person to be happy and safe."}
+        ],
+        [
+          {pl:"W prawdziwej miłości ludzie pomagają sobie i rozmawiają o problemach.", en:"In true love people help each other and talk about their problems."},
+          {pl:"Wspierają się w trudnych chwilach i są razem w dobrych momentach.", en:"They support each other in difficult moments and are together in good ones."},
+          {pl:"Miłość to także dbanie o siebie nawzajem.", en:"Love is also caring for one another."},
+          {pl:"Ważne jest, żeby słuchać drugiej osoby i rozumieć jej uczucia.", en:"It is important to listen to the other person and to understand their feelings."}
+        ],
+        [
+          {pl:"Prawdziwa miłość wymaga czasu i cierpliwości.", en:"True love requires time and patience."},
+          {pl:"Trzeba być miłym, wyrozumiałym i szczerym.", en:"One must be kind, understanding and sincere."},
+          {pl:"Czasami są kłótnie, ale w prawdziwej miłości ludzie rozwiązują problemy razem.", en:"Sometimes there are arguments, but in true love people solve problems together."},
+          {pl:"Miłość daje radość i poczucie bezpieczeństwa.", en:"Love gives joy and a sense of security."}
+        ],
+        [
+          {pl:"Prawdziwa miłość jest bardzo ważna w życiu.", en:"True love is very important in life."},
+          {pl:"Dzięki niej ludzie czują się szczęśliwi i spokojni.", en:"Thanks to it people feel happy and calm."},
+          {pl:"Daje siłę do życia i pomaga być lepszym człowiekiem.", en:"It gives strength to live and helps one to be a better person."}
+        ],
+        [
+          {pl:"Podsumowując, prawdziwa miłość to szczerość, przyjaźń, szacunek i wsparcie.", en:"To sum up, true love is sincerity, friendship, respect and support."},
+          {pl:"To uczucie daje radość i bezpieczeństwo każdemu człowiekowi.", en:"This feeling gives joy and security to every person."}
+        ]
+      ]
+    },
+    {
+      id:"rodzina",
+      title:"Rodzina w życiu",
+      paragraphs:[
+        [
+          {pl:"Tak, zgadzam się z opinią, że w życiu najważniejsza jest rodzina.", en:"Yes, I agree with the opinion that family is the most important thing in life."},
+          {pl:"Rodzina daje nam miłość, wsparcie i bezpieczeństwo.", en:"Family gives us love, support and security."},
+          {pl:"Dzięki rodzinie czujemy się szczęśliwi i spokojni.", en:"Thanks to family we feel happy and calm."}
+        ],
+        [
+          {pl:"Rodzina pomaga nam w trudnych chwilach.", en:"Family helps us in difficult moments."},
+          {pl:"Kiedy mamy problemy, możemy rozmawiać z rodzicami, braćmi lub siostrami.", en:"When we have problems, we can talk with our parents, brothers or sisters."},
+          {pl:"Oni słuchają nas i doradzają.", en:"They listen to us and give advice."},
+          {pl:"Rodzina daje siłę, kiedy jesteśmy smutni lub zmęczeni.", en:"Family gives strength when we are sad or tired."}
+        ],
+        [
+          {pl:"W rodzinie uczymy się wartości, takich jak szacunek, uczciwość i pomoc innym.", en:"In the family we learn values such as respect, honesty and helping others."},
+          {pl:"Dzięki rodzinie wiemy, jak być dobrym człowiekiem.", en:"Thanks to family we know how to be a good person."},
+          {pl:"Rodzina spędza też z nami miłe chwile.", en:"Family also spends pleasant moments with us."},
+          {pl:"Możemy razem jeść, oglądać filmy, spacerować lub rozmawiać.", en:"We can eat together, watch films, walk or talk."}
+        ],
+        [
+          {pl:"Rodzina jest bardzo ważna w każdej kulturze i kraju.", en:"Family is very important in every culture and country."},
+          {pl:"Wspólne święta i spotkania rodzinne są bardzo ważne.", en:"Shared holidays and family gatherings are very important."},
+          {pl:"Rodzina daje nam radość i poczucie przynależności.", en:"Family gives us joy and a sense of belonging."}
+        ],
+        [
+          {pl:"Podsumowując, rodzina to miłość, wsparcie, bezpieczeństwo i szczęście.", en:"To sum up, family is love, support, security and happiness."},
+          {pl:"Dzięki rodzinie nasze życie jest lepsze i łatwiejsze.", en:"Thanks to family our life is better and easier."},
+          {pl:"Dlatego uważam, że rodzina jest najważniejsza w życiu każdego człowieka.", en:"That's why I believe that family is the most important thing in every person's life."}
+        ]
+      ]
+    },
+    {
+      id:"tata",
+      title:"Osoba, którą podziwiam – mój tata",
+      paragraphs:[
+        [
+          {pl:"Osobą, którą najbardziej podziwiam, jest mój tata.", en:"The person I admire most is my dad."},
+          {pl:"Tata jest dla mnie bardzo ważny, ponieważ od dziecka był moim wzorem.", en:"Dad is very important to me, because since childhood he has been my role model."},
+          {pl:"Jest pracowity, odpowiedzialny i zawsze gotowy, żeby pomóc.", en:"He is hardworking, responsible and always ready to help."}
+        ],
+        [
+          {pl:"Mój tata pracuje jako inżynier budowlany.", en:"My dad works as a construction engineer."},
+          {pl:"Lubi swoją pracę, bo dzięki niej może tworzyć coś nowego i potrzebnego.", en:"He likes his work, because thanks to it he can create something new and needed."},
+          {pl:"Kiedy byłem dzieckiem, często widziałem, jak tata planuje i rysuje projekty.", en:"When I was a child, I often saw dad planning and drawing projects."},
+          {pl:"To było dla mnie bardzo ciekawe i dlatego też wybrałem podobną drogę w życiu.", en:"It was very interesting to me and that's why I also chose a similar path in life."}
+        ],
+        [
+          {pl:"Podziwiam tatę, bo dba o naszą rodzinę.", en:"I admire dad, because he takes care of our family."},
+          {pl:"Zawsze stara się, żeby nam niczego nie brakowało.", en:"He always tries to make sure that we lack nothing."},
+          {pl:"Jest cierpliwy i spokojny, nawet kiedy są trudne sytuacje.", en:"He is patient and calm, even when there are difficult situations."},
+          {pl:"Umie rozwiązywać problemy i uczy mnie, jak radzić sobie w życiu.", en:"He knows how to solve problems and teaches me how to cope in life."}
+        ],
+        [
+          {pl:"Tata jest też dobrym człowiekiem dla innych.", en:"Dad is also a good person to others."},
+          {pl:"Szanuje ludzi i zawsze stara się być uczciwy.", en:"He respects people and always tries to be honest."},
+          {pl:"Pokazuje mi, że warto pomagać innym i być dobrym człowiekiem.", en:"He shows me that it is worth helping others and being a good person."}
+        ],
+        [
+          {pl:"Podsumowując, mój tata to osoba, którą naprawdę podziwiam.", en:"To sum up, my dad is a person whom I truly admire."},
+          {pl:"Daje mi przykład, jak być pracowitym, odpowiedzialnym i dobrym człowiekiem.", en:"He gives me an example of how to be hardworking, responsible and a good person."},
+          {pl:"Dzięki niemu wiem, że rodzina, praca i uczciwość są najważniejsze w życiu.", en:"Thanks to him I know that family, work and honesty are the most important things in life."}
+        ]
+      ]
+    },
+    {
+      id:"najlepszapodroz",
+      title:"Najlepsza podróż w moim życiu",
+      paragraphs:[
+        [
+          {pl:"Najlepsza podróż w moim życiu była do Stambułu.", en:"The best trip in my life was to Istanbul."},
+          {pl:"To miasto jest dla mnie bardzo ważne, bo mieszkałem tam sześć lat i studiowałem.", en:"This city is very important to me, because I lived there for six years and studied."},
+          {pl:"Kiedy wróciłem tam jako turysta, poczułem wielką radość.", en:"When I returned there as a tourist, I felt great joy."},
+          {pl:"Stambuł jest wyjątkowy, bo łączy Europę i Azję.", en:"Istanbul is exceptional, because it connects Europe and Asia."},
+          {pl:"Można tam zobaczyć wiele zabytków, na przykład Hagia Sofię, Błękitny Meczet i Pałac Topkapi.", en:"You can see many monuments there, for example Hagia Sophia, the Blue Mosque and Topkapi Palace."}
+        ],
+        [
+          {pl:"Podczas podróży spacerowałem po Bosforze i patrzyłem na statki.", en:"During the trip I strolled along the Bosphorus and looked at the ships."},
+          {pl:"To było bardzo relaksujące.", en:"It was very relaxing."},
+          {pl:"Widziałem także Wielki Bazar, gdzie można kupić przyprawy, herbatę i pamiątki.", en:"I also saw the Grand Bazaar, where you can buy spices, tea and souvenirs."},
+          {pl:"Bardzo lubię atmosferę tego miejsca – jest kolorowo i głośno.", en:"I really like the atmosphere of this place – it is colourful and loud."}
+        ],
+        [
+          {pl:"Najważniejsze dla mnie było spotkanie ze znajomymi z czasów studiów.", en:"The most important thing for me was meeting friends from my student days."},
+          {pl:"Spędziliśmy razem czas, rozmawialiśmy i wspominaliśmy stare chwile.", en:"We spent time together, talked and reminisced about old times."},
+          {pl:"To dało mi dużo szczęścia.", en:"This gave me a lot of happiness."}
+        ],
+        [
+          {pl:"Ta podróż była najlepsza, bo połączyła turystykę z emocjami osobistymi.", en:"This trip was the best, because it combined tourism with personal emotions."},
+          {pl:"Z jednej strony mogłem zobaczyć piękne miejsca, a z drugiej – spotkać ludzi, których bardzo lubię.", en:"On the one hand I could see beautiful places, and on the other – meet people whom I really like."},
+          {pl:"Dlatego zawsze będę pamiętać tę podróż do Stambułu.", en:"That's why I will always remember this trip to Istanbul."}
+        ]
+      ]
+    },
+    {
+      id:"planeta",
+      title:"W jaki sposób możemy zadbać o naszą planetę?",
+      paragraphs:[
+        [
+          {pl:"Nasza planeta jest naszym domem.", en:"Our planet is our home."},
+          {pl:"Dlatego musimy o nią dbać.", en:"That's why we have to take care of it."},
+          {pl:"Każdy człowiek może robić małe rzeczy, które mają duże znaczenie.", en:"Every person can do small things that have great significance."}
+        ],
+        [
+          {pl:"Po pierwsze, możemy oszczędzać wodę.", en:"Firstly, we can save water."},
+          {pl:"Warto zakręcać kran, kiedy myjemy zęby.", en:"It is worth turning off the tap when we brush our teeth."},
+          {pl:"Możemy też brać krótszy prysznic.", en:"We can also take a shorter shower."},
+          {pl:"Dzięki temu zużywamy mniej wody i pomagamy naturze.", en:"Thanks to this we use less water and help nature."}
+        ],
+        [
+          {pl:"Po drugie, ważne jest oszczędzanie energii.", en:"Secondly, saving energy is important."},
+          {pl:"Trzeba gasić światło, kiedy wychodzimy z pokoju.", en:"We must turn off the light when we leave the room."},
+          {pl:"Możemy używać żarówek energooszczędnych.", en:"We can use energy-saving light bulbs."},
+          {pl:"W domu można też wyłączać urządzenia, których nie potrzebujemy.", en:"At home we can also switch off devices that we do not need."}
+        ],
+        [
+          {pl:"Po trzecie, powinniśmy segregować śmieci.", en:"Thirdly, we should sort our rubbish."},
+          {pl:"Plastik, papier, szkło i metal mają osobne kosze.", en:"Plastic, paper, glass and metal have separate bins."},
+          {pl:"Dzięki temu można je ponownie wykorzystać.", en:"Thanks to this they can be reused."},
+          {pl:"To zmniejsza ilość odpadów na świecie.", en:"This reduces the amount of waste in the world."}
+        ],
+        [
+          {pl:"Po czwarte, warto mniej jeździć samochodem.", en:"Fourthly, it is worth driving the car less."},
+          {pl:"Możemy chodzić pieszo, jeździć rowerem albo korzystać z komunikacji miejskiej.", en:"We can walk, cycle or use public transport."},
+          {pl:"To zmniejsza zanieczyszczenie powietrza.", en:"This reduces air pollution."}
+        ],
+        [
+          {pl:"Po piąte, możemy sadzić drzewa i dbać o przyrodę.", en:"Fifthly, we can plant trees and care for nature."},
+          {pl:"Drzewa dają tlen i są bardzo ważne dla zwierząt i ludzi.", en:"Trees give oxygen and are very important for animals and people."}
+        ],
+        [
+          {pl:"Moim zdaniem, każdy ma obowiązek troszczyć się o planetę.", en:"In my opinion, everyone has a duty to care for the planet."},
+          {pl:"Jeśli wszyscy będziemy robić małe rzeczy, razem możemy uratować nasz świat dla przyszłych pokoleń.", en:"If we all do small things, together we can save our world for future generations."}
+        ]
+      ]
+    },
+    {
+      id:"jezyki",
+      title:"Najskuteczniejsze metody nauki języków obcych",
+      paragraphs:[
+        [
+          {pl:"Moim zdaniem nauka języków obcych jest bardzo ważna.", en:"In my opinion learning foreign languages is very important."},
+          {pl:"Dzięki znajomości języków możemy podróżować, poznawać nowych ludzi i lepiej rozumieć świat.", en:"Thanks to knowing languages we can travel, meet new people and understand the world better."},
+          {pl:"Istnieje wiele metod nauki, ale niektóre są bardziej skuteczne.", en:"There are many methods of learning, but some are more effective."}
+        ],
+        [
+          {pl:"Po pierwsze, ważne jest regularne powtarzanie słów i zdań.", en:"Firstly, regular repetition of words and sentences is important."},
+          {pl:"Lepiej uczyć się codziennie po trochę niż raz w tygodniu bardzo dużo.", en:"It is better to study a little every day than a lot once a week."},
+          {pl:"Codzienna nauka daje lepsze efekty.", en:"Daily learning gives better results."}
+        ],
+        [
+          {pl:"Po drugie, warto słuchać języka.", en:"Secondly, it is worth listening to the language."},
+          {pl:"Można oglądać filmy, słuchać muzyki albo podcastów w języku obcym.", en:"You can watch films, listen to music or podcasts in the foreign language."},
+          {pl:"Dzięki temu uczymy się wymowy i nowych słów w naturalny sposób.", en:"Thanks to this we learn pronunciation and new words in a natural way."}
+        ],
+        [
+          {pl:"Po trzecie, dobrze jest mówić jak najwięcej.", en:"Thirdly, it is good to speak as much as possible."},
+          {pl:"Nawet jeśli robimy błędy, nie należy się bać.", en:"Even if we make mistakes, we should not be afraid."},
+          {pl:"Rozmowa z innymi to najlepszy trening.", en:"Talking with others is the best practice."}
+        ],
+        [
+          {pl:"Po czwarte, można pisać krótkie teksty: notatki, listy, wiadomości.", en:"Fourthly, you can write short texts: notes, letters, messages."},
+          {pl:"Pisanie pomaga zapamiętać słowa i gramatykę.", en:"Writing helps to remember words and grammar."}
+        ],
+        [
+          {pl:"Po piąte, gry językowe i aplikacje na telefonie są też dobrym sposobem.", en:"Fifthly, language games and phone apps are also a good method."},
+          {pl:"Nauka staje się wtedy przyjemna i ciekawa.", en:"Learning then becomes pleasant and interesting."}
+        ],
+        [
+          {pl:"Moim zdaniem najważniejsze są cierpliwość i systematyczność.", en:"In my opinion the most important things are patience and consistency."},
+          {pl:"Jeśli uczymy się regularnie i używamy języka w praktyce, na pewno osiągniemy sukces.", en:"If we learn regularly and use the language in practice, we will certainly achieve success."}
+        ]
+      ]
+    },
+    {
+      id:"zdrowie",
+      title:"Zdrowy tryb życia",
+      paragraphs:[
+        [
+          {pl:"Moim zdaniem zdrowy tryb życia jest bardzo ważny.", en:"In my opinion a healthy lifestyle is very important."},
+          {pl:"Zdrowie to największy skarb, dlatego trzeba o nie dbać każdego dnia.", en:"Health is the greatest treasure, that's why we have to take care of it every day."}
+        ],
+        [
+          {pl:"Po pierwsze, ważne jest jedzenie zdrowych produktów.", en:"Firstly, eating healthy products is important."},
+          {pl:"Należy jeść warzywa, owoce, ryby i produkty pełnoziarniste.", en:"One should eat vegetables, fruit, fish and wholegrain products."},
+          {pl:"Trzeba unikać słodyczy, fast foodu i napojów gazowanych.", en:"One must avoid sweets, fast food and fizzy drinks."},
+          {pl:"Zdrowe jedzenie daje energię i siłę na cały dzień.", en:"Healthy food gives energy and strength for the whole day."}
+        ],
+        [
+          {pl:"Po drugie, trzeba się regularnie ruszać.", en:"Secondly, one must move regularly."},
+          {pl:"Ćwiczenia, spacery, jazda na rowerze lub pływanie są bardzo dobre dla ciała.", en:"Exercise, walks, cycling or swimming are very good for the body."},
+          {pl:"Ruch pomaga mieć mocne mięśnie i zdrowe serce.", en:"Movement helps to have strong muscles and a healthy heart."}
+        ],
+        [
+          {pl:"Po trzecie, sen jest bardzo ważny.", en:"Thirdly, sleep is very important."},
+          {pl:"Dorośli powinni spać 7–8 godzin dziennie.", en:"Adults should sleep 7–8 hours a day."},
+          {pl:"Dzieci i młodzież potrzebują więcej snu.", en:"Children and young people need more sleep."},
+          {pl:"Dobry sen pomaga w nauce i koncentracji.", en:"Good sleep helps in learning and concentration."}
+        ],
+        [
+          {pl:"Po czwarte, trzeba unikać stresu i starać się odpoczywać.", en:"Fourthly, one must avoid stress and try to rest."},
+          {pl:"Można czytać książki, słuchać muzyki lub spędzać czas z rodziną i przyjaciółmi.", en:"You can read books, listen to music or spend time with family and friends."}
+        ],
+        [
+          {pl:"Podsumowując, zdrowy tryb życia to dobre jedzenie, ruch, sen i odpoczynek.", en:"To sum up, a healthy lifestyle is good food, exercise, sleep and rest."},
+          {pl:"Jeśli dbamy o siebie, czujemy się szczęśliwi i mamy dużo energii każdego dnia.", en:"If we take care of ourselves, we feel happy and have a lot of energy every day."}
+        ]
+      ]
+    },
+    {
+      id:"bezstudiow",
+      title:"Czy można znaleźć pracę bez studiów",
+      paragraphs:[
+        [
+          {pl:"Moim zdaniem można znaleźć pracę bez studiów.", en:"In my opinion it is possible to find a job without a university education."},
+          {pl:"Studia pomagają w nauce i dają wiedzę, ale nie są jedyną drogą do pracy.", en:"Studies help in learning and give knowledge, but they are not the only path to work."},
+          {pl:"Wiele osób pracuje i uczy się zawodu w praktyce.", en:"Many people work and learn a profession in practice."}
+        ],
+        [
+          {pl:"Niektóre zawody wymagają studiów, na przykład lekarz lub inżynier, ale są też zawody, gdzie doświadczenie jest ważniejsze niż dyplom.", en:"Some professions require studies, for example a doctor or an engineer, but there are also professions where experience is more important than a diploma."},
+          {pl:"Na przykład sprzedawca, kucharz, kierowca czy programista mogą znaleźć pracę bez studiów.", en:"For example a salesperson, cook, driver or programmer can find a job without a university education."}
+        ],
+        [
+          {pl:"Ważne jest, aby być pracowitym i chętnym do nauki.", en:"It is important to be hardworking and eager to learn."},
+          {pl:"Umiejętności praktyczne i dobre zachowanie pomagają znaleźć pracę.", en:"Practical skills and good behaviour help to find a job."},
+          {pl:"Czasem kursy, szkolenia lub praktyki zawodowe mogą zastąpić studia.", en:"Sometimes courses, training or professional internships can replace studies."}
+        ],
+        [
+          {pl:"Podsumowując, studia są pomocne, ale nie zawsze potrzebne.", en:"To sum up, studies are helpful, but not always necessary."},
+          {pl:"Jeśli ktoś jest odpowiedzialny, uczy się nowych rzeczy i pracuje ciężko, może znaleźć dobrą pracę bez dyplomu.", en:"If someone is responsible, learns new things and works hard, they can find a good job without a diploma."},
+          {pl:"Doświadczenie, zaangażowanie i chęć nauki są bardzo ważne.", en:"Experience, commitment and the desire to learn are very important."}
+        ]
+      ]
+    }
+  ];
+
+  /* ================= GLOSSARY (shared) ================= */
+  const GLOSS = {
+    "moim":"my","największym":"greatest, biggest","zainteresowaniem":"interest","jest":"is",
+    "sztuczna":"artificial","inteligencja":"intelligence","i":"and","pisanie":"writing",
+    "aplikacji":"of applications","z":"with","jej":"its, her","pomocą":"help (z jej pomocą = with its help)",
+    "bardzo":"very (much)","lubię":"I like","tworzyć":"to create","nowe":"new","programy":"programs",
+    "poznawać":"to get to know, to explore","technologie":"technologies","praca":"work","ai":"AI (artificial intelligence)",
+    "daje":"gives","mi":"(to) me","radość":"joy","dużo":"a lot, much","satysfakcji":"satisfaction",
+    "każdy":"every, each","nowy":"new","projekt":"project","dla":"for","mnie":"me","przygodą":"adventure",
+    "najczęściej":"most often","pracuję":"I work","nad":"on, over","aplikacjami":"applications",
+    "wieczorem":"in the evening","kiedy":"when","mam":"I have","wolnego":"free","czasu":"time",
+    "proste":"simple","dlatego":"that's why, so","chętnie":"gladly, willingly","piszę":"I write",
+    "aplikacje":"applications, apps","na":"on, for","telefon":"phone","albo":"or","małe":"small",
+    "strony":"pages / sites; side","internetowe":"internet (websites)","uważam":"I believe, I consider",
+    "że":"that","pomaga":"helps","w":"in","nauce":"learning, study","czasem":"sometimes",
+    "jednak":"however, but","wybieram":"I choose","trudniejsze":"harder, more difficult","projekty":"projects",
+    "bo":"because","dzięki":"thanks to","nim":"them (dzięki nim = thanks to them)","mogę":"I can",
+    "się":"(reflexive: -self)","więcej":"more","nauczyć":"to learn","to":"it, this","nie":"not","tylko":"only",
+    "zdaniem":"opinion (moim zdaniem = in my opinion)","także":"also","dobra":"good","zabawa":"fun",
+    "temu":"this (dzięki temu = thanks to this)","szybciej":"faster","rozwiązywać":"to solve","problemy":"problems",
+    "lepiej":"better","rozumieć":"to understand","technologię":"technology","ważne":"important",
+    "rozmawianie":"talking, conversing","rozmowy":"conversations","te":"these","uczą":"teach",
+    "nowych":"new","rzeczy":"things","czasie":"time (w czasie = during)","zawsze":"always","próbuję":"I try",
+    "pomysłów":"ideas","program":"program","działa":"works","dobrze":"well","a":"and, but","są":"are",
+    "błędy":"errors, mistakes","ale":"but","ciekawie":"interesting(ly)","drugiej":"second, other (z drugiej strony = on the other hand)",
+    "wymaga":"requires","cierpliwości":"patience","uwagi":"attention","podsumowując":"to sum up, summing up",
+    "najlepszym":"the best","hobby":"hobby","najważniejsze":"the most important","wiedzę":"knowledge",
+    "doświadczenia":"experiences",
+    "warto":"worth it, worthwhile",
+    "studiować":"to study (at university)",
+    "konieczne":"necessary",
+    "studia":"studies, university",
+    "dają":"they give",
+    "wiedzy":"knowledge",
+    "rozwijają":"they develop",
+    "człowieka":"a person (human)",
+    "uniwersytecie":"university (na uniwersytecie = at university)",
+    "poznajemy":"we meet, we get to know",
+    "ludzi":"people",
+    "uczymy":"we learn (uczymy się)",
+    "języków":"languages",
+    "obcych":"foreign",
+    "różnych":"various, different",
+    "przedmiotów":"subjects (school)",
+    "możemy":"we can",
+    "znaleźć":"to find",
+    "lepszą":"better",
+    "pracę":"work, job",
+    "zarabiać":"to earn",
+    "pieniędzy":"money",
+    "musi":"must, has to",
+    "niektórzy":"some (people)",
+    "wolą":"they prefer",
+    "uczyć":"to learn / teach (uczyć się = to learn)",
+    "zawodu":"trade, profession",
+    "szkole":"school (w szkole = at school)",
+    "technicznej":"technical",
+    "iść":"to go",
+    "do":"to, into",
+    "pracy":"work, job",
+    "od":"from",
+    "razu":"(od razu = right away)",
+    "po":"after",
+    "maturze":"school-leaving exam (matura)",
+    "dzisiejszych":"today's (w dzisiejszych czasach = nowadays)",
+    "czasach":"times (w dzisiejszych czasach = nowadays)",
+    "liczy":"counts (liczy się = it matters)",
+    "doświadczenie":"experience",
+    "praktyczne":"practical",
+    "umiejętności":"skills, abilities",
+    "ktoś":"someone",
+    "bez":"without",
+    "studiów":"studies (bez studiów = without a degree)",
+    "może":"can, may (he/she)",
+    "być":"to be",
+    "dobrym":"good",
+    "specjalistą":"specialist",
+    "jeśli":"if",
+    "ma":"has",
+    "pasję":"passion",
+    "chce":"wants",
+    "rozwijać":"to develop (rozwijać się = to grow)",
+    "wybranym":"chosen",
+    "kierunku":"direction, field",
+    "aby":"in order to, so that",
+    "robić":"to do, to make",
+    "co":"what",
+    "poczucie":"feeling, sense",
+    "sensu":"meaning, sense",
+    "życiu":"life (w życiu = in life)",
+    "internet":"the internet",
+    "dziś":"today",
+    "naprawdę":"really, truly",
+    "niezbędny":"essential, indispensable",
+    "prawie":"almost",
+    "korzysta":"uses (korzystać z = to use)",
+    "internetu":"of the internet",
+    "codziennie":"every day, daily",
+    "domu":"home, house (w domu = at home)",
+    "internetowi":"internet (dzięki internetowi = thanks to the internet)",
+    "szybko":"quickly, fast",
+    "czytać":"to read",
+    "wiadomości":"news, messages",
+    "oglądać":"to watch",
+    "filmy":"films, movies",
+    "słuchać":"to listen",
+    "muzyki":"music",
+    "kupować":"to buy",
+    "różne":"various, different",
+    "online":"online",
+    "wygodne":"convenient, comfortable",
+    "musimy":"we must, we have to",
+    "wychodzić":"to go out, to leave",
+    "uczniowie":"pupils, school students",
+    "studenci":"(university) students",
+    "mogą":"they can",
+    "materiały":"materials",
+    "ćwiczenia":"exercises",
+    "słowniki":"dictionaries",
+    "książki":"books",
+    "elektroniczne":"electronic (e-books)",
+    "pandemii":"pandemic (w czasie pandemii = during the pandemic)",
+    "pozwolił":"allowed, made possible",
+    "lekcje":"lessons",
+    "spotkania":"meetings",
+    "przez":"through, via",
+    "komputer":"computer",
+    "ważna":"important",
+    "komunikacja":"communication",
+    "mamy":"we have",
+    "kontakt":"contact",
+    "rodziną":"family",
+    "znajomymi":"friends, acquaintances",
+    "ludźmi":"people",
+    "innych":"other",
+    "krajów":"countries",
+    "pisać":"to write",
+    "dzwonić":"to call, to ring",
+    "rozmawiać":"to talk, to converse",
+    "kamerę":"camera (przez kamerę = by video)",
+    "ułatwia":"makes easier, facilitates",
+    "życie":"life",
+    "bliskości":"closeness",
+    "oczywiście":"of course",
+    "też":"also, too",
+    "minusy":"downsides, minuses",
+    "uzależnienie":"addiction",
+    "fałszywe":"false, fake",
+    "informacje":"information",
+    "brak":"lack",
+    "ruchu":"movement (brak ruchu = lack of exercise)",
+    "według":"according to (według mnie = in my opinion)",
+    "dzisiaj":"today",
+    "konieczny":"necessary",
+    "trudno":"(it's) hard, difficult",
+    "sobie":"oneself (wyobrazić sobie = to imagine)",
+    "wyobrazić":"to imagine",
+    "świat":"world",
+    "niego":"him, it (bez niego = without it)",
+    "a":"and, but, whereas",
+    "aktywni":"active (pl.)",
+    "aktywności":"activity",
+    "aktywność":"activity",
+    "albo":"or",
+    "ale":"but",
+    "antalyi":"Antalya (city)",
+    "atmosferę":"atmosphere",
+    "atrakcje":"attractions",
+    "azji":"Asia (w Azji = in Asia)",
+    "azję":"Asia (accus.)",
+    "baklavę":"baklava (accus.)",
+    "bardziej":"more",
+    "bawić":"to play (bawić się)",
+    "bazar":"bazaar, market",
+    "bazary":"bazaars",
+    "bać":"to be afraid (bać się)",
+    "bałtyk":"the Baltic (Sea)",
+    "bezpieczeństwa":"security, safety",
+    "bezpieczeństwo":"security, safety",
+    "bezpieczna":"safe",
+    "biegają":"they run",
+    "biegać":"to run",
+    "biegi":"runs (biegi narciarskie = cross-country skiing)",
+    "bizancjum":"Byzantium",
+    "bliskimi":"loved ones (z bliskimi = with loved ones)",
+    "bodrum":"Bodrum (city)",
+    "bogata":"rich",
+    "boisku":"pitch, field (na boisku = on the pitch)",
+    "bosforze":"Bosphorus (po Bosforze = along the Bosphorus)",
+    "brakowało":"was lacking, was missing",
+    "brakuje":"is lacking (brakuje czasu = there's no time)",
+    "brać":"to take",
+    "braćmi":"brothers (z braćmi = with brothers)",
+    "brzegiem":"along the shore (brzegiem morza)",
+    "budowaniem":"building (z budowaniem = with building)",
+    "budować":"to build",
+    "budowałem":"I built",
+    "budowlany":"construction (adj.)",
+    "budownictwa":"construction, civil engineering",
+    "budują":"they build",
+    "buduję":"I build",
+    "budynki":"buildings",
+    "by":"would (conditional particle)",
+    "był":"was (he)",
+    "była":"was (she)",
+    "byłaby":"would be (she/it)",
+    "byłby":"would be (he/it)",
+    "byłem":"I was",
+    "było":"was (it)",
+    "były":"were",
+    "będziemy":"we will be",
+    "będą":"they will be",
+    "będę":"I will (będę pamiętać = I will remember)",
+    "błękitny":"blue (Błękitny Meczet = Blue Mosque)",
+    "całe":"whole, entire",
+    "cały":"whole, all",
+    "całym":"whole (na całym świecie = all over the world)",
+    "cele":"purposes (cele charytatywne = charity)",
+    "centrum":"centre",
+    "charytatywne":"charitable (cele charytatywne = charity)",
+    "chcemy":"we want",
+    "chciałbym":"I would like",
+    "chciałem":"I wanted",
+    "chcę":"I want",
+    "chodzić":"to walk, to go (on foot)",
+    "chodzą":"they go (on foot)",
+    "chwilach":"moments (w trudnych chwilach = in difficult moments)",
+    "chwile":"moments",
+    "chętnie":"gladly, willingly",
+    "chętnym":"eager, willing",
+    "chęć":"desire, willingness",
+    "chłodniejszej":"cooler (colder)",
+    "ciasta":"cakes, pastries",
+    "ciała":"body (dla ciała = for the body)",
+    "ciekawa":"interesting",
+    "ciekawe":"interesting",
+    "ciekawie":"curiously; interesting",
+    "ciekawsze":"more interesting",
+    "ciepłe":"warm",
+    "ciepłej":"warm (w ciepłej pogodzie)",
+    "ciepłych":"warm (do ciepłych krajów = to warm countries)",
+    "cierpliwości":"patience",
+    "cierpliwość":"patience",
+    "cierpliwy":"patient",
+    "cieszyć":"to enjoy (cieszyć się)",
+    "cieszą":"they enjoy (cieszą się)",
+    "ciężko":"hard (pracować ciężko = to work hard)",
+    "codzienna":"daily, everyday",
+    "codzienne":"everyday (życie codzienne = everyday life)",
+    "coś":"something",
+    "czas":"time",
+    "czasami":"sometimes",
+    "czasem":"sometimes",
+    "czasie":"time (w czasie = during)",
+    "czasu":"time (genitive)",
+    "czasów":"times (z czasów studiów = from student days)",
+    "czego":"what (czego szukamy = what we look for)",
+    "czujemy":"we feel",
+    "czują":"they feel",
+    "czuję":"I feel",
+    "czuć":"to feel",
+    "czwarte":"fourth (po czwarte = fourthly)",
+    "czy":"whether; or",
+    "często":"often",
+    "część":"part",
+    "człowiek":"a person, human",
+    "człowiekiem":"a person (być człowiekiem = to be a person)",
+    "człowiekowi":"to a person",
+    "danego":"a given (danego miejsca = of a given place)",
+    "dania":"dishes",
+    "dało":"gave (it) (dało mi = gave me)",
+    "dba":"cares, looks after (dbać o)",
+    "dbamy":"we care (dbamy o siebie = we care for ourselves)",
+    "dbanie":"caring (dbanie o = caring for)",
+    "dbać":"to take care of",
+    "decyzja":"decision",
+    "decyzje":"decisions",
+    "deser":"dessert (na deser = for dessert)",
+    "dla":"for",
+    "dlatego":"that's why, therefore",
+    "dnia":"day (każdego dnia = every day)",
+    "dobre":"good",
+    "dobry":"good",
+    "dobrych":"good (dobrych wspomnień = good memories)",
+    "dobrze":"well",
+    "dobrą":"good (accus., dobrą pracę)",
+    "dochodu":"income (źródło dochodu = source of income)",
+    "dodają":"they add",
+    "dojrzałości":"maturity",
+    "domach":"homes (w domach = in homes)",
+    "domem":"home (naszym domem = our home)",
+    "domy":"houses",
+    "doradzają":"they advise, give advice",
+    "dorośli":"adults",
+    "dostosować":"to adjust, to adapt",
+    "dotyczą":"they concern",
+    "dotyczące":"concerning, relating to",
+    "drogą":"path, way (jedyną drogą = the only path)",
+    "drogę":"path, way (accus.)",
+    "drugie":"second (po drugie = secondly)",
+    "drugiej":"other; second (z drugiej strony = on the other hand)",
+    "drugim":"second (drugim krokiem = the second step)",
+    "drzewa":"trees",
+    "duże":"big, great (duże znaczenie = great significance)",
+    "dużo":"a lot, much",
+    "duży":"big, great",
+    "dużą":"large (dużą sumę = a large sum)",
+    "dwóch":"two (na dwóch kontynentach = on two continents)",
+    "dyplom":"diploma, degree",
+    "dyplomu":"diploma (bez dyplomu = without a diploma)",
+    "dystans":"distance (dystans społeczny = social distance)",
+    "dzieci":"children",
+    "dzieciństwa":"childhood (z dzieciństwa = from childhood)",
+    "dziecka":"child (od dziecka = since childhood)",
+    "dzieckiem":"a child (byłem dzieckiem = I was a child)",
+    "dziennie":"per day, daily",
+    "dziesięć":"ten",
+    "dzień":"day (na cały dzień = for the whole day)",
+    "dzisiejsze":"today's",
+    "dziwne":"strange, weird",
+    "dzięki":"thanks to",
+    "długa":"long",
+    "długie":"long (długie spacery = long walks)",
+    "długo":"long, for a long time",
+    "długości":"length (długości życia = length of life)",
+    "edukacji":"education",
+    "efekty":"effects, results",
+    "elementem":"an element",
+    "emocjami":"emotions (z emocjami = with emotions)",
+    "energii":"energy (genitive)",
+    "energię":"energy (accus.)",
+    "energooszczędnych":"energy-saving",
+    "europie":"Europe (w Europie = in Europe)",
+    "europę":"Europe (accus.)",
+    "fast":"fast (fast food)",
+    "finansowych":"financial",
+    "firmę":"company, firm (accus.)",
+    "fizyczna":"physical (aktywność fizyczna)",
+    "food":"food (fast food)",
+    "foodu":"food (fast foodu = of fast food)",
+    "formę":"fitness, form (zachować formę = to keep fit)",
+    "gasić":"to turn off (light)",
+    "gazowanych":"fizzy, carbonated (napoje gazowane)",
+    "gdybym":"if I (were to)",
+    "gdzie":"where",
+    "go":"it, him (accus.)",
+    "godzin":"hours",
+    "gotowaliśmy":"we cooked",
+    "gotowanie":"cooking",
+    "gotować":"to cook",
+    "gotowy":"ready",
+    "grają":"they play",
+    "grając":"playing",
+    "gramatykę":"grammar (accus.)",
+    "grać":"to play",
+    "gry":"games",
+    "góry":"mountains",
+    "głośno":"loud, noisy",
+    "hagia":"Hagia (Hagia Sophia)",
+    "herbatę":"tea (accus.)",
+    "higienę":"hygiene (accus.)",
+    "historia":"history",
+    "historii":"history; stories",
+    "historię":"history (accus.)",
+    "hiszpanii":"Spain (do Hiszpanii = to Spain)",
+    "hobby":"hobby",
+    "i":"and",
+    "ich":"their; them",
+    "idealne":"ideal",
+    "idziemy":"we go",
+    "ilość":"amount, quantity",
+    "im":"(to) them",
+    "inne":"other",
+    "innym":"other, others (to others)",
+    "innymi":"other (z innymi = with other)",
+    "inżynier":"engineer",
+    "inżynierem":"an engineer (zostać inżynierem = to become an engineer)",
+    "istnieje":"there exists, there is",
+    "izmiru":"Izmir (do Izmiru = to Izmir)",
+    "ja":"I",
+    "jadę":"I go (by vehicle)",
+    "jak":"how; as, like",
+    "jako":"as (jako turysta = as a tourist)",
+    "japonii":"Japan (do Japonii = to Japan)",
+    "jazda":"riding, ride (jazda na rowerze = cycling)",
+    "jazdy":"riding (jazdy na rowerze = of cycling)",
+    "je":"them (accus.); eats",
+    "jednej":"one (z jednej strony = on one hand)",
+    "jedno":"one",
+    "jedyną":"the only (jedyną drogą = the only way)",
+    "jedzenia":"food; eating (genitive)",
+    "jedzenie":"food; eating",
+    "jedzeniu":"food (dodają smaku jedzeniu = add flavour to food)",
+    "jedzie":"goes (by vehicle)",
+    "jedzą":"they eat",
+    "jego":"his, its",
+    "jej":"her, its",
+    "jemy":"we eat",
+    "jest":"is",
+    "jesteśmy":"we are",
+    "jeziorem":"lake (nad jeziorem = by a lake)",
+    "jeść":"to eat",
+    "jeździć":"to go (by vehicle), to ride",
+    "jeżdżą":"they go (by vehicle), ride",
+    "ją":"it, her (accus.)",
+    "języka":"language (genitive)",
+    "językowe":"language (adj.), linguistic",
+    "języku":"language (w języku obcym = in a foreign language)",
+    "kawa":"coffee",
+    "kawiarni":"café (do kawiarni = to a café)",
+    "kawiarniach":"cafés (w kawiarniach = in cafés)",
+    "każdego":"every, each",
+    "każdej":"every, each (w każdej = in every)",
+    "każdemu":"to everyone, to each",
+    "kebab":"kebab",
+    "kiedy":"when",
+    "kiedyś":"once, at some time",
+    "kierowca":"driver",
+    "kina":"cinema (do kina = to the cinema)",
+    "klockami":"bricks, blocks (klockami Lego = with Lego bricks)",
+    "kochają":"they love",
+    "kochamy":"we love",
+    "kogoś":"someone (accus.)",
+    "kolorowe":"colourful",
+    "kolorowo":"colourfully, colourful",
+    "komputerowe":"computer (adj.) (gry komputerowe)",
+    "komunikacji":"transport; communication (komunikacji miejskiej = public transport)",
+    "komunikować":"to communicate (komunikować się)",
+    "koncentracji":"concentration",
+    "kondycję":"fitness, condition (accus.)",
+    "konstantynopol":"Constantinople",
+    "kontaktu":"contact (genitive)",
+    "kontakty":"contacts",
+    "kontaktów":"contacts (genitive)",
+    "kontynentach":"continents (na kontynentach = on continents)",
+    "koronawirusa":"coronavirus (genitive)",
+    "korzystać":"to use (korzystać z)",
+    "kosze":"bins, baskets",
+    "kończymy":"we finish",
+    "kościoły":"churches",
+    "krajach":"countries (w innych krajach = in other countries)",
+    "kraje":"countries",
+    "kraju":"country (mojego kraju = of my country)",
+    "kran":"tap, faucet",
+    "kroki":"steps",
+    "krokiem":"step (drugim krokiem = the second step)",
+    "krótkie":"short",
+    "krótszy":"shorter",
+    "które":"which, that (pl.)",
+    "których":"whom, which (genitive)",
+    "którym":"in which",
+    "którą":"which, whom (fem. accus.)",
+    "kucharz":"cook, chef",
+    "kuchni":"cuisine, kitchen (w kuchni = in the cuisine)",
+    "kuchnia":"cuisine, kitchen",
+    "kultury":"culture (genitive)",
+    "kulturze":"culture (w kulturze = in culture)",
+    "kulturę":"culture (accus.)",
+    "kupić":"to buy",
+    "kupiłbym":"I would buy",
+    "kursy":"courses",
+    "köfte":"köfte (meatballs)",
+    "kłótnie":"arguments, quarrels",
+    "lahmacun":"lahmacun (dish)",
+    "lat":"years (sześć lat = six years)",
+    "latem":"in summer",
+    "lego":"Lego",
+    "lekarz":"doctor",
+    "lepsze":"better",
+    "lepszy":"better (nastrój lepszy)",
+    "lepszym":"better (lepszym człowiekiem = a better person)",
+    "leżeć":"to lie (down)",
+    "leży":"lies, is situated",
+    "listy":"letters",
+    "logicznie":"logically",
+    "lokalnego":"local (lokalnego jedzenia = local food)",
+    "loterii":"lottery (na loterii = in the lottery)",
+    "lub":"or",
+    "lubi":"likes",
+    "lubią":"they like",
+    "lubię":"I like",
+    "lubiłem":"I liked",
+    "ludziach":"people (o ludziach = about people)",
+    "ludzie":"people",
+    "ludziom":"to people",
+    "mają":"they have",
+    "mam":"I have",
+    "marzenia":"dreams",
+    "marzyłem":"I dreamed",
+    "maski":"masks",
+    "małe":"small, little",
+    "mało":"little, few",
+    "mały":"small, little",
+    "małżeństwo":"marriage",
+    "meczet":"mosque (Błękitny Meczet = Blue Mosque)",
+    "metal":"metal",
+    "metod":"methods (wiele metod = many methods)",
+    "mi":"(to) me",
+    "miast":"cities (genitive)",
+    "miasta":"cities; city (genitive)",
+    "miastach":"cities (w miastach = in cities)",
+    "miasto":"city",
+    "miała":"had (she/it) (miała wpływ = had an impact)",
+    "miejsc":"places (genitive)",
+    "miejsca":"places; place (genitive)",
+    "miejscach":"places (w miejscach = in places)",
+    "miejsce":"place",
+    "miejskiej":"city, municipal (komunikacji miejskiej = public transport)",
+    "mieszka":"lives",
+    "mieszkania":"flats, apartments",
+    "mieszkałem":"I lived",
+    "mieszkańcy":"residents, inhabitants",
+    "mieszkańców":"residents (accus.)",
+    "mieć":"to have",
+    "milionów":"millions",
+    "między":"between",
+    "mięsa":"meat (z mięsa = from meat)",
+    "mięso":"meat",
+    "mięśnie":"muscles",
+    "miłe":"pleasant, nice (miłe chwile)",
+    "miłości":"love (genitive)",
+    "miłość":"love",
+    "miłym":"kind, nice (być miłym = to be kind)",
+    "mnie":"me",
+    "mniej":"less",
+    "mocne":"strong (mocne mięśnie)",
+    "mogliśmy":"we could",
+    "mogę":"I can",
+    "mogłem":"I could, I was able",
+    "moich":"my (o moich problemach = about my problems)",
+    "moja":"my (fem.)",
+    "moje":"my (pl./neut.)",
+    "moją":"my (accus. fem.)",
+    "momentach":"moments (w dobrych momentach)",
+    "morza":"sea (genitive)",
+    "morze":"the sea",
+    "morzem":"the sea (nad morzem = by the sea)",
+    "morzu":"the sea (w morzu = in the sea)",
+    "mosty":"bridges",
+    "możliwości":"possibilities, abilities",
+    "możliwość":"possibility",
+    "można":"one can, it is possible",
+    "musieli":"they had to",
+    "musieliśmy":"we had to",
+    "muzea":"museums",
+    "myjemy":"we wash",
+    "myć":"to wash",
+    "myśleć":"to think",
+    "myślę":"I think",
+    "mógłbym":"I could, I would be able",
+    "mój":"my (masc.)",
+    "mówimy":"we talk, we say",
+    "mówić":"to talk, to speak",
+    "mądrze":"wisely",
+    "młodzież":"young people, youth",
+    "na":"on, for, to",
+    "nabrać":"to gain (nabrać energii = to gain energy)",
+    "nad":"over, by (nad morzem = by the sea)",
+    "nadmorskich":"seaside (adj.)",
+    "najadać":"to eat one's fill (najadać się)",
+    "najbardziej":"most (of all)",
+    "najlepiej":"best",
+    "najlepsza":"the best (fem.)",
+    "najlepsze":"the best (pl./neut.)",
+    "najlepszy":"the best (masc.)",
+    "najpierw":"first, at first",
+    "najpiękniejszych":"the most beautiful (genitive)",
+    "najpopularniejsze":"the most popular",
+    "najważniejsza":"the most important (fem.)",
+    "najważniejsze":"the most important",
+    "najwięcej":"the most (jak najwięcej = as much as possible)",
+    "największy":"the greatest, biggest",
+    "największym":"the greatest (instr.)",
+    "należy":"one should, one ought",
+    "nam":"(to) us",
+    "nami":"us (z nami = with us)",
+    "napojów":"drinks (napojów gazowanych = of fizzy drinks)",
+    "narciarskie":"skiing (biegi narciarskie = cross-country skiing)",
+    "narty":"skis, skiing",
+    "nas":"us",
+    "nastrój":"mood",
+    "nasz":"our (masc.)",
+    "nasza":"our (fem.)",
+    "nasze":"our (pl./neut.)",
+    "naszego":"our (genitive)",
+    "naszym":"our (instr./loc.)",
+    "naszą":"our (accus. fem.)",
+    "naturalny":"natural (naturalny sposób = natural way)",
+    "naturze":"nature (pomagamy naturze = we help nature)",
+    "nauce":"learning, study (w nauce = in learning)",
+    "nauczyła":"taught (she/it)",
+    "nauczyłem":"I learned (nauczyłem się)",
+    "nauka":"learning, study",
+    "nauki":"of learning, of study",
+    "naukę":"learning, study (accus.)",
+    "nawet":"even",
+    "nawyki":"habits",
+    "nawzajem":"one another, mutually",
+    "nich":"them (z nich = of them)",
+    "niczego":"nothing (niczego nie brakowało)",
+    "nie":"not, no",
+    "niej":"her, it (dzięki niej = thanks to it)",
+    "niektóre":"some",
+    "niemu":"him, it (dzięki niemu = thanks to him)",
+    "nimi":"them (z nimi = with them)",
+    "nią":"it, her (o nią = for it)",
+    "niż":"than",
+    "nosić":"to wear, to carry",
+    "notatki":"notes",
+    "nowe":"new (pl./neut.)",
+    "nowego":"new (coś nowego = something new)",
+    "nowoczesny":"modern",
+    "nowoczesnym":"modern (instr.)",
+    "nożną":"foot- (piłka nożna = football)",
+    "o":"about; for (dbać o = to care for)",
+    "obcym":"foreign (w języku obcym)",
+    "obowiązek":"duty, obligation",
+    "obowiązków":"duties (genitive)",
+    "oddałbym":"I would give (away)",
+    "odkrywać":"to discover",
+    "odpadów":"waste (ilość odpadów = amount of waste)",
+    "odpoczynek":"rest",
+    "odpoczywać":"to rest",
+    "odpocząć":"to rest (once)",
+    "odpowiedzialności":"responsibility",
+    "odpowiedzialny":"responsible",
+    "odpowiedzialnym":"responsible (być odpowiedzialnym)",
+    "odwiedzają":"they visit",
+    "odwiedzam":"I visit",
+    "oglądając":"watching",
+    "ograniczeń":"restrictions (genitive)",
+    "ogromne":"enormous, huge",
+    "oni":"they (masc.)",
+    "opinią":"opinion (z opinią = with the opinion)",
+    "opowiadać":"to tell, to talk about",
+    "oraz":"and, as well as",
+    "organizmu":"body, organism (dla organizmu = for the body)",
+    "osiągniemy":"we will achieve",
+    "osoba":"a person",
+    "osobistymi":"personal (z emocjami osobistymi)",
+    "osobne":"separate",
+    "osoby":"person (drugiej osoby = the other person)",
+    "osobą":"a person (instr.)",
+    "oszczędzanie":"saving",
+    "oszczędzać":"to save (money, water)",
+    "osób":"people (wiele osób = many people)",
+    "otwartości":"openness",
+    "otworzyć":"to open",
+    "owoce":"fruit",
+    "palimy":"we smoke",
+    "pamiątki":"souvenirs",
+    "pamięci":"memory (w pamięci = in the memory)",
+    "pamiętać":"to remember",
+    "pandemia":"pandemic",
+    "papier":"paper",
+    "papierosy":"cigarettes",
+    "parkach":"parks (w parkach = in parks)",
+    "partnera":"partner (accus.)",
+    "pasja":"passion",
+    "patrzyłem":"I looked, I watched",
+    "pałac":"palace (Pałac Topkapi = Topkapi Palace)",
+    "pewno":"certainly (na pewno = for sure)",
+    "pełnoziarniste":"wholegrain",
+    "pide":"pide (dish)",
+    "pieniądze":"money",
+    "pierwsze":"first (po pierwsze = firstly)",
+    "pieszo":"on foot (chodzić pieszo = to walk)",
+    "pijemy":"we drink",
+    "piknikach":"picnics (na piknikach = at picnics)",
+    "pikniki":"picnics",
+    "pisanie":"writing",
+    "piąte":"fifth (po piąte = fifthly)",
+    "piękne":"beautiful",
+    "piłkę":"ball (grać w piłkę = to play ball)",
+    "planeta":"planet",
+    "planetę":"planet (accus.)",
+    "planować":"to plan",
+    "planuje":"plans (he/she)",
+    "plastik":"plastic",
+    "plaży":"beach (na plaży = on the beach)",
+    "pobliskich":"nearby (do pobliskich miast)",
+    "poczułem":"I felt",
+    "początku":"beginning (na początku = at the beginning)",
+    "podcastów":"podcasts (genitive)",
+    "podczas":"during",
+    "podejmować":"to make (decisions)",
+    "podejmuje":"makes (decisions)",
+    "podobną":"similar (accus.)",
+    "podróż":"trip, journey",
+    "podróże":"travels, trips",
+    "podróżować":"to travel",
+    "podróżuję":"I travel",
+    "podróży":"trip, travels (genitive)",
+    "podsumowując":"to sum up",
+    "podziwiam":"I admire",
+    "podziwiać":"to admire",
+    "pogody":"weather (do pogody = to the weather)",
+    "pogodzie":"weather (w pogodzie = in weather)",
+    "pojechałbym":"I would go (by vehicle)",
+    "pokazuje":"shows (he/she)",
+    "pokoju":"room (z pokoju = from the room)",
+    "pokoleń":"generations (przyszłych pokoleń)",
+    "pomaga":"helps",
+    "pomagają":"they help",
+    "pomagamy":"we help",
+    "pomaganiem":"helping (z pomaganiem = with helping)",
+    "pomagać":"to help",
+    "pomagała":"helped (she/it)",
+    "pomoc":"help",
+    "pomocne":"helpful",
+    "pomocy":"help (wzajemnej pomocy = mutual help)",
+    "pomogło":"helped (it/many)",
+    "pomyślałbym":"I would think",
+    "pomóc":"to help",
+    "ponieważ":"because",
+    "ponownie":"again (ponownie wykorzystać = to reuse)",
+    "poprawiają":"they improve",
+    "popularne":"popular",
+    "popularnych":"popular (genitive)",
+    "pory":"season, time (pory roku = of the year/season)",
+    "posiadanie":"having, possessing (posiadanie dzieci = having children)",
+    "posiłek":"meal",
+    "potem":"then, after",
+    "potraw":"dishes (tradycyjnych potraw = of traditional dishes)",
+    "potrzebne":"needed, necessary",
+    "potrzebnego":"needed (coś potrzebnego = something needed)",
+    "potrzebni":"needed (czujemy się potrzebni)",
+    "potrzebuje":"needs",
+    "potrzebujemy":"we need",
+    "potrzebują":"they need",
+    "potrzebującym":"those in need",
+    "powietrza":"air (zanieczyszczenie powietrza = air pollution)",
+    "powietrze":"air",
+    "powietrzu":"air (na świeżym powietrzu = in the open air)",
+    "powinni":"should (they)",
+    "powinniśmy":"we should",
+    "powtarzanie":"repetition",
+    "poznać":"to get to know",
+    "pozwala":"allows, lets",
+    "połączyć":"to combine",
+    "połączyła":"combined (she/it)",
+    "pośpiechu":"hurry (w pośpiechu = in a hurry)",
+    "praca":"work",
+    "pracować":"to work",
+    "pracowity":"hardworking",
+    "pracowitym":"hardworking (być pracowitym)",
+    "pracuje":"works",
+    "praktyce":"practice (w praktyce = in practice)",
+    "praktyki":"internships; practices (praktyki zawodowe)",
+    "prawdziwa":"true, real (fem.)",
+    "prawdziwe":"real (pl./neut.)",
+    "prawdziwej":"true (w prawdziwej miłości)",
+    "problemach":"problems (o problemach = about problems)",
+    "problemy":"problems",
+    "problemów":"problems (genitive)",
+    "produkty":"products",
+    "produktów":"products (genitive)",
+    "programista":"programmer",
+    "projekty":"projects",
+    "prosta":"simple",
+    "prysznic":"shower",
+    "przede":"before (przede wszystkim = above all)",
+    "przy":"at, by (przy stole = at the table)",
+    "przygodą":"adventure",
+    "przyjaciół":"friends (genitive)",
+    "przyjaciółmi":"friends (z przyjaciółmi = with friends)",
+    "przyjaźń":"friendship",
+    "przyjemna":"pleasant (fem.)",
+    "przyjemności":"pleasure (genitive)",
+    "przyjemność":"pleasure",
+    "przyjemny":"pleasant (masc.)",
+    "przykład":"example (na przykład = for example)",
+    "przynależności":"belonging (poczucie przynależności)",
+    "przypraw":"spices (dużo przypraw = a lot of spices)",
+    "przyprawy":"spices",
+    "przyrodę":"nature (accus.)",
+    "przyszłość":"the future",
+    "przyszłych":"future (przyszłych pokoleń)",
+    "przyzwyczaić":"to get used to (przyzwyczaić się)",
+    "próbuję":"I try",
+    "pusty":"empty",
+    "pływania":"swimming (genitive)",
+    "pływanie":"swimming",
+    "pływać":"to swim",
+    "radości":"joy (genitive)",
+    "radość":"joy",
+    "radzić":"to cope (radzić sobie = to manage)",
+    "raz":"once, one time",
+    "razem":"together",
+    "realizować":"to realise, to fulfil",
+    "redukują":"they reduce",
+    "regularne":"regular",
+    "regularnie":"regularly",
+    "relaks":"relaxation",
+    "relaksem":"relaxation (z relaksem = with relaxation)",
+    "relaksujące":"relaxing",
+    "restauracji":"restaurant (w restauracji = in a restaurant)",
+    "robi":"does, makes (robi się = is made)",
+    "robimy":"we do, we make",
+    "robię":"I do (co robię = what I do)",
+    "rodzeństwu":"siblings (to siblings)",
+    "rodzicami":"parents (z rodzicami = with parents)",
+    "rodzicom":"to parents",
+    "rodzina":"family",
+    "rodzinie":"family (dzięki rodzinie = thanks to family)",
+    "rodzinne":"family (adj.) (spotkania rodzinne = family gatherings)",
+    "rodziny":"family (genitive)",
+    "rodzinę":"family (accus.)",
+    "rok":"year",
+    "roku":"year (pory roku = of the year)",
+    "rowerem":"bike (jeździć rowerem = to cycle)",
+    "rowerze":"bike (na rowerze = by bike)",
+    "rozmawiają":"they talk",
+    "rozmawialiśmy":"we talked",
+    "rozmowa":"conversation",
+    "rozmowy":"conversations",
+    "rozumieć":"to understand",
+    "rozwijało":"developed (it)",
+    "rozwiązują":"they solve",
+    "rozwiązywać":"to solve",
+    "ruch":"movement, exercise",
+    "ruszać":"to move (ruszać się)",
+    "ryby":"fish (pl.)",
+    "rysuje":"draws (he/she)",
+    "rzeczy":"things",
+    "rzeką":"river (nad rzeką = by a river)",
+    "również":"also, as well",
+    "równowadze":"balance (o równowadze = about balance)",
+    "ręce":"hands (myć ręce = to wash hands)",
+    "sadzić":"to plant",
+    "sam":"myself, alone (ja sam = I myself)",
+    "sami":"alone, ourselves (nie jesteśmy sami)",
+    "samochodem":"car (jeździć samochodem = to drive)",
+    "samochody":"cars",
+    "samopoczucia":"wellbeing (genitive)",
+    "samotność":"loneliness",
+    "satysfakcję":"satisfaction (accus.)",
+    "segregować":"to sort, to separate (rubbish)",
+    "sen":"sleep",
+    "serce":"heart",
+    "siebie":"oneself (o siebie = for oneself)",
+    "siostrami":"sisters (z siostrami = with sisters)",
+    "siłownię":"gym (na siłownię = to the gym)",
+    "siłę":"strength (accus.)",
+    "skarb":"treasure",
+    "skuteczne":"effective",
+    "smaczna":"tasty (fem.)",
+    "smaczne":"tasty (pl./neut.)",
+    "smaku":"flavour, taste (dodają smaku = add flavour)",
+    "smakuje":"it tastes",
+    "smutna":"sad (fem.)",
+    "smutni":"sad (pl.)",
+    "smutny":"sad (masc.)",
+    "snowboard":"snowboard(ing)",
+    "snu":"sleep (więcej snu = more sleep)",
+    "soczewicy":"lentils (zupa z soczewicy = lentil soup)",
+    "sofia":"Sophia (Hagia Sofia)",
+    "sofię":"Sophia (accus.)",
+    "spacer":"a walk (na spacer = for a walk)",
+    "spacerować":"to stroll, to walk",
+    "spacerowałem":"I strolled, I walked",
+    "spacery":"walks (długie spacery = long walks)",
+    "spać":"to sleep",
+    "spełniam":"I fulfil",
+    "spełniłbym":"I would fulfil",
+    "spokojni":"calm (pl.)",
+    "spokojnie":"peacefully, calmly",
+    "spokojny":"calm (masc.)",
+    "spokój":"calm, peace",
+    "sport":"sport",
+    "sporty":"sports",
+    "sportów":"sports (genitive)",
+    "sposobem":"way, method (dobrym sposobem)",
+    "sposoby":"ways",
+    "sposób":"way (w jaki sposób = in what way)",
+    "spotkanie":"meeting",
+    "spotkać":"to meet",
+    "spotykają":"they meet (spotykają się)",
+    "spotykam":"I meet (spotykam się)",
+    "spotykanie":"meeting (spotykanie ludzi)",
+    "spotykać":"to meet (spotykać się)",
+    "społeczeństwa":"society (dla społeczeństwa = for society)",
+    "społeczny":"social (dystans społeczny = social distance)",
+    "sprawiają":"they cause, they make",
+    "sprzedawca":"salesperson",
+    "sprzątaliśmy":"we cleaned",
+    "sprzątać":"to clean",
+    "spędza":"spends (time)",
+    "spędzają":"they spend (time)",
+    "spędzaliśmy":"we spent (time)",
+    "spędzać":"to spend (time)",
+    "spędziliśmy":"we spent (time)",
+    "spędzić":"to spend (time, once)",
+    "spędziłem":"I spent (time)",
+    "staje":"becomes (staje się)",
+    "stambule":"Istanbul (w Stambule = in Istanbul)",
+    "stambuł":"Istanbul",
+    "stambułu":"Istanbul (genitive)",
+    "stara":"tries (stara się)",
+    "staraliśmy":"we tried (staraliśmy się)",
+    "starać":"to try (starać się)",
+    "stare":"old",
+    "starszym":"elderly, older (starszym sąsiadom)",
+    "statki":"ships",
+    "stałe":"steady, permanent (stałe źródło)",
+    "stole":"table (przy stole = at the table)",
+    "stres":"stress",
+    "stresu":"stress (unikać stresu = to avoid stress)",
+    "studiowałem":"I studied",
+    "stylu":"lifestyle, style (stylu życia = of lifestyle)",
+    "sukces":"success",
+    "sumę":"sum (accus.)",
+    "swoim":"one's own (w swoim życiu)",
+    "swoje":"one's own (pl./neut.)",
+    "swoją":"one's own (accus. fem.)",
+    "systematyczność":"consistency, regularity",
+    "sytuacja":"situation",
+    "sytuacje":"situations",
+    "szacunek":"respect",
+    "szanuje":"respects (he/she)",
+    "szczególnie":"especially",
+    "szczere":"sincere (neut.)",
+    "szczerość":"sincerity",
+    "szczerym":"sincere (być szczerym)",
+    "szczęścia":"happiness (genitive)",
+    "szczęście":"happiness",
+    "szczęśliwa":"happy (fem.)",
+    "szczęśliwi":"happy (pl.)",
+    "szczęśliwie":"happily",
+    "szczęśliwsi":"happier",
+    "szczęśliwy":"happy (masc.)",
+    "sześć":"six",
+    "szkolenia":"training courses",
+    "szkoły":"school (do szkoły = to school)",
+    "szkołę":"school (accus.)",
+    "szkło":"glass",
+    "szukamy":"we look for (szukać)",
+    "szybkie":"fast (tempo szybkie)",
+    "są":"are",
+    "sąsiadom":"neighbours (to neighbours)",
+    "słodkie":"sweet",
+    "słodyczy":"sweets (unikać słodyczy)",
+    "słonecznej":"sunny (słonecznej pogodzie)",
+    "słowa":"words",
+    "słońce":"the sun",
+    "słońcem":"the sun (cieszyć się słońcem)",
+    "słońcu":"the sun (na słońcu = in the sun)",
+    "słuchają":"they listen",
+    "słów":"words (genitive)",
+    "ta":"this (fem.)",
+    "tak":"yes; so",
+    "takich":"such (takich jak = such as)",
+    "takie":"such",
+    "także":"also",
+    "tam":"there",
+    "tata":"dad",
+    "tatę":"dad (accus.)",
+    "technologii":"technology (dzięki technologii)",
+    "tego":"this (genitive) (tego miejsca)",
+    "teksty":"texts",
+    "telefonie":"phone (na telefonie = on the phone)",
+    "tempo":"pace, tempo",
+    "teraz":"now",
+    "tlen":"oxygen",
+    "to":"this, it",
+    "topkapi":"Topkapi (palace)",
+    "towarzyskie":"social (życie towarzyskie = social life)",
+    "tradycji":"tradition",
+    "tradycyjnych":"traditional (genitive)",
+    "trening":"training, practice",
+    "trochę":"a little (po trochę = a little at a time)",
+    "troszczyć":"to care for (troszczyć się)",
+    "trudna":"difficult (fem.)",
+    "trudne":"difficult (pl./neut.)",
+    "trudnych":"difficult (w trudnych chwilach)",
+    "tryb":"mode, way (tryb życia = lifestyle)",
+    "trzeba":"one must, it is necessary",
+    "trzecie":"third (po trzecie = thirdly)",
+    "turcji":"Turkey (genitive)",
+    "turcy":"Turks",
+    "turecka":"Turkish (fem.)",
+    "tureckiej":"Turkish (w tureckiej kuchni)",
+    "turysta":"tourist",
+    "turystyczne":"tourist (adj.) (atrakcje turystyczne)",
+    "turystykę":"tourism (accus.)",
+    "turyści":"tourists",
+    "tworzyć":"to create",
+    "tygodniu":"week (w tygodniu = a week)",
+    "tylko":"only",
+    "tym":"this (dzięki tym = thanks to these)",
+    "tę":"this (accus. fem.)",
+    "uczciwość":"honesty",
+    "uczciwy":"honest",
+    "uczucia":"feelings",
+    "uczucie":"feeling",
+    "uczy":"teaches; learns (uczy się)",
+    "uczą":"they teach",
+    "umie":"knows how to",
+    "umieć":"to know how to",
+    "unikać":"to avoid",
+    "uprawiamy":"we do (sport)",
+    "uprawiania":"doing (uprawiania sportów = of doing sports)",
+    "uprawiać":"to do (sport), to practise",
+    "uratować":"to save, to rescue",
+    "urlop":"holiday, leave",
+    "urządzenia":"devices",
+    "uważam":"I believe, I think",
+    "użyteczne":"useful",
+    "używają":"they use",
+    "używamy":"we use",
+    "używać":"to use",
+    "w":"in, into",
+    "wakacjach":"holidays (na wakacjach = on holiday)",
+    "wakacje":"holidays",
+    "wartości":"values; value",
+    "warzywa":"vegetables",
+    "ważne":"important (pl./neut.)",
+    "ważniejsze":"more important",
+    "ważny":"important (masc.)",
+    "wcześnie":"early",
+    "wcześniej":"earlier, before",
+    "weekend":"weekend",
+    "widoki":"views",
+    "widziałem":"I saw",
+    "widzę":"I see",
+    "wiedzę":"knowledge (accus.)",
+    "wiele":"many, a lot",
+    "wielki":"great, grand (Wielki Bazar = Grand Bazaar)",
+    "wielką":"great (accus. fem.)",
+    "wielu":"many (genitive)",
+    "wiem":"I know",
+    "wiemy":"we know",
+    "wieże":"towers",
+    "więc":"so, therefore",
+    "więcej":"more",
+    "wody":"water (genitive)",
+    "wodzie":"water (w wodzie = in the water)",
+    "wodą":"water (nad wodą = by the water)",
+    "wodę":"water (accus.)",
+    "wolnego":"free (wolnego czasu = of free time)",
+    "wolny":"free (czas wolny = free time)",
+    "wpłynęła":"influenced, affected (she/it)",
+    "wpływ":"influence, impact",
+    "wracamy":"we return, we come back",
+    "wróciłem":"I returned",
+    "wsparcie":"support",
+    "wspierają":"they support (wspierają się)",
+    "wspominaliśmy":"we reminisced",
+    "wspomnienia":"memories",
+    "wspomnień":"memories (genitive)",
+    "wspólne":"shared, common (pl./neut.)",
+    "wspólnym":"shared (wspólnym czasem = shared time)",
+    "wstajemy":"we get up",
+    "wszyscy":"everyone, all",
+    "wszystkie":"all (wszystkie chwile)",
+    "wszystkim":"all (przede wszystkim = above all)",
+    "wtedy":"then",
+    "wybieram":"I choose",
+    "wybrać":"to choose",
+    "wybrałem":"I chose",
+    "wybrzeża":"coast (wzdłuż wybrzeża = along the coast)",
+    "wybór":"choice",
+    "wychodzimy":"we go out, we leave",
+    "wycieczki":"trips, excursions",
+    "wygrał":"won (he)",
+    "wyjazd":"trip, departure",
+    "wyjątkowe":"exceptional (neut.)",
+    "wyjątkowy":"exceptional (masc.)",
+    "wyjścia":"outings (wspólne wyjścia = going out together)",
+    "wykorzystać":"to use, to utilise",
+    "wykorzystałbym":"I would use",
+    "wymagają":"they require",
+    "wymowy":"pronunciation (genitive)",
+    "wyobraźnię":"imagination (accus.)",
+    "wyrozumiałym":"understanding (być wyrozumiałym)",
+    "wystarczy":"it is enough",
+    "wyłączać":"to switch off",
+    "wzajemnej":"mutual (wzajemnej pomocy = mutual help)",
+    "wzdłuż":"along",
+    "wzorem":"role model (moim wzorem = my role model)",
+    "własnych":"one's own (własnych możliwości)",
+    "własną":"one's own (własną firmę = one's own company)",
+    "włoch":"Italy (do Włoch = to Italy)",
+    "z":"with; from",
+    "za":"too (za szybkie = too fast); for",
+    "zaangażowanie":"commitment, involvement",
+    "zabawom":"games, play (dzięki tym zabawom)",
+    "zabawy":"fun (dużo zabawy = a lot of fun)",
+    "zabytki":"monuments, landmarks",
+    "zabytków":"monuments (genitive)",
+    "zachowanie":"behaviour",
+    "zachować":"to keep, to preserve (zachować formę = to keep fit)",
+    "zachowywać":"to keep, to maintain (zachowywać dystans)",
+    "zaczęli":"they started",
+    "zaczęło":"started (it) (zaczęło pracować)",
+    "zadbałbym":"I would take care of",
+    "zadowoleni":"satisfied, content",
+    "zainteresowaniem":"interest (instr.)",
+    "zainwestowałbym":"I would invest",
+    "zakochanie":"being in love, infatuation",
+    "zakręcać":"to turn off (a tap)",
+    "zakupy":"shopping (robić zakupy = to do the shopping)",
+    "zależy":"depends",
+    "zanieczyszczenie":"pollution",
+    "zapamiętać":"to memorise, to remember",
+    "zapominać":"to forget",
+    "zapomniałbym":"I would forget",
+    "zapomnienie":"forgetting (zapomnienie o = forgetting about)",
+    "zasad":"rules (nowych zasad = new rules)",
+    "zastąpić":"to replace",
+    "zaufanie":"trust",
+    "zawodowe":"professional, vocational (praktyki zawodowe)",
+    "zawody":"professions, jobs",
+    "zawsze":"always",
+    "zawód":"profession, job",
+    "zdalnie":"remotely",
+    "zdań":"sentences (genitive)",
+    "zdjęcia":"photos (robić zdjęcia = to take photos)",
+    "zdrowe":"healthy (pl./neut.)",
+    "zdrowi":"healthy (pl.)",
+    "zdrowia":"health (genitive)",
+    "zdrowie":"health",
+    "zdrowiu":"health (o zdrowiu = about health)",
+    "zdrowo":"healthily (jeść zdrowo)",
+    "zdrowy":"healthy (masc.)",
+    "zdrowych":"healthy (zdrowych produktów)",
+    "ze":"with (ze znajomymi = with friends)",
+    "zestresowani":"stressed",
+    "zewnątrz":"outside (na zewnątrz = outdoors)",
+    "zgadzam":"I agree (zgadzam się)",
+    "zimie":"winter (w zimie = in winter)",
+    "zimowe":"winter (adj.) (sporty zimowe)",
+    "zimą":"in winter",
+    "zjeść":"to eat (once)",
+    "zmieniają":"they change",
+    "zmienić":"to change",
+    "zmieniła":"changed (she/it)",
+    "zmniejsza":"reduces, decreases",
+    "zmęczeni":"tired (pl.)",
+    "znaczenie":"significance, meaning",
+    "znajomości":"knowledge (znajomości języków = knowing languages)",
+    "znajomych":"friends, acquaintances (accus.)",
+    "znana":"known, famous (fem.)",
+    "zobaczyć":"to see",
+    "zostają":"they stay, remain",
+    "zostać":"to become",
+    "zostałem":"I became",
+    "zupy":"soups",
+    "zupę":"soup (accus.)",
+    "zużywamy":"we use up, we consume",
+    "zwiedzać":"to visit, to sightsee",
+    "zwierząt":"animals (dla zwierząt = for animals)",
+    "związane":"connected, related (związane z)",
+    "zwykle":"usually",
+    "zęby":"teeth (myć zęby = to brush teeth)",
+    "ćwiczyć":"to exercise",
+    "łatwiejsze":"easier",
+    "łyżwy":"ice skates, ice skating",
+    "łączy":"connects, joins",
+    "śmiech":"laughter",
+    "śmieci":"rubbish, waste",
+    "śpią":"they sleep",
+    "świata":"world (genitive)",
+    "światło":"light",
+    "świecie":"world (na świecie = in the world)",
+    "świetne":"great, excellent",
+    "świeże":"fresh (świeże powietrze = fresh air)",
+    "świeżym":"fresh (na świeżym powietrzu = in the open air)",
+    "święta":"holidays, festivals",
+    "źle":"badly",
+    "źródło":"source",
+    "żarówek":"light bulbs (żarówek energooszczędnych)",
+    "żeby":"in order to, so that",
+    "żeglowania":"sailing (genitive)",
+    "życia":"life (genitive)",
+    "żyją":"they live",
+    "żyli":"they lived / would live"
+  };
+
+  /* ================= STORAGE ================= */
+  const store={
+    get(k){try{return localStorage.getItem(k);}catch(e){return null;}},
+    set(k,v){try{localStorage.setItem(k,v);}catch(e){}}
+  };
+
+  /* ================= ELEMENTS ================= */
+  const homeScreen=document.getElementById('home');
+  const homeList=document.getElementById('homeList');
+  const readerScreen=document.getElementById('reader-screen');
+  const reader=document.getElementById('reader');
+  const statusEl=document.getElementById('status');
+  const rate=document.getElementById('rate'),rateVal=document.getElementById('rateVal');
+  const listenCtrls=document.getElementById('listenCtrls'),sentCtrls=document.getElementById('sentCtrls');
+  const playBtn=document.getElementById('play'),pauseBtn=document.getElementById('pause'),stopBtn=document.getElementById('stop');
+  const loopBox=document.getElementById('loop'),loopLab=document.getElementById('loopLab');
+  const prevBtn=document.getElementById('prev'),repeatBtn=document.getElementById('repeat'),nextBtn=document.getElementById('next'),counter=document.getElementById('counter');
+  const segBtns=[...document.querySelectorAll('.segbtn')];
+
+  /* ================= STATE ================= */
+  const synth=('speechSynthesis'in window)?window.speechSynthesis:null;
+  let plVoice=null,gen=0;
+  let currentText=null, sentences=[], curMode='listen', sIdx=0;
+  const L={idx:0,playing:false,paused:false};
+
+  /* ================= VOICE ================= */
+  function pickVoice(){
+    if(!synth)return;
+    const vs=synth.getVoices();
+    plVoice=vs.find(v=>v.lang&&v.lang.toLowerCase().startsWith('pl'))||null;
+    if(plVoice){statusEl.className='status';statusEl.innerHTML='Lehçe ses: <b>'+plVoice.name+'</b>';}
+    else if(vs.length){statusEl.className='status warn';statusEl.textContent='Lehçe ses paketi bulunamadı — telaffuz yanlış olabilir. (Android: Ayarlar → Erişilebilirlik → Metin okuma çıkışı → Polski)';}
+  }
+  if(synth){ synth.onvoiceschanged=pickVoice; pickVoice(); setTimeout(pickVoice,400); }
+  else { statusEl.className='status warn'; statusEl.textContent='Bu tarayıcı sesi desteklemiyor. (Çeviri yine çalışır.)'; }
+  rate.addEventListener('input',()=>rateVal.textContent=(+rate.value).toFixed(2));
+
+  /* ================= SPEECH HELPERS ================= */
+  function clearHi(){document.querySelectorAll('.s.active').forEach(x=>x.classList.remove('active'));}
+  function highlight(el){clearHi(); if(el){el.classList.add('active'); el.scrollIntoView({behavior:'smooth',block:'center'});}}
+  function stopSpeech(){gen++; if(synth){try{synth.cancel();}catch(e){}}}
+  function speakUtter(text,el,onEnd){
+    if(!synth)return;
+    const myGen=++gen;
+    const u=new SpeechSynthesisUtterance(text);
+    u.lang='pl-PL'; if(plVoice)u.voice=plVoice; u.rate=+rate.value;
+    u.onstart=()=>{if(myGen!==gen)return; highlight(el);};
+    u.onend=()=>{if(myGen!==gen)return; if(onEnd)onEnd();};
+    u.onerror=()=>{if(myGen!==gen)return; if(onEnd)onEnd();};
+    try{synth.cancel();}catch(e){}
+    synth.speak(u);
+  }
+
+  /* ================= LISTEN MODE ================= */
+  loopBox.addEventListener('change',()=>loopLab.classList.toggle('on',loopBox.checked));
+  function listenNext(){
+    if(!L.playing||L.paused)return;
+    if(L.idx>=sentences.length){ if(loopBox.checked){L.idx=0;} else {listenFinish();return;} }
+    const s=sentences[L.idx];
+    speakUtter(s.pl,s.el,()=>{ if(!L.playing||L.paused)return; L.idx++; listenNext(); });
+  }
+  function listenFinish(){L.playing=false;L.paused=false;stopSpeech();clearHi();playBtn.disabled=false;pauseBtn.disabled=true;stopBtn.disabled=true;pauseBtn.textContent='⏸ Pauza';}
+  playBtn.addEventListener('click',()=>{L.idx=0;L.playing=true;L.paused=false;playBtn.disabled=true;pauseBtn.disabled=false;stopBtn.disabled=false;pauseBtn.textContent='⏸ Pauza';listenNext();});
+  pauseBtn.addEventListener('click',()=>{
+    if(!L.playing)return;
+    if(!L.paused){L.paused=true;stopSpeech();pauseBtn.textContent='▶ Wznów';}
+    else{L.paused=false;pauseBtn.textContent='⏸ Pauza';listenNext();}
+  });
+  stopBtn.addEventListener('click',listenFinish);
+
+  /* ================= SENTENCE MODE ================= */
+  function sentenceGo(i,speak){
+    if(!sentences.length)return;
+    sIdx=Math.max(0,Math.min(i,sentences.length-1));
+    if(currentText)store.set('pl_sidx_'+currentText.id,String(sIdx));
+    counter.textContent=(sIdx+1)+' / '+sentences.length;
+    const s=sentences[sIdx];
+    if(speak)speakUtter(s.pl,s.el,null); else highlight(s.el);
+  }
+  prevBtn.addEventListener('click',()=>sentenceGo(sIdx-1,true));
+  repeatBtn.addEventListener('click',()=>sentenceGo(sIdx,true));
+  nextBtn.addEventListener('click',()=>sentenceGo(sIdx+1,true));
+
+  /* ================= MODE SWITCH ================= */
+  function setMode(mode,gesture){
+    stopSpeech(); L.playing=false; L.paused=false;
+    curMode=mode; store.set('pl_mode',mode);
+    segBtns.forEach(b=>b.classList.toggle('active',b.dataset.mode===mode));
+    if(mode==='listen'){
+      listenCtrls.style.display='flex'; sentCtrls.style.display='none';
+      playBtn.disabled=false; pauseBtn.disabled=true; stopBtn.disabled=true; pauseBtn.textContent='⏸ Pauza';
+      clearHi();
+    }else{
+      listenCtrls.style.display='none'; sentCtrls.style.display='flex';
+      sentenceGo(sIdx,!!gesture);   // gesture=true → okur; false (ilk açılış) → sadece vurgular
+    }
+  }
+  segBtns.forEach(b=>b.addEventListener('click',()=>setMode(b.dataset.mode,true)));
+
+  /* ================= BUILD READER ================= */
+  function buildReader(text){
+    reader.innerHTML=''; sentences.length=0;
+    const h2=document.createElement('h2'); h2.textContent=(TEXTS.indexOf(text)+1)+'. '+text.title; reader.appendChild(h2);
+    text.paragraphs.forEach(par=>{
+      const p=document.createElement('p');
+      par.forEach(sent=>{
+        const sEl=document.createElement('span'); sEl.className='s';
+        const toks=sent.pl.match(/\p{L}+|[^\p{L}]+/gu)||[];
+        toks.forEach(t=>{
+          if(/\p{L}/u.test(t)){const w=document.createElement('span');w.className='w';w.textContent=t;w._key=t.toLowerCase();w._sent=sent;sEl.appendChild(w);}
+          else sEl.appendChild(document.createTextNode(t));
+        });
+        p.appendChild(sEl); p.appendChild(document.createTextNode(' '));
+        sentences.push({el:sEl,pl:sent.pl,en:sent.en});
+      });
+      reader.appendChild(p);
+    });
+  }
+
+  /* ================= NAVIGATION ================= */
+  function openText(id){
+    const t=TEXTS.find(x=>x.id===id); if(!t)return;
+    currentText=t; store.set('pl_last_text',id);
+    buildReader(t);
+    homeScreen.style.display='none'; readerScreen.style.display='block';
+    sIdx=parseInt(store.get('pl_sidx_'+id)||'0',10)||0;
+    if(sIdx>=sentences.length)sIdx=0;
+    const savedMode=store.get('pl_mode')||'listen';
+    setMode(savedMode,false);           // ilk açılışta ses çalmaz (tarayıcı politikası)
+    window.scrollTo(0,0);
+  }
+  function showHome(){
+    stopSpeech(); L.playing=false; L.paused=false;
+    readerScreen.style.display='none'; homeScreen.style.display='block';
+    renderHome(); window.scrollTo(0,0);
+  }
+  document.getElementById('home-btn').addEventListener('click',showHome);
+
+  function renderHome(){
+    homeList.innerHTML='';
+    const last=store.get('pl_last_text');
+    TEXTS.forEach((t,i)=>{
+      const card=document.createElement('button'); card.className='card';
+      const preview=(t.paragraphs[0]&&t.paragraphs[0][0])?t.paragraphs[0][0].pl:'';
+      card.innerHTML='<div class="ct"><span class="cnum">'+(i+1)+'.</span> '+t.title+'</div><div class="cp">'+preview+'</div>'+(t.id===last?'<span class="badge">Son çalıştığın</span>':'');
+      card.addEventListener('click',()=>openText(t.id));
+      homeList.appendChild(card);
+    });
+  }
+
+  /* ================= WORD TAP / LONG-PRESS ================= */
+  const tip=document.getElementById('tip');
+  const overlay=document.getElementById('overlay'),mPl=document.getElementById('mPl'),mEn=document.getElementById('mEn');
+  let pressTimer=null,longFired=false,startX=0,startY=0,curWord=null;
+  function showTip(w){
+    const en=GLOSS[w._key];
+    tip.innerHTML=en?'<span class="pl">'+w.textContent+'</span> → <span class="en">'+en+'</span>'
+                    :'<span class="pl">'+w.textContent+'</span> <span class="none">(çeviri bulunamadı)</span>';
+    tip.style.display='block';
+    const r=w.getBoundingClientRect(),tw=tip.offsetWidth,th=tip.offsetHeight;
+    let left=Math.max(8,Math.min(r.left+r.width/2-tw/2,window.innerWidth-tw-8));
+    let top=r.top-th-8; if(top<8)top=r.bottom+8;
+    tip.style.left=left+'px'; tip.style.top=top+'px';
+    document.querySelectorAll('.w.tapped').forEach(x=>x.classList.remove('tapped'));
+    w.classList.add('tapped');
+  }
+  function hideTip(){tip.style.display='none';document.querySelectorAll('.w.tapped').forEach(x=>x.classList.remove('tapped'));}
+  function openSentence(s){mPl.textContent=s.pl;mEn.textContent=s.en;overlay.style.display='flex';hideTip();}
+  document.getElementById('mClose').addEventListener('click',()=>overlay.style.display='none');
+  overlay.addEventListener('click',e=>{if(e.target===overlay)overlay.style.display='none';});
+
+  reader.addEventListener('pointerdown',e=>{
+    const w=e.target.closest('.w'); if(!w)return;
+    curWord=w; longFired=false; startX=e.clientX; startY=e.clientY;
+    pressTimer=setTimeout(()=>{longFired=true; openSentence(w._sent);},480);
+  });
+  reader.addEventListener('pointermove',e=>{if(pressTimer&&(Math.abs(e.clientX-startX)>10||Math.abs(e.clientY-startY)>10)){clearTimeout(pressTimer);pressTimer=null;}});
+  reader.addEventListener('pointerup',e=>{
+    if(pressTimer){clearTimeout(pressTimer);pressTimer=null;}
+    if(longFired){longFired=false;return;}
+    const w=e.target.closest('.w'); if(w&&w===curWord)showTip(w);
+  });
+  reader.addEventListener('pointercancel',()=>{if(pressTimer){clearTimeout(pressTimer);pressTimer=null;}});
+  reader.addEventListener('contextmenu',e=>{if(e.target.closest('.w'))e.preventDefault();});
+  document.addEventListener('pointerdown',e=>{if(!e.target.closest('.w')&&!e.target.closest('#tip'))hideTip();});
+  window.addEventListener('scroll',hideTip,{passive:true});
+
+  /* ================= START ================= */
+  renderHome();
+  const last=store.get('pl_last_text');
+  if(last && TEXTS.some(t=>t.id===last)) openText(last);   // son metni hatırla ve aç
+})();
+</script>
+</body>
+</html>
