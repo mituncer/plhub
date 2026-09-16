@@ -3,7 +3,7 @@
 # Uzun tarifin içinde "/" kullanabilirsin, sorun olmaz.
 
 Polonyaca B1 Seviye Kelime Haznesi / PolonceKart260911.html / B1 kelimeleri çalışmak için flash kart benzeri aplikasyon 
-Polonyaca çoktan seçmeli B1 kelime testi / kelimetesti-b1-v15-sesli.html / B1 sertifika sınavında gerekli kelimelerin testi
+Polonyaca çoktan seçmeli B1 kelime testi / kelimetesti-b1-v18-sesli.html / B1 sertifika sınavında gerekli kelimelerin testi
 Polonyaca Sayıları Çalış / pl-liczby-1.html / Polonyaca sayı alıştırmaları 
 Polonyaca fiil secme-bulma / lehce-fiil-bulma.html / Polonyaca çok kullanılan fiilleri seçerek egzersiz yapma
 Polonyaca harf harf fiil yazma / lehce-fiil-yazma.html / Polonyca çok kullanılan fiilleri harf harf seçerek egzersiz yapma
