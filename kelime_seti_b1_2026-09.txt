@@ -1,0 +1,39 @@
+pl / cins / tag / tercume / pl_cumle / cumle_tercume / plÇel1 / plÇel2 / tercumeÇel1 / tercumeÇel2
+założyć / czas. / "b1_2026-09" / kurmak / Chcemy założyć nową firmę w tym roku. / Bu yıl yeni bir şirket kurmak istiyoruz. / wykonywać / pasować / gerekir, -meli / bırakmak
+wykonać / czas. / "b1_2026-09" / yapmak / Musiał wykonać trudne zadanie na czas. / Zor bir görevi zamanında yapmak zorunda kaldı. / dopasować / zapewniać / güvence vermek, sağlamak / kaldırmak, yükseltmek
+zdobyć / czas. / "b1_2026-09" / elde etmek / Sportowiec zdobył złoty medal na igrzyskach. / Sporcu oyunlarda altın madalya elde etti. / urządzić / potwierdzać / yapmak, gerçekleştirmek / bırakmak
+sprawiać / czas. / "b1_2026-09" / sebep olmak / Ten hałas sprawia mi ból głowy. / Bu gürültü bana baş ağrısına sebep oluyor. / poświęcać / urządzić / gerekir, -meli / uymak, yakışmak
+zdarzyć się / czas. / "b1_2026-09" / olmak, meydana gelmek / W zeszłym tygodniu zdarzył się wypadek na autostradzie. / Geçen hafta otoyolda bir kaza meydana geldi. / należy / pojawić się / bulmak / ortaya çıkmak
+znajdować / czas. / "b1_2026-09" / bulmak / Codziennie znajduję nowe pomysły do pracy. / Her gün iş için yeni fikirler buluyorum. / odnieść / wykonywać / almak, götürmek / ayırmak, tahsis etmek
+pasować / czas. / "b1_2026-09" / uymak, yakışmak / Ta sukienka bardzo do ciebie pasuje. / Bu elbise sana çok yakışıyor. / przesiadać się / płoszyć / yapmak, gerçekleştirmek / katkıda bulunmak
+pojawiać się / czas. / "b1_2026-09" / ortaya çıkmak / Na niebie zaczynają pojawiać się chmury. / Gökyüzünde bulutlar belirmeye başlıyor. / nazbierać / poświęcać / adamak, zaman ayırmak / bulmak
+przesiadać się / czas. / "b1_2026-09" / aktarma yapmak / W Warszawie musisz przesiadać się na inny pociąg. / Varşova'da başka bir trene aktarma yapman gerekiyor. / podnosić / zapewniać / almak, götürmek / bir şeyle ilgilenmek, davranmak
+wydawać / czas. / "b1_2026-09" / harcamak / Wydaję za dużo pieniędzy na ubrania. / Kıyafetlere çok fazla para harcıyorum. / posiadać / pasować / bulmak / ürkütmek, kaçırmak
+dbać / czas. / "b1_2026-09" / önem vermek, bakmak / Powinniśmy dbać o środowisko naturalne. / Doğal çevreye özen göstermeliyiz. / zapewniać / nazbierać / biriktirmek, toplamak / onaylamak
+pojawić się / czas. / "b1_2026-09" / ortaya çıkmak / Nagle na drodze pojawił się pies. / Aniden yolda bir köpek ortaya çıktı. / zdarzyć się / nazbierać / bir yere gitmeye karar vermek / biriktirmek, toplamak
+posiadać / czas. / "b1_2026-09" / sahip olmak / Firma posiada nowoczesny sprzęt biurowy. / Şirket modern ofis ekipmanına sahip. / przeznaczyć / zabrać / düzenlemek / katkıda bulunmak
+urządzić / czas. / "b1_2026-09" / düzenlemek / Postanowiliśmy urządzić przyjęcie urodzinowe. / Bir doğum günü partisi düzenlemeye karar verdik. / wykonywać / pojawić się / önem vermek, bakmak / aktarma yapmak
+powstać / czas. / "b1_2026-09" / ortaya çıkmak, kurulmak / W tym miejscu powstanie nowy park. / Bu yerde yeni bir park kurulacak. / podnosić / wnosić / güvence vermek, sağlamak / önem vermek, bakmak
+przeznaczyć / czas. / "b1_2026-09" / ayırmak, tahsis etmek / Rodzice przeznaczyli oszczędności na edukację dzieci. / Ebeveynler birikimlerini çocuklarının eğitimine ayırdı. / posiadać / obchodzić się / sonuç elde etmek, götürmek / onaylamak
+poświęcać / czas. / "b1_2026-09" / adamak, zaman ayırmak / Rodzice poświęcają wiele czasu swoim dzieciom. / Ebeveynler çocuklarına çok zaman adıyor. / wnosić / pojawić się / elde etmek / önem vermek, bakmak
+przekonać / czas. / "b1_2026-09" / ikna etmek / Udało mi się przekonać szefa do mojego pomysłu. / Patronu fikrime ikna etmeyi başardım. / wykonywać / pojawić się / aktarma yapmak / almak, götürmek
+obchodzić się / czas. / "b1_2026-09" / bir şeyle ilgilenmek, davranmak / Trzeba umieć obchodzić się z narzędziami. / Aletlerle nasıl davranılacağını bilmek gerekir. / sprawiać / zostawić / gerekir, -meli / uydurmak, ayarlamak
+wnosić / czas. / "b1_2026-09" / katkıda bulunmak / Każdy pracownik wnosi coś wartościowego do zespołu. / Her çalışan ekibe değerli bir katkıda bulunuyor. / założyć / pojawiać się / onaylamak / harcamak
+potwierdzać / czas. / "b1_2026-09" / onaylamak / Proszę potwierdzać odbiór każdej przesyłki. / Lütfen her paketin teslim alındığını onaylayın. / dbać / założyć / harcamak / bir şeyle ilgilenmek, davranmak
+umożliwiać / czas. / "b1_2026-09" / mümkün kılmak / Internet umożliwia naukę na odległość. / İnternet uzaktan eğitimi mümkün kılıyor. / dopasować / podnosić / kaldırmak, yükseltmek / sonuç elde etmek, götürmek
+zlecenie / n / "b1_2026-09" / sipariş, görev / Otrzymaliśmy nowe zlecenie od klienta. / Müşteriden yeni bir sipariş aldık. / założyć / zbyt / elde etmek / sahip olmak
+wybrać się / czas. / "b1_2026-09" / bir yere gitmeye karar vermek / W weekend wybieramy się w góry. / Hafta sonu dağlara gitmeye karar veriyoruz. / wydawać / wykonywać / katkıda bulunmak / almak, götürmek
+zapewniać / czas. / "b1_2026-09" / güvence vermek, sağlamak / Firma zapewnia pracownikom prywatną opiekę medyczną. / Şirket çalışanlarına özel sağlık sigortası sağlıyor. / dopasować / potwierdzać / olmak, meydana gelmek / mümkün kılmak
+znaleźć / czas. / "b1_2026-09" / bulmak / W końcu znalazłem klucze pod łóżkiem. / Sonunda anahtarları yatağın altında buldum. / posiadać / założyć / uymak, yakışmak / düzenlemek
+nazbierać / czas. / "b1_2026-09" / biriktirmek, toplamak / W lesie nazbieraliśmy dużo grzybów. / Ormanda çok fazla mantar topladık. / należy / pojawić się / güvence vermek, sağlamak / ayırmak, tahsis etmek
+zabrać / czas. / "b1_2026-09" / almak, götürmek / Nie zapomnij zabrać parasola, bo będzie padać. / Şemsiyeni almayı unutma, yağmur yağacak. / zostawić / dopasować / kurmak / güvence vermek, sağlamak
+zostawić / czas. / "b1_2026-09" / bırakmak / Zostawiłem telefon w domu. / Telefonu evde bıraktım. / dbać / wydawać / ortaya çıkmak, kurulmak / katkıda bulunmak
+wykonywać / czas. / "b1_2026-09" / yapmak, gerçekleştirmek / Codziennie wykonuję te same obowiązki w pracy. / Her gün işte aynı görevleri yapıyorum. / przesiadać się / wybrać się / ikna etmek / kaldırmak, yükseltmek
+podnosić / czas. / "b1_2026-09" / kaldırmak, yükseltmek / Nie powinieneś podnosić tak ciężkich rzeczy. / Bu kadar ağır şeyleri kaldırmamalısın. / należy / powstać / bırakmak / kurmak
+płoszyć / czas. / "b1_2026-09" / ürkütmek, kaçırmak / Głośna muzyka płoszy ptaki z ogrodu. / Yüksek sesli müzik bahçedeki kuşları ürkütüyor. / pojawiać się / dopasować / elde etmek / bırakmak
+dopasować / czas. / "b1_2026-09" / uydurmak, ayarlamak / Trener pomógł mi dopasować plan treningowy. / Antrenör antrenman planımı ayarlamama yardım etti. / powstać / przesiadać się / yapmak / uymak, yakışmak
+odnieść / czas. / "b1_2026-09" / sonuç elde etmek, götürmek / Firma odniosła duży sukces na rynku. / Şirket pazarda büyük bir başarı elde etti. / wykonać / powstać / gerekir, -meli / olmak, meydana gelmek
+zbyt / przysł. / "b1_2026-09" / fazla, aşırı / To mieszkanie jest dla nas zbyt drogie. / Bu daire bizim için fazla pahalı. / tyle / ciągle / o kadar / sürekli, hala
+tyle / przysł. / "b1_2026-09" / o kadar / Nie wiedziałem, że masz tyle książek. / Bu kadar çok kitabın olduğunu bilmiyordum. / ciągle / zbyt / fazla, aşırı / sürekli, hala
+ciągle / przysł. / "b1_2026-09" / sürekli, hala / On ciągle spóźnia się na spotkania. / O, toplantılara sürekli geç kalıyor. / tyle / zbyt / fazla, aşırı / o kadar
+należy / czas. / "b1_2026-09" / gerekir, -meli / Przed jedzeniem należy umyć ręce. / Yemekten önce ellerin yıkanması gerekir. / znaleźć / potwierdzać / ortaya çıkmak / ortaya çıkmak, kurulmak
