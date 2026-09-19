@@ -4,7 +4,7 @@ stan zębów / m / "23test" / diş durumu / Stan zębów zależy od codziennej h
 lekarstwo / n / "23test" / ilaç / Muszę kupić lekarstwo w aptece. / Eczaneden ilaç almam gerekiyor. / zmęczenie / szczęście / yorgunluk / mutluluk
 złe samopoczucie / n / "23test" / kötü hissetme / Złe samopoczucie zmusiło go do zostania w domu. / Kötü hissediyor olması onu evde kalmaya zorladı. / ogłoszenie w internecie / znudzenie / internet ilanı / can sıkıntısı
 osłabienie wiosenne / n / "23test" / bahar yorgunluğu / Osłabienie wiosenne to częsty problem w marcu. / Bahar yorgunluğu mart ayında sık görülen bir sorundur. / złe samopoczucie / wędrowanie po górach / kötü hissetme / dağlarda yürüyüş
-niedobrze mi / czas. / "23test" / midem bulanıyor / Niedobrze mi po tej podróży. / Bu yolculuktan sonra midem bulanıyor. / Z jakiego materiału? / kupić / Hangi malzemeden? / satın almak
+niedobrze mi / wyr. / "23test" / midem bulanıyor / Niedobrze mi po tej podróży. / Bu yolculuktan sonra midem bulanıyor. / Z czego? / kupić / Neden yapılmış? / satın almak
 zmęczenie / n / "23test" / yorgunluk / Zmęczenie po pracy było ogromne. / İşten sonraki yorgunluk çok büyüktü. / dobre samopoczucie / ogłoszenie w internecie / iyi hissetme / internet ilanı
 dobre samopoczucie / n / "23test" / iyi hissetme / Spacer poprawia dobre samopoczucie. / Yürüyüş yapmak iyi hissetmeyi sağlar. / wędrowanie po górach / znudzenie / dağlarda yürüyüş / can sıkıntısı
 poranny jogging / m / "23test" / sabah koşusu / Poranny jogging daje mi dużo energii. / Sabah koşusu bana çok enerji veriyor. / piękny / zapiekane brokuły / güzel / fırınlanmış brokoli
@@ -49,178 +49,176 @@ dział sprzedaży / m / "23test" / satış departmanı / Dział sprzedaży osią
 kampania marketingowa / ż / "23test" / pazarlama kampanyası / Nowa kampania marketingowa odniosła sukces. / Yeni pazarlama kampanyası başarıya ulaştı. / reklamacja / zazdrość / iade talebi / kıskançlık
 badania konsumenckie / n / "23test" / tüketici araştırmaları / Badania konsumenckie pomagają poznać klientów. / Tüketici araştırmaları müşterileri tanımaya yardımcı olur. / dobre samopoczucie / media społecznościowe / iyi hissetme / sosyal medya
 promocja produktów / ż / "23test" / ürün tanıtımı / Promocja produktów odbędzie się w piątek. / Ürün tanıtımı cuma günü gerçekleşecek. / stała praca / babcia i dziadek / sabit iş / büyükanne ve büyükbaba
-rozwijać umiejętności / czas. / "23test" / becerileri geliştirmek / Warto rozwijać umiejętności językowe. / Dil becerilerini geliştirmeye değer. / rejestrować się / kupować / kayıt olmak / satın almak
-dodatkowe kursy i szkolenia / m / "23test" / ek kurslar ve eğitimler / Firma oferuje dodatkowe kursy i szkolenia. / Şirket ek kurslar ve eğitimler sunuyor. / najlepszy / Kogo? / en iyi / Kimi?
-stała praca / ż / "23test" / sabit iş / Stała praca daje poczucie bezpieczeństwa. / Sabit iş güvenlik hissi verir. / kampania marketingowa / reżyseria / pazarlama kampanyası / yönetmenlik
-kurs szycia / m / "23test" / dikiş kursu / Zapisałam się na kurs szycia. / Dikiş kursuna kaydoldum. / przeterminowany / śmieci / son kullanma tarihi geçmiş / çöpler
-wolontariat / m / "23test" / gönüllülük / Wolontariat to dobra okazja do pomocy innym. / Gönüllülük başkalarına yardım etmek için iyi bir fırsattır. / skuteczniejszy / droższy / daha etkili / daha pahalı
-wolontariusz / m / "23test" / gönüllü / Wolontariusz pomagał w organizacji wydarzenia. / Gönüllü, etkinliğin organizasyonuna yardım etti. / śmieci / ruch / çöpler / egzersiz
-wędrowanie po górach / n / "23test" / dağlarda yürüyüş / Wędrowanie po górach to moje hobby. / Dağlarda yürüyüş yapmak benim hobimdir. / gotowanie w domu / złe samopoczucie / evde yemek pişirme / kötü hissetme
-wycieczka z przewodnikiem / ż / "23test" / rehberli tur / Wycieczka z przewodnikiem była bardzo ciekawa. / Rehberli tur çok ilgi çekiciydi. / firma kosmetyczna / pralka / kozmetik firması / çamaşır makinesi
-śmieci / m / "23test" / çöpler / Trzeba wyrzucić śmieci. / Çöpleri atmak gerekiyor. / cichy / Kogo? / sessiz / Kimi?
-puste opakowania / n / "23test" / boş ambalajlar / Puste opakowania wrzucamy do plastiku. / Boş ambalajları plastiğe atıyoruz. / wędrowanie po górach / badania konsumenckie / dağlarda yürüyüş / tüketici araştırmaları
-chusteczki / ż / "23test" / mendiller / Masz może higieniczne chusteczki? / Yanında hijyenik mendil var mı? / zazdrość / firma kosmetyczna / kıskançlık / kozmetik firması
-papierki / m / "23test" / kâğıt parçaları / Papierki leżały na podłodze. / Kâğıt parçaları yerde yatıyordu. / regulamin / widok z okna / kurallar / pencereden manzara
-regulamin / m / "23test" / yönetmelik / Musisz przeczytać regulamin. / Yönetmeliği okumalısın. / drogi / widok z okna / pahalı / pencereden manzara
-regulamin / m / "23test" / kurallar / Regulamin zabrania palenia. / Kurallar sigara içmeyi yasaklar. / szary / formularz zgłoszeniowy / gri / başvuru formu
-formularz zgłoszeniowy / m / "23test" / başvuru formu / Proszę wypełnić formularz zgłoszeniowy. / Lütfen başvuru formunu doldurun. / widok z okna / starszy / pencereden manzara / daha yaşlı
-ankieta / ż / "23test" / anket / Wypełnij krótką ankietę. / Kısa bir anketi doldur. / promocja produktów / reżyseria / ürün tanıtımı / yönetmenlik
-ochrona środowiska / ż / "23test" / çevre koruma / Ochrona środowiska jest ważna dla naszej przyszłości. / Çevre koruma geleceğimiz için önemlidir. / pralka / obniżka / çamaşır makinesi / indirim
-łąka / ż / "23test" / çayır / Na łące rosły piękne kwiaty. / Çayırda güzel çiçekler büyüyordu. / rola główna / wycieczka / başrol / gezi
-rodzina / ż / "23test" / aile / Moja rodzina jest bardzo duża. / Benim ailem çok büyüktür. / stała praca / determinacja / sabit iş / kararlılık
-rodzice / m / "23test" / ebeveynler / Moi rodzice mieszkają w Warszawie. / Ebeveynlerim Varşova'da yaşıyor. / cichy / wysoki / sessiz / uzun-yüksek
-babcia i dziadek / ż / "23test" / büyükanne ve büyükbaba / Babcia i dziadek mieszkają na wsi. / Büyükanne ve büyükbaba köyde yaşıyor. / cisza i spokój / wielkie aglomeracje / sessizlik ve huzur / büyük şehirler
-małżeństwo / n / "23test" / evlilik / Ich małżeństwo trwa już dziesięć lat. / Onların evliliği ten yıldır devam ediyor. / szczęście / dobre samopoczucie / mutluluk / iyi hissetme
-przyjaciel / m / "23test" / arkadaş / Mój przyjaciel zawsze mi pomaga. / Arkadaşım bana her zaman yardım eder. / ekologiczny / agresywny / ekolojik / saldırgan
-przyjaciółka / ż / "23test" / arkadaş / Moja przyjaciółka miesza w Krakowie. / Arkadaşım Krakow'da yaşıyor. / znajoma / praktyka studencka / tanıdık / staj
-znajomy / m / "23test" / tanıdık / To mój dobry znajomy z pracy. / Bu işten iyi bir tanıdığımdır. / ruch / życzliwy / hareket / cana yakın
-znajoma / ż / "23test" / tanıdık / Spotkałem znajomą w sklepie. / Mağazada bir tanıdıkla karşılaştım. / cena początkowa / zniżka / başlangıç fiyatı / indirim
-sąsiad / m / "23test" / komşu / Nasz sąsiad jest bardzo miły. / Komşumuz çok naziktir. / droższy / wolontariat / daha pahalı / gönüllülük
-kibic / m / "23test" / taraftar / On jest wielkim kibicem piłki nożnej. / O büyük bir futbol taraftarıdır. / własny / regulamin / kendi / yönetmelik
-sędzia / m / "23test" / hakem / Sędzia zakończył mecz. / Hakem maçı bitirdi. / przyjaciel / wolontariusz / arkadaş / gönüllü
-drużyna / ż / "23test" / takım / Nasza drużyna wygrała mecz. / Takımımız maçı kazandı. / Jakiej? / cena początkowa / Nasıl? / başlangıç fiyatı
-właściciel / m / "23test" / sahip / Właściciel psa spaceruje w parku. / Köpeğin sahibi parkta yürüyor. / przyjaciel / towar / arkadaş / mal
-jubiler / m / "23test" / kuyumcu / Jubiler naprawił mój zegarek. / Kuyumcu saatimi tamir etti. / poranny jogging / agresywny / sabah koşusu / saldırgan
-radość / ż / "23test" / sevinç / Dzieci czuły wielką radość. / Çocuklar büyük bir sevinç hissetti. / wycieczka z przewodnikiem / cisza i spokój / rehberli tur / sessizlik ve huzur
-zazdrość / ż / "23test" / kıskançlık / Zazdrość nie jest dobrym uczuciem. / Kıskançlık iyi bir duygu değildir. / dodatkowe opłaty / przyjaciółka / ek ücretler / arkadaş
-znudzenie / n / "23test" / can sıkıntısı / Na jego twarzy widać było znudzenie. / Yüzünde can sıkıntısı görülüyordu. / ogłoszenie w internecie / marzenie / internet ilanı / hayal
-obojętność / ż / "23test" / kayıtsızlık / Jej obojętność bardzo mnie zaskoczyła. / Onun kayıtsızlığı beni çok şaşırttı. / cena początkowa / obniżka / başlangıç fiyatı / indirim
-pasja / ż / "23test" / tutku / Muzyka to moja największa pasja. / Müzik benim en büyük tutkumdur. / reklamacja / obniżka / şikâyet / indirim
-determinacja / ż / "23test" / kararlılık / Determinacja pomaga osiągnąć cel. / Kararlılık hedefe ulaşmaya yardımcı olur. / reżyseria / wideorozmowa / yönetmenlik / görüntülü arama
-marzenie / n / "23test" / hayal / Podróż do Japonii to moje marzenie. / Japonya'ya seyahat benim hayalimdir. / ogłoszenie / znudzenie / ilan / can sıkıntısı
-cisza i spokój / ż / "23test" / sessizlik ve huzur / Lubię ciszę i spokój w domu. / Evdeki sessizliği ve huzuru severim. / kampania marketingowa / lodówka / pazarlama kampanyası / buzdolabı
-nastrój / m / "23test" / ruh hali / Mam dziś bardzo dobry nastrój. / Bugün çok iyi bir ruh halindeyim. / zawód weterynarza / cichy / veteriner mesleği / sessiz
-szczęście / n / "23test" / mutluluk / Rodzina daje mi prawdziwe szczęście. / Aile bana gerçek mutluluk veriyor. / puste opakowania / wędrowanie po górach / boş ambalajlar / dağlarda yürüyüş
-widok z okna / m / "23test" / pencereden manzara / Widok z okna jest zachwycający. / Pencereden manzara büyüleyici. / tradycyjne potrawy / sąsiad / geleneksel yemekler / komşu
-dekorować / czas. / "23test" / süslemek / Lubię dekorować dom na święta. / Bayram için evi süslemeyi severim. / namalowałabyś / zapraszać / resim yapardın (kadın) / davet etmek
-wyprowadzać się / czas. / "23test" / taşınmak / Wyprowadzam się do nowego mieszkania. / Yeni bir daireye taşınıyorum. / jeździć (rowerem) / zarejestrować się / (bisiklet) sürmek / kayıt olmak
-ogłoszenie / n / "23test" / ilan / Przeczytałem ogłoszenie w gazecie. / Gazetedeki ilanı okudum. / szczęście / badania konsumenckie / mutluluk / tüketici araştırmaları
-media społecznościowe / n / "23test" / sosyal medya / Korzystam z mediów społecznościowych codziennie. / Her gün sosyal medya kullanıyorum. / puste opakowania / marzenie / boş ambalajlar / hayal
-ogłoszenie w internecie / n / "23test" / internet ilanı / Znalazłem ogłoszenie w internecie. / İnternette bir ilan buldum. / znudzenie / badania konsumenckie / can sıkıntısı / tüketici araştırmaları
-wideorozmowa / ż / "23test" / görüntülü arama / Wideorozmowa z rodziną była bardzo miła. / Aile ile görüntülü arama çok hoştu. / pomidorowa (zupa) / rodzina / domates çorbası / aile
-reżyseria / ż / "23test" / yönetmenlik / Reżyseria filmu była genialna. / Filmin yönetmenliği dahiyaneydi. / wycieczka z przewodnikiem / piątka (ocena) / rehberli tur / beş (not)
-premiera / ż / "23test" / gala / Premiera filmu odbędzie się jutro. / Filmin galası yarın yapılacak. / lodówka / konkurencja / buzdolabı / rekabet
-premiera / ż / "23test" / ilk gösterim / Dzisiaj jest premiera nowego spektaklu. / Bugün yeni oyunun ilk gösterimi var. / wielkie aglomeracje / rodzina / büyük şehirler / aile
-rola główna / ż / "23test" / başrol / Zagrał rolę główną w nowym filmie. / Yeni filmde başrol oynadı. / znajoma / zazdrość / tanıdık / kıskançlık
-czekać / czas. / "23test" / beklemek / Czekam na autobus od godziny. / Bir saattir otobüs bekliyorum. / zjeść / zapamiętać / yemek / ezberlemek
-oglądać / czas. / "23test" / izlemek / Oglądamy nowy serial wieczorem. / Akşam yeni diziyi izliyoruz. / zapamiętać / odwiedzać / ezberlemek / ziyaret etmek
-decydować / czas. / "23test" / karar vermek / Muszę decydować o swojej przyszłości. / Geleceğim hakkında karar vermeliyim. / spędzić / ugotować / geçirmek (zaman) / pişirmek
-jeździć (rowerem) / czas. / "23test" / (bisiklet) sürmek / Lubię jeździć rowerem po parku. / Parkta bisiklet sürmeyi severim. / zgadzać się / Z jakiego materiału? / aynı fikirde olmak / Hangi malzemeden?
-brać udział / czas. / "23test" / katılmak / Chcę brać udział w tym projekcie. / Bu projeye katılmak istiyorum. / ignorować / wyjść / görmezden gelmek / çıkmak
-zmieniać / czas. / "23test" / değiştirmek / Często zmieniam plansze w grze. / Oyundaki haritaları sık sık değiştiririm. / jeździć (rowerem) / rozwijać umiejętności / (bisiklet) sürmek / becerileri geliştirmek
-zmienić / czas. / "23test" / değiştirmek / Muszę zmienić swoje plany. / Planlarımı değiştirmem gerekiyor. / zbierać / niech pomoże / toplamak / yardım etsin
-zgadzać się / czas. / "23test" / kabul etmek / Zgadzać się na te warunki to ryzyko. / Bu şartları kabul etmek bir risktir. / niedobrze mi / dekorować / midem bulanıyor / süslemek
-zgadzać się / czas. / "23test" / aynı fikirde olmak / Całkowicie się z tobą zgadzam. / Seninle tamamen aynı fikirdeyim. / Z jakiego materiału? / oceniliby / Hangi malzemeden? / değerlendirirlerdi
-kupować / czas. / "23test" / satın almak / Lubię kupować świeże owoce. / Taze meyve satın almayı severim. / wyglądać / rejestrować się / görünmek / kayıt olmak
-kupić / czas. / "23test" / satın almak / Muszę kupić nowy chleb. / Yeni bir ekmek satın almalıyım. / kończyć / zaproponowałbym / bitirmek / önerirdim (erkek)
-sprzedawać / czas. / "23test" / satmak / On sprzedaje używane samochody. / O ikinci el arabalar satıyor. / niech pomoże / planować / yardım etsin / planlamak
-sprzedać / czas. / "23test" / satmak / Chcę sprzedać stary stół. / Eski masayı satmak istiyorum. / wyglądać / naprawić / görünmek / tamir etmek
-rezygnować / czas. / "23test" / vazgeçmek / Nie powinieneś tak szybko rezygnować. / Bu kadar çabuk vazgeçmemelisin. / kontaktować się / chciałabym / iletişime geçmek / isterdim (kadın)
-naprawiać / czas. / "23test" / tamir etmek / Mechanik naprawia mój samochód. / Tamirci arabamı tamir ediyor. / czekać / odwiedzić / beklemek / ziyaret etmek
-naprawić / czas. / "23test" / tamir etmek / Muszę naprawić ten zegarek. / Bu saati tamir etmeliyim. / porównywać / szukać / karşılaştırmak / aramak
-gotować / czas. / "23test" / pişirmek / Lubię gotować obiad dla rodziny. / Aileme akşam yemeği pişirmeyi severim. / wypełniać / zarejestrować się / doldurmak / kayıt olmak
-ugotować / czas. / "23test" / pişirmek / Dzisiaj ugotuję smaczną zupę. / Bugün lezzetli bir çorba pişireceğim. / zbierać / oszczędzać / toplamak / tasarruf etmek
-spóźniać się / czas. / "23test" / geç kalmak / Nie lubię spóźniać się na spotkania. / Toplantılara geç kalmayı sevmem. / kontaktować się / planować / iletişime geçmek / planlamak
-spóźnić się / czas. / "23test" / geç kalmak / Przepraszam, że się spóźniłem. / Geç kaldığım için özür dilerim. / skontaktować się / rozwijać umiejętności / iletişime geçmek / becerileri geliştirmek
-kończyć / czas. / "23test" / bitirmek / Właśnie kończę moją pracę. / Şu an işimi bitiriyorum. / wracać / oszczędzać / dönmek / tasarruf etmek
-skończyć / czas. / "23test" / bitirmek / Muszę skończyć ten raport dzisiaj. / Bu raporu bugün bitirmeliyim. / jeść / rezygnować / yemek / vazgeçmek
-zastanawiać się / czas. / "23test" / düşünmek / Zastanawiam się nad nową ofertą. / Yeni teklif hakkında düşünüyorum. / rozwijać umiejętności / zjeść / becerileri geliştirmek / yemek
-zastanawiać się / czas. / "23test" / merak etmek / Zastanawiam się, co będzie dalej. / Bundan sonra ne olacağını merak ediyorum. / rozwijać / zapamiętać / geliştirmek / ezberlemek
-szukać / czas. / "23test" / aramak / Szukam kluczy od mieszkania. / Dairenin anahtarlarını arıyorum. / sprzedawać / naprawić / satmak / tamir etmek
-oszczędzać / czas. / "23test" / tasarruf etmek / Chcę oszczędzać pieniądze na wakacje. / Tatil için para tasarruf etmek istiyorum. / zaproponowałbym / chciałabym / önerirdim (erkek) / isterdim (kadın)
-porównywać / czas. / "23test" / karşılaştırmak / Nie powinieneś porównywać tych dwóch cen. / Bu iki fiyatı karşılaştırmamalısın. / kontaktować się / rozwijać umiejętności / iletişime geçmek / becerileri geliştirmek
-martwić się / czas. / "23test" / endişelenmek / Nie musisz się martwić o mnie. / Benim için endişelenmene gerek yok. / jeździć (rowerem) / zgadzać się / (bisiklet) sürmek / kabul etmek
-planować / czas. / "23test" / planlamak / Planuję wyjazd na weekend. / Hafta sonu için bir gezi planlıyorum. / oceniliby / szukać / değerlendirirlerdi / aramak
-poznawać / czas. / "23test" / tanımak / Lubię poznawać nowych ludzi. / Yeni insanları tanımayı severim. / spóźniać się / zwracać / geç kalmak / iade etmek
-poznać / czas. / "23test" / tanışmak / Miło mi poznać ciebie. / Seninle tanıştığıma memnun oldum. / odwiedzić / jeść / ziyaret etmek / yemek
-odwiedzać / czas. / "23test" / ziyaret etmek / Często odwiedzam moich dziadków. / Büyükanne ve büyükbabamı sık sık ziyaret ederim. / skontaktować się / czekać / iletişime geçmek / beklemek
-odwiedzić / czas. / "23test" / ziyaret etmek / Chcę odwiedzić muzeum w niedzielę. / Pazar günü müzeyi ziyaret etmek istiyorum. / wyglądać / porównywać / görünmek / karşılaştırmak
-zapraszać / czas. / "23test" / davet etmek / Chętnie zapraszam znajomych na kolację. / Tanıdıkları akşam yemeğine davet etmeyi severim. / planować / kupować / planlamak / satın almak
-zaprosić / czas. / "23test" / davet etmek / Chcę zaprosić cię na kawę. / Seni kahveye davet etmek istiyorum. / namalowałabyś / wyjść / resim yapardın (kadın) / çıkmak
-spędzać / czas. / "23test" / geçirmek (zaman) / Lubię spędzać czas na świeżym powietrzu. / Temiz havada zaman geçirmeyi severim. / zgadzać się / zbierać / aynı fikirde olmak / toplamak
-spędzić / czas. / "23test" / geçirmek (zaman) / Chcę spędzić weekend w górach. / Hafta sonunu dağlarda geçirmek istiyorum. / planować / Z jakiego materiału? / planlamak / Hangi malzemeden?
-rozwijać / czas. / "23test" / geliştirmek / Musimy rozwijać nasz projekt. / Projemizi geliştirmeliyiz. / oszczędzać / zastanówmy się / tasarruf etmek / düşünelim
-rozwinąć / czas. / "23test" / geliştirmek / Firma chce rozwinąć swoją działalność. / Şirket faaliyetini geliştirmek istiyor. / porównywać / wypić / karşılaştırmak / içmek
-uczyć się / czas. / "23test" / öğrenmek / Uczę się języka polskiego codziennie. / Her gün Lehçe öğreniyorum. / chciałabym / spóźniać się / isterdim (kadın) / geç kalmak
-nauczyć się / czas. / "23test" / öğrenmek / Chcę szybko nauczyć się nowych słów. / Yeni kelimeleri hızlıca öğrenmek istiyorum. / zgadzać się / rozwinąć / kabul etmek / geliştirmek
-zapamiętywać / czas. / "23test" / hatırlamak / Łatwo zapamiętuję nowe nazwy. / Yeni isimleri kolayca hatırlıyorum. / spędzać / jeść / geçirmek (zaman) / yemek
-zapamiętać / czas. / "23test" / ezberlemek / Musisz zapamiętać ten numer. / Bu numarayı ezberlemelisin. / naprawiać / planować / tamir etmek / planlamak
-wspominać / czas. / "23test" / anmak / Często wspominamy stare czasy. / Sık sık eski günleri anarız. / wrócić / zapraszać / dönmek / davet etmek
-wspomnieć / czas. / "23test" / hatırlamak / Chciałbym wspomnieć o jednym szczególe. / Bir detaydan bahsetmek/hatırlatmak isterim. / Z czego? / zapamiętać / Neden yapılmış? / ezberlemek
-ignorować / czas. / "23test" / görmezden gelmek / Nie powinieneś ignorować tego problemu. / Bu problemi görmezden gelmemelisin. / kontaktować się / zmieniać / iletişime geçmek / değiştirmek
-kontaktować się / czas. / "23test" / iletişime geçmek / Często kontaktuję się z klientami. / Müşterilerle sık sık iletişime geçerim. / powiedz / spędzać / söyle / geçirmek (zaman)
-skontaktować się / czas. / "23test" / iletişime geçmek / Proszę skontaktować się z biurem. / Lütfen büro ile iletişime geçin. / uczyć się / oceniliby / öğrenmek / değerlendirirlerdi
-zwracać / czas. / "23test" / iade etmek / Zwracam towar do sklepu. / Ürünü mağazaya iade ediyorum. / namalowałabyś / zjeść / resim yapardın (kadın) / yemek
-zwrócić / czas. / "23test" / geri vermek / Muszę zwrócić książkę do biblioteki. / Kitabı kütüphaneye geri vermeliyim. / niech pomoże / szukać / yardım etsin / aramak
-rejestrować się / czas. / "23test" / kayıt olmak / Rejestruję się na nowy kurs. / Yeni kursa kayıt oluyorum. / wypełnić / zgadzać się / doldurmak / kabul etmek
-zarejestrować się / czas. / "23test" / kayıt olmak / Musisz zarejestrować się na stronie. / Web sitesine kayıt olmalısın. / jeździć (rowerem) / zebrać / (bisiklet) sürmek / toplamak
-wypełniać / czas. / "23test" / doldurmak / Wypełniam dokumenty w urzędzie. / Dairedeki belgeleri dolduruyorum. / wypić / zastanówmy się / içmek / düşünelim
-wypełnić / czas. / "23test" / doldurmak / Proszę wypełnić ten formularz. / Lütfen bu formu doldurun. / skończyć / oszczędzać / bitirmek / tasarruf etmek
-informować / czas. / "23test" / bilgilendirmek / Dyrektor informuje o zmianach. / Müdür değişiklikler hakkında bilgilendiriyor. / rozwijać umiejętności / uczyć się / becerileri geliştirmek / öğrenmek
-oprowadzać / czas. / "23test" / gezdirmek / Przewodnik oprowadza turystów po mieście. / Rehber turistleri şehirde gezdiriyor. / dekorować / jeździć (rowerem) / süslemek / (bisiklet) sürmek
-zbierać / czas. / "23test" / toplamak / Lubię zbierać grzyby w lesie. / Ormanda mantar toplamayı severim. / martwić się / kończyć / endişelenmek / bitirmek
-zebrać / czas. / "23test" / toplamak / Musimy zebrać wszystkie dokumenty. / Bütün belgeleri toplamamız gerekiyor. / zmieniać / zarejestrować się / değiştirmek / kayıt olmak
-dekorować / czas. / "23test" / süslemek / Dekorujemy salę na przyjęcie. / Partiye salonu süslüyoruz. / decydować / spędzać / karar vermek / geçirmek (zaman)
-udekorować / czas. / "23test" / süslemek / Chcę udekorować pokój kwiatami. / Odayı çiçeklerle süslemek istiyorum. / chciałabym / zjeść / isterdim (kadın) / yemek
-pić / czas. / "23test" / içmek / Lubię pić gorącą herbatę. / Sıcak çay içmeyi severim. / oceniliby / skontaktować się / değerlendirirlerdi / iletişime geçmek
-wypić / czas. / "23test" / içmek / Muszę wypić szklankę wody. / Bir bardak su içmeliyim. / zmieniać / zjeść / değiştirmek / yemek
-jeść / czas. / "23test" / yemek / Zwykle jem śniadanie o łańcuchu. / Genelde kahvaltıyı saat sekizde yerim. / ugotować / gotować / pişirmek / pişirmek
-zjeść / czas. / "23test" / yemek / Chcę zjeść coś smacznego. / Lezzetli bir şey yemek istiyorum. / pić / jeść / içmek / yemek
-wychodzić / czas. / "23test" / çıkmak / Codziennie wychodzę z domu o ósmej. / Her gün evden sekizde çıkarım. / naprawić / porozmawiaj / tamir etmek / konuş
-wyjść / czas. / "23test" / çıkmak / Muszę już wyjść na spotkanie. / Toplantı için artık çıkmalıyım. / porozmawiaj / wyprowadzać się / konuş / taşınmak
-wracać / czas. / "23test" / dönmek / Zwykle wracam do domu wieczorem. / Genelde eve akşam dönerim. / brać udział / chciałabym / katılmak / isterdim (kadın)
-wrócić / czas. / "23test" / dönmek / Chcę szybko wrócić do pracy. / Hızlıca işe dönmek istiyorum. / odwiedzać / oszczędzać / ziyaret etmek / tasarruf etmek
-wyglądać / czas. / "23test" / görünmek / Ten garnitur wygląda bardzo dobrze. / Bu takım elbise çok iyi görünüyor. / wypełnić / spóźniać się / doldurmak / geç kalmak
-ruchliwy / m / "23test" / hareketli / To jest bardzo ruchliwy punkt miasta. / Bu şehrin çok hareketli bir noktasıdır. / skuteczny / większy / etkili / daha büyük
-ruchliwy / m / "23test" / kalabalık / Ruchliwa ulica bywa hałaśliwa. / Kalabalık cadde gürültülü olabilir. / droższy / widok z okna / daha pahalı / pencereden manzara
-cichy / m / "23test" / sessiz / Cichy pokój sprzyja pracy. / Sessiz bir oda çalışmayı kolaylaştırır. / piękny / jubiler / güzel / kuyumcu
-własny / m / "23test" / kendi / Mam swój własny samochód. / Benim kendi arabam var. / życzliwy / monotonny / cana yakın / monoton
-własny / m / "23test" / özel / To jest mój własny kąt. / Bu benim özel köşem. / wybór miejsca / właściciel / koltuk seçimi / sahip
-drogi / m / "23test" / pahalı / Ten zegarek jest bardzo drogi. / Bu saat çok pahalıdır. / duży / dodatkowe kursy i szkolenia / büyük / ek kurslar ve eğitimler
-droższy / m / "23test" / daha pahalı / Nowy model jest droższy od starego. / Yeni model eskisine göre daha pahalıdır. / znajomy / szczyt sezonu / tanıdık / sezon zirvesi
-tani / m / "23test" / ucuz / Bilet na pociąg był tani. / Tren bileti ucuzdu. / agresywny / sędzia / saldırgan / hakem
-tańszy / m / "23test" / daha ucuz / Ten sklep jest tańszy niż tamten. / Bu mağaza şundakinden daha ucuzdur. / formularz zgłoszeniowy / cichy / başvuru formu / sessiz
-skuteczny / m / "23test" / etkili / To jest bardzo skuteczny lek. / Bu çok etkili bir ilaçtır. / drogi / wyższy / pahalı / daha uzun
-skuteczniejszy / m / "23test" / daha etkili / Nowy sposób jest skuteczniejszy. / Yeni yöntem daha etkilidir. / Na którym? / spontaniczny / Hangisinde? / spontan
-ważny / m / "23test" / önemli / To jest bardzo ważny dokument. / Bu çok önemli bir belgedir. / Czyj? / ekologiczny / Kimin? / organik
-ważniejszy / m / "23test" / daha önemli / Zdrowie jest ważniejsze niż pieniądze. / Sağlık paradan daha önemlidir. / znajomy / widok z okna / tanıdık / pencereden manzara
-duży / m / "23test" / büyük / Mamy duży ogród przed domem. / Evin önünde büyük bir bahçemiz var. / Wydział Zarządzania / ból / İşletme Fakültesi / ağrı
-większy / m / "23test" / daha büyük / Nowy dom jest większy niż stary. / Yeni ev eskisinden daha büyüktür. / szary / dodatkowe kursy i szkolenia / gri / ek kurslar ve eğitimler
-stary / m / "23test" / yaşlı / Mój dziadek jest stary, ale sprawny. / Dedem yaşlı ama dinçtir. / ważny / szybszy / önemli / daha hızlı
-starszy / m / "23test" / daha yaşlı / Mój brat jest starszy ode mnie. / Erkek kardeşim benden daha yaşlıdır. / okres wakacyjny / dodatkowe kursy i szkolenia / tatil dönemi / ek kurslar ve eğitimler
-szybki / m / "23test" / hızlı / Szybki pociąg jedzie do Warszawy. / Hızlı tren Varşova'ya gidiyor. / przyjaciel / jubiler / arkadaş / kuyumcu
-szybszy / m / "23test" / daha hızlı / Samochód jest szybszy niż rower. / Araba bisikletten daha hızlıdır. / przyjaciel / stan zębów / arkadaş / diş durumu
-dobry / m / "23test" / iyi / To był bardzo dobry pomysł. / Bu çok iyi bir fikirdi. / wysoki / poranny jogging / uzun-yüksek / sabah koşusu
-lepszy / m / "23test" / daha iyi / Ten komputer jest lepszy od mojego. / Bu bilgisayar benimkinden daha iyidir. / regał / wybór miejsca / raf / koltuk seçimi
-najlepszy / m / "23test" / en iyi / On jest najlepszym uczniem w klasie. / O sınıftaki en iyi öğrencidir. / przyjaciel / wybór miejsca / arkadaş / koltuk seçimi
-piękny / m / "23test" / güzel / To piękny widok na góry. / Bu dağlara doğru güzel bir manzaradır. / właściciel / stary / sahip / yaşlı
-elegancki / m / "23test" / şık / Pan Nowak nosi elegancki garnitur. / Bay Nowak şık bir takım elbise giyiyor. / ruchliwy / dodatkowe kursy i szkolenia / hareketli / ek kurslar ve eğitimler
-wysoki / m / "23test" / uzun-yüksek / Budynek jest bardzo wysoki. / Bina çok yüksektir. / papierki / poranny jogging / kâğıt parçaları / sabah koşusu
-wyższy / m / "23test" / daha uzun / On jest wyższy od swojego brata. / O erkek kardeşinden daha uzundur. / stan zębów / przeterminowany / diş durumu / son kullanma tarihi geçmiş
-życzliwy / m / "23test" / cana yakın / Nasz sąsiad to życzliwy człowiek. / Komşumuz cana yakın bir insandır. / wybór miejsca / własny / koltuk seçimi / kendi
-spontaniczny / m / "23test" / spontan / Wyjazd był spontaniczny i udany. / Gezi spontandı ve başarılı geçti. / zawód weterynarza / sklep warzywny / veteriner mesleği / manav
-przemyślany / m / "23test" / düşünülmüş / To był przemyślany ruch. / Bu düşünülmüş bir hamleydi. / regał / formularz zgłoszeniowy / raf / başvuru formu
-przeterminowany / m / "23test" / son kullanma tarihi geçmiş / Jogurt był przeterminowany. / Yoğurt son kullanma tarihi geçmişti. / stan zębów / szczyt sezonu / diş durumu / sezon zirvesi
-ekologiczny / m / "23test" / ekolojik / Kupuję ekologiczny proszek do prania. / Ekolojik çamaşır deterjanı satın alıyorum. / Kogo? / wybór miejsca / Kimi? / koltuk seçimi
-ekologiczny / m / "23test" / organik / To jest ekologiczny miód z pasieki. / Bu arılıktan organik baldır. / wolontariusz / tani / gönüllü / ucuz
-agresywny / m / "23test" / saldırgan / Psa nie wolno drażnić, bo bywa agresywny. / Köpeği kızdırmamak gerek, çünkü saldırgan olabilir. / widok z okna / dodatkowe kursy i szkolenia / pencereden manzara / ek kurslar ve eğitimler
-monotonny / m / "23test" / monoton / Monotonny głos wykładowcy uśpił studentów. / Öğretim görevlisinin monoton sesi öğrencileri uyuttu. / Na którym? / piękny / Hangisinde? / güzel
-szary / m / "23test" / gri / Noszę szary płaszcz w zimię. / Kışın gri palto giyerim. / wysoki / lepszy / uzun-yüksek / daha iyi
-szary / m / "23test" / kasvetli / To był szary i zimny dzień. / Kasvetli ve soğuk bir gündü. / sędzia / tradycyjne potrawy / hakem / geleneksel yemekler
-Z czego? / czas. / "23test" / Neden yapılmış? / Z czego jest ta torba? / Bu çanta neden yapılmış? / zaproponowałbym / rejestrować się / önerirdim (erkek) / kayıt olmak
-Z jakiego materiału? / czas. / "23test" / Hangi malzemeden? / Z jakiego materiału jest ta kurtka? / Bu ceket hangi malzemeden? / rozwijać umiejętności / szukać / becerileri geliştirmek / aramak
-Jakiej? / ż / "23test" / Nasıl? / Jakiej muzyki słuchasz? / Nasıl bir müzik dinliyorsun? / zazdrość / piątka (ocena) / kıskançlık / beş (not)
-Jakiej? / ż / "23test" / Ne tür? / Jakiej jakości jest ten produkt? / Bu ürün ne tür bir kalitede? / wycieczka z przewodnikiem / rodzina / rehberli tur / aile
-Czyj? / m / "23test" / Kimin? / Czyj to jest samochód? / Bu kimin arabası? / poranny jogging / własny / sabah koşusu / kendi
-Kogo? / m / "23test" / Kimi? / Kogo dzisiaj szukasz? / Bugün kimi arıyorsun? / wyższy / drogi / daha uzun / pahalı
-Na którym? / m / "23test" / Hangisinde? / Na którym piętrze mieszkasz? / Hangisinde (kaçıncı katında) oturuyorsun? / przyjaciel / kurs szycia / arkadaş / dikiş kursu
-Na którym? / m / "23test" / Kaçıncı? / Na którym miejscu skończyłeś bieg? / Koşuyu kaçıncı sırada bitirdin? / kibic / drogi / taraftar / pahalı
-chciałabym / czas. / "23test" / isterdim (kadın) / Chciałabym kupić nową sukienkę. / Yeni bir elbise satın almak isterdim. / naprawiać / oceniliby / tamir etmek / değerlendirirlerdi
-powiedz / czas. / "23test" / söyle / Powiedz mi całą prawdę. / Bana tüm gerçeği söyle. / zwrócić / oceniliby / geri vermek / değerlendirirlerdi
-zastanówmy się / czas. / "23test" / düşünelim / Zastanówmy się nad tą propozycją. / Bu teklif üzerinde düşünelim. / naprawiać / zapamiętać / tamir etmek / ezberlemek
-zaprośmy / czas. / "23test" / davet edelim / Zaprośmy ich na naszą imprezę. / Onları partimize davet edelim. / rozwijać / chciałabym / geliştirmek / isterdim (kadın)
-porozmawiaj / czas. / "23test" / konuş / Porozmawiaj ze swoim bratem. / Erkek kardeşinle konuş. / zebrać / ugotować / toplamak / pişirmek
-niech pomoże / czas. / "23test" / yardım etsin / Niech pomoże ci w tym zadaniu. / Bu görevde sana yardım etsin. / zmienić / namalowałabyś / değiştirmek / resim yapardın (kadın)
-namalowałabyś / czas. / "23test" / resim yapardın (kadın) / Namalowałabyś ten obraz lepiej. / Bu resmi daha iyi yapardın. / odwiedzać / Z czego? / ziyaret etmek / Neden yapılmış?
-oceniliby / czas. / "23test" / değerlendirirlerdi / Eksperci oceniliby ten projekt pozytywnie. / Uzmanlar bu projeyi olumlu değerlendirirlerdi. / planować / rozwijać umiejętności / planlamak / becerileri geliştirmek
-zaproponowałbym / czas. / "23test" / önerirdim (erkek) / Zaproponowałbym inne rozwiązanie. / Başka bir çözüm önerirdim. / ignorować / oceniliby / görmezden gelmek / değerlendirirlerdi
+rozwijać umiejętności / nied. (rozwijam-rozwijałem) / "23test" / becerileri geliştirmek / Warto rozwijać umiejętności językowe. / Dil becerilerini geliştirmeye değer. / zastanawiać się / zapraszać / merak etmek / davet etmek
+dodatkowe kursy i szkolenia / m / "23test" / ek kurslar ve eğitimler / Firma oferuje dodatkowe kursy i szkolenia. / Şirket ek kurslar ve eğitimler sunuyor. / papierki / ruch / kâğıt parçaları / hareket
+stała praca / ż / "23test" / sabit iş / Stała praca daje poczucie bezpieczeństwa. / Sabit iş güvenlik hissi verir. / radość / ochrona środowiska / sevinç / çevre koruma
+kurs szycia / m / "23test" / dikiş kursu / Zapisałam się na kurs szycia. / Dikiş kursuna kaydoldum. / papierki / sąsiad / kâğıt parçaları / komşu
+wolontariat / m / "23test" / gönüllülük / Wolontariat to dobra okazja do pomocy innym. / Gönüllülük başkalarına yardım etmek için iyi bir fırsattır. / ruch / zawód weterynarza / hareket / veteriner mesleği
+wolontariusz / m / "23test" / gönüllü / Wolontariusz pomagał w organizacji wydarzenia. / Gönüllü, etkinliğin organizasyonuna yardım etti. / zapiekane brokuły / szczyt sezonu / fırınlanmış brokoli / sezon zirvesi
+wędrowanie po górach / n / "23test" / dağlarda yürüyüş / Wędrowanie po górach to moje hobby. / Dağlarda yürüyüş yapmak benim hobimdir. / osłabienie wiosenne / ogłoszenie w internecie / bahar yorgunluğu / internet ilanı
+wycieczka z przewodnikiem / ż / "23test" / rehberli tur / Wycieczka z przewodnikiem była bardzo ciekawa. / Rehberli tur çok ilgi çekiciydi. / cena początkowa / półka / başlangıç fiyatı / raf
+śmieci / m / "23test" / çöpler / Trzeba wyrzucić śmieci. / Çöpleri atmak gerekiyor. / ruch / skuteczny / hareket / etkili
+puste opakowania / n / "23test" / boş ambalajlar / Puste opakowania wrzucamy do plastiku. / Boş ambalajları plastiğe atıyoruz. / osłabienie wiosenne / badania konsumenckie / bahar yorgunluğu / tüketici araştırmaları
+chusteczki / ż / "23test" / mendiller / Masz może higieniczne chusteczki? / Yanında hijyenik mendil var mı? / wycieczka / cisza i spokój / gezi / sessizlik ve huzur
+papierki / m / "23test" / kâğıt parçaları / Papierki leżały na podłodze. / Kâğıt parçaları yerde yatıyordu. / przeterminowany / ból / son kullanma tarihi geçmiş / ağrı
+regulamin / m / "23test" / yönetmelik / Musisz przeczytać regulamin. / Yönetmeliği okumalısın. / poranny jogging / regał / sabah koşusu / raf
+regulamin / m / "23test" / kurallar / Regulamin zabrania palenia. / Kurallar sigara içmeyi yasaklar. / sąsiad / dział sprzedaży / komşu / satış departmanı
+formularz zgłoszeniowy / m / "23test" / başvuru formu / Proszę wypełnić formularz zgłoszeniowy. / Lütfen başvuru formunu doldurun. / śmieci / Wydział Zarządzania / çöpler / İşletme Fakültesi
+ankieta / ż / "23test" / anket / Wypełnij krótką ankietę. / Kısa bir anketi doldur. / wycieczka z przewodnikiem / premiera / rehberli tur / gala
+ochrona środowiska / ż / "23test" / çevre koruma / Ochrona środowiska jest ważna dla naszej przyszłości. / Çevre koruma geleceğimiz için önemlidir. / determinacja / wycieczka z przewodnikiem / kararlılık / rehberli tur
+łąka / ż / "23test" / çayır / Na łące rosły piękne kwiaty. / Çayırda güzel çiçekler büyüyordu. / znajoma / wycieczka z przewodnikiem / tanıdık / rehberli tur
+rodzina / ż / "23test" / aile / Moja rodzina jest bardzo duża. / Benim ailem çok büyüktür. / wideorozmowa / ankieta / görüntülü arama / anket
+rodzice / m / "23test" / ebeveynler / Moi rodzice mieszkają w Warszawie. / Ebeveynlerim Varşova'da yaşıyor. / sąsiad / ważniejszy / komşu / daha önemli
+babcia i dziadek / ż / "23test" / büyükanne ve büyükbaba / Babcia i dziadek mieszkają na wsi. / Büyükanne ve büyükbaba köyde yaşıyor. / rola główna / reklamacja / başrol / iade talebi
+małżeństwo / n / "23test" / evlilik / Ich małżeństwo trwa już dziesięć lat. / Onların evliliği ten yıldır devam ediyor. / znudzenie / ogłoszenie / can sıkıntısı / ilan
+przyjaciel / m / "23test" / arkadaş / Mój przyjaciel zawsze mi pomaga. / Arkadaşım bana her zaman yardım eder. / ruch / monotonny / hareket / monoton
+przyjaciółka / ż / "23test" / arkadaş / Moja przyjaciółka miesza w Krakowie. / Arkadaşım Krakow'da yaşıyor. / cena początkowa / zniżka / başlangıç fiyatı / indirim
+znajomy / m / "23test" / tanıdık / To mój dobry znajomy z pracy. / Bu işten iyi bir tanıdığımdır. / droższy / wolontariat / daha pahalı / gönüllülük
+znajoma / ż / "23test" / tanıdık / Spotkałem znajomą w sklepie. / Mağazada bir tanıdıkla karşılaştım. / wycieczka / determinacja / gezi / kararlılık
+sąsiad / m / "23test" / komşu / Nasz sąsiad jest bardzo miły. / Komşumuz çok naziktir. / papierki / elegancki / kâğıt parçaları / şık
+kibic / m / "23test" / taraftar / On jest wielkim kibicem piłki nożnej. / O büyük bir futbol taraftarıdır. / ważny / tradycyjne potrawy / önemli / geleneksel yemekler
+sędzia / m / "23test" / hakem / Sędzia zakończył mecz. / Hakem maçı bitirdi. / szybki / zawód weterynarza / hızlı / veteriner mesleği
+drużyna / ż / "23test" / takım / Nasza drużyna wygrała mecz. / Takımımız maçı kazandı. / obojętność / pralka / kayıtsızlık / çamaşır makinesi
+właściciel / m / "23test" / sahip / Właściciel psa spaceruje w parku. / Köpeğin sahibi parkta yürüyor. / przyjaciel / wolontariusz / arkadaş / gönüllü
+jubiler / m / "23test" / kuyumcu / Jubiler naprawił mój zegarek. / Kuyumcu saatimi tamir etti. / ruchliwy / dodatkowe kursy i szkolenia / hareketli / ek kurslar ve eğitimler
+radość / ż / "23test" / sevinç / Dzieci czuły wielką radość. / Çocuklar büyük bir sevinç hissetti. / promocja produktów / łąka / ürün tanıtımı / çayır
+zazdrość / ż / "23test" / kıskançlık / Zazdrość nie jest dobrym uczuciem. / Kıskançlık iyi bir duygu değildir. / chusteczki / cena początkowa / mendiller / başlangıç fiyatı
+znudzenie / n / "23test" / can sıkıntısı / Na jego twarzy widać było znudzenie. / Yüzünde can sıkıntısı görülüyordu. / gotowanie w domu / badania konsumenckie / evde yemek pişirme / tüketici araştırmaları
+obojętność / ż / "23test" / kayıtsızlık / Jej obojętność bardzo mnie zaskoczyła. / Onun kayıtsızlığı beni çok şaşırttı. / reżyseria / wideorozmowa / yönetmenlik / görüntülü arama
+pasja / ż / "23test" / tutku / Muzyka to moja największa pasja. / Müzik benim en büyük tutkumdur. / stała praca / Jakiej? / sabit iş / Nasıl?
+determinacja / ż / "23test" / kararlılık / Determinacja pomaga osiągnąć cel. / Kararlılık hedefe ulaşmaya yardımcı olur. / cena początkowa / pomidorowa (zupa) / başlangıç fiyatı / domates çorbası
+marzenie / n / "23test" / hayal / Podróż do Japonii to moje marzenie. / Japonya'ya seyahat benim hayalimdir. / szczęście / ogłoszenie w internecie / mutluluk / internet ilanı
+cisza i spokój / ż / "23test" / sessizlik ve huzur / Lubię ciszę i spokój w domu. / Evdeki sessizliği ve huzuru severim. / babcia i dziadek / Jakiej? / büyükanne ve büyükbaba / Ne tür?
+nastrój / m / "23test" / ruh hali / Mam dziś bardzo dobry nastrój. / Bugün çok iyi bir ruh halindeyim. / zapasy / stan zębów / stoklar / diş durumu
+szczęście / n / "23test" / mutluluk / Rodzina daje mi prawdziwe szczęście. / Aile bana gerçek mutluluk veriyor. / wędrowanie po górach / zadanie z fizyki / dağlarda yürüyüş / fizik ödevi
+widok z okna / m / "23test" / pencereden manzara / Widok z okna jest zachwycający. / Pencereden manzara büyüleyici. / formularz zgłoszeniowy / agresywny / başvuru formu / saldırgan
+dekorować / nied. (dekoruję-dekorowałem) / "23test" / süslemek / Lubię dekorować dom na święta. / Bayram için evi süslemeyi severim. / informować / zapraszać / bilgilendirmek / davet etmek
+wyprowadzać się / nied. (wyprowadzam się-wyprowadzałem się) / "23test" / taşınmak / Wyprowadzam się do nowego mieszkania. / Yeni bir daireye taşınıyorum. / kontaktować się / pić / iletişime geçmek / içmek
+ogłoszenie / n / "23test" / ilan / Przeczytałem ogłoszenie w gazecie. / Gazetedeki ilanı okudum. / puste opakowania / wędrowanie po górach / boş ambalajlar / dağlarda yürüyüş
+media społecznościowe / n / "23test" / sosyal medya / Korzystam z mediów społecznościowych codziennie. / Her gün sosyal medya kullanıyorum. / marzenie / dobre samopoczucie / hayal / iyi hissetme
+ogłoszenie w internecie / n / "23test" / internet ilanı / Znalazłem ogłoszenie w internecie. / İnternette bir ilan buldum. / osłabienie wiosenne / gotowanie w domu / bahar yorgunluğu / evde yemek pişirme
+wideorozmowa / ż / "23test" / görüntülü arama / Wideorozmowa z rodziną była bardzo miła. / Aile ile görüntülü arama çok hoştu. / lodówka / cena początkowa / buzdolabı / başlangıç fiyatı
+reżyseria / ż / "23test" / yönetmenlik / Reżyseria filmu była genialna. / Filmin yönetmenliği dahiyaneydi. / rola główna / babcia i dziadek / başrol / büyükanne ve büyükbaba
+premiera / ż / "23test" / gala / Premiera filmu odbędzie się jutro. / Filmin galası yarın yapılacak. / babcia i dziadek / rola główna / büyükanne ve büyükbaba / başrol
+premiera / ż / "23test" / ilk gösterim / Dzisiaj jest premiera nowego spektaklu. / Bugün yeni oyunun ilk gösterimi var. / obniżka / pralka / indirim / çamaşır makinesi
+rola główna / ż / "23test" / başrol / Zagrał rolę główną w nowym filmie. / Yeni filmde başrol oynadı. / wideorozmowa / wielkie aglomeracje / görüntülü arama / büyük şehirler
+czekać / nied. (czekam-czekałem) / "23test" / beklemek / Czekam na autobus od godziny. / Bir saattir otobüs bekliyorum. / chcieć / kończyć / istemek / bitirmek
+oglądać / nied. (oglądam-oglądałem) / "23test" / izlemek / Oglądamy nowy serial wieczorem. / Akşam yeni diziyi izliyoruz. / kupować / zgadzać się / satın almak / kabul etmek
+decydować / nied. (decyduję-decydowałem) / "23test" / karar vermek / Muszę decydować o swojej przyszłości. / Geleceğim hakkında karar vermeliyim. / spóźniać się / spędzać / geç kalmak / geçirmek (zaman)
+jeździć (rowerem) / nied. (jeżdżę-jeździłem) / "23test" / (bisiklet) sürmek / Lubię jeździć rowerem po parku. / Parkta bisiklet sürmeyi severim. / oprowadzać / zgadzać się / gezdirmek / kabul etmek
+brać udział / nied. (biorę udział-brałem udział) / "23test" / katılmak / Chcę brać udział w tym projekcie. / Bu projeye katılmak istiyorum. / wypełniać / kontaktować się / doldurmak / iletişime geçmek
+zmieniać / nied. (zmieniam-zmieniałem) / "23test" / değiştirmek / Często zmieniam plansze w grze. / Oyundaki haritaları sık sık değiştiririm. / oglądać / rejestrować się / izlemek / kayıt olmak
+zmienić / dok. (zmieniłem-zmienię) / "23test" / değiştirmek / Muszę zmienić swoje plany. / Planlarımı değiştirmem gerekiyor. / zwrócić / zebrać / geri vermek / toplamak
+zgadzać się / nied. (zgadzam się-zgadzałem się) / "23test" / kabul etmek / Zgadzać się na te warunki to ryzyko. / Bu şartları kabul etmek bir risktir. / wypełniać / zmieniać / doldurmak / değiştirmek
+zgadzać się / nied. (zgadzam się-zgadzałem się) / "23test" / aynı fikirde olmak / Całkowicie się z tobą zgadzam. / Seninle tamamen aynı fikirdeyim. / chcieć / spóźniać się / istemek / geç kalmak
+kupować / nied. (kupuję-kupowałem) / "23test" / satın almak / Lubię kupować świeże owoce. / Taze meyve satın almayı severim. / odwiedzać / kończyć / ziyaret etmek / bitirmek
+kupić / dok. (kupiłem-kupię) / "23test" / satın almak / Muszę kupić nowy chleb. / Yeni bir ekmek satın almalıyım. / namalować / zaprosić / resim yapmak / davet etmek
+sprzedawać / nied. (sprzedaję-sprzedawałem) / "23test" / satmak / On sprzedaje używane samochody. / O ikinci el arabalar satıyor. / pić / wracać / içmek / dönmek
+sprzedać / dok. (sprzedałem-sprzedam) / "23test" / satmak / Chcę sprzedać stary stół. / Eski masayı satmak istiyorum. / spóźnić się / wrócić / geç kalmak / dönmek
+rezygnować / nied. (rezygnuję-rezygnowałem) / "23test" / vazgeçmek / Nie powinieneś tak szybko rezygnować. / Bu kadar çabuk vazgeçmemelisin. / ignorować / pić / görmezden gelmek / içmek
+naprawiać / nied. (naprawiam-naprawiałem) / "23test" / tamir etmek / Mechanik naprawia mój samochód. / Tamirci arabamı tamir ediyor. / rezygnować / kontaktować się / vazgeçmek / iletişime geçmek
+naprawić / dok. (naprawiłem-naprawię) / "23test" / tamir etmek / Muszę naprawić ten zegarek. / Bu saati tamir etmeliyim. / namalować / spędzić / resim yapmak / geçirmek (zaman)
+gotować / nied. (gotuję-gotowałem) / "23test" / pişirmek / Lubię gotować obiad dla rodziny. / Aileme akşam yemeği pişirmeyi severim. / rezygnować / wyglądać / vazgeçmek / görünmek
+ugotować / dok. (ugotowałem-ugotuję) / "23test" / pişirmek / Dzisiaj ugotuję smaczną zupę. / Bugün lezzetli bir çorba pişireceğim. / skończyć / powiedzieć / bitirmek / söylemek
+spóźniać się / nied. (spóźniam się-spóźniałem się) / "23test" / geç kalmak / Nie lubię spóźniać się na spotkania. / Toplantılara geç kalmayı sevmem. / czekać / porównywać / beklemek / karşılaştırmak
+spóźnić się / dok. (spóźniłem się-spóźnię się) / "23test" / geç kalmak / Przepraszam, że się spóźniłem. / Geç kaldığım için özür dilerim. / zaprosić / porozmawiać / davet etmek / konuşmak
+kończyć / nied. (kończę-kończyłem) / "23test" / bitirmek / Właśnie kończę moją pracę. / Şu an işimi bitiriyorum. / dekorować / uczyć się / süslemek / öğrenmek
+skończyć / dok. (skończyłem-skończę) / "23test" / bitirmek / Muszę skończyć ten raport dzisiaj. / Bu raporu bugün bitirmeliyim. / sprzedać / kupić / satmak / satın almak
+zastanawiać się / nied. (zastanawiam się-zastanawiałem się) / "23test" / düşünmek / Zastanawiam się nad nową ofertą. / Yeni teklif hakkında düşünüyorum. / uczyć się / oprowadzać / öğrenmek / gezdirmek
+zastanawiać się / nied. (zastanawiam się-zastanawiałem się) / "23test" / merak etmek / Zastanawiam się, co będzie dalej. / Bundan sonra ne olacağını merak ediyorum. / poznawać / spędzać / tanımak / geçirmek (zaman)
+szukać / nied. (szukam-szukałem) / "23test" / aramak / Szukam kluczy od mieszkania. / Dairenin anahtarlarını arıyorum. / pić / rezygnować / içmek / vazgeçmek
+oszczędzać / nied. (oszczędzam-oszczędzałem) / "23test" / tasarruf etmek / Chcę oszczędzać pieniądze na wakacje. / Tatil için para tasarruf etmek istiyorum. / kontaktować się / porównywać / iletişime geçmek / karşılaştırmak
+porównywać / nied. (porównuję-porównywałem) / "23test" / karşılaştırmak / Nie powinieneś porównywać tych dwóch cen. / Bu iki fiyatı karşılaştırmamalısın. / spędzać / brać udział / geçirmek (zaman) / katılmak
+martwić się / nied. (martwię się-martwiłem się) / "23test" / endişelenmek / Nie musisz się martwić o mnie. / Benim için endişelenmene gerek yok. / kontaktować się / planować / iletişime geçmek / planlamak
+planować / nied. (planuję-planowałem) / "23test" / planlamak / Planuję wyjazd na weekend. / Hafta sonu için bir gezi planlıyorum. / porównywać / wspominać / karşılaştırmak / anmak
+poznawać / nied. (poznaję-poznawałem) / "23test" / tanımak / Lubię poznawać nowych ludzi. / Yeni insanları tanımayı severim. / wracać / oszczędzać / dönmek / tasarruf etmek
+poznać / dok. (poznałem-poznam) / "23test" / tanışmak / Miło mi poznać ciebie. / Seninle tanıştığıma memnun oldum. / zebrać / wypełnić / toplamak / doldurmak
+odwiedzać / nied. (odwiedzam-odwiedzałem) / "23test" / ziyaret etmek / Często odwiedzam moich dziadków. / Büyükanne ve büyükbabamı sık sık ziyaret ederim. / kontaktować się / zapraszać / iletişime geçmek / davet etmek
+odwiedzić / dok. (odwiedziłem-odwiedzę) / "23test" / ziyaret etmek / Chcę odwiedzić muzeum w niedzielę. / Pazar günü müzeyi ziyaret etmek istiyorum. / zaproponować / ocenić / önermek / değerlendirmek
+zapraszać / nied. (zapraszam-zapraszałem) / "23test" / davet etmek / Chętnie zapraszam znajomych na kolację. / Tanıdıkları akşam yemeğine davet etmeyi severim. / zbierać / naprawiać / toplamak / tamir etmek
+zaprosić / dok. (zaprosiłem-zaproszę) / "23test" / davet etmek / Chcę zaprosić cię na kawę. / Seni kahveye davet etmek istiyorum. / ocenić / powiedzieć / değerlendirmek / söylemek
+spędzać / nied. (spędzam-spędzałem) / "23test" / geçirmek (zaman) / Lubię spędzać czas na świeżym powietrzu. / Temiz havada zaman geçirmeyi severim. / ignorować / martwić się / görmezden gelmek / endişelenmek
+spędzić / dok. (spędziłem-spędzę) / "23test" / geçirmek (zaman) / Chcę spędzić weekend w górach. / Hafta sonunu dağlarda geçirmek istiyorum. / spóźnić się / zapamiętać / geç kalmak / ezberlemek
+rozwijać / nied. (rozwijam-rozwijałem) / "23test" / geliştirmek / Musimy rozwijać nasz projekt. / Projemizi geliştirmeliyiz. / zbierać / rejestrować się / toplamak / kayıt olmak
+rozwinąć / dok. (rozwinąłem-rozwinę) / "23test" / geliştirmek / Firma chce rozwinąć swoją działalność. / Şirket faaliyetini geliştirmek istiyor. / wypić / spędzić / içmek / geçirmek (zaman)
+uczyć się / nied. (uczę się-uczyłem się) / "23test" / öğrenmek / Uczę się języka polskiego codziennie. / Her gün Lehçe öğreniyorum. / porównywać / jeździć (rowerem) / karşılaştırmak / (bisiklet) sürmek
+nauczyć się / dok. (nauczyłem się-nauczę się) / "23test" / öğrenmek / Chcę szybko nauczyć się nowych słów. / Yeni kelimeleri hızlıca öğrenmek istiyorum. / zastanowić się / wypić / düşünmek / içmek
+zapamiętywać / nied. (zapamiętuję-zapamiętywałem) / "23test" / hatırlamak / Łatwo zapamiętuję nowe nazwy. / Yeni isimleri kolayca hatırlıyorum. / spóźniać się / zastanawiać się / geç kalmak / düşünmek
+zapamiętać / dok. (zapamiętałem-zapamiętam) / "23test" / ezberlemek / Musisz zapamiętać ten numer. / Bu numarayı ezberlemelisin. / spóźnić się / pomóc / geç kalmak / yardım etmek
+wspominać / nied. (wspominam-wspominałem) / "23test" / anmak / Często wspominamy stare czasy. / Sık sık eski günleri anarız. / kończyć / porównywać / bitirmek / karşılaştırmak
+wspomnieć / dok. (wspomniałem-wspomnę) / "23test" / hatırlamak / Chciałbym wspomnieć o jednym szczególe. / Bir detaydan bahsetmek/hatırlatmak isterim. / zapamiętać / wyjść / ezberlemek / çıkmak
+ignorować / nied. (ignoruję-ignorowałem) / "23test" / görmezden gelmek / Nie powinieneś ignorować tego problemu. / Bu problemi görmezden gelmemelisin. / odwiedzać / jeździć (rowerem) / ziyaret etmek / (bisiklet) sürmek
+kontaktować się / nied. (kontaktuję się-kontaktowałem się) / "23test" / iletişime geçmek / Często kontaktuję się z klientami. / Müşterilerle sık sık iletişime geçerim. / wspominać / jeździć (rowerem) / anmak / (bisiklet) sürmek
+skontaktować się / dok. (skontaktowałem się-skontaktuję się) / "23test" / iletişime geçmek / Proszę skontaktować się z biurem. / Lütfen büro ile iletişime geçin. / zarejestrować się / zaproponować / kayıt olmak / önermek
+zwracać / nied. (zwracam-zwracałem) / "23test" / iade etmek / Zwracam towar do sklepu. / Ürünü mağazaya iade ediyorum. / zgadzać się / planować / aynı fikirde olmak / planlamak
+zwrócić / dok. (zwróciłem-zwrócę) / "23test" / geri vermek / Muszę zwrócić książkę do biblioteki. / Kitabı kütüphaneye geri vermeliyim. / zebrać / ocenić / toplamak / değerlendirmek
+rejestrować się / nied. (rejestruję się-rejestrowałem się) / "23test" / kayıt olmak / Rejestruję się na nowy kurs. / Yeni kursa kayıt oluyorum. / szukać / spędzać / aramak / geçirmek (zaman)
+zarejestrować się / dok. (zarejestrowałem się-zarejestruję się) / "23test" / kayıt olmak / Musisz zarejestrować się na stronie. / Web sitesine kayıt olmalısın. / wypełnić / zwrócić / doldurmak / geri vermek
+wypełniać / nied. (wypełniam-wypełniałem) / "23test" / doldurmak / Wypełniam dokumenty w urzędzie. / Dairedeki belgeleri dolduruyorum. / oprowadzać / rezygnować / gezdirmek / vazgeçmek
+wypełnić / dok. (wypełniłem-wypełnię) / "23test" / doldurmak / Proszę wypełnić ten formularz. / Lütfen bu formu doldurun. / pomóc / ocenić / yardım etmek / değerlendirmek
+informować / nied. (informuję-informowałem) / "23test" / bilgilendirmek / Dyrektor informuje o zmianach. / Müdür değişiklikler hakkında bilgilendiriyor. / kończyć / jeździć (rowerem) / bitirmek / (bisiklet) sürmek
+oprowadzać / nied. (oprowadzam-oprowadzałem) / "23test" / gezdirmek / Przewodnik oprowadza turystów po mieście. / Rehber turistleri şehirde gezdiriyor. / ignorować / brać udział / görmezden gelmek / katılmak
+zbierać / nied. (zbieram-zbierałem) / "23test" / toplamak / Lubię zbierać grzyby w lesie. / Ormanda mantar toplamayı severim. / martwić się / decydować / endişelenmek / karar vermek
+zebrać / dok. (zebrałem-zbiorę) / "23test" / toplamak / Musimy zebrać wszystkie dokumenty. / Bütün belgeleri toplamamız gerekiyor. / skontaktować się / kupić / iletişime geçmek / satın almak
+udekorować / dok. (udekorowałem-udekoruję) / "23test" / süslemek / Chcę udekorować pokój kwiatami. / Odayı çiçeklerle süslemek istiyorum. / wrócić / poznać / dönmek / tanışmak
+pić / nied. (piję-piłem) / "23test" / içmek / Lubię pić gorącą herbatę. / Sıcak çay içmeyi severim. / zapamiętywać / naprawiać / hatırlamak / tamir etmek
+wypić / dok. (wypiłem-wypiję) / "23test" / içmek / Muszę wypić szklankę wody. / Bir bardak su içmeliyim. / namalować / skontaktować się / resim yapmak / iletişime geçmek
+jeść / nied. (jem-jadłem) / "23test" / yemek / Zwykle jem śniadanie o łańcuchu. / Genelde kahvaltıyı saat sekizde yerim. / zapamiętywać / oglądać / hatırlamak / izlemek
+zjeść / dok. (zjadłem-zjem) / "23test" / yemek / Chcę zjeść coś smacznego. / Lezzetli bir şey yemek istiyorum. / wyjść / zaproponować / çıkmak / önermek
+wychodzić / nied. (wychodzę-wychodziłem) / "23test" / çıkmak / Codziennie wychodzę z domu o ósmej. / Her gün evden sekizde çıkarım. / informować / wspominać / bilgilendirmek / anmak
+wyjść / dok. (wyszedłem-wyjdę) / "23test" / çıkmak / Muszę już wyjść na spotkanie. / Toplantı için artık çıkmalıyım. / ocenić / namalować / değerlendirmek / resim yapmak
+wracać / nied. (wracam-wracałem) / "23test" / dönmek / Zwykle wracam do domu wieczorem. / Genelde eve akşam dönerim. / kontaktować się / zgadzać się / iletişime geçmek / kabul etmek
+wrócić / dok. (wróciłem-wrócę) / "23test" / dönmek / Chcę szybko wrócić do pracy. / Hızlıca işe dönmek istiyorum. / zapamiętać / zjeść / ezberlemek / yemek
+wyglądać / nied. (wyglądam-wyglądałem) / "23test" / görünmek / Ten garnitur wygląda bardzo dobrze. / Bu takım elbise çok iyi görünüyor. / poznawać / kupować / tanımak / satın almak
+ruchliwy / m / "23test" / hareketli / To jest bardzo ruchliwy punkt miasta. / Bu şehrin çok hareketli bir noktasıdır. / wybór miejsca / formularz zgłoszeniowy / koltuk seçimi / başvuru formu
+ruchliwy / m / "23test" / kalabalık / Ruchliwa ulica bywa hałaśliwa. / Kalabalık cadde gürültülü olabilir. / dział sprzedaży / poranny jogging / satış departmanı / sabah koşusu
+cichy / m / "23test" / sessiz / Cichy pokój sprzyja pracy. / Sessiz bir oda çalışmayı kolaylaştırır. / elegancki / zapasy / şık / stoklar
+własny / m / "23test" / kendi / Mam swój własny samochód. / Benim kendi arabam var. / cichy / ważniejszy / sessiz / daha önemli
+własny / m / "23test" / özel / To jest mój własny kąt. / Bu benim özel köşem. / zawód weterynarza / szczyt sezonu / veteriner mesleği / sezon zirvesi
+drogi / m / "23test" / pahalı / Ten zegarek jest bardzo drogi. / Bu saat çok pahalıdır. / tradycyjne potrawy / przemyślany / geleneksel yemekler / düşünülmüş
+droższy / m / "23test" / daha pahalı / Nowy model jest droższy od starego. / Yeni model eskisine göre daha pahalıdır. / przeterminowany / wybór miejsca / son kullanma tarihi geçmiş / koltuk seçimi
+tani / m / "23test" / ucuz / Bilet na pociąg był tani. / Tren bileti ucuzdu. / ważny / wolontariusz / önemli / gönüllü
+tańszy / m / "23test" / daha ucuz / Ten sklep jest tańszy niż tamten. / Bu mağaza şundakinden daha ucuzdur. / szybszy / własny / daha hızlı / kendi
+skuteczny / m / "23test" / etkili / To jest bardzo skuteczny lek. / Bu çok etkili bir ilaçtır. / papierki / spontaniczny / kâğıt parçaları / spontan
+skuteczniejszy / m / "23test" / daha etkili / Nowy sposób jest skuteczniejszy. / Yeni yöntem daha etkilidir. / zapiekane brokuły / tańszy / fırınlanmış brokoli / daha ucuz
+ważny / m / "23test" / önemli / To jest bardzo ważny dokument. / Bu çok önemli bir belgedir. / kurs szycia / kibic / dikiş kursu / taraftar
+ważniejszy / m / "23test" / daha önemli / Zdrowie jest ważniejsze niż pieniądze. / Sağlık paradan daha önemlidir. / kurs szycia / tani / dikiş kursu / ucuz
+duży / m / "23test" / büyük / Mamy duży ogród przed domem. / Evin önünde büyük bir bahçemiz var. / tani / stary / ucuz / yaşlı
+większy / m / "23test" / daha büyük / Nowy dom jest większy niż stary. / Yeni ev eskisinden daha büyüktür. / zakupy spożywcze / jubiler / market alışverişi / kuyumcu
+stary / m / "23test" / yaşlı / Mój dziadek jest stary, ale sprawny. / Dedem yaşlı ama dinçtir. / Czyj? / jubiler / Kimin? / kuyumcu
+starszy / m / "23test" / daha yaşlı / Mój brat jest starszy ode mnie. / Erkek kardeşim benden daha yaşlıdır. / produkty przeterminowane / agresywny / son kullanma tarihi geçmiş ürünler / saldırgan
+szybki / m / "23test" / hızlı / Szybki pociąg jedzie do Warszawy. / Hızlı tren Varşova'ya gidiyor. / drogi / produkty przeterminowane / pahalı / son kullanma tarihi geçmiş ürünler
+szybszy / m / "23test" / daha hızlı / Samochód jest szybszy niż rower. / Araba bisikletten daha hızlıdır. / okres wakacyjny / bazar / tatil dönemi / pazar
+dobry / m / "23test" / iyi / To był bardzo dobry pomysł. / Bu çok iyi bir fikirdi. / przeterminowany / Wydział Zarządzania / son kullanma tarihi geçmiş / İşletme Fakültesi
+lepszy / m / "23test" / daha iyi / Ten komputer jest lepszy od mojego. / Bu bilgisayar benimkinden daha iyidir. / ekologiczny / ruch / ekolojik / hareket
+najlepszy / m / "23test" / en iyi / On jest najlepszym uczniem w klasie. / O sınıftaki en iyi öğrencidir. / wyższy / ruchliwy / daha uzun / hareketli
+piękny / m / "23test" / güzel / To piękny widok na góry. / Bu dağlara doğru güzel bir manzaradır. / agresywny / najlepszy / saldırgan / en iyi
+elegancki / m / "23test" / şık / Pan Nowak nosi elegancki garnitur. / Bay Nowak şık bir takım elbise giyiyor. / szary / zapasy / gri / stoklar
+wysoki / m / "23test" / uzun-yüksek / Budynek jest bardzo wysoki. / Bina çok yüksektir. / nastrój / skuteczniejszy / ruh hali / daha etkili
+wyższy / m / "23test" / daha uzun / On jest wyższy od swojego brata. / O erkek kardeşinden daha uzundur. / zapiekane brokuły / szczyt sezonu / fırınlanmış brokoli / sezon zirvesi
+życzliwy / m / "23test" / cana yakın / Nasz sąsiad to życzliwy człowiek. / Komşumuz cana yakın bir insandır. / wybór miejsca / zawód weterynarza / koltuk seçimi / veteriner mesleği
+spontaniczny / m / "23test" / spontan / Wyjazd był spontaniczny i udany. / Gezi spontandı ve başarılı geçti. / kurs szycia / zapiekane brokuły / dikiş kursu / fırınlanmış brokoli
+przemyślany / m / "23test" / düşünülmüş / To był przemyślany ruch. / Bu düşünülmüş bir hamleydi. / przeterminowany / ruch / son kullanma tarihi geçmiş / egzersiz
+przeterminowany / m / "23test" / son kullanma tarihi geçmiş / Jogurt był przeterminowany. / Yoğurt son kullanma tarihi geçmişti. / skuteczny / formularz zgłoszeniowy / etkili / başvuru formu
+ekologiczny / m / "23test" / ekolojik / Kupuję ekologiczny proszek do prania. / Ekolojik çamaşır deterjanı satın alıyorum. / Wydział Zarządzania / większy / İşletme Fakültesi / daha büyük
+ekologiczny / m / "23test" / organik / To jest ekologiczny miód z pasieki. / Bu arılıktan organik baldır. / dobry / skuteczniejszy / iyi / daha etkili
+agresywny / m / "23test" / saldırgan / Psa nie wolno drażnić, bo bywa agresywny. / Köpeği kızdırmamak gerek, çünkü saldırgan olabilir. / dział sprzedaży / ekologiczny / satış departmanı / ekolojik
+monotonny / m / "23test" / monoton / Monotonny głos wykładowcy uśpił studentów. / Öğretim görevlisinin monoton sesi öğrencileri uyuttu. / lepszy / przeterminowany / daha iyi / son kullanma tarihi geçmiş
+szary / m / "23test" / gri / Noszę szary płaszcz w zimię. / Kışın gri palto giyerim. / monotonny / wysoki / monoton / uzun-yüksek
+szary / m / "23test" / kasvetli / To był szary i zimny dzień. / Kasvetli ve soğuk bir gündü. / ruchliwy / znajomy / hareketli / tanıdık
+Z czego? / pyt. / "23test" / Neden yapılmış? / Z czego jest ta torba? / Bu çanta neden yapılmış? / spóźnić się / zarejestrować się / geç kalmak / kayıt olmak
+Z jakiego materiału? / pyt. / "23test" / Hangi malzemeden? / Z jakiego materiału jest ta kurtka? / Bu ceket hangi malzemeden? / zjeść / spędzać / yemek / geçirmek (zaman)
+Jakiej? / ż / "23test" / Nasıl? / Jakiej muzyki słuchasz? / Nasıl bir müzik dinliyorsun? / rola główna / ochrona środowiska / başrol / çevre koruma
+Jakiej? / ż / "23test" / Ne tür? / Jakiej jakości jest ten produkt? / Bu ürün ne tür bir kalitede? / wielkie aglomeracje / waluta / büyük şehirler / para birimi
+Czyj? / m / "23test" / Kimin? / Czyj to jest samochód? / Bu kimin arabası? / większy / ruchliwy / daha büyük / hareketli
+Kogo? / m / "23test" / Kimi? / Kogo dzisiaj szukasz? / Bugün kimi arıyorsun? / monotonny / regał / monoton / raf
+Na którym? / m / "23test" / Hangisinde? / Na którym piętrze mieszkasz? / Hangisinde (kaçıncı katında) oturuyorsun? / cichy / produkty przeterminowane / sessiz / son kullanma tarihi geçmiş ürünler
+Na którym? / m / "23test" / Kaçıncı? / Na którym miejscu skończyłeś bieg? / Koşuyu kaçıncı sırada bitirdin? / ekologiczny / sędzia / ekolojik / hakem
+chcieć / nied. (chcę-chciałem) / "23test" / istemek / Chciałabym kupić nową sukienkę. / Yeni bir elbise satın almak isterdim. / planować / czekać / planlamak / beklemek
+powiedzieć / dok. (powiedziałem-powiem) / "23test" / söylemek / Powiedz mi całą prawdę. / Bana tüm gerçeği söyle. / zebrać / rozwinąć / toplamak / geliştirmek
+zastanowić się / dok. (zastanowiłem się-zastanowię się) / "23test" / düşünmek / Zastanówmy się nad tą propozycją. / Bu teklif üzerinde düşünelim. / spóźnić się / porozmawiać / geç kalmak / konuşmak
+porozmawiać / dok. (porozmawiałem-porozmawiam) / "23test" / konuşmak / Porozmawiaj ze swoim bratem. / Erkek kardeşinle konuş. / zjeść / zaprosić / yemek / davet etmek
+pomóc / dok. (pomogłem-pomogę) / "23test" / yardım etmek / Niech pomoże ci w tym zadaniu. / Bu görevde sana yardım etsin. / spędzić / skończyć / geçirmek (zaman) / bitirmek
+namalować / dok. (namalowałem-namaluję) / "23test" / resim yapmak / Namalowałabyś ten obraz lepiej. / Bu resmi daha iyi yapardın. / ocenić / sprzedać / değerlendirmek / satmak
+ocenić / dok. (oceniłem-ocenię) / "23test" / değerlendirmek / Eksperci oceniliby ten projekt pozytywnie. / Uzmanlar bu projeyi olumlu değerlendirirlerdi. / rozwinąć / zarejestrować się / geliştirmek / kayıt olmak
+zaproponować / dok. (zaproponowałem-zaproponuję) / "23test" / önermek / Zaproponowałbym inne rozwiązanie. / Başka bir çözüm önerirdim. / wrócić / zaprosić / dönmek / davet etmek
