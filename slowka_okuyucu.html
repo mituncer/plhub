@@ -83,15 +83,12 @@ input[type=checkbox]{width:22px;height:22px}
 </div>
 
 <div id="webBg"></div>
-<div id="webBox" role="dialog" aria-label="GitHub klasörü">
-  <b>GitHub klasöründen liste seç</b>
-  <div class="mini">Depo veya klasör linkini yapıştırın (ör. github.com/kullanici/depo/tree/main/kelimeler). Dosyalar listelenir, birine dokunun.</div>
-  <div class="urow"><input id="url" type="url" inputmode="url" placeholder="https://github.com/…" autocomplete="off"><button class="hbtn go" id="webGo">Aç</button></div>
-  <div id="webMsg"></div>
+<div id="webBox" role="dialog" aria-label="GitHub dosyaları">
+  <b>GitHub'daki kelime listeleri</b>
   <div id="crumb" class="mini"></div>
+  <div id="webMsg"></div>
   <div id="files"></div>
-  <div id="recent"></div>
-  <div class="wb"><button class="hbtn" id="webCancel">Kapat</button></div>
+  <div class="wb"><button class="hbtn" id="webRe">🔄 Yenile</button><button class="hbtn" id="webCancel">Kapat</button></div>
 </div>
 <div id="sheetBg"></div>
 <div id="sheet" role="dialog" aria-label="Ayarlar">
@@ -116,6 +113,9 @@ input[type=checkbox]{width:22px;height:22px}
     <div class="row"><label for="trV">Ses</label><select id="trV"></select></div>
     <div class="grp">Kayıt</div>
     <div class="mini" id="storeInfo"></div>
+    <div class="grp">Ses testi</div>
+    <div class="row"><button class="hbtn" id="testPl">🔊 Polonca dene</button><button class="hbtn" id="testTr">🔊 Türkçe dene</button></div>
+    <div class="mini" id="diag"></div>
   </div>
 </div>
 
@@ -236,7 +236,10 @@ function loadVoices(){
 }
 if(S){loadVoices();S.onvoiceschanged=loadVoices;}else loadVoices();
 
-let keepU=null;
+let keepU=null, ttsErr='';
+function showTtsErr(){if(ttsErr&&ttsErr!=='interrupted'&&ttsErr!=='canceled'){$('diag').textContent='Son ses hatası: '+ttsErr+(ttsErr==='not-allowed'?' (tarayıcı izin vermedi — ▶ tuşuna tekrar dokunun)':'');}}
+// iPhone/iPad: Safari sesli okumaya ancak dokunuşun içinde hemen başlatılan bir okumadan sonra izin verir.
+function unlockTTS(){if(!S)return;try{if(S.paused)S.resume();const u=new SpeechSynthesisUtterance(' ');u.volume=0;u.lang='pl-PL';S.speak(u);}catch(e){}}
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
 function speakOnce(text,lang){
   return new Promise(res=>{
@@ -250,14 +253,15 @@ function speakOnce(text,lang){
     const fin=ok=>{if(!done){done=true;clearTimeout(t1);clearTimeout(t2);res(ok);}};
     const t1=setTimeout(()=>{if(!started&&!S.speaking)fin(false);},1800);
     const t2=setTimeout(()=>fin(true),3000+text.length*170/rate);
-    u.onstart=()=>{started=true}; u.onend=()=>fin(true); u.onerror=()=>fin(started);
+    u.onstart=()=>{started=true}; u.onend=()=>fin(true); u.onerror=e=>{ttsErr=(e&&e.error)||'hata';showTtsErr();fin(started);};
+    if(S.paused) S.resume();
     S.speak(u);
   });
 }
 async function speak(text,lang,token){
   if(!S||!text||token!==runId) return;
   for(let a=0;a<2&&token===runId;a++){
-    S.cancel(); await sleep(120); if(token!==runId) return;
+    if(S.speaking||S.pending||a>0){S.cancel(); await sleep(120); if(token!==runId) return;}
     if(await speakOnce(text,lang)) return;
   }
 }
@@ -285,8 +289,8 @@ function setPlayUI(){$('play').textContent=playing?'⏸':'▶';$('play2').textCo
 async function start(){
   if(!order.length) return;
   playing=true; setPlayUI(); const token=++runId;
+  run(token);   // iPhone: ilk okuma dokunuşun içinde, hiç beklemeden başlamalı
   try{if('wakeLock' in navigator) wake=await navigator.wakeLock.request('screen');}catch(e){}
-  run(token);
 }
 function halt(){runId++; S&&S.cancel(); mark(''); $('repI').textContent='';}
 function pause(){playing=false; halt(); setPlayUI(); try{wake&&wake.release()}catch(e){} wake=null;}
@@ -303,73 +307,89 @@ $('card').onclick=async()=>{if(playing)return;const w=W(idx);if(!w)return;const 
 $('file').onchange=e=>{const f=e.target.files[0];if(!f)return;pause();const r=new FileReader();r.onload=()=>setList(r.result,f.name.replace(/\.txt$/i,''),null);r.readAsText(f,'utf-8');e.target.value='';};
 ['touchstart','wheel'].forEach(ev=>$('list').addEventListener(ev,()=>{userScrollUntil=Date.now()+5000},{passive:true}));
 
-/* ---------- GitHub klasöründen seç ---------- */
-let gh=null, curSrc=get('slowka.src')||'';
-function parseGH(u){
-  u=u.trim(); if(!u) return null; if(!/^https?:\/\//i.test(u)) u='https://'+u;
-  let m=u.match(/^https?:\/\/(?:www\.)?github\.com\/([^\/?#]+)\/([^\/?#]+)(?:\/(tree|blob)\/([^\/?#]+)\/?([^?#]*))?/i);
-  if(!m) return null;
-  return {owner:m[1],repo:m[2].replace(/\.git$/,''),ref:m[4]||'',path:(m[5]||'').replace(/\/$/,''),blob:m[3]==='blob'};
+/* ---------- GitHub: uygulamanın bulunduğu depodaki .txt dosyaları ---------- */
+// Sayfa mituncer.github.io/... adresinden açıldığında depo ve klasör adresten otomatik bulunur.
+// Dosya olarak (file://) açılırsa varsayılan depo denenir.
+const GH_DEFAULT={owner:'mituncer',repo:'mituncer.github.io',path:''};
+let curSrc=get('slowka.src')||'';
+function ghCandidates(){
+  const host=location.hostname;
+  if(!/\.github\.io$/i.test(host)) return [GH_DEFAULT];
+  const owner=host.split('.')[0];
+  const d=location.pathname.split('/').filter(Boolean);
+  if(d.length&&d[d.length-1].includes('.')) d.pop();          // dosya adını at
+  const c=[];
+  if(d.length) c.push({owner,repo:d[0],path:d.slice(1).join('/')});   // proje sitesi
+  c.push({owner,repo:owner+'.github.io',path:d.join('/')});           // kullanıcı sitesi
+  return c;
 }
-const ghWeb=g=>'https://github.com/'+g.owner+'/'+g.repo+(g.ref||g.path?'/tree/'+(g.ref||'HEAD')+(g.path?'/'+g.path:''):'');
 const natSort=(a,b)=>a.name.localeCompare(b.name,'tr',{numeric:true,sensitivity:'base'});
 function msg(t,err){$('webMsg').style.color=err?'var(--pl)':'var(--soft)';$('webMsg').textContent=t;}
-async function listDir(g){
-  gh=g; $('files').innerHTML=''; $('crumb').textContent=''; msg('Klasör okunuyor…');
-  const api='https://api.github.com/repos/'+g.owner+'/'+g.repo+'/contents/'+g.path.split('/').map(encodeURIComponent).join('/')+(g.ref?'?ref='+encodeURIComponent(g.ref):'');
-  try{
-    const res=await fetch(api,{headers:{'Accept':'application/vnd.github+json'}});
-    if(res.status===404) throw new Error('Klasör bulunamadı. Link doğru mu, depo herkese açık (public) mı?');
-    if(res.status===403) throw new Error('GitHub geçici olarak isteği sınırladı (saatte 60 istek). Biraz sonra tekrar deneyin.');
-    if(!res.ok) throw new Error('GitHub hatası: HTTP '+res.status);
-    const items=await res.json();
-    if(!Array.isArray(items)) throw new Error('Bu link bir klasör değil.');
-    const dirs=items.filter(i=>i.type==='dir').sort(natSort);
-    const txts=items.filter(i=>i.type==='file'&&/\.txt$/i.test(i.name)).sort(natSort);
-    $('crumb').textContent='📁 '+g.owner+'/'+g.repo+(g.path?'/'+g.path:'');
-    msg(txts.length?txts.length+' metin dosyası':'Bu klasörde .txt dosyası yok'+(dirs.length?' — alt klasörlere bakın.':'.'));
-    const F=$('files');
-    const add=(label,right,cls,fn)=>{const b=document.createElement('button');b.className='hbtn '+cls;b.innerHTML='<span></span><span class="sz"></span>';b.children[0].textContent=label;b.children[1].textContent=right;b.onclick=fn;F.appendChild(b);};
-    if(g.path) add('⬆️ Üst klasör','','dir',()=>listDir({...g,path:g.path.split('/').slice(0,-1).join('/')}));
-    dirs.forEach(d=>add('📁 '+d.name,'','dir',()=>listDir({...g,path:d.path})));
-    txts.forEach(f=>add('📄 '+f.name.replace(/\.txt$/i,''),(f.size/1024).toFixed(1)+' KB',f.download_url===curSrc?'cur':'',()=>loadRemote(f.download_url,f.name)));
-    put('slowka.gh',g); $('url').value=ghWeb(g);
-    const r=(get('slowka.ghRecent')||[]).filter(x=>x!==ghWeb(g)); r.unshift(ghWeb(g)); put('slowka.ghRecent',r.slice(0,5));
-  }catch(e){msg(e instanceof TypeError?'Bağlanılamadı. İnternet bağlantısını kontrol edin.':e.message,true);}
+async function listRepo(){
+  $('files').innerHTML=''; $('crumb').textContent=''; msg('⏳ Dosyalar listeleniyor…');
+  let items=null,src=null,lastErr=null;
+  for(const c of ghCandidates()){
+    const url='https://api.github.com/repos/'+c.owner+'/'+c.repo+'/contents'+(c.path?'/'+c.path:'');
+    try{
+      const r=await fetch(url,{headers:{'Accept':'application/vnd.github+json'},cache:'no-store'});
+      if(r.ok){const d=await r.json(); if(Array.isArray(d)){items=d;src=c;break;}}
+      else lastErr=r.status===403?'GitHub geçici olarak sınırladı (saatte 60 istek). Biraz sonra tekrar deneyin.':'HTTP '+r.status;
+    }catch(e){lastErr='Bağlanılamadı. İnternet bağlantısını kontrol edin.';}
+  }
+  if(!items){msg('⚠️ Liste alınamadı: '+(lastErr||'depo bulunamadı'),true);return;}
+  const txts=items.filter(i=>i.type==='file'&&/\.txt$/i.test(i.name)).sort(natSort);
+  $('crumb').textContent='📁 '+src.owner+'/'+src.repo+(src.path?'/'+src.path:'');
+  if(!txts.length){msg('Bu klasörde .txt dosyası yok.');return;}
+  msg(txts.length+' dosya — okumak için dokunun');
+  const onPages=/\.github\.io$/i.test(location.hostname);
+  txts.forEach(f=>{
+    const url=onPages?new URL(f.name,location.href).href:f.download_url;
+    const b=document.createElement('button');
+    b.className='hbtn'+(url===curSrc?' cur':'');
+    b.innerHTML='<span></span><span class="sz"></span>';
+    b.children[0].textContent='📄 '+f.name.replace(/\.txt$/i,'');
+    b.children[1].textContent=(f.size/1024).toFixed(1)+' KB';
+    b.onclick=()=>loadRemote(url,f.name);
+    $('files').appendChild(b);
+  });
 }
 async function loadRemote(url,name){
-  msg('“'+name+'” okunuyor…');
+  msg('⏳ “'+name+'” okunuyor…');
   try{
-    const res=await fetch(url,{cache:'no-store'});
-    if(!res.ok) throw new Error('Dosya okunamadı: HTTP '+res.status);
-    const txt=await res.text();
+    const r=await fetch(url,{cache:'no-store'});
+    if(!r.ok) throw new Error('Dosya okunamadı: HTTP '+r.status);
+    const txt=await r.text();
     if(!parse(txt).length) throw new Error('Dosyada okunabilir kelime satırı yok.');
     pause(); setList(txt,name.replace(/\.txt$/i,''),null);
     curSrc=url; put('slowka.src',url);
     document.body.classList.remove('web');
   }catch(e){msg(e instanceof TypeError?'Bağlanılamadı. İnternet bağlantısını kontrol edin.':e.message,true);}
 }
-function openFromInput(){
-  const g=parseGH($('url').value);
-  if(!g){msg('Bir GitHub linki yapıştırın (github.com/kullanici/depo/…).',true);return;}
-  if(g.blob){loadRemote('https://raw.githubusercontent.com/'+g.owner+'/'+g.repo+'/'+g.ref+'/'+g.path,g.path.split('/').pop());return;}
-  listDir(g);
-}
-function renderRecent(){
-  const r=get('slowka.ghRecent')||[], box=$('recent'); box.innerHTML='';
-  if(r.length>1){const t=document.createElement('div');t.className='mini';t.style.marginTop='12px';t.textContent='Son klasörler:';box.appendChild(t);
-    r.forEach(u=>{const b=document.createElement('button');b.className='hbtn';b.textContent=u.replace(/^https:\/\/github\.com\//,'');b.onclick=()=>{$('url').value=u;openFromInput();};box.appendChild(b);});}
-}
-$('webBtn').onclick=()=>{
-  document.body.classList.add('web'); renderRecent(); $('files').innerHTML=''; $('crumb').textContent=''; msg('');
-  const g=get('slowka.gh'); if(g){$('url').value=ghWeb(g); listDir(g);} else {$('url').value=''; $('url').focus();}
-};
+$('webBtn').onclick=()=>{document.body.classList.add('web');listRepo();};
+$('webRe').onclick=listRepo;
 $('webCancel').onclick=()=>document.body.classList.remove('web');
 $('webBg').onclick=()=>document.body.classList.remove('web');
-$('webGo').onclick=openFromInput;
-$('url').addEventListener('keydown',e=>{if(e.key==='Enter')openFromInput();});
-// dosyadan yükleyince kaynak linki unut
 $('file').addEventListener('change',()=>{curSrc='';put('slowka.src','');});
+
+/* ---------- ses testi (teşhis) ---------- */
+function diagTest(lang){
+  const D=$('diag');
+  if(!S){D.textContent='Bu tarayıcıda sesli okuma (speechSynthesis) yok.';return;}
+  halt(); if(playing) pause();
+  const vs=S.getVoices(), mine=vs.filter(v=>v.lang.toLowerCase().replace('_','-').startsWith(lang));
+  const u=new SpeechSynthesisUtterance(lang==='pl'?'Dzień dobry, jak się masz?':'Merhaba, nasılsın?');
+  u.lang=lang==='pl'?'pl-PL':'tr-TR'; u.rate=1; u.volume=1;
+  const vid=lang==='pl'?cfg.plV:cfg.trV; const v=vs.find(x=>x.voiceURI===vid)||mine[0]; if(v) u.voice=v;
+  const log=[]; const t0=Date.now();
+  const upd=()=>D.textContent='Toplam ses: '+vs.length+' · '+(lang==='pl'?'Polonca':'Türkçe')+' ses: '+(mine.length?mine.map(x=>x.name).join(', '):'YOK')+' · Seçilen: '+(v?v.name:'varsayılan')+' · Olaylar: '+(log.join(' → ')||'bekleniyor…');
+  u.onstart=()=>{log.push('başladı ('+(Date.now()-t0)+' ms)');upd();};
+  u.onend=()=>{log.push('bitti');upd();};
+  u.onerror=e=>{log.push('HATA: '+(e.error||'?'));upd();};
+  setTimeout(()=>{if(!log.length){log.push('2 sn içinde başlamadı');upd();}},2000);
+  S.speak(u); upd();   // dokunuşun içinde, beklemeden
+}
+$('testPl').onclick=()=>diagTest('pl');
+$('testTr').onclick=()=>diagTest('tr');
 
 /* ---------- ayarlar penceresi ---------- */
 const openSheet=()=>document.body.classList.add('open');
