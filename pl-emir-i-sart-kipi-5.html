@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="tr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tryb rozkazujący i przypuszczający</title>
+<style>
+:root{--bg:#fafaf7;--fg:#1c1c1a;--mut:#6b6b64;--card:#fff;--bd:#e3e1d8;--acc:#1f5fbf;--accbg:#e8f0fc;--ok:#1f8a4c;--okbg:#e5f5ec;--bad:#c0392b;--badbg:#fdeceb;--hl:#fff4c7}
+@media(prefers-color-scheme:dark){:root{--bg:#141414;--fg:#ececea;--mut:#a3a39b;--card:#1e1e1c;--bd:#33332f;--acc:#7db0ff;--accbg:#1c2a40;--ok:#4cc27f;--okbg:#14301f;--bad:#ff7b6b;--badbg:#3a1a17;--hl:#3a3320}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+.wrap{max-width:720px;margin:0 auto;padding:0 14px 60px}
+header{padding:16px 0 6px}
+h1{font-size:21px;margin:0}
+.sub{color:var(--mut);font-size:14px}
+.stick{position:sticky;top:0;z-index:5;background:var(--bg);padding:8px 0 8px;border-bottom:1px solid var(--bd)}
+.tabs{display:flex;gap:8px}
+.tabs button{flex:1;padding:11px;border:1px solid var(--bd);background:var(--card);color:var(--fg);border-radius:10px;font-size:16px;font-weight:600}
+.tabs button.on{background:var(--acc);color:#fff;border-color:var(--acc)}
+.pane{display:none}.pane.on{display:block}
+details{background:var(--card);border:1px solid var(--bd);border-radius:12px;margin:12px 0;padding:0 14px}
+summary{font-weight:700;font-size:17px;padding:13px 0;cursor:pointer}
+details[open] summary{border-bottom:1px solid var(--bd);margin-bottom:10px}
+h3{font-size:15px;margin:16px 0 6px;color:var(--acc)}
+p{margin:6px 0}
+.box{background:var(--hl);border-radius:10px;padding:10px 12px;margin:10px 0}
+.tw{overflow-x:auto;margin:8px 0}
+table{border-collapse:collapse;width:100%;font-size:15px}
+th,td{border:1px solid var(--bd);padding:6px 8px;text-align:left;vertical-align:top}
+th{background:var(--accbg)}
+.pl{font-weight:600}
+.no{color:var(--bad);font-weight:600}.yes{color:var(--ok);font-weight:600}
+.tr{color:var(--mut);font-size:14px}
+ul{margin:6px 0;padding-left:20px}li{margin:3px 0}
+.chip{display:inline-block;background:var(--accbg);color:var(--acc);border-radius:99px;padding:2px 10px;font-size:13px;font-weight:600;margin-right:6px}
+button.b{padding:13px 16px;border-radius:10px;border:1px solid var(--bd);background:var(--card);color:var(--fg);font-size:16px;font-weight:600;margin:4px 4px 4px 0}
+button.b.p{background:var(--acc);color:#fff;border-color:var(--acc)}
+button.b:disabled{opacity:.5}
+.menu button{display:block;width:100%;text-align:left}
+.q{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:14px;margin:12px 0}
+.prompt{font-size:20px;margin:10px 0;font-weight:600}
+.blank{display:inline-block;min-width:60px;border-bottom:2px solid var(--acc);color:transparent}
+input.a{width:100%;padding:12px;font-size:18px;border:2px solid var(--bd);border-radius:10px;background:var(--bg);color:var(--fg);margin:6px 0}
+.opt{display:block;width:100%;text-align:left;padding:13px;margin:6px 0;border-radius:10px;border:1px solid var(--bd);background:var(--card);color:var(--fg);font-size:17px}
+.res{border-radius:10px;padding:10px 12px;margin:10px 0}
+.res.ok{background:var(--okbg);border:1px solid var(--ok)}.res.bad{background:var(--badbg);border:1px solid var(--bad)}
+.prog{height:6px;background:var(--bd);border-radius:9px;overflow:hidden;margin:8px 0}.prog i{display:block;height:100%;background:var(--acc)}
+.score{font-size:34px;font-weight:800}
+.wr{border-top:1px solid var(--bd);padding:8px 0}
+.mode{display:flex;gap:8px;margin:8px 0 0}
+.mode button{flex:1;padding:10px 4px;border:1px solid var(--bd);background:var(--card);color:var(--fg);border-radius:10px;font-size:16px;font-weight:700}
+.mode button.on{background:var(--acc);color:#fff;border-color:var(--acc)}
+</style></head><body><div class="wrap">
+<header><h1>Emir ve Şart Kipi</h1><div class="sub">Tryb rozkazujący · Tryb przypuszczający · çalışma + sınav</div></header>
+<div class="stick"><div class="tabs"><button id="mE" class="on">📘 Emir kipi</button><button id="mT">📘 Şart kipi</button><button id="tE">📝 Sınav</button></div></div>
+
+<div id="study" class="pane on">
+
+<div class="box" data-m="E"><b>1 dakikalık özet · Emir kipi</b><ul><li><b>Emir (ty):</b> kök form: <span class="pl">czytaj, zrób, weź</span>. <b>wy</b> = ty + <span class="pl">-cie</span>, <b>my</b> = ty + <span class="pl">-my</span>. <b>Pan/Pani</b> = <span class="pl">niech pan zrobi</span> ya da <span class="pl">proszę zrobić</span>.</li><li><b>Olumsuz emir</b> hep <b>niedokonany</b>: <span class="pl">nie otwieraj</span>, <span class="no">nie otwórz ✗</span></li></ul></div><div class="box" data-m="T" style="display:none"><b>1 dakikalık özet · Şart kipi</b><ul><li><b>Şart kipi:</b> geçmiş zaman gövdesi (-ł-) + <span class="pl">by</span> + ek: <span class="pl">robiłbym / robiłabym</span>.</li><li><b>Gdyby-cümlesi:</b> iki tarafta da by var: <span class="pl">Gdybym miał czas, poszedłbym.</span> Fiilde ikinci -by olmaz: <span class="no">gdybym miałbym ✗</span></li></ul></div>
+
+<details open data-m="E"><summary>1. Emir kipi: kişiler</summary>
+<div class="tw"><table>
+<tr><th>Kim</th><th>Yapı</th><th>Örnek</th></tr>
+<tr><td>ty</td><td>kök form</td><td class="pl">Czytaj! Zrób to!</td></tr>
+<tr><td>my</td><td>ty formu + <b>-my</b></td><td class="pl">Czytajmy! Zróbmy! Idźmy!</td></tr>
+<tr><td>wy</td><td>ty formu + <b>-cie</b></td><td class="pl">Czytajcie! Zróbcie! Bądźcie!</td></tr>
+<tr><td>on / ona / ono<br>pan / pani</td><td><b>niech</b> + 3. şahıs <b>tekil</b></td><td class="pl">Niech on wejdzie! Niech ona poczeka.<br>Niech pan usiądzie. Niech pani poczeka.</td></tr><tr><td>oni / one<br>państwo</td><td><b>niech</b> + 3. şahıs <b>çoğul</b></td><td class="pl">Niech oni poczekają! Niech one wejdą!<br>Niech państwo poczekają.</td></tr><tr><td>resmi / nazik</td><td><b>Proszę</b> + mastar</td><td class="pl">Proszę usiąść. Proszę czekać.</td></tr>
+</table></div>
+<p class="tr">Dokonany fiilde <i>niech pan zrobi</i>, niedokonanda <i>niech pan robi</i> olur. Resmi ortamda tek başına <i>Pan zrób!</i> sert kaçar.</p>
+<p class="tr">Örnek (czytanka): <span class="pl">Niech pan sprawdzi w torbie.</span> = Çantaya bir bakın.</p>
+</details>
+
+<details open data-m="E"><summary>2. Emir kipi: ty formu nasıl kurulur?</summary>
+<div class="tw"><table>
+<tr><th>Fiil tipi</th><th>Kural</th><th>Örnek</th></tr>
+<tr><td>-ać (çoğu niedokonany)</td><td>-aj</td><td class="pl">czytać → czytaj<br>czekać → czekaj<br>uważać → uważaj</td></tr>
+<tr><td>-ować</td><td>-uj</td><td class="pl">pracować → pracuj<br>kupować → kupuj</td></tr>
+<tr><td>-nąć</td><td>-nij</td><td class="pl">zamknąć → zamknij<br>zacząć → zacznij</td></tr>
+<tr><td>-ić / -yć (çoğu)</td><td>ek yok ya da -ij/-yj; ünsüz/ünlü değişebilir</td><td class="pl">zrobić → zrób<br>kupić → kup<br>wrócić → wróć<br>pić → pij, myć → myj</td></tr>
+</table></div>
+<h3>Ezberlenecek sık fiiller (ty → my → wy)</h3>
+<div class="tw"><table>
+<tr><th>Mastar</th><th>ty</th><th>my</th><th>wy</th></tr>
+<tr><td>być</td><td class="pl">bądź</td><td class="pl">bądźmy</td><td class="pl">bądźcie</td></tr>
+<tr><td>mieć</td><td class="pl">miej</td><td class="pl">miejmy</td><td class="pl">miejcie</td></tr>
+<tr><td>iść / chodzić</td><td class="pl">idź / chodź</td><td class="pl">idźmy / chodźmy</td><td class="pl">idźcie / chodźcie</td></tr>
+<tr><td>jechać</td><td class="pl">jedź</td><td class="pl">jedźmy</td><td class="pl">jedźcie</td></tr>
+<tr><td>jeść</td><td class="pl">jedz</td><td class="pl">jedzmy</td><td class="pl">jedzcie</td></tr>
+<tr><td>wziąć</td><td class="pl">weź</td><td class="pl">weźmy</td><td class="pl">weźcie</td></tr>
+<tr><td>dać</td><td class="pl">daj</td><td class="pl">dajmy</td><td class="pl">dajcie</td></tr>
+<tr><td>powiedzieć</td><td class="pl">powiedz</td><td class="pl">powiedzmy</td><td class="pl">powiedzcie</td></tr>
+<tr><td>pomóc</td><td class="pl">pomóż</td><td class="pl">pomóżmy</td><td class="pl">pomóżcie</td></tr>
+<tr><td>zrobić</td><td class="pl">zrób</td><td class="pl">zróbmy</td><td class="pl">zróbcie</td></tr>
+<tr><td>wrócić</td><td class="pl">wróć</td><td class="pl">wróćmy</td><td class="pl">wróćcie</td></tr>
+<tr><td>otworzyć</td><td class="pl">otwórz</td><td class="pl">otwórzmy</td><td class="pl">otwórzcie</td></tr>
+<tr><td>sprawdzić</td><td class="pl">sprawdź</td><td class="pl">sprawdźmy</td><td class="pl">sprawdźcie</td></tr>
+<tr><td>zadzwonić</td><td class="pl">zadzwoń</td><td class="pl">zadzwońmy</td><td class="pl">zadzwońcie</td></tr>
+<tr><td>przyjść</td><td class="pl">przyjdź</td><td class="pl">przyjdźmy</td><td class="pl">przyjdźcie</td></tr>
+<tr><td>usiąść</td><td class="pl">usiądź</td><td class="pl">usiądźmy</td><td class="pl">usiądźcie</td></tr>
+<tr><td>pisać</td><td class="pl">pisz</td><td class="pl">piszmy</td><td class="pl">piszcie</td></tr>
+<tr><td>mówić</td><td class="pl">mów</td><td class="pl">mówmy</td><td class="pl">mówcie</td></tr>
+<tr><td>spać</td><td class="pl">śpij</td><td class="pl">śpijmy</td><td class="pl">śpijcie</td></tr>
+<tr><td>stać</td><td class="pl">stój</td><td class="pl">stójmy</td><td class="pl">stójcie</td></tr>
+<tr><td>wiedzieć</td><td class="pl">wiedz</td><td class="pl">wiedzmy</td><td class="pl">wiedzcie</td></tr>
+</table></div>
+</details>
+
+<details open data-m="E"><summary>3. Emir kipi: olumsuz ve aspekt</summary>
+<ul>
+<li><b>Olumsuz emir → niedokonany:</b> <span class="pl">Nie otwieraj!</span> <span class="pl">Nie dzwoń!</span> <span class="pl">Nie mów!</span> <span class="pl">Nie idź!</span> <span class="pl">Nie bój się!</span></li>
+<li><b>Dokonany</b> = tek sefer, sonuç istenir: <span class="pl">Zrób to teraz! Zamknij drzwi! Powiedz mi!</span></li>
+<li><b>Niedokonany</b> = alışkanlık, süreç, davet/nezaket: <span class="pl">Czytaj codziennie! Wchodź, proszę! Uważaj!</span></li>
+<li><b>İstisna (uyarı):</b> <span class="pl">Nie zapomnij! Nie spóźnij się!</span> (dokonany, “sakın … olmasın”)</li>
+</ul>
+<div class="box"><b>Sık hatalar</b><br>
+<span class="no">✗ Nie zrób tego!</span> → <span class="yes">✓ Nie rób tego!</span><br>
+<span class="no">✗ Niech pan zrób.</span> → <span class="yes">✓ Niech pan zrobi.</span><br>
+<span class="no">✗ czytajcie (ty için)</span> → <span class="yes">✓ czytaj (tek kişi), czytajcie (birden fazla kişi)</span><br>
+<span class="no">✗ jedź zupę</span> → <span class="yes">✓ jedz zupę</span> (jedź = arabayla git)</div>
+</details>
+
+<details open data-m="T" style="display:none"><summary>1. Şart kipi (tryb przypuszczający): kuruluş</summary>
+<p><b>Formül:</b> geçmiş zaman gövdesi (<i>-ł-</i>) + <b>by</b> + kişi eki (<i>m, ś, –, śmy, ście, –</i>)</p>
+<div class="tw"><table>
+<tr><th></th><th>erkek</th><th>kadın</th></tr>
+<tr><td>ja</td><td class="pl">robiłbym</td><td class="pl">robiłabym</td></tr>
+<tr><td>ty</td><td class="pl">robiłbyś</td><td class="pl">robiłabyś</td></tr>
+<tr><td>on / ona / ono</td><td class="pl">robiłby</td><td class="pl">robiłaby / robiłoby</td></tr>
+<tr><td>my</td><td class="pl">robilibyśmy</td><td class="pl">robiłybyśmy</td></tr>
+<tr><td>wy</td><td class="pl">robilibyście</td><td class="pl">robiłybyście</td></tr>
+<tr><td>oni / one</td><td class="pl">robiliby</td><td class="pl">robiłyby</td></tr>
+</table></div>
+<p class="tr">Karma grup (içinde en az bir erkek) = erkek biçim: <i>-libyśmy, -libyście, -liby</i>. Sadece kadınlar/eşyalar = <i>-łybyśmy, -łybyście, -łyby</i>.</p>
+<p class="tr">by ayrılabilir: <span class="pl">Ja bym poszedł. Ty byś poszła. My byśmy poszli.</span></p>
+<h3>Sık kullanılan fiiller</h3>
+<div class="tw"><table>
+<tr><th>Fiil</th><th>erkek (ja)</th><th>kadın (ja)</th></tr>
+<tr><td>być</td><td class="pl">byłbym</td><td class="pl">byłabym</td></tr>
+<tr><td>mieć</td><td class="pl">miałbym</td><td class="pl">miałabym</td></tr>
+<tr><td>móc</td><td class="pl">mógłbym</td><td class="pl">mogłabym</td></tr>
+<tr><td>chcieć</td><td class="pl">chciałbym</td><td class="pl">chciałabym</td></tr>
+<tr><td>woleć</td><td class="pl">wolałbym</td><td class="pl">wolałabym</td></tr>
+<tr><td>pójść</td><td class="pl">poszedłbym</td><td class="pl">poszłabym</td></tr>
+<tr><td>przyjść</td><td class="pl">przyszedłbym</td><td class="pl">przyszłabym</td></tr>
+<tr><td>pomóc</td><td class="pl">pomógłbym</td><td class="pl">pomogłabym</td></tr>
+<tr><td>wiedzieć</td><td class="pl">wiedziałbym</td><td class="pl">wiedziałabym</td></tr>
+<tr><td>kupić</td><td class="pl">kupiłbym</td><td class="pl">kupiłabym</td></tr>
+</table></div>
+<p class="tr">Dikkat: erkekte <i>mógł, pomógł</i> (ó), kadında <i>mogła, pomogła</i> (o).</p>
+</details>
+
+<details open data-m="T" style="display:none"><summary>2. Şart kipi: ne zaman kullanılır?</summary>
+<ul>
+<li><b>Nazik istek:</b> <span class="pl">Chciałbym kawę. Czy mógłbyś mi pomóc? Czy mogłaby Pani otworzyć okno?</span></li>
+<li><b>Tavsiye:</b> <span class="pl">Na twoim miejscu poszedłbym do lekarza. Ja bym tego nie robił.</span></li>
+<li><b>Gerçek dışı şart (gdyby):</b> <span class="pl">Gdybym miał czas, poszedłbym do kina.</span></li>
+<li><b>Dilek/istek (żeby):</b> <span class="pl">Chcę, żebyś przyszedł.</span> (żebyś = że + by + ś, fiil sadece geçmiş biçimde)</li>
+<li><b>Tercih:</b> <span class="pl">Wolałabym zostać w domu.</span></li>
+</ul>
+<div class="box"><b>Gerçek şart ile gerçek dışı şart</b><br>
+<span class="pl">Jeśli będę miał czas, przyjdę.</span> = gerçekleşebilir (gelecek zaman)<br>
+<span class="pl">Gdybym miał czas, przyszedłbym.</span> = olası değil / gerçek dışı<br>
+Geçmiş için de aynı biçim: <span class="pl">Gdybym wczoraj wiedział, przyszedłbym.</span></div>
+<p class="tr">Bağlaç + by birleşimleri: <i>gdybym, gdybyś, gdyby, gdybyśmy, gdybyście · żebym, żebyś, żeby, żebyśmy, żebyście</i></p>
+<div class="box"><b>Sık hatalar</b><br>
+<span class="no">✗ Gdybym miałbym czas</span> → <span class="yes">✓ Gdybym miał czas</span><br>
+<span class="no">✗ Jeśli miałbym czas</span> → <span class="yes">✓ Jeśli będę miał czas / Gdybym miał czas</span><br>
+<span class="no">✗ Chcę, żebyś przyszedłbyś</span> → <span class="yes">✓ Chcę, żebyś przyszedł</span><br>
+<span class="no">✗ Gdyby miał czas, pójdzie</span> → <span class="yes">✓ Gdyby miał czas, poszedłby</span></div>
+<p class="tr">Örnek (czytanka): <span class="pl">Gdyby kierowca się spóźnił, Marek straciłby lot.</span></p>
+</details>
+
+<details data-m="E"><summary>Kendini test et · Emir kipi</summary><ul><li>ty emri kur: czytać, zrobić, wziąć, być, dać</li><li>wy ve my emrini kur: wrócić, iść, otworzyć</li><li>Nazik hâle çevir: <i>Zamknij drzwi.</i> → Proszę zamknąć drzwi. / Niech pan zamknie drzwi.</li><li>Olumsuz yap: <i>Zadzwoń do niego.</i> → Nie dzwoń do niego.</li></ul><button class="b p" id="goExam">Sınava geç →</button></details><details data-m="T" style="display:none"><summary>Kendini test et · Şart kipi</summary><ul><li>Şart kipi kur: ja (erkek + kadın) pójść, móc, chcieć</li><li>Gdyby cümlesi yaz: mieć czas + pójść na spacer</li></ul><button class="b p" data-goexam="1">Sınava geç →</button></details>
+</div>
+
+<div id="exam" class="pane"><div id="ex"></div></div>
+</div>
+
+<script>
+const EX=[{"sec": "E", "tag": "czytać → ty", "q": "___ tę książkę codziennie!", "ans": ["czytaj"], "opts": ["czytaj", "czytej", "czyta", "czytać"], "fb": "-ać fiilleri çoğunlukla -aj alır: czytać → czytaj."}, {"sec": "E", "tag": "zrobić → ty", "q": "___ to teraz!", "ans": ["zrób"], "opts": ["zrób", "zrobij", "zrobi", "zrobaj"], "fb": "zrobić → zrób (o → ó, sonuna ek yok)."}, {"sec": "E", "tag": "pisać → ty", "q": "___ do mnie częściej!", "ans": ["pisz"], "opts": ["pisz", "pisaj", "pisej", "piszaj"], "fb": "pisać düzensizdir: pisz (ezberle)."}, {"sec": "E", "tag": "iść → ty", "q": "___ do domu, jest późno!", "ans": ["idź", "chodź"], "opts": ["idź", "idzij", "ijdź", "iść"], "fb": "iść → idź (chodzić → chodź). Düzensiz, ezberle."}, {"sec": "E", "tag": "być → ty", "q": "___ dla mnie miły!", "ans": ["bądź"], "opts": ["bądź", "bądźcie", "bądźmy", "jesteś"], "fb": "być → bądź, bądźmy, bądźcie."}, {"sec": "E", "tag": "mieć → ty", "q": "___ trochę cierpliwości!", "ans": ["miej"], "opts": ["miej", "mieć", "maj", "miaj"], "fb": "mieć → miej (miejmy, miejcie)."}, {"sec": "E", "tag": "jeść → ty", "q": "___ zupę, jest pyszna!", "ans": ["jedz"], "opts": ["jedz", "jedź", "jedaj", "jeść"], "fb": "jeść → jedz. (jedź = jechać'ın emri, karıştırma!)"}, {"sec": "E", "tag": "wziąć → ty", "q": "___ parasol, będzie padać!", "ans": ["weź"], "opts": ["weź", "weźcie", "wziąć", "wezmi"], "fb": "wziąć → weź (weźmy, weźcie)."}, {"sec": "E", "tag": "pracować → wy", "q": "___ spokojnie!", "ans": ["pracujcie"], "opts": ["pracujcie", "pracujecie", "pracowajcie", "pracujmy"], "fb": "-ować → -uj; wy için + -cie: pracuj + cie = pracujcie."}, {"sec": "E", "tag": "czytać → my", "q": "___ razem tę historię!", "ans": ["czytajmy"], "opts": ["czytajmy", "czytamy", "czytajcie", "czytajmi"], "fb": "my emri: ty formu + -my: czytaj + my = czytajmy."}, {"sec": "E", "tag": "zamknąć → wy", "q": "___ okno, jest zimno!", "ans": ["zamknijcie"], "opts": ["zamknijcie", "zamknąćcie", "zamknijmy", "zamknij"], "fb": "zamknąć → zamknij; wy: zamknij + cie = zamknijcie."}, {"sec": "E", "tag": "sprawdzić → pan", "q": "Niech pan ___ bilet.", "ans": ["sprawdzi"], "opts": ["sprawdzi", "sprawdź", "sprawdzaj", "sprawdzić"], "fb": "Nazik/resmi emir: niech + 3. şahıs. Dokonany fiilde bu, gelecek zaman formudur: sprawdzi."}, {"sec": "E", "tag": "usiąść → pani", "q": "Niech pani ___, proszę.", "ans": ["usiądzie"], "opts": ["usiądzie", "usiądziecie", "usiądź", "usiądą"], "fb": "niech pani + 3. tekil: usiądzie. (usiądą = państwo için çoğul)"}, {"sec": "E", "tag": "nie otwierać → ty", "q": "Nie ___ tych drzwi!", "ans": ["otwieraj"], "opts": ["otwieraj", "otwórz", "otworzysz", "otwierać"], "fb": "Olumsuz emir niedokonany fiille kurulur: nie otwieraj (nie otwórz ✗)."}, {"sec": "E", "tag": "nie dzwonić → ty", "q": "Nie ___ do mnie po dziesiątej!", "ans": ["dzwoń"], "opts": ["dzwoń", "zadzwoń", "dzwonij", "dzwonić"], "fb": "Olumsuz emir → niedokonany: nie dzwoń."}, {"sec": "E", "tag": "otworzyć → ty", "q": "___ okno, proszę.", "ans": ["otwórz"], "opts": ["otwórz", "otwieraj", "otworzaj", "otworzy"], "fb": "otworzyć → otwórz (o → ó)."}, {"sec": "E", "tag": "dać → ty", "q": "___ mi ten długopis.", "ans": ["daj"], "opts": ["daj", "dajcie", "dać", "dawać"], "fb": "dać → daj (dajmy, dajcie)."}, {"sec": "E", "tag": "powiedzieć → ty", "q": "___ mi prawdę!", "ans": ["powiedz"], "opts": ["powiedz", "powiedzaj", "powiej", "powiedzieć"], "fb": "powiedzieć → powiedz (powiedzcie)."}, {"sec": "E", "tag": "wrócić → wy", "q": "___ przed dziesiątą!", "ans": ["wróćcie"], "opts": ["wróćcie", "wróćmy", "wróć", "wrócicie"], "fb": "wrócić → wróć; wy: wróć + cie = wróćcie."}, {"sec": "E", "tag": "proszę + zamknąć", "q": "Proszę ___ drzwi.", "ans": ["zamknąć"], "opts": ["zamknąć", "zamknij", "zamknie", "zamykać"], "fb": "Proszę + mastar = nazik rica: Proszę zamknąć drzwi."}, {"sec": "T", "tag": "chcieć → ja (erkek)", "q": "___ napić się kawy.", "ans": ["chciałbym"], "opts": ["chciałbym", "chciałabym", "chciałbyś", "chcę"], "fb": "chciał + by + m → chciałbym."}, {"sec": "T", "tag": "chcieć → ja (kadın)", "q": "___ zamówić stolik.", "ans": ["chciałabym"], "opts": ["chciałabym", "chciałbym", "chciałabyśmy", "chciałam"], "fb": "Kadın: chciała + by + m → chciałabym."}, {"sec": "T", "tag": "móc → ty (erkek)", "q": "___ mi pomóc?", "ans": ["mógłbyś"], "opts": ["mógłbyś", "mogłabyś", "mógłby", "możesz"], "fb": "Erkek l-formu mógł (ó!): mógł + by + ś."}, {"sec": "T", "tag": "kupić → ja (erkek)", "q": "Gdybym miał pieniądze, ___ nowy samochód.", "ans": ["kupiłbym"], "opts": ["kupiłbym", "kupiłabym", "kupię", "kupiłem"], "fb": "Ana cümlede de by: kupił + by + m."}, {"sec": "T", "tag": "pojechać → my (karma grup)", "q": "Gdybyśmy mieli czas, ___ do Skopje.", "ans": ["pojechalibyśmy"], "opts": ["pojechalibyśmy", "pojechałybyśmy", "pojedziemy", "pojechaliśmy"], "fb": "Erkek içeren grup (virile): -libyśmy."}, {"sec": "T", "tag": "przyjść → ja (kadın)", "q": "Gdyby nie padało, ___ pieszo.", "ans": ["przyszłabym"], "opts": ["przyszłabym", "przyszłabyś", "przyszłam", "przyjdę"], "fb": "przyszła + by + m → przyszłabym."}, {"sec": "T", "tag": "wiedzieć → ja (erkek)", "q": "Gdybym ___ prawdę, powiedziałbym ci.", "ans": ["wiedział"], "opts": ["wiedział", "wiedziałbym", "wiem", "wiedzieć"], "fb": "Gdybym zaten by içerir; fiil sadece l-formu olur: gdybym wiedział (wiedziałbym ✗)."}, {"sec": "T", "tag": "mieć → on", "q": "Gdyby on ___ więcej czasu, poszedłby na siłownię.", "ans": ["miał"], "opts": ["miał", "miałby", "ma", "mieć"], "fb": "gdyby + l-formu: gdyby miał. Ekstra -by ekleme!"}, {"sec": "T", "tag": "pójść → on", "q": "Gdyby miał czas, ___ na spacer.", "ans": ["poszedłby"], "opts": ["poszedłby", "poszłaby", "poszedłbym", "pójdzie"], "fb": "Erkek, 3. tekil: poszedł + by."}, {"sec": "T", "tag": "kupić → oni (erkek)", "q": "Gdyby mieli pieniądze, ___ dom.", "ans": ["kupiliby"], "opts": ["kupiliby", "kupiłyby", "kupili", "kupią"], "fb": "Erkek 3. çoğul: kupili + by."}, {"sec": "T", "tag": "pojechać → one (kadın)", "q": "Gdyby miały auto, ___ nad morze.", "ans": ["pojechałyby"], "opts": ["pojechałyby", "pojechaliby", "pojechały", "pojadą"], "fb": "Yalnız kadınlar/eşyalar (non-virile): -łyby."}, {"sec": "T", "tag": "pomóc → ty (erkek)", "q": "Chcę, żebyś mi ___.", "ans": ["pomógł"], "opts": ["pomógł", "pomógłbyś", "pomożesz", "pomóc"], "fb": "żebyś zaten by içerir: chcę, żebyś pomógł."}, {"sec": "T", "tag": "woleć → ja (kadın)", "q": "___ zostać w domu.", "ans": ["wolałabym"], "opts": ["wolałabym", "wolałbym", "wolałabyśmy", "wolę"], "fb": "Kadın: wolała + by + m."}, {"sec": "T", "tag": "pójść → ja (erkek)", "q": "Na twoim miejscu ___ do lekarza.", "ans": ["poszedłbym"], "opts": ["poszedłbym", "poszłabym", "poszedłbyś", "pójdę"], "fb": "Tavsiye: Na twoim miejscu + şart kipi."}, {"sec": "T", "tag": "móc → Pan", "q": "Czy ___ Pan otworzyć okno?", "ans": ["mógłby"], "opts": ["mógłby", "mogłaby", "może", "mógł"], "fb": "Nazik rica: Czy mógłby Pan…? (Pani için: mogłaby)"}, {"sec": "T", "tag": "dojechać → ja (erkek)", "q": "Gdyby nie było korków, ___ na czas.", "ans": ["dojechałbym"], "opts": ["dojechałbym", "dojechałabym", "dojadę", "dojechałem"], "fb": "Ana cümlede by gerekir: dojechał + by + m."}, {"sec": "T", "tag": "być → on", "q": "Gdyby Marek nie zgubił paszportu, nie ___ nerwowy.", "ans": ["byłby"], "opts": ["byłby", "byłaby", "jest", "był"], "fb": "Ana cümle: był + by."}, {"sec": "T", "tag": "mieć → ja (gerçek şart)", "q": "Jeśli ___ czas, pójdę do kina.", "ans": ["będę miał", "będę miała"], "opts": ["będę miał", "miałbym", "będę miałbym", "miałem miał"], "fb": "Gerçekleşebilir şart (jeśli) → gelecek zaman: będę miał. Gdyby ile karıştırma."}, {"sec": "T", "tag": "chcieć → my (karma grup)", "q": "___ zamówić dwie kawy.", "ans": ["chcielibyśmy"], "opts": ["chcielibyśmy", "chciałybyśmy", "chcemy", "chcieliśmy"], "fb": "Nazik istek: chcieli + by + śmy."}, {"sec": "T", "tag": "móc → wy (erkek)", "q": "___ nam pomóc?", "ans": ["moglibyście"], "opts": ["moglibyście", "mogłybyście", "możecie", "mogliście"], "fb": "mogli + by + ście = moglibyście."}, {"sec": "M", "tag": "TR → PL", "q": "‘Lütfen oturun’ (Pan’a, nazik).", "ans": ["Proszę usiąść."], "opts": ["Proszę usiąść.", "Proszę siadaj.", "Proszę usiadłby.", "Proszę usiadł."], "fb": "Nazik/resmi rica: Proszę + mastar."}, {"sec": "M", "tag": "TR → PL", "q": "‘Daha çok zamanım olsaydı gelirdim.’ (erkek)", "ans": ["Gdybym miał więcej czasu, przyszedłbym."], "opts": ["Gdybym miał więcej czasu, przyszedłbym.", "Gdybym będę miał więcej czasu, przyszedłbym.", "Jeśli miałbym więcej czasu, przyszedłbym.", "Gdybym miał więcej czasu, przyjdę."], "fb": "Gerçek dışı şart: gdybym + l-formu, ... l-formu + by + m."}, {"sec": "M", "tag": "TR → PL", "q": "‘Kapıyı kapatmayın!’ (wy)", "ans": ["Nie zamykajcie drzwi!"], "opts": ["Nie zamykajcie drzwi!", "Nie zamknijcie drzwi!", "Nie zamykacie drzwi!", "Nie zamykaj drzwi!"], "fb": "Olumsuz emir niedokonany: nie zamykajcie. (zamykaj = ty)"}, {"sec": "M", "tag": "Seç", "q": "Hangisi nazik bir rica?", "ans": ["Czy mógłbyś mi pomóc?"], "opts": ["Czy mógłbyś mi pomóc?", "Pomóż mi natychmiast, już!", "Musisz mi pomóc.", "Zawsze mi pomagasz."], "fb": "Nazik rica şart kipiyle: Czy mógłbyś…?"}, {"sec": "M", "tag": "Boşluk", "q": "Chcę, żebyś ___ jutro. (przyjść)", "ans": ["przyszedł"], "opts": ["przyszedł", "przyjdziesz", "przyjdź", "przyszedłbyś"], "fb": "żeby + l-formu: żebyś przyszedł."}, {"sec": "M", "tag": "Kip tanı", "q": "‘chciałbym’ hangi kip?", "ans": ["Şart (przypuszczający)"], "opts": ["Şart (przypuszczający)", "Emir (rozkazujący, çoğul)", "Geçmiş zaman (przeszły, kadın)", "Gelecek zaman (przyszły, dokonany)"], "fb": "l-formu + by + m = tryb przypuszczający (şart/dilek kipi)."}, {"sec": "M", "tag": "Aspekt", "q": "‘Zrób to!’ cümlesinde fiil hangi aspektte ve ne anlatıyor?", "ans": ["dokonany, tek seferlik emir"], "opts": ["dokonany, tek seferlik emir", "niedokonany, sürekli alışkanlık", "niedokonany, geçmiş hikaye", "dokonany, sadece olumsuz"], "fb": "Dokonany emir: tek seferlik, sonucu istenen iş. Olumsuz emirde ise niedokonany kullanılır."}, {"sec": "M", "tag": "Niech", "q": "‘Niech pan sprawdzi’ kalıbı kimin için?", "ans": ["pan/pani (nazik 3. şahıs)"], "opts": ["pan/pani (nazik 3. şahıs)", "sadece 'ty' kişisine, yakın arkadaşa", "sadece 'my' grubuna, birlikte", "sadece geçmiş için, dokonany"], "fb": "Niech + 3. şahıs: pan/pani/państwo veya üçüncü kişiler için."}, {"sec": "M", "tag": "Boşluk", "q": "Gdyby nie deszcz, ___ na spacer. (my, karma grup)", "ans": ["poszlibyśmy"], "opts": ["poszlibyśmy", "poszłybyśmy", "pójdziemy", "poszliśmy"], "fb": "Gerçek dışı şart: poszli + by + śmy."}, {"sec": "M", "tag": "TR → PL", "q": "‘Bana yardım et!’ (ty)", "ans": ["Pomóż mi!"], "opts": ["Pomóż mi!", "Pomaga mi!", "Pomocuj mi!", "Pomóc mi!"], "fb": "pomóc → pomóż (ty emri)."}];
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const SEC={E:'Emir kipi',T:'Şart kipi',M:'Karışık'};
+function norm(s){return s.toLowerCase().trim().replace(/[.!?,;:]+$/g,'').replace(/\s+/g,' ');}
+function strip(s){return s.replace(/ł/g,'l').normalize('NFD').replace(/[\u0300-\u036f]/g,'');}
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+let pool=[],pos=0,res={},lastWrong=[];
+
+let MODE='E';
+function tab(n){
+  $('#study').classList.toggle('on',n==='S');$('#exam').classList.toggle('on',n==='E');
+  $('#tE').classList.toggle('on',n==='E');
+  $('#mE').classList.toggle('on',n==='S'&&MODE==='E');$('#mT').classList.toggle('on',n==='S'&&MODE==='T');
+  window.scrollTo(0,0);
+  if(n==='E' && !pool.length) menu();
+}
+function setMode(m,ns){
+  MODE=m;
+  document.querySelectorAll('#study [data-m]').forEach(e=>{e.style.display=(e.dataset.m===m)?'':'none';});
+  tab('S');
+}
+$('#mE').onclick=()=>setMode('E');$('#mT').onclick=()=>setMode('T');$('#tE').onclick=()=>tab('E');
+$('#goExam').onclick=()=>tab('E');
+document.querySelectorAll('[data-goexam]').forEach(b=>b.onclick=()=>tab('E'));
+
+function menu(){
+  pool=[];
+  $('#ex').innerHTML=`<div class="q menu"><h3 style="margin-top:0">Ortak sınav</h3>
+  <p class="tr">Emir ve şart kipi karışık, ${EX.length} soru. Önce kendin yaz. Bilmiyorsan “Şıkları göster” ile 4 seçenekten seç.</p>
+  <button class="b p" data-k="ALL">Başlat (${EX.length} soru)</button>
+  ${lastWrong.length?`<button class="b" data-k="W">Yanlışlarım (${lastWrong.length})</button>`:''}
+  </div>`;
+  document.querySelectorAll('#ex .menu button').forEach(b=>b.onclick=()=>startExam(b.dataset.k));
+}
+function startExam(k){
+  let idx=EX.map((_,i)=>i);
+  if(k==='W') idx=lastWrong.slice();
+  pool=shuffle(idx);pos=0;res={};
+  showQ();
+}
+function showQ(){
+  const i=pool[pos],q=EX[i];
+  const typed=q.sec!=='M';
+  const pr=esc(q.q).replace(/___/g,'<span class="blank">______</span>');
+  $('#ex').innerHTML=`<div class="q">
+   <div class="tr">${pos+1} / ${pool.length}</div>
+   <div class="prog"><i style="width:${(pos/pool.length)*100}%"></i></div>
+   <div><span class="chip">${SEC[q.sec]}</span><span class="chip">${esc(q.tag)}</span></div>
+   <div class="prompt">${pr}</div>
+   ${typed?`<input class="a" id="inp" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Cevabını yaz…">
+   <div><button class="b p" id="chk">Kontrol</button><button class="b" id="hint">Şıkları göster</button><button class="b" id="skip">Bilmiyorum</button></div>`:''}
+   <div id="opts"></div><div id="rs"></div></div>`;
+  if(typed){
+    const inp=$('#inp');inp.focus();
+    $('#chk').onclick=checkTyped;
+    inp.addEventListener('keydown',e=>{if(e.key==='Enter')checkTyped();});
+    $('#hint').onclick=()=>{showOpts();$('#hint').disabled=true;};
+    $('#skip').onclick=()=>finish(false,'skip');
+  }else showOpts();
+}
+function showOpts(){
+  const q=EX[pool[pos]];
+  $('#opts').innerHTML=shuffle(q.opts).map(o=>`<button class="opt" data-o="${esc(o)}">${esc(o)}</button>`).join('');
+  document.querySelectorAll('#opts .opt').forEach(b=>b.onclick=()=>{
+    const ok=b.dataset.o===q.ans[0];
+    finish(ok,'opt',b.dataset.o);
+  });
+}
+function checkTyped(){
+  const q=EX[pool[pos]];const v=norm($('#inp').value);
+  if(!v){$('#inp').focus();return;}
+  if(q.ans.some(a=>norm(a)===v)) return finish(true,'typed');
+  if(q.ans.some(a=>strip(norm(a))===strip(v))) return finish(true,'typed','accent');
+  finish(false,'typed',v);
+}
+function finish(ok,how,extra){
+  const i=pool[pos],q=EX[i];
+  res[i]={ok,how};
+  const inp=$('#inp');if(inp)inp.disabled=true;
+  ['chk','hint','skip'].forEach(id=>{const b=$('#'+id);if(b)b.disabled=true;});
+  document.querySelectorAll('#opts .opt').forEach(b=>{
+    b.disabled=true;
+    if(b.dataset.o===q.ans[0])b.style.borderColor='var(--ok)',b.style.background='var(--okbg)';
+    else if(!ok&&how==='opt'&&b.dataset.o===extra)b.style.borderColor='var(--bad)',b.style.background='var(--badbg)';
+  });
+  let head;
+  if(ok) head='✓ Doğru'+(how==='opt'?' (şıkla)':'')+(extra==='accent'?`. Yazım: <b>${esc(q.ans[0])}</b> (harf işaretlerine dikkat)`:'');
+  else head='✗ Doğru cevap: <b>'+esc(q.ans.join(' / '))+'</b>';
+  const last=pos===pool.length-1;
+  $('#rs').innerHTML=`<div class="res ${ok?'ok':'bad'}">${head}<br><span class="tr">${esc(q.fb)}</span></div>
+   <button class="b p" id="nx">${last?'Sonucu gör':'Sonraki →'}</button>`;
+  $('#nx').onclick=()=>{if(last)summary();else{pos++;showQ();window.scrollTo(0,0);}};
+  $('#nx').scrollIntoView({block:'nearest'});
+}
+function summary(){
+  const ids=pool.slice();
+  const tot=ids.length,ok=ids.filter(i=>res[i]&&res[i].ok).length;
+  const typedOk=ids.filter(i=>res[i]&&res[i].ok&&res[i].how==='typed').length;
+  const pct=Math.round(ok/tot*100);
+  const msg=pct>=90?'Mükemmel. Bu konuyu sınavda rahat yaparsın.':pct>=70?'İyi. Yanlışlarını tekrar çöz, olacak.':pct>=50?'Yolda. Çalışma sayfasındaki tabloları bir daha oku, sonra yanlışlarını çöz.':'Bir tur daha çalışma sayfası, sonra tekrar dene.';
+  const per={};ids.forEach(i=>{const s=EX[i].sec;per[s]=per[s]||[0,0];per[s][1]++;if(res[i]&&res[i].ok)per[s][0]++;});
+  lastWrong=ids.filter(i=>!(res[i]&&res[i].ok));
+  const wrongHtml=lastWrong.map(i=>{const q=EX[i];return `<div class="wr"><span class="chip">${SEC[q.sec]}</span><span class="tr">${esc(q.tag)}</span><div class="pl">${esc(q.q)}</div><div>→ <b>${esc(q.ans.join(' / '))}</b></div><div class="tr">${esc(q.fb)}</div></div>`;}).join('');
+  $('#ex').innerHTML=`<div class="q"><div class="score">${ok} / ${tot}</div>
+   <div class="tr">%${pct} · yazarak doğru: ${typedOk}</div>
+   <p>${msg}</p>
+   <p class="tr">${Object.keys(per).map(s=>SEC[s]+': '+per[s][0]+'/'+per[s][1]).join(' · ')}</p>
+   ${lastWrong.length?`<button class="b p" id="rw">Yanlışlarımı tekrar çöz (${lastWrong.length})</button>`:''}
+   <button class="b" id="mn">Menü</button></div>
+   ${lastWrong.length?`<div class="q"><b>Yanlışların</b>${wrongHtml}</div>`:''}`;
+  if(lastWrong.length)$('#rw').onclick=()=>startExam('W');
+  $('#mn').onclick=menu;
+  window.scrollTo(0,0);
+}
+if(location.hash==='#sinav')tab('E');
+setMode('E');
+</script><a href="koc-paneli.html" id="kocBack" style="position:fixed;right:12px;bottom:12px;z-index:9999;background:#4f46e5;color:#fff;text-decoration:none;font:700 14px system-ui,sans-serif;padding:11px 15px;border-radius:24px;box-shadow:0 2px 8px rgba(0,0,0,.3)">← Panel</a>
+</body></html>
