@@ -2,7 +2,7 @@
 # "#" ile başlayan satırlar ve boş satırlar atlanır.
 # Uzun tarifin içinde "/" kullanabilirsin, sorun olmaz.
 
-Polonyaca B1 Seviye Kelime Haznesi / PolonceKart3009.html / B1 kelimeleri çalışmak için flash kart benzeri aplikasyon 
+Polonyaca B1 Seviye Kelime Haznesi / aPolonceKart3009.html / B1 kelimeleri çalışmak için flash kart benzeri aplikasyon 
 Polonyaca çoktan seçmeli B1 kelime testi / kelimetesti-b1-v18-sesli.html / B1 sertifika sınavında gerekli kelimelerin testi
 Kelime dinle / slowka_okuyucu.html / kelimeleri tercümeleri ile karışık sıra ile okur 
 txt formatında paragraf okur / pl-ezber-okuyucu-3.html / basit paragraf okur, ezber için iyi
