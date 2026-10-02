@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ezber Okuyucu — Tempo życia</title>
+<style>
+:root{--bg:#f6f4ef;--card:#fff;--tx:#222;--mut:#777;--ac:#b8860b;--ac2:#2e7d5b;--line:#e2ddd2;--cur:#fff3c4;--gap:#dff3e7}
+@media(prefers-color-scheme:dark){:root{--bg:#16181b;--card:#202327;--tx:#eceae4;--mut:#9a9a9a;--ac:#e0b040;--ac2:#5ec394;--line:#33373c;--cur:#4a3f12;--gap:#183a2a}}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--tx);font-family:system-ui,-apple-system,Roboto,sans-serif;padding:10px 10px 130px;max-width:760px;margin:auto}
+h1{font-size:18px;margin:6px 4px 10px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;margin-bottom:10px}
+.row{display:flex;align-items:center;gap:10px;margin:8px 0;flex-wrap:wrap}
+.row label{font-size:14px;min-width:92px}
+.row input[type=range]{flex:1;min-width:120px}
+.val{font-weight:700;min-width:62px;text-align:right;font-size:14px}
+.seg{display:flex;gap:6px;flex:1;min-width:200px}
+.seg button{flex:1;padding:9px 4px;border:1px solid var(--line);background:var(--bg);color:var(--tx);border-radius:10px;font-size:13px}
+.seg button.on{background:var(--ac);color:#fff;border-color:var(--ac);font-weight:700}
+select,textarea{background:var(--bg);color:var(--tx);border:1px solid var(--line);border-radius:10px;padding:8px;font-size:14px}
+select{flex:1;min-width:0}
+textarea{width:100%;min-height:200px;font-size:15px}
+.hint{font-size:12px;color:var(--mut);margin:4px 0}
+.warn{background:#fde8e8;color:#8a1c1c;border-radius:10px;padding:8px;font-size:13px;margin:6px 0;display:none}
+.para{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 12px;margin-bottom:10px;line-height:1.75;font-size:19px}
+.s{padding:2px 3px;border-radius:7px;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:background .15s}
+.s.cur{background:var(--cur)}
+.s.gap{background:var(--gap)}
+.s.init{letter-spacing:.5px;color:var(--mut)}
+.s.hid{color:var(--mut);letter-spacing:1px}
+#bar{position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:1px solid var(--line);padding:8px 10px calc(10px + env(safe-area-inset-bottom,0px));max-width:760px;margin:auto}
+#status{font-size:14px;text-align:center;min-height:20px;margin-bottom:4px;font-weight:600}
+#gapwrap{height:6px;background:var(--line);border-radius:3px;overflow:hidden;margin-bottom:8px}
+#gapbar{height:100%;width:0;background:var(--ac2)}
+.ctl{display:flex;gap:8px;justify-content:center}
+.ctl button{flex:1;max-width:110px;padding:12px 0;font-size:22px;border:1px solid var(--line);background:var(--bg);color:var(--tx);border-radius:12px}
+.ctl button.big{background:var(--ac);color:#fff;border-color:var(--ac);flex:1.6}
+.btn{padding:9px 14px;border:1px solid var(--line);background:var(--bg);color:var(--tx);border-radius:10px;font-size:14px}
+details summary{font-size:14px;cursor:pointer;padding:4px 0}
+.sum{font-size:16px;font-weight:700;list-style:none;padding:6px 2px}
+.sum::-webkit-details-marker{display:none}
+input[type=text]{flex:1;background:var(--bg);color:var(--tx);border:1px solid var(--line);border-radius:10px;padding:10px;font-size:15px;min-width:0}
+.chk{display:flex;align-items:center;gap:8px;font-size:14px;margin:8px 0}
+</style>
+</head>
+<body>
+<h1>🎧 Ezber Okuyucu</h1>
+
+<details class="card" id="setDet">
+  <summary class="sum">⚙️ Ayarlar</summary>
+  <div class="row"><label>🐢 Hız</label><input type="range" id="rate" min="0.5" max="1.3" step="0.05"><span class="val" id="rateV"></span></div>
+
+  <div class="row"><label>⏸ Cümle sonu</label>
+    <div class="seg" id="modeSeg"><button data-v="fixed">Sabit süre</button><button data-v="prop">Cümle uzunluğuyla orantılı</button></div>
+  </div>
+  <div class="row" id="fixedRow"><label>Süre</label><input type="range" id="fixed" min="0" max="10" step="0.5"><span class="val" id="fixedV"></span></div>
+  <div class="row" id="propRow"><label>Oran</label><input type="range" id="factor" min="0.3" max="3" step="0.1"><span class="val" id="factorV"></span></div>
+  <div class="hint" id="modeHint"></div>
+
+  <div class="row"><label>🔁 Tekrar</label>
+    <select id="repeat"><option value="1">Her cümle 1 kez</option><option value="2">Her cümle 2 kez</option><option value="3">Her cümle 3 kez</option></select>
+  </div>
+  <label class="chk"><input type="checkbox" id="para"> Paragraf sonunda duraklama %50 uzun olsun</label>
+  <label class="chk"><input type="checkbox" id="loop"> Bitince başa dön (döngü)</label>
+
+  <div class="row"><label>👁 Metin</label>
+    <div class="seg" id="viewSeg"><button data-v="show">Göster</button><button data-v="init">İlk harfler</button><button data-v="hide">Gizle</button></div>
+  </div>
+  <div class="hint">İlk harfler / Gizle modunda cümle yalnızca okunurken görünür; duraklamada tekrar gizlenir — o sırada sen söyle.</div>
+
+  <div class="row"><label>🗣 Ses</label><select id="voice"></select><button class="btn" id="vtest">▶ Dene</button></div>
+  <div class="hint" id="vcount"></div>
+  <div class="row"><label>🎚 Ses tonu</label><input type="range" id="pitch" min="0.5" max="1.5" step="0.05"><span class="val" id="pitchV"></span></div>
+  <div class="hint">Erkek sesi için: listedeki sesleri tek tek "Dene" ile dinle. Hepsi kadın sesiyse tonu 0.6–0.8 arasına indir; ses daha kalın (erkeksi) çıkar.</div>
+  <div class="warn" id="warn">Polonca ses bulunamadı. Telefon Ayarlar → Genel yönetim → Metin okuma (TTS) bölümünden Lehçe ses paketini indir.</div>
+</details>
+
+<div id="text"></div>
+
+<details class="card" id="libDet" open>
+  <summary class="sum">📚 Metinler</summary>
+  <div class="row"><select id="textSel"></select></div>
+  <div class="row">
+    <button class="btn" id="newT">➕ Yeni metin</button>
+    <button class="btn" id="editT">✏️ Düzenle</button>
+    <button class="btn" id="delT">🗑 Sil</button>
+  </div>
+  <div class="hint" id="libMsg"></div>
+  <div id="editor" style="display:none">
+    <div class="row"><input type="text" id="tTitle" placeholder="Başlık (boşsa ilk kelimeler)"></div>
+    <div class="row"><label class="btn" style="margin:0">📂 .txt dosyası yükle<input type="file" id="tFile" accept=".txt,text/plain" style="display:none"></label></div>
+    <div class="hint">Veya aşağıya yapıştır / yaz. Paragraflar arasına boş satır bırak; cümleler . ! ? ile otomatik ayrılır.</div>
+    <textarea id="ta"></textarea>
+    <div class="row"><button class="btn" id="saveT">💾 Kaydet</button><button class="btn" id="cancelT">İptal</button></div>
+  </div>
+</details>
+
+<div id="bar">
+  <div id="status">Hazır</div>
+  <div id="gapwrap"><div id="gapbar"></div></div>
+  <div class="ctl">
+    <button id="prev" title="Önceki">⏮</button>
+    <button id="pp" class="big" title="Başlat / Duraklat">▶</button>
+    <button id="stop" title="Durdur">⏹</button>
+    <button id="next" title="Sonraki">⏭</button>
+  </div>
+</div>
+
+<script>
+"use strict";
+const $=id=>document.getElementById(id);
+function jget(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}}
+function jset(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+
+const DEFAULT_TEXT =
+"Dzisiejsze tempo życia naprawdę jest za szybkie. Ludzie mają dużo obowiązków i często brakuje czasu na odpoczynek.\n\n"+
+"Każdego dnia wstajemy wcześnie, idziemy do pracy i wracamy zmęczeni. Często musimy robić zakupy, gotować, sprzątać. Wiele osób pracuje długo, nawet po dziesięć godzin dziennie. Przez to nie mają czasu dla rodziny i przyjaciół.\n\n"+
+"Ludzie są zestresowani, źle śpią i mają mało ruchu. Czasami jedzą fast food, bo nie mają czasu na zdrowy posiłek.\n\n"+
+"Z drugiej strony, nowoczesny świat daje nam też możliwości. Dzięki technologii możemy szybko komunikować się i podróżować. Dziś możemy znaleźć materiały elektroniczne i szybko zdobywać wiedzę i rozumieć świat lepiej.\n\n"+
+"Internet jest dzisiaj konieczny i trudno sobie wyobrazić świat bez niego. Technologia daje nam wiedzę i nowe możliwości.";
+
+const S=Object.assign({rate:0.85,mode:'prop',fixed:3,factor:1.2,repeat:1,loop:false,para:true,view:'show',voice:'',pitch:1,cur:''},jget('plEzberS1',{}));
+function save(){jset('plEzberS1',S)}
+
+/* ---------- metin ---------- */
+let sents=[], paraCount=0;
+function parse(text){
+  sents=[];
+  const paras=text.split(/\n\s*\n/).map(s=>s.replace(/\s+/g,' ').trim()).filter(Boolean);
+  paraCount=paras.length;
+  paras.forEach((p,pi)=>{
+    const parts=p.match(/[^.!?…]+[.!?…]+["”»)]*|[^.!?…]+$/g)||[p];
+    parts.forEach(t=>{t=t.trim(); if(t) sents.push({t:t,p:pi,el:null});});
+  });
+}
+/* ---------- metin kütüphanesi ---------- */
+let lib=jget('plEzberLib',null);
+if(!Array.isArray(lib)||!lib.length){
+  lib=[{id:'t1',title:'Tempo życia (varsayılan)',text:jget('plEzberText',null)||DEFAULT_TEXT}];
+}
+if(!lib.some(x=>x.id===S.cur)) S.cur=lib[0].id;
+function saveLib(){jset('plEzberLib',lib);save();}
+function curItem(){return lib.find(x=>x.id===S.cur)||lib[0];}
+let curText=curItem().text;
+
+function disp(i){
+  const s=sents[i];
+  if(S.view==='show'||i===speakingIdx) return s.t;
+  if(S.view==='init') return s.t.replace(/[\p{L}\p{N}]+/gu,w=>w[0]+'_'.repeat(Math.min(w.length-1,6)));
+  return '▁▁▁▁▁▁▁ ('+(i+1)+')';
+}
+function refresh(i){
+  const s=sents[i]; if(!s||!s.el) return;
+  s.el.textContent=disp(i);
+  s.el.className='s'+(i===speakingIdx?' cur':(i===gapIdx?' gap':''))+((S.view==='init'&&i!==speakingIdx)?' init':'')+((S.view==='hide'&&i!==speakingIdx)?' hid':'');
+}
+function render(){
+  const box=$('text'); box.innerHTML='';
+  let lastP=-1, div=null;
+  sents.forEach((s,i)=>{
+    if(s.p!==lastP){div=document.createElement('div');div.className='para';box.appendChild(div);lastP=s.p;}
+    const sp=document.createElement('span'); s.el=sp; sp.dataset.i=i;
+    sp.addEventListener('click',()=>play(i));
+    div.appendChild(sp); div.appendChild(document.createTextNode(' '));
+    refresh(i);
+  });
+  $('status').textContent='Hazır — '+sents.length+' cümle';
+}
+
+/* ---------- ses ---------- */
+let voices=[];
+function loadVoices(){
+  voices=window.speechSynthesis?speechSynthesis.getVoices():[];
+  const pl=voices.filter(v=>/^pl/i.test(v.lang));
+  const list=pl.length?pl:voices;
+  const sel=$('voice'); sel.innerHTML='';
+  list.forEach(v=>{const o=document.createElement('option');o.value=v.voiceURI;o.textContent=(list.indexOf(v)+1)+'. '+v.name+' ('+v.lang+')'+(v.localService?'':' ☁');sel.appendChild(o);});
+  if(S.voice&&list.some(v=>v.voiceURI===S.voice)) sel.value=S.voice; else if(list[0]) S.voice=list[0].voiceURI;
+  $('vcount').textContent=pl.length?('Bulunan Polonca ses sayısı: '+pl.length):'';
+  $('warn').style.display=(voices.length&&!pl.length)?'block':'none';
+}
+function getVoice(){
+  return voices.find(v=>v.voiceURI===S.voice)||voices.find(v=>/^pl/i.test(v.lang))||null;
+}
+if(window.speechSynthesis){loadVoices();speechSynthesis.onvoiceschanged=loadVoices;}
+
+/* ---------- oynatma motoru ---------- */
+let run=0, idx=0, playing=false, speakingIdx=-1, gapIdx=-1, timer=null, wd=null;
+
+function setBar(ms){
+  const b=$('gapbar'); b.style.transition='none'; b.style.width=ms>0?'100%':'0';
+  if(ms>0){ void b.offsetWidth; b.style.transition='width '+ms+'ms linear'; b.style.width='0'; }
+}
+function mark(sp,gp){
+  const a=speakingIdx,b=gapIdx; speakingIdx=sp; gapIdx=gp;
+  [a,b,sp,gp].forEach(i=>{if(i>=0) refresh(i);});
+}
+function ui(){ $('pp').textContent=playing?'⏸':'▶'; }
+
+function stopAll(){
+  run++; clearTimeout(timer); clearTimeout(wd); setBar(0);
+  try{speechSynthesis.cancel();}catch(e){}
+  mark(-1,-1);
+}
+function play(from){
+  if(!window.speechSynthesis){$('status').textContent='Bu tarayıcı sesli okumayı desteklemiyor';return;}
+  if(!sents.length) return;
+  stopAll();
+  idx=Math.max(0,Math.min(from,sents.length-1)); playing=true; ui();
+  const r=run;
+  timer=setTimeout(()=>speak(r,0),150);   // cancel() sonrası Android Chrome için küçük bekleme
+}
+function speak(r,rep){
+  if(r!==run) return;
+  const s=sents[idx];
+  mark(idx,-1);
+  s.el.scrollIntoView({block:'center',behavior:'smooth'});
+  $('status').textContent='🎧 Dinle — cümle '+(idx+1)+'/'+sents.length+(S.repeat>1?'  ('+(rep+1)+'/'+S.repeat+')':'');
+  setBar(0);
+  const u=new SpeechSynthesisUtterance(s.t);
+  u.lang='pl-PL'; const v=getVoice(); if(v) u.voice=v;
+  u.rate=S.rate;   // her cümlede güncel hız okunur
+  u.pitch=S.pitch;
+  let t0=performance.now(), done=false;
+  const end=()=>{
+    if(done||r!==run) return; done=true; clearTimeout(wd);
+    gap(r,performance.now()-t0,rep);
+  };
+  u.onstart=()=>{t0=performance.now();};
+  u.onend=end; u.onerror=end;
+  wd=setTimeout(end, s.t.length*90/S.rate+5000);   // emniyet: onend gelmezse devam et
+  speechSynthesis.speak(u);
+}
+function gap(r,dur,rep){
+  if(r!==run) return;
+  let ms = S.mode==='fixed' ? S.fixed*1000 : dur*S.factor;
+  const lastOfPara = (idx+1>=sents.length) || sents[idx+1].p!==sents[idx].p;
+  const repeating = rep+1<S.repeat;
+  if(S.para && lastOfPara && !repeating) ms*=1.5;
+  ms=Math.max(0,Math.round(ms));
+  mark(-1,idx);
+  if(ms>0){
+    $('status').textContent='🗣 Şimdi sen söyle — '+(ms/1000).toFixed(1)+' sn';
+    setBar(ms);
+  }
+  timer=setTimeout(()=>{
+    if(r!==run) return;
+    if(repeating){ speak(r,rep+1); return; }
+    idx++;
+    if(idx>=sents.length){
+      if(S.loop){ idx=0; speak(r,0); return; }
+      finish(); return;
+    }
+    speak(r,0);
+  }, ms);
+}
+function finish(){
+  run++; playing=false; ui(); mark(-1,-1); setBar(0); idx=0;
+  $('status').textContent='Bitti ✓';
+}
+function pause(){
+  const keep=idx; stopAll(); playing=false; idx=keep; ui();
+  $('status').textContent='⏸ Duraklatıldı — cümle '+(idx+1)+'/'+sents.length;
+}
+
+$('pp').onclick=()=>{ if(playing) pause(); else play(idx); };
+$('stop').onclick=()=>{ stopAll(); playing=false; idx=0; ui(); $('status').textContent='Durduruldu'; };
+$('prev').onclick=()=>play(Math.max(0,idx-1));
+$('next').onclick=()=>play(Math.min(sents.length-1,idx+1));
+
+/* ---------- ayarlar ---------- */
+function syncUI(){
+  $('rate').value=S.rate; $('rateV').textContent=S.rate.toFixed(2)+'×';
+  $('fixed').value=S.fixed; $('fixedV').textContent=S.fixed.toFixed(1)+' sn';
+  $('factor').value=S.factor; $('factorV').textContent='× '+S.factor.toFixed(1);
+  $('repeat').value=String(S.repeat);
+  $('pitch').value=S.pitch; $('pitchV').textContent=S.pitch.toFixed(2);
+  $('para').checked=S.para; $('loop').checked=S.loop;
+  document.querySelectorAll('#modeSeg button').forEach(b=>b.classList.toggle('on',b.dataset.v===S.mode));
+  document.querySelectorAll('#viewSeg button').forEach(b=>b.classList.toggle('on',b.dataset.v===S.view));
+  $('fixedRow').style.display=S.mode==='fixed'?'flex':'none';
+  $('propRow').style.display=S.mode==='prop'?'flex':'none';
+  $('modeHint').textContent=S.mode==='fixed'
+    ? 'Her cümleden sonra hep aynı süre beklenir.'
+    : 'Bekleme = cümlenin okunma süresi × oran. Cümle uzunsa bekleme de uzun olur. (× 1.0 = cümle kadar süre)';
+}
+$('rate').oninput=e=>{S.rate=parseFloat(e.target.value);$('rateV').textContent=S.rate.toFixed(2)+'×';save();};
+$('fixed').oninput=e=>{S.fixed=parseFloat(e.target.value);$('fixedV').textContent=S.fixed.toFixed(1)+' sn';save();};
+$('factor').oninput=e=>{S.factor=parseFloat(e.target.value);$('factorV').textContent='× '+S.factor.toFixed(1);save();};
+$('repeat').onchange=e=>{S.repeat=parseInt(e.target.value,10);save();};
+$('para').onchange=e=>{S.para=e.target.checked;save();};
+$('loop').onchange=e=>{S.loop=e.target.checked;save();};
+$('voice').onchange=e=>{S.voice=e.target.value;save();};
+$('pitch').oninput=e=>{S.pitch=parseFloat(e.target.value);$('pitchV').textContent=S.pitch.toFixed(2);save();};
+$('vtest').onclick=()=>{
+  if(!window.speechSynthesis) return;
+  if(playing) pause();
+  try{speechSynthesis.cancel();}catch(e){}
+  setTimeout(()=>{
+    const u=new SpeechSynthesisUtterance('Dzień dobry. Dzisiejsze tempo życia jest za szybkie.');
+    u.lang='pl-PL'; const v=getVoice(); if(v) u.voice=v; u.rate=S.rate; u.pitch=S.pitch;
+    speechSynthesis.speak(u);
+  },150);
+};
+document.querySelectorAll('#modeSeg button').forEach(b=>b.onclick=()=>{S.mode=b.dataset.v;save();syncUI();});
+document.querySelectorAll('#viewSeg button').forEach(b=>b.onclick=()=>{S.view=b.dataset.v;save();syncUI();sents.forEach((_,i)=>refresh(i));});
+
+/* ---- kütüphane arayüzü ---- */
+let editMode=null, delArmed=false;
+function fillSel(){
+  const sel=$('textSel'); sel.innerHTML='';
+  lib.forEach(x=>{const o=document.createElement('option');o.value=x.id;o.textContent=x.title;sel.appendChild(o);});
+  sel.value=S.cur;
+}
+function loadCur(){
+  stopAll(); playing=false; idx=0; ui();
+  curText=curItem().text; parse(curText); render();
+}
+function closeEditor(){editMode=null;$('editor').style.display='none';}
+function msg(t){$('libMsg').textContent=t||''; delArmed=false; $('delT').textContent='🗑 Sil';}
+$('textSel').onchange=e=>{S.cur=e.target.value;saveLib();closeEditor();msg('');loadCur();};
+$('newT').onclick=()=>{editMode='new';$('tTitle').value='';$('ta').value='';$('tFile').value='';$('editor').style.display='block';msg('Yeni metin ekle.');$('ta').focus();};
+$('editT').onclick=()=>{editMode='edit';$('tTitle').value=curItem().title;$('ta').value=curItem().text;$('editor').style.display='block';msg('Seçili metni düzenle.');};
+$('cancelT').onclick=()=>{closeEditor();msg('');};
+$('tFile').onchange=e=>{
+  const f=e.target.files&&e.target.files[0]; if(!f) return;
+  const r=new FileReader();
+  r.onload=()=>{$('ta').value=String(r.result||'').replace(/\r\n/g,'\n'); if(!$('tTitle').value.trim()) $('tTitle').value=f.name.replace(/\.[^.]+$/,'');};
+  r.readAsText(f,'utf-8');
+};
+$('saveT').onclick=()=>{
+  const t=$('ta').value.trim(); if(!t){msg('Metin boş.');return;}
+  let title=$('tTitle').value.trim()||t.split(/\s+/).slice(0,5).join(' ')+'…';
+  if(editMode==='new'){
+    const id='t'+Date.now(); lib.push({id:id,title:title,text:t}); S.cur=id;
+  } else {
+    const it=curItem(); it.title=title; it.text=t;
+  }
+  saveLib(); fillSel(); closeEditor(); msg('Kaydedildi ✓'); loadCur();
+};
+$('delT').onclick=()=>{
+  if(lib.length<2){msg('Son metin silinemez.');return;}
+  if(!delArmed){delArmed=true;$('delT').textContent='⚠️ Emin misin? Tekrar dokun';return;}
+  lib=lib.filter(x=>x.id!==S.cur); S.cur=lib[0].id; saveLib(); fillSel(); closeEditor(); msg('Silindi.'); loadCur();
+};
+
+parse(curText); syncUI(); fillSel(); render();
+</script>
+</body>
+</html>
