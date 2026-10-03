@@ -1,0 +1,863 @@
+pl / cins / tag / tercume / pl_cumle / cumle_tercume / plÇel1 / plÇel2 / tercumeÇel1 / tercumeÇel2 / pl_kısa
+zlecenie / n / "b1_2026-09" / sipariş, görev / Otrzymaliśmy nowe zlecenie od klienta. / Müşteriden yeni bir sipariş aldık. / założyć / zbyt / elde etmek / sahip olmak
+płoszyć / czas. / "b1_2026-09" / ürkütmek, kaçırmak / Głośna muzyka płoszy ptaki z ogrodu. / Yüksek sesli müzik bahçedeki kuşları ürkütüyor. / pojawiać się / dopasować / elde etmek / bırakmak
+zabrać / czas. / "b1_2026-09" / almak, götürmek / Nie zapomnij zabrać parasola, bo będzie padać. / Şemsiyeni almayı unutma, yağmur yağacak. / zostawić / dopasować / kurmak / güvence vermek, sağlamak
+zapewniać / czas. / "b1_2026-09" / güvence vermek, sağlamak / Firma zapewnia pracownikom prywatną opiekę medyczną. / Şirket çalışanlarına özel sağlık sigortası sağlıyor. / dopasować / potwierdzać / olmak, meydana gelmek / mümkün kılmak
+należy / czas. / "b1_2026-09" / gerekir, -meli / Przed jedzeniem należy umyć ręce. / Yemekten önce ellerin yıkanması gerekir. / znaleźć / potwierdzać / ortaya çıkmak / ortaya çıkmak, kurulmak
+zdobyć / czas. / "b1_2026-09" / elde etmek / Sportowiec zdobył złoty medal na igrzyskach. / Sporcu oyunlarda altın madalya elde etti. / urządzić / potwierdzać / yapmak, gerçekleştirmek / bırakmak
+sprawiać / czas. / "b1_2026-09" / sebep olmak / Ten hałas sprawia mi ból głowy. / Bu gürültü bana baş ağrısına sebep oluyor. / poświęcać / urządzić / gerekir, -meli / uymak, yakışmak
+zdarzyć się / czas. / "b1_2026-09" / olmak, meydana gelmek / W zeszłym tygodniu zdarzył się wypadek na autostradzie. / Geçen hafta otoyolda bir kaza meydana geldi. / należy / pojawić się / bulmak / ortaya çıkmak
+nazbierać / czas. / "b1_2026-09" / biriktirmek, toplamak / W lesie nazbieraliśmy dużo grzybów. / Ormanda çok fazla mantar topladık. / należy / pojawić się / güvence vermek, sağlamak / ayırmak, tahsis etmek
+pojawić się / czas. / "b1_2026-09" / ortaya çıkmak / Nagle na drodze pojawił się pies. / Aniden yolda bir köpek ortaya çıktı. / zdarzyć się / nazbierać / bir yere gitmeye karar vermek / biriktirmek, toplamak
+dbać / czas. / "b1_2026-09" / önem vermek, bakmak / Powinniśmy dbać o środowisko naturalne. / Doğal çevreye özen göstermeliyiz. / zapewniać / nazbierać / biriktirmek, toplamak / onaylamak
+podnosić / czas. / "b1_2026-09" / kaldırmak, yükseltmek / Nie powinieneś podnosić tak ciężkich rzeczy. / Bu kadar ağır şeyleri kaldırmamalısın. / należy / powstać / bırakmak / kurmak
+przekonać / czas. / "b1_2026-09" / ikna etmek / Udało mi się przekonać szefa do mojego pomysłu. / Patronu fikrime ikna etmeyi başardım. / wykonywać / pojawić się / aktarma yapmak / almak, götürmek
+założyć / czas. / "b1_2026-09" / kurmak / Chcemy założyć nową firmę w tym roku. / Bu yıl yeni bir şirket kurmak istiyoruz. / wykonywać / pasować / gerekir, -meli / bırakmak
+znajdować / czas. / "b1_2026-09" / bulmak / Codziennie znajduję nowe pomysły do pracy. / Her gün iş için yeni fikirler buluyorum. / odnieść / wykonywać / almak, götürmek / ayırmak, tahsis etmek
+pasować / czas. / "b1_2026-09" / uymak, yakışmak / Ta sukienka bardzo do ciebie pasuje. / Bu elbise sana çok yakışıyor. / przesiadać się / płoszyć / yapmak, gerçekleştirmek / katkıda bulunmak
+pojawiać się / czas. / "b1_2026-09" / ortaya çıkmak / Na niebie zaczynają pojawiać się chmury. / Gökyüzünde bulutlar belirmeye başlıyor. / nazbierać / poświęcać / adamak, zaman ayırmak / bulmak
+przesiadać się / czas. / "b1_2026-09" / aktarma yapmak / W Warszawie musisz przesiadać się na inny pociąg. / Varşova'da başka bir trene aktarma yapman gerekiyor. / podnosić / zapewniać / almak, götürmek / bir şeyle ilgilenmek, davranmak
+wydawać / czas. / "b1_2026-09" / harcamak / Wydaję za dużo pieniędzy na ubrania. / Kıyafetlere çok fazla para harcıyorum. / posiadać / pasować / bulmak / ürkütmek, kaçırmak
+posiadać / czas. / "b1_2026-09" / sahip olmak / Firma posiada nowoczesny sprzęt biurowy. / Şirket modern ofis ekipmanına sahip. / przeznaczyć / zabrać / düzenlemek / katkıda bulunmak
+urządzić / czas. / "b1_2026-09" / düzenlemek / Postanowiliśmy urządzić przyjęcie urodzinowe. / Bir doğum günü partisi düzenlemeye karar verdik. / wykonywać / pojawić się / önem vermek, bakmak / aktarma yapmak
+powstać / czas. / "b1_2026-09" / ortaya çıkmak, kurulmak / W tym miejscu powstanie nowy park. / Bu yerde yeni bir park kurulacak. / podnosić / wnosić / güvence vermek, sağlamak / önem vermek, bakmak
+przeznaczyć / czas. / "b1_2026-09" / ayırmak, tahsis etmek / Rodzice przeznaczyli oszczędności na edukację dzieci. / Ebeveynler birikimlerini çocuklarının eğitimine ayırdı. / posiadać / obchodzić się / sonuç elde etmek, götürmek / onaylamak
+poświęcać / czas. / "b1_2026-09" / adamak, zaman ayırmak / Rodzice poświęcają wiele czasu swoim dzieciom. / Ebeveynler çocuklarına çok zaman adıyor. / wnosić / pojawić się / elde etmek / önem vermek, bakmak
+obchodzić się / czas. / "b1_2026-09" / bir şeyle ilgilenmek, davranmak / Trzeba umieć obchodzić się z narzędziami. / Aletlerle nasıl davranılacağını bilmek gerekir. / sprawiać / zostawić / gerekir, -meli / uydurmak, ayarlamak
+wnosić / czas. / "b1_2026-09" / katkıda bulunmak / Każdy pracownik wnosi coś wartościowego do zespołu. / Her çalışan ekibe değerli bir katkıda bulunuyor. / założyć / pojawiać się / onaylamak / harcamak
+potwierdzać / czas. / "b1_2026-09" / onaylamak / Proszę potwierdzać odbiór każdej przesyłki. / Lütfen her paketin teslim alındığını onaylayın. / dbać / założyć / harcamak / bir şeyle ilgilenmek, davranmak
+wybrać się / czas. / "b1_2026-09" / bir yere gitmeye karar vermek / W weekend wybieramy się w góry. / Hafta sonu dağlara gitmeye karar veriyoruz. / wydawać / wykonywać / katkıda bulunmak / almak, götürmek
+znaleźć / czas. / "b1_2026-09" / bulmak / W końcu znalazłem klucze pod łóżkiem. / Sonunda anahtarları yatağın altında buldum. / posiadać / założyć / uymak, yakışmak / düzenlemek
+zostawić / czas. / "b1_2026-09" / bırakmak / Zostawiłem telefon w domu. / Telefonu evde bıraktım. / dbać / wydawać / ortaya çıkmak, kurulmak / katkıda bulunmak
+dopasować / czas. / "b1_2026-09" / uydurmak, ayarlamak / Trener pomógł mi dopasować plan treningowy. / Antrenör antrenman planımı ayarlamama yardım etti. / powstać / przesiadać się / yapmak / uymak, yakışmak
+zbyt / przysł. / "b1_2026-09" / fazla, aşırı / To mieszkanie jest dla nas zbyt drogie. / Bu daire bizim için fazla pahalı. / tyle / ciągle / o kadar / sürekli, hala
+tyle / przysł. / "b1_2026-09" / o kadar / Nie wiedziałem, że masz tyle książek. / Bu kadar çok kitabın olduğunu bilmiyordum. / ciągle / zbyt / fazla, aşırı / sürekli, hala
+ciągle / przysł. / "b1_2026-09" / sürekli, hala / On ciągle spóźnia się na spotkania. / O, toplantılara sürekli geç kalıyor. / tyle / zbyt / fazla, aşırı / o kadar
+wypoczęty / przym. / "23-2" / dinlenmiş / Po urlopie jestem wypoczęty. / Tatilden sonra dinlenmiş durumdayım. / skuteczniejszy / świeży / daha etkili / taze / wypoczęty i zadowolony
+narzekać / ndk / "23-2" / yakınmak / On ciągle narzeka na pogodę. / O sürekli havadan yakınıyor. / planować / wychodzić / planlamak / çıkmak / narzekać na pogodę
+własny / przym. / "23-2" / kendi; özel / Mam swój własny samochód. / Benim kendi arabam var. / przeterminowany / ciepły / son kullanma tarihi geçmiş / sıcak / własny samochód
+rozsądnie / przysł. / "23-2" / makul bir şekilde / Trzeba rozsądnie wydawać pieniądze. / Parayı makul bir şekilde harcamak gerekir. / przede wszystkim / mocno / her şeyden önce / güçlü bir şekilde / rozsądnie myśleć
+miska / ż / "23-2" / kase / Nalałem zupy do miski. / Kaseye çorba koydum. / wzór / gotowanie w domu / örnek-model / evde yemek pişirme / miska zupy
+raczej / przysł. / "23-2" / daha çok / Raczej zostanę dziś w domu. / Bugün daha çok evde kalacağım. / najczęściej / regularnie / en sık / düzenli olarak / raczej nie
+wkrótce / przysł. / "23-2" / yakında / Wkrótce przyjadę do ciebie. / Yakında sana geleceğim. / najczęściej / najlepiej / en sık / en iyi şekilde / do zobaczenia wkrótce
+zwracać / nied. (zwracam-zwracałem) / "23-2" / iade etmek / Zwracam towar do sklepu. / Ürünü mağazaya iade ediyorum. / oglądać / wpłacić / izlemek / para yatırmak / zwracać towar
+zmęczenie / n / "23-2" / yorgunluk / Zmęczenie po pracy było ogromne. / İşten sonraki yorgunluk çok büyüktü. / rodzina / uniwersytet dla seniorów / aile / yaşlılar üniversitesi / zmęczenie po pracy
+zwrócić / dok. (zwróciłem-zwrócę) / "23-2" / geri vermek / Muszę zwrócić książkę do biblioteki. / Kitabı kütüphaneye geri vermeliyim. / podziękować / poprawić / teşekkür etmek / düzeltmek / zwrócić książkę
+ponownie / przysł. / "23-2" / tekrar / Proszę ponownie wpisać hasło. / Lütfen şifreyi tekrar girin. / bardzo / codziennie / çok / her gün / spróbować ponownie
+przestać działać / dk / "23-2" / çalışmayı durdurmak / Mój telefon przestał działać. / Telefonum çalışmayı durdurdu. / zwrócić / rozwijać umiejętności / geri vermek / becerileri geliştirmek / telefon przestał działać
+nieduży / przym. / "23-2" / küçük / Mamy nieduży ogród. / Küçük bir bahçemiz var. / cierpliwy / spokojny / sabırlı / sakin / nieduże mieszkanie
+krawcowa / ż / "23-2" / terzi / Krawcowa skróciła mi spodnie. / Terzi pantolonumu kısalttı. / babeczka / zadanie z fizyki / kek / fizik ödevi / dobra krawcowa
+dotykać / ndk / "23-2" / dokunmak / Proszę nie dotykać obrazów. / Lütfen tablolara dokunmayın. / powiększyć / spóźniać się / büyütmek / geç kalmak / nie dotykać
+szanować / ndk / "23-2" / saygı göstermek / Trzeba szanować starszych ludzi. / Yaşlılara saygı göstermek gerekir. / zastanawiać się / zmieniać / düşünmek; merak etmek / değiştirmek / szanować innych
+podziękować / dk / "23-2" / teşekkür etmek / Chcę podziękować za pomoc. / Yardım için teşekkür etmek istiyorum. / jeździć (rowerem) / chorować / (bisiklet) sürmek / hasta olmak / podziękować za pomoc
+łąka / ż / "23-2" / çayır / Na łące rosły piękne kwiaty. / Çayırda güzel çiçekler büyüyordu. / centrum / pralka / merkez / çamaşır makinesi / kwiaty na łące
+Z umiarem / wyr. / "23-2" / Ölçülü olarak / Słodycze trzeba jeść z umiarem. / Tatlıları ölçülü yemek gerekir. / Wziąć udział / Brać pod uwagę / Katılmak / Dikkate almak / jeść z umiarem
+zawiesić / dk / "23-2" / asmak / Zawieszę obraz nad kanapą. / Tabloyu kanepenin üstüne asacağım. / wyrzucić / rozpoznać / atmak / tanımak / zawiesić obraz
+ponadto / przysł. / "23-2" / ayrıca / Mieszkanie jest duże, ponadto tanie. / Daire büyük, ayrıca ucuz. / zawsze / najczęściej / her zaman / en sık / a ponadto
+tradycyjne potrawy / lm / "23-2" / geleneksel yemekler / Lubię tradycyjne potrawy polskie. / Geleneksel Polonya yemeklerini severim. / uniwersytet dla seniorów / stolik kawowy / yaşlılar üniversitesi / sehpa / tradycyjne potrawy polskie
+polonistka / ż / "23-2" / Lehçe öğretmeni (kadın) / Nasza polonistka lubi poezję. / Lehçe öğretmenimiz şiiri sever. / sypialnia / matematyczka / yatak odası / matematik öğretmeni (kadın) / nowa polonistka
+formularz zgłoszeniowy / m / "23-2" / başvuru formu / Proszę wypełnić formularz zgłoszeniowy. / Lütfen başvuru formunu doldurun. / ogłoszenie w internecie / pokój / internet ilanı / oda / wypełnić formularz
+przyrodniczy / przym. / "23-2" / doğa bilimi ile ilgili / Oglądam film przyrodniczy o zwierzętach. / Hayvanlar hakkında bir doğa belgeseli izliyorum. / przeterminowany / połączony / son kullanma tarihi geçmiş / birleşik / film przyrodniczy
+zbiór / m / "23-2" / koleksiyon / Mam duży zbiór znaczków. / Büyük bir pul koleksiyonum var. / urlop / lekcja / izin-tatil / ders / zbiór znaczków
+Pełnia szczęścia / wyr. / "23-2" / Tam mutluluk / Nowe mieszkanie to dla nas pełnia szczęścia. / Yeni daire bizim için tam mutluluk. / Z jakiego materiału? / Będzie mi miło / Hangi malzemeden? / Memnun olurum / pełnia szczęścia
+zebrać / dok. (zebrałem-zbiorę) / "23-2" / toplamak / Musimy zebrać wszystkie dokumenty. / Bütün belgeleri toplamamız gerekiyor. / rozwijać umiejętności / wpłacić / becerileri geliştirmek / para yatırmak / zebrać dokumenty
+stan zębów / m / "23-2" / diş durumu / Stan zębów zależy od codziennej higieny. / Diş durumu günlük hijyene bağlıdır. / esej / ogród zoologiczny / deneme / hayvanat bahçesi / dobry stan zębów
+recenzja / ż / "23-2" / eleştiri / Przeczytałem recenzję nowego filmu. / Yeni filmin eleştirisini okudum. / stan zębów / wynajem / diş durumu / kiralama / recenzja filmu
+Z zachwytem / wyr. / "23-2" / Hayranlıkla / Dzieci patrzyły na słonie z zachwytem. / Çocuklar fillere hayranlıkla baktı. / Od dawna / Nie dotykać eksponatów / Uzun süredir / Sergi parçalarına dokunmayın / patrzeć z zachwytem
+wyjść / dok. (wyszedłem-wyjdę) / "23-2" / çıkmak / Muszę już wyjść na spotkanie. / Toplantı için artık çıkmalıyım. / wrócić / zastanowić się / dönmek / düşünmek / wyjść z domu
+odwiedzać / nied. (odwiedzam-odwiedzałem) / "23-2" / ziyaret etmek / Często odwiedzam moich dziadków. / Büyükanne ve büyükbabamı sık sık ziyaret ederim. / jeździć (rowerem) / towarzyszyć / (bisiklet) sürmek / eşlik etmek / odwiedzać dziadków
+obojętność / ż / "23-2" / kayıtsızlık / Jej obojętność bardzo mnie zaskoczyła. / Onun kayıtsızlığı beni çok şaşırttı. / centrum / puste opakowania / merkez / boş ambalajlar / zimna obojętność
+studia przyrodnicze / lm / "23-2" / doğa bilimleri / Moja córka wybrała studia przyrodnicze. / Kızım doğa bilimleri okumayı seçti. / koc / organizacja charytatywna / battaniye / yardım kuruluşu / studia przyrodnicze
+sprzedawać / nied. (sprzedaję-sprzedawałem) / "23-2" / satmak / On sprzedaje używane samochody. / O ikinci el arabalar satıyor. / nosić / zastanowić się / giymek-taşımak / düşünmek / sprzedawać owoce
+zastąpić / dk / "23-2" / değiştirmek / Kto zastąpi nauczyciela? / Öğretmenin yerine kim geçecek? / przekształcić / patrzyć / dönüştürmek / bakmak / zastąpić kolegę
+wyścig / m / "23-2" / yarış / Wyścig rowerowy zaczyna się rano. / Bisiklet yarışı sabah başlıyor. / wędrowanie po górach / babcia / dağlarda yürüyüş / büyükanne / wyścig kolarski
+pralka / ż / "23-2" / çamaşır makinesi / Nowa pralka działa bardzo cicho. / Yeni çamaşır makinesi çok sessiz çalışıyor. / podróż / zakupy spożywcze / seyahat / market alışverişi / nowa pralka
+las / m / "23-2" / orman / W niedzielę idziemy na spacer do lasu. / Pazar günü ormana yürüyüşe gidiyoruz. / zapach / sędzia / koku / hakem / spacer po lesie
+wpływać / ndk / "23-2" / etkilemek / Pogoda wpływa na mój nastrój. / Hava ruh halimi etkiliyor. / odwiedzać / zapraszać / ziyaret etmek / davet etmek / wpływać na zdrowie
+Wydział Zarządzania / m / "23-2" / İşletme Fakültesi / Studiuję na Wydziale Zarządzania. / İşletme Fakültesinde okuyorum. / wielkie aglomeracje / produkty przeterminowane / büyük şehirler / son kullanma tarihi geçmiş ürünler / studiować na Wydziale Zarządzania
+Od urodzenia / wyr. / "23-2" / Doğumdan itibaren / Mieszkam w Warszawie od urodzenia. / Doğduğumdan beri Varşova'da yaşıyorum. / Mieć problem z / W środku nocy / Sorun yaşamak / Gecenin ortasında / od urodzenia
+zamykany / przym. / "23-2" / kapatılabilir / Kupiłem zamykany pojemnik na jedzenie. / Kapaklı bir yiyecek kabı aldım. / szary / skuteczniejszy / gri; kasvetli / daha etkili / zamykany pojemnik
+sprawa zawodowa / ż / "23-2" / iş meselesi / Dzwonię w sprawie zawodowej. / Bir iş meselesi için arıyorum. / ogród zoologiczny / samopoczucie / hayvanat bahçesi / ruh hali / ważna sprawa zawodowa
+W środku nocy / wyr. / "23-2" / Gecenin ortasında / Obudziłem się w środku nocy. / Gecenin ortasında uyandım. / Z roku na rok / Na twoim miejscu / Yıldan yıla / Senin yerinde olsam / w środku nocy
+oddechowy / przym. / "23-2" / nefes ile ilgili / Ćwiczenia oddechowe pomagają się uspokoić. / Nefes egzersizleri sakinleşmeye yardımcı olur. / zmęczony / przeterminowany / yorgun / son kullanma tarihi geçmiş / ćwiczenia oddechowe
+publiczność / ż / "23-2" / izleyici kitlesi / Publiczność biła brawo. / İzleyiciler alkışladı. / badania konsumenckie / drukarka / tüketici araştırmaları / yazıcı / publiczność w teatrze
+sylwetka / ż / "23-2" / profil-siluet / Sport pomaga mieć zgrabną sylwetkę. / Spor biçimli bir vücuda sahip olmaya yardım eder. / złe samopoczucie / substancja / kötü hissetme / madde / zgrabna sylwetka
+podziwiać / ndk / "23-2" / hayran olmak / Podziwiamy piękny widok z góry. / Dağdan güzel manzaraya hayranlıkla bakıyoruz. / chorować / podarować / hasta olmak / hediye etmek / podziwiać widok
+sufit / m / "23-2" / tavan / Pomalowaliśmy sufit na biało. / Tavanı beyaza boyadık. / zniżka / wybór miejsca / indirim / koltuk seçimi / wysoki sufit
+wyrzucić / dk / "23-2" / atmak / Wyrzuć śmieci, proszę. / Lütfen çöpleri at. / jeździć (rowerem) / rezygnować / (bisiklet) sürmek / vazgeçmek / wyrzucić śmieci
+zawody / cogul /  / yarışma, meslek / Wzięłam udział w zawodach pływackich. / Yüzme yarışmasına katıldım.
+wszędzie / przysł. / "23-2" / her yerde / Wszędzie szukałem kluczy. / Anahtarları her yerde aradım. / rozsądnie / ciągle / makul bir şekilde / sürekli / wszędzie dobrze
+uspokajać / ndk / "23-2" / sakinleştirmek / Muzyka mnie uspokaja. / Müzik beni sakinleştirir. / wspominać / znaleźć / hatırlamak; anmak / bulmak / uspokajać dziecko
+opiekun / m / "23-2" / bakıcı / Opiekun grupy liczy dzieci. / Grubun sorumlusu çocukları sayıyor. / nazwisko / urlop / soyadı / izin-tatil / opiekun grupy
+wędrowanie po górach / n / "23-2" / dağlarda yürüyüş / Wędrowanie po górach to moje hobby. / Dağlarda yürüyüş yapmak benim hobimdir. / produkty przeterminowane / poranny jogging / son kullanma tarihi geçmiş ürünler / sabah koşusu / lubić wędrowanie po górach
+oddać / dk / "23-2" / vermek-bağışlamak / Muszę oddać książkę koledze. / Kitabı arkadaşıma geri vermeliyim. / ignorować / studiować / görmezden gelmek / okumak (üniversite) / oddać książkę
+Czyj? / pyt. / "23-2" / Kimin? / Czyj to jest samochód? / Bu kimin arabası? / Mieć wpływ na / Jakiej? / Etkisi olmak / Nasıl?; Ne tür? / czyj to samochód?
+wypełnić / dok. (wypełniłem-wypełnię) / "23-2" / doldurmak / Proszę wypełnić ten formularz. / Lütfen bu formu doldurun. / polecieć / kwitnąć / uçmak / çiçek açmak / wypełnić formularz
+Mieć dostęp do / wyr. / "23-2" / Erişimi olmak / Wszyscy mają dostęp do internetu. / Herkesin internete erişimi var. / Mieć problem z / Z czego? / Sorun yaşamak / Neden yapılmış? / mieć dostęp do internetu
+reklamacja / ż / "23-2" / şikâyet; iade talebi / Moja reklamacja została przyjęta. / Şikâyetim kabul edildi. / uniwersytet dla seniorów / relaks / yaşlılar üniversitesi / rahatlama / złożyć reklamację
+Na co dzień / wyr. / "23-2" / Günlük hayatta / Na co dzień pracuję w biurze. / Günlük hayatta ofiste çalışıyorum. / Aż do śmierci / Z czego? / Ölüme kadar / Neden yapılmış? / na co dzień
+budzić się / ndk / "23-2" / uyanmak / Budzę się codziennie o szóstej. / Her gün saat altıda uyanırım. / zastanawiać się / sprawdzić / düşünmek; merak etmek / kontrol etmek / budzić się wcześnie
+wyższy / przym. / "23-2" / daha uzun / On jest wyższy od swojego brata. / O erkek kardeşinden daha uzundur. / własny / angielski / kendi; özel / İngilizce / wyższy od brata
+doświadczenie / n / "23-2" / deneyim / Mam duże doświadczenie w tej pracy. / Bu işte büyük deneyimim var. / premiera / dobre samopoczucie / gala; ilk gösterim / iyi hissetme / doświadczenie zawodowe
+przekształcić / dk / "23-2" / dönüştürmek / Chcemy przekształcić garaż w pokój. / Garajı bir odaya dönüştürmek istiyoruz. / przygotowywać się / powtarzać / hazırlanmak / tekrar etmek / przekształcić w pokój
+cena początkowa / ż / "23-2" / başlangıç fiyatı / Cena początkowa aukcji była niska. / Müzayedenin başlangıç fiyatı düşüktü. / gotowanie w domu / plaża / evde yemek pişirme / plaj / niska cena początkowa
+zastanowić się / dok. (zastanowiłem się-zastanowię się) / "23-2" / düşünmek / Zastanówmy się nad tą propozycją. / Bu teklif üzerinde düşünelim. / czekać / skonsultować się / beklemek / danışmak / zastanów się
+wypełniać / nied. (wypełniam-wypełniałem) / "23-2" / doldurmak / Wypełniam dokumenty w urzędzie. / Dairedeki belgeleri dolduruyorum. / porównywać / ignorować / karşılaştırmak / görmezden gelmek / wypełniać dokumenty
+umrzeć / dk / "23-2" / ölmek / Jego dziadek umarł w zeszłym roku. / Dedesi geçen yıl öldü. / zgadzać się / skończyć / kabul etmek; aynı fikirde olmak / bitirmek / umrzeć ze śmiechu
+zapisać się / dk / "23-2" / kayıt olmak / Chcę zapisać się na basen. / Havuza kaydolmak istiyorum. / podziękować / zawiesić / teşekkür etmek / asmak / zapisać się na kurs
+miód / m / "23-2" / bal / Piję herbatę z miodem. / Ballı çay içerim. / nocleg / rola główna / konaklama / başrol / herbata z miodem
+obecnie / przysł. / "23-2" / şu anda / Obecnie pracuję w Warszawie. / Şu anda Varşova'da çalışıyorum. / rzadko / jeszcze / nadiren / hâlâ-henüz / obecnie pracuję
+ciało / n / "23-2" / vücut / Sport jest dobry dla ciała i umysłu. / Spor vücut ve zihin için iyidir. / rodzina / przyjaciel / aile / arkadaş / zdrowe ciało
+cierpliwy / przym. / "23-2" / sabırlı / Dobry nauczyciel musi być cierpliwy. / İyi bir öğretmen sabırlı olmalı. / zdenerwowany / bogaty / sinirli / zengin / cierpliwy nauczyciel
+bezsenny / przym. / "23-2" / uykusuz / Miałem bezsenną noc przed egzaminem. / Sınavdan önce uykusuz bir gece geçirdim. / relaksacyjny / droższy / rahatlatıcı / daha pahalı / bezsenna noc
+Po raz pierwszy / wyr. / "23-2" / İlk kez / Po raz pierwszy jestem w Polsce. / Polonya'da ilk kez bulunuyorum. / Na stronie internetowej / Brać pod uwagę / Web sitesinde / Dikkate almak / po raz pierwszy
+Do twarzy ci w... / wyr. / "23-2" / ... sana çok yakışıyor / Do twarzy ci w tej sukience. / Bu elbise sana çok yakışıyor. / Brać pod uwagę / Miło było pana spotkać / Dikkate almak / Sizinle tanışmak güzeldi / do twarzy ci
+u / przyim. / "23-2" / yanında-de / Jestem teraz u babci. / Şu an büyükannemin yanındayım. / od / przez / -den itibaren / -den dolayı-boyunca / u lekarza
+potwierdzić / dk / "23-2" / doğrulamak / Proszę potwierdzić rezerwację. / Lütfen rezervasyonu onaylayın. / spóźnić się / znaleźć / geç kalmak / bulmak / potwierdzić rezerwację
+Z funkcją spania / wyr. / "23-2" / Uyuma fonksiyonlu / Kupiliśmy sofę z funkcją spania. / Yataklı bir kanepe aldık. / Czyj? / Nie dotykać eksponatów / Kimin? / Sergi parçalarına dokunmayın / sofa z funkcją spania
+Od dawna / wyr. / "23-2" / Uzun süredir / Znamy się od dawna. / Uzun süredir tanışıyoruz. / Powinien pan rzucić palenie / W przyszłości / Sigarayı bırakmalısınız / Gelecekte / od dawna
+prawie / przysł. / "23-2" / neredeyse / Prawie skończyłem książkę. / Kitabı neredeyse bitirdim. / raczej / coraz częściej / daha çok / giderek daha sık / prawie zawsze
+głaskać / ndk / "23-2" / okşamak / Dziecko głaszcze kota. / Çocuk kediyi okşuyor. / porozmawiać / zapamiętywać / konuşmak / hatırlamak / głaskać psa
+Wziąć udział / wyr. / "23-2" / Katılmak / Chcę wziąć udział w konkursie. / Yarışmaya katılmak istiyorum. / Z funkcją spania / Z czego? / Uyuma fonksiyonlu / Neden yapılmış? / wziąć udział w konkursie
+rozpoznać / dk / "23-2" / tanımak / Nie rozpoznałem cię w okularach. / Seni gözlüklü tanıyamadım. / wychodzić / decydować / çıkmak / karar vermek / rozpoznać głos
+po prostu / przysł. / "23-2" / sadece / Po prostu nie mam czasu. / Sadece zamanım yok. / rozsądnie / jednak / makul bir şekilde / ancak-fakat / po prostu tak
+samotny / przym. / "23-2" / yalnız / Po przeprowadzce czułem się samotny. / Taşındıktan sonra kendimi yalnız hissettim. / mocny / edukacyjny / güçlü / eğitici / samotny wieczór
+zazdrość / ż / "23-2" / kıskançlık / Zazdrość nie jest dobrym uczuciem. / Kıskançlık iyi bir duygu değildir. / ekspres do kawy / spokój / kahve makinesi / huzur / zielony z zazdrości
+osiemnastowieczny / przym. / "23-2" / 18. yüzyıla ait / Mieszkamy w osiemnastowiecznej kamienicy. / 18. yüzyıldan kalma bir apartmanda yaşıyoruz. / przeterminowany / oddechowy / son kullanma tarihi geçmiş / nefes ile ilgili / osiemnastowieczny pałac
+wygodny / przym. / "23-2" / rahat / To jest bardzo wygodne łóżko. / Bu çok rahat bir yatak. / świeży / zorganizowany / taze / organize / wygodne buty
+zniżka / ż / "23-2" / indirim / Studenci mają zniżkę na bilety. / Öğrencilerin biletlerde indirimi var. / uniwersytet dla seniorów / sąsiad / yaşlılar üniversitesi / komşu / zniżka studencka
+Powinien pan rzucić palenie / wyr. / "23-2" / Sigarayı bırakmalısınız / Lekarz mówi: powinien pan rzucić palenie. / Doktor diyor ki: sigarayı bırakmalısınız. / Na stronie internetowej / Miło było pana spotkać / Web sitesinde / Sizinle tanışmak güzeldi / rzucić palenie
+nieśmiały / przym. / "23-2" / utangaç / Mój syn jest trochę nieśmiały. / Oğlum biraz utangaç. / skuteczniejszy / łagodny / daha etkili / yumuşak / nieśmiałe dziecko
+rozwijać umiejętności / nied. (rozwijam-rozwijałem) / "23-2" / becerileri geliştirmek / Warto rozwijać umiejętności językowe. / Dil becerilerini geliştirmeye değer. / podejmować decyzje / zgadzać się / karar vermek / kabul etmek; aynı fikirde olmak / rozwijać umiejętności językowe
+polecieć / dk / "23-2" / uçmak / W lipcu polecimy do Hiszpanii. / Temmuzda İspanya'ya uçacağız. / oddać / rozwinąć / vermek-bağışlamak / geliştirmek / polecieć samolotem
+Aż do śmierci / wyr. / "23-2" / Ölüme kadar / Obiecali być razem aż do śmierci. / Ölüme kadar birlikte olacaklarına söz verdiler. / Mieć wpływ na / Miło było pana spotkać / Etkisi olmak / Sizinle tanışmak güzeldi / razem aż do śmierci
+urodziny / cogul /  / doğum günü / Dzisiaj są moje urodziny. / Bugün doğum günüm.
+przemyślany / przym. / "23-2" / düşünülmüş / To był przemyślany ruch. / Bu düşünülmüş bir hamleydi. / pełnoziarnisty / kilkudniowy / tam tahıllı / birkaç günlük / przemyślana decyzja
+powiedzieć / dok. (powiedziałem-powiem) / "23-2" / söylemek / Powiedz mi całą prawdę. / Bana tüm gerçeği söyle. / zapamiętać / wyjść / ezberlemek / çıkmak / powiedzieć prawdę
+dostosować się / dk / "23-2" / uyum sağlamak / Szybko dostosowałem się do nowej pracy. / Yeni işe çabuk uyum sağladım. / zarejestrować się / studiować / kayıt olmak / okumak (üniversite) / dostosować się do zmian
+cenny / przym. / "23-2" / değerli / To jest dla mnie cenny prezent. / Bu benim için değerli bir hediye. / nieśmiały / ważniejszy / utangaç / daha önemli / cenna rada
+Z roku na rok / wyr. / "23-2" / Yıldan yıla / Z roku na rok ceny rosną. / Fiyatlar yıldan yıla artıyor. / Aż do śmierci / Czemu nie! / Ölüme kadar / Neden olmasın! / z roku na rok
+drobiazg / m / "23-2" / ufak şey / Kupiłem mały drobiazg na pamiątkę. / Hatıra olarak küçük bir şey aldım. / wideorozmowa / wiedza / görüntülü arama / bilgi / to tylko drobiazg
+brzydki / przym. / "23-2" / çirkin / To jest brzydki budynek. / Bu çirkin bir bina. / naukowy / skomplikowany / bilimsel / karmaşık / brzydka pogoda
+powtarzać / ndk / "23-2" / tekrar etmek / Codziennie powtarzam nowe słowa. / Her gün yeni kelimeleri tekrar ederim. / odchudzać się / rozmawiać / diyet yapmak / konuşmak / powtarzać słówka
+porównywać / nied. (porównuję-porównywałem) / "23-2" / karşılaştırmak / Nie powinieneś porównywać tych dwóch cen. / Bu iki fiyatı karşılaştırmamalısın. / czekać / podziękować / beklemek / teşekkür etmek / porównywać ceny
+obniżka / ż / "23-2" / indirim / W sklepie jest wielka obniżka cen. / Mağazada büyük bir fiyat indirimi var. / samopoczucie / papierki / ruh hali / kâğıt parçaları / obniżka cen
+wpłacić / dk / "23-2" / para yatırmak / Muszę wpłacić pieniądze na konto. / Hesaba para yatırmam gerekiyor. / podziękować / rozwinąć / teşekkür etmek / geliştirmek / wpłacić na konto
+jednak / przysł. / "23-2" / ancak-fakat / Chciałem przyjść, jednak byłem chory. / Gelmek istedim, ancak hastaydım. / najlepiej / dawniej / en iyi şekilde / eskiden / a jednak
+dawniej / przysł. / "23-2" / eskiden / Dawniej ludzie pisali listy. / Eskiden insanlar mektup yazardı. / prawie / oczywiście / neredeyse / tabii ki / dawniej i dziś
+postawić / dk / "23-2" / koymak / Postaw wazon na stole. / Vazoyu masaya koy. / podziękować / prowadzić / teşekkür etmek / yönetmek-sürmek / postawić na stole
+założycielka / ż / "23-2" / kurucu (kadın) / Ona jest założycielką fundacji. / O, vakfın kurucusu. / portal / osłabienie wiosenne / portal / bahar yorgunluğu / założycielka firmy
+sportowiec / m / "23-2" / sporcu / Ten sportowiec zdobył medal. / Bu sporcu madalya kazandı. / dekoracja / zawód weterynarza / dekorasyon / veteriner mesleği / znany sportowiec
+skarżyć się / ndk / "23-2" / şikayet etmek / Klient skarży się na obsługę. / Müşteri hizmetten şikâyet ediyor. / skontaktować się / widzieć / iletişime geçmek / görmek / skarżyć się na ból
+konkurencja / ż / "23-2" / rekabet / Konkurencja na rynku jest bardzo duża. / Piyasadaki rekabet çok büyüktür. / dodatkowe opłaty / klimat / ek ücretler / iklim / duża konkurencja
+zasnąć / dk / "23-2" / uykuya dalmak / Nie mogłem zasnąć w nocy. / Gece uyuyamadım. / wyglądać / skontaktować się / görünmek / iletişime geçmek / szybko zasnąć
+inaczej / przysł. / "23-2" / farklı şekilde / Dziś zrobię to inaczej. / Bugün bunu farklı şekilde yapacağım. / wtedy / ciekawie / o zaman / ilginç biçimde / zrobić inaczej
+widok / m / "23-2" / manzara / Z hotelu jest piękny widok na morze. / Otelden güzel bir deniz manzarası var. / recenzja / ekspres do kawy / eleştiri / kahve makinesi / widok na morze
+owad / m / "23-2" / böcek / Latem jest dużo owadów. / Yazın çok böcek olur. / muzeum / kuchnia / müze / mutfak / mały owad
+zarejestrować się / dok. (zarejestrowałem się-zarejestruję się) / "23-2" / kayıt olmak / Musisz zarejestrować się na stronie. / Web sitesine kayıt olmalısın. / rozwijać umiejętności / chorować / becerileri geliştirmek / hasta olmak / zarejestrować się na stronie
+kwitnąć / ndk / "23-2" / çiçek açmak / Wiosną kwitną drzewa. / İlkbaharda ağaçlar çiçek açar. / zbierać / gratulować / toplamak / tebrik etmek / kwitnące drzewa
+kaszel / m / "23-2" / öksürük / Mam suchy kaszel od tygodnia. / Bir haftadır kuru öksürüğüm var. / pokój / wolontariusz / oda / gönüllü / suchy kaszel
+ślub / meski /  / düğün, evlilik / Ich ślub odbył się w maju. / Onların düğünü Mayıs ayında gerçekleşti.
+rozmawiać / fiil /  / konuşmak / Rozmawiamy o projekcie. / Proje hakkında konuşuyoruz.
+kurs szycia / m / "23-2" / dikiş kursu / Zapisałam się na kurs szycia. / Dikiş kursuna kaydoldum. / puste opakowania / lekarz / boş ambalajlar / doktor / zapisać się na kurs szycia
+zajęcia / lm / "23-2" / dersler / Zajęcia zaczynają się o dziewiątej. / Dersler saat dokuzda başlıyor. / pomidorowa (zupa) / kampania marketingowa / domates çorbası / pazarlama kampanyası / zajęcia z jogi
+branża / ż / "23-2" / sektör / Pracuję w branży budowlanej. / İnşaat sektöründe çalışıyorum. / senior / samotna matka / yaşlı kişi / yalnız anne / branża budowlana
+stała praca / ż / "23-2" / sabit iş / Stała praca daje poczucie bezpieczeństwa. / Sabit iş güvenlik hissi verir. / anomalia / wędrowanie po górach / anormallik / dağlarda yürüyüş / szukać stałej pracy
+babeczka / ż / "23-2" / kek / Na deser zjadłem czekoladową babeczkę. / Tatlı olarak çikolatalı bir kek yedim. / pasja / ekspres do kawy / tutku / kahve makinesi / babeczka z czekoladą
+życzliwy / przym. / "23-2" / cana yakın / Nasz sąsiad to życzliwy człowiek. / Komşumuz cana yakın bir insandır. / ruchliwy / lepszy / hareketli; kalabalık / daha iyi / życzliwy człowiek
+Na pewno / wyr. / "23-2" / Kesinlikle / Na pewno przyjdę na twoje urodziny. / Doğum gününe kesinlikle geleceğim. / Czyj? / Nie radzę sobie / Kimin? / Başa çıkamıyorum / na pewno tak
+wychodzić za mąż / ndk / "23-2" / evlenmek (kadın) / Moja siostra wychodzi za mąż w maju. / Kız kardeşim mayısta evleniyor. / jeździć (rowerem) / postawić / (bisiklet) sürmek / koymak / wychodzić za mąż
+wyprowadzać się / nied. (wyprowadzam się-wyprowadzałem się) / "23-2" / taşınmak / Wyprowadzam się do nowego mieszkania. / Yeni bir daireye taşınıyorum. / sprzedać / skontaktować się / satmak / iletişime geçmek / wyprowadzać się z domu
+zapamiętać / dok. (zapamiętałem-zapamiętam) / "23-2" / ezberlemek / Musisz zapamiętać ten numer. / Bu numarayı ezberlemelisin. / zastanawiać się / schudnąć / düşünmek; merak etmek / zayıflamak / zapamiętać numer
+skontaktować się / dok. (skontaktowałem się-skontaktuję się) / "23-2" / iletişime geçmek / Proszę skontaktować się z biurem. / Lütfen büro ile iletişime geçin. / kupować / wychodzić za mąż / satın almak / evlenmek (kadın) / skontaktować się z biurem
+oprowadzać / nied. (oprowadzam-oprowadzałem) / "23-2" / gezdirmek / Przewodnik oprowadza turystów po mieście. / Rehber turistleri şehirde gezdiriyor. / zapisać się / wysypiać się / kayıt olmak / yeterince uyumak / oprowadzać turystów
+pływanie / n / "23-2" / yüzme / Pływanie to zdrowy sport. / Yüzme sağlıklı bir spordur. / towarzystwo / towar / arkadaşlık / mal; ürün / lekcje pływania
+błękitny / przym. / "23-2" / açık mavi / Dziś niebo jest błękitne. / Bugün gökyüzü açık mavi. / najniższy / droższy / en düşük / daha pahalı / błękitne niebo
+starać się / ndk / "23-2" / çaba göstermek / Staram się jeść zdrowo. / Sağlıklı beslenmeye çalışıyorum. / porównywać / decydować / karşılaştırmak / karar vermek / starać się o pracę
+środek transportu / m / "23-2" / ulaşım aracı / Rower to ekologiczny środek transportu. / Bisiklet çevre dostu bir ulaşım aracıdır. / ochrona środowiska / dodatkowe szkolenia / çevre koruma / ek eğitimler / środek transportu
+niedobrze mi / wyr. / "23-2" / midem bulanıyor / Niedobrze mi po tej podróży. / Bu yolculuktan sonra midem bulanıyor. / Od urodzenia / Nie dotykać eksponatów / Doğumdan itibaren / Sergi parçalarına dokunmayın / niedobrze mi
+zapomnieć / dk / "23-2" / unutmak / Zapomniałem parasola. / Şemsiyemi unuttum. / poinformować / znaleźć / bilgilendirmek / bulmak / zapomnieć o czymś
+Kogo? / pyt. / "23-2" / Kimi? / Kogo dzisiaj szukasz? / Bugün kimi arıyorsun? / Do twarzy ci w... / Mieć dostęp do / ... sana çok yakışıyor / Erişimi olmak / kogo szukasz?
+odchudzać się / ndk / "23-2" / diyet yapmak / Siostra odchudza się przed ślubem. / Kız kardeşim düğünden önce diyet yapıyor. / wychodzić za mąż / skarżyć się / evlenmek (kadın) / şikayet etmek / odchudzać się zdrowo
+małżeństwo / n / "23-2" / evlilik / Ich małżeństwo trwa już dziesięć lat. / Onların evliliği on yıldır devam ediyor. / centrum / wybór miejsca / merkez / koltuk seçimi / szczęśliwe małżeństwo
+który / zaim. / "23-2" / ki o-hangi / To jest książka, którą czytam. / Bu okuduğum kitap. / do / chociaż / -e kadar / her ne kadar / który z nich
+spóźniać się / nied. (spóźniam się-spóźniałem się) / "23-2" / geç kalmak / Nie lubię spóźniać się na spotkania. / Toplantılara geç kalmayı sevmem. / zapisać się / przekształcić / kayıt olmak / dönüştürmek / często się spóźniać
+głodny / przym. / "23-2" / aç / Jestem bardzo głodny po pracy. / İşten sonra çok açım. / pełnoziarnisty / edukacyjny / tam tahıllı / eğitici / głodny jak wilk
+większy / przym. / "23-2" / daha büyük / Nowy dom jest większy niż stary. / Yeni ev eskisinden daha büyüktür. / mniejszy / droższy / daha küçük / daha pahalı / większy dom
+wycieczka z przewodnikiem / ż / "23-2" / rehberli tur / Wycieczka z przewodnikiem była bardzo ciekawa. / Rehberli tur çok ilgi çekiciydi. / organizacja charytatywna / ruch / yardım kuruluşu / hareket; egzersiz / ciekawa wycieczka z przewodnikiem
+łagodny / przym. / "23-2" / yumuşak / Ten pies jest bardzo łagodny. / Bu köpek çok uysaldır. / cenny / spokojny / değerli / sakin / łagodna zima
+ocieplenie / nijaki /  / ısınma / Ocieplenie klimatu wpływa na całą planetę. / İklim ısınması tüm gezegeni etkiliyor.
+podstawowy / przym. / "23-2" / temel / To jest podstawowa zasada. / Bu temel bir kuraldır. / zmęczony / zdenerwowany / yorgun / sinirli / szkoła podstawowa
+posłuchać / dk / "23-2" / dinlemek / Posłuchaj tej piosenki! / Bu şarkıyı dinle! / rozwinąć / skonsultować się / geliştirmek / danışmak / posłuchać muzyki
+podarować / dk / "23-2" / hediye etmek / Chcę podarować mamie kwiaty. / Anneme çiçek hediye etmek istiyorum. / przybliżyć / dotykać / yaklaştırmak / dokunmak / podarować prezent
+zbędny / przym. / "23-2" / gereksiz / Wyrzuciłem zbędne rzeczy. / Gereksiz eşyaları attım. / łagodny / przyrodniczy / yumuşak / doğa bilimi ile ilgili / zbędne rzeczy
+wystawa / ż / "23-2" / sergi / Byliśmy na wystawie zdjęć. / Bir fotoğraf sergisine gittik. / reklamacja / serial / şikâyet; iade talebi / dizi / wystawa sztuki
+rozwiązanie / nijaki /  / çözüm / Znaleźliśmy dobre rozwiązanie tego problemu. / Bu sorun için iyi bir çözüm bulduk.
+martwić się / nied. (martwię się-martwiłem się) / "23-2" / endişelenmek / Nie musisz się martwić o mnie. / Benim için endişelenmene gerek yok. / upowszechniać / podziękować / yaygınlaştırmak / teşekkür etmek / nie martw się
+rozwieszać / ndk / "23-2" / asmak / Mama rozwiesza pranie na balkonie. / Annem çamaşırları balkona asıyor. / rozwijać umiejętności / zastąpić / becerileri geliştirmek / değiştirmek / rozwieszać pranie
+widzieć / fiil /  / görmek / Widzę piękny widok z okna. / Pencereden güzel bir manzara görüyorum.
+wpaść / dk / "23-2" / uğramak / Wpadnij do mnie wieczorem. / Akşam bana uğra. / przygotowywać się / krytykować / hazırlanmak / eleştirmek / wpaść na kawę
+spóźnić się / dok. (spóźniłem się-spóźnię się) / "23-2" / geç kalmak / Przepraszam, że się spóźniłem. / Geç kaldığım için özür dilerim. / zgadzać się / żałować / kabul etmek; aynı fikirde olmak / pişman olmak / spóźnić się na pociąg
+sędzia / m / "23-2" / hakem / Sędzia zakończył mecz. / Hakem maçı bitirdi. / pralka / rutyna / çamaşır makinesi / rutin / sędzia piłkarski
+Bardzo mi przykro / wyr. / "23-2" / Çok üzgünüm / Bardzo mi przykro, że nie mogę przyjść. / Gelemediğim için çok üzgünüm. / Zapraszamy ponownie / Jakiej? / Tekrar bekleriz / Nasıl?; Ne tür? / bardzo mi przykro
+wzór / m / "23-2" / örnek-model / Ta sukienka ma ładny wzór. / Bu elbisenin güzel bir deseni var. / waluta / zmęczenie / para birimi / yorgunluk / wzór do naśladowania
+schować / dk / "23-2" / saklamak / Schowaj pieniądze do portfela. / Parayı cüzdana sakla. / zabudować / poznać / inşa etmek / tanışmak / schować do szafy
+uprawiać / ndk / "23-2" / yapmak (spor) / Uprawiam sport od dziecka. / Çocukluğumdan beri spor yapıyorum. / wyrzucić / jeździć (rowerem) / atmak / (bisiklet) sürmek / uprawiać sport
+doliczyć / dk / "23-2" / eklemek (hesaba) / Do rachunku doliczono napiwek. / Hesaba bahşiş eklendi. / ignorować / mieszkać / görmezden gelmek / yaşamak-oturmak / doliczyć opłatę
+zadanie z fizyki / n / "23-2" / fizik ödevi / Zadanie z fizyki było trudne. / Fizik ödevi zordu. / organizacja charytatywna / pokój dzienny / yardım kuruluşu / oturma odası / trudne zadanie z fizyki
+księgowa / ż / "23-2" / muhasebeci (kadın) / Moja siostra pracuje jako księgowa. / Kız kardeşim muhasebeci olarak çalışıyor. / produkty przeterminowane / nazwisko / son kullanma tarihi geçmiş ürünler / soyadı / pani księgowa
+odwiedzić / dok. (odwiedziłem-odwiedzę) / "23-2" / ziyaret etmek / Chcę odwiedzić muzeum w niedzielę. / Pazar günü müzeyi ziyaret etmek istiyorum. / polecieć / podziękować / uçmak / teşekkür etmek / odwiedzić muzeum
+wiedza / ż / "23-2" / bilgi / Książki dają nam wiedzę. / Kitaplar bize bilgi verir. / regulamin / uniwersytet dla seniorów / yönetmelik; kurallar / yaşlılar üniversitesi / wiedza ogólna
+W razie potrzeby / wyr. / "23-2" / Gerektiğinde / W razie potrzeby proszę dzwonić. / Gerektiğinde lütfen arayın. / Od najmłodszych lat / Po raz pierwszy / En küçük yaşlardan beri / İlk kez / w razie potrzeby
+sen / m / "23-2" / uyku / Zdrowy sen trwa osiem godzin. / Sağlıklı uyku sekiz saat sürer. / pobyt / relaks / kalış / rahatlama / zdrowy sen
+przede wszystkim / przysł. / "23-2" / her şeyden önce / Przede wszystkim dbam o zdrowie. / Her şeyden önce sağlığıma dikkat ederim. / coraz częściej / rozsądnie / giderek daha sık / makul bir şekilde / przede wszystkim zdrowie
+Jakiej? / pyt. / "23-2" / Nasıl?; Ne tür? / Jakiej muzyki słuchasz? / Nasıl bir müzik dinliyorsun? / Od dawna / Na twoim miejscu / Uzun süredir / Senin yerinde olsam / jakiej muzyki?
+kawalerka / ż / "23-2" / stüdyo daire / Wynajmuję małą kawalerkę w centrum. / Merkezde küçük bir stüdyo daire kiralıyorum. / dział sprzedaży / obojętność / satış departmanı / kayıtsızlık / mała kawalerka
+przygotowywać się / ndk / "23-2" / hazırlanmak / Przygotowuję się do egzaminu B1. / B1 sınavına hazırlanıyorum. / podziękować / zarejestrować się / teşekkür etmek / kayıt olmak / przygotowywać się do egzaminu
+samopoczucie / n / "23-2" / ruh hali / Jak twoje samopoczucie? / Kendini nasıl hissediyorsun? / sprawa zawodowa / cena początkowa / iş meselesi / başlangıç fiyatı / dobre samopoczucie
+wysypiać się / ndk / "23-2" / yeterince uyumak / W weekend zawsze się wysypiam. / Hafta sonu her zaman iyice uyurum. / dekorować / zastanawiać się / süslemek / düşünmek; merak etmek / wysypiać się w weekend
+połączony / przym. / "23-2" / birleşik / Kuchnia jest połączona z salonem. / Mutfak salonla birleşik. / najniższy / ulubiony / en düşük / favori / pokój połączony z kuchnią
+wybierać / ndk / "23-2" / seçmek / Zawsze wybieram zdrowe jedzenie. / Her zaman sağlıklı yiyecek seçerim. / spędzić / spóźniać się / geçirmek (zaman) / geç kalmak / wybierać prezent
+schudnąć / dk / "23-2" / zayıflamak / Chcę schudnąć pięć kilo. / Beş kilo vermek istiyorum. / zaproponować / kontaktować się / önermek / iletişime geçmek / schudnąć przed latem
+wtedy / przysł. / "23-2" / o zaman / Wtedy byłem jeszcze dzieckiem. / O zaman henüz çocuktum. / oczywiście / jeszcze / tabii ki / hâlâ-henüz / właśnie wtedy
+znudzenie / n / "23-2" / can sıkıntısı / Na jego twarzy widać było znudzenie. / Yüzünde can sıkıntısı görülüyordu. / palenie / produkty przeterminowane / sigara içme / son kullanma tarihi geçmiş ürünler / ze znudzeniem
+żałować / ndk / "23-2" / pişman olmak / Nie żałuję swojej decyzji. / Kararımdan pişman değilim. / przestać działać / wyjść / çalışmayı durdurmak / çıkmak / niczego nie żałować
+Czemu nie! / wyr. / "23-2" / Neden olmasın! / Idziemy do kina? Czemu nie! / Sinemaya gidelim mi? Neden olmasın! / W razie potrzeby / Jakiej? / Gerektiğinde / Nasıl?; Ne tür? / czemu nie
+ogłoszenie / n / "23-2" / ilan / Przeczytałem ogłoszenie w gazecie. / Gazetedeki ilanı okudum. / chusteczki / salon / mendiller / salon / ogłoszenie w gazecie
+życzenie / n / "23-2" / dilek / Mam jedno życzenie na urodziny. / Doğum günüm için bir dileğim var. / polonistka / sofa / Lehçe öğretmeni (kadın) / kanepe / życzenia urodzinowe
+zgubić / dk / "23-2" / kaybetmek / Zgubiłem klucze w parku. / Anahtarlarımı parkta kaybettim. / zapamiętywać / uczyć się / hatırlamak / öğrenmek / zgubić klucze
+Coś mi wypada / wyr. / "23-2" / Bir işim çıktı / Przepraszam, coś mi wypadło i nie przyjdę. / Özür dilerim, bir işim çıktı, gelemeyeceğim. / Z funkcją spania / Na co dzień / Uyuma fonksiyonlu / Günlük hayatta / coś mi wypadło
+twórczość / ż / "23-2" / yaratıcılık / Znam twórczość tego pisarza. / Bu yazarın eserlerini biliyorum. / uniwersytet dla seniorów / puste opakowania / yaşlılar üniversitesi / boş ambalajlar / twórczość artysty
+wspominać / nied. (wspominam-wspominałem) / "23-2" / hatırlamak; anmak / Często wspominamy stare czasy. / Sık sık eski günleri anarız. / uczyć się / zgadzać się / öğrenmek / kabul etmek; aynı fikirde olmak / wspominać dzieciństwo
+Na którym? / pyt. / "23-2" / Hangisinde?; Kaçıncı? / Na którym piętrze mieszkasz? / Hangisinde (kaçıncı katında) oturuyorsun? / Do twarzy ci w... / Na twoim miejscu / ... sana çok yakışıyor / Senin yerinde olsam / na którym piętrze?
+Aż do sufitu / wyr. / "23-2" / Tavana kadar / Szafa sięga aż do sufitu. / Dolap tavana kadar uzanıyor. / Na którym? / Od urodzenia / Hangisinde?; Kaçıncı? / Doğumdan itibaren / regał aż do sufitu
+rzeźba / ż / "23-2" / heykel / W parku stoi piękna rzeźba. / Parkta güzel bir heykel duruyor. / drużyna / ćwiczenie / takım / egzersiz / rzeźba z brązu
+pełnoziarnisty / przym. / "23-2" / tam tahıllı / Jem tylko chleb pełnoziarnisty. / Sadece tam tahıllı ekmek yerim. / kulturalny / osiemnastowieczny / kültürlü / 18. yüzyıla ait / chleb pełnoziarnisty
+zbierać / nied. (zbieram-zbierałem) / "23-2" / toplamak / Lubię zbierać grzyby w lesie. / Ormanda mantar toplamayı severim. / zapisać się / rezygnować / kayıt olmak / vazgeçmek / zbierać grzyby
+cisza / ż / "23-2" / sessizlik / W bibliotece panuje cisza. / Kütüphanede sessizlik hâkim. / organizacja charytatywna / pszczoła / yardım kuruluşu / arı / cisza nocna
+sypialnia / ż / "23-2" / yatak odası / Sypialnia jest na górze. / Yatak odası üst katta. / przemyślenie / regulamin / düşünce / yönetmelik; kurallar / duża sypialnia
+zaproponować / dok. (zaproponowałem-zaproponuję) / "23-2" / önermek / Zaproponowałbym inne rozwiązanie. / Başka bir çözüm önerirdim. / odchudzać się / wychodzić za mąż / diyet yapmak / evlenmek (kadın) / zaproponować rozwiązanie
+drób / m / "23-2" / kümes hayvanları / Na obiad jemy drób i warzywa. / Öğle yemeğinde tavuk eti ve sebze yiyoruz. / turystyka rowerowa / plaża / bisiklet turizmi / plaj / mięso z drobiu
+odpowiedni / przym. / "23-2" / uygun / To nie jest odpowiedni moment. / Bu uygun bir an değil. / wysoki / relaksacyjny / uzun-yüksek / rahatlatıcı / odpowiedni czas
+nudzić się / ndk / "23-2" / sıkılmak / Dzieci nudzą się w domu. / Çocuklar evde sıkılıyor. / zgadzać się / skonsultować się / kabul etmek; aynı fikirde olmak / danışmak / nudzić się w domu
+zastanawiać się / nied. (zastanawiam się-zastanawiałem się) / "23-2" / düşünmek; merak etmek / Zastanawiam się nad nową ofertą. / Yeni teklif hakkında düşünüyorum. / poprawić / rozwijać umiejętności / düzeltmek / becerileri geliştirmek / zastanawiać się nad ofertą
+wychodzić / fiil /  / çıkmak / Wychodzę z domu o siódmej. / Evden saat yedide çıkıyorum.
+zasada / ż / "23-2" / ilke-kural / W domu mamy proste zasady. / Evde basit kurallarımız var. / palenie / spokój / sigara içme / huzur / zasady gry
+Nie dotykać eksponatów / wyr. / "23-2" / Sergi parçalarına dokunmayın / W muzeum wisi napis: Nie dotykać eksponatów. / Müzede bir yazı asılı: Sergi parçalarına dokunmayın. / Na stronie internetowej / Wziąć udział / Web sitesinde / Katılmak / nie dotykać eksponatów
+zapasy / lm / "23-2" / stoklar; yedekler / Mamy duże zapasy jedzenia. / Büyük yemek stoklarımız var. / uniwersytet dla seniorów / posiłek / yaşlılar üniversitesi / öğün / zapasy jedzenia
+przybliżyć / dk / "23-2" / yaklaştırmak / Przybliż zdjęcie, żeby lepiej widzieć. / Daha iyi görmek için fotoğrafı yakınlaştır. / funkcjonować / wykorzystać / işlev görmek / kullanmak / przybliżyć temat
+rozwinąć / dok. (rozwinąłem-rozwinę) / "23-2" / geliştirmek / Firma chce rozwinąć swoją działalność. / Şirket faaliyetini geliştirmek istiyor. / wrócić / jeździć (rowerem) / dönmek / (bisiklet) sürmek / rozwinąć firmę
+Będzie mi miło / wyr. / "23-2" / Memnun olurum / Będzie mi miło, jeśli przyjdziesz na kolację. / Akşam yemeğine gelirsen memnun olurum. / Na którym? / W razie potrzeby / Hangisinde?; Kaçıncı? / Gerektiğinde / będzie mi miło
+wrócić / dok. (wróciłem-wrócę) / "23-2" / dönmek / Chcę szybko wrócić do pracy. / Hızlıca işe dönmek istiyorum. / zgadzać się / odrobić / kabul etmek; aynı fikirde olmak / (ödev) yapmak / wrócić do pracy
+zabytek / m / "23-2" / tarihi eser / Kraków ma wiele zabytków. / Krakov'da çok sayıda tarihi eser var. / okres wakacyjny / salon / tatil dönemi / salon / zwiedzać zabytki
+komoda / ż / "23-2" / şifonyer / Ubrania leżą w komodzie. / Kıyafetler şifonyerde duruyor. / puste opakowania / reżyseria / boş ambalajlar / yönetmenlik / drewniana komoda
+zarobki / lm / "23-2" / kazanç / Zarobki w tej firmie są dobre. / Bu şirketteki kazançlar iyi. / ogrodnik / regulamin / bahçıvan / yönetmelik; kurallar / dobre zarobki
+poznawać / nied. (poznaję-poznawałem) / "23-2" / tanımak / Lubię poznawać nowych ludzi. / Yeni insanları tanımayı severim. / oprowadzać / mieszkać / gezdirmek / yaşamak-oturmak / poznawać ludzi
+oszczędzać / nied. (oszczędzam-oszczędzałem) / "23-2" / tasarruf etmek / Chcę oszczędzać pieniądze na wakacje. / Tatil için para tasarruf etmek istiyorum. / spędzać / odchudzać się / geçirmek (zaman) / diyet yapmak / oszczędzać pieniądze
+Brać pod uwagę / wyr. / "23-2" / Dikkate almak / Musimy brać pod uwagę pogodę. / Havayı dikkate almalıyız. / Od najmłodszych lat / Na twoim miejscu / En küçük yaşlardan beri / Senin yerinde olsam / brać pod uwagę
+ciepły / przym. / "23-2" / sıcak / Zimą noszę ciepły sweter. / Kışın sıcak bir kazak giyerim. / własny / bezsenny / kendi; özel / uykusuz / ciepły sweter
+udekorować / dok. (udekorowałem-udekoruję) / "23-2" / süslemek / Chcę udekorować pokój kwiatami. / Odayı çiçeklerle süslemek istiyorum. / podziękować / wpaść / teşekkür etmek / uğramak / udekorować pokój
+poradnik / m / "23-2" / rehber kitap / Kupiłem poradnik o zdrowym jedzeniu. / Sağlıklı beslenme hakkında bir rehber kitap aldım. / fotel / widok z okna / koltuk / pencereden manzara / poradnik dla rodziców
+pszczoła / ż / "23-2" / arı / Pszczoła siedzi na kwiatku. / Arı çiçeğin üzerinde duruyor. / wizyta / edukacja / ziyaret; randevu / eğitim / pszczoła i miód
+media społecznościowe / lm / "23-2" / sosyal medya / Korzystam z mediów społecznościowych codziennie. / Her gün sosyal medya kullanıyorum. / ogłoszenie w internecie / wyścig / internet ilanı / yarış / w mediach społecznościowych
+zachmurzenie / n / "23-2" / bulutlanma / Jutro będzie duże zachmurzenie. / Yarın çok bulutlu olacak. / osłabienie wiosenne / znudzenie / bahar yorgunluğu / can sıkıntısı / duże zachmurzenie
+sprawdzić / dk / "23-2" / kontrol etmek / Muszę sprawdzić pocztę. / E-postamı kontrol etmeliyim. / prezentować / starać się / sunmak / çaba göstermek / sprawdzić pocztę
+prowadzić / ndk / "23-2" / yönetmek-sürmek / Mój ojciec prowadzi małą firmę. / Babam küçük bir şirket yönetiyor. / szanować / zaproponować / saygı göstermek / önermek / prowadzić samochód
+wykorzystać / dk / "23-2" / kullanmak / Chcę dobrze wykorzystać wolny czas. / Boş zamanımı iyi değerlendirmek istiyorum. / odchudzać się / naprawiać / diyet yapmak / tamir etmek / wykorzystać okazję
+Zapisać się na zajęcia / wyr. / "23-2" / Derslere kayıt olmak / Chcę zapisać się na zajęcia z tańca. / Dans derslerine kaydolmak istiyorum. / Miło było pana spotkać / Na którym? / Sizinle tanışmak güzeldi / Hangisinde?; Kaçıncı? / zapisać się na zajęcia
+Nie radzę sobie / wyr. / "23-2" / Başa çıkamıyorum / Nie radzę sobie z tym zadaniem. / Bu görevle başa çıkamıyorum. / Do twarzy ci w... / Bardzo mi przykro / ... sana çok yakışıyor / Çok üzgünüm / nie radzę sobie
+Dbać o / wyr. / "23-2" / Özen göstermek / Trzeba dbać o zdrowie. / Sağlığa özen göstermek gerekir. / Czemu nie! / Jakiej? / Neden olmasın! / Nasıl?; Ne tür? / dbać o zdrowie
+Od najmłodszych lat / wyr. / "23-2" / En küçük yaşlardan beri / Od najmłodszych lat kocham muzykę. / Çok küçük yaşlardan beri müziği seviyorum. / Powinien pan rzucić palenie / Mieć problem z / Sigarayı bırakmalısınız / Sorun yaşamak / od najmłodszych lat
+zgadzać się / nied. (zgadzam się-zgadzałem się) / "23-2" / kabul etmek; aynı fikirde olmak / Zgadzać się na te warunki to ryzyko. / Bu şartları kabul etmek bir risktir. / funkcjonować / ugotować / işlev görmek / pişirmek / zgadzam się z tobą
+fascynujący / przym. / "23-2" / büyüleyici / To była fascynująca podróż. / Büyüleyici bir yolculuktu. / przemyślany / ważny / düşünülmüş / önemli / fascynująca książka
+szczęście / n / "23-2" / mutluluk / Rodzina daje mi prawdziwe szczęście. / Aile bana gerçek mutluluk veriyor. / publiczność / ciało / izleyici kitlesi / vücut / prawdziwe szczęście
+uciec / dk / "23-2" / kaçmak / Pies uciekł z ogrodu. / Köpek bahçeden kaçtı. / ugotować / skontaktować się / pişirmek / iletişime geçmek / autobus mi uciekł
+Na twoim miejscu / wyr. / "23-2" / Senin yerinde olsam / Na twoim miejscu poszedłbym do lekarza. / Senin yerinde olsam doktora giderdim. / Od najmłodszych lat / Na pewno / En küçük yaşlardan beri / Kesinlikle / na twoim miejscu
+płaszcz / m / "23-2" / palto / Jesienią noszę długi płaszcz. / Sonbaharda uzun bir palto giyerim. / konkurencja / drużyna / rekabet / takım / zimowy płaszcz
+stolik kawowy / m / "23-2" / sehpa / Na stoliku kawowym leżą gazety. / Sehpada gazeteler duruyor. / zakupy spożywcze / zawody / market alışverişi / yarışma / szklany stolik kawowy
+szczęśliwy / przym. / "23-2" / mutlu / Jestem szczęśliwy, że cię widzę. / Seni gördüğüme mutluyum. / szybszy / zdenerwowany / daha hızlı / sinirli / szczęśliwa rodzina
+chusteczki / lm / "23-2" / mendiller / Masz może higieniczne chusteczki? / Yanında hijyenik mendil var mı? / wielkie aglomeracje / katalog / büyük şehirler / katalog / chusteczki higieniczne
+Mieć wolne / wyr. / "23-2" / Serbest olmak / W piątek mam wolne. / Cuma günü boşum. / Będzie mi miło / Nie radzę sobie / Memnun olurum / Başa çıkamıyorum / mieć wolne w piątek
+wykładowca / m / "23-2" / öğretim görevlisi / Wykładowca mówi bardzo szybko. / Öğretim görevlisi çok hızlı konuşuyor. / zapiekane brokuły / zawód weterynarza / fırınlanmış brokoli / veteriner mesleği / wykładowca na uczelni
+Mieć wpływ na / wyr. / "23-2" / Etkisi olmak / Pogoda ma wpływ na nastrój. / Havanın ruh hali üzerinde etkisi var. / Na stronie internetowej / Na co dzień / Web sitesinde / Günlük hayatta / mieć wpływ na zdrowie
+wycieczka / zenski /  / gezi, tur / Zorganizowaliśmy wycieczkę szkolną do Krakowa. / Krakov'a bir okul gezisi düzenledik.
+upowszechniać / ndk / "23-2" / yaygınlaştırmak / Fundacja upowszechnia czytanie książek. / Vakıf kitap okumayı yaygınlaştırıyor. / zmieniać się / kontaktować się / değişmek / iletişime geçmek / upowszechniać wiedzę
+pobyt / m / "23-2" / kalış / Pobyt w hotelu był bardzo miły. / Oteldeki kalış çok hoştu. / portal / ściana / portal / duvar / pobyt w hotelu
+towarzystwo / n / "23-2" / arkadaşlık / Lubię towarzystwo dobrych ludzi. / İyi insanların arkadaşlığını severim. / widok z okna / producent / pencereden manzara / üretici / w towarzystwie
+stracić / dk / "23-2" / kaybetmek / Straciłem dużo czasu w korkach. / Trafikte çok zaman kaybettim. / jeździć (rowerem) / wyjść / (bisiklet) sürmek / çıkmak / stracić pracę
+zapewnić / dk / "23-2" / sağlamak / Hotel zapewnia śniadanie. / Otel kahvaltı sağlıyor. / porozmawiać / sprawdzić / konuşmak / kontrol etmek / zapewnić bezpieczeństwo
+podejmować decyzje / ndk / "23-2" / karar vermek / Szef musi szybko podejmować decyzje. / Şef hızlı karar vermek zorunda. / nosić / rozwijać umiejętności / giymek-taşımak / becerileri geliştirmek / podejmować decyzje
+Z czego? / pyt. / "23-2" / Neden yapılmış? / Z czego jest ta torba? / Bu çanta neden yapılmış? / Z umiarem / W środku nocy / Ölçülü olarak / Gecenin ortasında / z czego to jest?
+Miło było pana spotkać / wyr. / "23-2" / Sizinle tanışmak güzeldi / Do widzenia, miło było pana spotkać. / Hoşça kalın, sizinle tanışmak güzeldi. / Będzie mi miło / Nie dotykać eksponatów / Memnun olurum / Sergi parçalarına dokunmayın / miło było
+unikać / ndk / "23-2" / kaçınmak / Unikam słodyczy. / Tatlılardan kaçınıyorum. / wypełnić / porównywać / doldurmak / karşılaştırmak / unikać stresu
+powiększyć / dk / "23-2" / büyütmek / Chcemy powiększyć nasz ogród. / Bahçemizi büyütmek istiyoruz. / zapamiętywać / widzieć / hatırlamak / görmek / powiększyć zdjęcie
+poznać / dok. (poznałem-poznam) / "23-2" / tanışmak / Miło mi poznać ciebie. / Seninle tanıştığıma memnun oldum. / polecieć / ocenić / uçmak / değerlendirmek / miło mi poznać
+chorować / ndk / "23-2" / hasta olmak / Zimą często choruję na grypę. / Kışın sık sık grip olurum. / regenerować się / zapraszać / yenilenmek / davet etmek / chorować na grypę
+odrobić / dk / "23-2" / (ödev) yapmak / Muszę odrobić lekcje przed kolacją. / Akşam yemeğinden önce ödevlerimi yapmalıyım. / wyrzucić / odwiedzić / atmak / ziyaret etmek / odrobić lekcje
+W przyszłości / wyr. / "23-2" / Gelecekte / W przyszłości chcę mieszkać nad morzem. / Gelecekte deniz kenarında yaşamak istiyorum. / Z umiarem / Mieć problem z / Ölçülü olarak / Sorun yaşamak / w przyszłości
+drużyna / ż / "23-2" / takım / Nasza drużyna wygrała mecz. / Takımımız maçı kazandı. / półka / majonez / raf / mayonez / drużyna piłkarska
+przemyślenie / n / "23-2" / düşünce / Chcę podzielić się moimi przemyśleniami. / Düşüncelerimi paylaşmak istiyorum. / sąsiad / pomidorowa (zupa) / komşu / domates çorbası / głębokie przemyślenia
+rozwijać / nied. (rozwijam-rozwijałem) / "23-2" / geliştirmek / Musimy rozwijać nasz projekt. / Projemizi geliştirmeliyiz. / pić / prowadzić / içmek / yönetmek-sürmek / rozwijać projekt
+ruchliwy / przym. / "23-2" / hareketli; kalabalık / To jest bardzo ruchliwy punkt miasta. / Bu şehrin çok hareketli bir noktasıdır. / przyrodniczy / kulturalny / doğa bilimi ile ilgili / kültürlü / ruchliwa ulica
+skuteczniejszy / przym. / "23-2" / daha etkili / Nowy sposób jest skuteczniejszy. / Yeni yöntem daha etkilidir. / pozytywny / przeterminowany / olumlu / son kullanma tarihi geçmiş / skuteczniejszy sposób
+skuteczny / przym. / "23-2" / etkili / To jest bardzo skuteczny lek. / Bu çok etkili bir ilaçtır. / ładny / przemyślany / güzel / düşünülmüş / skuteczny lek
+odnieść / dk (odniosłem-odniosę) / "b1_2026-09" / sonuç elde etmek, götürmek / Firma odniosła duży sukces na rynku. / Şirket pazarda büyük bir başarı elde etti. / wykonać / powstać / gerekir, -meli / olmak, meydana gelmek / odnieść sukces
+co się stało /  /  / Ne oldu / Lista Jest pani/pan świadkiem wypadku drogowego. Proszę zadzwonić na policje i przekazać informacje o miejscu i czasie zdarzenia oraz opisać, co się stało / 
+zgłosić / dk / "wypadek" / bildirmek / Chciałabym zgłosić wypadek drogowy. / Bir trafik kazası bildirmek istiyorum. / wydarzyć się / skarżyć się / şikâyet etmek / olmak, meydana gelmek / zgłosić wypadek
+wydarzyć się / dk / "wypadek" / olmak, meydana gelmek / Kiedy to się wydarzyło? / Ne zaman oldu? / zgłosić / zatrzymać się / durmak / bildirmek / co się wydarzyło?
+siniak / m / "wypadek" / morluk, çürük / Tak, rowerzysta ma siniaki i skarży się na ból nogi. / Evet, bisikletlinin morlukları var ve bacak ağrısından şikâyet ediyor. / połowa / krok / kavşak / adım / siniak na ręce
+uderzyć / dk / "wypadek" / çarpmak, vurmak / Samochód osobowy uderzył w rowerzystę. / Bir otomobil bisikletliye çarptı. / wydarzyć się / zgłosić / olmak, meydana gelmek / bildirmek / uderzyć w drzewo
+połowa / ż / "wypadek" / yarı, orta / Tak, samochód stoi w połowie ulicy, rower leży obok. / Evet, otomobil caddenin ortasında duruyor, bisiklet yanında yatıyor. / siniak / krok / adım / morluk, çürük / w połowie drogi
+zatrzymać się / dk / "wypadek" / durmak / Tak, ja jestem świadkiem, a kilka osób zatrzymało się i patrzy. / Evet, ben bir tanığım ve birkaç kişi durup bakıyor. / uderzyć / wydarzyć się / bildirmek / olmak, meydana gelmek / autobus się zatrzymał
+skrzyżowanie / n / "wypadek" / kavşak / Na ulicy Krakowskiej, przy skrzyżowaniu z ulicą Słoneczną. / Krakowska Caddesi'nde, Słoneczna Caddesi ile kesiştiği yerde. / świadek / połowa / morluk, çürük / adım / na skrzyżowaniu
+wysiąść / dk / "wypadek" / (araçtan) inmek / Kierowca samochodu wysiadł i stoi obok pojazdu. / Otomobil sürücüsü indi ve aracın yanında duruyor. / skarżyć się / wydarzyć się / çarpmak, vurmak / durmak / wysiąść z autobusu
+świadek / m / "wypadek" / tanık / Tak, ja jestem świadkiem, a kilka osób zatrzymało się i patrzy. / Evet, ben bir tanığım ve birkaç kişi durup bakıyor. / skrzyżowanie / siniak / adım / morluk, çürük / świadek wypadku
+odetchać /  /  / Nefes almak / po raz pierwszy tego ranka odetchnął spokojnie. / o sabah ilk kez rahatça nefes aldı. /  /  /  /  / odetchnął spokojnie
+zwiedzać / czas. (nied.) / "b1_komple" / gezmek - gezmek, ziyaret etmek / Lubimy zwiedzać stare miasta w Europie. / Avrupa'daki eski şehirleri gezmeyi severiz. / zrezygnować / zabrać / süslemek / sahip olmak / zwiedzać miasto
+pozwalać / czas. (nied.) / "b1_komple" / izin vermek / Rodzice pozwalają mu wracać późno. / Ailesi geç dönmesine izin veriyor. / zapamiętywać / biegnąć / elde etmek, kazanmak / bulmak / pozwalać na coś
+oznaczać / czas. (nied.) / "b1_komple" / anlamına gelmek - anlamına gelmek, işaretlemek / To słowo oznacza coś zupełnie innego. / Bu kelime tamamen farklı bir şey ifade ediyor. / zbierać / promować / vazgeçmek / geliştirmek / oznaczać coś
+miłośnik / m / "b1_komple" / hayran, meraklı / Jestem wielkim miłośnikiem starych filmów. / Eski filmlerin büyük bir hayranıyım. / para (młoda) / pobyt / ürün / smog, hava kirliliği / miłośnik filmów
+zadawać / czas. (nied.) / "b1_komple" / sormak (soru) / Uczniowie lubią zadawać dużo pytań. / Öğrenciler çok soru sormayı sever. / dzielić / spacerować / sunmak, tanıtmak / çıkmak / zadawać pytania
+jajecznica / ż / "b1_komple" / sahanda yumurta / Na śniadanie zjadłem jajecznicę z pomidorami. / Kahvaltıda domatesli sahanda yumurta yedim. / porada / cena początkowa / durum, konum / sayfa - sayfa, taraf / jajecznica z szynką
+awans / meski /  / terfi / Dostałem awans po dwóch latach. / İki yıl sonra terfi aldım.
+bać się / czas. (nied.) / "b1_komple" / korkmak / Ona boi się dużych psów. / Kız büyük köpeklerden korkuyor. / wystartować / kosztować / beklemek / geçmek (sınav) - geçmek (sınavı) / bać się psa
+baza / zenski /  / temel, veri tabanı / Mamy dużą bazę danych klientów. / Büyük bir müşteri veri tabanımız var.
+biustonosz / m / "b1_komple" / sutyen / Ten biustonosz jest bardzo wygodny. / Bu sutyen çok rahat. / poranny jogging / koń / dönüş / durum - durum, hal / wygodny biustonosz
+błąd / m / "b1_komple" / hata / Zrobiłem błąd w ostatnim zadaniu. / Son görevde bir hata yaptım. / sponsor / skaner / (kadın) ceket, blazer / ifade, söylem / popełnić błąd
+błyskawica / ż / "b1_komple" / şimşek / Nagle na niebie pojawiła się błyskawica. / Aniden gökyüzünde bir şimşek belirdi. / rejestracja / torba / rakip (kadın) / plaj / szybka jak błyskawica
+brać / fiil /  / almak (elde etmek) / Biorę parasolkę, bo pada. / Yağmur yağdığı için şemsiye alıyorum.
+broda / ż / "b1_komple" / çene, sakal / Mężczyzna z brodą stał przy oknie. / Sakallı bir adam pencerenin yanında duruyordu. / redakcja / strona internetowa / yapay zeka / ödeme / gęsta broda
+brudno / przysł. / "b1_komple" / kirli bir şekilde / W tym pokoju jest bardzo brudno. / Bu odada çok kirli. / osobiście / przykładowo / harika bir şekilde / yavaşça, ağır ağır / brudno wygląda
+brudnopis / m / "b1_komple" / müsvedde / Najpierw napisz tekst na brudnopisie. / Önce metni müsveddeye yaz. / wolontariat / smog / taksici / rota, yol / pisać na brudnopisie
+całkiem / przysł. / "b1_komple" / oldukça, tamamen / To zadanie było całkiem trudne. / Bu görev oldukça zordu. / grzecznie / najmniej / kısa süre önce - yakın zamanda / bugün / całkiem dobrze
+całkowicie / przysł. / "b1_komple" / tamamen / Zapomniałem całkowicie o spotkaniu. / Toplantıyı tamamen unutmuşum. / prawdopodobnie / sucho / dikkatlice - dikkatli bir şekilde - dikkatle / yüksekte / całkowicie inaczej
+całodobowy / przym. / "b1_komple" / 7-24 / Ten sklep jest całodobowy, można kupić o każdej porze. / Bu dükkan 7-24 açık, her saatte alışveriş yapılabilir. / wielorazowy / popularny / elektronik / kaygan / sklep całodobowy
+całować / czas. (nied.) / "b1_komple" / öpmek / Dzieci całują babcię na powitanie. / Çocuklar büyükanneyi selamlarken öpüyor. / remontować / spóźnić się / sahip olmak / geç kalmak / całować w policzek
+cenić / czas. (nied.) / "b1_komple" / değer vermek / Bardzo cenię twoją szczerość. / Senin samimiyetine çok değer veriyorum. / zjeść / śmiać się / yazmak / unutmak / cenić szczerość
+chętnie / przysł. / "b1_komple" / seve seve, memnuniyetle / Chętnie pomogę ci w tej sprawie. / Bu konuda sana seve seve yardım ederim. / zazwyczaj / jak / ayrıca, da-de / sabah / chętnie pomogę
+choć / spój. / "b1_komple" / -e rağmen / Choć jest zmęczony, pracuje dalej. / Yorgun olmasına rağmen çalışmaya devam ediyor. / gdyby / bo / ayrıca, de-da - ayrıca, de-da - ayrıca, da-de / bu yüzden - bu nedenle / choć trudno
+chwila / zenski /  / an, kısa süre / Poczekaj chwilę, zaraz wracam. / Bir an bekle, hemen dönüyorum.
+chyba / przysł. / "b1_komple" / sanırım, herhalde / Chyba padnie dzisiaj deszcz. / Sanırım bugün yağmur yağacak. / już / smacznie / oldukça, tamamen / çok / chyba tak
+chyba że / spój. / "b1_komple" / meğer ki--medikçe - olmadıkça, meğer ki / Przyjdę na czas, chyba że będzie korek. / Trafik olmadıkça zamanında geleceğim. / natomiast / dlatego / hem\... hem de - hem... hem de / ve, ile - ve - ayrıca / chyba że deszcz
+cielak / m / "b1_komple" / buzağı / Na farmie urodził się mały cielak. / Çiftlikte küçük bir buzağı doğdu. / wyjazd / tradycyjne potrawy / sınav, test / meslek / mały cielak
+ciemno / przysł. / "b1_komple" / karanlık / Wieczorem robi się szybko ciemno. / Akşamları hızlıca karanlık oluyor. / ciekawie / skąd / oldukça, tamamen / soğuk / robi się ciemno
+cierpliwość / ż / "b1_komple" / sabır / Praca z dziećmi wymaga dużej cierpliwości. / Çocuklarla çalışmak çok sabır gerektiriyor. / restauracja / muzyka / arama motoru / koyun / dużo cierpliwości
+cieszyć się / czas. (nied.) / "b1_komple" / sevinmek / Bardzo się cieszę z twoich sukcesów. / Başarılarına çok seviniyorum. / iść / przygotowywać / yemek yemek - yemek / bayılmak (çok sevmek) / cieszyć się z sukcesu
+ciężko / przysł. / "b1_komple" / ağır, zor / Pracuję dziś bardzo ciężko. / Bugün çok ağır çalışıyorum. / wreszcie / ostatnio / hafifçe / yakında / ciężko pracować
+ciśnienie / n / "b1_komple" / tansiyon, basınç / Lekarz zmierzył mi ciśnienie krwi. / Doktor tansiyonumu ölçtü. / konto / spotkanie / kompozisyon, yazı ödevi / güneş / wysokie ciśnienie
+czoło / n / "b1_komple" / alın / Pot spływał mu po czole podczas biegu. / Koşarken alnından ter akıyordu. / osłabienie wiosenne / puste opakowania / eylem, işlev / pencere / wysokie czoło
+czynnik / m / "b1_komple" / faktör, etken / Pogoda jest ważnym czynnikiem tej decyzji. / Hava durumu bu kararın önemli bir faktörü. / rozmiar / dział / bölge / saat (duvar-masa) / ważny czynnik
+ćwiczyć / czas. (nied.) / "b1_komple" / egzersiz yapmak / Codziennie ćwiczę rano przez pół godziny. / Her gün sabah yarım saat egzersiz yapıyorum. / podróżować / wyobrazić sobie / ifade etmek, söylemek / gitmek (planlanmış) / ćwiczyć codziennie
+dać / czas. (dok.) / "b1_komple" / vermek / Możesz mi dać szklankę wody? / Bana bir bardak su verebilir misin? / współpracować / odmówić / önermek - önerirdim (erkek) / çalışmak, işlemek / dać wodę
+dawać / fiil /  / vermek / Daję ci moją wizytówkę. / Sana kartvizitimi veriyorum.
+dawno / przysł. / "b1_komple" / eskiden, uzun zaman önce / Dawno temu mieszkałem w małej wiosce. / Eskiden küçük bir köyde yaşardım. / najczęściej / zimno / son zamanlarda / evet, böyle / dawno temu
+deprawować / czas. (nied.) / "b1_komple" / baştan çıkarmak, ahlakını bozmak / Takie filmy mogą deprawować młodych widzów. / Bu tür filmler genç izleyicilerin ahlakını bozabilir. / poinformować / spotykać / giymek, kurmak / oluşturmak / deprawować młodzież
+dezaprobata / ż / "b1_komple" / onaylamama / Szef wyraził dezaprobatę wobec tego pomysłu. / Patron bu fikri onaylamadığını belirtti. / pierogi / stała praca / ekoloji / mevsim, yılın zamanı / wyrazić dezaprobatę
+dojść / czas. (dok.) / "b1_komple" / yürüyerek ulaşmak / Możemy dojść na plac piechotą. / Meydana yürüyerek gidebiliriz. / nosić / utworzyć / fark etmek / yağmak / dojść piechotą
+dokąd / przysł. / "b1_komple" / nereye / Dokąd idziesz tak szybko? / Bu kadar hızlı nereye gidiyorsun? / całkowicie / dużo / gerçekten / şimdi / dokąd idziesz
+dojechać / czas. (dok.) / "b1_komple" / ulaşmak / Musimy dojechać na dworzec przed ósmą. / Saat sekizden önce istasyona ulaşmalıyız. / odwołać / zajmować się / kaldırmak / tasarlamak / dojechać na miejsce
+dołączyć / czas. (dok.) / "b1_komple" / katılmak / Chętnie dołączę do waszego zespołu. / Ekibinize memnuniyetle katılırım. / uwielbiać / podać / (giysi) çıkarmak / çıkmak / dołączyć do zespołu
+dopiero / przysł. / "b1_komple" / ancak, henüz / Dopiero teraz zrozumiałem tę zasadę. / Bu kuralı ancak şimdi anladım. / świetnie / ciepło / evet, böyle / nereye / dopiero teraz
+dostać / czas. (dok.) / "b1_komple" / almak, elde etmek / Dostałem list od starego przyjaciela. / Eski bir arkadaşımdan mektup aldım. / oprowadzać / budować / vermek / gülmek / dostać list
+dostać się / czas. (dok.) / "b1_komple" / ulaşmak / Jak można dostać się do centrum? / Merkeze nasıl ulaşılabilir? / powstać / rezygnować / hoşuna gitmek, beğenmek - beğenmek, hoşlanmak / yazdırmak, basmak / dostać się do centrum
+dostęp / m / "b1_komple" / erişim / Nie mam dostępu do tego dokumentu. / Bu belgeye erişimim yok. / moment / dziadek / başlangıç / manzara, görüntü / mieć dostęp
+dotyczyć / czas. (nied.) / "b1_komple" / ilgili olmak / Ten problem dotyczy całej rodziny. / Bu sorun tüm aileyi ilgilendiriyor. / odzywać się / wrzucić / uyuyakalmak / oluşmak, ortaya çıkmak / dotyczyć wszystkich
+dowiadywać się / czas. (nied.) / "b1_komple" / öğrenmek, haberdar olmak / Codziennie dowiaduję się czegoś nowego. / Her gün yeni bir şey öğreniyorum. / wyprowadzać się / zabraknąć / kaybetmek / kayıt olmak / dowiadywać się nowości
+dowiedzieć się / czas. (dok.) / "b1_komple" / öğrenmek / Właśnie dowiedziałem się o zmianie planu. / Plan değişikliğini az önce öğrendim. / zastanowić się / podkreślić / oturmak, yaşamak - yaşamak, oturmak / paketlemek / dowiedzieć się prawdy
+dreszcze / lm / "b1_komple" / titreme / Poczułam dreszcze, kiedy zrobiło mi się zimno. / Üşüyünce titremeler hissettim. / naczynia / ludzie / kap kacak, bulaşık / dilekler, tebrikler / mieć dreszcze
+drewniany / przym. / "b1_komple" / ahşap / W ogrodzie stoi stary drewniany stół. / Bahçede eski ahşap bir masa duruyor. / oszczędny / najdłuższy / pahalı / akıcı, uzman / drewniany stół
+drewno / n / "b1_komple" / ahşap, odun / Ten stół jest zrobiony z drewna. / Bu masa ahşaptan yapılmıştır. / badania konsumenckie / kino / ofis, büro / organik ürünler / suche drewno
+drobne / lm / "b1_komple" / bozuk para / Nie mam drobnych na bilet autobusowy. / Otobüs bileti için bozuk param yok. / spodnie / meble / araçlar, kaynaklar / trafik sıkışıklığı / mieć drobne
+drobny / przym. / "b1_komple" / küçük, ufak / Nie mam drobnych pieniędzy. / Bozuk param yok. / szybszy / aktywny / soğuk / güçlü, şiddetli / drobne pieniądze
+drożdżówka / ż / "b1_komple" / mayalı pasta / Na śniadanie zjadłam drożdżówkę z jabłkiem. / Kahvaltıda elmalı mayalı pasta yedim. / restauracja / radość / sessizlik / hayal gücü / świeża drożdżówka
+droższy / przym. / "b1_komple" / daha pahalı / Ten hotel jest droższy niż tamten. / Bu otel diğerinden daha pahalı. / elektryczny / różny / aydınlık, açık / bilgisayarlı / droższy hotel
+działać / czas. (nied.) / "b1_komple" / çalışmak, işlemek / Ten telefon już nie działa poprawnie. / Bu telefon artık düzgün çalışmıyor. / interesować się / zgadzać się / yürüyerek ulaşmak / kullanmak, yararlanmak / działać poprawnie
+działanie / n / "b1_komple" / eylem, işlev / To działanie przyniosło szybkie efekty. / Bu eylem hızlı sonuçlar getirdi. / drewno / zachowanie / eğitim / tanıma, öğrenme / szybkie działanie
+dziedzina / zenski /  / alan, saha / Specjalizuję się w tej dziedzinie. / Bu alanda uzmanlaşıyorum.
+dzielić / czas. (nied.) / "b1_komple" / bölmek, paylaşmak / Dzieci dzielą się zabawkami w przedszkolu. / Çocuklar anaokulunda oyuncaklarını paylaşıyor. / nadawać się / wypełnić / yazmak / işten çıkarmak / dzielić się jedzeniem
+dziwny / przym. / "b1_komple" / tuhaf, garip / Usłyszałam dziwny dźwięk w nocy. / Gece tuhaf bir ses duydum. / najdłuższy / stary / doğru, hatasız / zengin / dziwny dźwięk
+ferma / ż / "b1_komple" / çiftlik / Moi dziadkowie mają fermę drobiu. / Büyükbabamlar tavuk çiftliğine sahip. / zmiana / witamina / iş - iş, çalışma / şemsiye / ferma drobiu
+frazeologia / ż / "b1_komple" / deyim bilgisi / Frazeologia polska jest dla mnie trudna. / Lehçe deyim bilgisi benim için zor. / klimatyzacja / galeria / kız (evlat) - kız çocuğu, kız / anakart / polska frazeologia
+gatunek / m / "b1_komple" / tür / Ten gatunek ptaka jest bardzo rzadki. / Bu kuş türü çok nadirdir. / mieszkaniec / piknik / gönüllülük / gönüllü / rzadki gatunek
+gęś / ż / "b1_komple" / kaz / Na wsi hodują gęsi i kaczki. / Köyde kaz ve ördek yetiştiriyorlar. / marchewka / woda / dakika / para üstü / pieczona gęś
+głęboki / przym. / "b1_komple" / derin / To jezioro jest bardzo głębokie w środku. / Bu göl ortasında çok derin. / sztuczny / kolejny / yoğun / karışık / głębokie jezioro
+głośno / przysł. / "b1_komple" / yüksek sesle / Proszę nie mówić tak głośno w bibliotece. / Lütfen kütüphanede bu kadar yüksek sesle konuşma. / ciężko / nareszcie / genellikle, çoğunlukla / ne kadar / mówić głośno
+głowa / ż / "b1_komple" / kafa, baş / Boli mnie dzisiaj głowa od rana. / Bugün sabahtan beri başım ağrıyor. / kariera / przekąska / istek, arzu / atardamar, arter / boli głowa
+głód / m / "b1_komple" / açlık / Po treningu czuł ogromny głód. / Antrenmandan sonra büyük bir açlık hissetti. / kraj / indyk / tavşan / turnuva / czuć głód
+głupi / przym. / "b1_komple" / aptal, salak / Nie rób takich głupich żartów w pracy. / İş yerinde böyle aptal şakalar yapma. / długi / podany / değerli, kıymetli / tıkanmış (trafik) / głupi żart
+gorąco / przysł. / "b1_komple" / çok sıcak / Latem jest tutaj bardzo gorąco. / Yazın burası çok sıcak oluyor. / wkrótce / systematycznie / hızlı, çabuk - hızlıca / kısa süre / robi się gorąco
+gorączka / ż / "b1_komple" / ateş / Dziecko ma dzisiaj wysoką gorączkę. / Çocuğun bugün yüksek ateşi var. / rękawiczka / gramatyka / şampiyon (kadın) / parti, etkinlik / wysoka gorączka
+gorzej / przysł. / "b1_komple" / daha kötü / Dzisiaj czuję się gorzej niż wczoraj. / Bugün dünden daha kötü hissediyorum. / dziś / zazwyczaj / en kötü şekilde / aslında, gerçekten / gorzej niż wczoraj
+gotowanie / n / "b1_komple" / pişirme, yemek yapma / Uwielbiam gotowanie dla całej rodziny. / Bütün aile için yemek pişirmeyi çok severim. / narzędzie / szczęście / his, duygu / bağımlılık / uwielbiać gotowanie
+grób / m / "b1_komple" / mezar / Odwiedziliśmy grób dziadka na cmentarzu. / Mezarlıkta dedemin mezarını ziyaret ettik. / stół / naukowiec / akıllı telefon / blog / grób dziadka
+grzecznie / przysł. / "b1_komple" / nazikçe, kibarca / Dzieci grzecznie przywitały się z gośćmi. / Çocuklar misafirleri kibarca selamladı. / strasznie / tylko / sıcak (biçimde) - sıcak (bir şekilde) - sıcak, ılık / sürekli / grzecznie prosić
+gust / m / "b1_komple" / zevk, beğeni / Ona się podoba ta sukienka, ale to nie mój gust. / O elbise hoşuna gidiyor ama bu benim zevkim değil. / chłopiec / bar mleczny / faktör, etken / pastırma / dobry gust
+jasno / przysł. / "b1_komple" / açıkça, aydınlık / Proszę wytłumaczyć to jasno i prosto. / Lütfen bunu açıkça ve basitçe anlat. / wcześniej / dopiero / son zamanlarda / kısa süre / mówić jasno
+jasny / przym. / "b1_komple" / aydınlık, açık / Lubię jasne pokoje z dużymi oknami. / Büyük pencereli aydınlık odaları severim. / ruchomy / kameralny / kentsel, şehir / dijital / jasny pokój
+jednocześnie / przysł. / "b1_komple" / aynı anda / Nie mogę robić dwóch rzeczy jednocześnie. / Aynı anda iki şey yapamam. / systematycznie / mniej / artık, zaten / karanlık / robić jednocześnie
+jednorazowy / przym. / "b1_komple" / tek kullanımlık / Nie używam już jednorazowych plastików. / Artık tek kullanımlık plastik kullanmıyorum. / materiałowy / zawodowy / kapalı, çalışmıyor / lüks / jednorazowe naczynia
+jedynie / przysł. / "b1_komple" / yalnızca, sadece / Mam jedynie dwie godziny wolnego czasu. / Yalnızca iki saat boş vaktim var. / trochę / dzisiaj / orada / sık sık / jedynie chwilę
+jelito / n / "b1_komple" / bağırsak / Lekarz zbadał jego jelito grube. / Doktor onun kalın bağırsağını inceledi. / doświadczenie / miasteczko / satın alma / eğitim / jelito grube
+kamizelka / ż / "b1_komple" / yelek / Załóż kamizelkę odblaskową na rowerze. / Bisiklette reflektörlü yelek giy. / puszka / strona internetowa / yerleşim yeri / işe alım / kamizelka ratunkowa
+kijki / lm / "b1_komple" / sopalar (yürüyüş) / Idziemy na spacer z kijkami do nordic walking. / Nordic walking sopalarıyla yürüyüşe çıkıyoruz. / ludzie / spodnie / ağız, dudaklar / kap kacak, bulaşık / kijki trekkingowe
+kłamać / czas. (nied.) / "b1_komple" / yalan söylemek / Nie lubię, kiedy ludzie kłamią w oczy. / İnsanların yüzüme karşı yalan söylemesinden hoşlanmam. / celebrować / dbać / yürütmek - yönetmek, sürmek / almak, elde etmek / kłamać w żywe oczy
+kogut / m / "b1_komple" / horoz / Kogut zapiał wcześnie rano na wsi. / Horoz köyde sabah erkenden öttü. / supermarket / teatr / orman / ruh hali / kogut pieje
+kolano / n / "b1_komple" / diz / Upadłam i mocno uderzyłam kolano. / Düştüm ve dizimi sert bir şekilde vurdum. / miasto / stanowisko / çevre / ahşap, odun / boli kolano
+komplement / meski /  / iltifat / Dostałam piękny komplement od szefa. / Patrondan güzel bir iltifat aldım.
+komunikatywność / ż / "b1_komple" / iletişim becerisi / Pracodawcy cenią komunikatywność u pracowników. / İşverenler çalışanlarda iletişim becerisini önemser. / kampania marketingowa / obsługa / zam, maaş artışı / şikâyet - iade talebi / dobra komunikatywność
+konsekwencja / ż / "b1_komple" / sonuç / Każda decyzja ma swoje konsekwencje. / Her kararın kendi sonuçları vardır. / wideorozmowa / ochota / dondurmacı / haklılık, hak / ponosić konsekwencje
+kontuzja / ż / "b1_komple" / sakatlık / Piłkarz nie zagra przez poważną kontuzję. / Futbolcu ciddi bir sakatlık nedeniyle oynamayacak. / podwyżka / jakość / eczane / atardamar, arter / poważna kontuzja
+koń / m / "b1_komple" / at / Na wsi jeździłam konno na koniu. / Köyde ata binmiştim. / sędzia / marsz / meyve / sembol / biały koń
+koperta / ż / "b1_komple" / zarf (mektup) / Włożyłem list do koperty i wysłałem. / Mektubu zarfa koyup gönderdim. / znajomość / kaczka / kurum / sözleşme / zaklejona koperta
+korek / m / "b1_komple" / trafik sıkışıklığı / Stałam w korku prawie godzinę. / Neredeyse bir saat trafikte kaldım. / sędzia / pobyt / diş / yanak / duży korek
+korki / lm / "b1_komple" / trafik sıkışıklığı / Rano na drodze są zawsze korki. / Sabahları yolda hep trafik sıkışıklığı olur. / płuca / usta / duygular / yarışma - yarışma, meslek / stać w korkach
+korzystać / czas. (nied.) / "b1_komple" / kullanmak, yararlanmak / Codziennie korzystam z internetu w pracy. / İşte her gün internet kullanıyorum. / zarejestrować się / potwierdzać / rezerve etmek / ilgilenmek / korzystać z internetu
+korzyść / zenski /  / fayda, kazanım / Jakie są korzyści z tego rozwiązania? / Bu çözümün faydaları nelerdir?
+kostka / ż / "b1_komple" / ayak bileği / Podczas biegania skręciłam kostkę. / Koşarken ayak bileğimi burktum. / plaża / kontuzja / raf / çiçekçi / skręcić kostkę
+koszt / m / "b1_komple" / maliyet / Musimy policzyć koszt całej podróży. / Tüm seyahatin maliyetini hesaplamamız gerekiyor. / spadek / architekt / dil kursu / telefon / niski koszt
+kotek / m / "b1_komple" / kedi yavrusu / Dostaliśmy małego kotka od sąsiadów. / Komşulardan küçük bir kedi yavrusu aldık. / zegar / minerał / hafta / ekran / mały kotek
+koza / ż / "b1_komple" / keçi / Koza je liście z krzaków w ogrodzie. / Keçi bahçedeki çalıların yapraklarını yiyor. / lawenda / kwalifikacja / alan, saha / kitabevi / biała koza
+krajobraz / m / "b1_komple" / manzara / Z okna widać piękny krajobraz gór. / Pencereden dağların güzel manzarası görünüyor. / poranny jogging / problem / yarış / başarı / piękny krajobraz
+kręgosłup / m / "b1_komple" / omurga / Siedzący tryb życia szkodzi kręgosłupowi. / Hareketsiz yaşam tarzı omurgaya zarar verir. / krajobraz / aktor / mağaza, dükkan - dükkan, mağaza / trafik sıkışıklığı / zdrowy kręgosłup
+krowa / ż / "b1_komple" / inek / Na farmie hodują krowy mleczne. / Çiftlikte süt ineği yetiştiriyorlar. / kolekcja / koszula nocna / egzersizler / el çantası / mleczna krowa
+królik / m / "b1_komple" / tavşan / Mój syn ma w domu małego królika. / Oğlumun evde küçük bir tavşanı var. / zegar / tramwaj / yarış / kedi / mały królik
+krótko / przysł. / "b1_komple" / kısa süre / Mówił krótko, ale bardzo konkretnie. / Kısa konuştu ama çok net konuştu. / wczoraj / tutaj / yoğun bir şekilde - yoğun şekilde / güzelce / krótko mówiąc
+ktokolwiek / zaim. / "b1_komple" / kim olursa olsun, herhangi biri / Jeśli ktokolwiek zadzwoni, zapisz jego numer. / Herhangi biri ararsa numarasını not et. / cię - ciebie - tobą / co / şu / onun - onunla (kadın) / ktokolwiek zadzwoni
+ktoś / zaim. / "b1_komple" / birisi / Ktoś zapukał do drzwi. / Biri kapıyı çaldı. / mój / twój / hiçbir şey / kendini / ktoś inny
+kultywować / czas. (nied.) / "b1_komple" / sürdürmek (gelenek) / Rodzina kultywuje starą tradycję świąteczną. / Aile eski bir bayram geleneğini sürdürüyor. / wiedzieć / oprowadzać / sihirle yaratmak / sınırlamak / kultywować tradycję
+kupno / n / "b1_komple" / satın alma / Planujemy kupno nowego samochodu. / Yeni bir araba satın almayı planlıyoruz. / biuro rachunkowe / zadowolenie / organik ürünler / araba / kupno mieszkania
+kura / ż / "b1_komple" / tavuk / Kura zniosła dzisiaj trzy jajka. / Tavuk bugün üç yumurta bıraktı. / półka / plamka / indirim / onarım / kura znosi jajka
+kurczątko / n / "b1_komple" / civciv / Małe kurczątko biegało po podwórku. / Küçük civciv bahçede koşuyordu. / doświadczenie / krzesło / tereddüt / yorgunluk / małe kurczątko
+kurtka / ż / "b1_komple" / ceket, mont / Załóż ciepłą kurtkę, bo jest zimno. / Hava soğuk olduğu için sıcak bir mont giy. / współpraca / propozycja / beş (not) / platform / zimowa kurtka
+kuzynka / ż / "b1_komple" / kuzen (kadın) / Moja kuzynka mieszka teraz w Warszawie. / Kuzenim şimdi Varşova'da yaşıyor. / płatność / piżama / topuk / onaylamama / ulubiona kuzynka
+kwestionariusz / m / "b1_komple" / anket / Proszę wypełnić ten kwestionariusz przed wizytą. / Lütfen ziyaretten önce bu anketi doldurun. / list motywacyjny / jubiler / uçak / pierogi (Polonya mantısı) / wypełnić kwestionariusz
+latać / czas. (nied.) / "b1_komple" / uçmak (sık sık) - uçmak / Często latam samolotem do pracy za granicą. / Yurtdışındaki işim için sık sık uçakla uçuyorum. / prezentować / działać / öğrenmek / tasarruf etmek / latać samolotem
+lecieć / czas. (nied.) / "b1_komple" / uçmak / Samolot leci teraz nad górami. / Uçak şu anda dağların üzerinden uçuyor. / pojawić się / zagrać / olmak, gerçekleşmek / bir kenara koymak, (para) ayırmak / lecieć nad górami
+lecz / spój. / "b1_komple" / ama, fakat - ama - fakat / To był mały dom, lecz bardzo wygodny. / Küçük bir evdi ama çok rahattı. / jeśli / a / bu yüzden - bu nedenle / eğer, şayet - eğer / mały, lecz ciepły
+leczenie / n / "b1_komple" / tedavi / Lekarz zaproponował nowe leczenie. / Doktor yeni bir tedavi önerdi. / kryterium / biuro / atasözü, deyim / bahar yorgunluğu / skuteczne leczenie
+leczyć / czas. (nied.) / "b1_komple" / tedavi etmek / Ten lekarz leczy dzieci od lat. / Bu doktor yıllardır çocukları tedavi ediyor. / uzupełnić / liczyć się / yerine geçmek / işaret etmek, belirtmek / leczyć pacjenta
+leksyka / ż / "b1_komple" / sözcük bilgisi / Na kursie skupiamy się na nowej leksyce. / Kursta yeni sözcük bilgisine odaklanıyoruz. / konsekwencja / żyła / okul / gayrimenkul - gayrimenkul, mülk / bogata leksyka
+len / m / "b1_komple" / keten / Ta koszula jest zrobiona ze lnu. / Bu gömlek ketenden yapılmış. / spektakl / strój / ekip, takım - takım, ekip / tramvay / naturalny len
+leniwie / przysł. / "b1_komple" / tembelce / W niedzielę leżeliśmy leniwie na kanapie. / Pazar günü kanepede tembelce uzandık. / szybciej / pięknie / kısa süre / iyi / leniwie leżeć
+liczyć / czas. (nied.) / "b1_komple" / saymak / Dziecko uczy się liczyć do dziesięciu. / Çocuk ona kadar saymayı öğreniyor. / współpracować / spóźnić się / anlamına gelmek - anlamına gelmek, işaretlemek / yapmak / liczyć do dziesięciu
+liczyć się / czas. (nied.) / "b1_komple" / önemli olmak, sayılmak / W tej pracy liczy się doświadczenie. / Bu işte deneyim önemlidir. / spóźnić się / śmiecić / ateşlemek, yakmak / keşfetmek / liczyć się bardzo
+lodziarnia / ż / "b1_komple" / dondurmacı / Po obiedzie poszliśmy do lodziarni na deser. / Öğle yemeğinden sonra tatlı için dondurmacıya gittik. / siłownia / reklamówka / güzellik uzmanı / konsantrasyon / mała lodziarnia
+łatwo / przysł. / "b1_komple" / kolayca / Znalazłem tę książkę bardzo łatwo. / Bu kitabı çok kolayca buldum. / pięknie / więcej / karanlık / örneğin / łatwo zapomnieć
+ławka / ż / "b1_komple" / bank, sıra / Usiedliśmy na ławce w parku. / Parktaki bir bankta oturduk. / część / ściana / misafir / büyükanne / parkowa ławka
+marsz / m / "b1_komple" / yürüyüş / W sobotę idziemy na długi marsz. / Cumartesi uzun bir yürüyüşe çıkıyoruz. / kotek / uniwersytet / masa / koşul, şart / długi marsz
+marynarka / ż / "b1_komple" / (takım) ceket / Włożył czarną marynarkę na spotkanie. / Toplantı için siyah ceketini giydi. / koszula nocna / pomoc / fayda, kazanım / istasyon / czarna marynarka
+marzyć / czas. (nied.) / "b1_komple" / hayal etmek / Marzę o podróży dookoła świata. / Dünya turu yapmayı hayal ediyorum. / zauważyć / dopasować / bitirmek / açmak / marzyć o podróży
+mieć ochotę na coś / wyr. / "b1_komple" / bir şey canı istemek / Mam dzisiaj ochotę na lody czekoladowe. / Bugün canım çikolatalı dondurma istiyor. / niedobrze mi / przez to / midem bulanıyor / duruma göre, ona bağlı / mieć ochotę na lody
+miesiąc / meski /  / ay / Za miesiąc jadę do Warszawy. / Bir ay sonra Varşova'ya gidiyorum.
+mięsień / m / "b1_komple" / kas / Po treningu boli mnie każdy mięsień. / Antrenmandan sonra her kasım ağrıyor. / kierowca / system / tarife - tarife, program / kredi / silny mięsień
+mięso / nijaki /  / et / Nie jem mięsa. / Et yemiyorum.
+mistrzyni / ż / "b1_komple" / şampiyon (kadın) / Ona jest mistrzynią Polski w pływaniu. / O, yüzmede Polonya şampiyonu. / dyskusja / satysfakcja / ateş / güzellik uzmanı / mistrzyni Polski
+mokro / przysł. / "b1_komple" / ıslak / Na dworze jest teraz bardzo mokro. / Dışarısı şimdi çok ıslak. / prawie / najmniej / dikkatlice - dikkatli bir şekilde - dikkatle / daha kolay / robi się mokro
+możliwość / ż / "b1_komple" / olanak, imkân - olasılık, imkân / Praca daje mi wiele nowych możliwości. / İş bana birçok yeni imkân sunuyor. / gramatyka / witamina / (küçük) fular / keçi / nowa możliwość
+mózg / m / "b1_komple" / beyin / Ludzki mózg zapamiętuje wiele informacji. / İnsan beyni birçok bilgiyi hatırlar. / znajomy / gust / yazar / örnek / ludzki mózg
+mrożony / przym. / "b1_komple" / dondurulmuş / Kupiłam mrożone warzywa na obiad. / Öğle yemeği için dondurulmuş sebze aldım. / typowy / szybszy / eğitimsel / iyi / mrożone warzywa
+mylić się / czas. (nied.) / "b1_komple" / yanılmak / Czasem się mylę, ale szybko poprawiam błędy. / Bazen yanılıyorum ama hataları çabuk düzeltiyorum. / przechodzić / marzyć / taramak / değerlendirmek - değerlendirirlerdi / mylić się często
+myśleć / fiil /  / düşünmek / Myślę, że to dobry pomysł. / Bence bu iyi bir fikir.
+naczynia / lm / "b1_komple" / kap kacak, bulaşık / Muszę jeszcze umyć naczynia po obiedzie. / Öğle yemeğinden sonra bulaşıkları hâlâ yıkamam lazım. / imieniny / odpady / gözlük / isim günü / myć naczynia
+nadal / przysł. / "b1_komple" / hâlâ, hâlen / On nadal mieszka w tym samym mieście. / O hâlâ aynı şehirde yaşıyor. / chyba / uważnie / şu anda / hızlı, çabuk - hızlıca / nadal czekać
+najchętniej / przysł. / "b1_komple" / en istekli şekilde / Najchętniej zostałbym dziś w domu. / En çok bugün evde kalmak isterdim. / intensywnie / szybko / rahatça / hızlı, çabuk - hızlıca / najchętniej w domu
+najczęściej / przysł. / "b1_komple" / en sık - en sık, çoğunlukla / Najczęściej jeżdżę do pracy rowerem. / İşe en sık bisikletle giderim. / najbardziej / zazwyczaj / neden / her gün / najczęściej rano
+najdłuższy / przym. / "b1_komple" / en uzun / To jest najdłuższy most w kraju. / Bu, ülkedeki en uzun köprü. / południowo-wschodni / agresywny / kaygan / bozuk, arızalı / najdłuższy most
+najgorszy / przym. / "b1_komple" / en kötü / To był najgorszy dzień w moim życiu. / Bu, hayatımdaki en kötü gündü. / tradycyjny / płatny / dönüş / mavi, gök mavisi / najgorszy dzień
+najgorzej / przysł. / "b1_komple" / en kötü şekilde / To był dla mnie najgorzej spędzony dzień. / Bu benim için en kötü geçen gündü. / zazwyczaj / ciepło / en çok / nerede / najgorzej wypadło
+najlepszy / przym. / "b1_komple" / en iyi / To jest mój najlepszy przyjaciel. / Bu benim en iyi arkadaşım. / życzliwy / turystyczny / aile ile ilgili / Mazurya'ya ait / najlepszy przyjaciel
+najmniej / przysł. / "b1_komple" / en az / To jest najmniej ważna sprawa na dzisiaj. / Bu, bugün için en az önemli konu. / codziennie / czasami / sadece, yalnızca / tesadüfen / co najmniej
+najważniejszy / przym. / "b1_komple" / en önemli / Rodzina to dla mnie najważniejsza rzecz. / Aile benim için en önemli şey. / wielokulturowy / praktyczny / el (bagajı) / doğu / najważniejsza rzecz
+najwyższy / przym. / "b1_komple" / en yüksek / To jest najwyższy budynek w mieście. / Bu, şehirdeki en yüksek bina. / życzliwy / wielorazowy / küçük, ufak / düzenli / najwyższy budynek
+naprawa / ż / "b1_komple" / onarım / Naprawa samochodu zajęła cały dzień. / Arabanın onarımı bütün günü aldı. / zniżka / skarpetka / hizmet, kullanım / plaj / naprawa samochodu
+naprawdę / przysł. / "b1_komple" / gerçekten / To był naprawdę ciekawy film. / Bu gerçekten ilginç bir filmdi. / osobiście / poprawnie / giderek daha sık / dikkatlice - dikkatli bir şekilde - dikkatle / naprawdę lubić
+nareszcie / przysł. / "b1_komple" / sonunda, nihayet / Nareszcie skończyłem tę trudną pracę domową. / Sonunda bu zor ev ödevini bitirdim. / ładnie / codziennie / daha uzun / bazen / nareszcie koniec
+naród / m / "b1_komple" / millet / Polski naród ma bogatą historię. / Polonya milletinin zengin bir tarihi var. / dyrektor / powrót / konteyner / başlangıç / cały naród
+nastrój / m / "b1_komple" / ruh hali / Dziś mam bardzo dobry nastrój. / Bugün ruh halim çok iyi. / cukier / numer telefonu / masa / meslek / dobry nastrój
+natomiast / spój. / "b1_komple" / ise, oysa / Ja lubię lato, natomiast mój brat lubi zimę. / Ben yazı severim, kardeşim ise kışı sever. / a / chociaż / veya / ayrıca, de-da - ayrıca, de-da - ayrıca, da-de / ja natomiast
+naukowiec / m / "b1_komple" / bilim insanı / Ten naukowiec bada zmiany klimatu. / Bu bilim insanı iklim değişikliğini araştırıyor. / wypowiedź / kamień / antrenman / yol, yöntem / znany naukowiec
+na pewno / przysł. / "b1_komple" / kesinlikle / On na pewno przyjdzie na spotkanie. / O kesinlikle toplantıya gelecek. / wcześniej / ładnie / aslında, doğru şekilde / güçlüce, sıkıca / na pewno przyjdę
+niebo / n / "b1_komple" / gökyüzü / Dziś niebo jest czyste i niebieskie. / Bugün gökyüzü temiz ve mavi. / pisanie / kino / parti, kabul / müze / czyste niebo
+nieczynny / przym. / "b1_komple" / kapalı, çalışmıyor / Sklep jest dzisiaj nieczynny. / Mağaza bugün kapalı. / czysty / niedoświadczony / seçilmiş, seçilen / favori, en sevilen / sklep nieczynny
+niedawno / przysł. / "b1_komple" / kısa süre önce - yakın zamanda / Niedawno wróciłem z podróży służbowej. / Kısa süre önce iş seyahatinden döndüm. / tylko / wyłącznie / erken / bazen / niedawno widzieć
+niedoświadczony / przym. / "b1_komple" / deneyimsiz / Jest jeszcze niedoświadczonym kierowcą. / O hala deneyimsiz bir sürücü. / przeterminowany / młody / krem rengi / akademik / niedoświadczony kierowca
+niepotrzebny / przym. / "b1_komple" / gereksiz / Wyrzuciłem wszystkie niepotrzebne rzeczy. / Bütün gereksiz eşyaları attım. / elektroniczny / akademicki / çok kullanımlık / geleneksel / niepotrzebne rzeczy
+niespodzianka / ż / "b1_komple" / sürpriz / Mam dla ciebie małą niespodziankę. / Sana küçük bir sürprizim var. / cena początkowa / ortopeda / Enerji - enerji / kozmetik-temizlik ürünleri dükkanı / miła niespodzianka
+nieść / czas. (nied.) / "b1_komple" / taşımak (o an, tek yöne) / Mężczyzna niósł ciężką walizkę na dworzec. / Adam istasyona ağır bir bavul taşıyordu. / zdecydować się / zdobyć / başlatmak / yayımlamak / nieść walizkę
+niezapomniany / przym. / "b1_komple" / unutulmaz / To były niezapomniane wakacje. / Bu unutulmaz bir tatildi. / minimalistyczny / akademicki / çalışkan / açık hava, dış / niezapomniane wakacje
+niezbędny / przym. / "b1_komple" / vazgeçilmez, elzem / Woda jest niezbędna do życia. / Su, yaşam için vazgeçilmezdir. / świetny / odświętny / son kullanma tarihi geçmiş / popüler / niezbędny element
+obejmować kogoś na szyję / wyr. / "b1_komple" / birinin boynuna sarılmak / Kobieta objęła mężczyznę na szyję. / Kadın erkeğin boynuna sarıldı. / niedobrze mi / mieć ochotę na coś / duruma göre, ona bağlı / midem bulanıyor / objąć na szyję
+obejmować (się) / czas. (nied.) / "b1_komple" / sarılmak, kucaklaşmak / Kobieta i mężczyzna obejmują się czule. / Kadın ve erkek birbirine şefkatle sarılıyor. / wyprowadzać się / zmniejszyć / keşfetmek / inanmak / obejmować się czule
+obiecać / czas. (dok.) / "b1_komple" / söz vermek / Obiecałem synowi, że kupię mu rower. / Oğluma bisiklet alacağıma söz verdim. / drukować / zakończyć się / düzenlemek - organize etmek / yapmak / obiecać coś
+objętość / ż / "b1_komple" / hacim, uzunluk / Musimy obliczyć objętość tego pudełka. / Bu kutunun hacmini hesaplamamız gerekiyor. / stała praca / drożdżówka / el çantası / gelenek / duża objętość
+obowiązek / meski /  / yükümlülük, görev / Mam wiele obowiązków w pracy. / İşte çok sayıda görevim var.
+obowiązkowy / przym. / "b1_komple" / zorunlu / Ten kurs jest obowiązkowy dla wszystkich. / Bu kurs herkes için zorunlu. / skomplikowany / poważny / yüksek - uzun-yüksek / en yüksek / kurs obowiązkowy
+obsługa / zenski /  / hizmet, kullanım / Obsługa klienta jest na wysokim poziomie. / Müşteri hizmeti yüksek düzeyde.
+oceniać / czas. (nied.) / "b1_komple" / değerlendirmek / Nauczyciel ocenia prace uczniów co tydzień. / Öğretmen öğrencilerin ödevlerini her hafta değerlendiriyor. / wygrać / dekorować / kiralamak / çalmak-oynamak (müzik) - çalmak (müzik), oynamak / oceniać prace
+ocenić / czas. (dok.) / "b1_komple" / değerlendirmek - değerlendirirlerdi / Jury oceniło wszystkie prace konkursowe. / Jüri tüm yarışma çalışmalarını değerlendirdi. / siedzieć / zabrać / gitmek (planlanmış) / dönmek, geri gelmek - dönmek / ocenić wynik
+ochłodzenie / n / "b1_komple" / soğuma / Synoptycy zapowiadają ochłodzenie w weekend. / Meteorologlar hafta sonu için soğuma bekliyor. / pozdrowienie / święto / tedavi / kasaba / nagłe ochłodzenie
+ochota / zenski /  / istek, arzu / Mam ochotę na kawę. / Kahve içmek istiyorum.
+odebrać / czas. (dok.) / "b1_komple" / almak, teslim almak / Odbiorę paczkę z poczty po pracy. / İşten sonra postaneden paketi alacağım. / zagrać / zarezerwować / söylemek - söyle / almak, elde etmek / odebrać paczkę
+odjeżdżać / czas. (nied.) / "b1_komple" / kalkmak, hareket etmek / Pociąg odjeżdża za pięć minut. / Tren beş dakika sonra kalkıyor. / podkreślić / rejestrować się / saymak / ilgilenmek / pociąg odjeżdża
+odkrywać / czas. (nied.) / "b1_komple" / keşfetmek / Turyści odkrywają nowe miejsca w górach. / Turistler dağlarda yeni yerler keşfediyor. / występować / posiadać / kontrol etmek / oluşmak, ortaya çıkmak / odkrywać nowe miejsca
+odłożyć / czas. (dok.) / "b1_komple" / bir kenara koymak, (para) ayırmak / Co miesiąc odkładam trochę pieniędzy na wakacje. / Her ay tatil için biraz para biriktiriyorum. / wyprodukować / podkreślić / sürmek, devam etmek / yaratmak, oluşturmak / odłożyć pieniądze
+odmówić / czas. (dok.) / "b1_komple" / reddetmek / Nie mogłem odmówić jej prośbie. / Onun ricasını reddedemedim. / zdobyć / dzielić / eksik olmak / kontrol etmek / odmówić prośbie
+odpoczywać / czas. (nied.) / "b1_komple" / dinlenmek / Po pracy lubię odpoczywać w fotelu. / İşten sonra koltukta dinlenmeyi severim. / oszczędzać / odłożyć / oluşturmak, yaratmak / altını çizmek, vurgulamak - altını çizmek / odpoczywać w domu
+odpowiedzialność / zenski /  / sorumluluk / Biorę odpowiedzialność za ten błąd. / Bu hata için sorumluluğu üstleniyorum.
+odpowiedzieć / czas. (dok.) / "b1_komple" / cevap vermek / Proszę odpowiedzieć na moje pytanie. / Lütfen sorumu cevaplayın. / skomplikować / dyskutować / yağmak / ayırmak / odpowiedzieć na pytanie
+odpowiedź / m / "b1_komple" / cevap / Nie znam odpowiedzi na to pytanie. / Bu sorunun cevabını bilmiyorum. / masażysta / szlafrok / nokta, şube - puan, nokta / egzoz gazı / szybka odpowiedź
+odświętny / przym. / "b1_komple" / bayramlık, şık / Włożył odświętny strój na uroczystość. / Törene bayramlık kıyafetini giydi. / wakacyjny / kolejny / dönüş / sebzeli / odświętny strój
+odtworzyć / czas. (dok.) / "b1_komple" / yeniden oluşturmak, oynatmak / Możesz odtworzyć tę piosenkę jeszcze raz? / Bu şarkıyı bir kez daha çalabilir misin? / wyobrażać sobie / uprawiać / eksik olmak / sormak (soru) / odtworzyć piosenkę
+odważny / przym. / "b1_komple" / cesur / To był bardzo odważny wybór. / Bu çok cesur bir seçimdi. / lepszy / przygotowany / ikinci el-kullanılan / tatil ile ilgili / odważna decyzja
+odwiedziny / lm / "b1_komple" / ziyaret / Przyjechali do nas z odwiedzinami w niedzielę. / Pazar günü bize ziyarete geldiler. / chusteczki / dżinsy / çatal bıçak takımı / şort / przyjść z odwiedzinami
+odwołać / czas. (dok.) / "b1_komple" / iptal etmek / Musieliśmy odwołać spotkanie z powodu choroby. / Hastalık nedeniyle toplantıyı iptal etmek zorunda kaldık. / podróżować / pokazywać / kullanmak, yararlanmak / ziyaret etmek / odwołać spotkanie
+odzież / m / "b1_komple" / giyim / Kupujemy odzież tylko w dobrej jakości. / Sadece iyi kaliteli giyim satın alıyoruz. / muzyk / paragon / lider / küçük masa / ciepła odzież
+odzywać się / czas. (nied.) / "b1_komple" / ses etmek, haber vermek / Od miesiąca on się do mnie nie odzywa. / Bir aydır bana haber vermiyor. / zaspać / przedstawić / yapmak (ödev) / ezberlemek / nie odzywać się
+ogłosić / czas. (dok.) / "b1_komple" / duyurmak, ilan etmek / Dyrektor ogłosił wyniki konkursu na zebraniu. / Müdür toplantıda yarışma sonuçlarını duyurdu. / wyrzucać / podać / yazmak / geçmek (sınav) - geçmek (sınavı) / ogłosić wyniki
+ograniczyć / czas. (dok.) / "b1_komple" / sınırlamak / Powinniśmy ograniczyć jedzenie słodyczy. / Şeker tüketimini sınırlamalıyız. / oszczędzać / biegać / tanıtmak / bulmak / ograniczyć słodycze
+okazać się / czas. (dok.) / "b1_komple" / ortaya çıkmak / Okazało się, że miał rację. / Onun haklı olduğu ortaya çıktı. / cieszyć się / wiać / davet etmek - davet edelim / iletişime geçmek / okazać się prawdą
+okazja / ż / "b1_komple" / fırsat, vesile / To świetna okazja, żeby zwiedzić stolicę. / Başkenti gezmek için harika bir fırsat. / wieś / minuta / güzellik uzmanı / kitap / dobra okazja
+określony / przym. / "b1_komple" / belirlenmiş / Musimy działać w określonym czasie. / Belirlenmiş bir zamanda hareket etmeliyiz. / opóźniony / mrożony / yeni / çok kullanımlık / określony czas
+okropnie / przysł. / "b1_komple" / çok kötü, berbat / Pogoda była dzisiaj okropnie zimna. / Hava bugün berbat derecede soğuktu. / szybciej / płynnie / kötü / zayıfça / okropnie zimno
+opieka / ż / "b1_komple" / bakım / Babcia wymaga stałej opieki lekarskiej. / Büyükanne sürekli tıbbi bakıma ihtiyaç duyuyor. / obojętność / przeszłość / Enerji - enerji / uygulama / opieka lekarska
+opisać / czas. (dok.) / "b1_komple" / tanımlamak, betimlemek - tanımlamak, açıklamak / Proszę opisać swój ostatni urlop. / Lütfen son tatilinizi anlatın. / korzystać / edukować / güvence vermek / düşünmek / opisać sytuację
+opłacać się / czas. (nied.) / "b1_komple" / kârlı olmak / Nie opłaca się kupować tak drogiego sprzętu. / Bu kadar pahalı bir cihaz almak kârlı değil. / przeprowadzać się / dekorować / bayılmak (çok sevmek) / ziyaret etmek / nie opłacać się
+opłata / ż / "b1_komple" / ücret / Opłata za parking jest dość wysoka. / Otopark ücreti oldukça yüksek. / redakcja / zupa / teknoloji / ölüm / wysoka opłata
+opowiadać / czas. (nied.) / "b1_komple" / anlatmak / Babcia lubi opowiadać stare historie. / Büyükanne eski hikâyeler anlatmayı sever. / uśmiechnąć się / dbać / etkilemek, duygulandırmak / ayırmak / opowiadać historie
+opóźnienie / n / "b1_komple" / gecikme, rötar / Pociąg miał godzinne opóźnienie. / Trenin bir saatlik rötarı vardı. / plany wakacyjne / złe samopoczucie / eğitim / ödev, görev - görev, ödev / duże opóźnienie
+opóźniony / przym. / "b1_komple" / gecikmeli / Nasz pociąg jest opóźniony o godzinę. / Trenimiz bir saat gecikmeli. / drewniany / prywatny / derin / elektronik / opóźniony pociąg
+opublikować / czas. (dok.) / "b1_komple" / yayımlamak / Autor opublikował nową książkę w zeszłym miesiącu. / Yazar geçen ay yeni bir kitap yayımladı. / lecieć / diagnozować / dinlemek / taşınmak / opublikować książkę
+oszczędny / przym. / "b1_komple" / tutumlu, tasarruflu / Mój dziadek zawsze był bardzo oszczędny. / Dedem her zaman çok tutumluydu. / popularny / tłusty / kumaş / saldırgan / oszczędny człowiek
+otoczenie / n / "b1_komple" / çevre / Lubimy spokojne otoczenie i ciszę. / Sakin bir çevreyi ve sessizliği severiz. / urodzenie / leczenie / alet / hava / spokojne otoczenie
+otrzymać / czas. (dok.) / "b1_komple" / almak, elde etmek / Wczoraj otrzymałem ważny list z urzędu. / Dün daireden önemli bir mektup aldım. / organizować / naprawiać / egzersiz yapmak / şaka yapmak / otrzymać list
+otwierać / fiil /  / açmak / Otwieram okno, bo jest gorąco. / Sıcak olduğu için pencereyi açıyorum.
+owca / ż / "b1_komple" / koyun / Na łące pasły się białe owce. / Çayırda beyaz koyunlar otluyordu. / reklamacja / kurtka / belediye - belediye, ilçe / sahne / stado owiec
+pamięć / zenski /  / hafıza, bellek / Mam dobrą pamięć do języków. / Diller için iyi bir hafızam var.
+patrzeć / fiil /  / bakmak / Patrzę na ekran komputera. / Bilgisayar ekranına bakıyorum.
+pełnoletni / przym. / "b1_komple" / reşit / Mój syn jest już pełnoletni. / Oğlum artık reşit. / edukacyjny / mazurski / farklı, çeşitli / sarı / pełnoletni obywatel
+pewien / przym. / "b1_komple" / emin, kesin (bir) / Jestem pewien, że zamknąłem drzwi. / Kapıyı kapattığımdan eminim. / bliski / głęboki / elektrikli / gri - kasvetli / jestem pewien
+pisanie / nijaki /  / yazma / Pisanie po polsku jest trudne, ale możliwe. / Lehçe yazma zordur ama mümkündür.
+pisarz / m / "b1_komple" / yazar / Ten pisarz napisał wiele znanych powieści. / Bu yazar birçok tanınmış roman yazdı. / słoik / parking / tat, lezzet / raf / znany pisarz
+plamka / ż / "b1_komple" / (küçük) leke / Na koszuli zauważyłem małą plamkę. / Gömlekte küçük bir leke fark ettim. / koleżanka / marchewka / kütüphane / ders / mała plamka
+plasterek / m / "b1_komple" / ince dilim / Dodaj do kanapki plasterek żółtego sera. / Sandviçe bir dilim kaşar peyniri ekle. / kwestionariusz / budzik / diş hekimi / televizyon / plasterek sera
+płeć / zenski /  / cinsiyet / Formularz wymaga podania imienia, nazwiska i płci. / Form ad, soyad ve cinsiyet bilgisi gerektiriyor.
+bawełna / ż / "b1_komple" / pamuk / Ta koszula jest zrobiona z bawełny. / Bu gömlek pamuktan yapılmıştır. / ankieta / katedra / dakika / kadın / czysta bawełna
+biegły / przym. / "b1_komple" / akıcı, uzman / Jest biegły w trzech językach obcych. / Üç yabancı dilde akıcıdır. / świeży / wolny / yoğun / daha önemli / biegły angielski
+biegnąć / czas. (nied.) / "b1_komple" / koşmak / Chłopiec biegnie szybko do domu. / Çocuk hızla eve doğru koşuyor. / zbierać / kierować / giymek, kurmak / geçmek (sınav) - geçmek (sınavı) / biegnąć do domu
+bieganie / n / "b1_komple" / koşu / Bieganie rano poprawia moje samopoczucie. / Sabah koşusu ruh halimi iyileştiriyor. / lekarstwo / ZOO / muhasebe bürosu / bayram / poranne bieganie
+kieszeń / m / "b1_komple" / cep / Zgubiłem klucze, chyba wypadły z kieszeni. / Anahtarları kaybettim, herhalde cebimden düştü. / przedmiot / wynik / İşletme Fakültesi / ağrı / pusta kieszeń
+kąpiel / zenski /  / banyo / Biorę kąpiel po długim dniu. / Uzun bir günün ardından banyo yapıyorum.
+łatwiej / przysł. / "b1_komple" / daha kolay / Teraz jest mi znacznie łatwiej pracować. / Şimdi çalışmak benim için çok daha kolay. / nigdy / strasznie / üzücü / sık sık / łatwiej niż wcześniej
+ładnie / przysł. / "b1_komple" / güzel, hoş / Dzisiaj wyglądasz bardzo ładnie. / Bugün çok güzel görünüyorsun. / teraz / trudno / zor / nereden / wyglądać ładnie
+mówienie / nijaki /  / konuşma / Mówienie w obcym języku wymaga odwagi. / Yabancı bir dilde konuşmak cesaret ister.
+nadawać się / czas. (nied.) / "b1_komple" / uygun olmak / Ten materiał nie nadaje się do prania. / Bu kumaş yıkamaya uygun değil. / interesować się / zebrać / yapabilmek, becermek / tasarruf etmek / nadawać się do pracy
+osobiście / przysł. / "b1_komple" / şahsen, kişisel olarak / Chciałbym osobiście podziękować wszystkim gościom. / Tüm misafirlere şahsen teşekkür etmek isterim. / najczęściej / tam / tam olarak, kesinlikle / yalnızca, sadece / osobiście podziękować
+pierś / ż / "b1_komple" / göğüs, meme / Lekarz osłuchał jego pierś stetoskopem. / Doktor stetoskopla göğsünü dinledi. / tenisistka / uroda / kadın arkadaş / sessizlik / szeroka pierś
+płynnie / przysł. / "b1_komple" / akıcı bir şekilde / Ona mówi płynnie po angielsku i francusku. / O, İngilizce ve Fransızcayı akıcı konuşuyor. / spokojnie / skąd / doğru olarak / sık sık / mówić płynnie
+początkujący / przym. / "b1_komple" / başlangıç seviyesinde / To kurs dla początkujących uczniów. / Bu, başlangıç seviyesindeki öğrenciler için bir kurs. / przeciwgorączkowy / pełny / değerli, kıymetli / aydınlık, açık / kurs początkujący
+początek / m / "b1_komple" / başlangıç / To dopiero początek naszej wspólnej historii. / Bu daha ortak hikâyemizin başlangıcı. / muzyk / pojemnik / müşteri / gösteri, performans / początek historii
+podać / czas. (dok.) / "b1_komple" / vermek, servis etmek / Możesz podać mi sól, proszę? / Bana tuzu uzatabilir misin lütfen? / zamawiać / kłamać / dikkat etmek - dikkat etmek, saymak / sunmak, sergilemek / podać sól
+podręcznik / m / "b1_komple" / ders kitabı / Kupiłem nowy podręcznik do polskiego. / Polonca için yeni bir ders kitabı aldım. / wybór miejsca / dom / başvuru formu / boy, büyüme / podręcznik do polskiego
+podręczny / przym. / "b1_komple" / el (bagajı) / Na lotnisku miałam tylko bagaż podręczny. / Havalimanında sadece el bagajım vardı. / cichy / najgorszy / toplu, kitlesel / dönüş / bagaż podręczny
+podróżnik / m / "b1_komple" / gezgin / Mój brat jest podróżnikiem i zwiedził wiele krajów. / Kardeşim bir gezgin ve birçok ülke gezdi. / zakupy spożywcze / spadek / anket / yönetmen / znany podróżnik
+podróżować / czas. (nied.) / "b1_komple" / seyahat etmek / Uwielbiam podróżować po Europie latem. / Yazın Avrupa'yı gezmeye bayılırım. / współpracować / odjeżdżać / uymak, yakışmak / ulaşmak / podróżować po świecie
+podstawa / ż / "b1_komple" / temel / Gramatyka to podstawa nauki języka. / Dilbilgisi, dil öğreniminin temelidir. / premiera / chwila / sözcük bilgisi / arama motoru / solidna podstawa
+pojechać / czas. (dok.) / "b1_komple" / gitmek (araçla) / W lipcu pojedziemy nad jezioro. / Temmuzda göle gideceğiz. / dyskutować / zacząć / sunmak, sergilemek / hayal etmek / pojechać nad jezioro
+pokaz / m / "b1_komple" / gösterim / W sobotę był pokaz mody w centrum. / Cumartesi günü merkezde bir moda gösterimi vardı. / szczyt sezonu / podróżnik / çift (yeni evli) / başkan, genel müdür / pokaz mody
+pokazywać / czas. (nied.) / "b1_komple" / göstermek / Nauczyciel pokazuje uczniom nowe słowa na tablicy. / Öğretmen tahtada öğrencilere yeni kelimeleri gösteriyor. / powiedzieć / zachęcać / yapabilmek, becermek / satın almak - satın almak (süreç) / pokazywać coś
+policzek / m / "b1_komple" / yanak / Babcia pocałowała mnie w policzek. / Büyükannem beni yanağımdan öptü. / suplement / upał / bahçe / hata / czerwony policzek
+połamać / czas. (dok.) / "b1_komple" / kırmak, parçalamak / Wiatr połamał gałęzie starej jabłoni. / Rüzgar eski elma ağacının dallarını kırdı. / decydować / zachęcać / sormak / altını çizmek, vurgulamak - altını çizmek / połamać gałęzie
+połączyć / czas. (dok.) / "b1_komple" / birleştirmek / Musimy połączyć te dwa pliki. / Bu iki dosyayı birleştirmemiz gerekiyor. / obchodzić się / ściągnąć / unutmak / süslemek / połączyć siły
+pomagać / fiil /  / yardım etmek / Pomagam kolegom w pracy. / İş arkadaşlarıma yardım ediyorum.
+pomiędzy / przyim. / "b1_komple" / arasında / Szkoła jest pomiędzy parkiem a sklepem. / Okul park ile mağaza arasındadır. / wobec / we / için / -de--da, içinde - -de--da, içinde - içinde, -de--da / pomiędzy domami
+pomyśleć / czas. (dok.) / "b1_komple" / düşünmek / Muszę dobrze pomyśleć przed decyzją. / Karar vermeden önce iyi düşünmeliyim. / odkrywać / skakać / başlamak / hazırlamak / pomyśleć chwilę
+poprawa / ż / "b1_komple" / iyileştirme / Lekarz zauważył poprawę stanu pacjenta. / Doktor hastanın durumunda bir iyileşme fark etti. / realizacja / atmosfera / kozmetik firması / grup / poprawa stanu
+poprawić / czas. (dok.) / "b1_komple" / iyileştirmek - düzeltmek, iyileştirmek / Muszę poprawić błąd w tekście. / Metindeki hatayı düzeltmem gerekiyor. / wrócić / postanowić / ısınmak / kullanmak / poprawić błąd
+poprawnie / przysł. / "b1_komple" / doğru olarak / Napisałeś to zdanie zupełnie poprawnie. / Bu cümleyi tamamen doğru yazdın. / mocno / nareszcie / harika / çok kötü, berbat / poprawnie odpowiedzieć
+poprawny / przym. / "b1_komple" / doğru, hatasız / Podaj poprawną odpowiedź na pytanie. / Soruya doğru cevabı ver. / premierowy / przeciwgorączkowy / leziz, mükemmel / açık hava, dış / poprawna odpowiedź
+porada / zenski /  / tavsiye / Potrzebuję porady prawnej. / Hukuki tavsiyeye ihtiyacım var.
+porozmawiać / czas. (dok.) / "b1_komple" / konuşmak - konuş / Chcę porozmawiać z tobą o pracy. / Seninle iş hakkında konuşmak istiyorum. / prezentować / bać się / koymak, yerleştirmek / tavsiye etmek / porozmawiać szczerze
+poruszyć / czas. (dok.) / "b1_komple" / etkilemek, duygulandırmak / Ta historia naprawdę mnie poruszyła. / Bu hikâye beni gerçekten çok etkiledi. / odtowarować / sprawdzać / yemek / azaltmak / poruszyć widzów
+postanowić / czas. (dok.) / "b1_komple" / karar vermek / Postanowiłem zmienić pracę w tym roku. / Bu yıl iş değiştirmeye karar verdim. / odzywać się / uczestniczyć / geç kalmak / iade etmek - iade etmek, döndürmek / postanowić zmienić
+poszukiwać / czas. (nied.) / "b1_komple" / aramak / Firma poszukuje nowych pracowników. / Şirket yeni çalışanlar arıyor. / uczestniczyć / uczyć się / teşvik etmek / üretmek / poszukiwać pracy
+potrafić / czas. (nied.) / "b1_komple" / yapabilmek, becermek / On potrafi naprawić prawie każdy samochód. / O, neredeyse her arabayı tamir edebilir. / zastanawiać się / spadać / harcamak / işbirliği yapmak / potrafić coś zrobić
+potrawa / zenski /  / yemek, yiyecek / To tradycyjna polska potrawa. / Bu geleneksel bir Lehçe yemeği.
+potrzebować / czas. (nied.) / "b1_komple" / ihtiyaç duymak / Potrzebuję nowego telefonu. / Yeni bir telefona ihtiyacım var. / potwierdzać / posłuchać / ortaya çıkmak / gülmek / potrzebować pomocy
+poważny / przym. / "b1_komple" / ciddi / To jest poważny problem zdrowotny. / Bu ciddi bir sağlık sorunu. / charakterystyczny / klasyczny / tıkanmış (trafik) / yapay - yapay, suni / poważny problem
+powiedzenie / n / "b1_komple" / atasözü, deyim / Znam kilka polskich powiedzeń. / Birkaç Polonca atasözü biliyorum. / media społecznościowe / otoczenie / kutu / yumurta / polskie powiedzenie
+powietrze / nijaki /  / hava / Powietrze w górach jest świeże i czyste. / Dağlardaki hava taze ve temiz.
+powinien / wyr. / "b1_komple" / -meli--malı (gereklilik) / Powinieneś więcej odpoczywać. / Daha çok dinlenmelisin. / za miastem / przez to / iyi şanslar / bu yüzden, bundan dolayı / powinien odpocząć
+powodzenia / wyr. / "b1_komple" / iyi şanslar / Powodzenia na jutrzejszym egzaminie! / Yarınki sınavda iyi şanslar! / za miastem / to zależy / gerek, lazım / midem bulanıyor / Powodzenia!
+powoli / przysł. / "b1_komple" / yavaşça, ağır ağır / Samochód jechał powoli przez wąską uliczkę. / Araba dar sokaktan yavaşça geçti. / lepiej / czasami / sabah / sessizce / jechać powoli
+powód / meski /  / neden, sebep / Jaki jest powód twojej nieobecności? / Devamsızlığının nedeni ne?
+powrotny / przym. / "b1_komple" / dönüş / Kupiłem bilet powrotny na jutro. / Yarın için dönüş bileti aldım. / życzliwy / aktywny / lavanta rengi / yeşil / bilet powrotny
+powrót / meski /  / dönüş / Cieszę się na powrót do domu. / Eve dönüşü dört gözle bekliyorum.
+pozdrowienie / n / "b1_komple" / selam - selamlama / Wysłałam pozdrowienia z wakacji. / Tatilden selamlar gönderdim. / zachmurzenie / konto / yaz / gecikme / serdeczne pozdrowienia
+poznanie / nijaki /  / tanıma, öğrenme / Poznanie języka wymaga czasu. / Bir dili öğrenmek zaman alır.
+pozwolić / czas. (dok.) / "b1_komple" / izin vermek / Czy pozwolisz mi skorzystać z komputera? / Bilgisayarı kullanmama izin verir misin? / kochać / zostawić / karmaşıklaştırmak / izlemek, seyretmek - izlemek / pozwolić na wyjście
+półbut / m / "b1_komple" / (bağcıklı) ayakkabı / Kupiłem nowe półbuty do pracy. / İş için yeni bağcıklı ayakkabılar aldım. / organizm / stan zębów / nokta, şube - puan, nokta / ekip, takım - takım, ekip / nowe półbuty
+prawdopodobnie / przysł. / "b1_komple" / muhtemelen / Prawdopodobnie jutro będzie padać deszcz. / Muhtemelen yarın yağmur yağacak. / przede wszystkim / już / enerjik bir şekilde / genellikle / prawdopodobnie tak
+prędkość / zenski /  / hız / Prędkość internetu jest bardzo dobra. / İnternet hızı çok iyi.
+promować / czas. (nied.) / "b1_komple" / tanıtmak / Firma chce promować nowy produkt. / Şirket yeni ürünü tanıtmak istiyor. / zorganizować / powstać / kabul etmek - aynı fikirde olmak - katılmak, razı olmak / düşmek / promować produkt
+propozycja / ż / "b1_komple" / öneri, teklif / Mam dla ciebie ciekawą propozycję. / Sana ilginç bir teklifim var. / przeglądarka / gramatyka / güç, kuvvet / hacim, uzunluk / ciekawa propozycja
+prosty / przym. / "b1_komple" / basit / To jest bardzo prosty przepis na obiad. / Bu, öğle yemeği için çok basit bir tarif. / intensywny / darmowy / en yüksek / ateş düşürücü / prosty przepis
+przedmiot / m / "b1_komple" / ders, nesne / Matematyka to mój ulubiony przedmiot. / Matematik en sevdiğim ders. / sprawdzian / szlafrok / market alışverişi / omurga / ulubiony przedmiot
+przedstawić / czas. (dok.) / "b1_komple" / sunmak, tanıtmak / Chcę ci przedstawić mojego kolegę. / Sana arkadaşımı tanıtmak istiyorum. / wyobrazić sobie / wypełniać / tasarruf etmek / seyahat etmek / przedstawić kogoś
+przedstawienie / n / "b1_komple" / gösteri, tiyatro oyunu / Dzieci obejrzały przedstawienie w teatrze. / Çocuklar tiyatroda bir gösteri izledi. / badania konsumenckie / spotkanie / hayvanat bahçesi / karşılaştırma / obejrzeć przedstawienie
+przeglądać / czas. (nied.) / "b1_komple" / göz atmak - göz atmak, taramak / Lubię przeglądać strony internetowe wieczorem. / Akşamları internet sitelerine göz atmayı severim. / gotować / zarejestrować się / tavsiye etmek / kârlı olmak / przeglądać internet
+przeglądarka / ż / "b1_komple" / tarayıcı (internet) / Otworzyłem stronę w nowej przeglądarce. / Sayfayı yeni bir tarayıcıda açtım. / ochrona środowiska / uroczystość / beceri, yetenek / bulut / przeglądarka internetowa
+przegrać / czas. (dok.) / "b1_komple" / kaybetmek / Nasza drużyna przegrała ostatni mecz. / Takımımız son maçı kaybetti. / podpisać / promować / tanımak - tanımak, keşfetmek / tamamlamak / przegrać mecz
+przejazd / m / "b1_komple" / geçiş, yolculuk / Przejazd pociągiem trwał dwie godziny. / Trenle geçiş iki saat sürdü. / kurs szycia / wyrób / konu / ürün / przejazd pociągiem
+przejechać / czas. (dok.) / "b1_komple" / geçmek (araçla) / Musimy przejechać przez centrum miasta. / Şehir merkezinden geçmemiz gerekiyor. / grać / martwić się / -ebilmek - -ebilmek, yapabilmek / gezdirmek / przejechać przez miasto
+przekazać / czas. (dok.) / "b1_komple" / iletmek, aktarmak / Proszę przekazać tę wiadomość szefowi. / Lütfen bu mesajı patrona iletin. / przyjmować / zaplanować / konuşmak, söylemek / davet etmek - davet edelim / przekazać wiadomość
+przekąska / zenski /  / atıştırmalık / Przygotowałam kilka przekąsek na wieczór. / Akşam için birkaç atıştırmalık hazırladım.
+przelew / m / "b1_komple" / havale, transfer / Zrobiłem przelew na twoje konto. / Hesabına bir havale yaptım. / użytkownik / architekt / otel / yarı maraton / zrobić przelew
+przemyśleć / czas. (dok.) / "b1_komple" / düşünmek, değerlendirmek / Muszę jeszcze raz przemyśleć tę decyzję. / Bu kararı bir kez daha düşünmem gerekiyor. / dowiadywać się / zamierać / zıplamak / gitmek (yürüyerek) - gitmek / przemyśleć decyzję
+przepadać / czas. (nied.) / "b1_komple" / bayılmak (çok sevmek) / Ona przepada za czekoladą. / O, çikolataya bayılıyor. / zmniejszyć / wspomnieć / hazırlamak / geçirmek (zaman) - geçirmek / przepadać za czymś
+przepraszać / czas. (nied.) / "b1_komple" / özür dilemek / Zawsze przeprasza, kiedy się spóźnia. / Geç kaldığında her zaman özür diliyor. / uczestniczyć / przekazać / konuşmak - konuş / toplamak / przepraszać za spóźnienie
+przeprowadzka / ż / "b1_komple" / taşınma / Przeprowadzka do nowego mieszkania była trudna. / Yeni eve taşınma zor geçti. / komunikatywność / kultura / parti, etkinlik / hemşire / przeprowadzka do mieszkania
+przerwa / ż / "b1_komple" / mola, ara / Zróbmy krótką przerwę na kawę. / Kısa bir kahve molası verelim. / kwiaciarnia / nerka / filarmoni / benzin / przerwa na kawę
+przeszkadzać / czas. (nied.) / "b1_komple" / rahatsız etmek / Hałas z ulicy bardzo mi przeszkadza. / Sokaktan gelen gürültü beni çok rahatsız ediyor. / wyobrazić sobie / proponować / oynamak / sipariş etmek / przeszkadzać w pracy
+przez to / wyr. / "b1_komple" / bu yüzden, bundan dolayı / Spóźnił się i przez to stracił pociąg. / Geç kaldı ve bu yüzden treni kaçırdı. / powodzenia / to zależy / şehir dışında, kırsalda / iyi şanslar / przez to spóźniony
+przodek / m / "b1_komple" / ata / Mój przodek mieszkał w Krakowie. / Atam Krakow'da yaşıyordu. / błąd / kurs językowy / rüzgâr / gösteri, oyun - gösteri, tiyatro / dawny przodek
+przyciągać / czas. (nied.) / "b1_komple" / çekmek / To miasto przyciąga wielu turystów. / Bu şehir birçok turisti çekiyor. / nauczyć się / wpływać / teşvik etmek / beklemek / przyciągać uwagę
+przycisk / m / "b1_komple" / düğme, buton / Wciśnij ten przycisk, żeby wyłączyć światło. / Işığı kapatmak için bu düğmeye bas. / szczyt sezonu / CV / yarı maraton / sorun / wcisnąć przycisk
+przyglądać się / czas. (nied.) / "b1_komple" / dikkatle bakmak / Lubię przyglądać się starym zdjęciom. / Eski fotoğraflara dikkatle bakmayı severim. / przeprowadzać się / skorzystać / sevmek, beğenmek / sebep olmak - sağlamak, vermek / przyglądać się obrazowi
+przygotowany / przym. / "b1_komple" / hazırlanmış / Jestem dobrze przygotowany do egzaminu. / Sınava iyi hazırlanmış durumdayım. / przeciwgorączkowy / wielorazowy / akademik / en uzun / przygotowany do egzaminu
+przyjemność / ż / "b1_komple" / zevk, keyif / Czytanie książek sprawia mi przyjemność. / Kitap okumak bana keyif veriyor. / frazeologia / szarlotka / bilgi, yeterlilik - bilgi, tanışıklık / kafa, baş / sprawiać przyjemność
+przykładowo / przysł. / "b1_komple" / örneğin / Przykładowo możesz zjeść jabłko na śniadanie. / Örneğin kahvaltıda elma yiyebilirsin. / przede wszystkim / tylko / güzel, hoş / özellikle / przykładowo można
+przyjmować / czas. (nied.) / "b1_komple" / kabul etmek / Lekarz przyjmuje pacjentów od rana. / Doktor sabahtan itibaren hastaları kabul ediyor. / dostać się / poruszyć / çalmak-oynamak (müzik) - çalmak (müzik), oynamak / denemek / przyjmować pacjentów
+przykro / przysł. / "b1_komple" / üzücü / Przykro mi, że nie mogłem przyjść. / Gelemediğim için üzgünüm. / dawno / najgorzej / dün / sonunda, nihayet / przykro mi
+przypadkowo / przysł. / "b1_komple" / tesadüfen / Spotkałem go przypadkowo na ulicy. / Onunla sokakta tesadüfen karşılaştım. / systematycznie / ciepło / geç / sanırım, herhalde / spotkać przypadkowo
+przyprawa / ż / "b1_komple" / baharat / Dodałam do zupy trochę przyprawy. / Çorbaya biraz baharat ekledim. / intensywność / bluza / sabit iş / günün vakti / ostra przyprawa
+przytulny / przym. / "b1_komple" / sıcak, rahat / Mają bardzo przytulny salon. / Çok sıcak bir oturma odaları var. / klasyczny / przemyślany / ucuz / daha pahalı / przytulny salon
+puszka / ż / "b1_komple" / teneke kutu / Kupiłem puszkę groszku na obiad. / Öğle yemeği için bir kutu bezelye aldım. / operacja / koleżanka / bacak / edebiyat / puszka groszku
+racja / ż / "b1_komple" / haklılık, hak / Masz rację, powinniśmy wyjść wcześniej. / Haklısın, daha erken çıkmalıydık. / drożdżówka / budowa / rekabet / salon, sınıf / mieć rację
+rada / zenski /  / tavsiye, öneri / Daj mi radę, co mam zrobić. / Bana ne yapacağım konusunda tavsiye ver.
+reszta / ż / "b1_komple" / para üstü / Sprzedawca oddał mi resztę. / Satıcı bana para üstünü verdi. / pielęgniarka / ściana / bilgi / işbirliği / dać resztę
+ręka / ż / "b1_komple" / el, kol / Podaj mi rękę, pomogę ci wstać. / Bana elini ver, kalkmana yardım edeyim. / inteligencja / niespodzianka / an - an, kısa süre / otoyol / podać rękę
+rękawiczka / ż / "b1_komple" / eldiven / Zimą noszę ciepłe rękawiczki. / Kışın sıcak eldivenler giyerim. / inicjatywa / technika / şişe / bülten, gazete / ciepłe rękawiczki
+rodzeństwo / nijaki /  / kardeşler / Mam troje rodzeństwa. / Üç kardeşim var.
+rocznica / zenski /  / yıldönümü / Dzisiaj obchodzimy rocznicę ślubu. / Bugün düğün yıldönümümüzü kutluyoruz.
+rodzic / meski /  / ebeveyn / Każdy rodzic chce dla dziecka jak najlepiej. / Her ebeveyn çocuğu için en iyisini ister.
+rodzice / cogul /  / ebeveynler, anne-baba / Moi rodzice mieszkają w Warszawie. / Anne-babam Varşova'da yaşıyor.
+rola / zenski /  / rol / Grał główną rolę w tym filmie. / Bu filmde başrol oynadı.
+roślinny / przym. / "b1_komple" / bitkisel / Przeszłam na dietę roślinną. / Bitkisel beslenmeye geçtim. / rzadki / południowo-wschodni / daha önemli / eski - yaşlı / dieta roślinna
+rozciąganie / n / "b1_komple" / esneme / Przed bieganiem robię rozciąganie mięśni. / Koşmadan önce kas esnetme yapıyorum. / pudełko / trzęsienie ziemi / bağımlılık / alın / robić rozciąganie
+rozgrzewać się / czas. (nied.) / "b1_komple" / ısınmak / Przed treningiem trzeba się rozgrzewać. / Antrenmandan önce ısınmak gerekir. / wyobrazić sobie / wspomnieć / giymek, kurmak / çekmek / rozgrzewać się przed biegiem
+rozgrzewka / ż / "b1_komple" / ısınma / Zawsze zaczynam trening od rozgrzewki. / Antrenmana her zaman ısınma ile başlarım. / nieruchomość / podróż / lavanta / noktalama / robić rozgrzewkę
+rozkład / m / "b1_komple" / tarife - tarife, program / Sprawdziłem rozkład jazdy pociągów. / Trenlerin sefer tarifesini kontrol ettim. / autostop / model / stres / konser / rozkład jazdy
+rozmowa / zenski /  / konuşma, sohbet / Mieliśmy długą rozmowę przy kawie. / Kahve başında uzun bir sohbet ettik.
+rozpalić / czas. (dok.) / "b1_komple" / ateşlemek, yakmak / Wieczorem rozpaliliśmy ognisko nad jeziorem. / Akşam gölün kenarında ateş yaktık. / zarezerwować / odpoczywać / eğitmek / görünmek / rozpalić ognisko
+rozpocząć / czas. (dok.) / "b1_komple" / başlatmak / Firma rozpoczęła nowy projekt w tym miesiącu. / Şirket bu ay yeni bir proje başlattı. / zapewniać / upewnić się / doldurmak / açmak / rozpocząć projekt
+równowaga / ż / "b1_komple" / denge / Trudno mi utrzymać równowagę na rowerze. / Bisikletle dengemi korumak bana zor geliyor. / rekrutacja / akcja / kayıtsızlık / güzellik / utrzymać równowagę
+różnica / zenski /  / fark / Jaka jest różnica między tymi dwoma słowami? / Bu iki kelime arasındaki fark nedir?
+różny / przym. / "b1_komple" / farklı, çeşitli / Mamy różne opinie na ten temat. / Bu konuda farklı görüşlerimiz var. / masowy / śliski / sarı / Mazurya'ya ait / różne opinie
+rzęsa / ż / "b1_komple" / kirpik / Coś wpadło mi pod rzęsę. / Kirpiğimin altına bir şey kaçtı. / treść / koleżanka / yayın, program / salata / długie rzęsy
+siedzenie / n / "b1_komple" / koltuk / To siedzenie w autobusie jest niewygodne. / Otobüsteki bu koltuk rahatsız. / drzewo / zachmurzenie / hayvan / sağlık / wygodne siedzenie
+siła / ż / "b1_komple" / güç, kuvvet / Trzeba mieć dużo siły, żeby to podnieść. / Bunu kaldırmak için çok güç gerekiyor. / relacja / szmatka / ada / duvar / mieć siłę
+skakać / czas. (nied.) / "b1_komple" / zıplamak / Dzieci lubią skakać na trampolinie. / Çocuklar trambolinde zıplamayı sever. / widzieć / stworzyć / sevmek (aşk) / kısaltmak / skakać wysoko
+składnia / ż / "b1_komple" / sözdizimi / Polska składnia jest dla mnie trudna. / Polonya sözdizimi benim için zor. / współpraca / przerwa / sergi / miktar / trudna składnia
+skończyć / czas. (dok.) / "b1_komple" / bitirmek / Muszę skończyć raport przed piątkiem. / Raporu cumadan önce bitirmem gerekiyor. / pozwalać / oznaczać / emin olmak / görmezden gelmek / skończyć pracę
+skorzystać / czas. (dok.) / "b1_komple" / yararlanmak / Warto skorzystać z tej promocji. / Bu indirimden yararlanmakta fayda var. / przyjeżdżać / smakować / silmek, kurulamak / işaretlemek / skorzystać z okazji
+skórzany / przym. / "b1_komple" / deri / Kupiłam nową skórzaną torebkę. / Yeni bir deri çanta aldım. / stacjonarny / odważny / el (bagajı) / lüks / skórzana torebka
+skręcić / czas. (dok.) / "b1_komple" / dönmek / Musisz skręcić w lewo przy skrzyżowaniu. / Kavşakta sola dönmen gerekiyor. / sprzedawać / wrócić / açık artırmada almak / oynamak / skręcić w prawo
+skrócić / czas. (dok.) / "b1_komple" / kısaltmak / Chcę skrócić ten tekst o połowę. / Bu metni yarı yarıya kısaltmak istiyorum. / pojawiać się / spojrzeć / açmak / elde etmek, kazanmak / skrócić tekst
+skutek / meski /  / sonuç, etki / To lekarstwo nie dało żadnego skutku. / Bu ilaç hiçbir sonuç vermedi.
+słabo / przysł. / "b1_komple" / zayıfça / Czuję się dzisiaj bardzo słabo. / Bugün kendimi çok zayıf hissediyorum. / wieczorem / czasami / lezzetli / şahsen, kişisel olarak / czuć się słabo
+słoik / m / "b1_komple" / kavanoz / Babcia zrobiła słoik dżemu truskawkowego. / Büyükanne bir kavanoz çilek reçeli yaptı. / stres / szlak / elektrikçi / hafta sonu / słoik dżemu
+słuch / meski /  / işitme, duyma / Mam dobry słuch muzyczny. / İyi bir müzikal işitme yeteneğim var.
+spaliny / m / "b1_komple" / egzoz gazı / Spaliny samochodowe szkodzą powietrzu. / Araba egzoz gazları havaya zarar veriyor. / szczeniak / student / tarif, kural / iklim, ortam - iklim, atmosfer - iklim / spaliny samochodowe
+spaść / czas. (dok.) / "b1_komple" / düşmek / Telefon spadł mi z ręki na podłogę. / Telefon elimden yere düştü. / otrzymać / zastanawiać się / ısınmak / yaratmak, oluşturmak / spaść na ziemię
+spełniać / czas. (nied.) / "b1_komple" / yerine getirmek / Ta oferta nie spełnia naszych oczekiwań. / Bu teklif beklentilerimizi karşılamıyor. / zastępować / zjeść / almak, elde etmek / güvence vermek / spełniać wymagania
+spędzać / czas. (nied.) / "b1_komple" / geçirmek (zaman) / Lubię spędzać wolny czas z rodziną. / Boş zamanımı ailemle geçirmeyi severim. / opisać / przepadać / söz vermek / sahip olmak / spędzać czas
+spędzić / czas. (dok.) / "b1_komple" / geçirmek (zaman) - geçirmek / Chcemy spędzić wakacje nad morzem. / Tatili deniz kenarında geçirmek istiyoruz. / być / zapytać / oluşturmak / uçmak (sık sık) - uçmak / spędzić wakacje
+spojrzeć / czas. (dok.) / "b1_komple" / bakmak, göz atmak / Spójrz proszę na ten dokument. / Lütfen şu belgeye bak. / występować / zarabiać / önermek, ima etmek / düşmek / spojrzeć w lustro
+sprawdzać / czas. (nied.) / "b1_komple" / kontrol etmek / Zawsze sprawdzam pocztę rano. / Her zaman sabah e-postamı kontrol ederim. / wiedzieć / uruchamiać / sunmak, tanıtmak / taramak / sprawdzać pocztę
+sprawdzian / meski /  / sınav, test / Jutro mam sprawdzian z języka. / Yarın dil sınavım var.
+spóźnienie / n / "b1_komple" / gecikme / Przepraszam za spóźnienie, był korek. / Gecikme için özür dilerim, trafik vardı. / kurczątko / popołudnie / civciv / risk / duże spóźnienie
+spróbować / czas. (dok.) / "b1_komple" / denemek / Musisz spróbować tego nowego dania. / Bu yeni yemeği denemen gerekiyor. / odłożyć / zdarzyć się / durmak / bilgilendirmek / spróbować czegoś nowego
+sprzątać / czas. (nied.) / "b1_komple" / temizlemek / W sobotę zawsze sprzątam całe mieszkanie. / Cumartesileri her zaman tüm daireyi temizlerim. / pozwolić / zmienić / güvence vermek / değerlendirmek - değerlendirirlerdi / sprzątać mieszkanie
+strasznie / przysł. / "b1_komple" / çok kötü, korkunç bir şekilde / Ten film był strasznie nudny. / Bu film çok kötü sıkıcıydı. / spokojnie / tam / enerjik bir şekilde / oldukça, tamamen / strasznie nudny
+sucho / przysł. / "b1_komple" / kuru / Latem jest tu zwykle bardzo sucho. / Yazın burası genellikle çok kuru oluyor. / dzisiaj / wspaniale / en iyi şekilde / ek olarak, ayrıca - ek olarak / robi się sucho
+sugerować / czas. (nied.) / "b1_komple" / önermek, ima etmek / Sugeruję, żebyśmy poczekali do jutra. / Yarına kadar beklememizi öneriyorum. / dołączyć / rezerwować / yaratmak, oluşturmak / bölmek, paylaşmak / sugerować rozwiązanie
+szczególnie / przysł. / "b1_komple" / özellikle / Lubię szczególnie polską kuchnię. / Özellikle Polonya mutfağını seviyorum. / intensywnie / rzadko / sürekli / akşam / szczególnie ważne
+szczeniak / m / "b1_komple" / köpek yavrusu, enik / Kupiliśmy dzieciom małego szczeniaka. / Çocuklara küçük bir köpek yavrusu aldık. / jadłospis / kierowca / mesane / iklim, ortam - iklim, atmosfer - iklim / mały szczeniak
+szlak / m / "b1_komple" / rota, yol / Ten szlak prowadzi na szczyt góry. / Bu rota dağın zirvesine çıkıyor. / lista zakupów / bar mleczny / partner, eş / erkek kardeş / górski szlak
+szmatka / ż / "b1_komple" / bez, paçavra / Wytarłam stół czystą szmatką. / Masayı temiz bir bezle sildim. / gęś / sytuacja / kadın / komisyon, kurul / czysta szmatka
+szyja / ż / "b1_komple" / boyun / Boli mnie szyja od siedzenia przy komputerze. / Bilgisayar başında oturmaktan boynum ağrıyor. / umiejętność / mistrzyni / mevsim, yılın zamanı / levha, tablet (çikolata) / długa szyja
+ściągnąć / czas. (dok.) / "b1_komple" / indirmek / Chcę ściągnąć tę aplikację na telefon. / Bu uygulamayı telefonuma indirmek istiyorum. / wygrać / uprawiać / yardım etmek - yardım etsin / karşılaşmak / ściągnąć plik
+ścieżka / ż / "b1_komple" / patika, yol / Ta ścieżka prowadzi prosto do lasu. / Bu patika doğrudan ormana çıkıyor. / krytyka / stewardessa / bölüm, parça / elmalı turta / leśna ścieżka
+ściszyć / czas. (dok.) / "b1_komple" / sesini kısmak / Proszę ściszyć muzykę, dzieci śpią. / Lütfen müziği kıs, çocuklar uyuyor. / uśmiechnąć się / zapłacić / izin vermek / hazırlamak / ściszyć radio
+śmiecić / czas. (nied.) / "b1_komple" / çöp atmak / Nie wolno śmiecić w parku. / Parkta çöp atmak yasaktır. / zwolnić / zapraszać / mal olmak - mal olmak, fiyatı olmak / açmak / śmiecić na ulicy
+śmierć / ż / "b1_komple" / ölüm / Jego śmierć była dla nas wielkim szokiem. / Onun ölümü bizim için büyük bir şoktu. / zmiana / filharmonia / ağ, zincir - ağ, internet / anket / nagła śmierć
+śpiewać / czas. (nied.) / "b1_komple" / şarkı söylemek / Moja siostra pięknie śpiewa po polsku. / Kız kardeşim Lehçe çok güzel şarkı söylüyor. / wyłączyć / znajdować / kullanmak / düşünmek - merak etmek - düşünmek, merak etmek / śpiewać piosenkę
+średniowieczny / przym. / "b1_komple" / ortaçağ / Zwiedzaliśmy średniowieczny zamek w mieście. / Şehirdeki ortaçağ kalesini gezdik. / niedoświadczony / czysty / bozuk, arızalı / ilk gösterim / średniowieczny zamek
+środki / lm / "b1_komple" / araçlar, kaynaklar / Firma ma ograniczone środki finansowe. / Şirketin sınırlı mali kaynakları var. / imieniny / słodycze / fuar / duygular / środki finansowe
+światło / n / "b1_komple" / ışık / Zgaś światło, wychodząc z pokoju. / Odadan çıkarken ışığı söndür. / schronisko / zadowolenie / çocuk / kriter, ölçüt / zgasić światło
+świetny / przym. / "b1_komple" / harika, mükemmel / To był świetny pomysł na wycieczkę. / Bu gezi için harika bir fikirdi. / ruchomy / własny / egzotik / ekolojik - organik / świetny pomysł
+święto / n / "b1_komple" / bayram / Boże Narodzenie to ważne święto w Polsce. / Noel, Polonya'da önemli bir bayramdır. / mówienie / pisanie / kasaba / davranış / narodowe święto
+tajemnica / zenski /  / sır, gizem / To jest tajemnica firmy. / Bu şirketin sırrıdır.
+tęcza / ż / "b1_komple" / gökkuşağı / Po deszczu na niebie pojawiła się tęcza. / Yağmurdan sonra gökyüzünde bir gökkuşağı belirdi. / matka / mama / haklılık, hak / bel / kolorowa tęcza
+tęsknić / czas. (nied.) / "b1_komple" / özlemek / Bardzo tęsknię za rodziną w Turcji. / Türkiye'deki ailemi çok özlüyorum. / zdarzyć się / jeść / değiştirmek / ziyaret etmek / tęsknić za domem
+tłusty / przym. / "b1_komple" / yağlı / Powinienem jeść mniej tłustych potraw. / Daha az yağlı yemek yemeliyim. / poprawny / wysoki / en uzun / belirli, somut / tłuste potrawy
+towarzyski / przym. / "b1_komple" / sosyal / Jest bardzo towarzyską osobą. / O çok sosyal bir kişi. / zakorkowany / podany / basit / dünya çapında / towarzyska osoba
+towar / m / "b1_komple" / mal - ürün / Ten towar jest dziś w promocji. / Bu ürün bugün indirimde. / pociąg / smutek / yüzde / diş muayenehanesi / dobry towar
+towarzysz / m / "b1_komple" / yoldaş, arkadaş / Był wiernym towarzyszem w trudnych chwilach. / Zor anlarda sadık bir yoldaştı. / krajobraz / dach / patron, amir / dönüş / wierny towarzysz
+towarzyszyć / czas. (nied.) / "b1_komple" / eşlik etmek / Pies towarzyszył mu podczas każdego spaceru. / Köpek ona her yürüyüşte eşlik ediyordu. / znajdować się / dbać / keşfetmek / sevinmek / towarzyszyć komuś
+tożsamość / ż / "b1_komple" / kimlik / Policja sprawdziła jego tożsamość przy granicy. / Polis sınırda onun kimliğini kontrol etti. / parasolka / sieć / sorumluluk / onaylamama / sprawdzić tożsamość
+trafiać / czas. (nied.) / "b1_komple" / ulaşmak / Ta droga trafia prosto do centrum. / Bu yol doğrudan merkeze ulaşıyor. / zwiększyć / wynajmować / ortaya çıkmak / organize etmek / trafiać do celu
+treść / ż / "b1_komple" / içerik / Nie zrozumiałam treści tego listu. / Bu mektubun içeriğini anlamadım. / kanapa / żyła / mantı benzeri hamur / eczane / treść wiadomości
+trochę / przysł. / "b1_komple" / biraz / Jestem trochę zmęczony po podróży. / Yolculuktan sonra biraz yorgunum. / źle / dodatkowo / en az / kuru / trochę zmęczony
+trwać / czas. (nied.) / "b1_komple" / sürmek, devam etmek / Spotkanie trwało prawie dwie godziny. / Toplantı neredeyse iki saat sürdü. / porozmawiać / wyczarować / iletişime geçmek / koymak, yerleştirmek / trwać długo
+trzeba / wyr. / "b1_komple" / gerek, lazım / Trzeba kupić chleb i mleko. / Ekmek ve süt almak gerek. / to zależy / wszech czasów / duruma göre, ona bağlı / aynı saatte, aynı zamanda / trzeba iść
+trzęsienie ziemi / n / "b1_komple" / deprem / W nocy było silne trzęsienie ziemi. / Gece güçlü bir deprem oldu. / ogłoszenie w internecie / bieganie / gökyüzü / ağaç / silne trzęsienie ziemi
+tworzyć / czas. (nied.) / "b1_komple" / oluşturmak, yaratmak / Nasz zespół tworzy nowe projekty każdego miesiąca. / Ekibimiz her ay yeni projeler oluşturuyor. / wrócić / wynająć / ilgili olmak / açık artırmada almak / tworzyć projekt
+tysiąc / licz. / "b1_komple" / bin / To kosztuje tysiąc złotych. / Bu bin zlotiye mal oluyor. / dwieście / osiem / iki / altı / tysiąc złotych
+uczciwy / przym. / "b1_komple" / dürüst / Szukamy uczciwego pracownika do sklepu. / Mağaza için dürüst bir çalışan arıyoruz. / edukacyjny / lotniczy / bozuk, arızalı / soğuk / uczciwy człowiek
+uczestniczyć / czas. (nied.) / "b1_komple" / katılmak / Chcemy uczestniczyć w tej konferencji. / Bu konferansa katılmak istiyoruz. / obchodzić się / odwołać / vermek, servis etmek / korumak, muhafaza etmek / uczestniczyć w spotkaniu
+udawać / czas. (nied.) / "b1_komple" / numara yapmak, -mış gibi yapmak / On zawsze udaje, że nic go nie obchodzi. / O, her zaman hiçbir şey umurunda değilmiş gibi davranır. / zapamiętywać / wygrać / temizlemek / düşünmek / udawać zajętego
+ukryty / przym. / "b1_komple" / gizli, saklı / W parku znaleźliśmy ukryty ogród. / Parkta gizli bir bahçe bulduk. / urocze / najgorszy / minimalist / en iyi / ukryty ogród
+ułatwiać / czas. (nied.) / "b1_komple" / kolaylaştırmak / Ta aplikacja ułatwia codzienne zakupy. / Bu uygulama günlük alışverişi kolaylaştırıyor. / pozwalać / wykorzystać / yakmak, tüketmek / beklemek / ułatwiać życie
+ułatwić / czas. (dok.) / "b1_komple" / kolaylaştırmak / Ten kurs ma ułatwić naukę gramatyki. / Bu kurs, gramer öğrenmeyi kolaylaştırmayı amaçlıyor. / interesować / opowiadać / sona ermek / eşlik etmek / ułatwić pracę
+umiejętność / ż / "b1_komple" / beceri, yetenek / Gotowanie to umiejętność, której się uczę. / Yemek pişirmek, öğrendiğim bir beceri. / technika / rozmowa kwalifikacyjna / bilgi / kozmetik firması / nowa umiejętność
+umówić się / czas. (dok.) / "b1_komple" / randevu almak / Umówiłem się z lekarzem na jutro. / Yarın için doktordan randevu aldım. / przechodzić / wypełniać / sihirle yaratmak / korumak, muhafaza etmek / umówić się na wizytę
+upał / meski /  / sıcak hava, kavurucu sıcak / W tym roku lato przyniosło wielki upał. / Bu yıl yaz büyük bir sıcak hava getirdi.
+upewnić się / czas. (dok.) / "b1_komple" / emin olmak / Chcę się upewnić, że drzwi są zamknięte. / Kapının kilitli olduğundan emin olmak istiyorum. / zgadzać się / zapomnieć / ayırmak, adamak / gitmek (yürüyerek) - gitmek / upewnić się, że
+uroczystość / ż / "b1_komple" / tören / Byliśmy razem na uroczystości urodzinowej babci. / Büyükannenin doğum günü törenine birlikte gittik. / niespodzianka / błyskawica / ölüm / çiftlik / rodzinna uroczystość
+uśmiechnąć się / czas. (dok.) / "b1_komple" / gülümsemek / Kiedy mnie zobaczyła, uśmiechnęła się szeroko. / Beni görünce geniş bir şekilde gülümsedi. / przyglądać się / wyciągać / istemek - isterdim (kadın) / azaltmak / uśmiechnąć się do kogoś
+utworzyć / czas. (dok.) / "b1_komple" / oluşturmak / Musisz utworzyć nowe konto na tej stronie. / Bu sitede yeni bir hesap oluşturman gerekiyor. / polecieć / smakować / satın almak - satın almak (süreç) / satmak / utworzyć konto
+uważać / czas. (nied.) / "b1_komple" / dikkat etmek - dikkat etmek, saymak / Uważaj na schodach, są śliskie. / Merdivenlerde dikkat et, kaygan. / zapamiętywać / postanowić / davet etmek / vazgeçmek / uważać na siebie
+uwielbiać / czas. (nied.) / "b1_komple" / bayılmak, çok sevmek / Uwielbiam polskie pierogi. / Polonya usulü mantıya bayılıyorum. / spóźniać się / tracić / tamamlamak / önermek, ima etmek / uwielbiać coś
+uzależnienie / n / "b1_komple" / bağımlılık / Uzależnienie od telefonu jest dziś częstym problemem. / Telefon bağımlılığı bugün yaygın bir sorundur. / puste opakowania / opóźnienie / gösteri, tiyatro oyunu / gecikme, rötar / uzależnienie od internetu
+uzupełnić / czas. (dok.) / "b1_komple" / tamamlamak / Musisz uzupełnić ten formularz przed wysłaniem. / Göndermeden önce bu formu tamamlaman gerekiyor. / deprawować / wyjść / süslemek / bitirmek / uzupełnić formularz
+użytkownik / m / "b1_komple" / kullanıcı / Każdy użytkownik musi utworzyć własne hasło. / Her kullanıcı kendi şifresini oluşturmalıdır. / certyfikat / pociąg / pazarlama / açlık / nowy użytkownik
+wada / ż / "b1_komple" / dezavantaj, kusur / Ten samochód ma jedną poważną wadę. / Bu arabanın bir ciddi kusuru var. / specjalista / rola główna / kahve / patika, yol / poważna wada
+waga / zenski /  / ağırlık, kilo / Lekarz sprawdził moją wagę i ciśnienie. / Doktor kilomu ve tansiyonumu kontrol etti.
+wahanie / n / "b1_komple" / tereddüt / Po chwili wahania zgodziła się na wyjazd. / Kısa bir tereddütten sonra geziye razı oldu. / bieganie / konto / ilaç / bağırsak / bez wahania
+warunek / meski /  / koşul, şart / Jedynym warunkiem jest punktualność. / Tek şart dakiklilik.
+wcześnie / przysł. / "b1_komple" / erken / Musimy wyjść z domu bardzo wcześnie. / Evden çok erken çıkmamız gerekiyor. / spokojnie / prawie / soğuk / daha hızlı / wcześnie rano
+wczoraj / zarf /  / dün / Wczoraj byłem w kinie. / Dün sinemadaydım.
+wędlina / ż / "b1_komple" / şarküteri, salam / Kupiłam trochę wędliny na kanapki. / Sandviç için biraz şarküteri aldım. / aktywność / scena / karaciğer / şimşek / świeża wędlina
+wiać / czas. (nied.) / "b1_komple" / esmek / Dzisiaj mocno wieje wiatr znad morza. / Bugün denizden şiddetli bir rüzgar esiyor. / spacerować / pojawiać się / gözlemlemek / çıkmak / wiać mocno
+wiedzieć / fiil /  / bilmek (bilgi) / Wiem, gdzie jest dworzec. / İstasyonun nerede olduğunu biliyorum.
+wielorazowy / przym. / "b1_komple" / çok kullanımlık / Zawsze noszę wielorazową butelkę na wodę. / Her zaman çok kullanımlık bir su şişesi taşırım. / zakorkowany / przytulny / yapay - yapay, suni / şık, zarif - şık / wielorazowa butelka
+wierzyć / czas. (nied.) / "b1_komple" / inanmak / Zawsze wierzę w dobre intencje ludzi. / Her zaman insanların iyi niyetine inanırım. / interesować / sprzątać / kaybetmek / ateşlemek, yakmak / wierzyć komuś
+więzienie / n / "b1_komple" / hapishane / Za to przestępstwo grozi mu więzienie. / Bu suç için ona hapis cezası tehdidi var. / gardło / produkty bio / toplantı, buluşma / koşu / trafić do więzienia
+właściwie / przysł. / "b1_komple" / aslında, doğru şekilde / Właściwie nie wiem, co powinienem zrobić. / Aslında ne yapmam gerektiğini bilmiyorum. / przede wszystkim / czasami / kötü / oldukça, tamamen / właściwie nie wiem
+właściwy / przym. / "b1_komple" / uygun, yerinde / Wybrał właściwy moment na rozmowę. / Konuşmak için doğru anı seçti. / włoski / finansowy / tek kullanımlık / tıkanmış (trafik) / właściwy moment
+włączyć / czas. (dok.) / "b1_komple" / açmak / Włącz światło, bo jest ciemno. / Işığı aç çünkü hava karanlık. / wpływać / zamówić / işten çıkarmak / gözlemlemek / włączyć światło
+wobec / przyim. / "b1_komple" / karşısında, -e göre / Jest bardzo miły wobec sąsiadów. / Komşularına karşı çok nazik. / ponad / w / -de - -da - içinde / dışında, haricinde / wobec sąsiadów
+wokół / przyim. / "b1_komple" / etrafında / Wokół domu rośnie dużo kwiatów. / Evin etrafında çok çiçek yetişiyor. / blisko / obok / birlikte / -den--dan - -den--dan - beri, -den--dan / wokół domu
+wpływ / m / "b1_komple" / etki, tesir / Rodzice mają duży wpływ na dzieci. / Ebeveynlerin çocuklar üzerinde büyük etkisi var. / dzień / szczyt sezonu / turist / bahçe / mieć wpływ
+wpisać / czas. (dok.) / "b1_komple" / yazmak, girmek / Musisz wpisać hasło, żeby się zalogować. / Giriş yapmak için şifreyi girmen gerekiyor. / szukać / polecieć / teşvik etmek / rezerve etmek / wpisać hasło
+wraz / przyim. / "b1_komple" / birlikte / Przyjechała wraz z rodziną na wakacje. / Ailesiyle birlikte tatile geldi. / wokół / koło / altında / dışında, haricinde / wraz z rodziną
+wrażenie / n / "b1_komple" / izlenim / Ten film zrobił na mnie duże wrażenie. / Bu film bende büyük bir izlenim bıraktı. / badanie / mówienie / gün batımı / bağırsak / dobre wrażenie
+wreszcie / przysł. / "b1_komple" / nihayet, sonunda / Wreszcie skończyłem to trudne zadanie. / Nihayet bu zor görevi bitirdim. / całkowicie / tam / daha kötü / lezzetli / wreszcie koniec
+wrzucić / czas. (dok.) / "b1_komple" / atmak / Wrzuć ten papier do kosza. / Bu kağıdı çöpe at. / pozwalać / kończyć / tanımak, bilmek / vazgeçmek / wrzucić do kosza
+wskazać / czas. (dok.) / "b1_komple" / işaret etmek, belirtmek / Proszę wskazać właściwą odpowiedź. / Lütfen doğru cevabı işaret edin. / uzupełnić / sprawdzić / geliştirmek / eşleştirmek / wskazać kierunek
+wspaniale / przysł. / "b1_komple" / harika / Ten koncert był zorganizowany po prostu wspaniale. / Bu konser gerçekten harika düzenlenmişti. / poprawnie / na pewno / seve seve, memnuniyetle / zayıfça / wyglądać wspaniale
+wspomnieć / czas. (dok.) / "b1_komple" / hatırlamak - bahsetmek / Zapomniałem wspomnieć o ważnym spotkaniu. / Önemli bir toplantıdan bahsetmeyi unuttum. / wypełniać / spacerować / değiştirmek / hâkim olmak / wspomnieć o czymś
+wstęp / m / "b1_komple" / giriş / Wstęp na wystawę jest bezpłatny. / Sergiye giriş ücretsizdir. / młodzież / len / erkek kardeş / raf / darmowy wstęp
+wybór / m / "b1_komple" / seçim / Musisz podjąć wybór jak najszybciej. / En kısa sürede bir seçim yapmalısın. / konflikt / sernik / işitme, duyma / fiş, makbuz - fiş / trudny wybór
+wybrać / czas. (dok.) / "b1_komple" / seçmek / Musisz wybrać jedną z tych opcji. / Bu seçeneklerden birini seçmen gerekiyor. / polecieć / wypić / yıkanmak, banyo yapmak / egzersiz yapmak / wybrać opcję
+wybrany / przym. / "b1_komple" / seçilmiş, seçilen / Proszę zapłacić za wybrany produkt. / Lütfen seçilen ürün için ödeme yapın. / poprawny / wakacyjny / ikinci el-kullanılan / genç / wybrany produkt
+wyciągać / czas. (nied.) / "b1_komple" / çıkarmak, dışarı çekmek / Wyciągam klucze z torby. / Anahtarları çantadan çıkarıyorum. / odtowarować / kosztować / kontrol etmek / bitmek, sona ermek / wyciągać klucze
+wycierać / czas. (nied.) / "b1_komple" / silmek, kurulamak / Zawsze wycieram stół po kolacji. / Akşam yemeğinden sonra hep masayı silerim. / sortować / dyskutować / yaratmak, oluşturmak / cevap vermek / wycierać stół
+wyczarować / czas. (dok.) / "b1_komple" / sihirle yaratmak / Babcia potrafi wyczarować pyszny obiad z niczego. / Büyükanne hiçbir şeyden lezzetli bir yemek sihirle yaratabiliyor. / rozgrzewać się / zamierać / konuşmak, söylemek / duymak / wyczarować obiad
+wygląd / meski /  / görünüm / Wygląd aplikacji jest nowoczesny. / Uygulamanın görünümü modern.
+wyglądać / czas. (nied.) / "b1_komple" / görünmek / Dzisiaj wyglądasz bardzo zmęczony. / Bugün çok yorgun görünüyorsun. / poruszyć / startować / denemek / açmak / dobrze wyglądać
+wygodnie / przysł. / "b1_komple" / rahatça / Usiądź wygodnie i odpocznij trochę. / Rahatça otur ve biraz dinlen. / zazwyczaj / poprawnie / sonunda, nihayet / nazikçe, kibarca / siedzieć wygodnie
+wygrać / czas. (dok.) / "b1_komple" / kazanmak / Nasza drużyna wygrała mecz wczoraj. / Takımımız dün maçı kazandı. / spotkać się / użyć / zorunda olmak / gelmek, varmak - gelmek (araçla) / wygrać mecz
+wyjazd / m / "b1_komple" / gezi, yolculuk / Planujemy wyjazd służbowy do Warszawy. / Varşova'ya bir iş gezisi planlıyoruz. / sernik / abonament / erkek çocuk, oğlan / yağmur / wyjazd służbowy
+wyjątkowy / przym. / "b1_komple" / eşsiz, benzersiz / To był dla nas wyjątkowy dzień. / Bu bizim için eşsiz bir gündü. / ważniejszy / śliski / rahat, konforlu / kısa / wyjątkowy dzień
+wykąpać się / czas. (dok.) / "b1_komple" / yıkanmak, banyo yapmak / Chcę się wykąpać przed snem. / Uyumadan önce yıkanmak istiyorum. / rejestrować się / uważać / başlamak, yarışmaya katılmak / sunmak, tanıtmak / wykąpać się wieczorem
+wykład / m / "b1_komple" / ders, konferans / Jutro mam wykład z historii na uniwersytecie. / Yarın üniversitede tarih dersim var. / chłopiec / brzuch / küçük masa / çatışma, anlaşmazlık / ciekawy wykład
+wykorzystywać / czas. (nied.) / "b1_komple" / kullanmak, yararlanmak / Firma wykorzystuje nowe technologie w pracy. / Şirket işte yeni teknolojileri kullanıyor. / współpracować / zachorować / üniversitede okumak / düşünmek / wykorzystywać technologię
+wylicytować / czas. (dok.) / "b1_komple" / açık artırmada almak / Udało mu się wylicytować stary obraz na aukcji. / Açık artırmada eski bir tabloyu almayı başardı. / wyprodukować / zmienić / kolaylaştırmak / dikkatle bakmak / wylicytować obraz
+wylosować / czas. (dok.) / "b1_komple" / kura çekmek / Wylosowałem szczęśliwy numer w konkursie. / Yarışmada şanslı numarayı çektim. / wystartować / odebrać / unutmak / tasarruf etmek / wylosować numer
+wyłącznie / przysł. / "b1_komple" / yalnızca, sadece / Pracuję wyłącznie w dni robocze. / Yalnızca iş günlerinde çalışıyorum. / oczywiście / lepiej / sık sık / tesadüfen / wyłącznie dla ciebie
+wyłączyć / czas. (dok.) / "b1_komple" / kapatmak / Wyłącz proszę telewizor przed snem. / Lütfen uyumadan önce televizyonu kapat. / pomóc / przemyśleć / gelmek / yararlanmak / wyłączyć telewizor
+wymagać / czas. (nied.) / "b1_komple" / gerektirmek / Ta praca wymaga dużo cierpliwości. / Bu iş çok sabır gerektiriyor. / przyjeżdżać / opublikować / organize etmek / başlatmak / wymagać cierpliwości
+wymieniać / czas. (nied.) / "b1_komple" / saymak, listelemek / Uczniowie mają wymieniać nazwy miast w Polsce. / Öğrenciler Polonya'daki şehir isimlerini saymalı. / zorganizować / powstać / karar vermek / geç kalmak / wymieniać przykłady
+wynająć / czas. (dok.) / "b1_komple" / kiralamak / Chcemy wynająć samochód na weekend. / Hafta sonu için bir araba kiralamak istiyoruz. / zwolnić / budować / almak / -ebilmek - -ebilmek, yapabilmek / wynająć samochód
+wynik / meski /  / sonuç / Jaki jest wynik egzaminu? / Sınavın sonucu ne?
+wypić / czas. (dok.) / "b1_komple" / içmek / Chcę wypić szklankę wody. / Bir bardak su içmek istiyorum. / edukować / sprzątać / vazgeçmek / vermek, servis etmek / wypić wodę
+wypoczynek / m / "b1_komple" / dinlenme / Po pracy potrzebuję trochę wypoczynku. / İşten sonra biraz dinlenmeye ihtiyacım var. / syrop na kaszel / strój / ders, nesne / manzara, görüntü / zasłużony wypoczynek
+wypowiadać / czas. (nied.) / "b1_komple" / ifade etmek, söylemek / On lubi wypowiadać swoje zdanie na spotkaniach. / O, toplantılarda fikrini söylemeyi sever. / prowadzić / wyobrazić sobie / sağlamak, güvence vermek / kayıt olmak / wypowiadać zdanie
+wypowiedź / zenski /  / ifade, söylem / Twoja wypowiedź była bardzo ciekawa. / Senin ifaden çok ilgi çekiciydi.
+wypracowanie / n / "b1_komple" / kompozisyon, yazı ödevi / Napisałem wypracowanie na temat podróży. / Seyahat konulu bir kompozisyon yazdım. / przedstawienie / krzesło / yazma / araba / szkolne wypracowanie
+wyprawa / ż / "b1_komple" / sefer, gezi / Ta wyprawa w góry była bardzo trudna. / Dağlara yapılan bu sefer çok zordu. / opinia / wielkie aglomeracje / havuç / uzman / górska wyprawa
+wyraźnie / przysł. / "b1_komple" / açıkça / Proszę mówić wyraźnie, bo słabo słyszę. / Lütfen açıkça konuş, iyi duyamıyorum. / trudno / regularnie / sabah / hafifçe / mówić wyraźnie
+wyrób / m / "b1_komple" / ürün / To jest ręcznie zrobiony wyrób lokalny. / Bu, el yapımı yerel bir üründür. / rodzice / pamięć / izin, tatil / gün / lokalny wyrób
+wyrzucać / czas. (nied.) / "b1_komple" / atmak / Nie wyrzucaj śmieci na ulicę. / Çöpü sokağa atma. / uzupełnić / dbać / saymak, listelemek / tartışmak / wyrzucać śmieci
+wysiłek / meski /  / çaba, efor / Nauka języka wymaga dużego wysiłku i cierpliwości. / Dil öğrenmek büyük çaba ve sabır gerektirir.
+wysłać / czas. (dok.) / "b1_komple" / göndermek / Muszę wysłać ten e-mail dzisiaj. / Bu e-postayı bugün göndermem gerekiyor. / dojeżdżać / pozwolić / geri vermek - geri vermek, dikkat çekmek / almak, elde etmek / wysłać wiadomość
+wystawiać / czas. (nied.) / "b1_komple" / satışa çıkarmak / Postanowił wystawić stare meble na sprzedaż. / Eski mobilyaları satışa çıkarmaya karar verdi. / kończyć się / zdjąć / ilgilendirmek / kısaltmak / wystawiać na sprzedaż
+występ / m / "b1_komple" / gösteri, performans / Jej występ na scenie był fantastyczny. / Onun sahnedeki performansı harikaydı. / ekspert / peron / besteci / yüzde / udany występ
+występować / czas. (nied.) / "b1_komple" / bulunmak, sahneye çıkmak / Aktorka często występuje w telewizji. / Aktris sık sık televizyonda sahneye çıkıyor. / dyskutować / narzekać / planlamak / karşılaştırmak / występować w telewizji
+wystrzelić / czas. (dok.) / "b1_komple" / ateş etmek / Żołnierz musiał wystrzelić w powietrze. / Asker havaya ateş etmek zorunda kaldı. / zmieniać / wypowiadać / önermek - önerirdim (erkek) / sürmek, gitmek / wystrzelić w powietrze
+wyszukiwarka / zenski /  / arama motoru / Używam wyszukiwarki do znalezienia informacji. / Bilgi bulmak için arama motoru kullanıyorum.
+wyśmienity / przym. / "b1_komple" / leziz, mükemmel / Obiad był po prostu wyśmienity. / Yemek sadece mükemmeldi. / tradycyjny / nieczynny / el (bagajı) / gecikmeli / wyśmienity obiad
+wywiad / m / "b1_komple" / mülakat, röportaj / Dziennikarz przeprowadził wywiad z aktorem. / Gazeteci oyuncuyla röportaj yaptı. / dach / fragment / hakem / hindi / udzielić wywiadu
+wziąć / czas. (dok.) / "b1_komple" / almak / Muszę wziąć parasol, bo pada deszcz. / Şemsiye almam gerekiyor çünkü yağmur yağıyor. / musieć / oznaczać / yapmak (spor vb.) / başlatmak / wziąć parasol
+zabraknąć / czas. (dok.) / "b1_komple" / eksik olmak, yetmemek / W sklepie zabrakło chleba dzisiaj. / Bugün markette ekmek kalmadı. / nazbierać / nudzić się / tebrik etmek / yıkanmak, banyo yapmak / zabraknąć czasu
+zachęcać / czas. (nied.) / "b1_komple" / teşvik etmek / Nauczyciel zachęca uczniów do czytania książek. / Öğretmen öğrencileri kitap okumaya teşvik ediyor. / zadawać / brakować / indirmek / satmak / zachęcać do nauki
+zachorować / czas. (dok.) / "b1_komple" / hastalanmak / Mój kolega zachorował w zeszłym tygodniu. / Arkadaşım geçen hafta hastalandı. / zastanowić się / wybrać / sahip olmak / gezdirmek / zachorować na grypę
+zachować / czas. (dok.) / "b1_komple" / korumak, muhafaza etmek / Musimy zachować spokój w trudnej sytuacji. / Zor bir durumda sakin kalmalıyız. / wyprowadzać się / pasować / kontrol etmek / uymak, yakışmak / zachować spokój
+zachowanie / n / "b1_komple" / davranış / Jego zachowanie na spotkaniu było niegrzeczne. / Toplantıdaki davranışı kabaydı. / rozwiązanie / śniadanie / kasaba / şehir / dziwne zachowanie
+zacząć / czas. (dok.) / "b1_komple" / başlamak / Chcę zacząć naukę polskiego od nowa. / Lehçe öğrenmeye baştan başlamak istiyorum. / polecieć / zakładać / kolaylaştırmak / ait olmak - (należy=) gerekir, yapılmalı / zacząć od nowa
+zadanie / nijaki /  / görev, ödev / To zadanie jest bardzo trudne. / Bu ödev çok zor.
+zadowolenie / n / "b1_komple" / memnuniyet / Klienci wyrazili duże zadowolenie z usługi. / Müşteriler hizmetten büyük memnuniyet duydular. / opóźnienie / osłabienie wiosenne / anlama / doğum / pełne zadowolenie
+zagrać / czas. (dok.) / "b1_komple" / oynamak / Możemy razem zagrać w karty wieczorem. / Akşam birlikte kağıt oynayabiliriz. / porównywać / wyrzucać / taramak / güvence vermek / zagrać w karty
+zagrożenie / n / "b1_komple" / tehdit, tehlike / To jest poważne zagrożenie dla środowiska. / Bu, çevre için ciddi bir tehdittir. / metro / ochłodzenie / alın / pozisyon, görev / poważne zagrożenie
+zajmować się / fiil /  / uğraşmak, ilgilenmek / Czym się zajmujesz w wolnym czasie? / Boş zamanında ne ile uğraşırsın?
+zakładać / czas. (nied.) / "b1_komple" / giymek, kurmak / Rano zakładam ciepłą kurtkę. / Sabah sıcak bir mont giyiyorum. / poprawić / zapraszać / iyileştirmek - düzeltmek, iyileştirmek / yürümek, gitmek / zakładać kurtkę
+zakorkowany / przym. / "b1_komple" / tıkanmış (trafik) / Wieczorem miasto jest bardzo zakorkowane. / Akşamları şehir çok trafik sıkışık. / jasny / początkujący / Mazurya'ya ait / cesur / zakorkowana ulica
+zaleta / zenski /  / avantaj, üstünlük / Główną zaletą jest niska cena. / Temel avantaj düşük fiyattır.
+zamawiać / czas. (nied.) / "b1_komple" / sipariş etmek / Zawsze zamawiam pizzę w piątek wieczorem. / Cuma akşamları her zaman pizza sipariş ederim. / czuć się / zabrać / yüzmek / seyahat etmek / zamawiać jedzenie
+zamierać / czas. (nied.) / "b1_komple" / durmak, soluğu kesilmek / Serce zamarło mu ze strachu. / Korkudan kalbi durur gibi oldu. / skręcić / rezygnować / baştan çıkarmak, ahlakını bozmak / yerine geçmek / zamierać ze strachu
+zamierzać / czas. (nied.) / "b1_komple" / niyet etmek / Zamierzam zmienić pracę w przyszłym roku. / Gelecek yıl iş değiştirmeyi niyet ediyorum. / wpływać / zapamiętać / bırakmak / karar vermek / zamierzać coś zrobić
+zamówić / czas. (dok.) / "b1_komple" / sipariş vermek / Chciałbym zamówić kawę i ciastko. / Bir kahve ve pasta sipariş etmek istiyorum. / doliczyć / wykorzystać / karar vermek / dinlemek / zamówić kawę
+zanikać / czas. (nied.) / "b1_komple" / yok olmak, kaybolmak / Stare tradycje powoli zanikają w miastach. / Eski gelenekler şehirlerde yavaş yavaş kayboluyor. / zamierać / polecać / organize etmek / egzersiz yapmak / powoli zanikać
+zanim / spój. / "b1_komple" / önce / Zjem śniadanie, zanim wyjdę do pracy. / İşe çıkmadan önce kahvaltı edeceğim. / natomiast / lub / ve, ile - ve - ayrıca / mi, yoksa / zanim wyjdziesz
+zapach / m / "b1_komple" / koku / Uwielbiam zapach świeżego chleba. / Taze ekmeğin kokusunu çok severim. / krawat / gadżet / başlangıç / ağrı / przyjemny zapach
+zapamiętywać / czas. (nied.) / "b1_komple" / hatırlamak / On szybko zapamiętuje numery telefonów. / O, telefon numaralarını çabuk hatırlıyor. / oglądać / wyprodukować / kalkmak, hareket etmek / kiralamak / łatwo zapamiętywać
+zapłacić / czas. (dok.) / "b1_komple" / ödemek / Muszę zapłacić rachunek za prąd. / Elektrik faturasını ödemem gerekiyor. / sprzedać / edukować / oturmak, yaşamak - yaşamak, oturmak / kabul etmek - aynı fikirde olmak - katılmak, razı olmak / zapłacić rachunek
+zapominać / fiil /  / unutmak / Często zapominam słówek po polsku. / Lehçe kelimeleri sık sık unutuyorum.
+zaprosić / czas. (dok.) / "b1_komple" / davet etmek - davet edelim / Chcę zaprosić rodzinę na urodziny. / Ailemi doğum günüme davet etmek istiyorum. / wycierać / starać się / gülmek / iyileştirmek - düzeltmek, iyileştirmek / zaprosić na urodziny
+zarabiać / czas. (nied.) / "b1_komple" / para kazanmak / On zarabia dobre pieniądze w nowej pracy. / O, yeni işinde iyi para kazanıyor. / okazać się / zakończyć się / yerine geçmek / bitirmek / zarabiać pieniądze
+zaspać / czas. (dok.) / "b1_komple" / uyuyakalmak / Dzisiaj zaspałem i spóźniłem się do pracy. / Bugün uyuyakaldım ve işe geç kaldım. / utworzyć / kupować / karşılaşmak / aktarma yapmak / zaspać rano
+zastępować / czas. (nied.) / "b1_komple" / yerine geçmek / Robot zastępuje ludzi w niektórych fabrykach. / Robot bazı fabrikalarda insanların yerine geçiyor. / wynajmować / woleć / birleştirmek / yıkanmak, banyo yapmak / zastępować pracownika
+zatowarować / czas. (dok.) / "b1_komple" / mal doldurmak, stoklamak / Sklep zatowarował półki przed świętami. / Mağaza bayram öncesi rafları mal ile doldurdu. / zastanawiać się / studiować / sormak / öğrenmek / zatowarować sklep
+zatrudnić / czas. (dok.) / "b1_komple" / işe almak / Firma chce zatrudnić nowego programistę. / Şirket yeni bir yazılımcı işe almak istiyor. / ograniczyć / występować / öğrenmek / üretmek / zatrudnić pracownika
+zauważyć / czas. (dok.) / "b1_komple" / fark etmek / Zauważyłem, że jesteś dziś smutny. / Bugün üzgün olduğunu fark ettim. / widzieć / sprawiać / unutmak / sahip olmak / zauważyć zmianę
+zawał serca / ż / "b1_komple" / kalp krizi / Jego dziadek miał zawał serca w zeszłym roku. / Büyükbabası geçen yıl kalp krizi geçirdi. / cena początkowa / nagroda / etek / cerrahi / lekki zawał serca
+zaznaczyć / czas. (dok.) / "b1_komple" / işaretlemek / Proszę zaznaczyć poprawną odpowiedź. / Lütfen doğru cevabı işaretleyin. / dowiedzieć się / rozpalić / bitirmek / hayal etmek / zaznaczyć odpowiedź
+zazwyczaj / przysł. / "b1_komple" / genellikle, çoğunlukla / Zazwyczaj wstaję o siódmej rano. / Genellikle sabah yedide kalkarım. / przede wszystkim / uważnie / hoş, güzel / doğru olarak / zazwyczaj rano
+zażywać / czas. (nied.) / "b1_komple" / almak (ilaç) / Powinieneś zażywać leki regularnie. / İlaçları düzenli almalısın. / jechać / opłacać się / dikkat etmek - dikkat etmek, saymak / sevmek, beğenmek / zażywać leki
+zdać / czas. (dok.) / "b1_komple" / geçmek (sınav) - geçmek (sınavı) / Mam nadzieję, że zdam egzamin z polskiego. / Umarım Lehçe sınavını geçerim. / zdecydować / zastępować / uygun olmak / gelişmek / zdać egzamin
+zdjąć / czas. (dok.) / "b1_komple" / (giysi) çıkarmak / Proszę zdjąć buty przed wejściem. / Lütfen içeri girmeden önce ayakkabılarınızı çıkarın. / spadać / opłacać się / özür dilemek / yemek yemek - yemek / zdjąć buty
+zdobywać / czas. (nied.) / "b1_komple" / kazanmak, elde etmek / Sportowcy ciężko trenują, żeby zdobywać medale. / Sporcular madalya kazanmak için sıkı antrenman yapar. / zanikać / przesiadać się / kolaylaştırmak / ateş etmek / zdobywać medale
+zepsuty / przym. / "b1_komple" / bozuk, arızalı / Mój telefon jest zepsuty i nie działa. / Telefonum bozuk ve çalışmıyor. / najważniejszy / ruchomy / doğru, hatasız / serbest, boş - yavaş / zepsuty telefon
+zewnętrzny / przym. / "b1_komple" / açık hava, dış / Dziecko bawi się na zewnętrznym placu zabaw. / Çocuk dış oyun alanında oynuyor. / towarzyski / różny / son kullanma tarihi geçmiş / tek kullanımlık / zewnętrzny świat
+zgodzić się / czas. (dok.) / "b1_komple" / razı olmak, anlaşmak / Szef zgodził się na mój urlop. / Patron iznime razı oldu. / wystartować / wyrzucać / kazanmak / istemek - isterdim (kadın) / zgodzić się na coś
+zgoda / ż / "b1_komple" / onay, anlaşma / Potrzebuję zgody rodziców na ten wyjazd. / Bu gezi için ebeveynlerimin onayına ihtiyacım var. / tabliczka / gramatyka / kaş / misafir / pisemna zgoda
+złapać / czas. (dok.) / "b1_komple" / yakalamak / Policja złapała złodzieja w parku. / Polis hırsızı parkta yakaladı. / wykorzystywać / mylić się / katılmak / uçmak (sık sık) - uçmak / złapać autobus
+złościć się / czas. (nied.) / "b1_komple" / sinirlenmek / Nie złość się, to nie jego wina. / Sinirlenme, bu onun suçu değil. / zdarzyć się / współpracować / yayımlamak / çalışmak, işlemek / złościć się na kogoś
+zmniejszyć / czas. (dok.) / "b1_komple" / azaltmak / Powinniśmy zmniejszyć ilość cukru w diecie. / Diyetimizdeki şeker miktarını azaltmalıyız. / spóźnić się / odłożyć / yaşamak / yayımlamak / zmniejszyć ryzyko
+znać / czas. (nied.) / "b1_komple" / tanımak, bilmek / Znam go od wielu lat. / Onu yıllardır tanıyorum. / czekać / liczyć / olmak / düşünmek, değerlendirmek / znać kogoś
+znajdować się / czas. (nied.) / "b1_komple" / bulunmak / Muzeum znajduje się w centrum miasta. / Müze şehir merkezinde bulunuyor. / wykorzystywać / poinformować / zorunda olmak / tedavi etmek / znajdować się blisko
+znajomość / ż / "b1_komple" / bilgi, yeterlilik - bilgi, tanışıklık / Wymagana jest dobra znajomość języka angielskiego. / İyi bir İngilizce bilgisi gereklidir. / strona internetowa / scena / poşet / ayak (taban) / dobra znajomość
+zobaczyć / czas. (dok.) / "b1_komple" / görmek / Chciałbym zobaczyć góry tej zimy. / Bu kış dağları görmek istiyorum. / zwiększyć / zwiedzać / düzenlemek - organize etmek / çıkarmak, dışarı çekmek / zobaczyć coś nowego
+zostać / czas. (dok.) / "b1_komple" / kalmak - olmak, kalmak / Chcę zostać w domu w ten weekend. / Bu hafta sonu evde kalmak istiyorum. / kosztować / zdecydować / öğrenmek / geç kalmak / zostać w domu
+zrywać / czas. (nied.) / "b1_komple" / ayrılmak (ilişkiyi) / Oni często zrywają i wracają do siebie. / Onlar sık sık ayrılıp tekrar barışıyorlar. / brać / działać / bulunmak, sahneye çıkmak / kutlamak / zrywać z kimś
+zużywać / czas. (nied.) / "b1_komple" / tüketmek / Ta lodówka zużywa mało energii. / Bu buzdolabı az enerji tüketiyor. / ograniczyć / wylosować / ulaşmak / yerine geçmek / zużywać energię
+zwiększyć / czas. (dok.) / "b1_komple" / artırmak / Firma chce zwiększyć sprzedaż w tym roku. / Şirket bu yıl satışları artırmak istiyor. / spotykać / wystawiać / hissetmek / öğrenmek, haberdar olmak / zwiększyć sprzedaż
+zwierzę / n / "b1_komple" / hayvan / To zwierzę potrzebuje dużo opieki. / Bu hayvan çok bakıma ihtiyaç duyuyor. / złe samopoczucie / trzęsienie ziemi / ahşap, odun / çözüm / domowe zwierzę
+zwolnić / czas. (dok.) / "b1_komple" / işten çıkarmak / Szef musiał zwolnić kilku pracowników. / Patron birkaç çalışanı işten çıkarmak zorunda kaldı. / spędzić / złościć się / rezerve etmek / karmaşıklaştırmak / zwolnić pracownika
+zwyczaj / m / "b1_komple" / gelenek, adet / To jest stary zwyczaj w naszej rodzinie. / Bu, ailemizde eski bir gelenektir. / obojczyk / kolega / mal - ürün / sezon zirvesi / dawny zwyczaj
+źrebak / m / "b1_komple" / tay / Na farmie urodził się mały źrebak. / Çiftlikte küçük bir tay doğdu. / kontakt / Polak / uyku - uyku, rüya / pazarlama / mały źrebak
+żartować / czas. (nied.) / "b1_komple" / şaka yapmak / On zawsze żartuje podczas obiadu. / O, yemek sırasında her zaman şaka yapar. / odłożyć / skorzystać / bakmak, göz atmak / tanımlamak, betimlemek - tanımlamak, açıklamak / żartować z kogoś
+żyć / czas. (nied.) / "b1_komple" / yaşamak / Chcemy żyć zdrowo i spokojnie. / Sağlıklı ve huzurlu yaşamak istiyoruz. / rozwijać / prowadzić / kurutmak / karşılaşmak / żyć spokojnie
+żywność / zenski /  / gıda, yiyecek / Ceny żywności wzrosły w ostatnim roku. / Geçen yıl gıda fiyatları arttı.
