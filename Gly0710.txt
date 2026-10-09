@@ -1,0 +1,24 @@
+pl / cins / tag / tercume / pl_cumle / cumle_tercume / plÇel1 / plÇel2 / tercumeÇel1 / tercumeÇel2 / pl_kısa
+przesyłać (przesyła, przesyłał) / ndk / "fiil1" / göndermek, iletmek / Firma przesyła nam faktury e-mailem. / Şirket bize faturaları e-postayla iletiyor. / stawiać / publikować / koymak, belirlemek / ödünç vermek / przesyłać dokumenty
+przypadać (przypada, przypadał) / ndk / "fiil1" / denk gelmek / Mój urlop przypada na lipiec. / Tatilim temmuza denk geliyor. / stać / wymieniać / ayakta durmak / oluşturmak / święto przypada w niedzielę
+publikować (publikuje, publikował) / ndk / "fiil1" / yayınlamak / Gazeta publikuje nowy artykuł. / Gazete yeni bir makale yayınlıyor. / stać się / nadawać się / olmak, haline gelmek / indirmek / publikować artykuł
+składać (składa, składał) / ndk / "fiil1" / sunmak, katlamak / Składam wniosek w urzędzie. / Dilekçeyi dairede sunuyorum. / zauważyć / zanikać / fark etmek / yok olmak, kaybolmak / składać wniosek
+spełniać (spełnia, spełniał) / ndk / "fiil1" / yerine getirmek / Ten kandydat spełnia wszystkie wymagania. / Bu aday tüm gereklilikleri yerine getiriyor. / pożyczyć / zabraknąć / ödünç almak / eksik olmak, yetmemek / spełniać wymagania
+stawiać (stawia, stawiał) / ndk / "fiil1" / koymak, belirlemek / Dziecko stawia kubek na stole. / Çocuk bardağı masaya koyuyor. / pożyczać / zakładać / ödünç vermek / olmak, haline gelmek / stawiać sobie cele
+stać (stoi, stał) / ndk / "fiil1" / ayakta durmak / Na przystanku stoi dużo ludzi. / Durakta çok insan ayakta duruyor. / utworzyć / wymieniać / oluşturmak / saymak, listelemek / stać w kolejce
+stać się (stał się, stanie się) / dk / "fiil1" / olmak, haline gelmek / Ten zawód stał się bardzo popularny. / Bu meslek çok popüler hale geldi. / ściągnąć / stworzyć / indirmek / yaratmak / stać się popularnym
+zauważyć (zauważył, zauważy) / dk / "fiil1" / fark etmek / Nie zauważyłem, że drzwi są otwarte. / Kapıların açık olduğunu fark etmedim. / zanikać / opowiadać / yok olmak, kaybolmak / anlatmak / zauważyć błąd
+pożyczyć (pożyczył, pożyczy) / dk / "fiil1" / ödünç almak / Pożyczyłem książkę od kolegi. / Arkadaşımdan bir kitap ödünç aldım. / zabraknąć / dołączyć / eksik olmak, yetmemek / katılmak / pożyczyć od kolegi
+pożyczać (pożycza, pożyczał) / ndk / "fiil1" / ödünç vermek / Często pożyczam kolegom pieniądze. / Arkadaşlarıma sık sık para ödünç veriyorum. / zakładać / śmiecić / giymek, kurmak / çöp atmak / pożyczać komuś rower
+utworzyć (utworzył, utworzy) / dk / "fiil1" / oluşturmak / Utworzyłem nowe konto w banku. / Bankada yeni bir hesap oluşturdum. / wymieniać / nadawać się / saymak, listelemek / uygun olmak / utworzyć nowy plik
+ściągnąć (ściągnął, ściągnie) / dk / "fiil1" / indirmek / Ściągnąłem nową aplikację na telefon. / Telefona yeni bir uygulama indirdim. / stworzyć / oznaczać / yaratmak / anlamına gelmek / ściągnąć aplikację
+zanikać (zanika, zanikał) / ndk / "fiil1" / yok olmak, kaybolmak / Z czasem ten zwyczaj zanika. / Zamanla bu gelenek kayboluyor. / opowiadać / przesyłać / anlatmak / göndermek, iletmek / zwyczaj zanika
+zabraknąć (zabrakło, zabraknie) / dk / "fiil1" / eksik olmak, yetmemek / Zabrakło nam czasu na pytania. / Sorulara zamanımız yetmedi. / dołączyć / przypadać / katılmak / denk gelmek / zabrakło czasu
+zakładać (zakłada, zakładał) / ndk / "fiil1" / giymek, kurmak / Zakładam kurtkę, bo jest zimno. / Hava soğuk olduğu için ceketimi giyiyorum. / śmiecić / publikować / çöp atmak / olmak, haline gelmek / zakładać firmę
+wymieniać (wymienia, wymieniał) / ndk / "fiil1" / saymak, listelemek / Nauczyciel wymienia najważniejsze zasady. / Öğretmen en önemli kuralları sayıyor. / nadawać się / składać / uygun olmak / yok olmak, kaybolmak / wymieniać zalety
+stworzyć (stworzył, stworzy) / dk / "fiil1" / yaratmak / Artysta stworzył piękny obraz. / Sanatçı güzel bir resim yarattı. / oznaczać / spełniać / anlamına gelmek / yerine getirmek / stworzyć coś nowego
+opowiadać (opowiada, opowiadał) / ndk / "fiil1" / anlatmak / Babcia opowiada nam ciekawe historie. / Büyükanne bize ilginç hikâyeler anlatıyor. / przesyłać / stawiać / göndermek, iletmek / koymak, belirlemek / opowiadać historię
+dołączyć (dołączył, dołączy) / dk / "fiil1" / katılmak / Nowy kolega dołączył do naszego zespołu. / Yeni bir arkadaş ekibimize katıldı. / przypadać / stać / denk gelmek / ayakta durmak / dołączyć do grupy
+śmiecić (śmieci, śmiecił) / ndk / "fiil1" / çöp atmak / Nie wolno śmiecić w parku. / Parkta çöp atmak yasak. / publikować / stać się / yayınlamak / olmak, haline gelmek / nie śmiecić w lesie
+nadawać się (nadaje się, nadawał się) / ndk / "fiil1" / uygun olmak / Ta książka nadaje się dla dzieci. / Bu kitap çocuklar için uygun. / składać / zauważyć / sunmak, katlamak / fark etmek / nadawać się do pracy
+oznaczać (oznacza, oznaczał) / ndk / "fiil1" / anlamına gelmek / Co oznacza to słowo? / Bu kelime ne anlama geliyor? / spełniać / pożyczyć / yerine getirmek / ödünç almak / co to oznacza?
