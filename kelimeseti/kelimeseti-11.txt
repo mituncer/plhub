@@ -4,64 +4,66 @@ spłoszyć / dk / "51" / ürkütmek, kaçırmak / Pies spłoszył ptaki w parku.
 nazbierać / dk / "51" / bir miktar toplamak / W lesie nazbieraliśmy dużo grzybów. / Ormanda çok fazla mantar topladık. / spadać / powstawać / düşmek / oluşmak, doğmak; kurulmak / nazbierać grzybów / nazbierałem · nazbieram
 kwitnąć / ndk / "51" / çiçek açmak / Wiosną kwitną drzewa. / İlkbaharda ağaçlar çiçek açar. / przyciągnąć / wystrzelić / çekmek, cezbetmek / ateş etmek / kwitnące drzewa / kwitnę · kwitłem | dk: zakwitnąć ; zakwitłem · zakwitnę
 zakwitnąć / dk / "51" / çiçek açmak / W kwietniu zakwitły wiśnie. / Nisan'da kirazlar çiçek açtı. / powstawać / wiać / oluşmak, doğmak; kurulmak / esmek / zakwitnąć wiosną / zakwitłem · zakwitnę | ndk: kwitnąć ; kwitnę · kwitłem
-łąka / ż / "51" / çayır / Na łące rosły piękne kwiaty. / Çayırda güzel çiçekler büyüyordu. / cielak / królik / buzağı / tavşan / kwiaty na łące
-przyrodniczy / przym. / "51" / doğa bilimi ile ilgili / Oglądam film przyrodniczy o zwierzętach. / Hayvanlar hakkında bir doğa belgeseli izliyorum. / gorąco / osiemnastowieczny / çok sıcak / peyzaj, doğa manzarası / film przyrodniczy
-las / m / "51" / orman / W niedzielę idziemy na spacer do lasu. / Pazar günü ormana yürüyüşe gidiyoruz. / trzęsienie ziemi / królik / deprem / tavşan / spacer po lesie
-widok / m / "51" / manzara / Z hotelu jest piękny widok na morze. / Otelden güzel bir deniz manzarası var. / ochłodzenie / zachmurzenie / soğuma, serinleme / bulutlanma / widok na morze
+łąka / ż / "51" / çayır / Na łące rosły piękne kwiaty. / Çayırda güzel çiçekler büyüyordu. / cielak / kurczątko / buzağı / civciv / kwiaty na łące
+przyrodniczy / przym. / "51" / doğa bilimi ile ilgili / Oglądam film przyrodniczy o zwierzętach. / Hayvanlar hakkında bir doğa belgeseli izliyorum. / zachmurzenie / kurczątko / bulutlanma / dönüş (sıfat: dönüş bileti) / film przyrodniczy
+las / m / "51" / orman / W niedzielę idziemy na spacer do lasu. / Pazar günü ormana yürüyüşe gidiyoruz. / otoczenie / niebo / çevre / gökyüzü / spacer po lesie
+widok / m / "51" / manzara / Z hotelu jest piękny widok na morze. / Otelden güzel bir deniz manzarası var. / zachmurzenie / kijki / bulutlanma / sopalar (yürüyüş) / widok na morze
 owad / m / "51" / böcek / Latem jest dużo owadów. / Yazın çok böcek olur. / widok / koń / manzara / at / mały owad
-ocieplenie / n / "51" / ısınma (hava, iklim) / Ocieplenie klimatu wpływa na całą planetę. / İklim ısınması tüm gezegeni etkiliyor. / las / wędrowanie po górach / orman / peyzaj, doğa manzarası / ocieplenie klimatu
-pszczoła / ż / "51" / arı / Pszczoła siedzi na kwiatku. / Arı çiçeğin üzerinde duruyor. / koza / kurczątko / keçi / tay / pszczoła i miód
-zachmurzenie / n / "51" / bulutlanma / Jutro będzie duże zachmurzenie. / Yarın çok bulutlu olacak. / wędrowanie po górach / trzęsienie ziemi / dağlarda yürüyüş / deprem / duże zachmurzenie
-błyskawica / ż / "51" / şimşek / Nagle na niebie pojawiła się błyskawica. / Aniden gökyüzünde bir şimşek belirdi. / pszczoła / wędrowanie po górach / arı / dağlarda yürüyüş / szybka jak błyskawica
+ocieplenie / n / "51" / ısınma (hava, iklim) / Ocieplenie klimatu wpływa na całą planetę. / İklim ısınması tüm gezegeni etkiliyor. / kura / wędrowanie / tavuk / peyzaj, doğa manzarası / ocieplenie klimatu
+pszczoła / ż / "51" / arı / Pszczoła siedzi na kwiatku. / Arı çiçeğin üzerinde duruyor. / ferma / ocieplenie / çiftlik / ısınma (hava, iklim) / pszczoła i miód
+zachmurzenie / n / "51" / bulutlanma / Jutro będzie duże zachmurzenie. / Yarın çok bulutlu olacak. / szczeniak / założycielka / köpek yavrusu, enik / at / duże zachmurzenie
+błyskawica / ż / "51" / şimşek / Nagle na niebie pojawiła się błyskawica. / Aniden gökyüzünde bir şimşek belirdi. / trzęsienie / niebo / sarsıntı, sarsılma / gökyüzü / szybka jak błyskawica
 spadać / ndk / "52" / düşmek / Jesienią liście spadają z drzew. / Sonbaharda yapraklar ağaçlardan düşer. / przyciągać / powstać / çekmek / oluşmak, doğmak; kurulmak / spadać z drzewa / spadam · spadałem | dk: spaść ; spadłem · spadnę
 spaść / dk / "52" / düşmek / Telefon spadł mi z ręki na podłogę. / Telefon elimden yere düştü. / przyciągać / brakować / çekmek / eksik olmak, yetmemek / spaść na ziemię / spadłem · spadnę | ndk: spadać ; spadam · spadałem
 wiać / ndk / "52" / esmek / Dzisiaj mocno wieje wiatr znad morza. / Bugün denizden şiddetli bir rüzgar esiyor. / spaść / kwitnąć / düşmek / çiçek açmak / wiać mocno / wieje · wiało
 cielak / m / "52" / buzağı / Na farmie urodził się mały cielak. / Çiftlikte küçük bir buzağı doğdu. / szlak / zwierzę / yürüyüş rotası, patika / hayvan / mały cielak
-ferma / ż / "52" / çiftlik / Moi dziadkowie mają fermę drobiu. / Büyükanne ve büyükbabamın tavuk çiftliği var. / powietrze / koń / hava / soğuma, serinleme / ferma drobiu
-gatunek / m / "52" / tür / Ten gatunek ptaka jest bardzo rzadki. / Bu kuş türü çok nadirdir. / zachmurzenie / zwierzę / bulutlanma / hayvan / rzadki gatunek
+ferma / ż / "52" / çiftlik / Moi dziadkowie mają fermę drobiu. / Büyükanne ve büyükbabamın tavuk çiftliği var. / kura / trzęsienie / tavuk / sarsıntı, sarsılma / ferma drobiu
+gatunek / m / "52" / tür / Ten gatunek ptaka jest bardzo rzadki. / Bu kuş türü çok nadirdir. / zachmurzenie / wędrowanie / bulutlanma / yürüyüş, gezinti / rzadki gatunek
 gęś / ż / "52" / kaz / Na wsi hodują gęsi i kaczki. / Köyde kaz ve ördek yetiştiriyorlar. / marsz / owca / yürüyüş / koyun / pieczona gęś
 gorąco / przysł. / "52" / çok sıcak / Latem jest tutaj bardzo gorąco. / Yazın burası çok sıcak oluyor. / mokro / głośno / ıslak / yüksek sesle / robi się gorąco
-kogut / m / "52" / horoz / Kogut zapiał wcześnie rano na wsi. / Horoz köyde sabah erkenden öttü. / błyskawica / kotek / şimşek / kedi yavrusu / kogut pieje
-koń / m / "52" / at / Na wsi jeździłam na koniu. / Köyde ata biniyordum. / kurczątko / owca / civciv / koyun / biały koń
-kotek / m / "52" / kedi yavrusu / Dostaliśmy małego kotka od sąsiadów. / Komşulardan küçük bir kedi yavrusu aldık. / królik / krowa / tavşan / sopalar (yürüyüş) / mały kotek
-koza / ż / "52" / keçi / Koza je liście z krzaków w ogrodzie. / Keçi bahçedeki çalıların yapraklarını yiyor. / źrebak / cielak / tay / buzağı / biała koza
-krajobraz / m / "52" / peyzaj, doğa manzarası / Z okna widać piękny krajobraz gór. / Pencereden dağların güzel manzarası görünüyor. / owad / wędrowanie po górach / böcek / sıcak hava, kavurucu sıcak / piękny krajobraz
+kogut / m / "52" / horoz / Kogut zapiał wcześnie rano na wsi. / Horoz köyde sabah erkenden öttü. / źrebak / kijki / tay / sopalar (yürüyüş) / kogut pieje
+koń / m / "52" / at / Na wsi jeździłam na koniu. / Köyde ata biniyordum. / widok / upał / manzara / sıcak hava, kavurucu sıcak / biały koń
+kotek / m / "52" / kedi yavrusu / Dostaliśmy małego kotka od sąsiadów. / Komşulardan küçük bir kedi yavrusu aldık. / królik / wędrowanie / tavşan / yürüyüş, gezinti / mały kotek
+koza / ż / "52" / keçi / Koza je liście z krzaków w ogrodzie. / Keçi bahçedeki çalıların yapraklarını yiyor. / owca / ścieżka / koyun / patika, yol / biała koza
+krajobraz / m / "52" / peyzaj, doğa manzarası / Z okna widać piękny krajobraz gór. / Pencereden dağların güzel manzarası görünüyor. / koza / otoczenie / keçi / sıcak hava, kavurucu sıcak / piękny krajobraz
 uciekać / ndk / "53" / kaçmak / Kot ciągle ucieka z domu. / Kedi sürekli evden kaçıyor. / zakwitnąć / brakować / çiçek açmak / eksik olmak, yetmemek / uciekać z domu / uciekam · uciekałem | dk: uciec ; uciekłem · ucieknę
 uciec / dk / "53" / kaçmak / Pies uciekł z ogrodu. / Köpek bahçeden kaçtı. / powstawać / przyciągnąć / oluşmak, doğmak; kurulmak / çekmek, cezbetmek / autobus mi uciekł / uciekłem · ucieknę | ndk: uciekać ; uciekam · uciekałem
 przyciągać / ndk / "53" / çekmek / To miasto przyciąga wielu turystów. / Bu şehir birçok turisti çekiyor. / zachować / wystrzelić / korumak, muhafaza etmek / esmek / przyciągać uwagę / przyciągam · przyciągałem | dk: przyciągnąć ; przyciągnąłem · przyciągnę
-przyciągnąć / dk / "53" / çekmek, cezbetmek / Festiwal przyciągnął tysiące turystów. / Festival binlerce turisti çekti. / wystrzelić / nadawać się / ateş etmek / bir miktar toplamak / przyciągnąć turystów / przyciągnąłem · przyciągnę | ndk: przyciągać ; przyciągam · przyciągałem
-krowa / ż / "53" / inek / Na farmie hodują krowy mleczne. / Çiftlikte süt ineği yetiştiriyorlar. / cielak / ochłodzenie / buzağı / soğuma, serinleme / mleczna krowa
-królik / m / "53" / tavşan / Mój syn ma w domu małego królika. / Oğlumun evde küçük bir tavşanı var. / szlak / pszczoła / yürüyüş rotası, patika / arı / mały królik
-kura / ż / "53" / tavuk / Kura zniosła dzisiaj trzy jajka. / Tavuk bugün üç yumurta yumurtladı. / kotek / krowa / kedi yavrusu / inek / kura znosi jajka
-kurczątko / n / "53" / civciv / Małe kurczątko biegało po podwórku. / Küçük civciv bahçede koşuyordu. / zachmurzenie / niebo / bulutlanma / gökyüzü / małe kurczątko
+przyciągnąć / dk / "53" / çekmek, cezbetmek / Festiwal przyciągnął tysiące turystów. / Festival binlerce turisti çekti. / wystrzelić / odpowiedzieć / ateş etmek / bir miktar toplamak / przyciągnąć turystów / przyciągnąłem · przyciągnę | ndk: przyciągać ; przyciągam · przyciągałem
+krowa / ż / "53" / inek / Na farmie hodują krowy mleczne. / Çiftlikte süt ineği yetiştiriyorlar. / źrebak / powietrze / tay / hava / mleczna krowa
+królik / m / "53" / tavşan / Mój syn ma w domu małego królika. / Oğlumun evde küçük bir tavşanı var. / krowa / zwierzę / inek / sıcak hava, kavurucu sıcak / mały królik
+kura / ż / "53" / tavuk / Kura zniosła dzisiaj trzy jajka. / Tavuk bugün üç yumurta yumurtladı. / zwierzę / źrebak / hayvan / tay / kura znosi jajka
+kurczątko / n / "53" / civciv / Małe kurczątko biegało po podwórku. / Küçük civciv bahçede koşuyordu. / pszczoła / otoczenie / arı / kedi yavrusu / małe kurczątko
 mokro / przysł. / "53" / ıslak / Na dworze jest teraz bardzo mokro. / Dışarısı şimdi çok ıslak. / gorąco / brudno / çok sıcak / kirli bir şekilde / robi się mokro
-niebo / n / "53" / gökyüzü / Dziś niebo jest czyste i niebieskie. / Bugün gökyüzü temiz ve mavi. / szlak / powietrze / yürüyüş rotası, patika / hava / czyste niebo
-ochłodzenie / n / "53" / soğuma, serinleme / Synoptycy zapowiadają ochłodzenie w weekend. / Meteorologlar hafta sonu için hava sıcaklığında düşüş bekliyor. / tęcza / wędrowanie po górach / gökkuşağı / köpek yavrusu, enik / nagłe ochłodzenie
-otoczenie / n / "53" / çevre / Lubimy spokojne otoczenie i ciszę. / Sakin bir çevreyi ve sessizliği severiz. / upał / ochłodzenie / sıcak hava, kavurucu sıcak / tür / spokojne otoczenie
-owca / ż / "53" / koyun / Na łące pasły się białe owce. / Çayırda beyaz koyunlar otluyordu. / trzęsienie ziemi / kotek / deprem / kedi yavrusu / stado owiec
+niebo / n / "53" / gökyüzü / Dziś niebo jest czyste i niebieskie. / Bugün gökyüzü temiz ve mavi. / kogut / góra / horoz / yürüyüş rotası, patika / czyste niebo
+ochłodzenie / n / "53" / soğuma, serinleme / Synoptycy zapowiadają ochłodzenie w weekend. / Meteorologlar hafta sonu için hava sıcaklığında düşüş bekliyor. / gęś / zachmurzenie / kaz / köpek yavrusu, enik / nagłe ochłodzenie
+otoczenie / n / "53" / çevre / Lubimy spokojne otoczenie i ciszę. / Sakin bir çevreyi ve sessizliği severiz. / ziemia / trzęsienie / yer, toprak, dünya / çayır / spokojne otoczenie
+owca / ż / "53" / koyun / Na łące pasły się białe owce. / Çayırda beyaz koyunlar otluyordu. / powietrze / trzęsienie / hava / sarsıntı, sarsılma / stado owiec
+powietrze / n / "53" / hava / Powietrze w górach jest świeże i czyste. / Dağlardaki hava taze ve temiz. / ferma / błyskawica / çiftlik / şimşek / świeże powietrze
 wystrzelić / dk / "54" / ateş etmek / Żołnierz musiał wystrzelić w powietrze. / Asker havaya ateş etmek zorunda kaldı. / zabraknąć / przyciągnąć / eksik olmak, yetmemek / esmek / wystrzelić w powietrze / wystrzeliłem · wystrzelę
 brakować / ndk / "54" / eksik olmak, yetmemek / W tym miesiącu brakuje mi pieniędzy. / Bu ay param yetmiyor. / wystrzelić / zachowywać / ateş etmek / korumak, muhafaza etmek / brakować pieniędzy / brakuje · brakowało | dk: zabraknąć ; zabrakło · zabraknie
 zabraknąć / dk / "54" / eksik olmak, yetmemek / W sklepie zabrakło chleba dzisiaj. / Bugün markette ekmek kalmadı. / powstać / zachowywać / oluşmak, doğmak; kurulmak / çiçek açmak / zabraknąć czasu / zabrakło · zabraknie | ndk: brakować ; brakuje · brakowało
-powietrze / n / "54" / hava / Powietrze w górach jest świeże i czyste. / Dağlardaki hava taze ve temiz. / niebo / błyskawica / gökyüzü / şimşek / świeże powietrze
 sucho / przysł. / "54" / kuru / Latem jest tu zwykle bardzo sucho. / Yazın burası genellikle çok kuru oluyor. / ciemno / mokro / karanlık / ıslak / robi się sucho
-szczeniak / m / "54" / köpek yavrusu, enik / Kupiliśmy dzieciom małego szczeniaka. / Çocuklara küçük bir köpek yavrusu aldık. / otoczenie / zwierzę / çevre / ısınma (hava, iklim) / mały szczeniak
-tęcza / ż / "54" / gökkuşağı / Po deszczu na niebie pojawiła się tęcza. / Yağmurdan sonra gökyüzünde bir gökkuşağı belirdi. / marsz / koza / yürüyüş / sopalar (yürüyüş) / kolorowa tęcza
-trzęsienie ziemi / n / "54" / deprem / W nocy było silne trzęsienie ziemi. / Gece güçlü bir deprem oldu. / zachmurzenie / wędrowanie po górach / bulutlanma / soğuma, serinleme / silne trzęsienie ziemi
-upał / m / "54" / sıcak hava, kavurucu sıcak / W tym roku lato przyniosło wielki upał. / Bu yıl yaz büyük bir sıcak hava getirdi. / królik / marsz / tavşan / hâl, kendini nasıl hissettiği / wielki upał
-zwierzę / n / "54" / hayvan / To zwierzę potrzebuje dużo opieki. / Bu hayvan çok bakıma ihtiyaç duyuyor. / owca / ochłodzenie / koyun / sıcak hava, kavurucu sıcak / domowe zwierzę
-źrebak / m / "54" / tay / Na farmie urodził się mały źrebak. / Çiftlikte küçük bir tay doğdu. / szlak / krajobraz / yürüyüş rotası, patika / çayır / mały źrebak
-wędrowanie po górach / n / "54" / dağlarda yürüyüş / Wędrowanie po górach to moje hobby. / Dağlarda yürüyüş yapmak benim hobimdir. / kura / media społecznościowe / tavuk / peyzaj, doğa manzarası / lubić wędrowanie po górach
-szlak / m / "54" / yürüyüş rotası, patika / Ten szlak prowadzi na szczyt góry. / Bu yürüyüş rotası dağın zirvesine çıkıyor. / trzęsienie ziemi / ochłodzenie / deprem / sıcak hava, kavurucu sıcak / górski szlak
+szczeniak / m / "54" / köpek yavrusu, enik / Kupiliśmy dzieciom małego szczeniaka. / Çocuklara küçük bir köpek yavrusu aldık. / krowa / powietrze / inek / yürüyüş rotası, patika / mały szczeniak
+tęcza / ż / "54" / gökkuşağı / Po deszczu na niebie pojawiła się tęcza. / Yağmurdan sonra gökyüzünde bir gökkuşağı belirdi. / kurczątko / zwierzę / civciv / yürüyüş rotası, patika / kolorowa tęcza
+trzęsienie / n / "54" / sarsıntı, sarsılma / W nocy było silne trzęsienie ziemi. / Gece güçlü bir deprem oldu. / kijki / zachmurzenie / sopalar (yürüyüş) / peyzaj, doğa manzarası / trzęsienie ziemi
+ziemia / ż / "54" / yer, toprak, dünya / W nocy było silne trzęsienie ziemi. / Gece güçlü bir deprem oldu. / otoczenie / tęcza / çevre / sıcak hava, kavurucu sıcak / trzęsienie ziemi
+upał / m / "54" / sıcak hava, kavurucu sıcak / W tym roku lato przyniosło wielki upał. / Bu yıl yaz büyük bir sıcak hava getirdi. / kijki / widok / sopalar (yürüyüş) / çırpılmış yumurta (scrambled) / wielki upał
+zwierzę / n / "54" / hayvan / To zwierzę potrzebuje dużo opieki. / Bu hayvan çok bakıma ihtiyaç duyuyor. / owad / ścieżka / böcek / patika, yol / domowe zwierzę
+źrebak / m / "54" / tay / Na farmie urodził się mały źrebak. / Çiftlikte küçük bir tay doğdu. / las / ścieżka / orman / patika, yol / mały źrebak
+wędrowanie / n / "54" / yürüyüş, gezinti / Wędrowanie po górach to moje hobby. / Dağlarda yürüyüş yapmak benim hobimdir. / kurczątko / błyskawica / civciv / yürüyüş rotası, patika / wędrowanie po górach
+góra / ż / "54" / dağ / Wędrowanie po górach to moje hobby. / Dağlarda yürüyüş yapmak benim hobimdir. / kotek / ścieżka / kedi yavrusu / patika, yol / po górach
+szlak / m / "54" / yürüyüş rotası, patika / Ten szlak prowadzi na szczyt góry. / Bu yürüyüş rotası dağın zirvesine çıkıyor. / cielak / gęś / buzağı / sıcak hava, kavurucu sıcak / górski szlak
 zachowywać / ndk / "55" / korumak, muhafaza etmek / Muzeum zachowuje stare dokumenty od lat. / Müze eski belgeleri yıllardır koruyor. / spaść / wystrzelić / düşmek / oluşmak, doğmak; kurulmak / zachowywać dokumenty / zachowuję · zachowywałem | dk: zachować ; zachowałem · zachowam
 zachować / dk / "55" / korumak, muhafaza etmek / Musimy zachować spokój w trudnej sytuacji. / Zor bir durumda sakin kalmalıyız. / płoszyć / nazbierać / ürkütmek, kaçırmak / oluşmak, doğmak; kurulmak / zachować spokój / zachowałem · zachowam | ndk: zachowywać ; zachowuję · zachowywałem
-powstawać / ndk / "55" / oluşmak, doğmak; kurulmak / W naszym mieście powstają nowe osiedla. / Şehrimizde yeni siteler kuruluyor. / nazbierać / spłoszyć / bir miktar toplamak / anlamına gelmek, ifade etmek / powstawać nowe osiedla / powstaję · powstawałem | dk: powstać ; powstałem · powstanę
+powstawać / ndk / "55" / oluşmak, doğmak; kurulmak / W naszym mieście powstają nowe osiedla. / Şehrimizde yeni siteler kuruluyor. / nazbierać / spłoszyć / bir miktar toplamak / bir yere gitmeye karar vermek / powstawać nowe osiedla / powstaję · powstawałem | dk: powstać ; powstałem · powstanę
 powstać / dk / "55" / oluşmak, doğmak; kurulmak / W tym miejscu powstanie nowy park. / Burada yeni bir park yapılacak. / zabraknąć / wiać / eksik olmak, yetmemek / bulmak (sürekli, sık sık) / powstał nowy park / powstałem · powstanę | ndk: powstawać ; powstaję · powstawałem
-ścieżka / ż / "55" / patika, yol / Ta ścieżka prowadzi prosto do lasu. / Bu patika doğrudan ormana çıkıyor. / kura / ochłodzenie / tavuk / soğuma, serinleme / leśna ścieżka
-kijki / lm / "55" / sopalar (yürüyüş) / Idziemy na spacer z kijkami do nordic walking. / Nordic walking sopalarıyla yürüyüşe çıkıyoruz. / łąka / krowa / çayır / peyzaj, doğa manzarası / kijki trekkingowe
-marsz / m / "55" / yürüyüş / W sobotę idziemy na długi marsz. / Cumartesi uzun bir yürüyüşe çıkıyoruz. / kurczątko / szlak / civciv / yürüyüş rotası, patika / długi marsz
+ścieżka / ż / "55" / patika, yol / Ta ścieżka prowadzi prosto do lasu. / Bu patika doğrudan ormana çıkıyor. / upał / otoczenie / sıcak hava, kavurucu sıcak / tavşan / leśna ścieżka
+kijki / lm / "55" / sopalar (yürüyüş) / Idziemy na spacer z kijkami do nordic walking. / Nordic walking sopalarıyla yürüyüşe çıkıyoruz. / łąka / niebo / çayır / köpek yavrusu, enik / kijki trekkingowe
+marsz / m / "55" / yürüyüş / W sobotę idziemy na długi marsz. / Cumartesi uzun bir yürüyüşe çıkıyoruz. / otoczenie / niebo / çevre / gökyüzü / długi marsz
 ciemno / przysł. / "55" / karanlık / Wieczorem robi się szybko ciemno. / Akşamları hızlıca karanlık oluyor. / brudno / jasno / kirli bir şekilde / anlaşılır biçimde; (hava) aydınlık / robi się ciemno
 jasno / przysł. / "55" / anlaşılır biçimde; (hava) aydınlık / Proszę wytłumaczyć to jasno i prosto. / Lütfen bunu açıkça ve basitçe anlat. / brudno / sucho / kirli bir şekilde / nihayet, sonunda (uzun bekleyişten sonra) / mówić jasno
 jasny / przym. / "55" / aydınlık, açık renkli / Lubię jasne pokoje z dużymi oknami. / Büyük pencereli aydınlık odaları severim. / ciepły / przyrodniczy / sıcak / doğa bilimi ile ilgili / jasny pokój
-ciepły / przym. / "55" / sıcak / Zimą noszę ciepły sweter. / Kışın sıcak bir kazak giyerim. / błyskawica / jasny / şimşek / aydınlık, açık renkli / ciepły sweter
+ciepły / przym. / "55" / sıcak / Zimą noszę ciepły sweter. / Kışın sıcak bir kazak giyerim. / kijki / przyrodniczy / sopalar (yürüyüş) / kaz / ciepły sweter
 głośno / przysł. / "55" / yüksek sesle / Proszę nie mówić tak głośno w bibliotece. / Lütfen kütüphanede bu kadar yüksek sesle konuşma. / gorąco / ciemno / çok sıcak / anlaşılır biçimde; (hava) aydınlık / mówić głośno
 brudno / przysł. / "55" / kirli bir şekilde / W tym pokoju jest bardzo brudno. / Bu odada çok kirli. / ciemno / głośno / karanlık / anlaşılır biçimde; (hava) aydınlık / brudno wygląda
