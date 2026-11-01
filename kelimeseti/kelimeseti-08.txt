@@ -2,7 +2,7 @@ pl / cins / tag / tercume / pl_cumle / cumle_tercume / plÇel1 / plÇel2 / tercu
 podnosić / ndk / "36" / kaldırmak, yükseltmek / Nie powinieneś podnosić tak ciężkich rzeczy. / Bu kadar ağır şeyleri kaldırmamalısın. / pobiec / zamawiać / koşmak (koşmaya başlamak) / sipariş etmek / podnosić ciężar / podnoszę · podnosiłem | dk: podnieść ; podniosłem · podniosę
 podnieść / dk / "36" / kaldırmak, yükseltmek / Podniosłem walizkę z podłogi. / Bavulu yerden kaldırdım. / biegnąć / wygrywać / koşmak / oynamak; çalmak (müzik) / podnieść walizkę / podniosłem · podniosę | ndk: podnosić ; podnoszę · podnosiłem
 uprawiać / ndk / "36" / yapmak (spor) / Uprawiam sport od dziecka. / Çocukluğumdan beri spor yapıyorum. / wygrać / przegrać / kazanmak (maç, yarışma) / yenilmek, kaybetmek (maç) / uprawiać sport / uprawiam · uprawiałem
-ćwiczyć / ndk / "36" / egzersiz yapmak; pratik yapmak / Codziennie ćwiczę rano przez pół godziny. / Her gün sabah yarım saat egzersiz yapıyorum. / odpoczywać / łapać / dinlenmek / yönetmek, idare etmek; araç sürmek / ćwiczyć codziennie / ćwiczę · ćwiczyłem
+ćwiczyć / ndk / "36" / egzersiz yapmak; pratik yapmak / Codziennie ćwiczę rano przez pół godziny. / Her gün sabah yarım saat egzersiz yapıyorum. / odpoczywać / łapać / dinlenmek / geri götürmek; (başarı) kazanmak / ćwiczyć codziennie / ćwiczę · ćwiczyłem
 wypoczęty / przym. / "36" / dinlenmiş / Po urlopie jestem wypoczęty. / Tatilden sonra dinlenmiş durumdayım. / tłusty / wyśmienity / yağlı / enfes, nefis / wypoczęty i zadowolony
 wyścig / m / "36" / yarış / Wyścig rowerowy zaczyna się rano. / Bisiklet yarışı sabah başlıyor. / gotowanie / żywność / pişirme, yemek yapma / gıda, besin / wyścig kolarski
 zawody / lm / "36" / yarışma, meslek / Wzięłam udział w zawodach pływackich. / Yüzme yarışmasına katıldım. / bieganie / słoik / koşu / esneme, germe egzersizi / zawody pływackie
@@ -19,7 +19,7 @@ rozgrzewać się / ndk / "37" / ısınmak / Przed treningiem trzeba się rozgrze
 rozgrzać się / dk / "37" / ısınmak / Szybko rozgrzałem się po biegu. / Koştuktan sonra çabuk ısındım. / ćwiczyć / rozwijać umiejętności / egzersiz yapmak; pratik yapmak / dinlenmek / rozgrzać się po biegu / rozgrzałem się · rozgrzeję się | ndk: rozgrzewać się ; rozgrzewam się · rozgrzewałem się
 mistrzyni / ż / "37" / şampiyon (kadın) / Ona jest mistrzynią Polski w pływaniu. / O, yüzmede Polonya şampiyonu. / wędlina / wypoczynek / şarküteri (jambon, salam vb.) / dinlenme / mistrzyni Polski
 bieganie / n / "37" / koşu / Bieganie rano poprawia moje samopoczucie. / Sabah koşusu ruh halimi iyileştiriyor. / drożdżówka / potrawa / mayalı pasta / yemek (pişmiş yemek) / poranne bieganie
-rozciąganie / n / "37" / esneme, germe egzersizi / Przed bieganiem robię rozciąganie mięśni. / Koşmadan önce kas germe egzersizi yaparım. / sportowiec / zachmurzenie / sporcu / şarküteri (jambon, salam vb.) / robić rozciąganie
+rozciąganie / n / "37" / esneme, germe egzersizi / Przed bieganiem robię rozciąganie mięśni. / Koşmadan önce kas germe egzersizi yaparım. / sportowiec / towarzystwo / sporcu / şarküteri (jambon, salam vb.) / robić rozciąganie
 rozgrzewka / ż / "37" / ısınma hareketleri / Zawsze zaczynam trening od rozgrzewki. / Antrenmana her zaman ısınma ile başlarım. / żywność / wypoczynek / gıda, besin / pişirme, yemek yapma / robić rozgrzewkę
 równowaga / ż / "37" / denge / Trudno mi utrzymać równowagę na rowerze. / Bisikletle dengemi korumak bana zor geliyor. / puszka / jajecznica / teneke kutu / küçük kek, muffin / utrzymać równowagę
 siła / ż / "37" / güç, kuvvet / Trzeba mieć dużo siły, żeby to podnieść. / Bunu kaldırmak için çok güç gerekiyor. / rozgrzewka / równowaga / ısınma hareketleri / denge / mieć siłę
@@ -62,6 +62,6 @@ roślinny / przym. / "40" / bitkisel / Przeszłam na dietę roślinną. / Bitkis
 słoik / m / "40" / kavanoz / Babcia zrobiła słoik dżemu truskawkowego. / Büyükanne bir kavanoz çilek reçeli yaptı. / drużyna / miska / takım / esneme, germe egzersizi / słoik dżemu
 tłusty / przym. / "40" / yağlı / Powinienem jeść mniej tłustych potraw. / Daha az yağlı yemek yemeliyim. / tradycyjny / roślinny / geleneksel / bitkisel / tłuste potrawy
 wędlina / ż / "40" / şarküteri (jambon, salam vb.) / Kupiłam trochę wędliny na kanapki. / Sandviç için biraz şarküteri ürünü aldım. / potrawa / babeczka / yemek (pişmiş yemek) / çırpılmış yumurta (scrambled) / świeża wędlina
-wyśmienity / przym. / "40" / enfes, nefis / Obiad był po prostu wyśmienity. / Yemek gerçekten enfesti. / roślinny / tradycyjny / bitkisel / çok kullanımlık / wyśmienity obiad
+wyśmienity / przym. / "40" / enfes, nefis / Obiad był po prostu wyśmienity. / Yemek gerçekten enfesti. / roślinny / tradycyjny / bitkisel / başlangıç seviyesinde / wyśmienity obiad
 żywność / ż / "40" / gıda, besin / Ceny żywności wzrosły w ostatnim roku. / Geçen yıl gıda fiyatları arttı. / słoik / przyprawa / kavanoz / yarışma, meslek / ceny żywności
 pełnoziarnisty / przym. / "40" / tam tahıllı / Jem tylko chleb pełnoziarnisty. / Sadece tam tahıllı ekmek yerim. / roślinny / skuteczniejszy / bitkisel / dondurulmuş / chleb pełnoziarnisty
