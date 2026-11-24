@@ -6,6 +6,7 @@ Polonyaca B1 Seviye Kelime Haznesi / PolonceKart261121.html / B1 kelimeleri çal
 Polonyaca çoktan seçmeli B1 kelime testi / kelimetesti-b1-v18-sesli.html / B1 sertifika sınavında gerekli kelimelerin testi
 Kelime dinle / slowka_okuyucu.html / kelimeleri tercümeleri ile karışık sıra ile okur 
 txt formatında paragraf okur / pl-ezber-okuyucu-3.html / basit paragraf okur, ezber için iyi
+Polonyaca fiil çalışması niedok.-dok. / fiil-resim.html / Resimlerden fiil seçersin 
 Polonyaca Sayıları Çalış / pl-liczby-1.html / Polonyaca sayı alıştırmaları 
 Polonyaca fiil secme-bulma / lehce-fiil-bulma.html / Polonyaca çok kullanılan fiilleri seçerek egzersiz yapma
 Polonyaca harf harf fiil yazma / lehce-fiil-yazma.html / Polonyca çok kullanılan fiilleri harf harf seçerek egzersiz yapma
