@@ -5,10 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Uygulamalar</title>
 
-<!-- ===== AYARLAR: buradan değiştir ===== -->
-<!-- Liste dosyasının adı: her satır  ->  kısa tarif / dosya.html / uzun tarif -->
-<!-- Bölüm başlığı: apps.txt'de  - Başlık -  gibi bir satır alt başlık (ayraç) olur. -->
-<!-- Başlık ve alt yazı aşağıdaki <header> içinde düz metin olarak değiştirilebilir. -->
+<!-- ===== AYARLAR / SETTINGS ===== -->
+<!-- Liste dosyası (TR + EN tek dosyada) / List file (TR + EN in one file): apps.txt -->
+<!-- Satır / Line:  TR kısa | EN short  /  dosya.html  /  TR uzun | EN long -->
+<!-- Bölüm / Section:  - Türkçe | English -  -->
+<!-- Arayüz metinleri aşağıda, <script> içindeki UI nesnesinde. / UI texts are in the UI object in <script>. -->
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,12 +17,12 @@
 
 <style>
   :root{
-    --paper:#F5F4F0;        /* sıcak kağıt zemini */
-    --ink:#1A1A17;          /* koyu mürekkep */
-    --muted:#6B6A62;        /* ikincil / uzun tarif */
-    --hair:#DEDCD4;         /* ince ayraç çizgisi */
-    --accent:#B23A2E;       /* tek vurgu: tuğla kırmızısı */
-    --wash:#EDEBE4;         /* satır üstüne gelince hafif zemin */
+    --paper:#F5F4F0;
+    --ink:#1A1A17;
+    --muted:#6B6A62;
+    --hair:#DEDCD4;
+    --accent:#B23A2E;
+    --wash:#EDEBE4;
     --maxw:44rem;
   }
 
@@ -45,6 +46,7 @@
     margin-bottom:clamp(2rem,6vw,3.25rem);
     padding-bottom:1.25rem;
     border-bottom:1px solid var(--hair);
+    position:relative;
   }
   header h1{
     font-family:"Space Grotesk",sans-serif;
@@ -52,6 +54,7 @@
     font-size:clamp(1.75rem,6vw,2.5rem);
     letter-spacing:-0.02em;
     margin:0;
+    padding-right:6.5rem;
   }
   header p{
     font-size:0.8rem;
@@ -59,6 +62,37 @@
     margin:0.6rem 0 0;
     max-width:34rem;
   }
+
+  /* --- Dil seçici --- */
+  .lang{
+    position:absolute;
+    top:0.35rem;
+    right:0;
+    display:flex;
+    border:1px solid var(--ink);
+    border-radius:6px;
+    overflow:hidden;
+  }
+  .lang button{
+    font:inherit;
+    font-size:0.78rem;
+    font-weight:500;
+    background:transparent;
+    color:var(--ink);
+    border:0;
+    padding:0.4rem 0.7rem;
+    cursor:pointer;
+    min-width:2.6rem;
+  }
+  .lang button + button{border-left:1px solid var(--ink);}
+  .lang button[aria-pressed="true"]{
+    background:var(--ink);
+    color:var(--paper);
+    font-weight:600;
+    text-decoration:underline;
+    text-underline-offset:3px;
+  }
+  .lang button:focus-visible{outline:2px solid var(--ink);outline-offset:-4px;}
 
   /* --- Liste --- */
   .list{
@@ -72,7 +106,7 @@
     text-decoration:none;
     color:inherit;
     padding:1.15rem clamp(0.6rem,3vw,1.1rem);
-    margin:0 clamp(-0.6rem,-3vw,-1.1rem);   /* zemin taşması için kenarları dışa taşır */
+    margin:0 clamp(-0.6rem,-3vw,-1.1rem);
     border-radius:6px;
     border-bottom:1px solid var(--hair);
     transition:background-color .18s ease;
@@ -103,7 +137,7 @@
     max-width:38rem;
   }
 
-  /* --- Bölüm başlığı ( - Başlık - ) --- */
+  /* --- Bölüm başlığı --- */
   .section{
     margin:2.25rem 0 0;
     padding-bottom:0.5rem;
@@ -139,18 +173,48 @@
 <body>
   <div class="shell">
     <header>
-      <h1>Uygulamalar</h1>
-      <p>Bir uygulamayı açmak için satıra dokun.</p>
+      <div class="lang" role="group" aria-label="Dil / Language">
+        <button type="button" data-lang="tr" aria-pressed="true">TR</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <h1 id="title">Uygulamalar</h1>
+      <p id="subtitle">Bir uygulamayı açmak için satıra dokun.</p>
     </header>
 
     <main id="list" class="list" aria-live="polite"></main>
   </div>
 
 <script>
-  // Liste dosyasının adı — istersen değiştir:
   const KAYNAK = "apps.txt";
+  const STORE_KEY = "apps-lang";
+
+  const UI = {
+    tr: {
+      title: "Uygulamalar",
+      subtitle: "Bir uygulamayı açmak için satıra dokun.",
+      empty: (f) => `Henüz uygulama yok. <code>${esc(f)}</code> dosyasına satır ekle:<br>` +
+                    `<code>kısa tarif | short / dosya.html / uzun tarif | long</code>`,
+      error: (f) => `<code>${esc(f)}</code> okunamadı. Bu sayfanın bir sunucu üzerinden ` +
+                    `(GitHub Pages) açılması gerekir — dosyadan doğrudan <code>file://</code> ile ` +
+                    `açıldığında tarayıcı okumaya izin vermez.`
+    },
+    en: {
+      title: "Apps",
+      subtitle: "Tap a row to open an app.",
+      empty: (f) => `No apps yet. Add a line to <code>${esc(f)}</code>:<br>` +
+                    `<code>kısa tarif | short / file.html / uzun tarif | long</code>`,
+      error: (f) => `Could not read <code>${esc(f)}</code>. This page must be served from a server ` +
+                    `(GitHub Pages) — opening it directly with <code>file://</code> ` +
+                    `blocks the browser from reading the file.`
+    }
+  };
 
   const list = document.getElementById("list");
+  const buttons = document.querySelectorAll(".lang button");
+
+  let lang = "tr";
+  let items = null;      // yüklenen liste (iki dilli)
+  let failed = false;
 
   function esc(s){
     return s.replace(/[&<>"']/g, c => (
@@ -158,8 +222,16 @@
     ));
   }
 
-  // Bir satırı  kısa / dosya / uzun  olarak ayrıştırır.
-  // İlk iki "/" ayraç kabul edilir; uzun tarif içinde "/" kullanılabilir.
+  // "Türkçe | English" -> {tr, en}. Ayraç yoksa aynı metin iki dilde.
+  function bi(text){
+    const i = text.indexOf("|");
+    if (i === -1) return { tr: text.trim(), en: text.trim() };
+    const tr = text.slice(0, i).trim();
+    const en = text.slice(i + 1).trim();
+    return { tr: tr || en, en: en || tr };
+  }
+
+  // kısa / dosya / uzun — ilk iki "/" ayraç.
   function parseLine(line){
     const i1 = line.indexOf("/");
     if (i1 === -1) return null;
@@ -170,25 +242,36 @@
     const long  = (i2 === -1 ? "" : line.slice(i2 + 1)).trim();
 
     if (!short || !file) return null;
-    return { short, file, long };
+    return { short: bi(short), file, long: long ? bi(long) : null };
   }
 
-  // "- Başlık -" biçimindeki satırı alt başlık olarak tanır.
+  // "- Başlık | Title -"
   function parseSection(line){
     const m = line.match(/^-\s*(.+?)\s*-$/);
     if (!m) return null;
     const label = m[1].trim();
-    if (!label || /^-+$/.test(label)) return null;   // yalnızca tire ise başlık değil
-    return label;
+    if (!label || /^-+$/.test(label)) return null;
+    return bi(label);
   }
 
-  function render(items){
+  function showNote(html){
+    list.innerHTML = `<div class="note">${html}</div>`;
+    list.classList.add("ready");
+  }
+
+  function render(){
+    if (failed){ showNote(UI[lang].error(KAYNAK)); return; }
+    if (!items) return;
+    if (!items.some(it => it.type === "entry")){
+      showNote(UI[lang].empty(KAYNAK)); return;
+    }
+
     list.innerHTML = "";
     for (const it of items){
       if (it.type === "section"){
         const h = document.createElement("div");
         h.className = "section";
-        h.textContent = it.label;
+        h.textContent = it.label[lang];
         list.appendChild(h);
         continue;
       }
@@ -196,17 +279,35 @@
       a.className = "entry";
       a.href = it.file;
       a.innerHTML =
-        `<div class="short">${esc(it.short)}</div>` +
-        (it.long ? `<div class="long">${esc(it.long)}</div>` : "");
+        `<div class="short">${esc(it.short[lang])}</div>` +
+        (it.long ? `<div class="long">${esc(it.long[lang])}</div>` : "");
       list.appendChild(a);
     }
     requestAnimationFrame(() => list.classList.add("ready"));
   }
 
-  function showNote(html){
-    list.innerHTML = `<div class="note">${html}</div>`;
-    list.classList.add("ready");
+  function applyLang(l, save){
+    lang = (l === "en") ? "en" : "tr";
+    document.documentElement.lang = lang;
+    document.title = UI[lang].title;
+    document.getElementById("title").textContent = UI[lang].title;
+    document.getElementById("subtitle").textContent = UI[lang].subtitle;
+    buttons.forEach(b => b.setAttribute("aria-pressed", String(b.dataset.lang === lang)));
+    if (save){
+      try { localStorage.setItem(STORE_KEY, lang); } catch(e){}
+    }
+    render();
   }
+
+  buttons.forEach(b => b.addEventListener("click", () => applyLang(b.dataset.lang, true)));
+
+  // Son seçimi hatırla; yoksa tarayıcı diline bak.
+  let saved = null;
+  try { saved = localStorage.getItem(STORE_KEY); } catch(e){}
+  applyLang(
+    saved || ((navigator.language || "tr").toLowerCase().startsWith("tr") ? "tr" : "en"),
+    false
+  );
 
   fetch(KAYNAK, { cache: "no-store" })
     .then(r => {
@@ -217,32 +318,18 @@
       const lines = text
         .split(/\r?\n/)
         .map(l => l.trim())
-        .filter(l => l && !l.startsWith("#"));   // boş satırlar ve # ile başlayan notlar atlanır
+        .filter(l => l && !l.startsWith("#"));
 
-      const items = [];
+      items = [];
       for (const line of lines){
         const section = parseSection(line);
         if (section){ items.push({ type: "section", label: section }); continue; }
         const entry = parseLine(line);
         if (entry){ items.push({ type: "entry", ...entry }); }
       }
-
-      if (!items.some(it => it.type === "entry")){
-        showNote(
-          `Henüz uygulama yok. <code>${esc(KAYNAK)}</code> dosyasına satır ekle:<br>` +
-          `<code>kısa tarif / dosya.html / uzun tarif</code>`
-        );
-      } else {
-        render(items);
-      }
+      render();
     })
-    .catch(() => {
-      showNote(
-        `<code>${esc(KAYNAK)}</code> okunamadı. Bu sayfanın bir sunucu üzerinden ` +
-        `(GitHub Pages) açılması gerekir — dosyadan doğrudan <code>file://</code> ile ` +
-        `açıldığında tarayıcı okumaya izin vermez.`
-      );
-    });
+    .catch(() => { failed = true; render(); });
 </script>
 </body>
 </html>
